@@ -1,0 +1,313 @@
+"use client";
+
+const skillGroups = [
+  {
+    category: "Research & Discovery",
+    skills:   ["User Interviews", "Competitive Analysis", "Heuristic Evaluation", "Jobs-to-be-Done"],
+  },
+  {
+    category: "Design & Systems",
+    skills:   ["Interaction Design", "Design Systems", "Accessibility (WCAG)", "Responsive UI"],
+  },
+  {
+    category: "Delivery & Craft",
+    skills:   ["Figma", "Prototyping", "Dev Handoff", "Usability Testing"],
+  },
+];
+
+export default function About() {
+  return (
+    <section
+      id="about"
+      style={{
+        padding:    "120px 48px",
+        background: "#F5F3EF",
+      }}
+    >
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+
+        {/* Two-column: Bio + Skills */}
+        <div
+          style={{
+            display:             "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap:                 "80px",
+            alignItems:          "start",
+            marginBottom:        "64px",
+          }}
+        >
+          {/* Left — Bio */}
+          <div>
+            {/* Eyebrow */}
+            <div
+              style={{
+                display:      "flex",
+                alignItems:   "center",
+                gap:          "12px",
+                marginBottom: "24px",
+              }}
+            >
+              <span
+                style={{
+                  display:    "inline-block",
+                  width:      "24px",
+                  height:     "1px",
+                  background: "#C17F4A",
+                }}
+              />
+              <p
+                style={{
+                  fontSize:      "11px",
+                  fontWeight:    500,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color:         "#8A8680",
+                  margin:        0,
+                  fontFamily:    "var(--font-dm-sans), sans-serif",
+                }}
+              >
+                About
+              </p>
+            </div>
+
+            {/* Availability badge */}
+            <div
+              style={{
+                display:      "inline-flex",
+                alignItems:   "center",
+                gap:          "8px",
+                background:   "#EDEAE4",
+                border:       "1px solid #E8E4DE",
+                padding:      "6px 14px",
+                marginBottom: "24px",
+              }}
+            >
+              <span
+                style={{
+                  display:      "inline-block",
+                  width:        "7px",
+                  height:       "7px",
+                  borderRadius: "50%",
+                  background:   "#C17F4A",
+                  flexShrink:   0,
+                  // CSS pulse animation via style tag below
+                  animation:    "pulse 2.2s ease-in-out infinite",
+                }}
+              />
+              <style>{`
+                @keyframes pulse {
+                  0%, 100% { opacity: 1; }
+                  50%       { opacity: 0.35; }
+                }
+              `}</style>
+              <span
+                style={{
+                  fontFamily:    "var(--font-dm-sans), sans-serif",
+                  fontSize:      "11px",
+                  fontWeight:    500,
+                  letterSpacing: "0.09em",
+                  textTransform: "uppercase",
+                  color:         "#3D4440",
+                }}
+              >
+                Open to full-time roles · Portland, OR or remote
+              </span>
+            </div>
+
+            <h2
+              style={{
+                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontSize:      "clamp(26px, 3.5vw, 44px)",
+                fontWeight:    400,
+                color:         "#252B28",
+                margin:        "0 0 28px",
+                letterSpacing: "-0.025em",
+                lineHeight:    1.15,
+              }}
+            >
+              Design is a<br />
+              <span style={{ color: "#C17F4A" }}>decision problem.</span>
+            </h2>
+
+            <p
+              style={{
+                fontFamily:   "var(--font-dm-sans), sans-serif",
+                fontSize:     "16px",
+                lineHeight:   1.75,
+                color:        "#3D4440",
+                marginBottom: "20px",
+              }}
+            >
+              I&apos;m a UX/UI Designer based in Portland, OR. I work from research through
+              prototype — focused on clear problem framing, evidence-based decisions, and
+              design that holds up under real constraints.
+            </p>
+            <p
+              style={{
+                fontFamily:   "var(--font-dm-sans), sans-serif",
+                fontSize:     "16px",
+                lineHeight:   1.75,
+                color:        "#3D4440",
+                marginBottom: "40px",
+              }}
+            >
+              My work spans consumer apps, e-commerce, and travel. Beyond screens, I care
+              about the systems underneath — interaction patterns, information architecture,
+              accessibility, and the handoff details that make or break implementation.
+            </p>
+
+            <a
+              href="mailto:alfonso@barreiro.com"
+              style={{
+                display:        "inline-flex",
+                alignItems:     "center",
+                gap:            "8px",
+                color:          "#252B28",
+                fontSize:       "13px",
+                fontWeight:     600,
+                letterSpacing:  "0.07em",
+                textTransform:  "uppercase",
+                fontFamily:     "var(--font-dm-sans), sans-serif",
+                borderBottom:   "1px solid #C9BFB0",
+                paddingBottom:  "4px",
+                transition:     "color 0.2s, border-color 0.2s",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color       = "#C17F4A";
+                e.currentTarget.style.borderColor = "#C17F4A";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color       = "#252B28";
+                e.currentTarget.style.borderColor = "#C9BFB0";
+              }}
+            >
+              Let&apos;s talk
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  d="M3 8H13M13 8L9 4M13 8L9 12"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+
+          {/* Right — Skills */}
+          <div
+            style={{
+              background:   "#FFFFFF",
+              border:       "1px solid #E8E4DE",
+              borderRadius: 0,
+              padding:      "44px",
+            }}
+          >
+            {skillGroups.map((group, i) => (
+              <div
+                key={group.category}
+                style={{
+                  marginBottom:  i < skillGroups.length - 1 ? "32px" : 0,
+                  paddingBottom: i < skillGroups.length - 1 ? "32px" : 0,
+                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #E8E4DE" : "none",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily:    "var(--font-dm-sans), sans-serif",
+                    fontSize:      "11px",
+                    fontWeight:    600,
+                    letterSpacing: "0.13em",
+                    textTransform: "uppercase",
+                    color:         "#C17F4A",
+                    marginBottom:  "14px",
+                  }}
+                >
+                  {group.category}
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      style={{
+                        fontFamily:   "var(--font-dm-sans), sans-serif",
+                        fontSize:     "13px",
+                        padding:      "6px 14px",
+                        borderRadius: 0,
+                        background:   "#F5F3EF",
+                        color:        "#252B28",
+                        fontWeight:   400,
+                        border:       "1px solid #E8E4DE",
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Process note — full-width box */}
+        <div
+          style={{
+            background:  "#EDEAE4",
+            border:      "1px solid #E8E4DE",
+            padding:     "44px 52px",
+          }}
+        >
+          <div
+            style={{
+              display:      "flex",
+              alignItems:   "center",
+              gap:          "12px",
+              marginBottom: "20px",
+            }}
+          >
+            <span
+              style={{
+                display:    "inline-block",
+                width:      "20px",
+                height:     "1px",
+                background: "#C17F4A",
+                flexShrink: 0,
+              }}
+            />
+            <p
+              style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "11px",
+                fontWeight:    600,
+                letterSpacing: "0.13em",
+                textTransform: "uppercase",
+                color:         "#C17F4A",
+                margin:        0,
+              }}
+            >
+              How I work
+            </p>
+          </div>
+          <p
+            style={{
+              fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+              fontSize:      "clamp(18px, 2.2vw, 26px)",
+              fontWeight:    400,
+              lineHeight:    1.5,
+              color:         "#252B28",
+              margin:        0,
+              letterSpacing: "-0.02em",
+              maxWidth:      "760px",
+            }}
+          >
+            I start with the problem before opening Figma. Research shapes the brief;
+            the brief shapes the structure; the structure shapes the interface — in that order.
+            The decisions that matter most happen before the first frame.
+          </p>
+        </div>
+
+      </div>
+    </section>
+  );
+}

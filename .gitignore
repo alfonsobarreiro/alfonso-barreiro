@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local resources — not for version control
+# (contains private reference materials, PDFs, etc.)
+_resources/

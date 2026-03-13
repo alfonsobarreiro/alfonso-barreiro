@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ── Brand primitives ── */
+  --color-brand-50:  #F0EDE7;
+  --color-brand-100: #E3DDD4;
+  --color-brand-200: #C9BFB0;
+  --color-brand-300: #C17F4A; /* accent / cognac */
+  --color-brand-400: #A86A38;
+  --color-brand-500: #8F5630;
+  --color-brand-600: #744228;
+  --color-brand-700: #252B28; /* ink */
+  --color-brand-800: #1C211E;
+  --color-brand-900: #181C1A;
+
+  /* ── Neutral scale ── */
+  --color-neutral-50:  #F5F3EF;
+  --color-neutral-100: #EDEAE4;
+  --color-neutral-200: #E8E4DE;
+  --color-neutral-800: #3D4440;
+  --color-neutral-900: #252B28;
+
+  /* ── Semantic tokens ── */
+  --color-background:          #F5F3EF;
+  --color-surface:             #FFFFFF;
+  --color-foreground:          #252B28;
+  --color-foreground-secondary:#3D4440;
+  --color-foreground-muted:    #8A8680;
+  --color-accent:              #C17F4A;
+  --color-border:              #E8E4DE;
+  --color-border-strong:       #C9BFB0;
+
+  /* ── Typography ── */
+  --font-sans:    var(--font-dm-sans);
+  --font-display: var(--font-dm-serif-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:               #F5F3EF;
+  color:                    #252B28;
+  font-family:              var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing:   antialiased;
+  -moz-osx-font-smoothing:  grayscale;
+  overflow-x:               hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: #F5F3EF; }
+::-webkit-scrollbar-thumb  { background: #C9BFB0; border-radius: 3px; }
+
+/* ── Base links ── */
+a {
+  color:           inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
 }
