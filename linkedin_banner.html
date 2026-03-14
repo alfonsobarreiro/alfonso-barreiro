@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Banner — Alfonso Barreiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    .label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* ── Banner canvas ── */
+    .banner {
+      width: 1584px;
+      height: 396px;
+      position: relative;
+      overflow: hidden;
+      background: #252B28;
+      /* Subtle dot-grid texture */
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(193,127,74,0.12) 1px, transparent 0);
+      background-size: 28px 28px;
+    }
+
+    /* Large faded monogram — right anchor */
+    .monogram {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 340px;
+      line-height: 1;
+      color: rgba(255,255,255,0.032);
+      letter-spacing: -0.04em;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Cognac vertical accent bar — left edge */
+    .accent-bar {
+      position: absolute;
+      left: 64px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 160px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #C17F4A 20%,
+        #C17F4A 80%,
+        transparent 100%
+      );
+    }
+
+    /* Content block */
+    .content {
+      position: absolute;
+      left: 96px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-line {
+      width: 22px;
+      height: 1px;
+      background: #C17F4A;
+      flex-shrink: 0;
+    }
+
+    .eyebrow-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #C17F4A;
+    }
+
+    /* Name */
+    .name {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 68px;
+      font-weight: 400;
+      color: #F5F3EF;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(245,243,239,0.50);
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+    }
+
+    .tagline strong {
+      color: rgba(245,243,239,0.75);
+      font-weight: 500;
+    }
+
+    /* Availability pill — bottom left of content */
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      background: rgba(193,127,74,0.12);
+      border: 1px solid rgba(193,127,74,0.30);
+      padding: 6px 14px;
+    }
+
+    .availability-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #C17F4A;
+      flex-shrink: 0;
+    }
+
+    .availability-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #C17F4A;
+    }
+
+    /* ── Screenshot note ── */
+    .note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      margin-top: 20px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .note code {
+      background: rgba(255,255,255,0.08);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="label">LinkedIn Banner — 1584 × 396px — Alfonso Barreiro</p>
+
+  <div class="banner">
+    <!-- Faded monogram -->
+    <div class="monogram">AB</div>
+
+    <!-- Left accent bar -->
+    <div class="accent-bar"></div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">UX / UI Designer</span>
+      </div>
+
+      <div class="name">Alfonso Barreiro</div>
+
+      <div class="tagline">
+        Making complex things feel clear.<br />
+        <strong>barreiro.com</strong>
+      </div>
+
+      <div class="availability">
+        <span class="availability-dot"></span>
+        <span class="availability-text">Open to full-time roles · Portland, OR or remote</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">
+    To export: open in Chrome → <code>Cmd+Shift+P</code> → "Capture screenshot"<br />
+    or use browser DevTools → set viewport to 1584 × 396 → screenshot.<br />
+    Recommended tool: <strong>Figma</strong> (paste these styles) or <strong>screely.com</strong> for quick export.
+  </p>
+
+</body>
+</html>

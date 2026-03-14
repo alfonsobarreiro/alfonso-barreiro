@@ -72,12 +72,20 @@ export default function Contact() {
   return (
     <section
       id="contact"
+      className="contact-section"
       style={{
         padding:    "120px 48px",
         background: "#252B28",
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .contact-section { padding: 80px 24px !important; }
+          .contact-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
+        }
+      `}</style>
       <div
+        className="contact-grid"
         style={{
           maxWidth:            "1200px",
           margin:              "0 auto",

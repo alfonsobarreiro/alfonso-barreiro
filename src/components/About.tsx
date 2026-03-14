@@ -19,15 +19,25 @@ export default function About() {
   return (
     <section
       id="about"
+      className="about-section"
       style={{
         padding:    "120px 48px",
         background: "#F5F3EF",
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .about-section { padding: 80px 24px !important; }
+          .about-grid    { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .process-box   { padding: 32px 24px !important; }
+        }
+      `}</style>
+
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Two-column: Bio + Skills */}
         <div
+          className="about-grid"
           style={{
             display:             "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -252,6 +262,7 @@ export default function About() {
 
         {/* Process note — full-width box */}
         <div
+          className="process-box"
           style={{
             background:  "#EDEAE4",
             border:      "1px solid #E8E4DE",

@@ -4,6 +4,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      className="hero-section"
       style={{
         minHeight:      "100vh",
         display:        "flex",
@@ -15,6 +16,11 @@ export default function Hero() {
         background:     "#F5F3EF",
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .hero-section { padding: 100px 24px 60px !important; }
+        }
+      `}</style>
       <div style={{ maxWidth: "900px", position: "relative" }}>
 
         {/* Eyebrow — role + location first */}

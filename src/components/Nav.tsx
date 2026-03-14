@@ -11,6 +11,7 @@ function scrollTo(id: string) {
 export default function Nav() {
   return (
     <nav
+      className="main-nav"
       style={{
         position:       "fixed",
         top:            0,
@@ -26,6 +27,13 @@ export default function Nav() {
         borderBottom:   "1px solid #E8E4DE",
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .main-nav          { padding: 0 24px !important; }
+          .nav-links         { display: none !important; }
+          .nav-cta           { display: none !important; }
+        }
+      `}</style>
       {/* Logo — always dark on white, no filter needed */}
       <button
         onClick={() => scrollTo("hero")}
@@ -36,7 +44,7 @@ export default function Nav() {
       </button>
 
       {/* Nav links + CTA */}
-      <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
+      <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: "40px" }}>
         {navLinks.map((link) => (
           <NavLink key={link} label={link} onClick={() => scrollTo(link)} />
         ))}

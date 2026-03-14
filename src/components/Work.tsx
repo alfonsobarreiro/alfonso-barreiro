@@ -49,11 +49,18 @@ export default function Work() {
   return (
     <section
       id="work"
+      className="work-section"
       style={{
         padding:    "120px 48px",
         background: "#EDEAE4",
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .work-section  { padding: 80px 24px !important; }
+          .work-card     { padding: 32px 24px !important; }
+        }
+      `}</style>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Section header */}
