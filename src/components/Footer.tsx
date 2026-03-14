@@ -11,48 +11,65 @@ export default function Footer() {
   return (
     <footer
       style={{
-        padding:         "28px 48px",
-        background:      "#1C211E",
-        borderTop:       "1px solid rgba(245,243,239,0.06)",
-        display:         "flex",
-        justifyContent:  "space-between",
-        alignItems:      "center",
+        padding:    "28px 48px",
+        background: "#1C211E",
+        borderTop:  "1px solid rgba(245,243,239,0.06)",
       }}
     >
-      <LogoMark size={19} variant="light" opacity={0.35} />
+      <style>{`
+        @media (max-width: 767px) {
+          .footer-inner {
+            flex-direction: column !important;
+            align-items:    flex-start !important;
+            gap:            20px !important;
+          }
+          .footer-inner > p { order: 3; }
+        }
+      `}</style>
 
-      <p
+      <div
+        className="footer-inner"
         style={{
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "12px",
-          color:      "rgba(245,243,239,0.25)",
-          margin:     0,
+          display:        "flex",
+          justifyContent: "space-between",
+          alignItems:     "center",
         }}
       >
-        © 2026 Alfonso Barreiro · Portland, OR
-      </p>
+        <LogoMark size={19} variant="light" opacity={0.35} />
 
-      <div style={{ display: "flex", gap: "24px" }}>
-        {footerLinks.map(({ label, href, target }) => (
-          <a
-            key={label}
-            href={href}
-            target={target}
-            rel={target === "_blank" ? "noopener noreferrer" : undefined}
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "12px",
-              color:         "rgba(245,243,239,0.3)",
-              letterSpacing: "0.06em",
-              transition:    "color 0.2s",
-              textDecoration: "none",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(245,243,239,0.75)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,243,239,0.3)")}
-          >
-            {label}
-          </a>
-        ))}
+        <p
+          style={{
+            fontFamily: "var(--font-dm-sans), sans-serif",
+            fontSize:   "12px",
+            color:      "rgba(245,243,239,0.25)",
+            margin:     0,
+          }}
+        >
+          © 2026 Alfonso Barreiro · Portland, OR
+        </p>
+
+        <div style={{ display: "flex", gap: "24px" }}>
+          {footerLinks.map(({ label, href, target }) => (
+            <a
+              key={label}
+              href={href}
+              target={target}
+              rel={target === "_blank" ? "noopener noreferrer" : undefined}
+              style={{
+                fontFamily:     "var(--font-dm-sans), sans-serif",
+                fontSize:       "12px",
+                color:          "rgba(245,243,239,0.3)",
+                letterSpacing:  "0.06em",
+                transition:     "color 0.2s",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(245,243,239,0.75)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,243,239,0.3)")}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
   );

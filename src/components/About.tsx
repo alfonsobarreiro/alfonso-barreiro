@@ -166,8 +166,8 @@ export default function About() {
               accessibility, and the handoff details that make or break implementation.
             </p>
 
-            <a
-              href="mailto:alfonso@barreiro.com"
+            <button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",
@@ -179,9 +179,13 @@ export default function About() {
                 textTransform:  "uppercase",
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 borderBottom:   "1px solid #C9BFB0",
+                borderTop:      "none",
+                borderLeft:     "none",
+                borderRight:    "none",
                 paddingBottom:  "4px",
+                background:     "none",
+                cursor:         "pointer",
                 transition:     "color 0.2s, border-color 0.2s",
-                textDecoration: "none",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color       = "#C17F4A";
@@ -202,7 +206,7 @@ export default function About() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </a>
+            </button>
           </div>
 
           {/* Right — Skills */}
