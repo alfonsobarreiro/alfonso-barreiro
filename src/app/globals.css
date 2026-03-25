@@ -14,14 +14,14 @@
   --color-brand-900: #181C1A;
 
   /* ── Neutral scale ── */
-  --color-neutral-50:  #F5F3EF;
-  --color-neutral-100: #EDEAE4;
+  --color-neutral-50:  #F5F5F4;
+  --color-neutral-100: #EBEBEA;
   --color-neutral-200: #E8E4DE;
   --color-neutral-800: #3D4440;
   --color-neutral-900: #252B28;
 
   /* ── Semantic tokens ── */
-  --color-background:          #F5F3EF;
+  --color-background:          #F5F5F4;
   --color-surface:             #FFFFFF;
   --color-foreground:          #252B28;
   --color-foreground-secondary:#3D4440;
@@ -47,7 +47,7 @@ html {
 }
 
 body {
-  background:               #F5F3EF;
+  background:               #F5F5F4;
   color:                    #252B28;
   font-family:              var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing:   antialiased;
@@ -57,7 +57,7 @@ body {
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar        { width: 5px; }
-::-webkit-scrollbar-track  { background: #F5F3EF; }
+::-webkit-scrollbar-track  { background: #F5F5F4; }
 ::-webkit-scrollbar-thumb  { background: #C9BFB0; border-radius: 3px; }
 
 /* ── Base links ── */
@@ -66,6 +66,58 @@ a {
   text-decoration: none;
 }
 
+/* Replace browser default blue outline with brand-aware focus ring */
+a:focus                { outline: none; }
+a:focus-visible        { outline: 2px solid #C17F4A; outline-offset: 2px; }
+button:focus           { outline: none; }
+button:focus-visible   { outline: 2px solid #C17F4A; outline-offset: 2px; }
+
 button {
   font-family: inherit;
 }
+
+/* ── Responsive overrides ── */
+@media (max-width: 767px) {
+  .hero-section    { padding: 100px 24px 60px !important; }
+  .main-nav        { padding: 0 24px !important; }
+  .nav-links       { display: none !important; }
+  .hamburger       { display: flex !important; }
+  .about-section   { padding: 80px 24px !important; }
+  .about-grid      { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .process-box     { padding: 32px 24px !important; }
+  .work-section    { padding: 80px 24px !important; }
+  .work-card       { padding: 32px 24px !important; }
+  .contact-section { padding: 80px 24px !important; }
+  .contact-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .footer-inner    { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
+  .footer-inner > p { order: 3; }
+  .cs-nav          { padding: 0 24px !important; }
+
+  /* Case study — problem cards: stack label above text */
+  .cs-problem-card  { flex-direction: column !important; gap: 8px !important; }
+  .cs-problem-label { min-width: unset !important; padding-top: 0 !important; }
+
+  /* Case study — journey map: contain horizontal scroll within the block */
+  .cs-journey-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Case study — slideshow: prevent container collapse on mobile */
+  .cs-slides-outer  { min-height: 220px !important; }
+}
+@media (min-width: 768px) {
+  .hamburger { display: none !important; }
+}
+
+
+/* ── Animations ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+@keyframes cookieSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Case study nav ── */
+.cs-back-link       { color: #8A8680; transition: color 0.2s; }
+.cs-back-link:hover { color: #252B28; }

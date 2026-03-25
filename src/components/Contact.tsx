@@ -49,7 +49,7 @@ export default function Contact() {
       : "1px solid rgba(245,243,239,0.20)",
     borderRadius:    0,
     padding:         "12px 0",
-    color:           "#F5F3EF",
+    color:           "#F5F5F4",
     fontSize:        "15px",
     fontFamily:      "var(--font-dm-sans), sans-serif",
     fontWeight:      400,
@@ -78,12 +78,6 @@ export default function Contact() {
         background: "#252B28",
       }}
     >
-      <style>{`
-        @media (max-width: 767px) {
-          .contact-section { padding: 80px 24px !important; }
-          .contact-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
-        }
-      `}</style>
       <div
         className="contact-grid"
         style={{
@@ -133,7 +127,7 @@ export default function Contact() {
               fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
               fontSize:      "clamp(28px, 4vw, 52px)",
               fontWeight:    400,
-              color:         "#F5F3EF",
+              color:         "#F5F5F4",
               margin:        "0 0 24px",
               letterSpacing: "-0.03em",
               lineHeight:    1.1,
@@ -172,7 +166,7 @@ export default function Contact() {
               transition:    "color 0.2s",
               textDecoration: "none",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#F5F3EF")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#F5F5F4")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,243,239,0.5)")}
           >
             alfonso@barreiro.com
@@ -193,7 +187,7 @@ export default function Contact() {
                 style={{
                   fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
                   fontSize:      "24px",
-                  color:         "#F5F3EF",
+                  color:         "#F5F5F4",
                   marginBottom:  "12px",
                   letterSpacing: "-0.02em",
                 }}
@@ -285,9 +279,9 @@ export default function Contact() {
                   style={{
                     padding:       "15px 36px",
                     background:    formState === "submitting" ? "rgba(193,127,74,0.6)" : "#C17F4A",
-                    color:         "#F5F3EF",
+                    color:         "#F5F5F4",
                     border:        "none",
-                    borderRadius:  0,
+                    borderRadius:  "8px",
                     fontSize:      "13px",
                     fontWeight:    600,
                     fontFamily:    "var(--font-dm-sans), sans-serif",

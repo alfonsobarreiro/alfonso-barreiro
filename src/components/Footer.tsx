@@ -16,17 +16,6 @@ export default function Footer() {
         borderTop:  "1px solid rgba(245,243,239,0.06)",
       }}
     >
-      <style>{`
-        @media (max-width: 767px) {
-          .footer-inner {
-            flex-direction: column !important;
-            align-items:    flex-start !important;
-            gap:            20px !important;
-          }
-          .footer-inner > p { order: 3; }
-        }
-      `}</style>
-
       <div
         className="footer-inner"
         style={{

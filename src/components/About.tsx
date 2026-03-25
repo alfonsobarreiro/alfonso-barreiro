@@ -22,17 +22,9 @@ export default function About() {
       className="about-section"
       style={{
         padding:    "120px 48px",
-        background: "#F5F3EF",
+        background: "#F5F5F4",
       }}
     >
-      <style>{`
-        @media (max-width: 767px) {
-          .about-section { padding: 80px 24px !important; }
-          .about-grid    { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .process-box   { padding: 32px 24px !important; }
-        }
-      `}</style>
-
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Two-column: Bio + Skills */}
@@ -86,7 +78,7 @@ export default function About() {
                 display:      "inline-flex",
                 alignItems:   "center",
                 gap:          "8px",
-                background:   "#EDEAE4",
+                background:   "#EBEBEA",
                 border:       "1px solid #E8E4DE",
                 padding:      "6px 14px",
                 marginBottom: "24px",
@@ -104,12 +96,6 @@ export default function About() {
                   animation:    "pulse 2.2s ease-in-out infinite",
                 }}
               />
-              <style>{`
-                @keyframes pulse {
-                  0%, 100% { opacity: 1; }
-                  50%       { opacity: 0.35; }
-                }
-              `}</style>
               <span
                 style={{
                   fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -249,7 +235,7 @@ export default function About() {
                         fontSize:     "13px",
                         padding:      "6px 14px",
                         borderRadius: 0,
-                        background:   "#F5F3EF",
+                        background:   "#F5F5F4",
                         color:        "#252B28",
                         fontWeight:   400,
                         border:       "1px solid #E8E4DE",
@@ -268,7 +254,7 @@ export default function About() {
         <div
           className="process-box"
           style={{
-            background:  "#EDEAE4",
+            background:  "#EBEBEA",
             border:      "1px solid #E8E4DE",
             padding:     "44px 52px",
           }}

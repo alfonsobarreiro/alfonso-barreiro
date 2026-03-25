@@ -13,14 +13,9 @@ export default function Hero() {
         padding:        "120px 48px 80px",
         position:       "relative",
         overflow:       "hidden",
-        background:     "#F5F3EF",
+        background:     "#F5F5F4",
       }}
     >
-      <style>{`
-        @media (max-width: 767px) {
-          .hero-section { padding: 100px 24px 60px !important; }
-        }
-      `}</style>
       <div style={{ maxWidth: "900px", position: "relative" }}>
 
         {/* Eyebrow — role + location first */}
@@ -96,8 +91,8 @@ export default function Hero() {
             style={{
               padding:    "14px 32px",
               background: "#252B28",
-              color:      "#F5F3EF",
-              borderRadius: 0,
+              color:      "#F5F5F4",
+              borderRadius: "8px",
               fontSize:   "14px",
               fontWeight: 500,
               fontFamily: "var(--font-dm-sans), sans-serif",
@@ -118,7 +113,7 @@ export default function Hero() {
               background: "transparent",
               color:      "#3D4440",
               border:     "1px solid #C9BFB0",
-              borderRadius: 0,
+              borderRadius: "8px",
               fontSize:   "14px",
               fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",

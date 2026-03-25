@@ -51,13 +51,6 @@ export default function CookieConsent() {
         animation:  "cookieSlideIn 0.35s ease forwards",
       }}
     >
-      <style>{`
-        @keyframes cookieSlideIn {
-          from { opacity: 0; transform: translateY(12px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-
       {/* Eyebrow rule */}
       <div
         style={{
@@ -111,9 +104,9 @@ export default function CookieConsent() {
             flex:          1,
             padding:       "10px 0",
             background:    "#C17F4A",
-            color:         "#F5F3EF",
+            color:         "#F5F5F4",
             border:        "none",
-            borderRadius:  0,
+            borderRadius:  "8px",
             fontSize:      "12px",
             fontWeight:    600,
             fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -135,7 +128,7 @@ export default function CookieConsent() {
             background:    "transparent",
             color:         "rgba(245,243,239,0.50)",
             border:        "1px solid rgba(245,243,239,0.18)",
-            borderRadius:  0,
+            borderRadius:  "8px",
             fontSize:      "12px",
             fontWeight:    500,
             fontFamily:    "var(--font-dm-sans), sans-serif",
