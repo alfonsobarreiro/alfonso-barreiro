@@ -42,10 +42,10 @@ const projects: Project[] = [
   {
     index:       "03",
     title:       "Men's Sole Revival",
-    subtitle:    "Sneaker Resale Platform",
+    subtitle:    "Sneaker Education & Review Site",
     description:
-      "A trust-first resale marketplace redesign focused on reducing buyer anxiety on high-value purchases — surfacing authentication signals, improving listing quality, and decreasing conversion friction.",
-    tags:        ["E-Commerce UX", "Visual Design", "Mobile-First"],
+      "A resource-first site helping sneaker enthusiasts research authenticity, compare releases, and navigate the market with confidence — built on editorial clarity, honest reviews, and information architecture that puts the right detail at the right moment.",
+    tags:        ["Content UX", "Visual Design", "Mobile-First"],
     year:        "2026",
     status:      "coming-soon",
   },

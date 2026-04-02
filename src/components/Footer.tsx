@@ -176,7 +176,7 @@ export default function Footer() {
 
             {/* CTA buttons — 2-across grid */}
             <div style={{ display: "grid", gridTemplateColumns: "auto auto", justifyContent: "start", gap: "10px" }}>
-              <a href="/Alfonso_Barreiro_Resume_2026.pdf" target="_blank" rel="noopener noreferrer" style={pillDefault}
+              <a href="/Alfonso_Barreiro_Resume_April_2026.pdf" target="_blank" rel="noopener noreferrer" style={pillDefault}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(245,243,239,0.45)"; e.currentTarget.style.background = "rgba(245,243,239,0.08)"; e.currentTarget.style.color = "rgba(245,243,239,0.9)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(245,243,239,0.20)"; e.currentTarget.style.background = "rgba(245,243,239,0.04)"; e.currentTarget.style.color = "rgba(245,243,239,0.65)"; }}
               >
