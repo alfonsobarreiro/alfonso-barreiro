@@ -38,6 +38,7 @@ const projects: Project[] = [
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
     status:      "coming-soon",
+    image:       "/cs-wayfarer-preview.png",
   },
   {
     index:       "03",
@@ -48,6 +49,7 @@ const projects: Project[] = [
     tags:        ["Content UX", "Visual Design", "Mobile-First"],
     year:        "2026",
     status:      "coming-soon",
+    image:       "/cs-msr-preview.png",
   },
 ];
 
@@ -69,7 +71,7 @@ export default function Work() {
             display:        "flex",
             justifyContent: "space-between",
             alignItems:     "flex-end",
-            marginBottom:   "64px",
+            marginBottom:   "48px",
           }}
         >
           <div>
@@ -129,18 +131,36 @@ export default function Work() {
           </span>
         </div>
 
-        {/* Project cards */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          {projects.map((project) => (
-            <ProjectCard key={project.index} project={project} />
-          ))}
+        {/* Bento grid */}
+        <div
+          style={{
+            display:             "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gridTemplateRows:    "auto auto",
+            gap:                 "16px",
+          }}
+        >
+          {/* Feature card — spans both columns */}
+          <div style={{ gridColumn: "1 / -1" }}>
+            <ProjectCard project={projects[0]} featured />
+          </div>
+
+          {/* Pair row */}
+          <ProjectCard project={projects[1]} />
+          <ProjectCard project={projects[2]} />
         </div>
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: Project;
+  featured?: boolean;
+}) {
   const [hovered, setHovered] = useState(false);
   const isLive = project.status === "live" && !!project.href;
 
@@ -151,7 +171,9 @@ function ProjectCard({ project }: { project: Project }) {
     background:     "#FFFFFF",
     border:         "1px solid #E8E4DE",
     borderRadius:   0,
-    padding:        "44px 48px",
+    padding:        featured ? "44px 48px" : "40px 40px",
+    height:         "100%",
+    boxSizing:      "border-box",
     transition:     "transform 0.25s ease, box-shadow 0.25s ease",
     transform:      hovered && isLive ? "translateY(-3px)" : "translateY(0)",
     boxShadow:      hovered && isLive
@@ -160,93 +182,99 @@ function ProjectCard({ project }: { project: Project }) {
     cursor:         isLive ? "pointer" : "default",
   };
 
-  const cardInner = (
-    <>
-      {/* Thumbnail */}
-      {project.image && (
-        <div style={{
-          position:     "relative",
-          width:        "calc(100% + 96px)",
-          marginLeft:   "-48px",
-          marginTop:    "-44px",
-          marginBottom: "32px",
-          aspectRatio:  "16/7",
-          overflow:     "hidden",
-          borderBottom: "1px solid #E8E4DE",
-        }}>
-          <Image
-            src={project.image}
-            alt={`${project.title} — ${project.subtitle} preview`}
-            fill
-            sizes="(max-width: 767px) 100vw, 1200px"
-            style={{
-              objectFit:      "cover",
-              objectPosition: "center top",
-              transition:     "transform 0.4s ease",
-              transform:      hovered ? "scale(1.03)" : "scale(1)",
-            }}
-          />
-        </div>
-      )}
-
-      {/* Card header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
-        <span style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "#C17F4A" }}>
-          {project.index}
-        </span>
-        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-          {/* Label — stays rectangular */}
+  /* ── Featured layout: content left, image right ── */
+  const featuredInner = (
+    <div
+      style={{
+        display:             "grid",
+        gridTemplateColumns: "1fr 1.4fr",
+        gap:                 "48px",
+        alignItems:          "stretch",
+        minHeight:           "320px",
+      }}
+    >
+      {/* Left: all text content */}
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+        {/* Header row */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "28px" }}>
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "11px",
-            padding:       "4px 12px",
-            borderRadius:  0,
-            border:        "1px solid rgba(193,127,74,0.30)",
-            color:         "#C17F4A",
             fontWeight:    600,
-            letterSpacing: "0.06em",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color:         "#C17F4A",
           }}>
-            {isLive ? "Case Study" : "Coming Soon"}
+            {project.index}
           </span>
-          <span style={{ fontSize: "12px", color: "#8A8680", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-            {project.year}
-          </span>
+          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+            <span style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "11px",
+              padding:       "4px 12px",
+              border:        "1px solid rgba(193,127,74,0.30)",
+              color:         "#C17F4A",
+              fontWeight:    600,
+              letterSpacing: "0.06em",
+            }}>
+              Case Study
+            </span>
+            <span style={{ fontSize: "12px", color: "#8A8680", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              {project.year}
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* Title */}
-      <h3 style={{ fontFamily: "var(--font-dm-serif-display), Georgia, serif", fontSize: "clamp(22px, 2.8vw, 32px)", fontWeight: 400, color: "#252B28", margin: "0 0 4px", letterSpacing: "-0.02em" }}>
-        {project.title}
-      </h3>
-      <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "15px", color: "#8A8680", margin: "0 0 20px", fontWeight: 400 }}>
-        {project.subtitle}
-      </p>
-
-      {/* Description */}
-      <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "15px", lineHeight: 1.7, color: "#3D4440", margin: "0 0 28px", maxWidth: "560px" }}>
-        {project.description}
-      </p>
-
-      {/* Tags — stay rectangular */}
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "28px" }}>
-        {project.tags.map((tag) => (
-          <span key={tag} style={{
-            fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "12px",
-            padding:      "5px 14px",
-            borderRadius: 0,
-            background:   "#F5F5F4",
-            color:        "#3D4440",
-            fontWeight:   500,
-            border:       "1px solid #E8E4DE",
+        {/* Title block */}
+        <div style={{ flex: 1 }}>
+          <h3 style={{
+            fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+            fontSize:      "clamp(24px, 2.8vw, 36px)",
+            fontWeight:    400,
+            color:         "#252B28",
+            margin:        "0 0 4px",
+            letterSpacing: "-0.02em",
           }}>
-            {tag}
-          </span>
-        ))}
-      </div>
+            {project.title}
+          </h3>
+          <p style={{
+            fontFamily: "var(--font-dm-sans), sans-serif",
+            fontSize:   "15px",
+            color:      "#8A8680",
+            margin:     "0 0 20px",
+            fontWeight: 400,
+          }}>
+            {project.subtitle}
+          </p>
+          <p style={{
+            fontFamily: "var(--font-dm-sans), sans-serif",
+            fontSize:   "14px",
+            lineHeight: 1.7,
+            color:      "#3D4440",
+            margin:     "0 0 24px",
+          }}>
+            {project.description}
+          </p>
+        </div>
 
-      {/* Hover indicator / status */}
-      {isLive ? (
+        {/* Tags */}
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "24px" }}>
+          {project.tags.map((tag) => (
+            <span key={tag} style={{
+              fontFamily:   "var(--font-dm-sans), sans-serif",
+              fontSize:     "12px",
+              padding:      "5px 14px",
+              background:   "#F5F5F4",
+              color:        "#3D4440",
+              fontWeight:   500,
+              border:       "1px solid #E8E4DE",
+            }}>
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* CTA */}
         <div style={{
           display:       "flex",
           alignItems:    "center",
@@ -261,46 +289,183 @@ function ProjectCard({ project }: { project: Project }) {
           transition:    "opacity 0.25s ease",
         }}>
           View Case Study
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            style={{
-              transform:  hovered ? "translateX(4px)" : "translateX(0)",
-              transition: "transform 0.25s ease",
-            }}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+            style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.25s ease" }}
           >
             <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-      ) : (
-        <div style={{
-          display:       "flex",
-          alignItems:    "center",
-          gap:           "10px",
-          color:         "#8A8680",
-          fontSize:      "12px",
-          fontWeight:    500,
-          letterSpacing: "0.07em",
-          textTransform: "uppercase",
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-        }}>
-          <span style={{
-            display:    "inline-block",
-            width:      "7px",
-            height:     "7px",
-            borderRadius: "50%",
-            background: "#C17F4A",
-            opacity:    hovered ? 0.7 : 0.4,
-            transition: "opacity 0.3s",
-            flexShrink: 0,
-          }} />
-          In Progress — Q2 2026
+      </div>
+
+      {/* Right: image — absolute within its grid column, bleeds to card edges */}
+      {project.image && (
+        <div style={{ position: "relative", minHeight: "280px" }}>
+          <div style={{
+            position: "absolute",
+            top:      "-44px",
+            right:    "-48px",
+            bottom:   "-44px",
+            left:     0,
+            overflow: "hidden",
+          }}>
+            <Image
+              src={project.image}
+              alt={`${project.title} — ${project.subtitle} preview`}
+              fill
+              sizes="700px"
+              style={{
+                objectFit:      "cover",
+                objectPosition: "center top",
+                transition:     "transform 0.4s ease",
+                transform:      hovered ? "scale(1.03)" : "scale(1)",
+              }}
+            />
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
+
+  /* ── Compact layout: image top, content below ── */
+  const compactInner = (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      {/* Image */}
+      {project.image && (
+        <div style={{
+          position:     "relative",
+          width:        "calc(100% + 80px)",
+          marginLeft:   "-40px",
+          marginTop:    "-40px",
+          marginBottom: "28px",
+          height:       "140px",
+          overflow:     "hidden",
+          borderBottom: "1px solid #E8E4DE",
+        }}>
+          <Image
+            src={project.image}
+            alt={`${project.title} — ${project.subtitle} preview`}
+            fill
+            sizes="600px"
+            style={{
+              objectFit:      "cover",
+              objectPosition: "center top",
+              transition:     "transform 0.4s ease",
+              transform:      hovered ? "scale(1.03)" : "scale(1)",
+            }}
+          />
+        </div>
+      )}
+
+      {/* Header row */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
+        <span style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "11px",
+          fontWeight:    600,
+          letterSpacing: "0.15em",
+          textTransform: "uppercase",
+          color:         "#C17F4A",
+        }}>
+          {project.index}
+        </span>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <span style={{
+            fontFamily:    "var(--font-dm-sans), sans-serif",
+            fontSize:      "11px",
+            padding:       "4px 12px",
+            border:        "1px solid #E8E4DE",
+            color:         "#8A8680",
+            fontWeight:    500,
+            letterSpacing: "0.06em",
+          }}>
+            Coming Soon
+          </span>
+          <span style={{ fontSize: "12px", color: "#8A8680", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+            {project.year}
+          </span>
+        </div>
+      </div>
+
+      {/* Title */}
+      <h3 style={{
+        fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+        fontSize:      "clamp(20px, 2vw, 28px)",
+        fontWeight:    400,
+        color:         "#252B28",
+        margin:        "0 0 4px",
+        letterSpacing: "-0.02em",
+      }}>
+        {project.title}
+      </h3>
+      <p style={{
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        fontSize:   "14px",
+        color:      "#8A8680",
+        margin:     "0 0 18px",
+      }}>
+        {project.subtitle}
+      </p>
+
+      {/* Description */}
+      <p style={{
+        fontFamily:        "var(--font-dm-sans), sans-serif",
+        fontSize:          "14px",
+        lineHeight:        1.7,
+        color:             "#3D4440",
+        margin:            "0 0 24px",
+        flex:              1,
+        display:           "-webkit-box",
+        WebkitLineClamp:   3,
+        WebkitBoxOrient:   "vertical" as const,
+        overflow:          "hidden",
+      }}>
+        {project.description}
+      </p>
+
+      {/* Tags */}
+      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "24px" }}>
+        {project.tags.map((tag) => (
+          <span key={tag} style={{
+            fontFamily:   "var(--font-dm-sans), sans-serif",
+            fontSize:     "11px",
+            padding:      "4px 12px",
+            background:   "#F5F5F4",
+            color:        "#3D4440",
+            fontWeight:   500,
+            border:       "1px solid #E8E4DE",
+          }}>
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Status */}
+      <div style={{
+        display:       "flex",
+        alignItems:    "center",
+        gap:           "10px",
+        color:         "#8A8680",
+        fontSize:      "12px",
+        fontWeight:    500,
+        letterSpacing: "0.07em",
+        textTransform: "uppercase",
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+      }}>
+        <span style={{
+          display:      "inline-block",
+          width:        "7px",
+          height:       "7px",
+          borderRadius: "50%",
+          background:   "#C17F4A",
+          opacity:      0.4,
+          flexShrink:   0,
+        }} />
+        In Progress: Q2 2026
+      </div>
+    </div>
+  );
+
+  const content = featured ? featuredInner : compactInner;
 
   if (isLive) {
     return (
@@ -311,7 +476,7 @@ function ProjectCard({ project }: { project: Project }) {
         className="work-card"
         style={cardStyle}
       >
-        {cardInner}
+        {content}
       </Link>
     );
   }
@@ -323,7 +488,7 @@ function ProjectCard({ project }: { project: Project }) {
       className="work-card"
       style={cardStyle}
     >
-      {cardInner}
+      {content}
     </div>
   );
 }
