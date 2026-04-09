@@ -38,7 +38,7 @@ const projects: Project[] = [
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
     status:      "coming-soon",
-    image:       "/cs-wayfarer-preview.png",
+    image:       "/cs-wayfarer-preview.jpg",
   },
   {
     index:       "03",
@@ -49,7 +49,7 @@ const projects: Project[] = [
     tags:        ["Content UX", "Visual Design", "Mobile-First"],
     year:        "2026",
     status:      "coming-soon",
-    image:       "/cs-msr-preview.png",
+    image:       "/cs-msr-preview.jpg",
   },
 ];
 
@@ -337,7 +337,7 @@ function ProjectCard({
           marginLeft:   "-40px",
           marginTop:    "-40px",
           marginBottom: "28px",
-          height:       "140px",
+          height:       "280px",
           overflow:     "hidden",
           borderBottom: "1px solid #E8E4DE",
         }}>
@@ -348,7 +348,7 @@ function ProjectCard({
             sizes="600px"
             style={{
               objectFit:      "cover",
-              objectPosition: "center top",
+              objectPosition: project.title === "Wayfarer" ? "center 48%" : "center center",
               transition:     "transform 0.4s ease",
               transform:      hovered ? "scale(1.03)" : "scale(1)",
             }}
