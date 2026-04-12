@@ -120,6 +120,7 @@ export default function Work() {
             </h2>
           </div>
           <span
+            className="work-header-sub"
             style={{
               fontSize:      "13px",
               color:         "#8A8680",
@@ -133,6 +134,7 @@ export default function Work() {
 
         {/* Bento grid */}
         <div
+          className="work-bento-grid"
           style={{
             display:             "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -185,6 +187,7 @@ function ProjectCard({
   /* ── Featured layout: content left, image right ── */
   const featuredInner = (
     <div
+      className="feat-inner"
       style={{
         display:             "grid",
         gridTemplateColumns: "1fr 1.4fr",
@@ -299,8 +302,8 @@ function ProjectCard({
 
       {/* Right: image — absolute within its grid column, bleeds to card edges */}
       {project.image && (
-        <div style={{ position: "relative", minHeight: "280px" }}>
-          <div style={{
+        <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
+          <div className="feat-img-inner" style={{
             position: "absolute",
             top:      "-44px",
             right:    "-48px",
@@ -331,7 +334,7 @@ function ProjectCard({
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       {/* Image */}
       {project.image && (
-        <div style={{
+        <div className="compact-img" style={{
           position:     "relative",
           width:        "calc(100% + 80px)",
           marginLeft:   "-40px",

@@ -139,6 +139,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <div
         aria-hidden="true"
+        className="scroll-hint"
         style={{
           position:      "absolute",
           bottom:        "48px",

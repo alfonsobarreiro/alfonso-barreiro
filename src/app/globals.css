@@ -102,6 +102,47 @@ button {
 
   /* Case study — slideshow: prevent container collapse on mobile */
   .cs-slides-outer  { min-height: 220px !important; }
+
+  /* Work — bento grid: single column */
+  .work-bento-grid     { grid-template-columns: 1fr !important; }
+  .work-bento-grid > * { grid-column: 1 !important; }
+
+  /* Work — section header: hide "Research → Prototype" subtitle */
+  .work-header-sub     { display: none !important; }
+
+  /* Work — featured card inner grid: stack text over image */
+  .feat-inner          { grid-template-columns: 1fr !important; gap: 0 !important; min-height: unset !important; }
+
+  /* Work — featured card image: convert absolute bleed to full-width strip */
+  .feat-img-col        {
+    margin-top:  28px !important;
+    margin-left: -24px !important;
+    width:       calc(100% + 48px) !important;
+    min-height:  200px !important;
+    overflow:    hidden !important;
+    position:    relative !important;
+  }
+  .feat-img-inner      {
+    position: absolute !important;
+    top:      0 !important;
+    right:    0 !important;
+    bottom:   0 !important;
+    left:     0 !important;
+  }
+
+  /* Work — compact card image bleed: recalc for 24px mobile padding */
+  .compact-img         {
+    width:       calc(100% + 48px) !important;
+    margin-left: -24px !important;
+    margin-top:  -32px !important;
+    height:      200px !important;
+  }
+
+  /* Hero — scroll indicator: match 24px mobile padding */
+  .scroll-hint         { left: 24px !important; }
+
+  /* About — skills box: reduce padding on mobile */
+  .skills-box          { padding: 28px !important; }
 }
 @media (min-width: 768px) {
   .hamburger { display: none !important; }

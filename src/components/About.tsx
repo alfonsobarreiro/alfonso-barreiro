@@ -197,6 +197,7 @@ export default function About() {
 
           {/* Right — Skills */}
           <div
+            className="skills-box"
             style={{
               background:   "#FFFFFF",
               border:       "1px solid #E8E4DE",
