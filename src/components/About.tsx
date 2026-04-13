@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const skillGroups = [
   {
     category: "Research & Discovery",
@@ -70,6 +72,26 @@ export default function About() {
               >
                 About
               </p>
+            </div>
+
+            {/* Photo */}
+            <div
+              style={{
+                width:        "120px",
+                height:       "120px",
+                borderRadius: "50%",
+                overflow:     "hidden",
+                marginBottom: "24px",
+                border:       "2px solid #E8E4DE",
+              }}
+            >
+              <Image
+                src="/Alfonso-Barreiro-outdoors.png"
+                alt="Alfonso Barreiro"
+                width={120}
+                height={120}
+                style={{ objectFit: "cover", objectPosition: "center top" }}
+              />
             </div>
 
             {/* Availability badge */}
