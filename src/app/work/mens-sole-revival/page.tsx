@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+// import MSRSlideViewer from "@/components/MSRSlideViewer";
 
 export const metadata: Metadata = {
   title: "Men\u2019s Sole Revival — Foot Health Content Platform \u00B7 Alfonso Barreiro",
@@ -170,40 +171,80 @@ export default function MSRCaseStudy() {
             <p style={bodyText}>
               Three categories of content exist for men&apos;s foot health. Each covers part of the problem. None covers all of it.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "4px" }}>
-              {[
-                {
-                  label: "Clinical / Medical",
-                  text:  "WebMD, Mayo Clinic, Cleveland Clinic. Clinically grounded, gender-neutral, no product guidance. Accurate but impersonal.",
-                },
-                {
-                  label: "Wellness",
-                  text:  "Healthline, Verywell Health. Broad audience, SEO-optimized, not male-specific. The foot content reads like it was written for everyone and therefore nobody.",
-                },
-                {
-                  label: "Product-first",
-                  text:  "Sneaker blogs, GQ roundups, Amazon listicles. Product-informed, male-targeted, no clinical rigor. They know their audience but they\u2019re selling, not teaching.",
-                },
-              ].map(({ label, text }) => (
-                <div
-                  key={label}
-                  className="cs-problem-card"
-                  style={{
-                    display:    "flex",
-                    gap:        "20px",
-                    padding:    "20px 24px",
-                    background: c.surface,
-                    border:     `1px solid ${c.border}`,
-                  }}
-                >
-                  <span className="cs-problem-label" style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
-                    {label}
-                  </span>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                    {text}
-                  </p>
-                </div>
-              ))}
+            {/* Venn diagram — competitive gap */}
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "32px", marginBottom: "8px" }}>
+              <svg
+                viewBox="0 0 560 420"
+                width="560"
+                height="420"
+                style={{ maxWidth: "100%", overflow: "visible" }}
+                aria-label="Venn diagram showing Men's Sole Revival at the intersection of Clinical, Wellness, and Product-First content"
+              >
+                <defs>
+                  {/* Clinical — soft slate blue */}
+                  <radialGradient id="fillClinical" cx="40%" cy="38%" r="60%">
+                    <stop offset="0%" stopColor="#7BA7C4" stopOpacity="0.55" />
+                    <stop offset="100%" stopColor="#7BA7C4" stopOpacity="0.28" />
+                  </radialGradient>
+                  {/* Product-First — soft amber/warm */}
+                  <radialGradient id="fillProduct" cx="60%" cy="38%" r="60%">
+                    <stop offset="0%" stopColor="#C4903A" stopOpacity="0.48" />
+                    <stop offset="100%" stopColor="#C4903A" stopOpacity="0.22" />
+                  </radialGradient>
+                  {/* Wellness — soft sage green */}
+                  <radialGradient id="fillWellness" cx="50%" cy="35%" r="60%">
+                    <stop offset="0%" stopColor="#6BA896" stopOpacity="0.52" />
+                    <stop offset="100%" stopColor="#6BA896" stopOpacity="0.26" />
+                  </radialGradient>
+                  {/* Clip paths for triple intersection */}
+                  <clipPath id="clipClinical"><circle cx="196" cy="182" r="148" /></clipPath>
+                  <clipPath id="clipProduct"><circle cx="364" cy="182" r="148" /></clipPath>
+                  <clipPath id="clipWellness"><circle cx="280" cy="282" r="148" /></clipPath>
+                </defs>
+
+                {/* ── Three circles ── */}
+                <circle cx="196" cy="182" r="148" fill="url(#fillClinical)" />
+                <circle cx="364" cy="182" r="148" fill="url(#fillProduct)" />
+                <circle cx="280" cy="282" r="148" fill="url(#fillWellness)" />
+
+                {/* ── Triple intersection — filled cognac via nested clip paths ── */}
+                <g clipPath="url(#clipClinical)">
+                  <g clipPath="url(#clipProduct)">
+                    <circle cx="280" cy="282" r="148" fill="#C4703A" fillOpacity="0.82" clipPath="url(#clipWellness)" />
+                  </g>
+                </g>
+
+                {/* ── Circle labels ── */}
+                {/* Clinical */}
+                <text x="130" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C17F4A" style={{ textTransform: "uppercase" }}>CLINICAL</text>
+                <text x="130" y="132" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">WebMD, Mayo Clinic</text>
+                <text x="130" y="147" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Cleveland Clinic</text>
+
+                {/* Product-First */}
+                <text x="430" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C17F4A" style={{ textTransform: "uppercase" }}>PRODUCT-FIRST</text>
+                <text x="430" y="132" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Sneaker blogs, GQ</text>
+                <text x="430" y="147" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Amazon listicles</text>
+
+                {/* Wellness */}
+                <text x="280" y="390" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C17F4A" style={{ textTransform: "uppercase" }}>WELLNESS</text>
+                <text x="280" y="407" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Healthline, Verywell Health</text>
+
+                {/* ── Pairwise gap labels ── */}
+                {/* Clinical ∩ Product — top center */}
+                <text x="280" y="118" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">no male focus</text>
+
+                {/* Clinical ∩ Wellness — left */}
+                <text x="166" y="263" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">no product</text>
+                <text x="166" y="278" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">guidance</text>
+
+                {/* Product ∩ Wellness — right */}
+                <text x="386" y="263" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">no clinical</text>
+                <text x="386" y="278" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">rigor</text>
+
+                {/* ── Center label on the intersection ── */}
+                <text x="280" y="214" textAnchor="middle" fontFamily="var(--font-dm-serif-display), Georgia, serif" fontSize="20" fill="white" fontWeight="400" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Men&apos;s Sole</text>
+                <text x="280" y="235" textAnchor="middle" fontFamily="var(--font-dm-serif-display), Georgia, serif" fontSize="20" fill="white" fontWeight="400" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Revival</text>
+              </svg>
             </div>
             <p style={{ ...bodyText, marginTop: "24px" }}>
               Men&apos;s Sole Revival sits at the intersection: male-specific, clinically grounded, and product-informed. Not a compromise between the three categories &mdash; the resource that should exist where they overlap.
@@ -612,15 +653,17 @@ export default function MSRCaseStudy() {
 
         </div>{/* /content wrapper */}
 
-        {/* -- Case Study Slides (Figma embed) — hidden until embed is ready
-        <div style={{
+        {/* -- Case Study Slides (hidden) ---------------------------------- */}
+        {/* {/* -- Case Study Slides ------------------------------------------ */}
+        {/* <div style={{
           background:   c.bgSection,
           borderTop:    `1px solid ${c.border}`,
           borderBottom: `1px solid ${c.border}`,
-          padding:      "56px clamp(24px, 5vw, 80px)",
+          paddingTop:   "56px",
+          paddingBottom:"56px",
           marginTop:    "80px",
         }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ padding: "0 clamp(24px, 5vw, 80px)", marginBottom: "24px" }}>
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
@@ -636,49 +679,13 @@ export default function MSRCaseStudy() {
               fontFamily: font.sans,
               fontSize:   "14px",
               color:      c.body,
-              margin:     "0 0 20px",
+              margin:     0,
             }}>
               The full narrative deck, if you want to go deeper on any section.
             </p>
-            <div className="cs-slides-outer" style={{
-              position:      "relative",
-              paddingBottom: "56.25%",
-              height:        0,
-              overflow:      "hidden",
-              border:        `1px solid ${c.border}`,
-              background:    "#091016",
-              display:       "flex",
-              alignItems:    "center",
-              justifyContent: "center",
-            }}>
-              <div style={{
-                position: "absolute",
-                top:      "50%",
-                left:     "50%",
-                transform: "translate(-50%, -50%)",
-                textAlign: "center",
-              }}>
-                <p style={{
-                  fontFamily: font.sans,
-                  fontSize:   "14px",
-                  color:      "rgba(245,243,239,0.4)",
-                  margin:     0,
-                }}>
-                  Figma deck embed &mdash; coming soon
-                </p>
-              </div>
-            </div>
-            <p style={{
-              fontFamily: font.sans,
-              fontSize:   "12px",
-              color:      c.muted,
-              margin:     "10px 0 0",
-            }}>
-              Use arrow keys or click to advance. No Figma account required.
-            </p>
           </div>
-        </div>
-        */}
+          <MSRSlideViewer />
+        </div> */}
 
         {/* -- Next case study CTA ----------------------- */}
         <div

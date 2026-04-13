@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Ensure Tailwind scans MSR slide components so slide-only classes (mb-*, px-*, py-*, etc.) are generated */
+@source "../components/msr-slides";
+
 @theme inline {
   /* ── Brand primitives ── */
   --color-brand-50:  #F0EDE7;
@@ -35,11 +38,13 @@
   --font-display: var(--font-dm-serif-display);
 }
 
-/* ── Reset ── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ── Reset ── placed in @layer base so Tailwind utilities (@layer utilities) take precedence */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 html {
@@ -102,6 +107,8 @@ button {
 
   /* Case study — slideshow: prevent container collapse on mobile */
   .cs-slides-outer  { min-height: 220px !important; }
+  /* Spotify — hide case study slides section on mobile */
+  .cs-slides-section { display: none !important; }
 
   /* Work — bento grid: single column */
   .work-bento-grid     { grid-template-columns: 1fr !important; }
@@ -162,3 +169,21 @@ button {
 /* ── Case study nav ── */
 .cs-back-link       { color: #8A8680; transition: color 0.2s; }
 .cs-back-link:hover { color: #252B28; }
+
+/* ── MSR Slide viewer ──────────────────────────────────────────────────────
+   The MSR case study slides use three font classes (font-display,
+   font-heading, font-body) that map to Barlow Condensed, Lora, and DM Sans
+   respectively — different from the portfolio's own font-display (DM Serif).
+   These overrides are scoped to .msr-slide so they never affect portfolio UI.
+   The fonts are loaded in layout.tsx via next/font and injected as CSS vars.
+──────────────────────────────────────────────────────────────────────────── */
+.msr-slide .font-display {
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", "Impact", sans-serif !important;
+}
+.msr-slide .font-heading {
+  font-family: var(--font-lora), "Lora", Georgia, serif !important;
+}
+.msr-slide .font-body {
+  font-family: var(--font-dm-sans), "DM Sans", system-ui, sans-serif !important;
+}
+

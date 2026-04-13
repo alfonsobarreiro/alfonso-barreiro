@@ -734,7 +734,7 @@ export default function SpotifyCaseStudy() {
         </div>{/* /content wrapper */}
 
         {/* ── Case Study Slides (deep-dive, post-reflection) ── */}
-        <div style={{
+        <div className="cs-slides-section" style={{
           background:   c.bgSection,
           borderTop:    `1px solid ${c.border}`,
           borderBottom: `1px solid ${c.border}`,
