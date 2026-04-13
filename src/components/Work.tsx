@@ -43,12 +43,13 @@ const projects: Project[] = [
   {
     index:       "03",
     title:       "Men's Sole Revival",
-    subtitle:    "Sneaker Education & Review Site",
+    subtitle:    "Foot Health Content Platform",
     description:
-      "A resource-first site helping sneaker enthusiasts research authenticity, compare releases, and navigate the market with confidence — built on editorial clarity, honest reviews, and information architecture that puts the right detail at the right moment.",
-    tags:        ["Content UX", "Visual Design", "Mobile-First"],
+      "A content-first foot health resource for men — using dark editorial design, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier and serve readers who are evaluating, not just browsing.",
+    tags:        ["Content UX", "Visual Design", "Design System"],
     year:        "2026",
-    status:      "coming-soon",
+    status:      "live",
+    href:        "/work/mens-sole-revival",
     image:       "/cs-msr-preview.jpg",
   },
 ];
@@ -442,28 +443,26 @@ function ProjectCard({
         ))}
       </div>
 
-      {/* Status */}
+      {/* CTA */}
       <div style={{
         display:       "flex",
         alignItems:    "center",
-        gap:           "10px",
-        color:         "#8A8680",
+        gap:           "8px",
+        color:         "#C17F4A",
         fontSize:      "12px",
-        fontWeight:    500,
-        letterSpacing: "0.07em",
+        fontWeight:    600,
+        letterSpacing: "0.08em",
         textTransform: "uppercase",
         fontFamily:    "var(--font-dm-sans), sans-serif",
+        opacity:       hovered ? 1 : 0.45,
+        transition:    "opacity 0.25s ease",
       }}>
-        <span style={{
-          display:      "inline-block",
-          width:        "7px",
-          height:       "7px",
-          borderRadius: "50%",
-          background:   "#C17F4A",
-          opacity:      0.4,
-          flexShrink:   0,
-        }} />
-        In Progress: Q2 2026
+        View Case Study
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+          style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.25s ease" }}
+        >
+          <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
     </div>
   );
