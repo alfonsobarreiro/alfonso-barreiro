@@ -77,8 +77,8 @@ export default function About() {
             {/* Photo */}
             <div
               style={{
-                width:        "120px",
-                height:       "120px",
+                width:        "180px",
+                height:       "180px",
                 borderRadius: "50%",
                 overflow:     "hidden",
                 marginBottom: "24px",
@@ -88,8 +88,8 @@ export default function About() {
               <Image
                 src="/Alfonso-Barreiro-outdoors.png"
                 alt="Alfonso Barreiro"
-                width={120}
-                height={120}
+                width={180}
+                height={180}
                 style={{ objectFit: "cover", objectPosition: "center top" }}
               />
             </div>
