@@ -267,9 +267,9 @@ export default function Footer() {
 
         {/* Divider */}
         <div style={{
-          marginTop:   "80px",
-          borderTop:   "1px solid rgba(245,243,239,0.08)",
-          paddingTop:  "28px",
+          marginTop:     "80px",
+          borderTop:     "1px solid rgba(245,243,239,0.08)",
+          paddingTop:    "28px",
           paddingBottom: "28px",
         }}>
           <div style={{
@@ -279,8 +279,33 @@ export default function Footer() {
             flexWrap:       "wrap",
             gap:            "16px",
           }}>
-            {/* Left: logo */}
-            <LogoMark size={19} variant="light" opacity={0.35} />
+            {/* Left: logo + name + role */}
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <LogoMark size={19} variant="light" opacity={0.35} />
+              <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                <span style={{
+                  fontFamily:    font.display,
+                  fontSize:      "14px",
+                  fontWeight:    400,
+                  color:         "rgba(245,243,239,0.45)",
+                  letterSpacing: "-0.01em",
+                  lineHeight:    1,
+                }}>
+                  Alfonso Barreiro
+                </span>
+                <span style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "10px",
+                  fontWeight:    500,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color:         "rgba(245,243,239,0.20)",
+                  lineHeight:    1,
+                }}>
+                  UX / UI Designer
+                </span>
+              </div>
+            </div>
 
             {/* Right: copyright */}
             <p style={{

@@ -50,18 +50,45 @@ export default function Nav() {
           transition:     "background 0.3s, border-color 0.3s",
         }}
       >
-        {/* Logo */}
+        {/* Logo + wordmark */}
         {isHome ? (
           <button
             onClick={handleLogoClick}
             aria-label="Back to top"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 0, zIndex: 310 }}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px" }}
           >
             <LogoMark size={26} variant={menuOpen ? "light" : "dark"} />
+            <span
+              className="nav-wordmark"
+              style={{
+                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontSize:      "16px",
+                fontWeight:    400,
+                letterSpacing: "-0.01em",
+                color:         menuOpen ? "#F5F5F4" : "#252B28",
+                transition:    "color 0.3s",
+                lineHeight:    1,
+              }}
+            >
+              Alfonso Barreiro
+            </span>
           </button>
         ) : (
-          <Link href="/" aria-label="Back to home" style={{ lineHeight: 0, zIndex: 310 }}>
+          <Link href="/" aria-label="Back to home" style={{ lineHeight: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
             <LogoMark size={26} variant="dark" />
+            <span
+              className="nav-wordmark"
+              style={{
+                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontSize:      "16px",
+                fontWeight:    400,
+                letterSpacing: "-0.01em",
+                color:         "#252B28",
+                lineHeight:    1,
+              }}
+            >
+              Alfonso Barreiro
+            </span>
           </Link>
         )}
 
