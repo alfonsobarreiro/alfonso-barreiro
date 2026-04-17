@@ -22,7 +22,7 @@ const projects: Project[] = [
     title:       "Spotify",
     subtitle:    "Recently Played Controls",
     description:
-      "Designing reversible, non-destructive controls — Pin, Remove, and Pause — that give users meaningful agency over Spotify's Home feed without degrading recommendation integrity or breaking discovery behavior.",
+      "Spotify's highest-visibility surface offers no way to manage what appears there. I designed three shelf-native controls (Pin, Remove, and Pause) that give users agency without degrading the recommendation engine.",
     tags:        ["UX Research", "Interaction Design", "Prototyping"],
     year:        "2026",
     status:      "live",
