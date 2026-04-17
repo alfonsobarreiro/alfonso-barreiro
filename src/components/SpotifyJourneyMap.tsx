@@ -1,16 +1,10 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 
 const c = {
   ink:         "#252B28",
   body:        "#3D4440",
   muted:       "#8A8680",
-  accent:      "#C17F4A",
-  bg:          "#F5F5F4",
   bgSection:   "#EBEBEA",
-  surface:     "#FFFFFF",
   border:      "#E8E4DE",
   borderStrong:"#C9BFB0",
   green:       "#1DB954",
@@ -22,8 +16,6 @@ const font = {
 };
 
 export default function SpotifyJourneyMap() {
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <div
       style={{
@@ -67,24 +59,18 @@ export default function SpotifyJourneyMap() {
               position:   "relative",
               overflow:   "hidden",
               border:     `1px solid ${c.borderStrong}`,
-              cursor:     "pointer",
               flexShrink: 0,
             }}
-            onClick={() => setExpanded((v) => !v)}
-            role="button"
-            aria-label={expanded ? "Collapse full journey map" : "Expand full journey map"}
-            title={expanded ? "Collapse" : "View full map"}
           >
-            {/* Slice image — left 44% of the full 7-stage map */}
             <Image
               src="/images/work/spotify/spotify-journey-slice.webp"
-              alt="User Journey Map preview — Stages 1–3 of Ranger Dave's flow: Launch & Landing, Scan Recents, Choose Action"
+              alt="User Journey Map preview showing Stages 1 through 3 of Ranger Dave's flow: Launch and Landing, Scan Recents, Choose Action"
               width={1700}
               height={2160}
               style={{ width: "100%", height: "auto", display: "block" }}
             />
 
-            {/* Right-edge fade to signal more content */}
+            {/* Right-edge fade to signal continuation */}
             <div
               style={{
                 position:   "absolute",
@@ -97,7 +83,7 @@ export default function SpotifyJourneyMap() {
               }}
             />
 
-            {/* "Stages 1–3 of 7" label */}
+            {/* Stage indicator */}
             <div
               style={{
                 position:   "absolute",
@@ -144,94 +130,12 @@ export default function SpotifyJourneyMap() {
                 fontSize:   "clamp(15px, 1.8vw, 17px)",
                 lineHeight: 1.7,
                 color:      c.body,
-                margin:     "0 0 32px",
+                margin:     0,
               }}
             >
-              Mapping Ranger Dave&rsquo;s 7-stage journey surfaced the highest-friction moment: Stage 3 to Stage 4 — from spotting a long-press affordance to committing to an action. No visual cue that the gesture existed. The shelf gave no signal that anything was interactive. That gap drove the decision to design for immediate discoverability, not power-user access patterns.
+              Mapping Ranger Dave&rsquo;s 7-stage journey surfaced the highest-friction moment: Stage 3 to Stage 4, from spotting a long-press affordance to committing to an action. No visual cue that the gesture existed. The shelf gave no signal that anything was interactive. That gap drove the decision to design for immediate discoverability, not power-user access patterns.
             </p>
-
-            <button
-              onClick={() => setExpanded((v) => !v)}
-              style={{
-                display:        "inline-flex",
-                alignItems:     "center",
-                gap:            "10px",
-                padding:        "11px 22px",
-                background:     "transparent",
-                border:         `1px solid ${c.borderStrong}`,
-                cursor:         "pointer",
-                fontFamily:     font.sans,
-                fontSize:       "13px",
-                fontWeight:     500,
-                letterSpacing:  "0.06em",
-                color:          c.ink,
-                transition:     "background 0.15s, border-color 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.background = c.surface;
-                (e.currentTarget as HTMLButtonElement).style.borderColor = c.ink;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-                (e.currentTarget as HTMLButtonElement).style.borderColor = c.borderStrong;
-              }}
-            >
-              {expanded ? "Collapse map" : "View full map"}
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                style={{
-                  transform:  expanded ? "rotate(180deg)" : "rotate(0deg)",
-                  transition: "transform 0.2s",
-                }}
-              >
-                <path
-                  d="M2 5L7 10L12 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
           </div>
-        </div>
-
-        {/* ── Full map (expanded) ── */}
-        <div
-          style={{
-            overflow:   "hidden",
-            maxHeight:  expanded ? "1200px" : "0",
-            opacity:    expanded ? 1 : 0,
-            transition: "max-height 0.45s ease, opacity 0.3s ease",
-            marginTop:  expanded ? "40px" : "0",
-          }}
-        >
-          <div
-            className="cs-journey-scroll"
-            style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", border: `1px solid ${c.border}` }}
-          >
-            <Image
-              src="/images/work/spotify/spotify-journey-map.webp"
-              alt="Full User Journey Map — Ranger Dave's 7-stage flow: Launch & Landing, Scan Recents, Choose Action, Apply Control, Confirm / Undo, Post-Action Review, Validate Change"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", minWidth: "900px", height: "auto", display: "block" }}
-            />
-          </div>
-          <p
-            style={{
-              fontFamily: font.sans,
-              fontSize:   "13px",
-              color:      c.muted,
-              marginTop:  "12px",
-              textAlign:  "center",
-            }}
-          >
-            Ranger Dave&rsquo;s full 7-stage journey — goals, actions, pain points, and design opportunities mapped end-to-end.
-          </p>
         </div>
 
       </div>

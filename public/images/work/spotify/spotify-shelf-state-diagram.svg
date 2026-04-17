@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 520" fill="none">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#1DB954" />
+    </marker>
+    <marker id="arrow-muted" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="rgba(245,243,239,0.25)" />
+    </marker>
+  </defs>
+
+  <!-- ═══ NODES ═══ -->
+
+  <!-- Default Shelf (top center) -->
+  <rect x="330" y="24" width="200" height="52" rx="8" fill="#2A2A2A" stroke="#3A3A3A" stroke-width="1"/>
+  <text x="430" y="46" text-anchor="middle" fill="#F5F3EF" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">Default Shelf</text>
+  <text x="430" y="62" text-anchor="middle" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="10">organic order, no controls</text>
+
+  <!-- Action Sheet (center) -->
+  <rect x="330" y="140" width="200" height="52" rx="8" fill="#2A2A2A" stroke="#1DB954" stroke-width="1.5"/>
+  <text x="430" y="162" text-anchor="middle" fill="#F5F3EF" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">Action Sheet</text>
+  <text x="430" y="178" text-anchor="middle" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="10">Pin · Remove · Pause</text>
+
+  <!-- Pinned (left) -->
+  <rect x="60" y="280" width="200" height="52" rx="8" fill="#2A2A2A" stroke="#3A3A3A" stroke-width="1"/>
+  <text x="160" y="302" text-anchor="middle" fill="#F5F3EF" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">Pinned</text>
+  <text x="160" y="318" text-anchor="middle" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="10">item locked to position 1</text>
+
+  <!-- Removed + Undo Toast (center) -->
+  <rect x="310" y="280" width="240" height="52" rx="8" fill="#2A2A2A" stroke="#3A3A3A" stroke-width="1"/>
+  <text x="430" y="302" text-anchor="middle" fill="#F5F3EF" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">Removed + Undo Toast</text>
+  <text x="430" y="318" text-anchor="middle" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="10">item hidden, toast visible 3-4s</text>
+
+  <!-- Pause Active (right) -->
+  <rect x="600" y="280" width="200" height="52" rx="8" fill="#2A2A2A" stroke="#3A3A3A" stroke-width="1"/>
+  <text x="700" y="302" text-anchor="middle" fill="#F5F3EF" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">Pause Active</text>
+  <text x="700" y="318" text-anchor="middle" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="10">history paused, time-boxed</text>
+
+  <!-- Removed Permanent (center bottom) -->
+  <rect x="340" y="420" width="180" height="44" rx="8" fill="#2A2A2A" stroke="#3A3A3A" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="430" y="440" text-anchor="middle" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">Removed (permanent)</text>
+  <text x="430" y="454" text-anchor="middle" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="9">device-scoped only</text>
+
+  <!-- ═══ FORWARD ARROWS (green) ═══ -->
+
+  <!-- Default → Action Sheet -->
+  <line x1="430" y1="76" x2="430" y2="136" stroke="#1DB954" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="446" y="112" fill="#1DB954" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500">long-press</text>
+
+  <!-- Action Sheet → Pinned -->
+  <line x1="345" y1="192" x2="210" y2="276" stroke="#1DB954" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="248" y="234" fill="#1DB954" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500">Pin</text>
+
+  <!-- Action Sheet → Removed -->
+  <line x1="430" y1="192" x2="430" y2="276" stroke="#1DB954" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="446" y="240" fill="#1DB954" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500">Remove</text>
+
+  <!-- Action Sheet → Pause Active -->
+  <line x1="515" y1="192" x2="650" y2="276" stroke="#1DB954" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="600" y="234" fill="#1DB954" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500">Toggle on</text>
+
+  <!-- Removed → Removed Permanent -->
+  <line x1="430" y1="332" x2="430" y2="416" stroke="rgba(245,243,239,0.2)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-muted)"/>
+  <text x="448" y="378" fill="rgba(245,243,239,0.45)" font-family="system-ui, -apple-system, sans-serif" font-size="9">toast expires</text>
+
+  <!-- ═══ RETURN ARROWS (muted) ═══ -->
+
+  <!-- Pinned → Default (curved left return) -->
+  <path d="M60,300 C20,300 20,50 330,50" stroke="rgba(245,243,239,0.2)" stroke-width="1" fill="none" marker-end="url(#arrow-muted)"/>
+  <text x="28" y="170" fill="rgba(245,243,239,0.6)" font-family="system-ui, -apple-system, sans-serif" font-size="9" transform="rotate(-90, 28, 170)">long-press → unpin</text>
+
+  <!-- Removed + Undo → Default (left side return) -->
+  <path d="M310,296 C290,296 290,56 330,56" stroke="rgba(245,243,239,0.2)" stroke-width="1" fill="none" marker-end="url(#arrow-muted)"/>
+  <text x="296" y="178" fill="rgba(245,243,239,0.6)" font-family="system-ui, -apple-system, sans-serif" font-size="9" transform="rotate(-90, 296, 178)">tap Undo</text>
+
+  <!-- Pause Active → Default (curved right return) -->
+  <path d="M800,300 C830,300 830,50 530,50" stroke="rgba(245,243,239,0.2)" stroke-width="1" fill="none" marker-end="url(#arrow-muted)"/>
+  <text x="822" y="195" fill="rgba(245,243,239,0.6)" font-family="system-ui, -apple-system, sans-serif" font-size="9" transform="rotate(90, 822, 195)">toggle off / time-box expires</text>
+
+</svg>
