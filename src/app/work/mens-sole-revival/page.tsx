@@ -92,7 +92,7 @@ export default function MSRCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              A Foot Health Resource Built for Men
+              63% report foot pain. 12% see a doctor. No one built the resource between those two numbers.
             </h1>
 
             <p style={{
@@ -103,7 +103,7 @@ export default function MSRCaseStudy() {
               margin:      "0 0 48px",
               maxWidth:    "560px",
             }}>
-              Content-first design that treats foot health the way men&apos;s grooming brands treat skincare: with authority, not apology. Editorial credibility meets e-commerce UX patterns to serve a reader who&apos;s evaluating, not just browsing.
+              Men&apos;s Sole Revival is a content-first foot health platform I designed and built from research through deployment. The original e-commerce model broke during margin analysis. The pivot toward content authority, using editorial credibility and e-commerce UX patterns, was the real design decision.
             </p>
 
             {/* Metadata row */}
@@ -118,8 +118,8 @@ export default function MSRCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer \u00B7 Content Strategist" },
                 { label: "Type",     value: "Solo \u00B7 Self-initiated" },
                 { label: "Timeline", value: "Jan \u2013 Apr 2026" },
-                { label: "Methods",  value: "Competitive Analysis \u00B7 Content UX \u00B7 Design System Architecture" },
-                { label: "Stack",    value: "Next.js \u00B7 Tailwind v4 \u00B7 MDX \u00B7 Vercel" },
+                { label: "Methods",  value: "Market Research \u00B7 Competitive Analysis \u00B7 Content UX \u00B7 AI-Assisted Development" },
+                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority \u00B7 shipped product" },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.cognac, margin: "0 0 4px" }}>
@@ -137,16 +137,15 @@ export default function MSRCaseStudy() {
         {/* -- Cover image --------------------------------- */}
         <div style={{ background: c.bgSection, padding: "64px clamp(24px, 5vw, 80px) 0" }}>
           <div style={{ maxWidth: "860px", margin: "0 auto" }}>
-            <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
-              <Image
-                src="/images/work/msr/msr-hero-cover.png"
-                alt="Men's Sole Revival homepage — dark editorial design with foot health content"
-                fill
-                sizes="(max-width: 767px) 100vw, 860px"
-                style={{ objectFit: "cover", objectPosition: "top" }}
-                priority
-              />
-            </div>
+            <Image
+              src="/images/work/msr/msr-cover.webp"
+              alt="Men's Sole Revival homepage — dark editorial design with foot health content"
+              width={1440}
+              height={810}
+              sizes="(max-width: 767px) 100vw, 860px"
+              style={{ width: "100%", height: "auto", borderRadius: "4px" }}
+              priority
+            />
           </div>
         </div>
 
@@ -156,13 +155,13 @@ export default function MSRCaseStudy() {
           {/* -- 01 Context -------------------------------- */}
           <Section label="01" title="Context">
             <p style={bodyText}>
-              I kept Googling the same thing &mdash; &ldquo;cracked heels men fix&rdquo; &mdash; and landing on the same three articles written for women, repackaged with a stock photo of a guy. The clinical sources were accurate but impersonal. The product sites were selling, not teaching. Nothing spoke to men who actually wanted to understand what was happening to their feet and what to do about it without a referral.
+              I kept Googling &ldquo;cracked heels men fix&rdquo; and landing on the same three articles written for women, repackaged with a stock photo of a guy. The clinical sources were accurate but impersonal. The product sites were selling, not teaching. Nothing spoke to men who actually wanted to understand what was happening to their feet and what to do about it without a referral.
             </p>
             <p style={bodyText}>
               63% of Americans report foot pain, but only 12% ever see a podiatrist. Men have a 3&times; higher fungal infection rate. The men&apos;s foot-care segment is growing at 10% CAGR. The audience exists. The resource doesn&apos;t.
             </p>
             <Callout label="Design synthesis">
-              Men need a foot health resource that&apos;s male-specific, clinically grounded, and product-informed &mdash; the intersection no existing site occupies.
+              Men need a foot health resource that&apos;s male-specific, clinically grounded, and product-informed. No existing site occupies that intersection.
             </Callout>
           </Section>
 
@@ -247,17 +246,20 @@ export default function MSRCaseStudy() {
               </svg>
             </div>
             <p style={{ ...bodyText, marginTop: "24px" }}>
-              Men&apos;s Sole Revival sits at the intersection: male-specific, clinically grounded, and product-informed. Not a compromise between the three categories &mdash; the resource that should exist where they overlap.
+              Men&apos;s Sole Revival sits at the intersection: male-specific, clinically grounded, and product-informed. Not a compromise between the three categories. The resource that should exist where they overlap.
             </p>
           </Section>
 
           {/* -- 03 The Pivot ------------------------------ */}
           <Section label="03" title="The Pivot">
             <p style={bodyText}>
-              The original plan was a premium men&apos;s foot care e-commerce site. Curated product kits &mdash; antifungal treatment, toe separators, insoles, foot cream. Headless Shopify, Next.js frontend, dark editorial brand.
+              The original plan was a premium men&apos;s foot care e-commerce site. Curated product kits: antifungal treatment, toe separators, insoles, foot cream. Headless Shopify, Next.js frontend, dark editorial brand.
             </p>
             <p style={bodyText}>
               The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. Three weeks of modeling margins that wouldn&apos;t work was the signal: the friction wasn&apos;t execution. It was the starting point.
+            </p>
+            <p style={bodyText}>
+              Then the market research showed the real problem. The gap I&apos;d found wasn&apos;t in the products. It was in the information layer that should precede them. Men over 40 who aren&apos;t already thinking about their feet are expensive to convert. They need a resource they trust before they&apos;ll buy anything. The e-commerce model puts the transaction before the relationship that makes the transaction possible.
             </p>
 
             {/* Before / After table */}
@@ -288,7 +290,7 @@ export default function MSRCaseStudy() {
             </div>
 
             <Callout label="Key insight">
-              The pivot wasn&apos;t away from e-commerce &mdash; it was toward content as the product, using e-commerce UX patterns to frame editorial decisions.
+              The pivot wasn&apos;t away from e-commerce. It was toward content as the product, using e-commerce UX patterns to frame editorial decisions.
             </Callout>
           </Section>
 
@@ -338,7 +340,7 @@ export default function MSRCaseStudy() {
                     color: status === "Chosen" ? c.cognac : status === "Rejected" ? c.muted : c.accent,
                     minWidth: "160px", flexShrink: 0, paddingTop: "2px",
                   }}>
-                    {name} &mdash; {status}
+                    {name} · {status}
                   </span>
                   <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
                     {reason}
@@ -360,39 +362,82 @@ export default function MSRCaseStudy() {
               }}>
                 Visual Directions Explored
               </p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px" }}>
+              {/* Row 1: Rejected directions — half-width, paired */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
                 {[
-                  { src: "/images/work/msr/msr-clinical.png", label: "Clinical \u2014 Rejected", opacity: 0.5 },
-                  { src: "/images/work/msr/msr-salesy.png",   label: "Salesy \u2014 Rejected",   opacity: 0.5 },
-                  { src: "/images/work/msr/msr-hero-cover.png", label: "Dark Editorial \u2014 Chosen", opacity: 1 },
-                ].map(({ src, label, opacity }) => (
+                  { src: "/images/work/msr/msr-clinical.webp", label: "Clinical \u2014 Rejected" },
+                  { src: "/images/work/msr/msr-salesy.webp",   label: "Salesy \u2014 Rejected" },
+                ].map(({ src, label }) => (
                   <div key={label}>
                     <div style={{
                       position:     "relative",
                       aspectRatio:  "4/3",
                       overflow:     "hidden",
-                      border:       opacity === 1 ? `2px solid ${c.cognac}` : `1px solid ${c.border}`,
-                      opacity,
+                      border:       `1px solid ${c.border}`,
+                      opacity:      0.5,
                     }}>
                       <Image
                         src={src}
                         alt={label}
                         fill
-                        sizes="(max-width: 767px) 100vw, 280px"
+                        sizes="(max-width: 767px) 100vw, 420px"
                         style={{ objectFit: "cover", objectPosition: "top" }}
                       />
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: opacity === 1 ? c.ink : c.muted, margin: "8px 0 0", fontWeight: opacity === 1 ? 600 : 400 }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
                       {label}
                     </p>
                   </div>
                 ))}
               </div>
+
+              {/* Row 2: Wireframe — full-width, structure-first framing */}
+              <div style={{ marginTop: "16px" }}>
+                <div style={{
+                  position:     "relative",
+                  aspectRatio:  "16/9",
+                  overflow:     "hidden",
+                  border:       `1px solid ${c.border}`,
+                  opacity:      0.5,
+                }}>
+                  <Image
+                    src="/images/work/msr/msr-wireframe.webp"
+                    alt="Wireframe \u2014 Structure Test"
+                    fill
+                    sizes="(max-width: 767px) 100vw, 860px"
+                    style={{ objectFit: "cover", objectPosition: "top" }}
+                  />
+                </div>
+                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
+                  Wireframe \u2014 Structure Test
+                </p>
+              </div>
+
+              {/* Row 3: Dark Editorial — full-width, chosen direction */}
+              <div style={{ marginTop: "16px" }}>
+                <div style={{
+                  position:     "relative",
+                  aspectRatio:  "16/9",
+                  overflow:     "hidden",
+                  border:       `2px solid ${c.cognac}`,
+                }}>
+                  <Image
+                    src="/images/work/msr/msr-hero-cover.webp"
+                    alt="Dark Editorial \u2014 Chosen"
+                    fill
+                    sizes="(max-width: 767px) 100vw, 860px"
+                    style={{ objectFit: "cover", objectPosition: "top" }}
+                  />
+                </div>
+                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.ink, margin: "8px 0 0", fontWeight: 600 }}>
+                  Dark Editorial \u2014 Chosen
+                </p>
+              </div>
             </div>
 
             <h3 style={subheading}>Review Pages: E-Commerce UX, Not Blog Format</h3>
             <p style={bodyText}>
-              The user&apos;s task on a review page is evaluation, not reading. A blog format buries signal in narrative &mdash; the user has to read to evaluate. An e-commerce layout does the orienting work: hero image, specs grid, rating, pros/cons, buy links. Users already know how to scan this pattern from every product page they&apos;ve used.
+              The user&apos;s task on a review page is evaluation, not reading. A blog format buries signal in narrative. The user has to read to evaluate. An e-commerce layout does the orienting work: hero image, specs grid, rating, pros/cons, buy links. Users already know how to scan this pattern from every product page they&apos;ve used.
             </p>
             <p style={bodyText}>
               This isn&apos;t a store. There&apos;s no checkout, no inventory. The UX pattern is borrowed from e-commerce because it matches the user&apos;s task, not because it serves a transaction.
@@ -450,10 +495,10 @@ export default function MSRCaseStudy() {
           {/* -- 05 Design System -------------------------- */}
           <Section label="05" title="Design System">
             <p style={bodyText}>
-              Three typefaces, each with a job. Barlow Condensed for display headlines &mdash; authority and presence. Lora for editorial subheads and quotes &mdash; readable, approachable. DM Sans for body copy and UI &mdash; legibility at scale. The roles are explicit, not decorative.
+              Three typefaces, each with a job. Barlow Condensed for display headlines. Authority and presence. Lora for editorial subheads and quotes. Readable, approachable. DM Sans for body copy and UI. Legibility at scale. The roles are explicit, not decorative.
             </p>
             <p style={bodyText}>
-              The token architecture runs three tiers: CSS custom properties as the source of truth, TypeScript semantic aliases for brand-aware naming, and Tailwind utilities consumed in components. One file change propagates everywhere. The same naming convention holds across Brand, Wayfarer, and Men&apos;s Sole Revival &mdash; this wasn&apos;t retrofitted. It was a decision made before the first component was built.
+              The token architecture runs three tiers: CSS custom properties as the source of truth, TypeScript semantic aliases for brand-aware naming, and Tailwind utilities consumed in components. One file change propagates everywhere. The same naming convention holds across Brand, Wayfarer, and Men&apos;s Sole Revival. This wasn&apos;t retrofitted. It was a decision made before the first component was built.
             </p>
 
             {/* Token table */}
@@ -507,7 +552,7 @@ export default function MSRCaseStudy() {
           {/* -- 06 Site Architecture ---------------------- */}
           <Section label="06" title="Site Architecture">
             <p style={bodyText}>
-              Seven page types, each designed for a different user task. The information architecture is the product strategy made navigable &mdash; every route maps to a specific intent.
+              Seven page types, each designed for a different user task. The information architecture is the product strategy made navigable. Every route maps to a specific intent.
             </p>
 
             {/* Route table */}
@@ -541,94 +586,335 @@ export default function MSRCaseStudy() {
               </table>
             </div>
 
-            {/* Screenshots */}
-            <div style={{ marginTop: "32px" }}>
+          </Section>
+
+        </div>{/* /content wrapper — break out for full-width walkthrough */}
+
+        {/* -- Visual Walkthrough ---------------------------------- */}
+        <div style={{
+          background:   "#091016",
+          borderTop:    "1px solid rgba(245,243,239,0.08)",
+          borderBottom: "1px solid rgba(245,243,239,0.08)",
+          padding:      "72px clamp(24px, 5vw, 80px)",
+          marginTop:    "48px",
+        }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+            {/* Header */}
+            <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                <span style={{ width: "20px", height: "1px", background: c.cognac }} />
+                <span style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "11px",
+                  fontWeight:    600,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color:         c.cognac,
+                }}>The Product</span>
+              </div>
+              <h2 style={{
+                fontFamily:    font.display,
+                fontSize:      "clamp(22px, 3.5vw, 36px)",
+                fontWeight:    400,
+                color:         "#F5F5F4",
+                margin:        "0 0 16px",
+                letterSpacing: "-0.025em",
+              }}>
+                Every page serves a task, not a template
+              </h2>
               <p style={{
+                fontFamily: font.sans,
+                fontSize:   "15px",
+                lineHeight: 1.65,
+                color:      "rgba(245,243,239,0.5)",
+                margin:     0,
+              }}>
+                The information architecture maps directly to user intent. Three core page types cover the path from orientation to decision. Each layout was chosen for the task it serves, not for visual consistency across pages.
+              </p>
+            </div>
+
+            {/* ── Homepage ──────────────── */}
+            <div style={{ marginBottom: "64px" }}>
+              <h3 style={{
                 fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
+                fontSize:      "13px",
+                fontWeight:    700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color:         c.muted,
+                color:         c.cognac,
                 margin:        "0 0 12px",
+              }}>Orient</h3>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "14px",
+                lineHeight: 1.65,
+                color:      "rgba(245,243,239,0.5)",
+                margin:     "0 0 24px",
+                maxWidth:   "560px",
               }}>
-                Page Types in Context
+                The homepage answers one question: is this site for me? Dark editorial sets the tone before a word is read. The topic grid orients by condition, not by product category. The assessment CTA gives a personalized entry point.
               </p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
+              <div style={{
+                position:     "relative",
+                aspectRatio:  "16/9",
+                overflow:     "hidden",
+                background:   "rgba(245,243,239,0.04)",
+                border:       "1px solid rgba(245,243,239,0.1)",
+                borderRadius: "8px",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-homepage.webp"
+                  alt="Men's Sole Revival homepage — dark editorial design with topic grid and assessment CTA"
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "cover", objectPosition: "top" }}
+                />
+              </div>
+
+              {/* Annotations */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { src: "/images/work/msr/msr-homepage.png", label: "Orient + Browse", caption: "The homepage answers one question: is this site for me?" },
-                  { src: "/images/work/msr/msr-article.png",  label: "Learn",           caption: "Long-form articles build authority. The layout is for reading, not scanning." },
-                  { src: "/images/work/msr/msr-review.png",   label: "Evaluate + Decide", caption: "Product reviews use e-commerce UX patterns. The layout matches the task." },
-                ].map(({ src, label, caption }) => (
-                  <div key={label}>
-                    <div style={{
-                      position:    "relative",
-                      aspectRatio: "4/3",
-                      overflow:    "hidden",
-                      border:      `1px solid ${c.border}`,
+                  { detail: "Dark ground, cognac accent, bold type", why: "Visual language borrowed from premium grooming and men\u2019s performance brands. Stigma reduction through familiarity." },
+                  { detail: "Topic grid above article feed", why: "Wireframe testing showed users need category context before they\u2019ll engage individual articles." },
+                  { detail: "Assessment CTA in hero", why: "Gives the hesitant user a low-commitment starting point. \u201CWhat\u2019s going on with my feet?\u201D before \u201CRead about fungus.\u201D" },
+                ].map(({ detail, why }) => (
+                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                    <span style={{
+                      width: "4px", height: "4px", borderRadius: "50%",
+                      background: c.cognac, flexShrink: 0, marginTop: "7px",
+                    }} />
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                      color: "rgba(245,243,239,0.4)", margin: 0,
                     }}>
-                      <Image
-                        src={src}
-                        alt={label}
-                        fill
-                        sizes="(max-width: 767px) 100vw, 280px"
-                        style={{ objectFit: "cover", objectPosition: "top" }}
-                      />
-                    </div>
-                    <div style={{ marginTop: "12px", display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: c.cognac, marginTop: 6, flexShrink: 0 }} />
-                      <div>
-                        <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.ink, margin: "0 0 2px" }}>{label}</p>
-                        <p style={{ fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55, color: c.muted, margin: 0 }}>{caption}</p>
-                      </div>
-                    </div>
+                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      {" \u00B7 "}{why}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
-          </Section>
+
+            {/* ── Article ──────────────── */}
+            <div style={{ marginBottom: "64px" }}>
+              <h3 style={{
+                fontFamily:    font.sans,
+                fontSize:      "13px",
+                fontWeight:    700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color:         c.cognac,
+                margin:        "0 0 12px",
+              }}>Learn</h3>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "14px",
+                lineHeight: 1.65,
+                color:      "rgba(245,243,239,0.5)",
+                margin:     "0 0 24px",
+                maxWidth:   "560px",
+              }}>
+                Pillar articles are the content authority engine. Long-form editorial built for the user who wants to understand, not just skim. Each article targets a high-search-volume foot health question men are already asking.
+              </p>
+              <div style={{
+                position:     "relative",
+                aspectRatio:  "16/9",
+                overflow:     "hidden",
+                background:   "rgba(245,243,239,0.04)",
+                border:       "1px solid rgba(245,243,239,0.1)",
+                borderRadius: "8px",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-article.webp"
+                  alt="Men's Sole Revival article page — long-form editorial with clear typography hierarchy"
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "cover", objectPosition: "top" }}
+                />
+              </div>
+
+              {/* Annotations */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
+                {[
+                  { detail: "Three-typeface hierarchy", why: "Barlow Condensed for display, Lora for editorial subheads, DM Sans for body. Each typeface has a defined role, not a decorative pairing." },
+                  { detail: "Callout blocks and key takeaways", why: "Break up long-form content for scanners. A reader can get the core insight from callouts alone." },
+                  { detail: "Internal linking to reviews and routines", why: "Articles drive traffic. Product reviews and routines capture the intent. Content flows toward decisions." },
+                ].map(({ detail, why }) => (
+                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                    <span style={{
+                      width: "4px", height: "4px", borderRadius: "50%",
+                      background: c.cognac, flexShrink: 0, marginTop: "7px",
+                    }} />
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                      color: "rgba(245,243,239,0.4)", margin: 0,
+                    }}>
+                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      {" \u00B7 "}{why}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Review ──────────────── */}
+            <div>
+              <h3 style={{
+                fontFamily:    font.sans,
+                fontSize:      "13px",
+                fontWeight:    700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color:         c.cognac,
+                margin:        "0 0 12px",
+              }}>Evaluate</h3>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "14px",
+                lineHeight: 1.65,
+                color:      "rgba(245,243,239,0.5)",
+                margin:     "0 0 24px",
+                maxWidth:   "560px",
+              }}>
+                Product reviews use e-commerce layout patterns because the user&apos;s task is evaluation, not reading. Hero image, specs grid, star rating, pros/cons, affiliate CTAs. The format matches the mental model from every product page they&apos;ve used.
+              </p>
+              <div style={{
+                position:     "relative",
+                aspectRatio:  "16/9",
+                overflow:     "hidden",
+                background:   "rgba(245,243,239,0.04)",
+                border:       "1px solid rgba(245,243,239,0.1)",
+                borderRadius: "8px",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-review.webp"
+                  alt="Men's Sole Revival product review — e-commerce UX patterns with specs grid, rating, and affiliate CTAs"
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "cover", objectPosition: "top" }}
+                />
+              </div>
+
+              {/* Annotations */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
+                {[
+                  { detail: "E-commerce layout, no checkout", why: "The UX pattern is borrowed because it matches the task. Users already know how to scan hero \u2192 specs \u2192 rating \u2192 CTA." },
+                  { detail: "Affiliate CTAs, not product listings", why: "Revenue comes from referrals, not transactions. The trust model requires editorial independence from the products reviewed." },
+                  { detail: "Pros/cons and verdict above the fold", why: "The evaluating user wants the answer first. Supporting detail is available but not required to make a decision." },
+                ].map(({ detail, why }) => (
+                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                    <span style={{
+                      width: "4px", height: "4px", borderRadius: "50%",
+                      background: c.cognac, flexShrink: 0, marginTop: "7px",
+                    }} />
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                      color: "rgba(245,243,239,0.4)", margin: 0,
+                    }}>
+                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      {" \u00B7 "}{why}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>{/* /Visual Walkthrough */}
+
+        {/* Resume content wrapper for remaining sections */}
+        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* -- 07 Evaluation Plan ----------------------- */}
           <Section label="07" title="Evaluation Plan">
             <p style={bodyText}>
-              This is a self-initiated project. There were no live metrics at launch. What I defined instead was a validation plan: specific measures tied to the strategic hypotheses, structured around the first 3, 6, and 12 months of content publishing.
+              No live metrics. No user testing budget. Self-initiated means defining what success looks like before the data exists. These aren&apos;t aspirational KPIs. They&apos;re the specific questions the design hypotheses need to answer.
             </p>
 
-            <div style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+            {/* Validation approach box */}
+            <div style={{
+              margin:     "24px 0",
+              padding:    "24px 28px",
+              background: c.surface,
+              border:     `1px solid ${c.border}`,
+              borderLeft: `3px solid ${c.cognac}`,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "10px",
+                fontWeight:    700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         c.cognac,
+                margin:        "0 0 10px",
+              }}>Validation approach</p>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+                <strong style={{ color: c.ink }}>Phase 1 (0&ndash;3 months):</strong> Content publishing cadence, organic search impressions, Reddit community engagement. Signal: is anyone finding this?
+              </p>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+                <strong style={{ color: c.ink }}>Phase 2 (3&ndash;6 months):</strong> Time on page for reviews vs. articles, email signup rate, return visitor ratio. Signal: does the content structure match user intent?
+              </p>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                <strong style={{ color: c.ink }}>Phase 3 (6&ndash;12 months):</strong> Affiliate click-through rates, brand partnership response rate, SEO keyword rankings. Signal: is this a viable business?
+              </p>
+            </div>
+
+            {/* Threshold table with rationale */}
+            <div style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["What to Measure", "Metric", "Why It Matters"].map((h) => (
-                      <th key={h} style={{ ...thStyle, color: h === "Why It Matters" ? c.accent : c.muted, fontWeight: h === "Why It Matters" ? 700 : 600 }}>{h}</th>
+                    {["Hypothesis", "Metric", "Threshold", "Rationale"].map((h) => (
+                      <th key={h} style={{ ...thStyle, color: h === "Rationale" ? c.accent : c.muted, fontWeight: h === "Rationale" ? 700 : 600 }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    { measure: "Organic search traffic",       metric: "Monthly visits at 3, 6, 12 months",             why: "Do men find this content when searching?" },
-                    { measure: "Email list growth",            metric: "Signup rate from article pages",                 why: "A reader who signs up plans to come back." },
-                    { measure: "Time on product reviews",      metric: "Average time on page",                           why: "If they\u2019re spending time, the e-commerce layout works." },
-                    { measure: "Brand partnership inquiries",  metric: "Outreach to Vivobarefoot, Altra, Correct Toes", why: "Does the site read as a credible media property?" },
-                    { measure: "Reddit engagement",            metric: "Shares in r/BarefootRunning, r/PlantarFasciitis", why: "Organic community uptake is the early trust signal." },
-                  ].map(({ measure, metric, why }, i) => (
-                    <tr key={measure} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{measure}</td>
+                    { hypothesis: "Men find this content",         metric: "Organic search traffic",     threshold: "500 visits/mo by month 6",    rationale: "Baseline for niche health content sites with 10+ indexed pages" },
+                    { hypothesis: "Readers come back",             metric: "Email signup rate",          threshold: "2\u20134% from article pages",     rationale: "Industry avg for content sites; a signup signals intent to return" },
+                    { hypothesis: "E-commerce layout works",       metric: "Time on review pages",       threshold: "> 2 min avg",                  rationale: "If users spend time, the layout is doing the orienting work" },
+                    { hypothesis: "Site reads as credible",        metric: "Brand outreach response",    threshold: "1 of 3 responds",              rationale: "Vivobarefoot, Altra, Correct Toes. One conversation validates the media property thesis" },
+                    { hypothesis: "Community trusts the content",  metric: "Reddit engagement",          threshold: "Shared without prompting",     rationale: "Organic uptake in r/BarefootRunning or r/PlantarFasciitis is the early trust signal" },
+                  ].map(({ hypothesis, metric, threshold, rationale }, i) => (
+                    <tr key={hypothesis} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{hypothesis}</td>
                       <td style={tdStyle}>{metric}</td>
-                      <td style={{ ...tdStyle, color: c.body }}>{why}</td>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.cognac }}>{threshold}</td>
+                      <td style={{ ...tdStyle, fontSize: "13px", color: c.body }}>{rationale}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p style={{ ...bodyText, marginTop: "16px", fontSize: "13px", color: c.muted }}>
-              No live data yet. These thresholds were defined to test the core hypotheses: that the content reaches the audience, that the UX patterns match their tasks, and that the site earns credibility with brands.
-            </p>
+
+            {/* Decision criteria box */}
+            <div style={{
+              margin:     "24px 0 0",
+              padding:    "20px 24px",
+              background: c.bgSection,
+              border:     `1px solid ${c.border}`,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "10px",
+                fontWeight:    700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         c.muted,
+                margin:        "0 0 10px",
+              }}>Decision criteria</p>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                If Phase 1 signals are flat after 3 months of consistent publishing, the content strategy hypothesis is wrong. Revisit topic selection, distribution channels, and SEO targeting before investing in Phase 2 metrics. If review page time-on-page is below threshold, the e-commerce layout assumption needs usability testing. The plan is designed to fail fast and fail specifically.
+              </p>
+            </div>
           </Section>
 
           {/* -- 08 Reflection ---------------------------- */}
           <Section label="08" title="Reflection">
             <p style={bodyText}>
-              The first build spent three weeks fighting a stack that wasn&apos;t right for the problem. The friction was the signal and I waited too long to act on it. The pivot from e-commerce to content wasn&apos;t a retreat &mdash; it was the moment the project found its actual shape.
+              The first build spent three weeks fighting a stack that wasn&apos;t right for the problem. The friction was the signal and I waited too long to act on it. The pivot from e-commerce to content wasn&apos;t a retreat. It was the moment the project found its actual shape.
             </p>
             <p style={bodyText}>
               The absence of user validation is the biggest open question. The e-commerce layout for reviews is the call I&apos;d make again, but it hasn&apos;t been tested with the actual audience. The competitive analysis and UX reasoning are sound, but reasoning isn&apos;t evidence. The evaluation plan is how I&apos;ll find out if the reasoning holds.
@@ -639,15 +925,15 @@ export default function MSRCaseStudy() {
 
             <h3 style={subheading}>What wasn&apos;t done</h3>
             <p style={bodyText}>
-              I didn&apos;t conduct user interviews before building. I didn&apos;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested. The evaluation plan is how I&apos;ll find out if the reasoning holds.
+              I didn&apos;t conduct user interviews before building. I didn&apos;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.
             </p>
 
             <h3 style={subheading}>If I had more time</h3>
             <p style={bodyText}>
-              Run moderated usability tests with 5&ndash;6 participants matching the target persona &mdash; men 25&ndash;55 who have Googled a foot health question in the last 6 months. Test the review page layout against a blog-format control. Measure task completion time, information findability, and whether the e-commerce pattern reduces cognitive load for evaluation tasks.
+              Run moderated usability tests with 5&ndash;6 participants matching the target persona: men 25&ndash;55 who have Googled a foot health question in the last 6 months. Test the review page layout against a blog-format control. Measure task completion time, information findability, and whether the e-commerce pattern reduces cognitive load for evaluation tasks.
             </p>
             <p style={bodyText}>
-              From there: A/B test the homepage topic categories to see which entry points drive the deepest engagement. Validate the email signup placement. And pressure-test the brand direction with the audience directly &mdash; does the dark editorial tone actually lower the stigma barrier, or is that an assumption that deserves its own research cycle?
+              From there: A/B test the homepage topic categories to see which entry points drive the deepest engagement. Validate the email signup placement. And pressure-test the brand direction with the audience directly. Does the dark editorial tone actually lower the stigma barrier, or is that an assumption that deserves its own research cycle?
             </p>
           </Section>
 
@@ -702,7 +988,7 @@ export default function MSRCaseStudy() {
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
-                Spotify &mdash; Recently Played Controls
+                Spotify: Recently Played Controls
               </p>
             </div>
             <Link
