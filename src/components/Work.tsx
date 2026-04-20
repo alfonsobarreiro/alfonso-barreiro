@@ -34,7 +34,7 @@ const projects: Project[] = [
     title:       "Wayfarer",
     subtitle:    "Travel Planning Site",
     description:
-      "An end-to-end travel planning experience built to reduce decision fatigue — surfacing the right information at the right moment across research, planning, and booking phases without fragmenting the journey.",
+      "An end-to-end travel planning experience built to reduce decision fatigue. The right information at the right moment across research, planning, and booking phases, without fragmenting the journey.",
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
     status:      "coming-soon",
@@ -45,7 +45,7 @@ const projects: Project[] = [
     title:       "Men's Sole Revival",
     subtitle:    "Foot Health Content Platform",
     description:
-      "A content-first foot health resource for men — using dark editorial design, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier and serve readers who are evaluating, not just browsing.",
+      "A content-first foot health resource for men. Dark editorial design, e-commerce UX patterns, and a token-driven design system built to lower the stigma barrier and serve readers who are evaluating, not just browsing.",
     tags:        ["Content UX", "Visual Design", "Design System"],
     year:        "2026",
     status:      "live",
@@ -314,7 +314,7 @@ function ProjectCard({
           }}>
             <Image
               src={project.image}
-              alt={`${project.title} — ${project.subtitle} preview`}
+              alt={`${project.title}: ${project.subtitle} preview`}
               fill
               sizes="700px"
               style={{
@@ -347,7 +347,7 @@ function ProjectCard({
         }}>
           <Image
             src={project.image}
-            alt={`${project.title} — ${project.subtitle} preview`}
+            alt={`${project.title}: ${project.subtitle} preview`}
             fill
             sizes="600px"
             style={{
@@ -377,12 +377,12 @@ function ProjectCard({
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "11px",
             padding:       "4px 12px",
-            border:        "1px solid #E8E4DE",
-            color:         "#8A8680",
-            fontWeight:    500,
+            border:        isLive ? "1px solid rgba(193,127,74,0.30)" : "1px solid #E8E4DE",
+            color:         isLive ? "#C17F4A" : "#8A8680",
+            fontWeight:    isLive ? 600 : 500,
             letterSpacing: "0.06em",
           }}>
-            Coming Soon
+            {isLive ? "Case Study" : "Coming Soon"}
           </span>
           <span style={{ fontSize: "12px", color: "#8A8680", fontFamily: "var(--font-dm-sans), sans-serif" }}>
             {project.year}
@@ -444,26 +444,38 @@ function ProjectCard({
       </div>
 
       {/* CTA */}
-      <div style={{
-        display:       "flex",
-        alignItems:    "center",
-        gap:           "8px",
-        color:         "#C17F4A",
-        fontSize:      "12px",
-        fontWeight:    600,
-        letterSpacing: "0.08em",
-        textTransform: "uppercase",
-        fontFamily:    "var(--font-dm-sans), sans-serif",
-        opacity:       hovered ? 1 : 0.45,
-        transition:    "opacity 0.25s ease",
-      }}>
-        View Case Study
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-          style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.25s ease" }}
-        >
-          <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </div>
+      {isLive ? (
+        <div style={{
+          display:       "flex",
+          alignItems:    "center",
+          gap:           "8px",
+          color:         "#C17F4A",
+          fontSize:      "12px",
+          fontWeight:    600,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          opacity:       hovered ? 1 : 0.45,
+          transition:    "opacity 0.25s ease",
+        }}>
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+            style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.25s ease" }}
+          >
+            <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      ) : (
+        <p style={{
+          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontSize:   "12px",
+          color:      "#8A8680",
+          margin:     0,
+          fontStyle:  "italic",
+        }}>
+          Case study in progress
+        </p>
+      )}
     </div>
   );
 

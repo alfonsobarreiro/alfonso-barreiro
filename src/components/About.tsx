@@ -156,9 +156,10 @@ export default function About() {
                 marginBottom: "20px",
               }}
             >
-              I&apos;m a UX/UI Designer based in Portland, OR. I work from research through
-              prototype — focused on clear problem framing, evidence-based decisions, and
-              design that holds up under real constraints.
+              Every project starts the same way: I look for the space between what users
+              expect and what the product actually gives them. That gap is where the design
+              work lives. I frame the problem, map the constraints, then build the simplest
+              thing that closes it.
             </p>
             <p
               style={{
@@ -169,9 +170,9 @@ export default function About() {
                 marginBottom: "40px",
               }}
             >
-              My work spans consumer apps, e-commerce, and travel. Beyond screens, I care
-              about the systems underneath — interaction patterns, information architecture,
-              accessibility, and the handoff details that make or break implementation.
+              My work spans consumer apps, content platforms, and e-commerce. Beyond the
+              interface, I care about the systems underneath: interaction patterns, information
+              architecture, accessibility, and the handoff details that make or break implementation.
             </p>
 
             <button
@@ -325,8 +326,8 @@ export default function About() {
               maxWidth:      "760px",
             }}
           >
-            I start with the problem before opening Figma. Research shapes the brief;
-            the brief shapes the structure; the structure shapes the interface — in that order.
+            I start with the problem before opening Figma. Research shapes the brief.
+            The brief shapes the structure. The structure shapes the interface. In that order.
             The decisions that matter most happen before the first frame.
           </p>
         </div>

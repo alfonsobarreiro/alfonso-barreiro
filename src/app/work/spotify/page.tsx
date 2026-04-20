@@ -135,7 +135,7 @@ export default function SpotifyCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer" },
                 { label: "Type",     value: "Solo · Concept" },
                 { label: "Timeline", value: "Nov – Dec 2025" },
-                { label: "Methods",  value: "Competitive Audit · Archetype Synthesis · Constraint Mapping · AI-Assisted Research Synthesis" },
+                { label: "Methods",  value: "Competitive Audit · Persona Analysis · Constraint Mapping · AI-Assisted Research Synthesis" },
                 { label: "Outcome",  value: "Three controls that close the gap between user need and platform capability, without breaking discovery" },
               ].map(({ label, value }) => (
                 <div key={label}>

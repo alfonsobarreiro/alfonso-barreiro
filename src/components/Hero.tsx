@@ -47,7 +47,7 @@ export default function Hero() {
               margin:        0,
             }}
           >
-            UX / UI Designer — Portland, OR
+            UX / UI Designer · Portland, OR
           </p>
         </div>
 
@@ -80,8 +80,8 @@ export default function Hero() {
             fontWeight:   400,
           }}
         >
-          Making complex things feel clear — from research through
-          prototype, with an eye on the decisions underneath.
+          I find the gap between what a product does and what users
+          actually need. Then I close it, from research through prototype.
         </p>
 
         {/* CTAs */}
