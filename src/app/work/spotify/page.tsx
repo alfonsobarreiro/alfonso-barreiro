@@ -49,6 +49,22 @@ export default function SpotifyCaseStudy() {
 
       <main style={{ background: c.bg, paddingTop: "72px" }}>
 
+        {/* ── Back link ───────────────────────────── */}
+        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
+          <Link
+            href="/#work"
+            style={{
+              fontFamily:     font.sans,
+              fontSize:       "13px",
+              color:          c.muted,
+              textDecoration: "none",
+              display:        "inline-block",
+            }}
+          >
+            ← Back to work
+          </Link>
+        </div>
+
         {/* ── Hero ─────────────────────────────────── */}
         <header
           style={{
@@ -1219,64 +1235,47 @@ export default function SpotifyCaseStudy() {
 
         </div>{/* /content wrapper */}
 
-        {/* ── Case Study Slides (deep-dive, post-reflection) ── */}
-        <div className="cs-slides-section" style={{
-          background:   c.bgSection,
-          borderTop:    `1px solid ${c.border}`,
-          borderBottom: `1px solid ${c.border}`,
-          padding:      "56px clamp(24px, 5vw, 80px)",
-          marginTop:    "80px",
-        }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <p style={{
-              fontFamily:    font.sans,
-              fontSize:      "11px",
-              fontWeight:    600,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color:         c.muted,
-              margin:        "0 0 6px",
-            }}>
-              Case Study Slides
-            </p>
+        {/* ── Slide deck CTA (compact inline bar) ───── */}
+        <div
+          style={{
+            borderTop:   `1px solid ${c.border}`,
+            padding:     "20px clamp(24px, 5vw, 80px)",
+            marginTop:   "80px",
+          }}
+        >
+          <div style={{
+            maxWidth: "860px",
+            margin: "0 auto",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+          }}>
             <p style={{
               fontFamily: font.sans,
               fontSize:   "14px",
-              color:      c.body,
-              margin:     "0 0 20px",
-            }}>
-              The full narrative deck, if you want to go deeper on any section.
-            </p>
-            <div className="cs-slides-outer" style={{
-              position:      "relative",
-              paddingBottom: "56.25%",
-              height:        0,
-              overflow:      "hidden",
-              border:        `1px solid ${c.border}`,
-              background:    c.ink,
-            }}>
-              <iframe
-                style={{
-                  position: "absolute",
-                  top:      0,
-                  left:     0,
-                  width:    "100%",
-                  height:   "100%",
-                  border:   "none",
-                }}
-                src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent("https://www.figma.com/proto/JrM6jElfVB1XXXVNWN980v/Spotify-Recently-Played-Features-Case-Study?node-id=328-5692&scaling=scale-down&content-scaling=fixed&starting-point-node-id=328-5692&page-id=156-4537")}`}
-                allowFullScreen
-                title="Spotify Recently Played Controls: Case Study Slides"
-              />
-            </div>
-            <p style={{
-              fontFamily: font.sans,
-              fontSize:   "12px",
               color:      c.muted,
-              margin:     "10px 0 0",
+              margin:     0,
             }}>
-              Use arrow keys or click to advance. No Figma account required.
+              Prefer the narrative version?
             </p>
+            <Link
+              href="/work/presentations/spotify"
+              style={{
+                fontFamily:     font.sans,
+                fontSize:       "14px",
+                fontWeight:     600,
+                color:          c.ink,
+                textDecoration: "none",
+                display:        "inline-flex",
+                alignItems:     "center",
+                gap:            "4px",
+              }}
+            >
+              View the slide deck
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
           </div>
         </div>
 
@@ -1286,7 +1285,6 @@ export default function SpotifyCaseStudy() {
             background:  c.bgSection,
             borderTop:   `1px solid ${c.border}`,
             padding:     "80px clamp(24px, 5vw, 80px)",
-            marginTop:   "80px",
           }}
         >
           <div style={{ maxWidth: "860px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
