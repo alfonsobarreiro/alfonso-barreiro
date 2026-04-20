@@ -3,7 +3,7 @@
 
 const routes = [
   { route: "/",              type: "Homepage",        task: "Orient",   desc: "Understand what this site is and whether it\u2019s for me.",  count: undefined },
-  { route: "/blog/[slug]",   type: "Article",         task: "Learn",    desc: "Go deeper on a foot health topic.",                          count: 6 },
+  { route: "/learn/[slug]",  type: "Article",         task: "Learn",    desc: "Go deeper on a foot health topic.",                          count: 6 },
   { route: "/reviews/[slug]",type: "Product Review",  task: "Evaluate", desc: "Compare and decide on a product.",                           count: 6 },
   { route: "/kits",          type: "Curated Kits",    task: "Browse",   desc: "See grouped product recommendations.",                       count: undefined },
   { route: "/learn",         type: "Educational Hub", task: "Explore",  desc: "Find the right starting point.",                             count: undefined },

@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-// import MSRSlideViewer from "@/components/MSRSlideViewer";
 
 export const metadata: Metadata = {
   title: "Men\u2019s Sole Revival — Foot Health Content Platform \u00B7 Alfonso Barreiro",
@@ -47,6 +46,22 @@ export default function MSRCaseStudy() {
       <Nav />
 
       <main style={{ background: c.bg, paddingTop: "72px" }}>
+
+        {/* -- Back link ---------------------------------- */}
+        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
+          <Link
+            href="/#work"
+            style={{
+              fontFamily:     font.sans,
+              fontSize:       "13px",
+              color:          c.muted,
+              textDecoration: "none",
+              display:        "inline-block",
+            }}
+          >
+            ← Back to work
+          </Link>
+        </div>
 
         {/* -- Hero ---------------------------------------- */}
         <header
@@ -134,8 +149,59 @@ export default function MSRCaseStudy() {
           </div>
         </header>
 
+        {/* -- Links ---------------------------------------- */}
+        <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
+          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+            <p style={{
+              fontFamily:    font.sans,
+              fontSize:      "11px",
+              fontWeight:    600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color:         c.muted,
+              margin:        "0 0 16px",
+            }}>
+              Links
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
+              {[
+                { label: "Live product", href: "https://www.menssolerevival.com/", external: true },
+                { label: "Figma file",   href: "https://www.figma.com/design/ftIe1aelQLB7hOR4PUA9lR/Men-s-Sole-Revival", external: true },
+                { label: "Slide deck",   href: "/work/presentations/mens-sole-revival", external: false },
+              ].map(({ label, href, external }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  style={{
+                    display:        "inline-flex",
+                    alignItems:     "center",
+                    gap:            "8px",
+                    padding:        "10px 18px",
+                    background:     c.surface,
+                    border:         `1px solid ${c.borderStrong}`,
+                    borderRadius:   "6px",
+                    color:          c.ink,
+                    fontFamily:     font.sans,
+                    fontSize:       "13px",
+                    fontWeight:     500,
+                    letterSpacing:  "0.02em",
+                    textDecoration: "none",
+                  }}
+                >
+                  {label}
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                    <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* -- Cover image --------------------------------- */}
-        <div style={{ background: c.bgSection, padding: "64px clamp(24px, 5vw, 80px) 0" }}>
+        <div style={{ background: c.bgSection, padding: "48px clamp(24px, 5vw, 80px) 0" }}>
           <div style={{ maxWidth: "860px", margin: "0 auto" }}>
             <Image
               src="/images/work/msr/msr-cover.webp"
@@ -159,6 +225,9 @@ export default function MSRCaseStudy() {
             </p>
             <p style={bodyText}>
               63% of Americans report foot pain, but only 12% ever see a podiatrist. Men have a 3&times; higher fungal infection rate. The men&apos;s foot-care segment is growing at 10% CAGR. The audience exists. The resource doesn&apos;t.
+            </p>
+            <p style={bodyText}>
+              Zoom out and the picture sharpens. 30% of people with foot pain do nothing about it, and only a third ever seek expert care. Toenail fungus affects 1 in 10 adults overall &mdash; but 1 in 2 over 70. The problem compounds as the audience ages. Meanwhile, men&apos;s grooming has become a $90.7B category projected to hit $153.6B by 2033, with 59% of men saying they&apos;re concerned about aging. The demand for men&apos;s wellness resources is growing. The supply for foot-specific guidance is not.
             </p>
             <Callout label="Design synthesis">
               Men need a foot health resource that&apos;s male-specific, clinically grounded, and product-informed. No existing site occupies that intersection.
@@ -257,6 +326,9 @@ export default function MSRCaseStudy() {
             </p>
             <p style={bodyText}>
               The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. Three weeks of modeling margins that wouldn&apos;t work was the signal: the friction wasn&apos;t execution. It was the starting point.
+            </p>
+            <p style={bodyText}>
+              The market itself wasn&apos;t the problem. US men&apos;s foot care is projected to reach $4.7B by 2030; the global category spans $4&ndash;14B. Sub-segments are active too &mdash; orthotic insoles at $4.06B growing around 7% a year, barefoot shoes at $514M climbing at nearly 6%. The sizing supported the thesis. The unit economics didn&apos;t.
             </p>
             <p style={bodyText}>
               Then the market research showed the real problem. The gap I&apos;d found wasn&apos;t in the products. It was in the information layer that should precede them. Men over 40 who aren&apos;t already thinking about their feet are expensive to convert. They need a resource they trust before they&apos;ll buy anything. The e-commerce model puts the transaction before the relationship that makes the transaction possible.
@@ -568,7 +640,7 @@ export default function MSRCaseStudy() {
                 <tbody>
                   {[
                     { route: "/",               type: "Homepage",        task: "Orient",   purpose: "Understand what this site is and whether it\u2019s for me." },
-                    { route: "/blog/[slug]",     type: "Article",         task: "Learn",    purpose: "Go deeper on a foot health topic." },
+                    { route: "/learn/[slug]",    type: "Article",         task: "Learn",    purpose: "Go deeper on a foot health topic." },
                     { route: "/reviews/[slug]",  type: "Product Review",  task: "Evaluate", purpose: "Compare and decide on a product." },
                     { route: "/kits",            type: "Curated Kits",    task: "Browse",   purpose: "See grouped product recommendations." },
                     { route: "/learn",           type: "Educational Hub", task: "Explore",  purpose: "Find the right starting point." },
@@ -939,39 +1011,49 @@ export default function MSRCaseStudy() {
 
         </div>{/* /content wrapper */}
 
-        {/* -- Case Study Slides (hidden) ---------------------------------- */}
-        {/* {/* -- Case Study Slides ------------------------------------------ */}
-        {/* <div style={{
-          background:   c.bgSection,
-          borderTop:    `1px solid ${c.border}`,
-          borderBottom: `1px solid ${c.border}`,
-          paddingTop:   "56px",
-          paddingBottom:"56px",
-          marginTop:    "80px",
-        }}>
-          <div style={{ padding: "0 clamp(24px, 5vw, 80px)", marginBottom: "24px" }}>
-            <p style={{
-              fontFamily:    font.sans,
-              fontSize:      "11px",
-              fontWeight:    600,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color:         c.muted,
-              margin:        "0 0 6px",
-            }}>
-              Case Study Slides
-            </p>
+        {/* -- Slide deck CTA (compact inline bar) ------- */}
+        <div
+          style={{
+            borderTop:   `1px solid ${c.border}`,
+            padding:     "20px clamp(24px, 5vw, 80px)",
+            marginTop:   "80px",
+          }}
+        >
+          <div style={{
+            maxWidth: "860px",
+            margin: "0 auto",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+          }}>
             <p style={{
               fontFamily: font.sans,
               fontSize:   "14px",
-              color:      c.body,
+              color:      c.muted,
               margin:     0,
             }}>
-              The full narrative deck, if you want to go deeper on any section.
+              Prefer the narrative version?
             </p>
+            <Link
+              href="/work/presentations/mens-sole-revival"
+              style={{
+                fontFamily:     font.sans,
+                fontSize:       "14px",
+                fontWeight:     600,
+                color:          c.ink,
+                textDecoration: "none",
+                display:        "inline-flex",
+                alignItems:     "center",
+                gap:            "4px",
+              }}
+            >
+              View the 9-slide deck
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
           </div>
-          <MSRSlideViewer />
-        </div> */}
+        </div>
 
         {/* -- Next case study CTA ----------------------- */}
         <div
@@ -979,7 +1061,6 @@ export default function MSRCaseStudy() {
             background:  c.bgSection,
             borderTop:   `1px solid ${c.border}`,
             padding:     "80px clamp(24px, 5vw, 80px)",
-            marginTop:   "80px",
           }}
         >
           <div style={{ maxWidth: "860px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>

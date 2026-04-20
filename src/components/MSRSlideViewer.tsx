@@ -41,7 +41,7 @@
  *
  * 5. Never deploy to MSR site
  *    These components live ONLY in the portfolio (localhost:3000 / barreiro.com).
- *    The MSR site (localhost:3001 / menssolereval.com) keeps its own frame pages.
+ *    The MSR site (localhost:3001 / menssolerevival.com) keeps its own frame pages.
  */
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -64,7 +64,9 @@ const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7, Slide8, 
 export default function MSRSlideViewer() {
   const [current, setCurrent]     = useState(0); // 0-indexed
   const [scale, setScale]         = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef              = useRef<HTMLDivElement>(null);
+  const rootRef                   = useRef<HTMLDivElement>(null);
 
   // ── Responsive scaling ────────────────────────────────────────────────────
   const updateScale = useCallback(() => {
@@ -81,6 +83,22 @@ export default function MSRSlideViewer() {
     return () => ro.disconnect();
   }, [updateScale]);
 
+  // ── Fullscreen toggle ─────────────────────────────────────────────────────
+  const toggleFullscreen = useCallback(async () => {
+    if (!rootRef.current) return;
+    if (!document.fullscreenElement) {
+      try { await rootRef.current.requestFullscreen(); } catch { /* ignore */ }
+    } else {
+      try { await document.exitFullscreen(); } catch { /* ignore */ }
+    }
+  }, []);
+
+  useEffect(() => {
+    const onChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", onChange);
+    return () => document.removeEventListener("fullscreenchange", onChange);
+  }, []);
+
   // ── Keyboard navigation ───────────────────────────────────────────────────
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -88,11 +106,13 @@ export default function MSRSlideViewer() {
         setCurrent((c) => Math.min(c + 1, slides.length - 1));
       } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         setCurrent((c) => Math.max(c - 1, 0));
+      } else if (e.key === "f" || e.key === "F") {
+        toggleFullscreen();
       }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+  }, [toggleFullscreen]);
 
   const prev = () => setCurrent((c) => Math.max(c - 1, 0));
   const next = () => setCurrent((c) => Math.min(c + 1, slides.length - 1));
@@ -100,7 +120,18 @@ export default function MSRSlideViewer() {
   const CurrentSlide = slides[current];
 
   return (
-    <div style={{ fontFamily: "var(--font-dm-sans), sans-serif", padding: "0 40px" }}>
+    <div
+      ref={rootRef}
+      style={{
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        padding: isFullscreen ? "0" : "0 clamp(4px, 2vw, 40px)",
+        background: isFullscreen ? "#0A0A0A" : "transparent",
+        display: isFullscreen ? "flex" : "block",
+        flexDirection: "column",
+        justifyContent: isFullscreen ? "center" : undefined,
+        height: isFullscreen ? "100vh" : undefined,
+      }}
+    >
       {/* ── Aspect-ratio shell ─────────────────────────────────────────── */}
       <div
         ref={containerRef}
@@ -138,6 +169,40 @@ export default function MSRSlideViewer() {
             <CurrentSlide />
           </div>
         </div>
+
+        {/* Fullscreen toggle — floating top-right */}
+        <button
+          onClick={toggleFullscreen}
+          aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen (f)"}
+          style={{
+            position:       "absolute",
+            top:            "12px",
+            right:          "12px",
+            width:          "36px",
+            height:         "36px",
+            display:        "flex",
+            alignItems:     "center",
+            justifyContent: "center",
+            background:     "rgba(0,0,0,0.55)",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            border:         "1px solid rgba(255,255,255,0.15)",
+            borderRadius:   "6px",
+            color:          "#FFFFFF",
+            cursor:         "pointer",
+            padding:        0,
+          }}
+        >
+          {isFullscreen ? (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path d="M10 2V6H14M6 2V6H2M6 14V10H2M10 14V10H14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path d="M2 6V2H6M14 6V2H10M14 10V14H10M2 10V14H6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          )}
+        </button>
       </div>
 
       {/* ── Controls ───────────────────────────────────────────────────── */}
@@ -146,7 +211,7 @@ export default function MSRSlideViewer() {
         alignItems:     "center",
         justifyContent: "space-between",
         marginTop:      "14px",
-        padding:        "0 clamp(24px, 4vw, 64px)",
+        padding:        "0 clamp(4px, 3vw, 64px)",
       }}>
         {/* Prev */}
         <button
