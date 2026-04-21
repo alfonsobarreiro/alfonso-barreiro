@@ -32,12 +32,13 @@ const projects: Project[] = [
   {
     index:       "02",
     title:       "Wayfarer",
-    subtitle:    "Travel Planning Site",
+    subtitle:    "Travel Discovery Platform",
     description:
-      "An end-to-end travel planning experience built to reduce decision fatigue. The right information at the right moment across research, planning, and booking phases, without fragmenting the journey.",
+      "A concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build. Interactive globe, multi-step onboarding, and 40+ destinations.",
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
-    status:      "coming-soon",
+    status:      "live",
+    href:        "/work/wayfarer",
     image:       "/cs-wayfarer-preview.jpg",
   },
   {

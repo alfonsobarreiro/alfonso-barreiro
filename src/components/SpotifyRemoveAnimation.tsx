@@ -6,10 +6,10 @@
  * Prototype-style looping animation of the Remove flow. Composed from user-
  * supplied PNG layers:
  *
- *   • spotify-backgorund-action.png   Frame 1 / 2 base (shelf with Madonna)
- *   • spotify-backgorund-result.png   Frame 3 base (shelf after removal)
- *   • spotify-overlay.png             Dim overlay (fades in during Frame 2)
- *   • spotify-tray.png                Action sheet (slides up / down)
+ *   • spotify-background-action.webp   Frame 1 / 2 base (shelf with Madonna)
+ *   • spotify-background-result.webp   Frame 3 base (shelf after removal)
+ *   • spotify-overlay.webp             Dim overlay (fades in during Frame 2)
+ *   • spotify-tray.webp                Action sheet (slides up / down)
  *   • spotify-cursor.png              Hand pointer (animated position)
  *
  * Plus one HTML element — the Undo toast — with a white background and
@@ -51,17 +51,24 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
       <style>{`
         /* ===== Keyframes ===================================================== */
 
-        /* Frame 1/2 base — shelf with Madonna */
+        /* Frame 1 base — default shelf (trigger), Madonna normal */
         @keyframes spra-base {
-          0%, 55%   { opacity: 1; }
-          61%, 88%  { opacity: 0; }
+          0%, 27%   { opacity: 1; }
+          30%, 88%  { opacity: 0; }
           94%, 100% { opacity: 1; }
         }
 
-        /* Frame 3 base — shelf without Madonna */
+        /* During long-press — Madonna highlighted (action state) */
+        @keyframes spra-highlight {
+          0%, 27%   { opacity: 0; }
+          30%, 55%  { opacity: 1; }
+          60%, 100% { opacity: 0; }
+        }
+
+        /* Frame 3 — shelf without Madonna (result) */
         @keyframes spra-after {
           0%, 55%   { opacity: 0; }
-          61%, 88%  { opacity: 1; }
+          60%, 88%  { opacity: 1; }
           94%, 100% { opacity: 0; }
         }
 
@@ -86,19 +93,19 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           94%, 100% { transform: translateY(200%); opacity: 0; }
         }
 
-        /* Cursor — arrives at Madonna, long-presses, moves to Remove sooner */
+        /* Cursor — appears early, slides slowly to Madonna, taps lower on Remove */
         @keyframes spra-cursor {
-          0%, 14%   { left: 74%; top: 100%; transform: scale(1);    opacity: 0; }
-          18%       { left: 74%; top: 100%; transform: scale(1);    opacity: 1; }
-          22%       { left: 28%; top: 32%;  transform: scale(1);    opacity: 1; } /* arrives on Madonna */
-          25%       { left: 28%; top: 32%;  transform: scale(0.9);  opacity: 1; } /* press down */
-          33%       { left: 28%; top: 32%;  transform: scale(0.9);  opacity: 1; } /* long-press hold */
-          38%       { left: 28%; top: 32%;  transform: scale(1);    opacity: 1; } /* release as tray rises */
-          45%       { left: 28%; top: 32%;  transform: scale(1);    opacity: 1; } /* brief linger */
-          52%       { left: 30%; top: 72%;  transform: scale(1);    opacity: 1; } /* move to Remove */
-          54%       { left: 30%; top: 72%;  transform: scale(0.85); opacity: 1; } /* tap */
-          56%       { left: 30%; top: 72%;  transform: scale(1);    opacity: 1; }
-          60%       { left: 30%; top: 72%;  transform: scale(1);    opacity: 0; } /* fade out */
+          0%        { left: 74%; top: 100%; transform: scale(1);    opacity: 0; }
+          4%        { left: 74%; top: 100%; transform: scale(1);    opacity: 1; } /* appears at 0.72s */
+          24%       { left: 22%; top: 22%;  transform: scale(1);    opacity: 1; } /* arrives on Madonna (20% transit = 3.6s) */
+          27%       { left: 22%; top: 22%;  transform: scale(0.9);  opacity: 1; } /* press down → triggers highlight */
+          37%       { left: 22%; top: 22%;  transform: scale(0.9);  opacity: 1; } /* long-press hold */
+          42%       { left: 22%; top: 22%;  transform: scale(1);    opacity: 1; } /* release as tray rises */
+          45%       { left: 22%; top: 22%;  transform: scale(1);    opacity: 1; } /* brief linger */
+          54%       { left: 24%; top: 70%;  transform: scale(1);    opacity: 1; } /* move to Remove (9% transit) */
+          56%       { left: 24%; top: 70%;  transform: scale(0.85); opacity: 1; } /* tap */
+          58%       { left: 24%; top: 70%;  transform: scale(1);    opacity: 1; }
+          62%       { left: 24%; top: 70%;  transform: scale(1);    opacity: 0; } /* fade out */
           100%      { left: 74%; top: 100%; transform: scale(1);    opacity: 0; }
         }
 
@@ -181,8 +188,9 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           height: 100%;
           object-fit: cover;
         }
-        .spra-base  { animation: spra-base  18s infinite; z-index: 1; }
-        .spra-after { animation: spra-after 18s infinite; opacity: 0; z-index: 2; }
+        .spra-base      { animation: spra-base      18s infinite; z-index: 1; }
+        .spra-highlight { animation: spra-highlight 18s infinite; opacity: 0; z-index: 2; }
+        .spra-after     { animation: spra-after     18s infinite; opacity: 0; z-index: 3; }
 
         /* Dim overlay */
         .spra-overlay {
@@ -253,7 +261,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           flex-shrink: 0;
         }
 
-        /* Cursor — positioned by animation */
+        /* Cursor — ease-out expo curve gives a natural "fast off, settle in" feel */
         .spra-cursor {
           position: absolute;
           width: 28px;
@@ -261,7 +269,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           transform-origin: 35% 15%; /* fingertip area */
           pointer-events: none;
           opacity: 0;
-          animation: spra-cursor 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          animation: spra-cursor 18s cubic-bezier(0.16, 1, 0.3, 1) infinite;
           z-index: 20;
           filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
         }
@@ -328,7 +336,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
 
         /* Reduced motion — freeze at Frame 1 */
         @media (prefers-reduced-motion: reduce) {
-          .spra-base, .spra-after, .spra-overlay, .spra-tray,
+          .spra-base, .spra-highlight, .spra-after, .spra-overlay, .spra-tray,
           .spra-toast, .spra-cursor, .spra-ann-2, .spra-ann-3 {
             animation: none !important;
           }
@@ -381,8 +389,9 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
 function Screen() {
   return (
     <>
+      {/* Frame 1 base — default shelf, Madonna normal */}
       <Image
-        src="/images/work/spotify/spotify-backgorund-action.png"
+        src="/images/work/spotify/spotify-background-trigger.webp"
         alt=""
         aria-hidden
         fill
@@ -390,8 +399,18 @@ function Screen() {
         className="spra-layer spra-base"
         priority
       />
+      {/* During press — Madonna highlighted */}
       <Image
-        src="/images/work/spotify/spotify-backgorund-result.png"
+        src="/images/work/spotify/spotify-background-action.webp"
+        alt=""
+        aria-hidden
+        fill
+        sizes="(max-width: 767px) 90vw, 300px"
+        className="spra-layer spra-highlight"
+      />
+      {/* Frame 3 — shelf without Madonna */}
+      <Image
+        src="/images/work/spotify/spotify-background-result.webp"
         alt=""
         aria-hidden
         fill
@@ -399,7 +418,7 @@ function Screen() {
         className="spra-layer spra-after"
       />
       <Image
-        src="/images/work/spotify/spotify-overlay.png"
+        src="/images/work/spotify/spotify-overlay.webp"
         alt=""
         aria-hidden
         fill
@@ -408,7 +427,7 @@ function Screen() {
       />
       <div className="spra-tray" aria-hidden>
         <Image
-          src="/images/work/spotify/spotify-tray.png"
+          src="/images/work/spotify/spotify-tray.webp"
           alt=""
           fill
           sizes="(max-width: 767px) 90vw, 300px"
@@ -420,7 +439,7 @@ function Screen() {
       </div>
       <div className="spra-cursor" aria-hidden>
         <Image
-          src="/images/work/spotify/spotify-cursor.png"
+          src="/images/work/spotify/spotify-cursor.webp"
           alt=""
           width={96}
           height={96}

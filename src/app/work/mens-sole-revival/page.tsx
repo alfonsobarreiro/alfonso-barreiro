@@ -1069,11 +1069,11 @@ export default function MSRCaseStudy() {
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
-                Spotify: Recently Played Controls
+                Wayfarer: Travel Discovery Platform
               </p>
             </div>
             <Link
-              href="/work/spotify"
+              href="/work/wayfarer"
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",
