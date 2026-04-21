@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SpotifyJourneyMap from "@/components/SpotifyJourneyMap";
 import SpotifyQuoteRotator from "@/components/SpotifyQuoteRotator";
+import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 
 export const metadata: Metadata = {
   title: "Spotify — Recently Played Controls · Alfonso Barreiro",
@@ -719,6 +720,18 @@ export default function SpotifyCaseStudy() {
               }}>
                 Hide an item from the shelf without deleting it from your library. Device-scoped, not global. The Undo toast is the safety net that made a trash layer unnecessary.
               </p>
+
+              {/* Animated prototype preview */}
+              <div style={{
+                background:   "rgba(29,185,84,0.03)",
+                border:       "1px solid rgba(29,185,84,0.1)",
+                borderRadius: "12px",
+                padding:      "clamp(16px, 3vw, 32px) clamp(12px, 3vw, 24px)",
+                marginBottom: "48px",
+              }}>
+                <SpotifyRemoveAnimation />
+              </div>
+
               <div style={{
                 display:             "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",

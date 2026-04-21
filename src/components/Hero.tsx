@@ -1,5 +1,7 @@
 "use client";
 
+import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
+
 export default function Hero() {
   return (
     <section
@@ -8,131 +10,224 @@ export default function Hero() {
       style={{
         minHeight:      "100vh",
         display:        "flex",
-        flexDirection:  "column",
-        justifyContent: "center",
+        alignItems:     "center",
         padding:        "120px 48px 80px",
         position:       "relative",
         overflow:       "hidden",
         background:     "#F5F5F4",
       }}
     >
-      <div style={{ maxWidth: "900px", position: "relative" }}>
+      <div
+        className="hero-grid"
+        style={{
+          maxWidth: "1320px",
+          margin: "0 auto",
+          width: "100%",
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1fr) clamp(320px, 32vw, 440px)",
+          gap: "clamp(48px, 7vw, 96px)",
+          alignItems: "center",
+        }}
+      >
+        {/* ── LEFT: intro copy ─────────────────────────────── */}
+        <div style={{ maxWidth: "560px" }}>
 
-        {/* Eyebrow — role + location first */}
-        <div
-          style={{
-            display:      "flex",
-            alignItems:   "center",
-            gap:          "14px",
-            marginBottom: "28px",
-          }}
-        >
-          <span
+          {/* Eyebrow */}
+          <div
             style={{
-              display:    "inline-block",
-              width:      "32px",
-              height:     "1px",
-              background: "#C17F4A",
-              flexShrink: 0,
+              display:      "flex",
+              alignItems:   "center",
+              gap:          "14px",
+              marginBottom: "28px",
             }}
-          />
+          >
+            <span
+              style={{
+                display:    "inline-block",
+                width:      "32px",
+                height:     "1px",
+                background: "#C17F4A",
+                flexShrink: 0,
+              }}
+            />
+            <p
+              style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "13px",
+                fontWeight:    500,
+                letterSpacing: "0.10em",
+                textTransform: "uppercase",
+                color:         "#3D4440",
+                margin:        0,
+              }}
+            >
+              UX / UI Designer · Portland, OR
+            </p>
+          </div>
+
+          {/* Name */}
+          <h1
+            style={{
+              fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+              fontSize:      "clamp(48px, 7.5vw, 96px)",
+              fontWeight:    400,
+              lineHeight:    0.95,
+              letterSpacing: "-0.03em",
+              color:         "#252B28",
+              margin:        "0 0 36px",
+            }}
+          >
+            Alfonso
+            <br />
+            Barreiro
+          </h1>
+
+          {/* Supporting statement */}
           <p
             style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "13px",
-              fontWeight:    500,
-              letterSpacing: "0.10em",
-              textTransform: "uppercase",
-              color:         "#3D4440",
-              margin:        0,
+              fontFamily:   "var(--font-dm-sans), sans-serif",
+              fontSize:     "clamp(16px, 1.7vw, 19px)",
+              lineHeight:   1.65,
+              color:        "#8A8680",
+              maxWidth:     "480px",
+              marginBottom: "44px",
+              fontWeight:   400,
             }}
           >
-            UX / UI Designer · Portland, OR
+            I find the gap between what a product does and what users
+            actually need. Then I close it, from research through prototype.
           </p>
+
+          {/* CTAs */}
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+            <a
+              href="#work"
+              style={{
+                padding:       "14px 32px",
+                background:    "#252B28",
+                color:         "#F5F5F4",
+                borderRadius:  "8px",
+                fontSize:      "14px",
+                fontWeight:    500,
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                letterSpacing: "0.03em",
+                display:       "inline-flex",
+                alignItems:    "center",
+                transition:    "opacity 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.82")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              View Work
+            </a>
+            <button
+              onClick={() =>
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+              }
+              style={{
+                padding:      "14px 32px",
+                background:   "transparent",
+                color:        "#3D4440",
+                border:       "1px solid #C9BFB0",
+                borderRadius: "8px",
+                fontSize:     "14px",
+                fontWeight:   400,
+                fontFamily:   "var(--font-dm-sans), sans-serif",
+                display:      "inline-flex",
+                alignItems:   "center",
+                cursor:       "pointer",
+                transition:   "border-color 0.2s, color 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#8A8680";
+                e.currentTarget.style.color       = "#252B28";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "#C9BFB0";
+                e.currentTarget.style.color       = "#3D4440";
+              }}
+            >
+              Say hello
+            </button>
+          </div>
         </div>
 
-        {/* Name — primary anchor */}
-        <h1
+        {/* ── RIGHT: live prototype + title + CTA ──────────── */}
+        <div
+          className="hero-featured"
           style={{
-            fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
-            fontSize:      "clamp(56px, 9vw, 110px)",
-            fontWeight:    400,
-            lineHeight:    0.95,
-            letterSpacing: "-0.03em",
-            color:         "#252B28",
-            margin:        "0 0 40px",
+            display:         "flex",
+            flexDirection:   "column",
+            alignItems:      "center",
+            gap:             "24px",
+            width:           "100%",
+            justifySelf:     "center",
           }}
         >
-          Alfonso
-          <br />
-          Barreiro
-        </h1>
+          {/* Animation — bare variant, no phone chrome */}
+          <SpotifyRemoveAnimation variant="bare" />
 
-        {/* Supporting statement */}
-        <p
-          style={{
-            fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "clamp(16px, 1.7vw, 19px)",
-            lineHeight:   1.65,
-            color:        "#8A8680",
-            maxWidth:     "480px",
-            marginBottom: "52px",
-            fontWeight:   400,
-          }}
-        >
-          I find the gap between what a product does and what users
-          actually need. Then I close it, from research through prototype.
-        </p>
-
-        {/* CTAs */}
-        <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-          <a
-            href="#work"
-            style={{
-              padding:    "14px 32px",
-              background: "#252B28",
-              color:      "#F5F5F4",
-              borderRadius: "8px",
-              fontSize:   "14px",
-              fontWeight: 500,
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              letterSpacing: "0.03em",
-              display:    "inline-flex",
-              alignItems: "center",
-              transition: "opacity 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.82")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-          >
-            View Work
-          </a>
-          <button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            style={{
-              padding:    "14px 32px",
-              background: "transparent",
-              color:      "#3D4440",
-              border:     "1px solid #C9BFB0",
-              borderRadius: "8px",
-              fontSize:   "14px",
-              fontWeight: 400,
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              display:    "inline-flex",
-              alignItems: "center",
-              cursor:     "pointer",
-              transition: "border-color 0.2s, color 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#8A8680";
-              e.currentTarget.style.color       = "#252B28";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "#C9BFB0";
-              e.currentTarget.style.color       = "#3D4440";
-            }}
-          >
-            Say hello
-          </button>
+          {/* Title + CTA */}
+          <div style={{ textAlign: "center", maxWidth: "280px" }}>
+            <p
+              style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "11px",
+                fontWeight:    700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         "#C17F4A",
+                margin:        "0 0 8px",
+              }}
+            >
+              Featured prototype
+            </p>
+            <h2
+              style={{
+                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontSize:      "clamp(18px, 2vw, 22px)",
+                fontWeight:    400,
+                lineHeight:    1.25,
+                letterSpacing: "-0.01em",
+                color:         "#252B28",
+                margin:        "0 0 16px",
+              }}
+            >
+              Spotify · Recently Played Controls
+            </h2>
+            <a
+              href="/work/spotify"
+              style={{
+                display:        "inline-flex",
+                alignItems:     "center",
+                gap:            "8px",
+                padding:        "10px 22px",
+                background:     "transparent",
+                color:          "#252B28",
+                border:         "1px solid #252B28",
+                borderRadius:   "8px",
+                fontSize:       "13px",
+                fontWeight:     500,
+                fontFamily:     "var(--font-dm-sans), sans-serif",
+                letterSpacing:  "0.03em",
+                textDecoration: "none",
+                transition:     "background 0.2s, color 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#252B28";
+                e.currentTarget.style.color      = "#F5F5F4";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color      = "#252B28";
+              }}
+            >
+              View case study
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -163,6 +258,24 @@ export default function Hero() {
         />
         Scroll
       </div>
+
+      {/* Responsive: stack on narrow screens */}
+      <style>{`
+        @media (max-width: 899px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 56px !important;
+          }
+          .hero-featured {
+            justify-self: center !important;
+          }
+        }
+        @media (max-width: 599px) {
+          .hero-featured {
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

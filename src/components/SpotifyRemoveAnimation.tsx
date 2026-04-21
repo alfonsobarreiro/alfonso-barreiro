@@ -1,0 +1,433 @@
+"use client";
+
+/**
+ * SpotifyRemoveAnimation
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Prototype-style looping animation of the Remove flow. Composed from user-
+ * supplied PNG layers:
+ *
+ *   • spotify-backgorund-action.png   Frame 1 / 2 base (shelf with Madonna)
+ *   • spotify-backgorund-result.png   Frame 3 base (shelf after removal)
+ *   • spotify-overlay.png             Dim overlay (fades in during Frame 2)
+ *   • spotify-tray.png                Action sheet (slides up / down)
+ *   • spotify-cursor.png              Hand pointer (animated position)
+ *
+ * Plus one HTML element — the Undo toast — with a white background and
+ * black text per the spec.
+ *
+ * 18-second cycle:
+ *
+ *   0.0 – 2.5s    FRAME 1   Default shelf visible. Cursor off-screen.
+ *   2.5 – 4.0s    Cursor enters and lands on Madonna.
+ *   4.0 – 5.8s    Long-press hold on Madonna (~1.8s at 0.9 scale).
+ *   5.8 – 7.2s    Overlay fades in; tray slides up slowly.
+ *   7.2 – 8.1s    Cursor briefly lingers over Madonna while tray settles.
+ *   8.1 – 9.4s    Cursor moves down to "Remove from Recently Played".
+ *   9.4 – 9.9s    Tap (cursor scales down and back).
+ *   9.9 – 10.8s   Tray slides down, overlay fades, shelf crossfades to
+ *                 after-remove. Cursor fades out.
+ *  10.8 – 11.7s   Undo toast slides up (white background, black letters).
+ *  11.7 – 15.8s   FRAME 3   Toast + clean shelf held. Annotation appears.
+ *  15.8 – 16.9s   Reset: shelf returns, toast slides out.
+ *  16.9 – 18.0s   Pause before the next loop.
+ */
+
+import Image from "next/image";
+
+type Props = {
+  /**
+   * "full" (default) — iPhone frame + annotations + caption. For case study embeds.
+   * "bare"            — just the screen with soft rounded corners and shadow.
+   *                    No phone bezel, no annotations, no caption.
+   *                    For hero embeds or compact spots.
+   */
+  variant?: "full" | "bare";
+};
+
+export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
+  const isBare = variant === "bare";
+  return (
+    <>
+      <style>{`
+        /* ===== Keyframes ===================================================== */
+
+        /* Frame 1/2 base — shelf with Madonna */
+        @keyframes spra-base {
+          0%, 55%   { opacity: 1; }
+          61%, 88%  { opacity: 0; }
+          94%, 100% { opacity: 1; }
+        }
+
+        /* Frame 3 base — shelf without Madonna */
+        @keyframes spra-after {
+          0%, 55%   { opacity: 0; }
+          61%, 88%  { opacity: 1; }
+          94%, 100% { opacity: 0; }
+        }
+
+        /* Dim overlay — fades in as tray rises, out as tray descends */
+        @keyframes spra-overlay {
+          0%, 30%   { opacity: 0; }
+          36%, 55%  { opacity: 1; }
+          61%, 100% { opacity: 0; }
+        }
+
+        /* Tray — slides up slowly, holds, slides down */
+        @keyframes spra-tray {
+          0%, 32%   { transform: translateY(100%); }
+          40%, 55%  { transform: translateY(0%); }
+          61%, 100% { transform: translateY(100%); }
+        }
+
+        /* Undo toast — slides up after shelf reflow */
+        @keyframes spra-toast {
+          0%, 60%   { transform: translateY(200%); opacity: 0; }
+          65%, 88%  { transform: translateY(0%);   opacity: 1; }
+          94%, 100% { transform: translateY(200%); opacity: 0; }
+        }
+
+        /* Cursor — arrives at Madonna, long-presses, moves to Remove sooner */
+        @keyframes spra-cursor {
+          0%, 14%   { left: 74%; top: 100%; transform: scale(1);    opacity: 0; }
+          18%       { left: 74%; top: 100%; transform: scale(1);    opacity: 1; }
+          22%       { left: 28%; top: 32%;  transform: scale(1);    opacity: 1; } /* arrives on Madonna */
+          25%       { left: 28%; top: 32%;  transform: scale(0.9);  opacity: 1; } /* press down */
+          33%       { left: 28%; top: 32%;  transform: scale(0.9);  opacity: 1; } /* long-press hold */
+          38%       { left: 28%; top: 32%;  transform: scale(1);    opacity: 1; } /* release as tray rises */
+          45%       { left: 28%; top: 32%;  transform: scale(1);    opacity: 1; } /* brief linger */
+          52%       { left: 30%; top: 72%;  transform: scale(1);    opacity: 1; } /* move to Remove */
+          54%       { left: 30%; top: 72%;  transform: scale(0.85); opacity: 1; } /* tap */
+          56%       { left: 30%; top: 72%;  transform: scale(1);    opacity: 1; }
+          60%       { left: 30%; top: 72%;  transform: scale(1);    opacity: 0; } /* fade out */
+          100%      { left: 74%; top: 100%; transform: scale(1);    opacity: 0; }
+        }
+
+        /* Annotations */
+        @keyframes spra-ann2 {
+          0%, 36%   { opacity: 0; transform: translateX(-6px); }
+          42%, 55%  { opacity: 1; transform: translateX(0); }
+          60%, 100% { opacity: 0; transform: translateX(-6px); }
+        }
+        @keyframes spra-ann3 {
+          0%, 68%   { opacity: 0; transform: translateX(-6px); }
+          74%, 88%  { opacity: 1; transform: translateX(0); }
+          93%, 100% { opacity: 0; transform: translateX(-6px); }
+        }
+
+        /* ===== Layout ======================================================== */
+        .spra-root {
+          display: flex;
+          gap: clamp(24px, 4vw, 56px);
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          width: 100%;
+          padding: clamp(16px, 3vw, 32px) 0;
+        }
+
+        /* Bare variant — just the screen, no phone chrome */
+        .spra-bare {
+          position: relative;
+          width: clamp(220px, 30vw, 300px);
+          aspect-ratio: 390 / 844;
+          background: #000;
+          border-radius: 28px;
+          overflow: hidden;
+          box-shadow:
+            0 1px 0 rgba(255,255,255,0.05) inset,
+            0 18px 50px rgba(0,0,0,0.18),
+            0 6px 16px rgba(0,0,0,0.10);
+        }
+
+        /* iPhone frame */
+        .spra-phone {
+          position: relative;
+          width: clamp(240px, 40vw, 300px);
+          aspect-ratio: 390 / 844;
+          background: #0A0A0A;
+          border-radius: 42px;
+          padding: 10px;
+          box-shadow:
+            0 0 0 1px rgba(255,255,255,0.06),
+            0 20px 60px rgba(0,0,0,0.4),
+            0 8px 20px rgba(0,0,0,0.25);
+          flex-shrink: 0;
+        }
+        .spra-island {
+          position: absolute;
+          top: 18px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 28%;
+          height: 22px;
+          background: #000;
+          border-radius: 999px;
+          z-index: 30;
+        }
+        .spra-screen {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          background: #000;
+          border-radius: 34px;
+          overflow: hidden;
+        }
+
+        /* Background layers */
+        .spra-layer {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .spra-base  { animation: spra-base  18s infinite; z-index: 1; }
+        .spra-after { animation: spra-after 18s infinite; opacity: 0; z-index: 2; }
+
+        /* Dim overlay */
+        .spra-overlay {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0;
+          animation: spra-overlay 18s ease-in-out infinite;
+          z-index: 5;
+          pointer-events: none;
+        }
+
+        /* Tray — sits at the bottom, slides in from below */
+        .spra-tray {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          /* Tray aspect: ~780 × 890. Height relative to screen: ~52% */
+          height: 52%;
+          transform: translateY(100%);
+          animation: spra-tray 18s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+          z-index: 10;
+        }
+        .spra-tray img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: bottom;
+        }
+
+        /* Undo toast — white bg, black text */
+        .spra-toast {
+          position: absolute;
+          left: 3%;
+          right: 3%;
+          bottom: 13%;
+          background: #FFFFFF;
+          border-radius: 9px;
+          padding: 10px 14px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          opacity: 0;
+          transform: translateY(200%);
+          animation: spra-toast 18s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+          z-index: 12;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", var(--font-dm-sans), sans-serif;
+        }
+        .spra-toast-text {
+          color: #000000;
+          font-size: 10px;
+          font-weight: 600;
+        }
+        .spra-toast-undo {
+          color: #000000;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0;
+          padding: 3px 10px;
+          border: 1px solid rgba(0,0,0,0.35);
+          border-radius: 999px;
+          flex-shrink: 0;
+        }
+
+        /* Cursor — positioned by animation */
+        .spra-cursor {
+          position: absolute;
+          width: 28px;
+          height: 28px;
+          transform-origin: 35% 15%; /* fingertip area */
+          pointer-events: none;
+          opacity: 0;
+          animation: spra-cursor 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          z-index: 20;
+          filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+        }
+        .spra-cursor img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        /* Annotations outside the phone */
+        .spra-annotations {
+          position: relative;
+          width: clamp(200px, 30vw, 300px);
+          min-height: 240px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 32px;
+          font-family: var(--font-dm-sans), -apple-system, sans-serif;
+        }
+        .spra-ann {
+          position: relative;
+          padding-left: 18px;
+          border-left: 2px solid #1DB954;
+          opacity: 0;
+          transform: translateX(-6px);
+        }
+        .spra-ann-2 { animation: spra-ann2 18s infinite; }
+        .spra-ann-3 { animation: spra-ann3 18s infinite; }
+        .spra-ann-eyebrow {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #1DB954;
+          margin-bottom: 8px;
+        }
+        .spra-ann-title {
+          font-family: var(--font-dm-serif-display), Georgia, serif;
+          font-size: clamp(17px, 2.2vw, 22px);
+          line-height: 1.3;
+          color: #F5F5F4;
+          letter-spacing: -0.005em;
+          margin: 0;
+        }
+        .spra-ann-sub {
+          margin-top: 8px;
+          font-size: 13px;
+          line-height: 1.5;
+          color: rgba(245,243,239,0.55);
+        }
+
+        .spra-caption {
+          width: 100%;
+          text-align: center;
+          margin-top: 18px;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(245,243,239,0.35);
+          font-family: var(--font-dm-sans), sans-serif;
+        }
+
+        /* Reduced motion — freeze at Frame 1 */
+        @media (prefers-reduced-motion: reduce) {
+          .spra-base, .spra-after, .spra-overlay, .spra-tray,
+          .spra-toast, .spra-cursor, .spra-ann-2, .spra-ann-3 {
+            animation: none !important;
+          }
+          .spra-base    { opacity: 1; }
+          .spra-after   { opacity: 0; }
+          .spra-overlay { opacity: 0; }
+          .spra-tray    { transform: translateY(100%); }
+          .spra-toast   { opacity: 0; transform: translateY(200%); }
+          .spra-cursor  { opacity: 0; }
+          .spra-ann-2, .spra-ann-3 { opacity: 1; transform: none; }
+        }
+      `}</style>
+
+      {isBare ? (
+        <div className="spra-bare" aria-label="Animated prototype: Remove interaction on Spotify Recently Played">
+          <Screen />
+        </div>
+      ) : (
+        <div className="spra-root">
+          <div className="spra-phone" aria-label="Animated prototype of the Remove interaction">
+            <div className="spra-island" aria-hidden />
+            <div className="spra-screen">
+              <Screen />
+            </div>
+          </div>
+          <div className="spra-annotations">
+            <div className="spra-ann spra-ann-2">
+              <div className="spra-ann-eyebrow">Frame 2</div>
+              <h4 className="spra-ann-title">One surface, three controls.</h4>
+              <p className="spra-ann-sub">
+                Long-press reveals Pin, Pause, and Remove in a single iOS-native action sheet. Same entry point for every interaction.
+              </p>
+            </div>
+            <div className="spra-ann spra-ann-3">
+              <div className="spra-ann-eyebrow">Frame 3</div>
+              <h4 className="spra-ann-title">Undo safety net. Device-scoped, not global.</h4>
+              <p className="spra-ann-sub">
+                The item is hidden, not deleted. Removal is scoped to this device. The toast makes the action reversible for 3&ndash;4 seconds. No trash layer needed.
+              </p>
+            </div>
+          </div>
+          <p className="spra-caption">Loops every 18 seconds · Respects reduced-motion preferences</p>
+        </div>
+      )}
+    </>
+  );
+}
+
+/** Shared inner screen content used by both "full" and "bare" variants. */
+function Screen() {
+  return (
+    <>
+      <Image
+        src="/images/work/spotify/spotify-backgorund-action.png"
+        alt=""
+        aria-hidden
+        fill
+        sizes="(max-width: 767px) 90vw, 300px"
+        className="spra-layer spra-base"
+        priority
+      />
+      <Image
+        src="/images/work/spotify/spotify-backgorund-result.png"
+        alt=""
+        aria-hidden
+        fill
+        sizes="(max-width: 767px) 90vw, 300px"
+        className="spra-layer spra-after"
+      />
+      <Image
+        src="/images/work/spotify/spotify-overlay.png"
+        alt=""
+        aria-hidden
+        fill
+        sizes="(max-width: 767px) 90vw, 300px"
+        className="spra-overlay"
+      />
+      <div className="spra-tray" aria-hidden>
+        <Image
+          src="/images/work/spotify/spotify-tray.png"
+          alt=""
+          fill
+          sizes="(max-width: 767px) 90vw, 300px"
+        />
+      </div>
+      <div className="spra-toast" aria-hidden>
+        <span className="spra-toast-text">Removed from Recently Played</span>
+        <span className="spra-toast-undo">Undo</span>
+      </div>
+      <div className="spra-cursor" aria-hidden>
+        <Image
+          src="/images/work/spotify/spotify-cursor.png"
+          alt=""
+          width={96}
+          height={96}
+          sizes="28px"
+          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+        />
+      </div>
+    </>
+  );
+}
