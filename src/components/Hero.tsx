@@ -167,6 +167,22 @@ export default function Hero() {
           {/* Animation — bare variant, no phone chrome */}
           <SpotifyRemoveAnimation variant="bare" />
 
+          {/* Tease caption — one line, no annotations */}
+          <p
+            style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "12px",
+              lineHeight:    1.5,
+              color:         "rgba(37, 43, 40, 0.55)",
+              textAlign:     "center",
+              maxWidth:      "280px",
+              margin:        "-8px 0 0",
+              letterSpacing: "0.01em",
+            }}
+          >
+            Long-press to pin, pause, or remove. One surface, reversible.
+          </p>
+
           {/* Title + CTA */}
           <div style={{ textAlign: "center", maxWidth: "280px" }}>
             <p

@@ -51,39 +51,50 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
       <style>{`
         /* ===== Keyframes ===================================================== */
 
-        /* Frame 1 base — default shelf (trigger), Madonna normal */
+        /* Shelf layers are cut, not crossfaded.
+           A crossfade between similar shelf images (even a fast one) briefly shows
+           both at ~0.5 opacity — the composite reads as a ghosted/darkened frame.
+           Using adjacent keyframes (0.01% = ~1.8ms) forces a sub-frame snap so
+           only one shelf image is ever visible. */
+
+        /* Frame 1 base — default shelf (trigger), Madonna normal.
+           Snaps off at press (27%), snaps back on at reset (88%). */
         @keyframes spra-base {
-          0%, 27%   { opacity: 1; }
-          30%, 88%  { opacity: 0; }
-          94%, 100% { opacity: 1; }
+          0%, 27%        { opacity: 1; }
+          27.01%, 87.99% { opacity: 0; }
+          88%, 100%      { opacity: 1; }
         }
 
-        /* During long-press — Madonna highlighted (action state) */
+        /* During long-press — Madonna highlighted (action state).
+           Snaps on at press (27%), snaps off at Remove tap (56%). */
         @keyframes spra-highlight {
-          0%, 27%   { opacity: 0; }
-          30%, 55%  { opacity: 1; }
-          60%, 100% { opacity: 0; }
+          0%, 27%      { opacity: 0; }
+          27.01%, 56%  { opacity: 1; }
+          56.01%, 100% { opacity: 0; }
         }
 
-        /* Frame 3 — shelf without Madonna (result) */
+        /* Frame 3 — shelf without Madonna (result).
+           Snaps on at tap (56%), snaps off at reset (88%). */
         @keyframes spra-after {
-          0%, 55%   { opacity: 0; }
-          60%, 88%  { opacity: 1; }
-          94%, 100% { opacity: 0; }
+          0%, 56%        { opacity: 0; }
+          56.01%, 87.99% { opacity: 1; }
+          88%, 100%      { opacity: 0; }
         }
 
-        /* Dim overlay — fades in as tray rises, out as tray descends */
+        /* Dim overlay — rises WITH the highlight (no dead zone between press and dim),
+           and fades out in sync with the tray slide-down. */
         @keyframes spra-overlay {
-          0%, 30%   { opacity: 0; }
-          36%, 55%  { opacity: 1; }
-          61%, 100% { opacity: 0; }
+          0%, 27%   { opacity: 0; }
+          32%, 55%  { opacity: 1; }
+          62%, 100% { opacity: 0; }
         }
 
-        /* Tray — slides up slowly, holds, slides down */
+        /* Tray — slides up slowly, holds, slides down.
+           Starts rising with the overlay fade-in so they arrive together. */
         @keyframes spra-tray {
-          0%, 32%   { transform: translateY(100%); }
+          0%, 30%   { transform: translateY(100%); }
           40%, 55%  { transform: translateY(0%); }
-          61%, 100% { transform: translateY(100%); }
+          62%, 100% { transform: translateY(100%); }
         }
 
         /* Undo toast — slides up after shelf reflow */

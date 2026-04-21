@@ -721,7 +721,7 @@ export default function SpotifyCaseStudy() {
                 Hide an item from the shelf without deleting it from your library. Device-scoped, not global. The Undo toast is the safety net that made a trash layer unnecessary.
               </p>
 
-              {/* Animated prototype preview */}
+              {/* Animated prototype preview + step narration + toast details */}
               <div style={{
                 background:   "rgba(29,185,84,0.03)",
                 border:       "1px solid rgba(29,185,84,0.1)",
@@ -730,52 +730,22 @@ export default function SpotifyCaseStudy() {
                 marginBottom: "48px",
               }}>
                 <SpotifyRemoveAnimation />
-              </div>
 
-              <div style={{
-                display:             "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                gap:                 "clamp(16px, 3vw, 32px)",
-                alignItems:          "start",
-              }}>
-                {[
-                  {
-                    src:     "/images/work/spotify/spotify-remove-01-long-press.webp",
-                    alt:     "Long-press on a Recently Played item reveals the action sheet for the Remove flow",
-                    label:   "01",
-                    caption: "Same entry point. Long-press surfaces the same action sheet as Pin.",
-                  },
-                  {
-                    src:     "/images/work/spotify/spotify-remove-02-action.webp",
-                    alt:     "Action sheet with Remove from Recently Played highlighted in green",
-                    label:   "02",
-                    caption: "Select Remove from Recently Played. The item is hidden from the shelf, not deleted from your library.",
-                  },
-                  {
-                    src:     "/images/work/spotify/spotify-remove-03-result-undo.webp",
-                    alt:     "Recently Played shelf after removal with Undo toast visible above the Now Playing bar",
-                    label:   "03",
-                    caption: "Item gone. Shelf reflows immediately. The Undo toast sits above the Now Playing bar: reversible by default.",
-                  },
-                ].map(({ src, alt, label, caption }) => (
-                  <div key={`remove-${label}`}>
-                    <div style={{
-                      position:     "relative",
-                      aspectRatio:  "390 / 844",
-                      overflow:     "hidden",
-                      background:   "rgba(245,243,239,0.04)",
-                      border:       "1px solid rgba(245,243,239,0.1)",
-                      borderRadius: "12px",
-                    }}>
-                      <Image
-                        src={src}
-                        alt={alt}
-                        fill
-                        sizes="(max-width: 767px) 100vw, 33vw"
-                        style={{ objectFit: "cover", objectPosition: "top" }}
-                      />
-                    </div>
-                    <div style={{ marginTop: "16px", display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                {/* 3-step narration — frames 1 / 2 / 3 of the loop */}
+                <div style={{
+                  display:             "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                  gap:                 "clamp(16px, 3vw, 32px)",
+                  marginTop:           "clamp(24px, 4vw, 40px)",
+                  paddingTop:          "clamp(24px, 4vw, 32px)",
+                  borderTop:           "1px solid rgba(29,185,84,0.15)",
+                }}>
+                  {[
+                    { label: "01", caption: "Same entry point. Long-press surfaces the same action sheet as Pin." },
+                    { label: "02", caption: "Select Remove from Recently Played. The item is hidden from the shelf, not deleted from your library." },
+                    { label: "03", caption: "Item gone. Shelf reflows immediately. The Undo toast sits above the Now Playing bar: reversible by default." },
+                  ].map(({ label, caption }) => (
+                    <div key={`remove-${label}`} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                       <span style={{
                         fontFamily:    font.sans,
                         fontSize:      "10px",
@@ -789,42 +759,47 @@ export default function SpotifyCaseStudy() {
                         fontFamily: font.sans,
                         fontSize:   "13px",
                         lineHeight: 1.65,
-                        color:      "rgba(245,243,239,0.5)",
+                        color:      "rgba(245,243,239,0.55)",
                         margin:     0,
                       }}>{caption}</p>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              {/* Remove micro-interaction annotations */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
-                {[
-                  { detail: "Toast above Now Playing bar", why: "Positioned where the eye already rests. Doesn't cover shelf content or block navigation." },
-                  { detail: "3-4 second dismiss window", why: "Matches Spotify's existing toast timing. Long enough to read and act, short enough to feel lightweight." },
-                  { detail: "Auto-dismiss completes the removal", why: "No second confirmation. Inaction is consent. The Undo toast is the entire safety net." },
-                ].map(({ detail, why }) => (
-                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                    <span style={{
-                      width:        "4px",
-                      height:       "4px",
-                      borderRadius: "50%",
-                      background:   c.green,
-                      flexShrink:   0,
-                      marginTop:    "7px",
-                    }} />
-                    <p style={{
-                      fontFamily: font.sans,
-                      fontSize:   "12px",
-                      lineHeight: 1.55,
-                      color:      "rgba(245,243,239,0.4)",
-                      margin:     0,
-                    }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
-                      {" · "}{why}
-                    </p>
-                  </div>
-                ))}
+                {/* Toast design details */}
+                <div style={{
+                  display:       "flex",
+                  flexDirection: "column",
+                  gap:           "8px",
+                  marginTop:     "clamp(20px, 3vw, 28px)",
+                }}>
+                  {[
+                    { detail: "Toast above Now Playing bar", why: "Positioned where the eye already rests. Doesn't cover shelf content or block navigation." },
+                    { detail: "3-4 second dismiss window", why: "Matches Spotify's existing toast timing. Long enough to read and act, short enough to feel lightweight." },
+                    { detail: "Auto-dismiss completes the removal", why: "No second confirmation. Inaction is consent. The Undo toast is the entire safety net." },
+                  ].map(({ detail, why }) => (
+                    <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                      <span style={{
+                        width:        "4px",
+                        height:       "4px",
+                        borderRadius: "50%",
+                        background:   c.green,
+                        flexShrink:   0,
+                        marginTop:    "7px",
+                      }} />
+                      <p style={{
+                        fontFamily: font.sans,
+                        fontSize:   "12px",
+                        lineHeight: 1.55,
+                        color:      "rgba(245,243,239,0.4)",
+                        margin:     0,
+                      }}>
+                        <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                        {" · "}{why}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
