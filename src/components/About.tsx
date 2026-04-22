@@ -5,7 +5,7 @@ import Image from "next/image";
 const skillGroups = [
   {
     category: "Research & Discovery",
-    skills:   ["User Interviews", "Competitive Analysis", "Heuristic Evaluation", "Jobs-to-be-Done"],
+    skills:   ["User Interviews", "Competitive Analysis", "Heuristic Evaluation", "AI-Assisted Research"],
   },
   {
     category: "Design & Systems",

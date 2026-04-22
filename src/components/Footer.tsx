@@ -217,6 +217,7 @@ export default function Footer() {
                       style={inputStyle("name")}
                       onFocus={() => setFocusedField("name")}
                       onBlur={() => setFocusedField(null)}
+                      suppressHydrationWarning
                     />
                   </div>
                   <div>
@@ -225,6 +226,7 @@ export default function Footer() {
                       style={inputStyle("email")}
                       onFocus={() => setFocusedField("email")}
                       onBlur={() => setFocusedField(null)}
+                      suppressHydrationWarning
                     />
                   </div>
                   <div>
@@ -234,6 +236,7 @@ export default function Footer() {
                       style={{ ...inputStyle("message"), resize: "vertical", lineHeight: 1.65 }}
                       onFocus={() => setFocusedField("message")}
                       onBlur={() => setFocusedField(null)}
+                      suppressHydrationWarning
                     />
                   </div>
                   {formState === "error" && (

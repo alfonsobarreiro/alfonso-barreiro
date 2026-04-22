@@ -345,20 +345,14 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           font-family: var(--font-dm-sans), sans-serif;
         }
 
-        /* Reduced motion — freeze at Frame 1 */
-        @media (prefers-reduced-motion: reduce) {
-          .spra-base, .spra-highlight, .spra-after, .spra-overlay, .spra-tray,
-          .spra-toast, .spra-cursor, .spra-ann-2, .spra-ann-3 {
-            animation: none !important;
-          }
-          .spra-base    { opacity: 1; }
-          .spra-after   { opacity: 0; }
-          .spra-overlay { opacity: 0; }
-          .spra-tray    { transform: translateY(100%); }
-          .spra-toast   { opacity: 0; transform: translateY(200%); }
-          .spra-cursor  { opacity: 0; }
-          .spra-ann-2, .spra-ann-3 { opacity: 1; transform: none; }
-        }
+        /* Note: prefers-reduced-motion freeze intentionally omitted.
+           iOS Low Power Mode forces the reduce-motion media query ON,
+           which would hide the prototype animation for any visitor with
+           a yellow battery indicator. Since this animation IS the case
+           study content (it demonstrates the UX decision), freezing it
+           would strip the page of its point. The motion is slow, contained,
+           loops over 18s, and has no parallax/zoom/flashing — low vestibular
+           risk. Users who need motion stopped can pause the tab or scroll past. */
       `}</style>
 
       {isBare ? (
@@ -389,7 +383,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
               </p>
             </div>
           </div>
-          <p className="spra-caption">Loops every 18 seconds · Respects reduced-motion preferences</p>
+          <p className="spra-caption">Loops every 18 seconds</p>
         </div>
       )}
     </>

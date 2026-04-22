@@ -330,7 +330,7 @@ export default function MSRCaseStudy() {
               The market itself wasn&apos;t the problem. US men&apos;s foot care is projected to reach $4.7B by 2030; the global category spans $4&ndash;14B. Sub-segments are active too &mdash; orthotic insoles at $4.06B growing around 7% a year, barefoot shoes at $514M climbing at nearly 6%. The sizing supported the thesis. The unit economics didn&apos;t.
             </p>
             <p style={bodyText}>
-              Then the market research showed the real problem. The gap I&apos;d found wasn&apos;t in the products. It was in the information layer that should precede them. Men over 40 who aren&apos;t already thinking about their feet are expensive to convert. They need a resource they trust before they&apos;ll buy anything. The e-commerce model puts the transaction before the relationship that makes the transaction possible.
+              Then the market research showed the real problem. I used a jobs-to-be-done frame to redefine it: these men aren&apos;t hiring a product. They&apos;re hiring a reason to start paying attention. The gap wasn&apos;t in the products. It was in the information layer that should precede them. Men over 40 who aren&apos;t already thinking about their feet are expensive to convert. They need a resource they trust before they&apos;ll buy anything. The e-commerce model puts the transaction before the relationship that makes the transaction possible.
             </p>
 
             {/* Before / After table */}
