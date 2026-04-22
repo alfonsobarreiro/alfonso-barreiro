@@ -134,8 +134,8 @@ export default function WayfarerCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer" },
                 { label: "Type",     value: "DesignLab \u00B7 Concept" },
                 { label: "Timeline", value: "4-week sprint" },
-                { label: "Methods",  value: "Heuristic Evaluation (to audit the existing signup) \u00B7 Card Sort (to validate the destination taxonomy) \u00B7 Information Architecture (for the globe/grid parallel entry) \u00B7 Multi-Step Form UX (for the 5-step disclosure) \u00B7 AI-Assisted Development (to prototype beyond mockups)" },
-                { label: "Outcome",  value: "Discovery-first platform with 40+ destinations and a 5-step signup designed to convert preference data into a first act of discovery. Concept — pending usability testing against the original DesignLab flow." },
+                { label: "Methods",  value: "Heuristic Evaluation \u00B7 Card Sorting \u00B7 Information Architecture \u00B7 Multi-Step Form UX \u00B7 AI-Assisted Development" },
+                { label: "Outcome",  value: "Discovery-first platform with 40+ destinations, interactive globe, and validated multi-step onboarding" },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B89B8", margin: "0 0 4px" }}>
