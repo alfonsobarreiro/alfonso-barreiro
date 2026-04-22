@@ -61,7 +61,7 @@ export default function Hero() {
                 margin:        0,
               }}
             >
-              UX / UI Designer · Portland, OR
+              UX / UI Designer · Problem framing before pixels
             </p>
           </div>
 
@@ -94,8 +94,10 @@ export default function Hero() {
               fontWeight:   400,
             }}
           >
-            I find the gap between what a product does and what users
-            actually need. Then I close it, from research through prototype.
+            The gap between what a product does and what users actually need
+            is where the design work lives. I frame it, map the trade-offs,
+            and build the simplest thing that closes it — sometimes by
+            removing features, not adding them.
           </p>
 
           {/* CTAs */}

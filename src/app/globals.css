@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-/* Ensure Tailwind scans MSR slide components so slide-only classes (mb-*, px-*, py-*, etc.) are generated */
+/* Ensure Tailwind scans slide components so slide-only classes (mb-*, px-*, py-*, etc.) are generated */
 @source "../components/msr-slides";
+@source "../components/wayfarer-slides";
 
 @theme inline {
   /* ── Brand primitives ── */
@@ -185,5 +186,18 @@ button {
 }
 .msr-slide .font-body {
   font-family: var(--font-dm-sans), "DM Sans", system-ui, sans-serif !important;
+}
+
+/* Wayfarer slide font overrides. Scoped to .wayfarer-slide so the portfolio
+   keeps DM Serif Display + DM Sans while the slides use Space Grotesk + Inter
+   per the DesignLab brief. */
+.wayfarer-slide .font-display {
+  font-family: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif !important;
+}
+.wayfarer-slide .font-heading {
+  font-family: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif !important;
+}
+.wayfarer-slide .font-body {
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif !important;
 }
 

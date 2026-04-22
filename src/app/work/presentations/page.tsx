@@ -46,6 +46,16 @@ type Deck = {
 
 const decks: Deck[] = [
   {
+    slug: "wayfarer",
+    title: "Wayfarer: Travel Discovery",
+    subtitle:
+      "A concept travel discovery platform — brief framing, the discipline of scope, and what AI-assisted development should and shouldn't expand.",
+    cover: "/images/work/wayfarer/wayfarer-cover.webp",
+    coverAlt: "Wayfarer homepage with a tropical coastline hero image",
+    meta: "16 slides · 6 min read",
+    caseStudyHref: "/work/wayfarer",
+  },
+  {
     slug: "mens-sole-revival",
     title: "Men's Sole Revival",
     subtitle:

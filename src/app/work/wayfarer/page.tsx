@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import SignupSlider from "./SignupSlider";
 
 export const metadata: Metadata = {
   title: "Wayfarer \u2014 Travel Discovery Platform \u00B7 Alfonso Barreiro",
@@ -59,7 +60,7 @@ export default function WayfarerCaseStudy() {
               display:        "inline-block",
             }}
           >
-            \u2190 Back to work
+            ← Back to work
           </Link>
         </div>
 
@@ -133,8 +134,8 @@ export default function WayfarerCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer" },
                 { label: "Type",     value: "DesignLab \u00B7 Concept" },
                 { label: "Timeline", value: "4-week sprint" },
-                { label: "Methods",  value: "Heuristic Evaluation \u00B7 Card Sorting \u00B7 Information Architecture \u00B7 Multi-Step Form UX \u00B7 AI-Assisted Development" },
-                { label: "Outcome",  value: "Discovery-first platform with 40+ destinations, interactive globe, and validated multi-step onboarding" },
+                { label: "Methods",  value: "Heuristic Evaluation (to audit the existing signup) \u00B7 Card Sort (to validate the destination taxonomy) \u00B7 Information Architecture (for the globe/grid parallel entry) \u00B7 Multi-Step Form UX (for the 5-step disclosure) \u00B7 AI-Assisted Development (to prototype beyond mockups)" },
+                { label: "Outcome",  value: "Discovery-first platform with 40+ destinations and a 5-step signup designed to convert preference data into a first act of discovery. Concept — pending usability testing against the original DesignLab flow." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B89B8", margin: "0 0 4px" }}>
@@ -165,35 +166,45 @@ export default function WayfarerCaseStudy() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
               {[
-                { label: "Figma file",   href: "https://www.figma.com/design/glE8OOm7wbnBsEqD0L4YWz/Wayfarer-Travel", external: true },
-              ].map(({ label, href, external }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
-                  style={{
-                    display:        "inline-flex",
-                    alignItems:     "center",
-                    gap:            "8px",
-                    padding:        "10px 18px",
-                    background:     c.surface,
-                    border:         `1px solid ${c.borderStrong}`,
-                    borderRadius:   "6px",
-                    color:          c.ink,
-                    fontFamily:     font.sans,
-                    fontSize:       "13px",
-                    fontWeight:     500,
-                    letterSpacing:  "0.02em",
-                    textDecoration: "none",
-                  }}
-                >
-                  {label}
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-                    <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </Link>
-              ))}
+                // Primary CTA — slide deck lives on the portfolio itself (internal nav)
+                { label: "View slide deck",   href: "/work/presentations/wayfarer",        external: false, variant: "primary" },
+                // Secondary — the live, deployed Wayfarer app
+                { label: "Live site \u2197",   href: "https://wayfarer.barreiro.com/",      external: true,  variant: "ghost"   },
+                // Figma file intentionally hidden for now — uncomment to expose later
+                // { label: "Figma file",   href: "https://www.figma.com/design/glE8OOm7wbnBsEqD0L4YWz/Wayfarer-Travel", external: true, variant: "ghost" },
+              ].map(({ label, href, external, variant }) => {
+                const isPrimary = variant === "primary";
+                return (
+                  <Link
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    style={{
+                      display:        "inline-flex",
+                      alignItems:     "center",
+                      gap:            "8px",
+                      padding:        "10px 18px",
+                      background:     isPrimary ? c.ink        : c.surface,
+                      border:         isPrimary ? "none"       : `1px solid ${c.borderStrong}`,
+                      borderRadius:   "6px",
+                      color:          isPrimary ? "#F5F5F4"    : c.ink,
+                      fontFamily:     font.sans,
+                      fontSize:       "13px",
+                      fontWeight:     500,
+                      letterSpacing:  "0.02em",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {label}
+                    {!label.includes("\u2197") && (
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                        <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -438,11 +449,12 @@ export default function WayfarerCaseStudy() {
           {/* -- 05 Design System -------------------------- */}
           <Section label="05" title="Design System">
             <p style={bodyText}>
-              The original DesignLab style guide defined the palette and typography. Two typefaces, each with a defined role. Space Grotesk for headings: commanding without being aggressive. Inter for body: clean and legible at every size. No decorative pairing. The roles are structural.
+              The original DesignLab style guide defined the palette, typography, logo rules, and image direction. I treated every spec as a constraint, not a suggestion. Two typefaces, each with a defined role. Space Grotesk for headings: commanding without being aggressive. Inter for body: clean and legible at every size. No decorative pairing. The roles are structural.
             </p>
 
-            {/* Style guide specs */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginTop: "24px" }}>
+            {/* Style guide specs — 2x2 grid */}
+            <div className="cs-design-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginTop: "24px" }}>
+
               {/* Typography */}
               <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
                 <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
@@ -450,7 +462,7 @@ export default function WayfarerCaseStudy() {
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                   <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Headings</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Headings (H1-H4)</p>
                     <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Space Grotesk Bold</p>
                     <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>60, 48, 32, 24px</p>
                   </div>
@@ -459,26 +471,91 @@ export default function WayfarerCaseStudy() {
                     <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Inter Regular</p>
                     <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>20, 18, 16px</p>
                   </div>
+                  <div>
+                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Usage</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: 0 }}>Bold for section headings, Regular for body copy</p>
+                  </div>
                 </div>
               </div>
 
-              {/* Color palette */}
+              {/* Color palette — Primary + Secondary */}
               <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
                 <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
                   Palette
                 </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 2px" }}>Primary</p>
                   {[
-                    { name: "Navy",        hex: "#3E3C78", role: "Primary" },
-                    { name: "Deep Indigo", hex: "#2C2B5A", role: "Primary" },
-                    { name: "Lavender",    hex: "#C5C7E3", role: "Primary" },
-                    { name: "Terra Cotta", hex: "#D27A5E", role: "Secondary" },
-                    { name: "Sage Green",  hex: "#A3C9A8", role: "Secondary" },
-                  ].map(({ name, hex, role }) => (
+                    { name: "Navy",        hex: "#3E3C78" },
+                    { name: "Lavender",    hex: "#C5C7E3" },
+                    { name: "Deep Indigo", hex: "#2C2B5A" },
+                  ].map(({ name, hex }) => (
                     <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                       <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
                       <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
                       <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
+                    </div>
+                  ))}
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Secondary</p>
+                  {[
+                    { name: "Terra Cotta", hex: "#D27A5E" },
+                    { name: "Sage Green",  hex: "#A3C9A8" },
+                  ].map(({ name, hex }) => (
+                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
+                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
+                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
+                    </div>
+                  ))}
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Neutrals</p>
+                  {[
+                    { name: "Dark Charcoal", hex: "#2E2E30" },
+                    { name: "Light Gray",    hex: "#D8D9E0" },
+                    { name: "Off-White",     hex: "#F8F9FB" },
+                  ].map(({ name, hex }) => (
+                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
+                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
+                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Logo usage */}
+              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
+                  Logo Usage
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  {[
+                    { rule: "Clearspace", spec: "Equal to the uppercase \u201CW\u201D height on all sides" },
+                    { rule: "Minimum size", spec: "40px (mobile), 60px (desktop)" },
+                    { rule: "Background", spec: "White logo on colored or dark backgrounds; dark logo on light backgrounds only" },
+                    { rule: "Positioning", spec: "Top-left corner across all viewports" },
+                  ].map(({ rule, spec }) => (
+                    <div key={rule}>
+                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Image style */}
+              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
+                  Image Style
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  {[
+                    { rule: "Hero imagery", spec: "Full-bleed with relaxed focal crop" },
+                    { rule: "Destination cards", spec: "Consistent rounded corners across all card types" },
+                    { rule: "Icons", spec: "Secondary icons in terra cotta (#D27A5E) to maintain visual consistency" },
+                  ].map(({ rule, spec }) => (
+                    <div key={rule}>
+                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
                     </div>
                   ))}
                 </div>
@@ -616,7 +693,7 @@ export default function WayfarerCaseStudy() {
                 color:      "rgba(245,243,239,0.5)",
                 margin:     0,
               }}>
-                Two features carry the case study: the globe explorer that makes discovery spatial, and the multi-step signup that turns preference collection into the first act of exploration.
+                Three features carry the case study: the globe explorer that makes discovery spatial, the destinations grid that offers a filter-first parallel path, and the multi-step signup that turns preference collection into the first act of exploration.
               </p>
             </div>
 
@@ -710,8 +787,70 @@ export default function WayfarerCaseStudy() {
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
                   { detail: "Mapbox GL with 3D projection and atmosphere", why: "The globe feels physical. Fog and lighting effects create depth that a flat map can't." },
-                  { detail: "Custom markers with hover state and keyboard access", why: "Brown pins with white borders. Hover triggers popup with name and tagline. Enter/Space to select. Accessible by design." },
+                  { detail: "Custom markers with hover state and keyboard access", why: "Terra cotta pins with white borders — per brief, the accent color marks interactive elements. Hover triggers a popup with name and tagline. Enter/Space to select. Accessible by design." },
                   { detail: "Fly-to animation on region click", why: "Smooth camera transition. The movement communicates geography. Users build spatial memory of where destinations sit." },
+                ].map(({ detail, why }) => (
+                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                    <span style={{
+                      width: "4px", height: "4px", borderRadius: "50%",
+                      background: "#8B89B8", flexShrink: 0, marginTop: "7px",
+                    }} />
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                      color: "rgba(245,243,239,0.4)", margin: 0,
+                    }}>
+                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      {" \u00B7 "}{why}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* -- Parallel Entry: Destinations Grid --------------- */}
+            <div style={{ marginBottom: "64px" }}>
+              <h3 style={{
+                fontFamily:    font.sans,
+                fontSize:      "13px",
+                fontWeight:    700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color:         "#8B89B8",
+                margin:        "0 0 12px",
+              }}>Parallel Entry · Destinations Grid</h3>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "14px",
+                lineHeight: 1.65,
+                color:      "rgba(245,243,239,0.5)",
+                margin:     "0 0 24px",
+                maxWidth:   "560px",
+              }}>
+                The globe is the novel entry point, but not the only one. The destinations grid is the fallback path for users who already know what region they want. Same content, different interaction — filter by continent, scan visually, click to go deeper. Two entry points matched to different levels of intent.
+              </p>
+              <div style={{
+                position:     "relative",
+                aspectRatio:  "16 / 10",
+                overflow:     "hidden",
+                background:   "rgba(245,243,239,0.04)",
+                border:       "1px solid rgba(245,243,239,0.1)",
+                borderRadius: "8px",
+              }}>
+                <Image
+                  src="/images/work/wayfarer/wayfarer-destinations-grid.webp"
+                  alt="Destinations grid page with continent filter pills at top and a grid of destination cards below"
+                  fill
+                  sizes="(max-width: 767px) 100vw, 66vw"
+                  style={{ objectFit: "cover", objectPosition: "top" }}
+                />
+              </div>
+
+              {/* Grid annotations */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
+                {[
+                  { detail: "Continent filter pills", why: "Seven regions (All, Africa, Asia, Europe, North America, South America, Oceania). Filter state is preserved as the user scrolls. No page reloads." },
+                  { detail: "Count badges on every filter", why: "Users see how many destinations live under each region before committing to a filter. Less blind clicking, more informed scanning." },
+                  { detail: "Shared destination card component", why: "The same card that appears in the globe's hover state appears here — consistent visual language across both entry points." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -751,82 +890,34 @@ export default function WayfarerCaseStudy() {
               }}>
                 Five steps that transform a form into a first act of discovery. Each step collects a different type of preference. The review screen at the end lets users see what they&apos;ve built before committing.
               </p>
-              <div style={{
-                display:             "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                gap:                 "clamp(12px, 2vw, 20px)",
-                alignItems:          "start",
-              }}>
-                {[
-                  {
-                    src:     "/images/work/wayfarer/wayfarer-signup-01.webp",
-                    alt:     "Signup step 1: Account creation with name and email fields",
-                    label:   "01",
-                    caption: "Account basics. Low commitment entry.",
-                  },
-                  {
-                    src:     "/images/work/wayfarer/wayfarer-signup-02.webp",
-                    alt:     "Signup step 2: Travel style selection showing solo, couple, family, group options",
-                    label:   "02",
-                    caption: "Travel style. Context for personalization.",
-                  },
-                  {
-                    src:     "/images/work/wayfarer/wayfarer-signup-03.webp",
-                    alt:     "Signup step 3: Interest categories with 8 selectable options",
-                    label:   "03",
-                    caption: "Interests. Maps aspiration to categories.",
-                  },
-                  {
-                    src:     "/images/work/wayfarer/wayfarer-signup-04.webp",
-                    alt:     "Signup step 4: Dream destinations selection",
-                    label:   "04",
-                    caption: "Dream destinations. Anchors intent.",
-                  },
-                  {
-                    src:     "/images/work/wayfarer/wayfarer-signup-05.webp",
-                    alt:     "Signup step 5: Review screen showing all selected preferences with edit buttons",
-                    label:   "05",
-                    caption: "Review. Users see what they built.",
-                  },
-                ].map(({ src, alt, label, caption }) => (
-                  <div key={`signup-${label}`}>
-                    <div style={{
-                      position:     "relative",
-                      aspectRatio:  "390 / 700",
-                      overflow:     "hidden",
-                      background:   "rgba(245,243,239,0.04)",
-                      border:       "1px solid rgba(245,243,239,0.1)",
-                      borderRadius: "12px",
-                    }}>
-                      <Image
-                        src={src}
-                        alt={alt}
-                        fill
-                        sizes="(max-width: 767px) 50vw, 20vw"
-                        style={{ objectFit: "cover", objectPosition: "top" }}
-                      />
-                    </div>
-                    <div style={{ marginTop: "12px", display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                      <span style={{
-                        fontFamily:    font.sans,
-                        fontSize:      "10px",
-                        fontWeight:    700,
-                        letterSpacing: "0.14em",
-                        color:         "#8B89B8",
-                        paddingTop:    "2px",
-                        flexShrink:    0,
-                      }}>{label}</span>
-                      <p style={{
-                        fontFamily: font.sans,
-                        fontSize:   "12px",
-                        lineHeight: 1.55,
-                        color:      "rgba(245,243,239,0.5)",
-                        margin:     0,
-                      }}>{caption}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <SignupSlider
+                steps={[
+                  { src: "/images/work/wayfarer/wayfarer-signup-01.webp",
+                    alt: "Signup step 1: Account creation with name and email fields",
+                    label: "01", title: "Account",
+                    caption: "Name and email. Low commitment entry." },
+                  { src: "/images/work/wayfarer/wayfarer-signup-02.webp",
+                    alt: "Signup step 2: Travel style, budget, and group size selection",
+                    label: "02", title: "Travel Style",
+                    caption: "Solo, couple, family, or group. Context for personalization." },
+                  { src: "/images/work/wayfarer/wayfarer-signup-03.webp",
+                    alt: "Signup step 3: Eight interest categories, multi-select",
+                    label: "03", title: "Interests",
+                    caption: "Eight categories. Maps aspiration to themes." },
+                  { src: "/images/work/wayfarer/wayfarer-signup-04.webp",
+                    alt: "Signup step 4: Dream destinations pick-list",
+                    label: "04", title: "Destinations",
+                    caption: "Select from featured options. Anchors the user\u2019s sense of where they want to go." },
+                  { src: "/images/work/wayfarer/wayfarer-signup-05.webp",
+                    alt: "Signup step 5: Review screen showing all selections with edit buttons",
+                    label: "05", title: "Review",
+                    caption: "Full summary with edit-back. The user sees what they\u2019ve built before they commit." },
+                  { src: "/images/work/wayfarer/wayfarer-signup-06.webp",
+                    alt: "Signup success: Welcome to Wayfarer confirmation with green checkmark",
+                    label: "06", title: "Success",
+                    caption: "The form ends with a reward, not a receipt." },
+                ]}
+              />
 
               {/* Signup annotations */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
@@ -938,7 +1029,7 @@ export default function WayfarerCaseStudy() {
                   "In the trip planner, do users discover drag-to-reorder without prompting, or do they look for arrows or edit buttons?",
                 ].map((signal) => (
                   <p key={signal} style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0, paddingLeft: "16px", textIndent: "-16px" }}>
-                    <span style={{ color: c.navy, marginRight: "8px" }}>\u2192</span>{signal}
+                    <span style={{ color: c.navy, marginRight: "8px" }}>→</span>{signal}
                   </p>
                 ))}
               </div>

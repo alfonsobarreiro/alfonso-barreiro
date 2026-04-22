@@ -173,6 +173,9 @@ export default function About() {
               My work spans consumer apps, content platforms, and e-commerce. Beyond the
               interface, I care about the systems underneath: interaction patterns, information
               architecture, accessibility, and the handoff details that make or break implementation.
+              The hardest call is usually knowing what not to build. I&apos;ve cut working features
+              mid-project because they contradicted the brief — and the case studies are honest
+              about those moments.
             </p>
 
             <button

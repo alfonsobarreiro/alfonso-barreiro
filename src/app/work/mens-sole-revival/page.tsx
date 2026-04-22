@@ -134,7 +134,7 @@ export default function MSRCaseStudy() {
                 { label: "Type",     value: "Solo \u00B7 Self-initiated" },
                 { label: "Timeline", value: "Jan \u2013 Apr 2026" },
                 { label: "Methods",  value: "Market Research \u00B7 Competitive Analysis \u00B7 Content UX \u00B7 AI-Assisted Development" },
-                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority \u00B7 shipped product" },
+                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority. Shipped at menssolerevival.com with [TBD: traffic / readership / engagement metric you want to cite]. What I'd measure next: depth-of-read on the core guides." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.cognac, margin: "0 0 4px" }}>
@@ -166,7 +166,6 @@ export default function MSRCaseStudy() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
               {[
                 { label: "Live product", href: "https://www.menssolerevival.com/", external: true },
-                { label: "Figma file",   href: "https://www.figma.com/design/ftIe1aelQLB7hOR4PUA9lR/Men-s-Sole-Revival", external: true },
                 { label: "Slide deck",   href: "/work/presentations/mens-sole-revival", external: false },
               ].map(({ label, href, external }) => (
                 <Link

@@ -110,7 +110,9 @@ export default function SpotifyCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              Recently Played Controls
+              Pin, Remove, Pause.<br />
+              User agency without<br />
+              breaking discovery.
             </h1>
 
             <p style={{
@@ -137,7 +139,7 @@ export default function SpotifyCaseStudy() {
                 { label: "Type",     value: "Solo · Concept" },
                 { label: "Timeline", value: "Nov – Dec 2025" },
                 { label: "Methods",  value: "Competitive Audit · Persona Analysis · Constraint Mapping · AI-Assisted Research Synthesis" },
-                { label: "Outcome",  value: "Three controls that close the gap between user need and platform capability, without breaking discovery" },
+                { label: "Outcome",  value: "Three shelf-native controls (Pin, Remove, Pause) informed by 200+ community complaint threads and a 7-platform competitive audit. Concept — the friction is documented; the fix is unshipped." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.green, margin: "0 0 4px" }}>
