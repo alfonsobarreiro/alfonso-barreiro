@@ -46,7 +46,7 @@ export default function WayfarerCaseStudy() {
     <>
       <Nav />
 
-      <main style={{ background: c.bg, paddingTop: "72px" }}>
+      <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>
 
         {/* -- Back link ---------------------------------- */}
         <div style={{ maxWidth: "860px", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
@@ -718,7 +718,7 @@ export default function WayfarerCaseStudy() {
               }}>
                 A 3D Mapbox globe as the primary discovery interface. Click a region, fly to the continent, tap a pin, preview the destination. The globe makes geography tangible. Users explore space, not lists.
               </p>
-              <div style={{
+              <div className="cs-grid-collapse" style={{
                 display:             "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
                 gap:                 "clamp(16px, 3vw, 32px)",

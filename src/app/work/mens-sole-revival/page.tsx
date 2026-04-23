@@ -45,7 +45,7 @@ export default function MSRCaseStudy() {
     <>
       <Nav />
 
-      <main style={{ background: c.bg, paddingTop: "72px" }}>
+      <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>
 
         {/* -- Back link ---------------------------------- */}
         <div style={{ maxWidth: "860px", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
@@ -244,7 +244,7 @@ export default function MSRCaseStudy() {
                 viewBox="0 0 560 420"
                 width="560"
                 height="420"
-                style={{ maxWidth: "100%", overflow: "visible" }}
+                style={{ maxWidth: "100%", height: "auto", overflow: "hidden" }}
                 aria-label="Venn diagram showing Men's Sole Revival at the intersection of Clinical, Wellness, and Product-First content"
               >
                 <defs>

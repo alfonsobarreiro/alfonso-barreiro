@@ -158,6 +158,30 @@ button {
     -webkit-overflow-scrolling: touch;
     max-width: calc(100vw - 48px) !important;
   }
+
+  /* iOS Safari: prevent horizontal overscroll on the viewport itself */
+  html {
+    overflow-x: hidden !important;
+    overscroll-behavior-x: none !important;
+  }
+
+  /* Case study — clip any element that escapes the content column */
+  .cs-content-wrap {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Case study — SVGs: constrain fixed-width SVGs to their container */
+  .cs-content-wrap svg {
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  /* Case study — grids: force single column on narrow viewports */
+  .cs-grid-collapse {
+    grid-template-columns: 1fr !important;
+  }
 }
 @media (min-width: 768px) {
   .hamburger { display: none !important; }
