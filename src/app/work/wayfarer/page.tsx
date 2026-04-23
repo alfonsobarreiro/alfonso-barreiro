@@ -306,7 +306,7 @@ export default function WayfarerCaseStudy() {
             </Callout>
 
             {/* What was cut vs what survived */}
-            <div style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
@@ -567,7 +567,7 @@ export default function WayfarerCaseStudy() {
             </p>
 
             {/* Token table */}
-            <div style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
@@ -621,7 +621,7 @@ export default function WayfarerCaseStudy() {
             </p>
 
             {/* Route table */}
-            <div style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
@@ -977,7 +977,7 @@ export default function WayfarerCaseStudy() {
             </div>
 
             {/* Threshold table */}
-            <div style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+            <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>

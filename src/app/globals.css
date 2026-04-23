@@ -151,6 +151,13 @@ button {
 
   /* About — skills box: reduce padding on mobile */
   .skills-box          { padding: 28px !important; }
+
+  /* Case study — tables: horizontal scroll instead of clip */
+  .cs-table-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    max-width: calc(100vw - 48px) !important;
+  }
 }
 @media (min-width: 768px) {
   .hamburger { display: none !important; }
