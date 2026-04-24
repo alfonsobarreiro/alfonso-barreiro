@@ -27,8 +27,8 @@ const c = {
   body:        "#3D4440",
   muted:       "#8A8680",
   accent:      "#C17F4A",
-  bg:          "#F5F5F4",
-  bgSection:   "#EBEBEA",
+  bg:          "#FFFFFF",
+  bgSection:   "#FAFAF9",
   surface:     "#FFFFFF",
   border:      "#E8E4DE",
   borderStrong:"#C9BFB0",
@@ -36,7 +36,7 @@ const c = {
 };
 
 const font = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -48,7 +48,7 @@ export default function MSRCaseStudy() {
       <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>
 
         {/* -- Back link ---------------------------------- */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
           <Link
             href="/#work"
             style={{
@@ -82,7 +82,7 @@ export default function MSRCaseStudy() {
             background: c.cognac,
           }} />
 
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             {/* Eyebrow */}
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.cognac }} />
@@ -151,7 +151,7 @@ export default function MSRCaseStudy() {
 
         {/* -- Links ---------------------------------------- */}
         <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
@@ -201,7 +201,7 @@ export default function MSRCaseStudy() {
 
         {/* -- Cover image --------------------------------- */}
         <div style={{ background: c.bgSection, padding: "48px clamp(24px, 5vw, 80px) 0" }}>
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <Image
               src="/images/work/msr/msr-cover.webp"
               alt="Men's Sole Revival homepage — dark editorial design with foot health content"
@@ -215,7 +215,7 @@ export default function MSRCaseStudy() {
         </div>
 
         {/* -- Content wrapper ----------------------------- */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* -- 01 Context -------------------------------- */}
           <Section label="01" title="Context">
@@ -309,8 +309,8 @@ export default function MSRCaseStudy() {
                 <text x="386" y="278" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">rigor</text>
 
                 {/* ── Center label on the intersection ── */}
-                <text x="280" y="214" textAnchor="middle" fontFamily="var(--font-dm-serif-display), Georgia, serif" fontSize="20" fill="white" fontWeight="400" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Men&apos;s Sole</text>
-                <text x="280" y="235" textAnchor="middle" fontFamily="var(--font-dm-serif-display), Georgia, serif" fontSize="20" fill="white" fontWeight="400" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Revival</text>
+                <text x="280" y="214" textAnchor="middle" fontFamily="var(--font-dm-sans), -apple-system, sans-serif" fontSize="18" fill="white" fontWeight="600" letterSpacing="-0.015em" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Men&apos;s Sole</text>
+                <text x="280" y="234" textAnchor="middle" fontFamily="var(--font-dm-sans), -apple-system, sans-serif" fontSize="18" fill="white" fontWeight="600" letterSpacing="-0.015em" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Revival</text>
               </svg>
             </div>
             <p style={{ ...bodyText, marginTop: "24px" }}>
@@ -669,7 +669,7 @@ export default function MSRCaseStudy() {
           padding:      "72px clamp(24px, 5vw, 80px)",
           marginTop:    "48px",
         }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
 
             {/* Header */}
             <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
@@ -895,7 +895,7 @@ export default function MSRCaseStudy() {
         </div>{/* /Visual Walkthrough */}
 
         {/* Resume content wrapper for remaining sections */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* -- 07 Evaluation Plan ----------------------- */}
           <Section label="07" title="Evaluation Plan">
@@ -1019,7 +1019,7 @@ export default function MSRCaseStudy() {
           }}
         >
           <div style={{
-            maxWidth: "860px",
+            maxWidth: "none",
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
@@ -1062,7 +1062,7 @@ export default function MSRCaseStudy() {
             padding:     "80px clamp(24px, 5vw, 80px)",
           }}
         >
-          <div style={{ maxWidth: "860px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
               <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
                 Next Case Study
@@ -1112,15 +1112,15 @@ const c2 = {
   body:      "#3D4440",
   muted:     "#8A8680",
   accent:    "#C17F4A",
-  bg:        "#F5F5F4",
-  bgSection: "#EBEBEA",
+  bg:        "#FFFFFF",
+  bgSection: "#FAFAF9",
   surface:   "#FFFFFF",
   border:    "#E8E4DE",
   cognac:    "#C4703A",
 };
 
 const f = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -1211,12 +1211,12 @@ const bodyText: React.CSSProperties = {
 };
 
 const subheading: React.CSSProperties = {
-  fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+  fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:      "20px",
-  fontWeight:    400,
+  fontWeight:    600,
   color:         "#252B28",
   margin:        "40px 0 16px",
-  letterSpacing: "-0.02em",
+  letterSpacing: "-0.015em",
 };
 
 const thStyle: React.CSSProperties = {

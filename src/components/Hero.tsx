@@ -11,10 +11,10 @@ export default function Hero() {
         minHeight:      "100vh",
         display:        "flex",
         alignItems:     "center",
-        padding:        "120px 48px 80px",
+        padding:        "120px clamp(32px, 6vw, 80px) 80px",
         position:       "relative",
         overflow:       "hidden",
-        background:     "#F5F5F4",
+        background:     "#FFFFFF",
       }}
     >
       <div
@@ -61,25 +61,25 @@ export default function Hero() {
                 margin:        0,
               }}
             >
-              UX / UI Designer · Problem framing before pixels
+              UX / UI Designer · Investigate. Decide. Ship.
             </p>
           </div>
 
           {/* Name */}
           <h1
             style={{
-              fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+              fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(48px, 7.5vw, 96px)",
-              fontWeight:    400,
+              fontWeight:    500,
               lineHeight:    0.95,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.025em",
               color:         "#252B28",
               margin:        "0 0 36px",
             }}
           >
             Alfonso
             <br />
-            Barreiro
+            <span style={{ color: "#C17F4A" }}>Barreiro</span>
           </h1>
 
           {/* Supporting statement */}
@@ -96,8 +96,8 @@ export default function Hero() {
           >
             The gap between what a product does and what users actually need
             is where the design work lives. I frame it, map the trade-offs,
-            and build the simplest thing that closes it — sometimes by
-            removing features, not adding them.
+            and ship the simplest thing that closes it — sometimes by
+            cutting features, not adding them.
           </p>
 
           {/* CTAs */}
@@ -122,23 +122,22 @@ export default function Hero() {
             >
               View Work
             </a>
-            <button
-              onClick={() =>
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-              }
+            <a
+              href="/contact"
               style={{
-                padding:      "14px 32px",
-                background:   "transparent",
-                color:        "#3D4440",
-                border:       "1px solid #C9BFB0",
-                borderRadius: "8px",
-                fontSize:     "14px",
-                fontWeight:   400,
-                fontFamily:   "var(--font-dm-sans), sans-serif",
-                display:      "inline-flex",
-                alignItems:   "center",
-                cursor:       "pointer",
-                transition:   "border-color 0.2s, color 0.2s",
+                padding:        "14px 32px",
+                background:     "transparent",
+                color:          "#3D4440",
+                border:         "1px solid #C9BFB0",
+                borderRadius:   "8px",
+                fontSize:       "14px",
+                fontWeight:     400,
+                fontFamily:     "var(--font-dm-sans), sans-serif",
+                display:        "inline-flex",
+                alignItems:     "center",
+                cursor:         "pointer",
+                textDecoration: "none",
+                transition:     "border-color 0.2s, color 0.2s",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "#8A8680";
@@ -150,7 +149,7 @@ export default function Hero() {
               }}
             >
               Say hello
-            </button>
+            </a>
           </div>
         </div>
 
@@ -202,9 +201,9 @@ export default function Hero() {
             </p>
             <h2
               style={{
-                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "clamp(18px, 2vw, 22px)",
-                fontWeight:    400,
+                fontWeight:    600,
                 lineHeight:    1.25,
                 letterSpacing: "-0.01em",
                 color:         "#252B28",
@@ -215,34 +214,35 @@ export default function Hero() {
             </h2>
             <a
               href="/work/spotify"
+              className="hero-featured-cta"
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",
                 gap:            "8px",
-                padding:        "10px 22px",
-                background:     "transparent",
-                color:          "#252B28",
-                border:         "1px solid #252B28",
-                borderRadius:   "8px",
-                fontSize:       "13px",
-                fontWeight:     500,
+                color:          "#C17F4A",
+                fontSize:       "12px",
+                fontWeight:     600,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
-                letterSpacing:  "0.03em",
+                letterSpacing:  "0.08em",
+                textTransform:  "uppercase",
                 textDecoration: "none",
-                transition:     "background 0.2s, color 0.2s",
+                opacity:        0.85,
+                transition:     "opacity 0.25s ease",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#252B28";
-                e.currentTarget.style.color      = "#F5F5F4";
+                e.currentTarget.style.opacity = "1";
+                const arrow = e.currentTarget.querySelector("svg");
+                if (arrow) arrow.style.transform = "translateX(4px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color      = "#252B28";
+                e.currentTarget.style.opacity = "0.85";
+                const arrow = e.currentTarget.querySelector("svg");
+                if (arrow) arrow.style.transform = "translateX(0)";
               }}
             >
               View case study
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-                <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden style={{ transition: "transform 0.25s ease" }}>
+                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </a>
           </div>

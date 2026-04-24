@@ -28,8 +28,8 @@ const c = {
   body:        "#3D4440",
   muted:       "#8A8680",
   accent:      "#C17F4A",
-  bg:          "#F5F5F4",
-  bgSection:   "#EBEBEA",
+  bg:          "#FFFFFF",
+  bgSection:   "#FAFAF9",
   surface:     "#FFFFFF",
   border:      "#E8E4DE",
   borderStrong:"#C9BFB0",
@@ -37,7 +37,7 @@ const c = {
 };
 
 const font = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -49,7 +49,7 @@ export default function WayfarerCaseStudy() {
       <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>
 
         {/* -- Back link ---------------------------------- */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
           <Link
             href="/#work"
             style={{
@@ -83,7 +83,7 @@ export default function WayfarerCaseStudy() {
             background: c.navy,
           }} />
 
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             {/* Eyebrow */}
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.navy }} />
@@ -93,7 +93,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    600,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color:         "#8B89B8",
+                color:         "#C7C5E3",
               }}>
                 Wayfarer &middot; UX Case Study
               </span>
@@ -138,7 +138,7 @@ export default function WayfarerCaseStudy() {
                 { label: "Outcome",  value: "Discovery-first platform with 40+ destinations, interactive globe, and validated multi-step onboarding" },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B89B8", margin: "0 0 4px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#C7C5E3", margin: "0 0 4px" }}>
                     {label}
                   </p>
                   <p style={{ fontFamily: font.sans, fontSize: "14px", color: "rgba(245,243,239,0.75)", margin: 0 }}>
@@ -152,7 +152,7 @@ export default function WayfarerCaseStudy() {
 
         {/* -- Links ---------------------------------------- */}
         <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
@@ -211,7 +211,7 @@ export default function WayfarerCaseStudy() {
 
         {/* -- Cover image --------------------------------- */}
         <div style={{ background: c.bgSection, padding: "48px clamp(24px, 5vw, 80px) 0" }}>
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
               <Image
                 src="/images/work/wayfarer/wayfarer-cover.webp"
@@ -226,7 +226,7 @@ export default function WayfarerCaseStudy() {
         </div>
 
         {/* -- Content wrapper ----------------------------- */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* -- 01 Context & Brief ------------------------ */}
           <Section label="01" title="Context &amp; Brief">
@@ -661,7 +661,7 @@ export default function WayfarerCaseStudy() {
           padding:      "72px clamp(24px, 5vw, 80px)",
           marginTop:    "48px",
         }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
 
             {/* Header */}
             <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
@@ -673,7 +673,7 @@ export default function WayfarerCaseStudy() {
                   fontWeight:    600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color:         "#8B89B8",
+                  color:         "#C7C5E3",
                 }}>The Product</span>
               </div>
               <h2 style={{
@@ -705,7 +705,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color:         "#8B89B8",
+                color:         "#C7C5E3",
                 margin:        "0 0 12px",
               }}>Globe Explorer</h3>
               <p style={{
@@ -767,7 +767,7 @@ export default function WayfarerCaseStudy() {
                         fontSize:      "10px",
                         fontWeight:    700,
                         letterSpacing: "0.14em",
-                        color:         "#8B89B8",
+                        color:         "#C7C5E3",
                         paddingTop:    "2px",
                         flexShrink:    0,
                       }}>{label}</span>
@@ -793,7 +793,7 @@ export default function WayfarerCaseStudy() {
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
                       width: "4px", height: "4px", borderRadius: "50%",
-                      background: "#8B89B8", flexShrink: 0, marginTop: "7px",
+                      background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
                       fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
@@ -815,7 +815,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color:         "#8B89B8",
+                color:         "#C7C5E3",
                 margin:        "0 0 12px",
               }}>Parallel Entry · Destinations Grid</h3>
               <p style={{
@@ -855,7 +855,7 @@ export default function WayfarerCaseStudy() {
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
                       width: "4px", height: "4px", borderRadius: "50%",
-                      background: "#8B89B8", flexShrink: 0, marginTop: "7px",
+                      background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
                       fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
@@ -877,7 +877,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color:         "#8B89B8",
+                color:         "#C7C5E3",
                 margin:        "0 0 12px",
               }}>Multi-Step Signup</h3>
               <p style={{
@@ -929,7 +929,7 @@ export default function WayfarerCaseStudy() {
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
                       width: "4px", height: "4px", borderRadius: "50%",
-                      background: "#8B89B8", flexShrink: 0, marginTop: "7px",
+                      background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
                       fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
@@ -947,7 +947,7 @@ export default function WayfarerCaseStudy() {
         </div>{/* /Visual Walkthrough */}
 
         {/* Resume content wrapper for remaining sections */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* -- 07 Evaluation Plan ----------------------- */}
           <Section label="07" title="Evaluation Plan">
@@ -1073,7 +1073,7 @@ export default function WayfarerCaseStudy() {
             marginTop:   "80px",
           }}
         >
-          <div style={{ maxWidth: "860px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
               <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
                 Next Case Study
@@ -1123,15 +1123,15 @@ const c2 = {
   body:      "#3D4440",
   muted:     "#8A8680",
   accent:    "#C17F4A",
-  bg:        "#F5F5F4",
-  bgSection: "#EBEBEA",
+  bg:        "#FFFFFF",
+  bgSection: "#FAFAF9",
   surface:   "#FFFFFF",
   border:    "#E8E4DE",
   navy:      "#3E3C78",
 };
 
 const f = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -1222,12 +1222,12 @@ const bodyText: React.CSSProperties = {
 };
 
 const subheading: React.CSSProperties = {
-  fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+  fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:      "20px",
-  fontWeight:    400,
+  fontWeight:    600,
   color:         "#252B28",
   margin:        "40px 0 16px",
-  letterSpacing: "-0.02em",
+  letterSpacing: "-0.015em",
 };
 
 const thStyle: React.CSSProperties = {

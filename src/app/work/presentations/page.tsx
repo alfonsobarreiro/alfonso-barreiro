@@ -23,14 +23,14 @@ const c = {
   body:        "#3D4440",
   muted:       "#8A8680",
   accent:      "#C17F4A",
-  bg:          "#F5F5F4",
-  bgSection:   "#EBEBEA",
+  bg:          "#FFFFFF",
+  bgSection:   "#FAFAF9",
   surface:     "#FFFFFF",
   border:      "#E8E4DE",
 };
 
 const font = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -84,28 +84,32 @@ export default function PresentationsIndex() {
       <main style={{ background: c.bg, paddingTop: "72px" }}>
 
         {/* Header */}
-        <div style={{ padding: "80px clamp(24px, 5vw, 80px) 40px" }}>
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
-            <p style={{
-              fontFamily: font.sans,
-              fontSize: "11px",
-              fontWeight: 600,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: c.muted,
-              margin: "0 0 12px",
-            }}>
-              Presentations
-            </p>
+        <div style={{ padding: "120px clamp(32px, 6vw, 80px) 40px" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+              <span style={{ display: "inline-block", width: "24px", height: "1px", background: c.accent }} />
+              <p style={{
+                fontFamily: font.sans,
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: c.muted,
+                margin: 0,
+              }}>
+                Presentations
+              </p>
+            </div>
             <h1 style={{
               fontFamily: font.display,
               fontSize: "clamp(32px, 5vw, 56px)",
+              fontWeight: 600,
               lineHeight: 1.1,
               color: c.ink,
               margin: "0 0 20px",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.025em",
             }}>
-              Slide decks for each case study.
+              Slide decks for each <span style={{ color: c.accent }}>case study.</span>
             </h1>
             <p style={{
               fontFamily: font.sans,
@@ -121,9 +125,9 @@ export default function PresentationsIndex() {
         </div>
 
         {/* Deck grid */}
-        <div style={{ padding: "24px clamp(24px, 5vw, 80px) 96px" }}>
+        <div style={{ padding: "40px clamp(32px, 6vw, 80px) 120px" }}>
           <div style={{
-            maxWidth: "1200px",
+            maxWidth: "none",
             margin: "0 auto",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
@@ -136,13 +140,14 @@ export default function PresentationsIndex() {
                 style={{
                   textDecoration: "none",
                   color: "inherit",
-                  background: c.surface,
-                  border: `1px solid ${c.border}`,
-                  borderRadius: "6px",
+                  background: "#FAFAF9",
+                  border: "1px solid #C9BFB0",
+                  borderRadius: 0,
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
-                  transition: "transform 0.2s, box-shadow 0.2s",
+                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                  boxShadow: "0 4px 14px rgba(37,43,40,0.08), 0 1px 3px rgba(37,43,40,0.05)",
                 }}
                 className="deck-card"
               >
@@ -170,9 +175,11 @@ export default function PresentationsIndex() {
                   <h2 style={{
                     fontFamily: font.display,
                     fontSize: "24px",
+                    fontWeight: 600,
                     lineHeight: 1.2,
                     color: c.ink,
                     margin: "0 0 10px",
+                    letterSpacing: "-0.015em",
                   }}>
                     {d.title}
                   </h2>
@@ -204,8 +211,8 @@ export default function PresentationsIndex() {
 
       <style>{`
         .deck-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+          transform: translateY(-3px);
+          box-shadow: 0 18px 44px rgba(37,43,40,0.14), 0 4px 12px rgba(37,43,40,0.08);
         }
       `}</style>
     </>

@@ -1,6 +1,66 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+
+/* ── Icons (reused from footer pattern) ── */
+const DownloadIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+const LinkedInIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" />
+  </svg>
+);
+const CoffeeIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M17 8h1a4 4 0 1 1 0 8h-1" /><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" /><line x1="6" y1="2" x2="6" y2="4" /><line x1="10" y1="2" x2="10" y2="4" /><line x1="14" y1="2" x2="14" y2="4" />
+  </svg>
+);
+const ArrowIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+/* ── Pill styles ── */
+const pillBase: React.CSSProperties = {
+  display:        "inline-flex",
+  alignItems:     "center",
+  gap:            "8px",
+  padding:        "10px 20px",
+  borderRadius:   "4px",
+  fontSize:       "11px",
+  fontWeight:     600,
+  fontFamily:     "var(--font-dm-sans), sans-serif",
+  letterSpacing:  "0.08em",
+  textTransform:  "uppercase",
+  textDecoration: "none",
+  transition:     "border-color 0.2s, background 0.2s, color 0.2s, opacity 0.2s",
+  cursor:         "pointer",
+};
+const pillPrimary: React.CSSProperties = {
+  ...pillBase,
+  padding:    "12px 24px",
+  fontSize:   "12px",
+  background: "#C17F4A",
+  border:     "1px solid #C17F4A",
+  color:      "#FFFFFF",
+};
+const pillDefault: React.CSSProperties = {
+  ...pillBase,
+  border:     "1px solid #C9BFB0",
+  background: "#FFFFFF",
+  color:      "#3D4440",
+};
+const pillAccent: React.CSSProperties = {
+  ...pillBase,
+  border:     "1px solid rgba(193,127,74,0.45)",
+  background: "rgba(193,127,74,0.06)",
+  color:      "#C17F4A",
+};
 
 const skillGroups = [
   {
@@ -23,11 +83,11 @@ export default function About() {
       id="about"
       className="about-section"
       style={{
-        padding:    "120px 48px",
-        background: "#F5F5F4",
+        padding:    "120px clamp(32px, 6vw, 80px)",
+        background: "#FFFFFF",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ width: "100%", margin: "0 auto" }}>
 
         {/* Two-column: Bio + Skills */}
         <div
@@ -134,12 +194,12 @@ export default function About() {
 
             <h2
               style={{
-                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "clamp(26px, 3.5vw, 44px)",
-                fontWeight:    400,
+                fontWeight:    600,
                 color:         "#252B28",
                 margin:        "0 0 28px",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
                 lineHeight:    1.15,
               }}
             >
@@ -156,10 +216,9 @@ export default function About() {
                 marginBottom: "20px",
               }}
             >
-              Every project starts the same way: I look for the space between what users
-              expect and what the product actually gives them. That gap is where the design
-              work lives. I frame the problem, map the constraints, then build the simplest
-              thing that closes it.
+              I came to design through research, not pixels. Half of every project
+              happens before I open Figma — interviews, competitive scans, pattern
+              analysis. The interface is the last decision, not the first.
             </p>
             <p
               style={{
@@ -170,65 +229,66 @@ export default function About() {
                 marginBottom: "40px",
               }}
             >
-              My work spans consumer apps, content platforms, and e-commerce. Beyond the
-              interface, I care about the systems underneath: interaction patterns, information
-              architecture, accessibility, and the handoff details that make or break implementation.
-              The hardest call is usually knowing what not to build. I&apos;ve cut working features
-              mid-project because they contradicted the brief — and the case studies are honest
-              about those moments.
+              My work spans consumer apps, content platforms, and e-commerce. The systems
+              underneath matter as much as the interface — interaction patterns, information
+              architecture, accessibility, handoff details. The hardest call is knowing what
+              not to build. I&apos;ve cut working features mid-project because they contradicted
+              the brief. The case studies are honest about those moments.
             </p>
 
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              style={{
-                display:        "inline-flex",
-                alignItems:     "center",
-                gap:            "8px",
-                color:          "#252B28",
-                fontSize:       "13px",
-                fontWeight:     600,
-                letterSpacing:  "0.07em",
-                textTransform:  "uppercase",
-                fontFamily:     "var(--font-dm-sans), sans-serif",
-                borderBottom:   "1px solid #C9BFB0",
-                borderTop:      "none",
-                borderLeft:     "none",
-                borderRight:    "none",
-                paddingBottom:  "4px",
-                background:     "none",
-                cursor:         "pointer",
-                transition:     "color 0.2s, border-color 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color       = "#C17F4A";
-                e.currentTarget.style.borderColor = "#C17F4A";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color       = "#252B28";
-                e.currentTarget.style.borderColor = "#C9BFB0";
-              }}
-            >
-              Let&apos;s talk
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M3 8H13M13 8L9 4M13 8L9 12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+            {/* Contact CTAs — primary message link + direct channels */}
+            <div style={{ display: "grid", gridTemplateColumns: "auto auto", justifyContent: "start", gap: "10px" }}>
+              <Link
+                href="/contact"
+                style={{ ...pillPrimary, gridColumn: "1 / -1" }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+              >
+                Send a message <ArrowIcon />
+              </Link>
+              <a
+                href="/Alfonso_Barreiro_Resume_April_2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={pillDefault}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; }}
+              >
+                <DownloadIcon /> Resume
+              </a>
+              <a
+                href="https://www.linkedin.com/in/alfonso-barreiro/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={pillDefault}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; }}
+              >
+                <LinkedInIcon /> LinkedIn
+              </a>
+              <a
+                href="https://cal.com/alfonso-barreiro"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...pillAccent, gridColumn: "1 / -1" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.75)"; e.currentTarget.style.background = "rgba(193,127,74,0.12)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.45)"; e.currentTarget.style.background = "rgba(193,127,74,0.06)"; }}
+              >
+                <CoffeeIcon /> Coffee in Portland
+              </a>
+            </div>
           </div>
 
           {/* Right — Skills */}
           <div
             className="skills-box"
             style={{
-              background:   "#FFFFFF",
-              border:       "1px solid #E8E4DE",
+              background:   "#FAFAF9",
+              border:       "1px solid #C9BFB0",
+              borderLeft:   "3px solid #C17F4A",
               borderRadius: 0,
               padding:      "44px",
+              boxShadow:    "0 4px 14px rgba(37,43,40,0.06), 0 1px 3px rgba(37,43,40,0.04)",
             }}
           >
             {skillGroups.map((group, i) => (
@@ -281,7 +341,7 @@ export default function About() {
         <div
           className="process-box"
           style={{
-            background:  "#EBEBEA",
+            background:  "#FFFFFF",
             border:      "1px solid #E8E4DE",
             padding:     "44px 52px",
           }}
@@ -319,18 +379,18 @@ export default function About() {
           </div>
           <p
             style={{
-              fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+              fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(18px, 2.2vw, 26px)",
-              fontWeight:    400,
+              fontWeight:    500,
               lineHeight:    1.5,
               color:         "#252B28",
               margin:        0,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
               maxWidth:      "760px",
             }}
           >
-            I start with the problem before opening Figma. Research shapes the brief.
-            The brief shapes the structure. The structure shapes the interface. In that order.
+            The problem comes first. Figma comes last. Research shapes the brief.
+            The brief shapes the structure. The structure shapes the interface.
             The decisions that matter most happen before the first frame.
           </p>
         </div>

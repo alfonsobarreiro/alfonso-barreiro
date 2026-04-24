@@ -30,8 +30,8 @@ const c = {
   body:     "#3D4440",
   muted:    "#8A8680",
   accent:   "#C17F4A",
-  bg:       "#F5F5F4",
-  bgSection:"#EBEBEA",
+  bg:       "#FFFFFF",
+  bgSection:"#FAFAF9",
   surface:  "#FFFFFF",
   border:   "#E8E4DE",
   borderStrong: "#C9BFB0",
@@ -39,7 +39,7 @@ const c = {
 };
 
 const font = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -51,7 +51,7 @@ export default function SpotifyCaseStudy() {
       <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>
 
         {/* ── Back link ───────────────────────────── */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
           <Link
             href="/#work"
             style={{
@@ -85,7 +85,7 @@ export default function SpotifyCaseStudy() {
             background: c.green,
           }} />
 
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             {/* Eyebrow */}
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.green }} />
@@ -154,7 +154,7 @@ export default function SpotifyCaseStudy() {
 
         {/* ── Cover image ──────────────────────────── */}
         <div style={{ background: c.bgSection, padding: "64px clamp(24px, 5vw, 80px) 0" }}>
-          <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
               <Image
                 src="/images/work/spotify/spotify-hero-cover.webp"
@@ -169,7 +169,7 @@ export default function SpotifyCaseStudy() {
         </div>
 
         {/* ── Content wrapper ──────────────────────── */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* ── 01 · Context & Problem ───────────────── */}
           <Section label="01" title="Context &amp; Problem">
@@ -385,7 +385,7 @@ export default function SpotifyCaseStudy() {
         <SpotifyJourneyMap />
 
         {/* ── Content wrapper (continued: 04) ──────────────────────── */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* ── 03 · Design Decisions ────────────────── */}
           <Section label="03" title="Design Decisions">
@@ -547,7 +547,7 @@ export default function SpotifyCaseStudy() {
           padding:      "72px clamp(24px, 5vw, 80px)",
           marginTop:    "48px",
         }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
 
             {/* Header */}
             <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
@@ -929,7 +929,7 @@ export default function SpotifyCaseStudy() {
           borderBottom: `1px solid rgba(245,243,239,0.08)`,
           padding:      "56px clamp(24px, 5vw, 80px) 64px",
         }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <div style={{ marginBottom: "32px", maxWidth: "560px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "20px", height: "1px", background: c.green }} />
@@ -978,7 +978,7 @@ export default function SpotifyCaseStudy() {
         </div>
 
         {/* ── Content wrapper (continued) ──────────────────────── */}
-        <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
           {/* ── 05 · Constraints & Tradeoffs ─────────── */}
           <Section label="05" title="Constraints &amp; Trade-offs">
@@ -1232,7 +1232,7 @@ export default function SpotifyCaseStudy() {
           }}
         >
           <div style={{
-            maxWidth: "860px",
+            maxWidth: "none",
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
@@ -1275,7 +1275,7 @@ export default function SpotifyCaseStudy() {
             padding:     "80px clamp(24px, 5vw, 80px)",
           }}
         >
-          <div style={{ maxWidth: "860px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
               <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
                 Next Case Study
@@ -1325,14 +1325,14 @@ const c2 = {
   body:   "#3D4440",
   muted:  "#8A8680",
   accent: "#C17F4A",
-  bg:     "#F5F5F4",
-  bgSection: "#EBEBEA",
+  bg:     "#FFFFFF",
+  bgSection: "#FAFAF9",
   surface: "#FFFFFF",
   border: "#E8E4DE",
 };
 
 const f = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -1477,12 +1477,12 @@ const bodyText: React.CSSProperties = {
 };
 
 const subheading: React.CSSProperties = {
-  fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+  fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:      "20px",
-  fontWeight:    400,
+  fontWeight:    600,
   color:         "#252B28",
   margin:        "40px 0 16px",
-  letterSpacing: "-0.02em",
+  letterSpacing: "-0.015em",
 };
 
 const thStyle: React.CSSProperties = {

@@ -52,8 +52,13 @@ html {
   scroll-behavior: smooth;
 }
 
+html, body {
+  min-height:               100vh;
+  min-height:               100dvh;
+}
+
 body {
-  background:               #F5F5F4;
+  background:               #FFFFFF;
   color:                    #252B28;
   font-family:              var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing:   antialiased;
@@ -61,9 +66,23 @@ body {
   overflow-x:               hidden;
 }
 
+/* Sticky footer — main fills the viewport height, footer pushed to
+   bottom via margin-top: auto. Works across all pages since every page
+   uses the <main><section...><Footer/></main> pattern. */
+main {
+  min-height:               100vh;
+  min-height:               100dvh;
+  display:                  flex;
+  flex-direction:           column;
+}
+
+main > footer {
+  margin-top:               auto;
+}
+
 /* ── Scrollbar ── */
 ::-webkit-scrollbar        { width: 5px; }
-::-webkit-scrollbar-track  { background: #F5F5F4; }
+::-webkit-scrollbar-track  { background: #FFFFFF; }
 ::-webkit-scrollbar-thumb  { background: #C9BFB0; border-radius: 3px; }
 
 /* ── Base links ── */

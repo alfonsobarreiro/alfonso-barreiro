@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
 
-const navLinks = ["work", "about", "contact"] as const;
+const navLinks = ["work", "about"] as const;
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -57,37 +57,37 @@ export default function Nav() {
             aria-label="Back to top"
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px" }}
           >
-            <LogoMark size={26} variant={menuOpen ? "light" : "dark"} />
+            <LogoMark size={24} variant={menuOpen ? "light" : "dark"} />
             <span
               className="nav-wordmark"
               style={{
-                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
-                fontSize:      "16px",
-                fontWeight:    400,
-                letterSpacing: "-0.01em",
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "18px",
+                fontWeight:    600,
+                letterSpacing: "-0.015em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
                 transition:    "color 0.3s",
                 lineHeight:    1,
               }}
             >
-              Alfonso Barreiro
+              Alfonso <span style={{ color: "#C17F4A" }}>Barreiro</span>
             </span>
           </button>
         ) : (
           <Link href="/" aria-label="Back to home" style={{ lineHeight: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
-            <LogoMark size={26} variant="dark" />
+            <LogoMark size={24} variant="dark" />
             <span
               className="nav-wordmark"
               style={{
-                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
-                fontSize:      "16px",
-                fontWeight:    400,
-                letterSpacing: "-0.01em",
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "18px",
+                fontWeight:    600,
+                letterSpacing: "-0.015em",
                 color:         "#252B28",
                 lineHeight:    1,
               }}
             >
-              Alfonso Barreiro
+              Alfonso <span style={{ color: "#C17F4A" }}>Barreiro</span>
             </span>
           </Link>
         )}
@@ -102,49 +102,27 @@ export default function Nav() {
               onScrollClick={() => scrollTo(link)}
             />
           ))}
-          {isHome ? (
-            <button
-              onClick={() => scrollTo("contact")}
-              style={{
-                padding:       "10px 24px",
-                background:    "#C17F4A",
-                border:        "none",
-                borderRadius:  "8px",
-                color:         "#FFFFFF",
-                fontSize:      "13px",
-                fontWeight:    500,
-                letterSpacing: "0.04em",
-                cursor:        "pointer",
-                transition:    "opacity 0.2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              Get in touch
-            </button>
-          ) : (
-            <Link
-              href="/#contact"
-              style={{
-                padding:        "10px 24px",
-                background:     "#C17F4A",
-                border:         "none",
-                borderRadius:   "8px",
-                color:          "#FFFFFF",
-                fontSize:       "13px",
-                fontWeight:     500,
-                letterSpacing:  "0.04em",
-                cursor:         "pointer",
-                transition:     "opacity 0.2s",
-                textDecoration: "none",
-                display:        "inline-block",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              Get in touch
-            </Link>
-          )}
+          <Link
+            href="/contact"
+            style={{
+              padding:        "10px 24px",
+              background:     "#C17F4A",
+              border:         "none",
+              borderRadius:   "8px",
+              color:          "#FFFFFF",
+              fontSize:       "13px",
+              fontWeight:     500,
+              letterSpacing:  "0.04em",
+              cursor:         "pointer",
+              transition:     "opacity 0.2s",
+              textDecoration: "none",
+              display:        "inline-block",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            Get in touch
+          </Link>
         </div>
 
         {/* Hamburger / Close button — mobile only */}
@@ -264,52 +242,29 @@ export default function Nav() {
         ))}
 
         {/* CTA */}
-        {isHome ? (
-          <button
-            onClick={() => handleNavClick("contact")}
-            style={{
-              marginTop:     "40px",
-              padding:       "16px 32px",
-              background:    "#C17F4A",
-              border:        "none",
-              borderRadius:  "8px",
-              color:         "#FFFFFF",
-              fontSize:      "13px",
-              fontWeight:    600,
-              letterSpacing: "0.07em",
-              textTransform: "uppercase",
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              cursor:        "pointer",
-              alignSelf:     "flex-start",
-            }}
-          >
-            Get in touch
-          </button>
-        ) : (
-          <Link
-            href="/#contact"
-            onClick={() => setMenuOpen(false)}
-            style={{
-              marginTop:      "40px",
-              padding:        "16px 32px",
-              background:     "#C17F4A",
-              border:         "none",
-              borderRadius:   "8px",
-              color:          "#FFFFFF",
-              fontSize:       "13px",
-              fontWeight:     600,
-              letterSpacing:  "0.07em",
-              textTransform:  "uppercase",
-              fontFamily:     "var(--font-dm-sans), sans-serif",
-              cursor:         "pointer",
-              alignSelf:      "flex-start",
-              textDecoration: "none",
-              display:        "inline-block",
-            }}
-          >
-            Get in touch
-          </Link>
-        )}
+        <Link
+          href="/contact"
+          onClick={() => setMenuOpen(false)}
+          style={{
+            marginTop:      "40px",
+            padding:        "16px 32px",
+            background:     "#C17F4A",
+            border:         "none",
+            borderRadius:   "8px",
+            color:          "#FFFFFF",
+            fontSize:       "13px",
+            fontWeight:     600,
+            letterSpacing:  "0.07em",
+            textTransform:  "uppercase",
+            fontFamily:     "var(--font-dm-sans), sans-serif",
+            cursor:         "pointer",
+            alignSelf:      "flex-start",
+            textDecoration: "none",
+            display:        "inline-block",
+          }}
+        >
+          Get in touch
+        </Link>
 
         {/* Footer note */}
         <p style={{

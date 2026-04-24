@@ -23,13 +23,13 @@ const c = {
   body:        "#3D4440",
   muted:       "#8A8680",
   accent:      "#C17F4A",
-  bg:          "#F5F5F4",
-  bgSection:   "#EBEBEA",
+  bg:          "#FFFFFF",
+  bgSection:   "#FFFFFF",
   border:      "#E8E4DE",
 };
 
 const font = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -42,7 +42,7 @@ export default function MSRDeckPage() {
         {/* Header — compact so slides + controls fit above the fold */}
         <div style={{ padding: "16px clamp(24px, 5vw, 80px) 12px" }}>
           <div style={{
-            maxWidth: "1100px",
+            maxWidth: "none",
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
@@ -105,7 +105,7 @@ export default function MSRDeckPage() {
         {/* CTA to written case study */}
         <div style={{ padding: "72px clamp(24px, 5vw, 80px)" }}>
           <div style={{
-            maxWidth: "860px",
+            maxWidth: "none",
             margin: "0 auto",
             display: "flex",
             justifyContent: "space-between",
@@ -128,8 +128,10 @@ export default function MSRDeckPage() {
               <p style={{
                 fontFamily: font.display,
                 fontSize: "clamp(20px, 3vw, 28px)",
+                fontWeight: 500,
                 color: c.ink,
                 margin: 0,
+                letterSpacing: "-0.015em",
               }}>
                 Read the full written case study
               </p>

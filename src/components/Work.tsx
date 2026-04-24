@@ -61,11 +61,11 @@ export default function Work() {
       id="work"
       className="work-section"
       style={{
-        padding:    "120px 48px",
-        background: "#EBEBEA",
+        padding:    "120px clamp(32px, 6vw, 80px)",
+        background: "#FFFFFF",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ width: "100%", margin: "0 auto" }}>
 
         {/* Section header */}
         <div
@@ -109,16 +109,16 @@ export default function Work() {
             </div>
             <h2
               style={{
-                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "clamp(28px, 4vw, 48px)",
-                fontWeight:    400,
+                fontWeight:    600,
                 color:         "#252B28",
                 margin:        0,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.025em",
                 lineHeight:    1.1,
               }}
             >
-              Flagship Case Studies
+              Three <span style={{ color: "#C17F4A" }}>case studies.</span>
             </h2>
           </div>
           <span
@@ -172,8 +172,8 @@ function ProjectCard({
     display:        "block",
     textDecoration: "none",
     color:          "inherit",
-    background:     "#FFFFFF",
-    border:         "1px solid #E8E4DE",
+    background:     "#FAFAF9",
+    border:         "1px solid #C9BFB0",
     borderRadius:   0,
     padding:        featured ? "44px 48px" : "40px 40px",
     height:         "100%",
@@ -181,8 +181,8 @@ function ProjectCard({
     transition:     "transform 0.25s ease, box-shadow 0.25s ease",
     transform:      hovered && isLive ? "translateY(-3px)" : "translateY(0)",
     boxShadow:      hovered && isLive
-      ? "0 8px 28px rgba(37,43,40,0.08), 0 2px 8px rgba(37,43,40,0.04)"
-      : "0 1px 4px rgba(37,43,40,0.05)",
+      ? "0 18px 44px rgba(37,43,40,0.14), 0 4px 12px rgba(37,43,40,0.08)"
+      : "0 4px 14px rgba(37,43,40,0.08), 0 1px 3px rgba(37,43,40,0.05)",
     cursor:         isLive ? "pointer" : "default",
   };
 
@@ -233,9 +233,9 @@ function ProjectCard({
         {/* Title block */}
         <div style={{ flex: 1 }}>
           <h3 style={{
-            fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+            fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "clamp(24px, 2.8vw, 36px)",
-            fontWeight:    400,
+            fontWeight:    600,
             color:         "#252B28",
             margin:        "0 0 4px",
             letterSpacing: "-0.02em",
@@ -393,9 +393,9 @@ function ProjectCard({
 
       {/* Title */}
       <h3 style={{
-        fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+        fontFamily:    "var(--font-dm-sans), sans-serif",
         fontSize:      "clamp(20px, 2vw, 28px)",
-        fontWeight:    400,
+        fontWeight:    600,
         color:         "#252B28",
         margin:        "0 0 4px",
         letterSpacing: "-0.02em",
