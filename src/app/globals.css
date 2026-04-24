@@ -182,6 +182,23 @@ button {
   .cs-grid-collapse {
     grid-template-columns: 1fr !important;
   }
+
+  /* Spotify animation — hide annotations panel on mobile (they float beside
+     the phone and create a huge empty gap when opacity is 0) */
+  .spra-annotations {
+    display: none !important;
+  }
+  /* Shrink the phone to fit comfortably on mobile */
+  .spra-phone {
+    width: clamp(200px, 60vw, 260px) !important;
+  }
+
+  /* Case study — tables: tighter cell padding on mobile */
+  .cs-table-scroll th,
+  .cs-table-scroll td {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+  }
 }
 @media (min-width: 768px) {
   .hamburger { display: none !important; }
