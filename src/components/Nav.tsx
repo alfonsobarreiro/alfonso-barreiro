@@ -75,7 +75,7 @@ export default function Nav() {
           </button>
         ) : (
           <Link href="/" aria-label="Back to home" style={{ lineHeight: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
-            <LogoMark size={24} variant="dark" />
+            <LogoMark size={24} variant={menuOpen ? "light" : "dark"} />
             <span
               className="nav-wordmark"
               style={{
@@ -83,7 +83,8 @@ export default function Nav() {
                 fontSize:      "18px",
                 fontWeight:    600,
                 letterSpacing: "-0.015em",
-                color:         "#252B28",
+                color:         menuOpen ? "#F5F5F4" : "#252B28",
+                transition:    "color 0.3s",
                 lineHeight:    1,
               }}
             >
