@@ -192,11 +192,11 @@ export default function Nav() {
               key={link}
               onClick={() => handleNavClick(link)}
               style={{
-                fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "clamp(42px, 12vw, 72px)",
-                fontWeight:    400,
+                fontWeight:    500,
                 color:         "rgba(245,243,239,0.85)",
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.025em",
                 lineHeight:    1.1,
                 background:    "none",
                 border:        "none",
@@ -219,11 +219,11 @@ export default function Nav() {
               href={`/#${link}`}
               onClick={() => setMenuOpen(false)}
               style={{
-                fontFamily:     "var(--font-dm-serif-display), Georgia, serif",
+                fontFamily:     "var(--font-dm-sans), sans-serif",
                 fontSize:       "clamp(42px, 12vw, 72px)",
-                fontWeight:     400,
+                fontWeight:     500,
                 color:          "rgba(245,243,239,0.85)",
-                letterSpacing:  "-0.03em",
+                letterSpacing:  "-0.025em",
                 lineHeight:     1.1,
                 borderBottom:   "1px solid rgba(245,243,239,0.08)",
                 padding:        "12px 0",

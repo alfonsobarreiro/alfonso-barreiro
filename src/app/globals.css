@@ -112,8 +112,10 @@ button {
   .process-box     { padding: 32px 24px !important; }
   .work-section    { padding: 80px 24px !important; }
   .work-card       { padding: 32px 24px !important; }
-  .contact-section { padding: 80px 24px !important; }
-  .contact-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .contact-section      { padding: 80px 24px !important; }
+  .contact-grid         { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .contact-page-section { padding: 80px 24px !important; }
+  .contact-page-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
   .footer-inner    { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
   .footer-inner > p { order: 3; }
   .cs-nav          { padding: 0 24px !important; }
