@@ -314,7 +314,7 @@ export default function Hero() {
           letterSpacing: "0.12em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          animation:     "scrollBounce 2.4s ease-in-out 1.2s infinite",
+          animation:     "scrollBounce 2s ease-in-out 1.2s 3",
         }}
       >
         <div
