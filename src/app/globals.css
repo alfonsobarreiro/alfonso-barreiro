@@ -101,6 +101,15 @@ button {
   font-family: inherit;
 }
 
+/* ── Scroll reveal: respect reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* ── Responsive overrides ── */
 @media (max-width: 767px) {
   .hero-section    { padding: 100px 24px 60px !important; }

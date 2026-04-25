@@ -203,8 +203,8 @@ export default function About() {
                 lineHeight:    1.15,
               }}
             >
-              Design is a<br />
-              <span style={{ color: "#C17F4A" }}>decision problem.</span>
+              Thirty years of building.<br />
+              <span style={{ color: "#C17F4A" }}>Still asking why it doesn&apos;t work better.</span>
             </h2>
 
             <p
@@ -216,9 +216,26 @@ export default function About() {
                 marginBottom: "20px",
               }}
             >
-              I came to design through research, not pixels. Half of every project
-              happens before I open Figma — interviews, competitive scans, pattern
-              analysis. The interface is the last decision, not the first.
+              I wrote my first code at eight, typing BASIC line by line from a magazine
+              into an Atari 800. I built my first website at 22, a Rush fan site that
+              probably broke every design rule that existed. Thirty years later, I&apos;m
+              still doing the same thing: staring at something on a screen and asking
+              why it doesn&apos;t work better.
+            </p>
+            <p
+              style={{
+                fontFamily:   "var(--font-dm-sans), sans-serif",
+                fontSize:     "16px",
+                lineHeight:   1.75,
+                color:        "#3D4440",
+                marginBottom: "20px",
+              }}
+            >
+              I design from the gaps I actually live in. Spotify is my most-used app,
+              and the Recently Played shelf had blind spots that bothered me for years.
+              I dealt with plantar fasciitis, toenail fungus, and the quiet shame men
+              carry about neglecting their own bodies, so I built a resource for it.
+              Each project starts with a real problem I can feel, not a brief I was handed.
             </p>
             <p
               style={{
@@ -229,11 +246,11 @@ export default function About() {
                 marginBottom: "40px",
               }}
             >
-              My work spans consumer apps, content platforms, and e-commerce. The systems
-              underneath matter as much as the interface — interaction patterns, information
-              architecture, accessibility, handoff details. The hardest call is knowing what
-              not to build. I&apos;ve cut working features mid-project because they contradicted
-              the brief. The case studies are honest about those moments.
+              At 56, I still learn like I&apos;m running out of time. I&apos;m teaching
+              myself Hiragana. I walk five miles a day, building back toward a marathon.
+              I meditate. I watch birds. I read everything. If that sounds like someone
+              with too many interests, you&apos;re probably right. But the curiosity is
+              the same muscle I use in research. I just don&apos;t turn it off.
             </p>
 
             {/* Contact CTAs — primary message link + direct channels */}
@@ -289,6 +306,9 @@ export default function About() {
               borderRadius: 0,
               padding:      "44px",
               boxShadow:    "0 4px 14px rgba(37,43,40,0.06), 0 1px 3px rgba(37,43,40,0.04)",
+              position:     "sticky",
+              top:          "120px",
+              alignSelf:    "start",
             }}
           >
             {skillGroups.map((group, i) => (

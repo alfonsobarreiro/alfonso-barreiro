@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -55,10 +55,62 @@ const projects: Project[] = [
   },
 ];
 
+/* Stagger delays per card index */
+const DELAYS = ["0s", "0.1s", "0.2s", "0.35s"];
+
 export default function Work() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const targets = section.querySelectorAll<HTMLElement>(".scroll-reveal");
+
+    /* 1. Hide immediately, no transition yet */
+    targets.forEach((el) => {
+      el.style.opacity   = "0";
+      el.style.transform = "translateY(32px)";
+    });
+
+    /* 2. Next frame: add transitions so the reveal animates */
+    requestAnimationFrame(() => {
+      targets.forEach((el, i) => {
+        const delay = DELAYS[i] || "0s";
+        el.style.transition = `opacity 0.7s ease ${delay}, transform 0.7s ease ${delay}`;
+      });
+
+      /* 3. Observe */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              el.style.opacity   = "1";
+              el.style.transform = "translateY(0)";
+              observer.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -20px 0px" }
+      );
+
+      targets.forEach((el) => observer.observe(el));
+
+      /* Cleanup stored on section for the return */
+      (section as any).__scrollObserver = observer;
+    });
+
+    return () => {
+      const obs = (section as any).__scrollObserver as IntersectionObserver | undefined;
+      if (obs) obs.disconnect();
+    };
+  }, []);
+
   return (
     <section
       id="work"
+      ref={sectionRef}
       className="work-section"
       style={{
         padding:    "120px clamp(32px, 6vw, 80px)",
@@ -69,6 +121,7 @@ export default function Work() {
 
         {/* Section header */}
         <div
+          className="scroll-reveal"
           style={{
             display:        "flex",
             justifyContent: "space-between",
@@ -145,13 +198,17 @@ export default function Work() {
           }}
         >
           {/* Feature card — spans both columns */}
-          <div style={{ gridColumn: "1 / -1" }}>
+          <div className="scroll-reveal" style={{ gridColumn: "1 / -1" }}>
             <ProjectCard project={projects[0]} featured />
           </div>
 
           {/* Pair row */}
-          <ProjectCard project={projects[1]} />
-          <ProjectCard project={projects[2]} />
+          <div className="scroll-reveal" style={{ height: "100%" }}>
+            <ProjectCard project={projects[1]} />
+          </div>
+          <div className="scroll-reveal" style={{ height: "100%" }}>
+            <ProjectCard project={projects[2]} />
+          </div>
         </div>
       </div>
     </section>
