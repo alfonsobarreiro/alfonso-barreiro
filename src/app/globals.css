@@ -101,12 +101,16 @@ button {
   font-family: inherit;
 }
 
-/* ── Scroll reveal: respect reduced motion ── */
+/* ── Scroll reveal & hero reveal: respect reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .scroll-reveal {
+  .scroll-reveal,
+  .hero-reveal {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .scroll-hint {
+    animation: none !important;
   }
 }
 
@@ -243,6 +247,10 @@ button {
 @keyframes cookieSlideIn {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
 }
 
 /* ── Case study nav ── */

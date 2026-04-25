@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
@@ -13,8 +13,16 @@ function scrollTo(id: string) {
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname  = usePathname();
   const isHome    = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll(); // check initial position
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function handleNavClick(id: string) {
     setMenuOpen(false);
@@ -45,9 +53,22 @@ export default function Nav() {
           display:        "flex",
           alignItems:     "center",
           justifyContent: "space-between",
-          background:     menuOpen ? "#252B28" : "#FFFFFF",
-          borderBottom:   menuOpen ? "1px solid rgba(245,243,239,0.08)" : "1px solid #E8E4DE",
-          transition:     "background 0.3s, border-color 0.3s",
+          background:     menuOpen
+            ? "#252B28"
+            : scrolled
+              ? "rgba(255,255,255,0.82)"
+              : "#FFFFFF",
+          backdropFilter: !menuOpen && scrolled ? "blur(12px)" : "none",
+          WebkitBackdropFilter: !menuOpen && scrolled ? "blur(12px)" : "none",
+          borderBottom:   menuOpen
+            ? "1px solid rgba(245,243,239,0.08)"
+            : scrolled
+              ? "1px solid rgba(232,228,222,0.6)"
+              : "1px solid #E8E4DE",
+          boxShadow:      !menuOpen && scrolled
+            ? "0 1px 8px rgba(37,43,40,0.06)"
+            : "none",
+          transition:     "background 0.3s, border-color 0.3s, box-shadow 0.3s, backdrop-filter 0.3s",
         }}
       >
         {/* Logo + wordmark */}
@@ -115,12 +136,18 @@ export default function Nav() {
               fontWeight:     500,
               letterSpacing:  "0.04em",
               cursor:         "pointer",
-              transition:     "opacity 0.2s",
+              transition:     "transform 0.25s ease, box-shadow 0.25s ease",
               textDecoration: "none",
               display:        "inline-block",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-1px)";
+              e.currentTarget.style.boxShadow = "0 4px 12px rgba(193,127,74,0.3)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
           >
             Get in touch
           </Link>

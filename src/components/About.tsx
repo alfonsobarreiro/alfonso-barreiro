@@ -1,7 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+/* Stagger delays for about section elements */
+const ABOUT_DELAYS = ["0s", "0.12s", "0.24s", "0.36s"];
 
 /* ── Icons (reused from footer pattern) ── */
 const DownloadIcon = () => (
@@ -38,7 +42,7 @@ const pillBase: React.CSSProperties = {
   letterSpacing:  "0.08em",
   textTransform:  "uppercase",
   textDecoration: "none",
-  transition:     "border-color 0.2s, background 0.2s, color 0.2s, opacity 0.2s",
+  transition:     "border-color 0.2s, background 0.2s, color 0.2s, opacity 0.2s, transform 0.25s ease, box-shadow 0.25s ease",
   cursor:         "pointer",
 };
 const pillPrimary: React.CSSProperties = {
@@ -78,9 +82,55 @@ const skillGroups = [
 ];
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const targets = section.querySelectorAll<HTMLElement>(".scroll-reveal");
+
+    /* 1. Hide immediately */
+    targets.forEach((el) => {
+      el.style.opacity   = "0";
+      el.style.transform = "translateY(32px)";
+    });
+
+    /* 2. Next frame: add transitions then observe */
+    requestAnimationFrame(() => {
+      targets.forEach((el, i) => {
+        const delay = ABOUT_DELAYS[i] || "0s";
+        el.style.transition = `opacity 0.7s ease ${delay}, transform 0.7s ease ${delay}`;
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              el.style.opacity   = "1";
+              el.style.transform = "translateY(0)";
+              observer.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -20px 0px" }
+      );
+
+      targets.forEach((el) => observer.observe(el));
+      (section as any).__scrollObserver = observer;
+    });
+
+    return () => {
+      const obs = (section as any).__scrollObserver as IntersectionObserver | undefined;
+      if (obs) obs.disconnect();
+    };
+  }, []);
+
   return (
     <section
       id="about"
+      ref={sectionRef}
       className="about-section"
       style={{
         padding:    "120px clamp(32px, 6vw, 80px)",
@@ -101,7 +151,7 @@ export default function About() {
           }}
         >
           {/* Left — Bio */}
-          <div>
+          <div className="scroll-reveal">
             {/* Eyebrow */}
             <div
               style={{
@@ -257,9 +307,9 @@ export default function About() {
             <div style={{ display: "grid", gridTemplateColumns: "auto auto", justifyContent: "start", gap: "10px" }}>
               <Link
                 href="/contact"
-                style={{ ...pillPrimary, gridColumn: "1 / -1" }}
-                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                style={{ ...pillPrimary, gridColumn: "1 / -1", transition: "transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(193,127,74,0.25)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
               >
                 Send a message <ArrowIcon />
               </Link>
@@ -268,8 +318,8 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={pillDefault}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <DownloadIcon /> Resume
               </a>
@@ -278,8 +328,8 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={pillDefault}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <LinkedInIcon /> LinkedIn
               </a>
@@ -288,8 +338,8 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ ...pillAccent, gridColumn: "1 / -1" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.75)"; e.currentTarget.style.background = "rgba(193,127,74,0.12)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.45)"; e.currentTarget.style.background = "rgba(193,127,74,0.06)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.75)"; e.currentTarget.style.background = "rgba(193,127,74,0.12)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.45)"; e.currentTarget.style.background = "rgba(193,127,74,0.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <CoffeeIcon /> Coffee in Portland
               </a>
@@ -298,7 +348,7 @@ export default function About() {
 
           {/* Right — Skills */}
           <div
-            className="skills-box"
+            className="skills-box scroll-reveal"
             style={{
               background:   "#FAFAF9",
               border:       "1px solid #C9BFB0",
@@ -359,7 +409,7 @@ export default function About() {
 
         {/* Process note — full-width box */}
         <div
-          className="process-box"
+          className="process-box scroll-reveal"
           style={{
             background:  "#FFFFFF",
             border:      "1px solid #E8E4DE",

@@ -1,11 +1,47 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 
+/* Stagger delays for hero entrance elements */
+const HERO_DELAYS = ["0s", "0.12s", "0.24s", "0.36s", "0.5s"];
+
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const targets = section.querySelectorAll<HTMLElement>(".hero-reveal");
+
+    /* 1. Hide immediately */
+    targets.forEach((el) => {
+      el.style.opacity   = "0";
+      el.style.transform = "translateY(24px)";
+    });
+
+    /* 2. Next frame: add transitions, then reveal with stagger */
+    requestAnimationFrame(() => {
+      targets.forEach((el, i) => {
+        const delay = HERO_DELAYS[i] || "0s";
+        el.style.transition = `opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${delay}, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${delay}`;
+      });
+
+      /* Small delay to ensure transitions are registered before triggering */
+      requestAnimationFrame(() => {
+        targets.forEach((el) => {
+          el.style.opacity   = "1";
+          el.style.transform = "translateY(0)";
+        });
+      });
+    });
+  }, []);
+
   return (
     <section
       id="hero"
+      ref={sectionRef}
       className="hero-section"
       style={{
         minHeight:      "100vh",
@@ -34,6 +70,7 @@ export default function Hero() {
 
           {/* Eyebrow */}
           <div
+            className="hero-reveal"
             style={{
               display:      "flex",
               alignItems:   "center",
@@ -67,6 +104,7 @@ export default function Hero() {
 
           {/* Name */}
           <h1
+            className="hero-reveal"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(48px, 7.5vw, 96px)",
@@ -84,6 +122,7 @@ export default function Hero() {
 
           {/* Supporting statement */}
           <p
+            className="hero-reveal"
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
               fontSize:     "clamp(16px, 1.7vw, 19px)",
@@ -101,7 +140,7 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+          <div className="hero-reveal" style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
             <a
               href="#work"
               style={{
@@ -115,10 +154,16 @@ export default function Hero() {
                 letterSpacing: "0.03em",
                 display:       "inline-flex",
                 alignItems:    "center",
-                transition:    "opacity 0.2s",
+                transition:    "transform 0.25s ease, box-shadow 0.25s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.82")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 4px 12px rgba(37,43,40,0.18)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             >
               View Work
             </a>
@@ -137,15 +182,19 @@ export default function Hero() {
                 alignItems:     "center",
                 cursor:         "pointer",
                 textDecoration: "none",
-                transition:     "border-color 0.2s, color 0.2s",
+                transition:     "border-color 0.2s, color 0.2s, transform 0.25s ease, box-shadow 0.25s ease",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "#8A8680";
                 e.currentTarget.style.color       = "#252B28";
+                e.currentTarget.style.transform   = "translateY(-2px)";
+                e.currentTarget.style.boxShadow   = "0 4px 12px rgba(37,43,40,0.08)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = "#C9BFB0";
                 e.currentTarget.style.color       = "#3D4440";
+                e.currentTarget.style.transform   = "translateY(0)";
+                e.currentTarget.style.boxShadow   = "none";
               }}
             >
               Say hello
@@ -155,7 +204,7 @@ export default function Hero() {
 
         {/* ── RIGHT: live prototype + title + CTA ──────────── */}
         <div
-          className="hero-featured"
+          className="hero-featured hero-reveal"
           style={{
             display:         "flex",
             flexDirection:   "column",
@@ -252,7 +301,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <div
         aria-hidden="true"
-        className="scroll-hint"
+        className="scroll-hint hero-reveal"
         style={{
           position:      "absolute",
           bottom:        "48px",
@@ -265,6 +314,7 @@ export default function Hero() {
           letterSpacing: "0.12em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
+          animation:     "scrollBounce 2.4s ease-in-out 1.2s infinite",
         }}
       >
         <div
