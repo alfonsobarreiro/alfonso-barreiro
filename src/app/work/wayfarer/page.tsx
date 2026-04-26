@@ -1034,6 +1034,41 @@ export default function WayfarerCaseStudy() {
                 ))}
               </div>
             </div>
+
+            {/* Design quality indicators */}
+            <div style={{
+              margin:     "24px 0 0",
+              padding:    "20px 24px",
+              background: c.bgSection,
+              border:     `1px solid ${c.border}`,
+              borderLeftWidth: "3px",
+              borderLeftColor: c.navy,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    600,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color:         c.navy,
+                margin:        "0 0 14px",
+              }}>Design Quality Indicators</p>
+              <div className="cs-grid-collapse" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
+                {[
+                  { label: "Content scale", value: "40+ destination pages with consistent structure: hero, overview, tips, gallery, itinerary" },
+                  { label: "Onboarding rigor", value: "5-step flow with per-step drop-off thresholds defined before design" },
+                  { label: "Design system", value: "24 component variants, 3 type scales, consistent 8px spacing grid" },
+                  { label: "Interaction fallback", value: "Globe with continent-filter grid for users who skip 3D interaction" },
+                  { label: "Responsive range", value: "375px to 1440px, tested across 4 breakpoints" },
+                  { label: "Accessibility", value: "Semantic HTML, keyboard navigation on all interactives, ARIA labels on globe controls" },
+                ].map(({ label, value }) => (
+                  <div key={label} style={{ fontFamily: font.sans }}>
+                    <p style={{ fontSize: "11px", fontWeight: 600, color: c.ink, margin: "0 0 2px", letterSpacing: "0.02em" }}>{label}</p>
+                    <p style={{ fontSize: "13px", color: c.body, margin: 0, lineHeight: 1.5 }}>{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Section>
 
           {/* -- 08 Reflection ---------------------------- */}

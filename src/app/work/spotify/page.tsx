@@ -1198,6 +1198,42 @@ export default function SpotifyCaseStudy() {
                 ))}
               </div>
             </div>
+
+            {/* Design quality indicators */}
+            <div style={{
+              margin:     "24px 0 0",
+              padding:    "20px 24px",
+              background: c.bgSection,
+              borderLeft: `3px solid ${c.accent}`,
+              border:     `1px solid ${c.border}`,
+              borderLeftWidth: "3px",
+              borderLeftColor: c.accent,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    600,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color:         c.accent,
+                margin:        "0 0 14px",
+              }}>Design Quality Indicators</p>
+              <div className="cs-grid-collapse" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
+                {[
+                  { label: "WCAG AA contrast", value: "All action sheet states pass 4.5:1 body, 3:1 large text" },
+                  { label: "Interaction efficiency", value: "Every control completable in ≤ 2 taps from long-press" },
+                  { label: "Archetype coverage", value: "4 user archetypes, each with a dedicated test scenario" },
+                  { label: "Error recovery", value: "Undo pattern on Remove with 8-second recovery window" },
+                  { label: "Stakeholder alignment", value: "Constraint matrix: Product, ML, Privacy/Legal, Engineering" },
+                  { label: "Reduced motion", value: "All animations respect prefers-reduced-motion" },
+                ].map(({ label, value }) => (
+                  <div key={label} style={{ fontFamily: font.sans }}>
+                    <p style={{ fontSize: "11px", fontWeight: 600, color: c.ink, margin: "0 0 2px", letterSpacing: "0.02em" }}>{label}</p>
+                    <p style={{ fontSize: "13px", color: c.body, margin: 0, lineHeight: 1.5 }}>{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Section>
 
           {/* ── 07 · Reflection ──────────────────────── */}

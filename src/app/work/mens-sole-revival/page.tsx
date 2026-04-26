@@ -980,6 +980,41 @@ export default function MSRCaseStudy() {
                 If Phase 1 signals are flat after 3 months of consistent publishing, the content strategy hypothesis is wrong. Revisit topic selection, distribution channels, and SEO targeting before investing in Phase 2 metrics. If review page time-on-page is below threshold, the e-commerce layout assumption needs usability testing. The plan is designed to fail fast and fail specifically.
               </p>
             </div>
+
+            {/* Design quality indicators */}
+            <div style={{
+              margin:     "24px 0 0",
+              padding:    "20px 24px",
+              background: c.bgSection,
+              border:     `1px solid ${c.border}`,
+              borderLeftWidth: "3px",
+              borderLeftColor: c.cognac,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "10px",
+                fontWeight:    700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         c.cognac,
+                margin:        "0 0 14px",
+              }}>Design quality indicators</p>
+              <div className="cs-grid-collapse" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
+                {[
+                  { label: "Design system", value: "Token-driven: 8 color tokens, 4 type scales, reusable component library" },
+                  { label: "Layout rationale", value: "E-commerce review pattern adapted for editorial (competitive: Wirecutter, Healthline, GQ)" },
+                  { label: "Visual identity", value: "Dark editorial palette designed to lower stigma barrier for men’s health content" },
+                  { label: "WCAG AA contrast", value: "All body text, headings, and CTAs pass 4.5:1 across dark palette" },
+                  { label: "Content architecture", value: "3 distinct page types (condition, review, article) with layouts matched to reading intent" },
+                  { label: "Analytics", value: "GA4 + Vercel Analytics instrumented for Phase 1 validation tracking" },
+                ].map(({ label, value }) => (
+                  <div key={label} style={{ fontFamily: font.sans }}>
+                    <p style={{ fontSize: "11px", fontWeight: 600, color: c.ink, margin: "0 0 2px", letterSpacing: "0.02em" }}>{label}</p>
+                    <p style={{ fontSize: "13px", color: c.body, margin: 0, lineHeight: 1.5 }}>{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Section>
 
           {/* -- 08 Reflection ---------------------------- */}
