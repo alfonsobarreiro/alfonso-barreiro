@@ -118,7 +118,7 @@ export default function MSRCaseStudy() {
               margin:      "0 0 48px",
               maxWidth:    "560px",
             }}>
-              Men&apos;s Sole Revival is a content-first foot health platform I designed and built from research through deployment. The original e-commerce model broke during margin analysis. The pivot toward content authority, using editorial credibility and e-commerce UX patterns, was the real design decision.
+              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years, and until I got serious about them, nothing changed. Foot health carries shame. Men over 40 tend to be caretakers of others and often neglect themselves. I want to share knowledge and hope with men. Live at menssolerevival.com, GA4 instrumented. Phase 1 evaluation plan active. First data window closes May 2026.
             </p>
 
             {/* Metadata row */}

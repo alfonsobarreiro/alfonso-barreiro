@@ -119,7 +119,7 @@ export default function WayfarerCaseStudy() {
               margin:      "0 0 48px",
               maxWidth:    "560px",
             }}>
-              Wayfarer is a concept travel discovery platform I designed for DesignLab. AI-assisted development made it possible to build far beyond the brief. The real design work was deciding what to cut.
+              It started as a DesignLab capstone. I expanded it. Discovery-first travel platform: 40+ destinations, interactive globe, 5-step onboarding. No live traffic. Decisions come from the brief and competitive analysis, not user behavior. The hypothesis-driven evaluation plan is built and ready to test them.
             </p>
 
             {/* Metadata row */}

@@ -121,7 +121,7 @@ export default function SpotifyCaseStudy() {
               margin:      "0 0 48px",
               maxWidth:    "560px",
             }}>
-              Spotify&apos;s highest-visibility surface offers no way to manage what appears there. I designed three shelf-native controls (Pin, Remove, and Pause) that give users agency without degrading the recommendation engine.
+              I&apos;m a daily Spotify power user. The Recently Played shelf is where most of my listening starts, and recent updates have moved in the wrong direction. No way to hide a track I don&apos;t want resurfacing. No way to pin one I keep coming back to. No way to pause the shelf. Three controls fix that: Pin, Remove, Pause. Concept project. The validation framework is the deliverable.
             </p>
 
             {/* Metadata row */}

@@ -22,7 +22,7 @@ const projects: Project[] = [
     title:       "Spotify",
     subtitle:    "Recently Played Controls",
     description:
-      "Spotify's highest-visibility surface offers no way to manage what appears there. I designed three shelf-native controls (Pin, Remove, and Pause) that give users agency without degrading the recommendation engine.",
+      "Three shelf-native controls: Pin, Remove, and Pause. Validation framework: moderated test protocol, per-feature acceptance criteria, decision gates. Concept project. The evaluation plan is the deliverable.",
     tags:        ["UX Research", "Interaction Design", "Prototyping"],
     year:        "2026",
     status:      "live",
@@ -34,7 +34,7 @@ const projects: Project[] = [
     title:       "Wayfarer",
     subtitle:    "Travel Discovery Platform",
     description:
-      "A concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build. Interactive globe, multi-step onboarding, and 40+ destinations.",
+      "Discovery-first platform: 40+ destinations, interactive globe, 5-step onboarding. DesignLab capstone. No live traffic. Decisions come from the brief and competitive analysis, not user behavior. The evaluation plan is built to test them.",
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
     status:      "live",
@@ -46,7 +46,7 @@ const projects: Project[] = [
     title:       "Men's Sole Revival",
     subtitle:    "Foot Health Content Platform",
     description:
-      "A content-first foot health resource for men. Dark editorial design, e-commerce UX patterns, and a token-driven design system built to lower the stigma barrier and serve readers who are evaluating, not just browsing.",
+      "Live at menssolerevival.com. GA4 instrumented. Phase 1 evaluation plan active: tracking organic search impressions, article read depth, and return visitor ratio. First data window closes May 2026.",
     tags:        ["Content UX", "Visual Design", "Design System"],
     year:        "2026",
     status:      "live",
