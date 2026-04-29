@@ -343,72 +343,8 @@ export default function WayfarerCaseStudy() {
             </div>
           </Section>
 
-          {/* -- 04 Design Decisions ----------------------- */}
-          <Section label="04" title="Design Decisions">
-            <p style={bodyText}>
-              Two systems shaped the experience: the information architecture that organizes 40+ destinations into a discoverable structure, and the multi-step signup that turns preference collection into a first act of exploration.
-            </p>
-
-            {/* Design decisions grid */}
-            <div style={{ margin: "32px 0", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <div style={{
-                padding:      "16px 24px",
-                background:   c.bgSection,
-                borderBottom: `1px solid ${c.border}`,
-              }}>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        0,
-                }}>
-                  Key Design Decisions
-                </p>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
-                {[
-                  { area: "Discovery",    decision: "Globe as primary entry point",         rationale: "Curiosity-driven exploration before search. Two paths (globe + grid) match different levels of intent." },
-                  { area: "Onboarding",   decision: "5-step form as discovery sequence",    rationale: "Each step narrows personalization without feeling like paperwork. The form mirrors the product's exploration model." },
-                  { area: "Architecture", decision: "Every page maps to a user task",       rationale: "Orient, Browse, Explore, Evaluate, Plan, Personalize. The IA supports a natural progression without forcing it." },
-                  { area: "Scope",        decision: "Cut booking, keep discovery",           rationale: "The hardest call. Working features removed because they contradicted the brief's core premise." },
-                ].map(({ area, decision, rationale }, i) => (
-                  <div
-                    key={area}
-                    style={{
-                      padding:     "20px 24px",
-                      background:  c.surface,
-                      borderRight: i < 3 ? `1px solid ${c.border}` : "none",
-                    }}
-                  >
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
-                      {area}
-                    </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.ink, margin: "0 0 6px", lineHeight: 1.4 }}>
-                      {decision}
-                    </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0 }}>
-                      {rationale}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <h3 style={subheading}>Information Architecture: 40+ Destinations, One Discovery Path</h3>
-            <p style={bodyText}>
-              The IA question was: how does a curious traveler find a destination they didn&apos;t know they wanted? Browse-first, not search-first. The globe is the primary entry point. Clicking a region flies the camera to that continent. Pins mark destinations. Hovering reveals a preview. Clicking opens the full detail page.
-            </p>
-            <p style={bodyText}>
-              The fallback path is the destinations grid with continent filters. Users who know what region they want can filter directly. Users who don&apos;t can explore the globe. Two entry points, same content, matched to different levels of intent.
-            </p>
-            <p style={bodyText}>
-              Each destination detail page follows a consistent structure: hero image with metadata, info grid (best time to visit, language, currency, temperature, timezone), long description, photo gallery, travel tips, highlights, related destinations, and a location map. The structure is rigid by design. When the content varies, the container shouldn&apos;t.
-            </p>
-
-            <h3 style={subheading}>Multi-Step Signup: Progressive Disclosure as Discovery</h3>
+          {/* -- 04 Multi-Step Signup ---------------------- */}
+          <Section label="04" title="Multi-Step Signup">
             <p style={bodyText}>
               The original form was the brief&apos;s most cited pain point. My redesign broke it into five steps, each collecting a different type of preference:
             </p>
@@ -446,8 +382,82 @@ export default function WayfarerCaseStudy() {
             </p>
           </Section>
 
-          {/* -- 05 Design System -------------------------- */}
-          <Section label="05" title="Design System">
+          {/* -- 05 Information Architecture -------------- */}
+          <Section label="05" title="Information Architecture">
+            <p style={bodyText}>
+              The IA question was: how does a curious traveler find a destination they didn&apos;t know they wanted? Search-first answers the wrong user. Browse-first answers the right one. Every IA decision flowed from there.
+            </p>
+
+            <h3 style={subheading}>Two entry points, same content</h3>
+            <p style={bodyText}>
+              Globe and grid serve different users with the same content. The globe is for curiosity. A traveler who doesn&apos;t know where to look spins it, follows pins, lets a region invite them in. The grid is for intent. A traveler who already knows they want Southeast Asia filters to it and scans. Both paths land on the same destination pages. The IA doesn&apos;t pick a winner. It picks both. A single funnel would have served the intent user and frustrated the curiosity one.
+            </p>
+
+            <h3 style={subheading}>Six page types, each owns a task</h3>
+            <p style={bodyText}>
+              Six routes, six user verbs: orient, browse, explore, evaluate, plan, personalize. Six covers the full discovery cycle without padding. Anything beyond it would be feature for feature&apos;s sake.
+            </p>
+
+            {/* Route table */}
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ background: c.bgSection }}>
+                    {["Route", "Type", "User Task", "Purpose"].map((h) => (
+                      <th key={h} style={{ ...thStyle, color: h === "User Task" ? c.navy : c.muted, fontWeight: h === "User Task" ? 700 : 600 }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { route: "/",                  type: "Homepage",       task: "Orient",       purpose: "Understand what Wayfarer is and whether to explore further." },
+                    { route: "/destinations",      type: "Explorer",       task: "Browse",       purpose: "Filter and scan destinations by continent." },
+                    { route: "/discover",          type: "Globe",          task: "Explore",      purpose: "Discover destinations through the interactive 3D map." },
+                    { route: "/destinations/[slug]",type: "Detail",        task: "Evaluate",     purpose: "Go deeper on a single destination." },
+                    { route: "/planner",           type: "Trip Planner",   task: "Plan",         purpose: "Build a day-by-day itinerary with drag-to-reorder." },
+                    { route: "Modal",              type: "Sign-up Form",   task: "Personalize",  purpose: "Create an account with preference data for tailored discovery." },
+                  ].map(({ route, type, task, purpose }, i) => (
+                    <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{route}</td>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.navy }}>{task}</td>
+                      <td style={tdStyle}>{purpose}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ ...bodyText, marginTop: "20px" }}>
+              The discipline that produced this list is the same one in &sect;03: every page that didn&apos;t earn its task got cut.
+            </p>
+
+            <h3 style={subheading}>The progression isn&apos;t linear, and that&apos;s intentional</h3>
+            <p style={bodyText}>
+              Orient → browse/explore → evaluate → plan → personalize is the natural sequence, but the IA doesn&apos;t enforce it. The globe and the grid are parallel, not sequential. The trip planner is reachable from any page. The signup modal opens when the user wants personalized results, not when the system demands them. Discovery shouldn&apos;t have a turnstile. Every gate is a place users leave.
+            </p>
+
+            <h3 style={subheading}>The detail page is rigid by design</h3>
+            <p style={bodyText}>
+              Every destination detail page follows the same structure. Hero image with metadata. Info grid (best time to visit, language, currency, temperature, timezone). Long description. Photo gallery. Travel tips. Highlights. Related destinations. Map. The structure is rigid by design. When the content varies destination to destination, the container shouldn&apos;t. Consistency is what lets a user compare Kyoto to Lisbon without learning a new layout. The detail page is the workhorse of evaluation. It earns its rigidity.
+            </p>
+
+            <h3 style={subheading}>What was rejected</h3>
+            <p style={bodyText}>
+              Three IA approaches lost the filter:
+            </p>
+            <ul style={{ ...bodyText, paddingLeft: "24px", margin: "0 0 32px", listStyleType: "disc" }}>
+              <li style={{ marginBottom: "12px" }}><strong>Search-first.</strong> The default for booking platforms. Wrong here. Searching requires a destination already in mind. The target audience doesn&apos;t know yet. They&apos;re researching where to go, not how to get there.</li>
+              <li style={{ marginBottom: "12px" }}><strong>Booking-integrated taxonomy.</strong> Hotels and flights as primary navigation. Tested briefly during the AI-assisted build phase (&sect;03). The information scent shifted from &ldquo;discover&rdquo; to &ldquo;transact&rdquo; the moment hotel cards appeared. Cut.</li>
+              <li><strong>Tag-based discovery.</strong> Pinterest-style filtering by mood (romantic, adventurous, family-friendly). Considered, rejected. Tags are aspirational, but they don&apos;t reduce decision space. Continent + interest does.</li>
+            </ul>
+
+            <p style={bodyText}>
+              This IA assumes browse-first is what the audience wants. The hypothesis is reasoned from the brief and competitive analysis, not from a card sort with real users. That&apos;s the honest gap. The evaluation plan in &sect;07 is built to test it, starting with whether the globe pulls users in or sends them straight to the grid.
+            </p>
+          </Section>
+
+          {/* -- 06 Design System -------------------------- */}
+          <Section label="06" title="Design System">
             <p style={bodyText}>
               The original DesignLab style guide defined the palette, typography, logo rules, and image direction. I treated every spec as a constraint, not a suggestion. Two typefaces, each with a defined role. Space Grotesk for headings: commanding without being aggressive. Inter for body: clean and legible at every size. No decorative pairing. The roles are structural.
             </p>
@@ -612,43 +622,6 @@ export default function WayfarerCaseStudy() {
             <p style={{ ...bodyText, marginTop: "10px", fontSize: "13px", color: c.muted }}>
               Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
             </p>
-          </Section>
-
-          {/* -- 06 Site Architecture ---------------------- */}
-          <Section label="06" title="Site Architecture">
-            <p style={bodyText}>
-              Six page types, each designed for a different user task. The information architecture supports a natural progression from orientation to planning without forcing a linear path.
-            </p>
-
-            {/* Route table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {["Route", "Type", "User Task", "Purpose"].map((h) => (
-                      <th key={h} style={{ ...thStyle, color: h === "User Task" ? c.navy : c.muted, fontWeight: h === "User Task" ? 700 : 600 }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { route: "/",                  type: "Homepage",       task: "Orient",       purpose: "Understand what Wayfarer is and whether to explore further." },
-                    { route: "/destinations",      type: "Explorer",       task: "Browse",       purpose: "Filter and scan destinations by continent." },
-                    { route: "/discover",          type: "Globe",          task: "Explore",      purpose: "Discover destinations through the interactive 3D map." },
-                    { route: "/destinations/[slug]",type: "Detail",        task: "Evaluate",     purpose: "Go deeper on a single destination." },
-                    { route: "/planner",           type: "Trip Planner",   task: "Plan",         purpose: "Build a day-by-day itinerary with drag-to-reorder." },
-                    { route: "Modal",              type: "Sign-up Form",   task: "Personalize",  purpose: "Create an account with preference data for tailored discovery." },
-                  ].map(({ route, type, task, purpose }, i) => (
-                    <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{route}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.navy }}>{task}</td>
-                      <td style={tdStyle}>{purpose}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
           </Section>
 
         </div>{/* /content wrapper -- break out for full-width walkthrough */}
