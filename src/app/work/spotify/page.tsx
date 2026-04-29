@@ -8,11 +8,11 @@ import SpotifyQuoteRotator from "@/components/SpotifyQuoteRotator";
 import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 
 export const metadata: Metadata = {
-  title: "Spotify — Recently Played Controls · Alfonso Barreiro",
+  title: "Spotify · Recently Played Controls · Alfonso Barreiro",
   description:
     "Case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
   openGraph: {
-    title: "Spotify — Recently Played Controls · Alfonso Barreiro",
+    title: "Spotify · Recently Played Controls · Alfonso Barreiro",
     description:
       "A UX case study on designing reversible controls for Spotify's Recently Played shelf.",
     url: "https://barreiro.com/work/spotify",
@@ -158,7 +158,7 @@ export default function SpotifyCaseStudy() {
             <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
               <Image
                 src="/images/work/spotify/spotify-hero-cover.webp"
-                alt="Spotify Recently Played Controls — UI preview showing Pin, Remove, and Pause controls on the Home shelf"
+                alt="Spotify Recently Played Controls. UI preview showing Pin, Remove, and Pause controls on the Home shelf"
                 fill
                 sizes="(max-width: 767px) 100vw, 860px"
                 style={{ objectFit: "cover" }}
@@ -351,7 +351,7 @@ export default function SpotifyCaseStudy() {
               <div style={{ border: `1px solid ${c.border}`, overflow: "hidden" }}>
                 <Image
                   src="/images/work/spotify/spotify-competitive-ref.webp"
-                  alt="Point of Reference — Baseline and market snapshot showing Spotify's gap vs YouTube Music, Apple Music, and Amazon Music"
+                  alt="Point of Reference. Baseline and market snapshot showing Spotify's gap vs YouTube Music, Apple Music, and Amazon Music"
                   width={1920}
                   height={1080}
                   style={{ width: "100%", height: "auto", display: "block" }}
@@ -374,7 +374,7 @@ export default function SpotifyCaseStudy() {
               Pin, Remove, and Pause weren't the first ideas. They were what survived the filter. Early directions included global history clearing, a private listening mode, and surfacing controls from Settings. Each was ruled out: too broad in scope, too deep in the navigation stack, or too likely to degrade recommendation signals. What remained were three actions that could live on the shelf, complete in 1–2 steps, and reverse without permanent consequence.
             </p>
             <p style={bodyText}>
-              Every decision was then filtered through one core constraint: <strong>don't break discovery.</strong> The shelf exists to surface content users want. Any control that weakens that signal is out of scope.
+              Every survivor passed one test: <strong>don't break discovery.</strong>
             </p>
 
             {/* Three controls overview diagram */}
