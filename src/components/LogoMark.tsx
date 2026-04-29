@@ -2,7 +2,7 @@ import Image from "next/image";
 
 interface LogoMarkProps {
   size?: number;
-  /** "dark" (default) → logo.png. "light" → logo-white.png (no filter needed). */
+  /** "dark" (default) → logo-transparent.png (alpha). "light" → logo-white.png (alpha). */
   variant?: "dark" | "light";
   opacity?: number;
   className?: string;
@@ -20,7 +20,7 @@ export default function LogoMark({
 
   return (
     <Image
-      src={variant === "light" ? "/logo-white.png" : "/logo.png"}
+      src={variant === "light" ? "/logo-white.png" : "/logo-transparent.png"}
       alt="Alfonso Barreiro"
       width={w}
       height={h}
