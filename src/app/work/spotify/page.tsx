@@ -171,49 +171,30 @@ export default function SpotifyCaseStudy() {
         {/* ── Content wrapper ──────────────────────── */}
         <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
-          {/* ── 01 · Context & Problem ───────────────── */}
-          <Section label="01" title="Context &amp; Problem">
+          {/* ── 01 · Problem & Constraints ───────────────── */}
+          <Section label="01" title="Problem &amp; Constraints">
             <p style={bodyText}>
-              I noticed a gap in one of Spotify&apos;s highest-traffic surfaces: the Recently Played shelf sits at the top of every user&apos;s Home feed, updates automatically based on listening history, and offers no meaningful controls. No way to remove an item. No way to pin a favorite. No way to pause the feed from logging activity. The shelf is always visible, on your screen and on anyone else&apos;s. One user put it plainly: &ldquo;I don&apos;t want my partner&apos;s eyes to catch my home screen.&rdquo; That&apos;s not a UX complaint. That&apos;s a shelf with consequences.
+              I noticed a gap in one of Spotify&apos;s highest-traffic surfaces. The Recently Played shelf sits at the top of every user&apos;s Home feed, updates automatically based on listening history, and offers no meaningful controls. No way to remove an item. No way to pin a favorite. No way to pause the feed from logging activity. The shelf is always visible, on your screen and on anyone else&apos;s. One user put it plainly: &ldquo;I don&apos;t want my partner&apos;s eyes to catch my home screen.&rdquo; That&apos;s not a UX complaint. That&apos;s a shelf with consequences.
             </p>
             <p style={bodyText}>
-              Three friction points emerged, each pointing to a different kind of control:
+              <strong>Before.</strong> The shelf records every play and orders by recency. That&apos;s the entire interaction model. A track played by accident sits there. Music played for someone else logs the same as anything else. The only way to push a favorite to the top is to play it for one second and force-quit, then repeat. Community forums document users doing exactly that. The workaround is the evidence the shelf is missing controls.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "4px" }}>
-              {[
-                {
-                  label: "Clutter",
-                  text: "The shelf gets crowded with low-signal content. Users want to surface favorites without digging, but pinning doesn't exist.",
-                },
-                {
-                  label: "Embarrassment",
-                  text: "Shared devices expose listening history publicly on screen. Users need a way to remove specific items. Per-device, not globally.",
-                },
-                {
-                  label: "Recommendation drift",
-                  text: "An atypical listening session shouldn't poison future recommendations. Users need a time-boxed way to pause history logging.",
-                },
-              ].map(({ label, text }) => (
-                <div
-                  key={label}
-                  className="cs-problem-card"
-                  style={{
-                    display:      "flex",
-                    gap:          "20px",
-                    padding:      "20px 24px",
-                    background:   c.surface,
-                    border:       `1px solid ${c.border}`,
-                  }}
-                >
-                  <span className="cs-problem-label" style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
-                    {label}
-                  </span>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                    {text}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <p style={bodyText}>
+              <strong>After.</strong> Three controls, all native to the shelf, each completing in 1&ndash;2 taps. Pin to surface a favorite. Remove to hide a track from the shelf without deleting it from the library. Pause to stop the shelf from logging for a time-boxed session. Reversible by default. No buried settings, no global toggles, no breaking the recommendation engine.
+            </p>
+            <p style={bodyText}>
+              <strong>Constraints.</strong> The rules every decision had to honor:
+            </p>
+            <ul style={{ ...bodyText, paddingLeft: "24px", margin: "0 0 32px", listStyleType: "disc" }}>
+              <li style={{ marginBottom: "12px" }}>Don&apos;t break discovery. The shelf exists to surface what users want. Any control that weakens that signal is out of scope.</li>
+              <li style={{ marginBottom: "12px" }}>ML training signal integrity. Permanent pause was ruled out. Time-boxing is what survived.</li>
+              <li style={{ marginBottom: "12px" }}>Per-device, not global. Remove on one device shouldn&apos;t propagate. Privacy at the device boundary.</li>
+              <li style={{ marginBottom: "12px" }}>Reversible only. No destructive deletes. Every action has an undo.</li>
+              <li>Shelf-native. No settings menus. The control lives where the problem occurs.</li>
+            </ul>
+            <p style={bodyText}>
+              These came from mapping stakeholder priorities (Product, ML, Privacy/Legal, Engineering) before any visual design happened. They turned the obvious first idea, global history clearing, into a non-starter and pointed toward the three controls that survived validation.
+            </p>
           </Section>
 
           {/* ── Quote rotator ───────────────────────── */}
