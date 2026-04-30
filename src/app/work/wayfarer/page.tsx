@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import SignupSlider from "./SignupSlider";
 
 export const metadata: Metadata = {
-  title: "Wayfarer \u2014 Travel Discovery Platform \u00B7 Alfonso Barreiro",
+  title: "Wayfarer \u00B7 Travel Discovery Platform \u00B7 Alfonso Barreiro",
   description:
     "Case study: A concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build.",
   openGraph: {
@@ -116,11 +116,52 @@ export default function WayfarerCaseStudy() {
               fontSize:    "clamp(16px, 2.2vw, 20px)",
               lineHeight:  1.55,
               color:       "rgba(245,243,239,0.65)",
-              margin:      "0 0 48px",
+              margin:      "0 0 40px",
               maxWidth:    "560px",
             }}>
-              It started as a DesignLab capstone. I expanded it. Discovery-first travel platform: 40+ destinations, interactive globe, 5-step onboarding. No live traffic. Decisions come from the brief and competitive analysis, not user behavior. The hypothesis-driven evaluation plan is built and ready to test them.
+              A DesignLab capstone I kept building after the course ended, then expanded with AI tools. Discovery-first travel platform with 40+ destinations, an interactive globe, and a 5-step signup, no live traffic yet, and a hypothesis-driven evaluation plan already built to test it.
             </p>
+
+            {/* Acceptance criteria strip — proxy artifacts surfaced in first scroll */}
+            <div style={{
+              display:        "flex",
+              flexWrap:       "wrap",
+              gap:            "clamp(20px, 4vw, 48px)",
+              padding:        "20px 24px",
+              marginBottom:   "40px",
+              background:     "rgba(62,60,120,0.18)",
+              borderLeft:     `2px solid #8E8AD9`,
+            }}>
+              {[
+                { value: "40+",        label: "destinations shipped" },
+                { value: "5 steps",    label: "Zod-validated signup" },
+                { value: "4 hypotheses", label: "evaluation plan ready" },
+              ].map(({ value, label }) => (
+                <div key={label}>
+                  <p style={{
+                    fontFamily:    font.display,
+                    fontSize:      "clamp(18px, 2.6vw, 22px)",
+                    fontWeight:    500,
+                    color:         "#C7C5E3",
+                    margin:        "0 0 2px",
+                    letterSpacing: "-0.01em",
+                  }}>
+                    {value}
+                  </p>
+                  <p style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "11px",
+                    fontWeight:    600,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color:         "rgba(245,243,239,0.55)",
+                    margin:        0,
+                  }}>
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
 
             {/* Metadata row */}
             <div style={{
@@ -431,24 +472,14 @@ export default function WayfarerCaseStudy() {
               The discipline that produced this list is the same one in &sect;03: every page that didn&apos;t earn its task got cut.
             </p>
 
-            <h3 style={subheading}>The progression isn&apos;t linear, and that&apos;s intentional</h3>
-            <p style={bodyText}>
-              Orient → browse/explore → evaluate → plan → personalize is the natural sequence, but the IA doesn&apos;t enforce it. The globe and the grid are parallel, not sequential. The trip planner is reachable from any page. The signup modal opens when the user wants personalized results, not when the system demands them. Discovery shouldn&apos;t have a turnstile. Every gate is a place users leave.
-            </p>
-
-            <h3 style={subheading}>The detail page is rigid by design</h3>
-            <p style={bodyText}>
-              Every destination detail page follows the same structure. Hero image with metadata. Info grid (best time to visit, language, currency, temperature, timezone). Long description. Photo gallery. Travel tips. Highlights. Related destinations. Map. The structure is rigid by design. When the content varies destination to destination, the container shouldn&apos;t. Consistency is what lets a user compare Kyoto to Lisbon without learning a new layout. The detail page is the workhorse of evaluation. It earns its rigidity.
-            </p>
-
             <h3 style={subheading}>What was rejected</h3>
             <p style={bodyText}>
               Three IA approaches lost the filter:
             </p>
             <ul style={{ ...bodyText, paddingLeft: "24px", margin: "0 0 32px", listStyleType: "disc" }}>
-              <li style={{ marginBottom: "12px" }}><strong>Search-first.</strong> The default for booking platforms. Wrong here. Searching requires a destination already in mind. The target audience doesn&apos;t know yet. They&apos;re researching where to go, not how to get there.</li>
-              <li style={{ marginBottom: "12px" }}><strong>Booking-integrated taxonomy.</strong> Hotels and flights as primary navigation. Tested briefly during the AI-assisted build phase (&sect;03). The information scent shifted from &ldquo;discover&rdquo; to &ldquo;transact&rdquo; the moment hotel cards appeared. Cut.</li>
-              <li><strong>Tag-based discovery.</strong> Pinterest-style filtering by mood (romantic, adventurous, family-friendly). Considered, rejected. Tags are aspirational, but they don&apos;t reduce decision space. Continent + interest does.</li>
+              <li style={{ marginBottom: "12px" }}><strong>Search-first.</strong> The default for booking platforms. Searching requires a destination already in mind, and the target audience doesn&apos;t know yet.</li>
+              <li style={{ marginBottom: "12px" }}><strong>Booking-integrated taxonomy.</strong> Hotels and flights as primary navigation. The information scent shifted from discover to transact the moment hotel cards appeared.</li>
+              <li><strong>Tag-based discovery.</strong> Pinterest-style filtering by mood. Tags are aspirational but don&apos;t reduce decision space. Continent + interest does.</li>
             </ul>
 
             <p style={bodyText}>
@@ -760,8 +791,6 @@ export default function WayfarerCaseStudy() {
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
                   { detail: "Mapbox GL with 3D projection and atmosphere", why: "The globe feels physical. Fog and lighting effects create depth that a flat map can't." },
-                  { detail: "Custom markers with hover state and keyboard access", why: "Terra cotta pins with white borders — per brief, the accent color marks interactive elements. Hover triggers a popup with name and tagline. Enter/Space to select. Accessible by design." },
-                  { detail: "Fly-to animation on region click", why: "Smooth camera transition. The movement communicates geography. Users build spatial memory of where destinations sit." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -821,9 +850,7 @@ export default function WayfarerCaseStudy() {
               {/* Grid annotations */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { detail: "Continent filter pills", why: "Seven regions (All, Africa, Asia, Europe, North America, South America, Oceania). Filter state is preserved as the user scrolls. No page reloads." },
                   { detail: "Count badges on every filter", why: "Users see how many destinations live under each region before committing to a filter. Less blind clicking, more informed scanning." },
-                  { detail: "Shared destination card component", why: "The same card that appears in the globe's hover state appears here — consistent visual language across both entry points." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -896,8 +923,6 @@ export default function WayfarerCaseStudy() {
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
                   { detail: "Zod schema validation per step", why: "Errors surface before the user moves forward. No surprise failures at the end of a 5-step flow." },
-                  { detail: "Animated background image per step", why: "Each step has a travel image that shifts with the content. The form feels like a place, not a spreadsheet." },
-                  { detail: "Review screen with edit-back buttons", why: "Users can jump to any previous step and return. The review screen is the safety net that makes 5 steps feel manageable." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -969,18 +994,9 @@ export default function WayfarerCaseStudy() {
               These outcomes don&apos;t need live users. Design system coherence: tokens hold across every screen. IA where every route maps to one user verb (orient, browse, explore, evaluate, plan, personalize). Per-step form validation with Zod. No layout breakage at standard breakpoints. The artifact tests cleanly on its own.
             </p>
 
-            <h3 style={subheading}>What&apos;s deferred to live testing</h3>
-            <p style={bodyText}>
-              The &sect;08 Evaluation Plan defines four hypotheses ready to run when traffic exists: globe vs grid usage, signup completion, detail-page engagement, trip planner discoverability. Outcomes shaped, not measured.
-            </p>
-
             <h3 style={subheading}>The honest scope</h3>
             <p style={bodyText}>
               No live users tested this. No card sort on destination categories. No usability testing on the globe. The hypotheses are reasoned from the brief and competitive analysis, not validated by behavior. This case study can claim design discipline, scope discipline, and system coherence today. It can&apos;t claim user-validated discovery. That&apos;s what &sect;08 is set up to test when traffic exists.
-            </p>
-
-            <p style={bodyText}>
-              What this set of outcomes proves: a designer working with AI-assisted tools can hold scope under pressure, build a coherent system from scratch, and ship to spec while expanding what was possible. What it doesn&apos;t prove: that the choices land with real travelers. The next step belongs to &sect;08 and &sect;09.
             </p>
           </Section>
 
@@ -1040,70 +1056,6 @@ export default function WayfarerCaseStudy() {
               </table>
             </div>
 
-            {/* Qualitative signals */}
-            <div style={{
-              margin:     "24px 0 0",
-              padding:    "20px 24px",
-              background: c.surface,
-              border:     `1px solid ${c.border}`,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>Qualitative Signals to Watch</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                {[
-                  "Do participants use the globe or go straight to the grid? The answer reveals whether the globe is novel or just friction.",
-                  "On the signup flow, do users read the interest categories or just tap quickly? Reading means the categories feel meaningful.",
-                  "After completing the signup, do participants expect personalized results? If yes, the form set the right expectation.",
-                  "In the trip planner, do users discover drag-to-reorder without prompting, or do they look for arrows or edit buttons?",
-                ].map((signal) => (
-                  <p key={signal} style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0, paddingLeft: "16px", textIndent: "-16px" }}>
-                    <span style={{ color: c.navy, marginRight: "8px" }}>→</span>{signal}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            {/* Design quality indicators */}
-            <div style={{
-              margin:     "24px 0 0",
-              padding:    "20px 24px",
-              background: c.bgSection,
-              border:     `1px solid ${c.border}`,
-              borderLeftWidth: "3px",
-              borderLeftColor: c.navy,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.navy,
-                margin:        "0 0 14px",
-              }}>Design Quality Indicators</p>
-              <div className="cs-grid-collapse" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
-                {[
-                  { label: "Content scale", value: "40+ destination pages with consistent structure: hero, overview, tips, gallery, itinerary" },
-                  { label: "Onboarding rigor", value: "5-step flow with per-step drop-off thresholds defined before design" },
-                  { label: "Design system", value: "24 component variants, 3 type scales, consistent 8px spacing grid" },
-                  { label: "Interaction fallback", value: "Globe with continent-filter grid for users who skip 3D interaction" },
-                  { label: "Responsive range", value: "375px to 1440px, tested across 4 breakpoints" },
-                  { label: "Accessibility", value: "Semantic HTML, keyboard navigation on all interactives, ARIA labels on globe controls" },
-                ].map(({ label, value }) => (
-                  <div key={label} style={{ fontFamily: font.sans }}>
-                    <p style={{ fontSize: "11px", fontWeight: 600, color: c.ink, margin: "0 0 2px", letterSpacing: "0.02em" }}>{label}</p>
-                    <p style={{ fontSize: "13px", color: c.body, margin: 0, lineHeight: 1.5 }}>{value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </Section>
 
           {/* -- 09 Reflection ---------------------------- */}
@@ -1121,14 +1073,6 @@ export default function WayfarerCaseStudy() {
             <h3 style={subheading}>What wasn&apos;t done</h3>
             <p style={bodyText}>
               I didn&apos;t conduct user interviews before building. I didn&apos;t run usability tests on the signup flow or the globe interaction. The design decisions are reasoned from the brief, the style guide, and competitive analysis of how travel platforms organize discovery. Not from observed behavior with real users. Self-initiated timeline, no research budget. The decisions are reasoned, not tested. That&apos;s the honest gap.
-            </p>
-
-            <h3 style={subheading}>If I had more time</h3>
-            <p style={bodyText}>
-              Run moderated usability tests with 5&ndash;6 participants matching the target persona. Test the globe vs. grid as primary entry points. Measure whether the 5-step signup achieves higher completion than a collapsed single-page form. Validate the destination detail page structure: does the rigid layout help or hinder scanning when content varies by destination?
-            </p>
-            <p style={bodyText}>
-              The bigger open question: competitive analysis of travel discovery platforms (Google Travel, Wanderlog, Inspirock, Atlas Obscura). I designed from the brief, not from a market audit. A card sort on the interest categories. User interviews about how 21&ndash;30-year-olds actually research travel. The design reasoning is sound, but reasoning isn&apos;t evidence.
             </p>
           </Section>
 
