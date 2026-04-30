@@ -119,7 +119,7 @@ export default function WayfarerCaseStudy() {
               margin:      "0 0 40px",
               maxWidth:    "560px",
             }}>
-              A DesignLab capstone I kept building after the course ended, then expanded with AI tools. Discovery-first travel platform with 40+ destinations, an interactive globe, and a 5-step signup, no live traffic yet, and a hypothesis-driven evaluation plan already built to test it.
+              A DesignLab capstone I kept building, then expanded with AI tools. Discovery-first travel platform with 40+ destinations, an interactive globe, a 5-step signup, and an evaluation plan ready to test them.
             </p>
 
             {/* Acceptance criteria strip — proxy artifacts surfaced in first scroll */}
@@ -176,7 +176,7 @@ export default function WayfarerCaseStudy() {
                 { label: "Type",     value: "DesignLab \u00B7 Concept" },
                 { label: "Timeline", value: "4-week sprint" },
                 { label: "Methods",  value: "Heuristic Evaluation \u00B7 Card Sorting \u00B7 Information Architecture \u00B7 Multi-Step Form UX \u00B7 AI-Assisted Development" },
-                { label: "Outcome",  value: "Discovery-first platform with 40+ destinations, interactive globe, and validated multi-step onboarding" },
+                { label: "Outcome",  value: "Discovery-first platform shipped, evaluation plan ready." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#C7C5E3", margin: "0 0 4px" }}>
