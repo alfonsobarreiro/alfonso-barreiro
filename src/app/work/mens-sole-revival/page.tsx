@@ -118,7 +118,7 @@ export default function MSRCaseStudy() {
               margin:      "0 0 40px",
               maxWidth:    "560px",
             }}>
-              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years, and nothing changed until I got serious. Most men over 40 carry care for everyone but themselves, and the gap between awareness and action is what this site is built to close.
+              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years. Most men over 40 carry care for everyone but themselves.
             </p>
 
             {/* Acceptance criteria strip \u2014 operational status surfaced in first scroll */}
@@ -175,7 +175,7 @@ export default function MSRCaseStudy() {
                 { label: "Type",     value: "Solo \u00B7 Self-initiated" },
                 { label: "Timeline", value: "Jan \u2013 Apr 2026" },
                 { label: "Methods",  value: "Market Research \u00B7 Competitive Analysis \u00B7 Content UX \u00B7 AI-Assisted Development" },
-                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority. What I\u2019d measure next: depth-of-read on the core guides." },
+                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.cognac, margin: "0 0 4px" }}>
