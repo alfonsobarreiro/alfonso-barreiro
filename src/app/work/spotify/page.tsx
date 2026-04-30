@@ -118,11 +118,52 @@ export default function SpotifyCaseStudy() {
               fontSize:    "clamp(16px, 2.2vw, 20px)",
               lineHeight:  1.55,
               color:       "rgba(245,243,239,0.65)",
-              margin:      "0 0 48px",
+              margin:      "0 0 40px",
               maxWidth:    "560px",
             }}>
-              I&apos;m a daily Spotify power user. The Recently Played shelf is where most of my listening starts, and recent updates have moved in the wrong direction. No way to hide a track I don&apos;t want resurfacing. No way to pin one I keep coming back to. No way to pause the shelf. Three controls fix that: Pin, Remove, Pause. Concept project. The validation framework is the deliverable.
+              I&apos;m a daily Spotify power user, and the Recently Played shelf has no way to pin a favorite, hide an embarrassing play, or pause history before handing the phone to someone else. Pin, Remove, Pause: a concept project where the validation framework is the deliverable.
             </p>
+
+            {/* Acceptance criteria strip — proxy metrics surfaced in first scroll */}
+            <div style={{
+              display:        "flex",
+              flexWrap:       "wrap",
+              gap:            "clamp(20px, 4vw, 48px)",
+              padding:        "20px 24px",
+              marginBottom:   "40px",
+              background:     "rgba(29,185,84,0.06)",
+              borderLeft:     `2px solid ${c.green}`,
+            }}>
+              {[
+                { value: "≤ 2 taps",   label: "to pin a favorite" },
+                { value: "≤ 6 sec",    label: "to remove + undo" },
+                { value: "+8 pts",     label: "UMUX-Lite vs. baseline" },
+              ].map(({ value, label }) => (
+                <div key={label}>
+                  <p style={{
+                    fontFamily:    font.display,
+                    fontSize:      "clamp(18px, 2.6vw, 22px)",
+                    fontWeight:    500,
+                    color:         c.green,
+                    margin:        "0 0 2px",
+                    letterSpacing: "-0.01em",
+                  }}>
+                    {value}
+                  </p>
+                  <p style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "11px",
+                    fontWeight:    600,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color:         "rgba(245,243,239,0.55)",
+                    margin:        0,
+                  }}>
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
 
             {/* Metadata row */}
             <div style={{
@@ -164,6 +205,51 @@ export default function SpotifyCaseStudy() {
                 style={{ objectFit: "cover" }}
                 priority
               />
+            </div>
+          </div>
+        </div>
+
+        {/* ── System at a glance: Three Controls overview ──────── */}
+        <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 64px" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
+            <div style={{
+              background:   "#FFFFFF",
+              borderRadius: "8px",
+              padding:      "32px 24px",
+              border:       `1px solid ${c.border}`,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         c.accent,
+                margin:        "0 0 20px",
+                textAlign:     "center",
+              }}>
+                The system at a glance
+              </p>
+              <div style={{ position: "relative", width: "100%", maxWidth: "720px", margin: "0 auto" }}>
+                <Image
+                  src="/images/work/spotify/spotify-overview-three-controls-cropped.webp"
+                  alt="The three core actions: Pin item, Remove from Recently Played, and Pause Listening History. Each is shelf-native, reversible, and completes in 1 to 2 taps."
+                  width={3640}
+                  height={520}
+                  sizes="(max-width: 860px) 100vw, 720px"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "12px",
+                lineHeight:    1.5,
+                color:         c.muted,
+                textAlign:     "center",
+                margin:        "20px 0 0",
+              }}>
+                Three actions. All shelf-native. All reversible. No settings menus, no buried toggles.
+              </p>
             </div>
           </div>
         </div>
@@ -223,14 +309,13 @@ export default function SpotifyCaseStudy() {
             <p style={bodyText}>
               These three personas come from Spotify&apos;s own UX research. I used them as the lens for every design decision because they represent the real behavioral range of Recently Played users. The tension between them is what made the design hard: Melanie needs social curation, Dave needs fast access under time pressure, and Stephen tells you where the feature boundary is.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              {[
+            {(() => {
+              const personas = [
                 {
                   name:    "Melodic Melanie",
                   type:    "Primary Persona",
                   img:     "/images/work/spotify/persona-melodic-melanie.webp",
                   quote:   "Why pay for it when it\u2019s free?",
-                  bio:     "24, single, Pasadena. Freelance illustrator and UI designer. Budget-constrained. Uses free music-playing apps. Shares music with friends constantly and enjoys a wide variety of genres.",
                   goals:   "Inexpensive access to music for herself and for sharing with friends.",
                   pain:    "Recently Played surfaces embarrassing or accidental plays when she shares her screen. No way to clean it up before someone sees it.",
                   needs:   "Pin to surface favorites she\u2019d actually share. Remove to clear plays she wouldn\u2019t.",
@@ -241,7 +326,6 @@ export default function SpotifyCaseStudy() {
                   type:    "Secondary Persona",
                   img:     "/images/work/spotify/persona-ranger-dave.webp",
                   quote:   "You should pay for music to support the artists.",
-                  bio:     "33, married, one toddler, Fremont. Sociologist at a tech startup. Commutes on BART. Pays for Spotify. Listens offline during transit. His taste has shifted as he\u2019s aged, and he doesn\u2019t share music with friends as often due to work and family.",
                   goals:   "Supporting music creatives. Listening without interruption from ads.",
                   pain:    "The shelf is noisy from commute listening and his son\u2019s music. He can\u2019t quickly get back to what he actually wants to hear.",
                   needs:   "Pin for fast access to go-to albums. Pause to protect recommendations during his son\u2019s listening sessions.",
@@ -252,13 +336,13 @@ export default function SpotifyCaseStudy() {
                   type:    "Negative Persona",
                   img:     "/images/work/spotify/persona-stephen-tan.webp",
                   quote:   "I stream my music to hear it first before committing to buy the ones I like.",
-                  bio:     "43, married, one teenager, Irvine. Insurance agent. Had a flip phone until three years ago. Listens to a limited selection of favorites. Not interested in discovery or sharing.",
                   goals:   "Listen to a small set of favorite songs. Keep hassle to a minimum.",
                   pain:    "None related to Recently Played. He doesn\u2019t engage with the shelf or discovery surfaces.",
                   needs:   "Nothing from this feature set. Stephen defines the boundary.",
                   tension: "Stephen is the person these controls are not for. He validates the scope: if the design started trying to serve Stephen, it would mean the feature was too broad.",
                 },
-              ].map(({ name, type, img, quote, bio, goals, pain, needs, tension }) => (
+              ];
+              const renderPersona = ({ name, type, img, quote, goals, pain, needs, tension }: typeof personas[number]) => (
                 <div
                   key={name}
                   style={{
@@ -285,9 +369,6 @@ export default function SpotifyCaseStudy() {
                       </p>
                     </div>
                   </div>
-                  <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: "0 0 16px" }}>
-                    {bio}
-                  </p>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px 24px", marginBottom: "16px" }}>
                     <Detail label="Goals" value={goals} />
                     <Detail label="Pain point" value={pain} />
@@ -299,8 +380,26 @@ export default function SpotifyCaseStudy() {
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+              return (
+                <>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    {renderPersona(personas[0])}
+                  </div>
+                  <details className="cs-persona-collapse">
+                    <summary className="cs-persona-collapse-summary">
+                      Show 2 more personas (Secondary &amp; Negative)
+                    </summary>
+                    <div
+                      className="cs-persona-collapse-body"
+                      style={{ display: "flex", flexDirection: "column", gap: "20px", marginTop: "20px" }}
+                    >
+                      {personas.slice(1).map(renderPersona)}
+                    </div>
+                  </details>
+                </>
+              );
+            })()}
 
             <h3 style={subheading}>Competitive Audit</h3>
             <p style={bodyText}>
@@ -376,36 +475,6 @@ export default function SpotifyCaseStudy() {
             <p style={bodyText}>
               Every survivor passed one test: <strong>don't break discovery.</strong>
             </p>
-
-            {/* Three controls overview diagram */}
-            <div style={{
-              margin:       "40px 0",
-              background:   "#FFFFFF",
-              borderRadius: "8px",
-              padding:      "32px 24px",
-              border:       `1px solid ${c.border}`,
-            }}>
-              <div style={{ position: "relative", width: "100%", maxWidth: "720px", margin: "0 auto" }}>
-                <Image
-                  src="/images/work/spotify/spotify-overview-three-controls-cropped.webp"
-                  alt="The three core actions: Pin item, Remove from Recently Played, and Pause Listening History. Each is shelf-native, reversible, and completes in 1 to 2 taps."
-                  width={3640}
-                  height={520}
-                  sizes="(max-width: 860px) 100vw, 720px"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "12px",
-                lineHeight:    1.5,
-                color:         c.muted,
-                textAlign:     "center",
-                margin:        "20px 0 0",
-              }}>
-                Three actions. All shelf-native. All reversible. No settings menus, no buried toggles.
-              </p>
-            </div>
 
             <Callout label="Mid-project pivot">
               I originally led with Pin, the differentiation play. Mapping stakeholder priorities revealed that Remove was the higher-urgency fix. Real users weren&apos;t asking for curation. They were asking for relief. That re-sequencing changed the entire build order.
@@ -654,7 +723,6 @@ export default function SpotifyCaseStudy() {
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
                   { detail: "Long-press hold (500ms)", why: "Prevents accidental triggers. Tap opens the item. Hold reveals controls." },
-                  { detail: "Pin badge persists on album art", why: "Always visible without hovering or inspecting. Unpinning requires the same long-press path." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -755,8 +823,6 @@ export default function SpotifyCaseStudy() {
                   marginTop:     "clamp(20px, 3vw, 28px)",
                 }}>
                   {[
-                    { detail: "Toast above Now Playing bar", why: "Positioned where the eye already rests. Doesn't cover shelf content or block navigation." },
-                    { detail: "3-4 second dismiss window", why: "Matches Spotify's existing toast timing. Long enough to read and act, short enough to feel lightweight." },
                     { detail: "Auto-dismiss completes the removal", why: "No second confirmation. Inaction is consent. The Undo toast is the entire safety net." },
                   ].map(({ detail, why }) => (
                     <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
@@ -873,8 +939,6 @@ export default function SpotifyCaseStudy() {
               {/* Pause micro-interaction annotations */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { detail: "Toggle inline in the action sheet", why: "No navigation to Settings. The control lives where the user already is." },
-                  { detail: "Green track fill (#1DB954) on activation", why: "Instant visual confirmation. The color matches Spotify's primary action green across the app." },
                   { detail: "Time-boxed auto-revert", why: "Protects ML recommendation signal. The user doesn't have to remember to turn it back on." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
@@ -1150,71 +1214,6 @@ export default function SpotifyCaseStudy() {
               </p>
             </div>
 
-            {/* Qualitative signals */}
-            <div style={{
-              margin:     "16px 0 0",
-              padding:    "20px 24px",
-              background: c.surface,
-              border:     `1px solid ${c.border}`,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>Qualitative Signals to Watch</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                {[
-                  "Do participants discover long-press without prompting, or does the facilitator have to hint?",
-                  "After removing an item, do participants look for the Undo toast or scan the shelf first?",
-                  "Do participants understand that Pause is time-boxed, or do they expect it to last indefinitely?",
-                  "When pinning, do participants expect the pinned item to stay after closing the app?",
-                ].map((signal) => (
-                  <p key={signal} style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0, paddingLeft: "16px", textIndent: "-16px" }}>
-                    <span style={{ color: c.accent, marginRight: "8px" }}>→</span>{signal}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            {/* Design quality indicators */}
-            <div style={{
-              margin:     "24px 0 0",
-              padding:    "20px 24px",
-              background: c.bgSection,
-              borderLeft: `3px solid ${c.accent}`,
-              border:     `1px solid ${c.border}`,
-              borderLeftWidth: "3px",
-              borderLeftColor: c.accent,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.accent,
-                margin:        "0 0 14px",
-              }}>Design Quality Indicators</p>
-              <div className="cs-grid-collapse" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
-                {[
-                  { label: "WCAG AA contrast", value: "All action sheet states pass 4.5:1 body, 3:1 large text" },
-                  { label: "Interaction efficiency", value: "Every control completable in ≤ 2 taps from long-press" },
-                  { label: "Archetype coverage", value: "4 user archetypes, each with a dedicated test scenario" },
-                  { label: "Error recovery", value: "Undo pattern on Remove with 8-second recovery window" },
-                  { label: "Stakeholder alignment", value: "Constraint matrix: Product, ML, Privacy/Legal, Engineering" },
-                  { label: "Reduced motion", value: "All animations respect prefers-reduced-motion" },
-                ].map(({ label, value }) => (
-                  <div key={label} style={{ fontFamily: font.sans }}>
-                    <p style={{ fontSize: "11px", fontWeight: 600, color: c.ink, margin: "0 0 2px", letterSpacing: "0.02em" }}>{label}</p>
-                    <p style={{ fontSize: "13px", color: c.body, margin: 0, lineHeight: 1.5 }}>{value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </Section>
 
           {/* ── 07 · Reflection ──────────────────────── */}
@@ -1227,14 +1226,6 @@ export default function SpotifyCaseStudy() {
             </p>
             <p style={bodyText}>
               The pivot from Pin-first to Remove-first (documented in Section 03) was the most consequential decision in the project. It came from mapping the full constraint picture. What I&apos;d add now: ship Remove in sprint one, observe what users actually do with it, then build Pin on validated behavior rather than assumed need. That sequencing change is a judgment call, not a scope call.
-            </p>
-
-            <h3 style={subheading}>If I had more time</h3>
-            <p style={bodyText}>
-              The Pause persistence across devices is where I&apos;d start. The current design is device-scoped, but a user who pauses on mobile and then switches to desktop is in an ambiguous state. That&apos;s not an edge case. That&apos;s the person most likely to use Pause in the first place. Resolving it requires a clear decision on the sync model: does Pause follow the user or the device? That&apos;s a Product and ML conversation, and it should happen before any state UI gets finalized.
-            </p>
-            <p style={bodyText}>
-              The bigger open question is what happens when these controls interact. A user pins an item, then removes it. Does the pin persist in memory, or is it gone? A user pauses history, pins something during the pause, then unpauses. Does the pinned item show up in the Recently Played feed retroactively? These intersection states aren&apos;t edge cases. They&apos;re the scenarios that surface once real users start combining features in ways the designer didn&apos;t sequence. The state diagram covers the individual paths. The space between those paths is where the next round of design work lives.
             </p>
           </Section>
 
