@@ -452,7 +452,7 @@ export default function WayfarerCaseStudy() {
             </ul>
 
             <p style={bodyText}>
-              This IA assumes browse-first is what the audience wants. The hypothesis is reasoned from the brief and competitive analysis, not from a card sort with real users. That&apos;s the honest gap. The evaluation plan in &sect;07 is built to test it, starting with whether the globe pulls users in or sends them straight to the grid.
+              This IA assumes browse-first is what the audience wants. The hypothesis is reasoned from the brief and competitive analysis, not from a card sort with real users. That&apos;s the honest gap. The evaluation plan in &sect;08 is built to test it, starting with whether the globe pulls users in or sends them straight to the grid.
             </p>
           </Section>
 
@@ -922,8 +922,70 @@ export default function WayfarerCaseStudy() {
         {/* Resume content wrapper for remaining sections */}
         <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
-          {/* -- 07 Evaluation Plan ----------------------- */}
-          <Section label="07" title="Evaluation Plan">
+          {/* -- 07 Outcomes ------------------------------- */}
+          <Section label="07" title="Outcomes">
+            <p style={bodyText}>
+              A concept project can&apos;t claim live-data outcomes. It can claim what shipped against the brief, what&apos;s structurally validated without users, and what&apos;s deferred to live testing. That&apos;s what this section does.
+            </p>
+
+            <h3 style={subheading}>What shipped, against the brief</h3>
+            <p style={bodyText}>
+              The brief asked for two things: a homepage redesign and an onboarding fix. The build expanded around both without breaking either.
+            </p>
+
+            {/* Brief vs Delivered table */}
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ background: c.bgSection }}>
+                    <th style={{ ...thStyle, width: "30%" }}>Brief asked for</th>
+                    <th style={thStyle}>Delivered</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { brief: "Homepage redesign", delivered: "New homepage with hero, globe entry point, and feature highlights",                      beyond: false },
+                    { brief: "Onboarding fix",    delivered: "5-step signup with per-step Zod validation and edit-back review screen",                  beyond: false },
+                    { brief: "(beyond brief)",    delivered: "Interactive 3D globe with 40+ destinations",                                              beyond: true  },
+                    { brief: "(beyond brief)",    delivered: "Six-page IA mapped to user verbs",                                                        beyond: true  },
+                    { brief: "(beyond brief)",    delivered: "Destination detail templates (rigid by design)",                                          beyond: true  },
+                    { brief: "(beyond brief)",    delivered: "Trip planner with drag-to-reorder",                                                       beyond: true  },
+                    { brief: "(beyond brief)",    delivered: "Full design system (tokens, type, components) from scratch",                              beyond: true  },
+                  ].map(({ brief, delivered, beyond }) => (
+                    <tr key={delivered} style={{ background: beyond ? c.bgSection : c.surface }}>
+                      <td style={{ ...tdStyle, color: beyond ? c.muted : c.body, fontStyle: beyond ? "italic" : "normal", fontWeight: beyond ? 400 : 600 }}>{brief}</td>
+                      <td style={tdStyle}>{delivered}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ ...bodyText, marginTop: "20px" }}>
+              The expansion isn&apos;t scope creep. &sect;03 shows the booking UI that got cut after AI-assisted development made it easy to build. The discipline was holding the brief intact while expanding what was built around it.
+            </p>
+
+            <h3 style={subheading}>What&apos;s structurally validated now</h3>
+            <p style={bodyText}>
+              These outcomes don&apos;t need live users. Design system coherence: tokens hold across every screen. IA where every route maps to one user verb (orient, browse, explore, evaluate, plan, personalize). Per-step form validation with Zod. No layout breakage at standard breakpoints. The artifact tests cleanly on its own.
+            </p>
+
+            <h3 style={subheading}>What&apos;s deferred to live testing</h3>
+            <p style={bodyText}>
+              The &sect;08 Evaluation Plan defines four hypotheses ready to run when traffic exists: globe vs grid usage, signup completion, detail-page engagement, trip planner discoverability. Outcomes shaped, not measured.
+            </p>
+
+            <h3 style={subheading}>The honest scope</h3>
+            <p style={bodyText}>
+              No live users tested this. No card sort on destination categories. No usability testing on the globe. The hypotheses are reasoned from the brief and competitive analysis, not validated by behavior. This case study can claim design discipline, scope discipline, and system coherence today. It can&apos;t claim user-validated discovery. That&apos;s what &sect;08 is set up to test when traffic exists.
+            </p>
+
+            <p style={bodyText}>
+              What this set of outcomes proves: a designer working with AI-assisted tools can hold scope under pressure, build a coherent system from scratch, and ship to spec while expanding what was possible. What it doesn&apos;t prove: that the choices land with real travelers. The next step belongs to &sect;08 and &sect;09.
+            </p>
+          </Section>
+
+          {/* -- 08 Evaluation Plan ----------------------- */}
+          <Section label="08" title="Evaluation Plan">
             <p style={bodyText}>
               Concept project. No live traffic. No user testing budget. These are the specific questions the design hypotheses need to answer, and the thresholds that would tell me whether the answers are right.
             </p>
@@ -1044,8 +1106,8 @@ export default function WayfarerCaseStudy() {
             </div>
           </Section>
 
-          {/* -- 08 Reflection ---------------------------- */}
-          <Section label="08" title="Reflection">
+          {/* -- 09 Reflection ---------------------------- */}
+          <Section label="09" title="Reflection">
             <p style={bodyText}>
               The hardest design decision wasn&apos;t any single UI choice. It was removing working features that existed because the tools made them easy to build.
             </p>
