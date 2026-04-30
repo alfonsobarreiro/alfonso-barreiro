@@ -230,6 +230,18 @@ button {
     font-size: 11px !important;
   }
 
+  /* Hero — CTAs: stack full-width on mobile so the button column matches
+     the body-text column above. Resolves left-aligned-buttons / centered-phone tension. */
+  .hero-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100%;
+  }
+  .hero-cta-row > a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
   /* Spotify case study — Personas: collapse Secondary + Negative behind a toggle on mobile */
   .cs-persona-collapse {
     margin-top: 32px;

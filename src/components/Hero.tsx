@@ -140,7 +140,7 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="hero-reveal" style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+          <div className="hero-reveal hero-cta-row" style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
             <a
               href="#work"
               style={{
