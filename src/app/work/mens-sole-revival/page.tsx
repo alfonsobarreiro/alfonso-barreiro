@@ -5,7 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Men\u2019s Sole Revival — Foot Health Content Platform \u00B7 Alfonso Barreiro",
+  title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform \u00B7 Alfonso Barreiro",
   description:
     "Case study: Designing a content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier.",
   openGraph: {
@@ -115,11 +115,52 @@ export default function MSRCaseStudy() {
               fontSize:    "clamp(16px, 2.2vw, 20px)",
               lineHeight:  1.55,
               color:       "rgba(245,243,239,0.65)",
-              margin:      "0 0 48px",
+              margin:      "0 0 40px",
               maxWidth:    "560px",
             }}>
-              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years, and until I got serious about them, nothing changed. Foot health carries shame. Men over 40 tend to be caretakers of others and often neglect themselves. I want to share knowledge and hope with men. Live at menssolerevival.com, GA4 instrumented. Phase 1 evaluation plan active. First data window closes May 2026.
+              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years, and nothing changed until I got serious. Most men over 40 carry care for everyone but themselves, and the gap between awareness and action is what this site is built to close.
             </p>
+
+            {/* Acceptance criteria strip \u2014 operational status surfaced in first scroll */}
+            <div style={{
+              display:        "flex",
+              flexWrap:       "wrap",
+              gap:            "clamp(20px, 4vw, 48px)",
+              padding:        "20px 24px",
+              marginBottom:   "40px",
+              background:     "rgba(193,127,74,0.10)",
+              borderLeft:     `2px solid ${c.cognac}`,
+            }}>
+              {[
+                { value: "Live",          label: "menssolerevival.com" },
+                { value: "GA4",           label: "instrumented" },
+                { value: "Phase 1",       label: "readout closes May 2026" },
+              ].map(({ value, label }) => (
+                <div key={label}>
+                  <p style={{
+                    fontFamily:    font.display,
+                    fontSize:      "clamp(18px, 2.6vw, 22px)",
+                    fontWeight:    500,
+                    color:         c.cognac,
+                    margin:        "0 0 2px",
+                    letterSpacing: "-0.01em",
+                  }}>
+                    {value}
+                  </p>
+                  <p style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "11px",
+                    fontWeight:    600,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color:         "rgba(245,243,239,0.55)",
+                    margin:        0,
+                  }}>
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
 
             {/* Metadata row */}
             <div style={{
@@ -134,7 +175,7 @@ export default function MSRCaseStudy() {
                 { label: "Type",     value: "Solo \u00B7 Self-initiated" },
                 { label: "Timeline", value: "Jan \u2013 Apr 2026" },
                 { label: "Methods",  value: "Market Research \u00B7 Competitive Analysis \u00B7 Content UX \u00B7 AI-Assisted Development" },
-                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority. Shipped at menssolerevival.com with [TBD: traffic / readership / engagement metric you want to cite]. What I'd measure next: depth-of-read on the core guides." },
+                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority. What I\u2019d measure next: depth-of-read on the core guides." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.cognac, margin: "0 0 4px" }}>
@@ -204,7 +245,7 @@ export default function MSRCaseStudy() {
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <Image
               src="/images/work/msr/msr-cover.webp"
-              alt="Men's Sole Revival homepage — dark editorial design with foot health content"
+              alt="Men's Sole Revival homepage. Dark editorial design with foot health content"
               width={1440}
               height={810}
               sizes="(max-width: 767px) 100vw, 860px"
@@ -226,7 +267,7 @@ export default function MSRCaseStudy() {
               63% of Americans report foot pain, but only 12% ever see a podiatrist. Men have a 3&times; higher fungal infection rate. The men&apos;s foot-care segment is growing at 10% CAGR. The audience exists. The resource doesn&apos;t.
             </p>
             <p style={bodyText}>
-              Zoom out and the picture sharpens. 30% of people with foot pain do nothing about it, and only a third ever seek expert care. Toenail fungus affects 1 in 10 adults overall &mdash; but 1 in 2 over 70. The problem compounds as the audience ages. Meanwhile, men&apos;s grooming has become a $90.7B category projected to hit $153.6B by 2033, with 59% of men saying they&apos;re concerned about aging. The demand for men&apos;s wellness resources is growing. The supply for foot-specific guidance is not.
+              Zoom out and the picture sharpens. 30% of people with foot pain do nothing about it, and only a third ever seek expert care. Toenail fungus affects 1 in 10 adults overall, jumping to 1 in 2 over 70. The problem compounds as the audience ages. Meanwhile, men&apos;s grooming has become a $90.7B category projected to hit $153.6B by 2033, with 59% of men saying they&apos;re concerned about aging. The demand for men&apos;s wellness resources is growing. The supply for foot-specific guidance is not.
             </p>
             <Callout label="Design synthesis">
               Men need a foot health resource that&apos;s male-specific, clinically grounded, and product-informed. No existing site occupies that intersection.
@@ -327,7 +368,7 @@ export default function MSRCaseStudy() {
               The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. Three weeks of modeling margins that wouldn&apos;t work was the signal: the friction wasn&apos;t execution. It was the starting point.
             </p>
             <p style={bodyText}>
-              The market itself wasn&apos;t the problem. US men&apos;s foot care is projected to reach $4.7B by 2030; the global category spans $4&ndash;14B. Sub-segments are active too &mdash; orthotic insoles at $4.06B growing around 7% a year, barefoot shoes at $514M climbing at nearly 6%. The sizing supported the thesis. The unit economics didn&apos;t.
+              The market itself wasn&apos;t the problem. US men&apos;s foot care is projected to reach $4.7B by 2030. The sizing supported the thesis. The unit economics didn&apos;t.
             </p>
             <p style={bodyText}>
               Then the market research showed the real problem. I used a jobs-to-be-done frame to redefine it: these men aren&apos;t hiring a product. They&apos;re hiring a reason to start paying attention. The gap wasn&apos;t in the products. It was in the information layer that should precede them. Men over 40 who aren&apos;t already thinking about their feet are expensive to convert. They need a resource they trust before they&apos;ll buy anything. The e-commerce model puts the transaction before the relationship that makes the transaction possible.
@@ -436,8 +477,8 @@ export default function MSRCaseStudy() {
               {/* Row 1: Rejected directions — half-width, paired */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
                 {[
-                  { src: "/images/work/msr/msr-clinical.webp", label: "Clinical \u2014 Rejected" },
-                  { src: "/images/work/msr/msr-salesy.webp",   label: "Salesy \u2014 Rejected" },
+                  { src: "/images/work/msr/msr-clinical.webp", label: "Clinical \u00B7 Rejected" },
+                  { src: "/images/work/msr/msr-salesy.webp",   label: "Salesy \u00B7 Rejected" },
                 ].map(({ src, label }) => (
                   <div key={label}>
                     <div style={{
@@ -473,14 +514,14 @@ export default function MSRCaseStudy() {
                 }}>
                   <Image
                     src="/images/work/msr/msr-wireframe.webp"
-                    alt="Wireframe \u2014 Structure Test"
+                    alt="Wireframe \u00B7 Structure Test"
                     fill
                     sizes="(max-width: 767px) 100vw, 860px"
                     style={{ objectFit: "cover", objectPosition: "top" }}
                   />
                 </div>
                 <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
-                  Wireframe \u2014 Structure Test
+                  Wireframe \u00B7 Structure Test
                 </p>
               </div>
 
@@ -494,14 +535,14 @@ export default function MSRCaseStudy() {
                 }}>
                   <Image
                     src="/images/work/msr/msr-hero-cover.webp"
-                    alt="Dark Editorial \u2014 Chosen"
+                    alt="Dark Editorial \u00B7 Chosen"
                     fill
                     sizes="(max-width: 767px) 100vw, 860px"
                     style={{ objectFit: "cover", objectPosition: "top" }}
                   />
                 </div>
                 <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.ink, margin: "8px 0 0", fontWeight: 600 }}>
-                  Dark Editorial \u2014 Chosen
+                  Dark Editorial \u00B7 Chosen
                 </p>
               </div>
             </div>
@@ -736,7 +777,7 @@ export default function MSRCaseStudy() {
               }}>
                 <Image
                   src="/images/work/msr/msr-homepage.webp"
-                  alt="Men's Sole Revival homepage — dark editorial design with topic grid and assessment CTA"
+                  alt="Men's Sole Revival homepage. Dark editorial design with topic grid and assessment CTA"
                   fill
                   sizes="(max-width: 767px) 100vw, 1100px"
                   style={{ objectFit: "cover", objectPosition: "top" }}
@@ -746,8 +787,6 @@ export default function MSRCaseStudy() {
               {/* Annotations */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { detail: "Dark ground, cognac accent, bold type", why: "Visual language borrowed from premium grooming and men\u2019s performance brands. Stigma reduction through familiarity." },
-                  { detail: "Topic grid above article feed", why: "Wireframe testing showed users need category context before they\u2019ll engage individual articles." },
                   { detail: "Assessment CTA in hero", why: "Gives the hesitant user a low-commitment starting point. \u201CWhat\u2019s going on with my feet?\u201D before \u201CRead about fungus.\u201D" },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
@@ -798,7 +837,7 @@ export default function MSRCaseStudy() {
               }}>
                 <Image
                   src="/images/work/msr/msr-article.webp"
-                  alt="Men's Sole Revival article page — long-form editorial with clear typography hierarchy"
+                  alt="Men's Sole Revival article page. Long-form editorial with clear typography hierarchy"
                   fill
                   sizes="(max-width: 767px) 100vw, 1100px"
                   style={{ objectFit: "cover", objectPosition: "top" }}
@@ -808,8 +847,6 @@ export default function MSRCaseStudy() {
               {/* Annotations */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { detail: "Three-typeface hierarchy", why: "Barlow Condensed for display, Lora for editorial subheads, DM Sans for body. Each typeface has a defined role, not a decorative pairing." },
-                  { detail: "Callout blocks and key takeaways", why: "Break up long-form content for scanners. A reader can get the core insight from callouts alone." },
                   { detail: "Internal linking to reviews and routines", why: "Articles drive traffic. Product reviews and routines capture the intent. Content flows toward decisions." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
@@ -860,7 +897,7 @@ export default function MSRCaseStudy() {
               }}>
                 <Image
                   src="/images/work/msr/msr-review.webp"
-                  alt="Men's Sole Revival product review — e-commerce UX patterns with specs grid, rating, and affiliate CTAs"
+                  alt="Men's Sole Revival product review. E-commerce UX patterns with specs grid, rating, and affiliate CTAs"
                   fill
                   sizes="(max-width: 767px) 100vw, 1100px"
                   style={{ objectFit: "cover", objectPosition: "top" }}
@@ -870,9 +907,7 @@ export default function MSRCaseStudy() {
               {/* Annotations */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { detail: "E-commerce layout, no checkout", why: "The UX pattern is borrowed because it matches the task. Users already know how to scan hero \u2192 specs \u2192 rating \u2192 CTA." },
                   { detail: "Affiliate CTAs, not product listings", why: "Revenue comes from referrals, not transactions. The trust model requires editorial independence from the products reviewed." },
-                  { detail: "Pros/cons and verdict above the fold", why: "The evaluating user wants the answer first. Supporting detail is available but not required to make a decision." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -981,40 +1016,6 @@ export default function MSRCaseStudy() {
               </p>
             </div>
 
-            {/* Design quality indicators */}
-            <div style={{
-              margin:     "24px 0 0",
-              padding:    "20px 24px",
-              background: c.bgSection,
-              border:     `1px solid ${c.border}`,
-              borderLeftWidth: "3px",
-              borderLeftColor: c.cognac,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "10px",
-                fontWeight:    700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         c.cognac,
-                margin:        "0 0 14px",
-              }}>Design quality indicators</p>
-              <div className="cs-grid-collapse" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
-                {[
-                  { label: "Design system", value: "Token-driven: 8 color tokens, 4 type scales, reusable component library" },
-                  { label: "Layout rationale", value: "E-commerce review pattern adapted for editorial (competitive: Wirecutter, Healthline, GQ)" },
-                  { label: "Visual identity", value: "Dark editorial palette designed to lower stigma barrier for men’s health content" },
-                  { label: "WCAG AA contrast", value: "All body text, headings, and CTAs pass 4.5:1 across dark palette" },
-                  { label: "Content architecture", value: "3 distinct page types (condition, review, article) with layouts matched to reading intent" },
-                  { label: "Analytics", value: "GA4 + Vercel Analytics instrumented for Phase 1 validation tracking" },
-                ].map(({ label, value }) => (
-                  <div key={label} style={{ fontFamily: font.sans }}>
-                    <p style={{ fontSize: "11px", fontWeight: 600, color: c.ink, margin: "0 0 2px", letterSpacing: "0.02em" }}>{label}</p>
-                    <p style={{ fontSize: "13px", color: c.body, margin: 0, lineHeight: 1.5 }}>{value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </Section>
 
           {/* -- 08 Reflection ---------------------------- */}
@@ -1032,14 +1033,6 @@ export default function MSRCaseStudy() {
             <h3 style={subheading}>What wasn&apos;t done</h3>
             <p style={bodyText}>
               I didn&apos;t conduct user interviews before building. I didn&apos;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.
-            </p>
-
-            <h3 style={subheading}>If I had more time</h3>
-            <p style={bodyText}>
-              Run moderated usability tests with 5&ndash;6 participants matching the target persona: men 25&ndash;55 who have Googled a foot health question in the last 6 months. Test the review page layout against a blog-format control. Measure task completion time, information findability, and whether the e-commerce pattern reduces cognitive load for evaluation tasks.
-            </p>
-            <p style={bodyText}>
-              From there: A/B test the homepage topic categories to see which entry points drive the deepest engagement. Validate the email signup placement. And pressure-test the brand direction with the audience directly. Does the dark editorial tone actually lower the stigma barrier, or is that an assumption that deserves its own research cycle?
             </p>
           </Section>
 
