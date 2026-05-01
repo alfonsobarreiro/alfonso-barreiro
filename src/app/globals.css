@@ -133,6 +133,10 @@ button {
   .footer-inner > p { order: 3; }
   .cs-nav          { padding: 0 24px !important; }
 
+  /* Case study — problem cards: stack label above text on mobile (used by Wayfarer §02 + MSR Brand Direction) */
+  .cs-problem-card  { flex-direction: column !important; gap: 8px !important; }
+  .cs-problem-label { min-width: unset !important; padding-top: 0 !important; }
+
   /* Case study — journey map: contain horizontal scroll within the block */
   .cs-journey-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
