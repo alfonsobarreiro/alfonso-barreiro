@@ -10,6 +10,21 @@ export const metadata: Metadata = {
     description:
       "UX/UI Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
     url: "https://barreiro.com/connect",
+    images: [
+      {
+        url: "https://barreiro.com/og-connect.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Alfonso Barreiro — UX / UI Designer. Investigate. Decide. Ship.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Connect — Alfonso Barreiro",
+    description:
+      "UX/UI Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+    images: ["https://barreiro.com/og-connect.jpg"],
   },
 };
 
@@ -284,7 +299,7 @@ export default function ConnectPage() {
           <p className="connect-label">Work</p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <a href="https://barreiro.com" target="_blank" rel="noopener noreferrer" className="connect-row solid">
+            <a href="https://barreiro.com/#work" target="_blank" rel="noopener noreferrer" className="connect-row solid">
               <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -339,6 +354,8 @@ export default function ConnectPage() {
             <a
               href="/alfonso-barreiro.vcf"
               download
+              target="_blank"
+              rel="noopener noreferrer"
               className="connect-row solid"
             >
               <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF" }}>
