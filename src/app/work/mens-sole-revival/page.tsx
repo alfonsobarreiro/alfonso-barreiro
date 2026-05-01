@@ -615,11 +615,16 @@ export default function MSRCaseStudy() {
 
             {/* Token table */}
             <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Token", "Brand", "Wayfarer", "MSR"].map((h) => (
-                      <th key={h} style={{ ...thStyle, color: h === "MSR" ? c.accent : c.muted, fontWeight: h === "MSR" ? 700 : 600 }}>{h}</th>
+                    {[
+                      { label: "Token",    width: "22%" },
+                      { label: "Brand",    width: "26%" },
+                      { label: "Wayfarer", width: "26%" },
+                      { label: "MSR",      width: "26%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "MSR" ? c.accent : c.muted, fontWeight: label === "MSR" ? 700 : 600 }}>{label}</th>
                     ))}
                   </tr>
                 </thead>
@@ -669,11 +674,16 @@ export default function MSRCaseStudy() {
 
             {/* Route table */}
             <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Route", "Type", "User Task", "Purpose"].map((h) => (
-                      <th key={h} style={{ ...thStyle, color: h === "User Task" ? c.accent : c.muted, fontWeight: h === "User Task" ? 700 : 600 }}>{h}</th>
+                    {[
+                      { label: "Route",     width: "24%" },
+                      { label: "Type",      width: "22%" },
+                      { label: "User Task", width: "16%" },
+                      { label: "Purpose",   width: "38%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "User Task" ? c.accent : c.muted, fontWeight: label === "User Task" ? 700 : 600 }}>{label}</th>
                     ))}
                   </tr>
                 </thead>
@@ -688,7 +698,7 @@ export default function MSRCaseStudy() {
                     { route: "/assessment",      type: "Self-Check Tool", task: "Act",      purpose: "Get a personalized starting point." },
                   ].map(({ route, type, task, purpose }, i) => (
                     <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{route}</td>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
                       <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
                       <td style={{ ...tdStyle, fontWeight: 600, color: c.cognac }}>{task}</td>
                       <td style={tdStyle}>{purpose}</td>
@@ -968,11 +978,16 @@ export default function MSRCaseStudy() {
 
             {/* Threshold table with rationale */}
             <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Hypothesis", "Metric", "Threshold", "Rationale"].map((h) => (
-                      <th key={h} style={{ ...thStyle, color: h === "Rationale" ? c.accent : c.muted, fontWeight: h === "Rationale" ? 700 : 600 }}>{h}</th>
+                    {[
+                      { label: "Hypothesis", width: "26%" },
+                      { label: "Metric",     width: "22%" },
+                      { label: "Threshold",  width: "16%" },
+                      { label: "Rationale",  width: "36%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "Rationale" ? c.accent : c.muted, fontWeight: label === "Rationale" ? 700 : 600 }}>{label}</th>
                     ))}
                   </tr>
                 </thead>

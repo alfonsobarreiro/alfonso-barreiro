@@ -441,11 +441,16 @@ export default function WayfarerCaseStudy() {
 
             {/* Route table */}
             <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Route", "Type", "User Task", "Purpose"].map((h) => (
-                      <th key={h} style={{ ...thStyle, color: h === "User Task" ? c.navy : c.muted, fontWeight: h === "User Task" ? 700 : 600 }}>{h}</th>
+                    {[
+                      { label: "Route",     width: "22%" },
+                      { label: "Type",      width: "20%" },
+                      { label: "User Task", width: "18%" },
+                      { label: "Purpose",   width: "40%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "User Task" ? c.navy : c.muted, fontWeight: label === "User Task" ? 700 : 600 }}>{label}</th>
                     ))}
                   </tr>
                 </thead>
@@ -459,7 +464,7 @@ export default function WayfarerCaseStudy() {
                     { route: "Modal",              type: "Sign-up Form",   task: "Personalize",  purpose: "Create an account with preference data for tailored discovery." },
                   ].map(({ route, type, task, purpose }, i) => (
                     <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{route}</td>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
                       <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
                       <td style={{ ...tdStyle, fontWeight: 600, color: c.navy }}>{task}</td>
                       <td style={tdStyle}>{purpose}</td>
@@ -609,11 +614,16 @@ export default function WayfarerCaseStudy() {
 
             {/* Token table */}
             <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Token", "Wayfarer", "Brand", "MSR"].map((h) => (
-                      <th key={h} style={{ ...thStyle, color: h === "Wayfarer" ? c.navy : c.muted, fontWeight: h === "Wayfarer" ? 700 : 600 }}>{h}</th>
+                    {[
+                      { label: "Token",    width: "22%" },
+                      { label: "Wayfarer", width: "26%" },
+                      { label: "Brand",    width: "26%" },
+                      { label: "MSR",      width: "26%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "Wayfarer" ? c.navy : c.muted, fontWeight: label === "Wayfarer" ? 700 : 600 }}>{label}</th>
                     ))}
                   </tr>
                 </thead>
@@ -1029,11 +1039,16 @@ export default function WayfarerCaseStudy() {
 
             {/* Threshold table */}
             <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Hypothesis", "Metric", "Threshold", "Rationale"].map((h) => (
-                      <th key={h} style={thStyle}>{h}</th>
+                    {[
+                      { label: "Hypothesis", width: "26%" },
+                      { label: "Metric",     width: "22%" },
+                      { label: "Threshold",  width: "14%" },
+                      { label: "Rationale",  width: "38%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width }}>{label}</th>
                     ))}
                   </tr>
                 </thead>

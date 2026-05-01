@@ -408,11 +408,17 @@ export default function SpotifyCaseStudy() {
 
             {/* Competitive table */}
             <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Platform", "Remove", "Clear All", "Pause History", "Pin to Shelf"].map((h) => (
-                      <th key={h} style={thStyle}>{h}</th>
+                    {[
+                      { label: "Platform",      width: "36%" },
+                      { label: "Remove",        width: "16%" },
+                      { label: "Clear All",     width: "16%" },
+                      { label: "Pause History", width: "16%" },
+                      { label: "Pin to Shelf",  width: "16%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width }}>{label}</th>
                     ))}
                   </tr>
                 </thead>
@@ -1160,13 +1166,13 @@ export default function SpotifyCaseStudy() {
 
             {/* Threshold table with rationale */}
             <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    <th style={thStyle}>Feature</th>
-                    <th style={thStyle}>Metric</th>
-                    <th style={thStyle}>Threshold</th>
-                    <th style={thStyle}>Rationale</th>
+                    <th style={{ ...thStyle, width: "18%" }}>Feature</th>
+                    <th style={{ ...thStyle, width: "26%" }}>Metric</th>
+                    <th style={{ ...thStyle, width: "18%" }}>Threshold</th>
+                    <th style={{ ...thStyle, width: "38%" }}>Rationale</th>
                   </tr>
                 </thead>
                 <tbody>
