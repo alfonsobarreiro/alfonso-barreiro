@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         url: "https://barreiro.com/og-connect.jpg",
         width: 1200,
         height: 630,
-        alt: "Alfonso Barreiro — UX / UI Designer. Investigate. Decide. Ship.",
+        alt: "Alfonso Barreiro — UX / UI Designer. Research. Decide. Ship.",
       },
     ],
   },
@@ -277,7 +277,7 @@ export default function ConnectPage() {
                   textWrap: "balance",
                 }}
               >
-                UX / UI Designer · Investigate. Decide. Ship.
+                UX / UI Designer · Research. Decide. Ship.
               </p>
 
               <p

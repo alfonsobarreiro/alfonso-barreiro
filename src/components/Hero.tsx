@@ -98,7 +98,7 @@ export default function Hero() {
                 margin:        0,
               }}
             >
-              UX / UI Designer · Investigate. Decide. Ship.
+              UX / UI Designer · Research. Decide. Ship.
             </p>
           </div>
 
