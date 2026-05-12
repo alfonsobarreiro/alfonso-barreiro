@@ -334,6 +334,18 @@ export default function ConnectPage() {
               <span>Men&#39;s Sole Revival website</span>
             </a>
           </div>
+
+          {/* ── Studio ────────────────────────────── */}
+          <p className="connect-label" style={{ marginTop: 20 }}>Studio</p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <a href="https://alphabeta.design/" target="_blank" rel="noopener noreferrer" className="connect-row solid">
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF", fontWeight: 700, fontSize: 13, color: "#C17F4A", letterSpacing: "-0.02em" }}>
+                AB
+              </span>
+              <span>Alpha Beta Design</span>
+            </a>
+          </div>
         </div>
 
         {/* ── Divider (mobile only) ───────────────── */}
