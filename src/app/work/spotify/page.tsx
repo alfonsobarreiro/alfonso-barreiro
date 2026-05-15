@@ -121,7 +121,7 @@ export default function SpotifyCaseStudy() {
               margin:      "0 0 40px",
               maxWidth:    "560px",
             }}>
-              I&apos;m a daily Spotify power user, and the Recently Played shelf has no way to pin a favorite, hide an embarrassing play, or pause history before handing the phone to someone else. Pin, Remove, Pause: a concept project where the validation framework is the deliverable.
+              The Spotify Recently Played shelf surfaces every play with no controls. No way to pin a favorite, no way to hide an accidental or contextual listen, no way to pause history before sharing the phone. Pin, Remove, Pause: three lightweight controls for users who want to manage what shows up on a screen that&apos;s often shared. Concept project, evaluated through the lens of likely stakeholder constraints.
             </p>
 
             {/* Acceptance criteria strip — proxy metrics surfaced in first scroll */}
@@ -307,7 +307,7 @@ export default function SpotifyCaseStudy() {
 
             <h3 style={subheading}>Spotify Personas</h3>
             <p style={bodyText}>
-              These three personas come from Spotify&apos;s own UX research. I used them as the lens for every design decision because they represent the real behavioral range of Recently Played users. The tension between them is what made the design hard: Melanie needs social curation, Dave needs fast access under time pressure, and Stephen tells you where the feature boundary is.
+              These three personas are synthesized from public sources: Spotify Community forum threads, App Store reviews, Reddit discussions about the Recently Played shelf, and Spotify&apos;s published persona work. I used them as the lens for every design decision because they represent the real behavioral range of Recently Played users. The tension between them is what made the design hard: Melanie needs social curation, Dave needs fast access under time pressure, and Stephen tells you where the feature boundary is.
             </p>
             {(() => {
               const personas = [
@@ -317,7 +317,7 @@ export default function SpotifyCaseStudy() {
                   img:     "/images/work/spotify/persona-melodic-melanie.webp",
                   quote:   "Why pay for it when it\u2019s free?",
                   goals:   "Inexpensive access to music for herself and for sharing with friends.",
-                  pain:    "Recently Played surfaces embarrassing or accidental plays when she shares her screen. No way to clean it up before someone sees it.",
+                  pain:    "Recently Played surfaces accidental or contextual plays when she shares her screen. No way to clean it up before someone sees it.",
                   needs:   "Pin to surface favorites she\u2019d actually share. Remove to clear plays she wouldn\u2019t.",
                   tension: "Melanie is the social pressure case. If the shelf feels curated, she\u2019s comfortable sharing. If it doesn\u2019t, she stops showing her phone.",
                 },
@@ -1160,7 +1160,7 @@ export default function SpotifyCaseStudy() {
                 margin:        "0 0 12px",
               }}>Test Protocol</p>
               <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                Moderated usability test. 6 participants across the four archetypes (Social Curator, Commuter, Parent on shared device, Explorer). Each participant completes three task scenarios: pin a specific item, remove an embarrassing play, and pause history before handing the phone to a friend. Sessions recorded. Think-aloud protocol. 45 minutes per session.
+                Moderated usability test. 6 participants across the four archetypes (Social Curator, Commuter, Parent on shared device, Explorer). Each participant completes three task scenarios: pin a specific item, remove an accidental or contextual listen, and pause history before handing the phone to a friend. Sessions recorded. Think-aloud protocol. 45 minutes per session.
               </p>
             </div>
 
@@ -1225,13 +1225,10 @@ export default function SpotifyCaseStudy() {
           {/* ── 07 · Reflection ──────────────────────── */}
           <Section label="07" title="Reflection">
             <p style={bodyText}>
-              The hardest part of this project wasn&apos;t the UI. It was saying no. Every promising idea (global history delete, recommendation tuning, private mode) pulled toward a much larger system. The discipline of asking &ldquo;can this be done on-shelf, in 1&ndash;2 steps?&rdquo; killed more bad ideas than any critique.
+              The constraints did the design work. Mapping what Product, ML, Privacy/Legal, and Engineering each cared about before any visual design turned global history clearing into a non-starter. Remove outranked Pin, and Pause stayed time-boxed, because those were the correct decisions once the full system was visible. Device-scoping Remove and time-boxing Pause weren&apos;t compromises; they were the right calls from the start.
             </p>
             <p style={bodyText}>
-              Mapping stakeholder priorities did real work. Understanding what Product, ML, Privacy/Legal, and Engineering each cared about meant Remove and Pause were designed with the right constraints from the start, not retrofitted after pushback. Device-scoping Remove and time-boxing Pause weren&apos;t compromises; they were the correct decisions once the full system was visible.
-            </p>
-            <p style={bodyText}>
-              The pivot from Pin-first to Remove-first (documented in Section 03) was the most consequential decision in the project. It came from mapping the full constraint picture. What I&apos;d add now: ship Remove in sprint one, observe what users actually do with it, then build Pin on validated behavior rather than assumed need. That sequencing change is a judgment call, not a scope call.
+              The pivot from Pin-first to Remove-first (documented in Section 03) was the most consequential decision in the project. What I&apos;d add now: ship Remove in sprint one, observe what users actually do with it, then build Pin on validated behavior rather than assumed need. That sequencing change is a judgment call, not a scope call.
             </p>
           </Section>
 
