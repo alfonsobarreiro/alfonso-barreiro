@@ -133,10 +133,8 @@ export default function Hero() {
               fontWeight:   400,
             }}
           >
-            The gap between what a product does and what users actually need
-            is where the design work lives. I frame it, map the trade-offs,
-            and ship the simplest thing that closes it — sometimes by
-            cutting features, not adding them.
+            Three case studies below. Each one walks through how I frame the
+            problem, name the trade-offs, and decide what to cut.
           </p>
 
           {/* CTAs */}

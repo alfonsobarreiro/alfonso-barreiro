@@ -22,7 +22,7 @@ const projects: Project[] = [
     title:       "Spotify",
     subtitle:    "Recently Played Controls",
     description:
-      "Three shelf-native controls: Pin, Remove, and Pause. Validation framework: moderated test protocol, per-feature acceptance criteria, decision gates. Concept project. The evaluation plan is the deliverable.",
+      "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
     tags:        ["UX Research", "Interaction Design", "Prototyping"],
     year:        "2026",
     status:      "live",
@@ -34,7 +34,7 @@ const projects: Project[] = [
     title:       "Wayfarer",
     subtitle:    "Travel Discovery Platform",
     description:
-      "Discovery-first platform: 40+ destinations, interactive globe, 5-step onboarding. DesignLab capstone. No live traffic. Decisions come from the brief and competitive analysis, not user behavior. The evaluation plan is built to test them.",
+      "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet.",
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
     status:      "live",
@@ -46,7 +46,7 @@ const projects: Project[] = [
     title:       "Men's Sole Revival",
     subtitle:    "Foot Health Content Platform",
     description:
-      "Live at menssolerevival.com. GA4 instrumented. Phase 1 evaluation plan active: tracking organic search impressions, article read depth, and return visitor ratio. First data window closes May 2026.",
+      "A foot health resource for men over 40. Editorial, clinically grounded, product-informed. The plan was e-commerce until the unit economics broke in week three; the pivot to content authority is what shipped. Live since April 2026.",
     tags:        ["Content UX", "Visual Design", "Design System"],
     year:        "2026",
     status:      "live",
