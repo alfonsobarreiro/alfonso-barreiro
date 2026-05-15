@@ -5,6 +5,7 @@ import Work from "@/components/Work";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://www.barreiro.com" },
@@ -37,6 +38,7 @@ function SectionDivider() {
 export default function Home() {
   return (
     <main>
+      <PersonSchema />
       <Nav />
       <Hero />
       <SectionDivider />

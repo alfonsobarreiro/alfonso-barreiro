@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 
 export const metadata: Metadata = {
   title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform",
@@ -50,6 +51,12 @@ const font = {
 export default function MSRCaseStudy() {
   return (
     <>
+      <CaseStudySchema
+        name="Men’s Sole Revival · Foot Health Content Platform"
+        description="A content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier."
+        slug="mens-sole-revival"
+        dateCreated="2026-04"
+      />
       <Nav />
 
       <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>

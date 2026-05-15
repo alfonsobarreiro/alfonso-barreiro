@@ -4,6 +4,7 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SignupSlider from "./SignupSlider";
+import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 
 export const metadata: Metadata = {
   title: "Wayfarer \u00B7 Travel Discovery Platform",
@@ -51,6 +52,12 @@ const font = {
 export default function WayfarerCaseStudy() {
   return (
     <>
+      <CaseStudySchema
+        name="Wayfarer · Travel Discovery Platform"
+        description="A concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build."
+        slug="wayfarer"
+        dateCreated="2026-03"
+      />
       <Nav />
 
       <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>

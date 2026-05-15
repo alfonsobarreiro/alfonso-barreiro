@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import SpotifyJourneyMap from "@/components/SpotifyJourneyMap";
 import SpotifyQuoteRotator from "@/components/SpotifyQuoteRotator";
 import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
+import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 
 export const metadata: Metadata = {
   title: "Spotify · Recently Played Controls",
@@ -53,6 +54,12 @@ const font = {
 export default function SpotifyCaseStudy() {
   return (
     <>
+      <CaseStudySchema
+        name="Spotify · Recently Played Controls"
+        description="Three reversible controls (Pin, Remove, Pause) for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity."
+        slug="spotify"
+        dateCreated="2025-12"
+      />
       <Nav />
 
       <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>
