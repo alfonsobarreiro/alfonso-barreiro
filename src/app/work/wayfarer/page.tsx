@@ -6,17 +6,24 @@ import Footer from "@/components/Footer";
 import SignupSlider from "./SignupSlider";
 
 export const metadata: Metadata = {
-  title: "Wayfarer \u00B7 Travel Discovery Platform \u00B7 Alfonso Barreiro",
+  title: "Wayfarer \u00B7 Travel Discovery Platform",
   description:
     "Case study: A concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build.",
+  alternates: { canonical: "https://www.barreiro.com/work/wayfarer" },
   openGraph: {
-    title: "Wayfarer \u00B7 Alfonso Barreiro",
-    description:
-      "A UX case study on designing a discovery-first travel platform and knowing when to cut features the tools made easy to build.",
-    url: "https://barreiro.com/work/wayfarer",
-    siteName: "Alfonso Barreiro",
-    locale: "en_US",
     type: "article",
+    url: "https://www.barreiro.com/work/wayfarer",
+    title: "Wayfarer \u00B7 Travel Discovery Platform",
+    description:
+      "Case study: A concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build.",
+    images: ["/work/wayfarer/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wayfarer \u00B7 Travel Discovery Platform",
+    description:
+      "Case study: A concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build.",
+    images: ["/work/wayfarer/opengraph-image"],
   },
 };
 

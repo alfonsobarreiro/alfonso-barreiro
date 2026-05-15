@@ -50,23 +50,51 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Alfonso Barreiro — UX/UI Designer",
+  metadataBase: new URL("https://www.barreiro.com"),
+  title: {
+    default: "Alfonso Barreiro — UX/UI Designer",
+    template: "%s · Alfonso Barreiro",
+  },
   description:
-    "UX/UI Designer based in Portland, OR. Research through prototype — focused on clear problem framing, evidence-based decisions, and design that holds up under real constraints.",
-  keywords: ["UX Designer", "UI Designer", "Product Designer", "Portland", "Alfonso Barreiro"],
-  authors: [{ name: "Alfonso Barreiro" }],
+    "UX/UI Designer in Portland, OR. Research through prototype — clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+  authors: [{ name: "Alfonso Barreiro", url: "https://www.barreiro.com" }],
+  creator: "Alfonso Barreiro",
   openGraph: {
-    title: "Alfonso Barreiro — UX/UI Designer",
-    description: "UX/UI Designer based in Portland, OR.",
-    url: "https://barreiro.com",
-    siteName: "Alfonso Barreiro",
-    locale: "en_US",
     type: "website",
+    locale: "en_US",
+    url: "https://www.barreiro.com",
+    siteName: "Alfonso Barreiro",
+    title: "Alfonso Barreiro — UX/UI Designer",
+    description:
+      "UX/UI Designer in Portland, OR. Research through prototype — clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Alfonso Barreiro — UX/UI Designer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Alfonso Barreiro — UX/UI Designer",
-    description: "UX/UI Designer based in Portland, OR.",
+    description:
+      "UX/UI Designer in Portland, OR. Research through prototype — clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+    images: ["/opengraph-image"],
+    creator: "@alfbarreiro",
+  },
+  alternates: {
+    canonical: "https://www.barreiro.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
   },
 };
 

@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.barreiro.com" },
+  openGraph: {
+    url: "https://www.barreiro.com",
+  },
+};
 
 function SectionDivider() {
   return (

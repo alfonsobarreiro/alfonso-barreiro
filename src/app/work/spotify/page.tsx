@@ -8,17 +8,24 @@ import SpotifyQuoteRotator from "@/components/SpotifyQuoteRotator";
 import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 
 export const metadata: Metadata = {
-  title: "Spotify · Recently Played Controls · Alfonso Barreiro",
+  title: "Spotify · Recently Played Controls",
   description:
     "Case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
+  alternates: { canonical: "https://www.barreiro.com/work/spotify" },
   openGraph: {
-    title: "Spotify · Recently Played Controls · Alfonso Barreiro",
-    description:
-      "A UX case study on designing reversible controls for Spotify's Recently Played shelf.",
-    url: "https://barreiro.com/work/spotify",
-    siteName: "Alfonso Barreiro",
-    locale: "en_US",
     type: "article",
+    url: "https://www.barreiro.com/work/spotify",
+    title: "Spotify · Recently Played Controls",
+    description:
+      "Case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
+    images: ["/work/spotify/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spotify · Recently Played Controls",
+    description:
+      "Case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
+    images: ["/work/spotify/opengraph-image"],
   },
 };
 
