@@ -347,8 +347,23 @@ export default function WayfarerCaseStudy() {
           {/* -- 04 Multi-Step Signup ---------------------- */}
           <Section label="04" title="Multi-Step Signup">
             <p style={bodyText}>
-              The original form was the brief&apos;s most cited pain point. My redesign broke it into five steps, each collecting a different type of preference:
+              The original form was the brief&apos;s most cited pain point.
             </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", margin: "16px 0 24px" }}>
+              <div style={{ padding: "20px 24px", background: c.bgSection, border: `1px solid ${c.border}` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>Before</p>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                  One long form. All fields visible at once. Repetitive labels. No sense of progression. Users dropped out before reaching the personalization fields.
+                </p>
+              </div>
+              <div style={{ padding: "20px 24px", background: "rgba(62,60,120,0.06)", border: `1px solid #8E8AD9` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: c.navy, margin: "0 0 8px" }}>After</p>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                  Five steps, each collecting a different type of preference. Light commitment first; personalization later. The form mirrors the discovery experience the rest of the product asks the user to follow.
+                </p>
+              </div>
+            </div>
 
             {/* Signup steps */}
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "4px" }}>
@@ -380,248 +395,6 @@ export default function WayfarerCaseStudy() {
             </div>
             <p style={{ ...bodyText, marginTop: "20px" }}>
               The design logic: the signup flow is the first interaction a new user has with Wayfarer. If it mirrors the discovery experience (explore, choose, refine, confirm), the form becomes part of the product, not a gate in front of it.
-            </p>
-          </Section>
-
-          {/* -- 05 Information Architecture -------------- */}
-          <Section label="05" title="Information Architecture">
-            <p style={bodyText}>
-              The IA question was: how does a curious traveler find a destination they didn&apos;t know they wanted? Search-first answers the wrong user. Browse-first answers the right one. Every IA decision flowed from there.
-            </p>
-
-            <h3 style={subheading}>Two entry points, same content</h3>
-            <p style={bodyText}>
-              Globe and grid serve different users with the same content. The globe is for curiosity. A traveler who doesn&apos;t know where to look spins it, follows pins, lets a region invite them in. The grid is for intent. A traveler who already knows they want Southeast Asia filters to it and scans. Both paths land on the same destination pages. The IA doesn&apos;t pick a winner. It picks both. A single funnel would have served the intent user and frustrated the curiosity one.
-            </p>
-
-            <h3 style={subheading}>Six page types, each owns a task</h3>
-            <p style={bodyText}>
-              Six routes, six user verbs: orient, browse, explore, evaluate, plan, personalize. Six covers the full discovery cycle without padding. Anything beyond it would be feature for feature&apos;s sake.
-            </p>
-
-            {/* Route table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Route",     width: "22%" },
-                      { label: "Type",      width: "20%" },
-                      { label: "User Task", width: "18%" },
-                      { label: "Purpose",   width: "40%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width, color: label === "User Task" ? c.navy : c.muted, fontWeight: label === "User Task" ? 700 : 600 }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { route: "/",                  type: "Homepage",       task: "Orient",       purpose: "Understand what Wayfarer is and whether to explore further." },
-                    { route: "/destinations",      type: "Explorer",       task: "Browse",       purpose: "Filter and scan destinations by continent." },
-                    { route: "/discover",          type: "Globe",          task: "Explore",      purpose: "Discover destinations through the interactive 3D map." },
-                    { route: "/destinations/[slug]",type: "Detail",        task: "Evaluate",     purpose: "Go deeper on a single destination." },
-                    { route: "/planner",           type: "Trip Planner",   task: "Plan",         purpose: "Build a day-by-day itinerary with drag-to-reorder." },
-                    { route: "Modal",              type: "Sign-up Form",   task: "Personalize",  purpose: "Create an account with preference data for tailored discovery." },
-                  ].map(({ route, type, task, purpose }, i) => (
-                    <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.navy }}>{task}</td>
-                      <td style={tdStyle}>{purpose}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p style={{ ...bodyText, marginTop: "20px" }}>
-              The discipline that produced this list is the same one in &sect;03: every page that didn&apos;t earn its task got cut.
-            </p>
-
-            <h3 style={subheading}>What was rejected</h3>
-            <p style={bodyText}>
-              Three IA approaches lost the filter:
-            </p>
-            <ul style={{ ...bodyText, paddingLeft: "24px", margin: "0 0 32px", listStyleType: "disc" }}>
-              <li style={{ marginBottom: "12px" }}><strong>Search-first.</strong> The default for booking platforms. Searching requires a destination already in mind, and the target audience doesn&apos;t know yet.</li>
-              <li style={{ marginBottom: "12px" }}><strong>Booking-integrated taxonomy.</strong> Hotels and flights as primary navigation. The information scent shifted from discover to transact the moment hotel cards appeared.</li>
-              <li><strong>Tag-based discovery.</strong> Pinterest-style filtering by mood. Tags are aspirational but don&apos;t reduce decision space. Continent + interest does.</li>
-            </ul>
-
-            <p style={bodyText}>
-              This IA assumes browse-first is what the audience wants. The hypothesis is reasoned from the brief and competitive analysis, not from a card sort with real users. That&apos;s the honest gap. The evaluation plan in &sect;08 is built to test it, starting with whether the globe pulls users in or sends them straight to the grid.
-            </p>
-          </Section>
-
-          {/* -- 06 Design System -------------------------- */}
-          <Section label="06" title="Design System">
-            <p style={bodyText}>
-              The original DesignLab style guide defined the palette, typography, logo rules, and image direction. I treated every spec as a constraint, not a suggestion. Two typefaces, each with a defined role. Space Grotesk for headings: commanding without being aggressive. Inter for body: clean and legible at every size. No decorative pairing. The roles are structural.
-            </p>
-
-            {/* Style guide specs — 2x2 grid */}
-            <div className="cs-design-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginTop: "24px" }}>
-
-              {/* Typography */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Typography
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Headings (H1-H4)</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Space Grotesk Bold</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>60, 48, 32, 24px</p>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Body</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Inter Regular</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>20, 18, 16px</p>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Usage</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: 0 }}>Bold for section headings, Regular for body copy</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Color palette — Primary + Secondary */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Palette
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 2px" }}>Primary</p>
-                  {[
-                    { name: "Navy",        hex: "#3E3C78" },
-                    { name: "Lavender",    hex: "#C5C7E3" },
-                    { name: "Deep Indigo", hex: "#2C2B5A" },
-                  ].map(({ name, hex }) => (
-                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
-                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
-                    </div>
-                  ))}
-                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Secondary</p>
-                  {[
-                    { name: "Terra Cotta", hex: "#D27A5E" },
-                    { name: "Sage Green",  hex: "#A3C9A8" },
-                  ].map(({ name, hex }) => (
-                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
-                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
-                    </div>
-                  ))}
-                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Neutrals</p>
-                  {[
-                    { name: "Dark Charcoal", hex: "#2E2E30" },
-                    { name: "Light Gray",    hex: "#D8D9E0" },
-                    { name: "Off-White",     hex: "#F8F9FB" },
-                  ].map(({ name, hex }) => (
-                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
-                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Logo usage */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Logo Usage
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  {[
-                    { rule: "Clearspace", spec: "Equal to the uppercase \u201CW\u201D height on all sides" },
-                    { rule: "Minimum size", spec: "40px (mobile), 60px (desktop)" },
-                    { rule: "Background", spec: "White logo on colored or dark backgrounds; dark logo on light backgrounds only" },
-                    { rule: "Positioning", spec: "Top-left corner across all viewports" },
-                  ].map(({ rule, spec }) => (
-                    <div key={rule}>
-                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
-                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Image style */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Image Style
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  {[
-                    { rule: "Hero imagery", spec: "Full-bleed with relaxed focal crop" },
-                    { rule: "Destination cards", spec: "Consistent rounded corners across all card types" },
-                    { rule: "Icons", spec: "Secondary icons in terra cotta (#D27A5E) to maintain visual consistency" },
-                  ].map(({ rule, spec }) => (
-                    <div key={rule}>
-                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
-                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <p style={{ ...bodyText, marginTop: "24px" }}>
-              The token architecture follows the same three-tier pattern as Men&apos;s Sole Revival and the portfolio site: CSS custom properties as the source of truth, TypeScript semantic aliases for component consumption, and Tailwind utilities for development. Same naming convention across all three projects. One vocabulary, different values per property.
-            </p>
-
-            {/* Token table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Token",    width: "22%" },
-                      { label: "Wayfarer", width: "26%" },
-                      { label: "Brand",    width: "26%" },
-                      { label: "MSR",      width: "26%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width, color: label === "Wayfarer" ? c.navy : c.muted, fontWeight: label === "Wayfarer" ? 700 : 600 }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { token: "brand-500",   wayfarer: "#3E3C78", brand: "#1C3F5E", msr: "#1C3F5E" },
-                    { token: "brand-900",   wayfarer: "#2C2B5A", brand: "#091016", msr: "#091016" },
-                    { token: "accent-500",  wayfarer: "#D27A5E", brand: "#C4703A", msr: "#C4703A" },
-                    { token: "neutral-50",  wayfarer: "#F8F9FB", brand: "#F8F7F7", msr: "#F8F7F7" },
-                    { token: "neutral-500", wayfarer: "#6B6560", brand: "#6B6560", msr: "#6B6560" },
-                  ].map(({ token, wayfarer, brand, msr }, i) => (
-                    <tr key={token} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{token}</td>
-                      <td style={tdStyle}>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                          <span style={{ width: 14, height: 14, background: wayfarer, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.ink, fontWeight: 600 }}>{wayfarer}</span>
-                        </span>
-                      </td>
-                      <td style={tdStyle}>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                          <span style={{ width: 14, height: 14, background: brand, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{brand}</span>
-                        </span>
-                      </td>
-                      <td style={tdStyle}>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                          <span style={{ width: 14, height: 14, background: msr, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{msr}</span>
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p style={{ ...bodyText, marginTop: "10px", fontSize: "13px", color: c.muted }}>
-              Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
             </p>
           </Section>
 
@@ -917,6 +690,254 @@ export default function WayfarerCaseStudy() {
         {/* Resume content wrapper for remaining sections */}
         <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
+          {/* -- 05 Information Architecture -------------- */}
+          <Section label="05" title="Information Architecture">
+            <p style={bodyText}>
+              The IA question was: how does a curious traveler find a destination they didn&apos;t know they wanted? Search-first answers the wrong user. Browse-first answers the right one. Every IA decision flowed from there.
+            </p>
+
+            <h3 style={subheading}>Two entry points, same content</h3>
+            <p style={bodyText}>
+              Globe and grid serve different users with the same content. The globe is for curiosity. A traveler who doesn&apos;t know where to look spins it, follows pins, lets a region invite them in. The grid is for intent. A traveler who already knows they want Southeast Asia filters to it and scans. Both paths land on the same destination pages. The IA doesn&apos;t pick a winner. It picks both. A single funnel would have served the intent user and frustrated the curiosity one.
+            </p>
+
+            <h3 style={subheading}>Six page types, each owns a task</h3>
+            <p style={bodyText}>
+              Six routes, six user verbs: orient, browse, explore, evaluate, plan, personalize. Six covers the full discovery cycle without padding. Anything beyond it would be feature for feature&apos;s sake.
+            </p>
+
+            {/* Route table */}
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+                <thead>
+                  <tr style={{ background: c.bgSection }}>
+                    {[
+                      { label: "Route",     width: "22%" },
+                      { label: "Type",      width: "20%" },
+                      { label: "User Task", width: "18%" },
+                      { label: "Purpose",   width: "40%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "User Task" ? c.navy : c.muted, fontWeight: label === "User Task" ? 700 : 600 }}>{label}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { route: "/",                  type: "Homepage",       task: "Orient",       purpose: "Understand what Wayfarer is and whether to explore further." },
+                    { route: "/destinations",      type: "Explorer",       task: "Browse",       purpose: "Filter and scan destinations by continent." },
+                    { route: "/discover",          type: "Globe",          task: "Explore",      purpose: "Discover destinations through the interactive 3D map." },
+                    { route: "/destinations/[slug]",type: "Detail",        task: "Evaluate",     purpose: "Go deeper on a single destination." },
+                    { route: "/planner",           type: "Trip Planner",   task: "Plan",         purpose: "Build a day-by-day itinerary with drag-to-reorder." },
+                    { route: "Modal",              type: "Sign-up Form",   task: "Personalize",  purpose: "Create an account with preference data for tailored discovery." },
+                  ].map(({ route, type, task, purpose }, i) => (
+                    <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.navy }}>{task}</td>
+                      <td style={tdStyle}>{purpose}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ ...bodyText, marginTop: "20px" }}>
+              The discipline that produced this list is the same one in &sect;03: every page that didn&apos;t earn its task got cut.
+            </p>
+
+            <h3 style={subheading}>What was rejected</h3>
+            <p style={bodyText}>
+              Three IA approaches lost the filter:
+            </p>
+            <ul style={{ ...bodyText, paddingLeft: "24px", margin: "0 0 32px", listStyleType: "disc" }}>
+              <li style={{ marginBottom: "12px" }}><strong>Search-first.</strong> The default for booking platforms. Searching requires a destination already in mind, and the target audience doesn&apos;t know yet.</li>
+              <li style={{ marginBottom: "12px" }}><strong>Booking-integrated taxonomy.</strong> Hotels and flights as primary navigation. The information scent shifted from discover to transact the moment hotel cards appeared.</li>
+              <li><strong>Tag-based discovery.</strong> Pinterest-style filtering by mood. Tags are aspirational but don&apos;t reduce decision space. Continent + interest does.</li>
+            </ul>
+
+            <p style={bodyText}>
+              This IA assumes browse-first is what the audience wants. The hypothesis is reasoned from the brief and competitive analysis, not from a card sort with real users. That&apos;s the honest gap. The evaluation plan in &sect;08 is built to test it, starting with whether the globe pulls users in or sends them straight to the grid.
+            </p>
+          </Section>
+
+          {/* -- 06 Design System -------------------------- */}
+          <Section label="06" title="Design System">
+            <p style={bodyText}>
+              The original DesignLab style guide defined the palette, typography, logo rules, and image direction. I treated every spec as a constraint, not a suggestion. Two typefaces, each with a defined role. Space Grotesk for headings: commanding without being aggressive. Inter for body: clean and legible at every size. No decorative pairing. The roles are structural.
+            </p>
+
+            {/* Style guide specs — 2x2 grid */}
+            <div className="cs-design-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginTop: "24px" }}>
+
+              {/* Typography */}
+              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
+                  Typography
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  <div>
+                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Headings (H1-H4)</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Space Grotesk Bold</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>60, 48, 32, 24px</p>
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Body</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Inter Regular</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>20, 18, 16px</p>
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Usage</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: 0 }}>Bold for section headings, Regular for body copy</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Color palette — Primary + Secondary */}
+              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
+                  Palette
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 2px" }}>Primary</p>
+                  {[
+                    { name: "Navy",        hex: "#3E3C78" },
+                    { name: "Lavender",    hex: "#C5C7E3" },
+                    { name: "Deep Indigo", hex: "#2C2B5A" },
+                  ].map(({ name, hex }) => (
+                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
+                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
+                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
+                    </div>
+                  ))}
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Secondary</p>
+                  {[
+                    { name: "Terra Cotta", hex: "#D27A5E" },
+                    { name: "Sage Green",  hex: "#A3C9A8" },
+                  ].map(({ name, hex }) => (
+                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
+                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
+                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
+                    </div>
+                  ))}
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Neutrals</p>
+                  {[
+                    { name: "Dark Charcoal", hex: "#2E2E30" },
+                    { name: "Light Gray",    hex: "#D8D9E0" },
+                    { name: "Off-White",     hex: "#F8F9FB" },
+                  ].map(({ name, hex }) => (
+                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
+                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
+                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Logo usage */}
+              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
+                  Logo Usage
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  {[
+                    { rule: "Clearspace", spec: "Equal to the uppercase \u201CW\u201D height on all sides" },
+                    { rule: "Minimum size", spec: "40px (mobile), 60px (desktop)" },
+                    { rule: "Background", spec: "White logo on colored or dark backgrounds; dark logo on light backgrounds only" },
+                    { rule: "Positioning", spec: "Top-left corner across all viewports" },
+                  ].map(({ rule, spec }) => (
+                    <div key={rule}>
+                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Image style */}
+              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
+                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
+                  Image Style
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  {[
+                    { rule: "Hero imagery", spec: "Full-bleed with relaxed focal crop" },
+                    { rule: "Destination cards", spec: "Consistent rounded corners across all card types" },
+                    { rule: "Icons", spec: "Secondary icons in terra cotta (#D27A5E) to maintain visual consistency" },
+                  ].map(({ rule, spec }) => (
+                    <div key={rule}>
+                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <p style={{ ...bodyText, marginTop: "24px" }}>
+              The token architecture follows the same three-tier pattern as Men&apos;s Sole Revival and the portfolio site: CSS custom properties as the source of truth, TypeScript semantic aliases for component consumption, and Tailwind utilities for development. Same naming convention across all three projects. One vocabulary, different values per property.
+            </p>
+
+            <details style={{ marginTop: "8px" }}>
+              <summary style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.navy, cursor: "pointer", padding: "12px 0", letterSpacing: "0.02em" }}>
+                Show the cross-project token comparison table
+              </summary>
+            {/* Token table */}
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+                <thead>
+                  <tr style={{ background: c.bgSection }}>
+                    {[
+                      { label: "Token",    width: "22%" },
+                      { label: "Wayfarer", width: "26%" },
+                      { label: "Brand",    width: "26%" },
+                      { label: "MSR",      width: "26%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "Wayfarer" ? c.navy : c.muted, fontWeight: label === "Wayfarer" ? 700 : 600 }}>{label}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { token: "brand-500",   wayfarer: "#3E3C78", brand: "#1C3F5E", msr: "#1C3F5E" },
+                    { token: "brand-900",   wayfarer: "#2C2B5A", brand: "#091016", msr: "#091016" },
+                    { token: "accent-500",  wayfarer: "#D27A5E", brand: "#C4703A", msr: "#C4703A" },
+                    { token: "neutral-50",  wayfarer: "#F8F9FB", brand: "#F8F7F7", msr: "#F8F7F7" },
+                    { token: "neutral-500", wayfarer: "#6B6560", brand: "#6B6560", msr: "#6B6560" },
+                  ].map(({ token, wayfarer, brand, msr }, i) => (
+                    <tr key={token} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{token}</td>
+                      <td style={tdStyle}>
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                          <span style={{ width: 14, height: 14, background: wayfarer, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
+                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.ink, fontWeight: 600 }}>{wayfarer}</span>
+                        </span>
+                      </td>
+                      <td style={tdStyle}>
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                          <span style={{ width: 14, height: 14, background: brand, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
+                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{brand}</span>
+                        </span>
+                      </td>
+                      <td style={tdStyle}>
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                          <span style={{ width: 14, height: 14, background: msr, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
+                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{msr}</span>
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ ...bodyText, marginTop: "10px", fontSize: "13px", color: c.muted }}>
+              Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
+            </p>
+            </details>
+          </Section>
+
+
           {/* -- 07 Outcomes ------------------------------- */}
           <Section label="07" title="Outcomes">
             <p style={bodyText}>
@@ -1205,6 +1226,7 @@ const bodyText: React.CSSProperties = {
   lineHeight: 1.75,
   color:      "#3D4440",
   margin:     "0 0 20px",
+  maxWidth:   "780px",
 };
 
 const subheading: React.CSSProperties = {
