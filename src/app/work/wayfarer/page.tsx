@@ -108,7 +108,7 @@ export default function WayfarerCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              The brief said discovery. The tools said build everything. The discipline was knowing the difference.
+              Wayfarer: a travel discovery platform with an interactive globe. For travelers who research before they book.
             </h1>
 
             <p style={{
@@ -117,51 +117,10 @@ export default function WayfarerCaseStudy() {
               lineHeight:  1.55,
               color:       "rgba(245,243,239,0.65)",
               margin:      "0 0 40px",
-              maxWidth:    "560px",
+              maxWidth:    "640px",
             }}>
-              A DesignLab capstone I kept building, then expanded with AI tools. Discovery-first travel platform with 40+ destinations, an interactive globe, a 5-step signup, and an evaluation plan ready to test them.
+              A DesignLab capstone that started with one brief and kept going. 40+ destinations, an interactive globe, a 5-step signup. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don&apos;t exist yet.
             </p>
-
-            {/* Acceptance criteria strip — proxy artifacts surfaced in first scroll */}
-            <div style={{
-              display:        "flex",
-              flexWrap:       "wrap",
-              gap:            "clamp(20px, 4vw, 48px)",
-              padding:        "20px 24px",
-              marginBottom:   "40px",
-              background:     "rgba(62,60,120,0.18)",
-              borderLeft:     `2px solid #8E8AD9`,
-            }}>
-              {[
-                { value: "40+",        label: "destinations shipped" },
-                { value: "5 steps",    label: "Zod-validated signup" },
-                { value: "4 hypotheses", label: "evaluation plan ready" },
-              ].map(({ value, label }) => (
-                <div key={label}>
-                  <p style={{
-                    fontFamily:    font.display,
-                    fontSize:      "clamp(18px, 2.6vw, 22px)",
-                    fontWeight:    500,
-                    color:         "#C7C5E3",
-                    margin:        "0 0 2px",
-                    letterSpacing: "-0.01em",
-                  }}>
-                    {value}
-                  </p>
-                  <p style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "11px",
-                    fontWeight:    600,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color:         "rgba(245,243,239,0.55)",
-                    margin:        0,
-                  }}>
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
 
             {/* Metadata row */}
             <div style={{
@@ -175,8 +134,9 @@ export default function WayfarerCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer" },
                 { label: "Type",     value: "DesignLab \u00B7 Concept" },
                 { label: "Timeline", value: "4-week sprint" },
+                { label: "Status",   value: "Live \u00B7 wayfarer.barreiro.com" },
                 { label: "Methods",  value: "Heuristic Evaluation \u00B7 Card Sorting \u00B7 Information Architecture \u00B7 Multi-Step Form UX \u00B7 AI-Assisted Development" },
-                { label: "Outcome",  value: "Discovery-first platform shipped, evaluation plan ready." },
+                { label: "Outcome",  value: "Discovery-first platform shipped. Trip planner architecture defined." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#C7C5E3", margin: "0 0 4px" }}>
@@ -838,7 +798,7 @@ export default function WayfarerCaseStudy() {
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
               }}>
-                The globe is the novel entry point, but not the only one. The destinations grid is the fallback path for users who already know what region they want. Same content, different interaction — filter by continent, scan visually, click to go deeper. Two entry points matched to different levels of intent.
+                The globe is the novel entry point, but not the only one. The destinations grid is the fallback path for users who already know what region they want. Same content, different interaction. Filter by continent, scan visually, click to go deeper. Two entry points matched to different levels of intent.
               </p>
               <div style={{
                 position:     "relative",
@@ -1076,10 +1036,7 @@ export default function WayfarerCaseStudy() {
           {/* -- 09 Reflection ---------------------------- */}
           <Section label="09" title="Reflection">
             <p style={bodyText}>
-              The hardest design decision wasn&apos;t any single UI choice. It was removing working features that existed because the tools made them easy to build.
-            </p>
-            <p style={bodyText}>
-              AI-assisted development changed my process. I went from Figma mockups to functional React components in hours. The hotel booking UI, the car rental pages, the pricing filters. All built, all working, all wrong for this project. The brief said discovery. The tools said &ldquo;you can build anything.&rdquo; The discipline was holding the line between what&apos;s possible and what&apos;s right.
+              AI-assisted development changed the process. Figma mockups to functional React components in hours. The hotel booking UI, the car rental pages, the pricing filters: all built, all working, all wrong for the brief. The design work was deciding what to remove, not what to build.
             </p>
             <p style={bodyText}>
               I&apos;d test the globe interaction model first if I had more time. The 3D globe is the signature feature, but it&apos;s also the riskiest. On mobile, a globe is hard to navigate with touch. On desktop, it&apos;s engaging but potentially slow for users who already know what region they want. The continent filter grid exists as a fallback, but I don&apos;t know yet whether users treat the globe as the front door or a novelty. That question matters more than any visual polish.
