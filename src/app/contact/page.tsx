@@ -89,9 +89,9 @@ export default function ContactPage() {
                 margin:     "0 0 40px",
                 maxWidth:   "460px",
               }}>
-                Open to full-time UX/UI roles, contract work, and thoughtful
-                conversations about design problems worth solving. I&apos;ll
-                get back to you within a day or two.
+                Open to full-time UX/UI roles and selective contract work.
+                Portland, OR or remote. I&apos;ll get back to you within a day
+                or two.
               </p>
               <p style={{
                 fontFamily: font,

@@ -71,7 +71,7 @@ export default function Footer() {
               color:      "rgba(245,243,239,0.55)",
               margin:     0,
             }}>
-              Open to full-time UX/UI roles, contract work, and thoughtful design conversations. Portland, OR or remote.
+              Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
             </p>
           </div>
 

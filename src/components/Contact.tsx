@@ -147,8 +147,7 @@ export default function Contact() {
               maxWidth:     "380px",
             }}
           >
-            Open to full-time UX/UI roles, contract work, and thoughtful conversations
-            about design problems worth solving.
+            Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
           </p>
 
           {/* Direct email */}
