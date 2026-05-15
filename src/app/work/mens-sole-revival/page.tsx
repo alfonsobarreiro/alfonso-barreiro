@@ -107,7 +107,7 @@ export default function MSRCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              77% of adults have foot pain. One in three ever see a specialist. No one built the resource between those two numbers.
+              Men&apos;s Sole Revival: a foot health resource for men over 40. Editorial, clinically grounded, product-informed.
             </h1>
 
             <p style={{
@@ -116,51 +116,10 @@ export default function MSRCaseStudy() {
               lineHeight:  1.55,
               color:       "rgba(245,243,239,0.65)",
               margin:      "0 0 40px",
-              maxWidth:    "560px",
+              maxWidth:    "640px",
             }}>
-              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years. Most men over 40 take care of everyone but themselves.
+              77% of US adults report annual foot pain. Men are 33% less likely than women to seek care. The audience exists. The resource didn&apos;t. I built MSR, then pivoted from e-commerce to content authority when the unit economics broke in week three.
             </p>
-
-            {/* Acceptance criteria strip \u2014 operational status surfaced in first scroll */}
-            <div style={{
-              display:        "flex",
-              flexWrap:       "wrap",
-              gap:            "clamp(20px, 4vw, 48px)",
-              padding:        "20px 24px",
-              marginBottom:   "40px",
-              background:     "rgba(193,127,74,0.10)",
-              borderLeft:     `2px solid ${c.cognac}`,
-            }}>
-              {[
-                { value: "Live",          label: "menssolerevival.com" },
-                { value: "GA4",           label: "instrumented" },
-                { value: "Phase 1",       label: "readout closes May 2026" },
-              ].map(({ value, label }) => (
-                <div key={label}>
-                  <p style={{
-                    fontFamily:    font.display,
-                    fontSize:      "clamp(18px, 2.6vw, 22px)",
-                    fontWeight:    500,
-                    color:         c.cognac,
-                    margin:        "0 0 2px",
-                    letterSpacing: "-0.01em",
-                  }}>
-                    {value}
-                  </p>
-                  <p style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "11px",
-                    fontWeight:    600,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color:         "rgba(245,243,239,0.55)",
-                    margin:        0,
-                  }}>
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
 
             {/* Metadata row */}
             <div style={{
@@ -174,6 +133,7 @@ export default function MSRCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer \u00B7 Content Strategist" },
                 { label: "Type",     value: "Solo \u00B7 Self-initiated" },
                 { label: "Timeline", value: "Jan \u2013 Apr 2026" },
+                { label: "Status",   value: "Live since April 2026 \u00B7 menssolerevival.com" },
                 { label: "Methods",  value: "Market Research \u00B7 Competitive Analysis \u00B7 Content UX \u00B7 AI-Assisted Development" },
                 { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority." },
               ].map(({ label, value }) => (
