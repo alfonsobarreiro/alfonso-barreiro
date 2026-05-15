@@ -33,8 +33,8 @@ const c = {
   bg:       "#FFFFFF",
   bgSection:"#FAFAF9",
   surface:  "#FFFFFF",
-  border:   "#E8E4DE",
-  borderStrong: "#C9BFB0",
+  border:   "#A99B8A",
+  borderStrong: "#7E715F",
   green:    "#1DB954",
 };
 
@@ -1342,7 +1342,7 @@ const c2 = {
   bg:     "#FFFFFF",
   bgSection: "#FAFAF9",
   surface: "#FFFFFF",
-  border: "#E8E4DE",
+  border: "#A99B8A",
 };
 
 const f = {
@@ -1508,7 +1508,7 @@ const thStyle: React.CSSProperties = {
   color:         "#8A8680",
   padding:       "12px 16px",
   textAlign:     "left",
-  borderBottom:  "1px solid #E8E4DE",
+  borderBottom:  "1px solid #A99B8A",
 };
 
 const tdStyle: React.CSSProperties = {
@@ -1516,5 +1516,5 @@ const tdStyle: React.CSSProperties = {
   fontSize:    "14px",
   color:       "#3D4440",
   padding:     "14px 16px",
-  borderBottom: "1px solid #E8E4DE",
+  borderBottom: "1px solid #A99B8A",
 };

@@ -158,7 +158,7 @@ export default function Hero() {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 4px 12px rgba(37,43,40,0.18)";
+                e.currentTarget.style.boxShadow = "0 4px 12px rgba(37,43,40,0.26)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
@@ -173,7 +173,7 @@ export default function Hero() {
                 padding:        "14px 32px",
                 background:     "transparent",
                 color:          "#3D4440",
-                border:         "1px solid #C9BFB0",
+                border:         "1px solid #7E715F",
                 borderRadius:   "8px",
                 fontSize:       "14px",
                 fontWeight:     400,
@@ -188,10 +188,10 @@ export default function Hero() {
                 e.currentTarget.style.borderColor = "#8A8680";
                 e.currentTarget.style.color       = "#252B28";
                 e.currentTarget.style.transform   = "translateY(-2px)";
-                e.currentTarget.style.boxShadow   = "0 4px 12px rgba(37,43,40,0.08)";
+                e.currentTarget.style.boxShadow   = "0 4px 12px rgba(37,43,40,0.22)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#C9BFB0";
+                e.currentTarget.style.borderColor = "#7E715F";
                 e.currentTarget.style.color       = "#3D4440";
                 e.currentTarget.style.transform   = "translateY(0)";
                 e.currentTarget.style.boxShadow   = "none";
@@ -309,7 +309,7 @@ export default function Hero() {
           display:       "flex",
           alignItems:    "center",
           gap:           "10px",
-          color:         "#C9BFB0",
+          color:         "#7E715F",
           fontSize:      "11px",
           letterSpacing: "0.12em",
           textTransform: "uppercase",
@@ -321,7 +321,7 @@ export default function Hero() {
           style={{
             width:      "1px",
             height:     "44px",
-            background: "linear-gradient(to bottom, transparent, #C9BFB0)",
+            background: "linear-gradient(to bottom, transparent, #7E715F)",
           }}
         />
         Scroll

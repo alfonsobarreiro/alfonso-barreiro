@@ -34,7 +34,7 @@ export default function ContactForm() {
     border:       "none",
     borderBottom: focusedField === field
       ? "1px solid #C17F4A"
-      : "1px solid #C9BFB0",
+      : "1px solid #7E715F",
     borderRadius: 0,
     padding:      "12px 0",
     color:        "#252B28",

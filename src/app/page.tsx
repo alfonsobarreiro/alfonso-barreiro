@@ -19,7 +19,7 @@ function SectionDivider() {
         style={{
           width:      "48px",
           height:     "1px",
-          background: "#C9BFB0",
+          background: "#7E715F",
         }}
       />
     </div>

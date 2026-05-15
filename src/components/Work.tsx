@@ -230,7 +230,7 @@ function ProjectCard({
     textDecoration: "none",
     color:          "inherit",
     background:     "#FAFAF9",
-    border:         "1px solid #C9BFB0",
+    border:         "1px solid #7E715F",
     borderRadius:   0,
     padding:        featured ? "44px 48px" : "40px 40px",
     height:         "100%",
@@ -238,8 +238,8 @@ function ProjectCard({
     transition:     "transform 0.25s ease, box-shadow 0.25s ease",
     transform:      hovered && isLive ? "translateY(-3px)" : "translateY(0)",
     boxShadow:      hovered && isLive
-      ? "0 18px 44px rgba(37,43,40,0.14), 0 4px 12px rgba(37,43,40,0.08)"
-      : "0 4px 14px rgba(37,43,40,0.08), 0 1px 3px rgba(37,43,40,0.05)",
+      ? "0 18px 44px rgba(37,43,40,0.22), 0 4px 12px rgba(37,43,40,0.22)"
+      : "0 4px 14px rgba(37,43,40,0.22), 0 1px 3px rgba(37,43,40,0.22)",
     cursor:         isLive ? "pointer" : "default",
   };
 
@@ -329,7 +329,7 @@ function ProjectCard({
               background:   "#F5F5F4",
               color:        "#3D4440",
               fontWeight:   500,
-              border:       "1px solid #E8E4DE",
+              border:       "1px solid #A99B8A",
             }}>
               {tag}
             </span>
@@ -401,7 +401,7 @@ function ProjectCard({
           marginBottom: "28px",
           height:       "280px",
           overflow:     "hidden",
-          borderBottom: "1px solid #E8E4DE",
+          borderBottom: "1px solid #A99B8A",
         }}>
           <Image
             src={project.image}
@@ -435,7 +435,7 @@ function ProjectCard({
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "11px",
             padding:       "4px 12px",
-            border:        isLive ? "1px solid rgba(193,127,74,0.30)" : "1px solid #E8E4DE",
+            border:        isLive ? "1px solid rgba(193,127,74,0.30)" : "1px solid #A99B8A",
             color:         isLive ? "#C17F4A" : "#8A8680",
             fontWeight:    isLive ? 600 : 500,
             letterSpacing: "0.06em",
@@ -494,7 +494,7 @@ function ProjectCard({
             background:   "#F5F5F4",
             color:        "#3D4440",
             fontWeight:   500,
-            border:       "1px solid #E8E4DE",
+            border:       "1px solid #A99B8A",
           }}>
             {tag}
           </span>

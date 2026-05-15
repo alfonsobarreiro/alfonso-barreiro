@@ -26,7 +26,7 @@ const c = {
   accent:      "#C17F4A",
   bg:          "#FFFFFF",
   bgSection:   "#FFFFFF",
-  border:      "#E8E4DE",
+  border:      "#A99B8A",
 };
 
 const font = {

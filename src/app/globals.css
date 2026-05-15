@@ -8,7 +8,7 @@
   /* ── Brand primitives ── */
   --color-brand-50:  #F0EDE7;
   --color-brand-100: #E3DDD4;
-  --color-brand-200: #C9BFB0;
+  --color-brand-200: #7E715F;
   --color-brand-300: #C17F4A; /* accent / cognac */
   --color-brand-400: #A86A38;
   --color-brand-500: #8F5630;
@@ -20,7 +20,7 @@
   /* ── Neutral scale ── */
   --color-neutral-50:  #F5F5F4;
   --color-neutral-100: #EBEBEA;
-  --color-neutral-200: #E8E4DE;
+  --color-neutral-200: #A99B8A;
   --color-neutral-800: #3D4440;
   --color-neutral-900: #252B28;
 
@@ -31,8 +31,8 @@
   --color-foreground-secondary:#3D4440;
   --color-foreground-muted:    #8A8680;
   --color-accent:              #C17F4A;
-  --color-border:              #E8E4DE;
-  --color-border-strong:       #C9BFB0;
+  --color-border:              #A99B8A;
+  --color-border-strong:       #7E715F;
 
   /* ── Typography ── */
   --font-sans:    var(--font-dm-sans);
@@ -83,7 +83,7 @@ main > footer {
 /* ── Scrollbar ── */
 ::-webkit-scrollbar        { width: 5px; }
 ::-webkit-scrollbar-track  { background: #FFFFFF; }
-::-webkit-scrollbar-thumb  { background: #C9BFB0; border-radius: 3px; }
+::-webkit-scrollbar-thumb  { background: #7E715F; border-radius: 3px; }
 
 /* ── Base links ── */
 a {
@@ -255,7 +255,7 @@ button {
     list-style: none;
     padding: 14px 20px;
     background: #FFFFFF;
-    border: 1px solid #E8E4DE;
+    border: 1px solid #A99B8A;
     font-family: var(--font-dm-sans), -apple-system, sans-serif;
     font-size: 13px;
     font-weight: 600;

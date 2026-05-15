@@ -30,8 +30,8 @@ const c = {
   bg:          "#FFFFFF",
   bgSection:   "#FAFAF9",
   surface:     "#FFFFFF",
-  border:      "#E8E4DE",
-  borderStrong:"#C9BFB0",
+  border:      "#A99B8A",
+  borderStrong:"#7E715F",
   cognac:      "#C4703A",   // MSR brand accent
 };
 
@@ -107,7 +107,7 @@ export default function MSRCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              63% report foot pain. 12% see a doctor. No one built the resource between those two numbers.
+              77% of adults have foot pain. One in three ever see a specialist. No one built the resource between those two numbers.
             </h1>
 
             <p style={{
@@ -118,7 +118,7 @@ export default function MSRCaseStudy() {
               margin:      "0 0 40px",
               maxWidth:    "560px",
             }}>
-              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years. Most men over 40 carry care for everyone but themselves.
+              I built Men&apos;s Sole Revival not out of a whim, but because I&apos;ve dealt with toe and foot issues for years. Most men over 40 take care of everyone but themselves.
             </p>
 
             {/* Acceptance criteria strip \u2014 operational status surfaced in first scroll */}
@@ -261,23 +261,104 @@ export default function MSRCaseStudy() {
           {/* -- 01 Context -------------------------------- */}
           <Section label="01" title="Context">
             <p style={bodyText}>
-              I kept Googling &ldquo;cracked heels men fix&rdquo; and landing on the same three articles written for women, repackaged with a stock photo of a guy. The clinical sources were accurate but impersonal. The product sites were selling, not teaching. Nothing spoke to men who actually wanted to understand what was happening to their feet and what to do about it without a referral.
+              I kept Googling &ldquo;cracked heels men fix&rdquo; and landing on the same three articles written for women, repackaged with a stock photo of a guy. The clinical sources were accurate but impersonal. The product sites were selling, not teaching. Nothing spoke to men who actually wanted to understand what was happening to their feet and what to do about it.
             </p>
             <p style={bodyText}>
-              63% of Americans report foot pain, but only 12% ever see a podiatrist. Men have a 3&times; higher fungal infection rate. The men&apos;s foot-care segment is growing at 10% CAGR. The audience exists. The resource doesn&apos;t.
+              The numbers back up the gap. Three of them set up everything that follows.
             </p>
+
+            {/* 3-stat strip */}
+            <div style={{
+              display:         "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap:             "0",
+              margin:          "32px 0",
+              border:          `1px solid ${c.border}`,
+              borderRadius:    "0",
+            }}>
+              {[
+                {
+                  value:  "77%",
+                  label:  "of US adults experience annual foot pain",
+                  source: "APMA",
+                  href:   "https://www.prnewswire.com/news-releases/new-survey-reveals-majority-of-americans-suffer-from-foot-pain-259775741.html",
+                  caption: "Scale",
+                },
+                {
+                  value:  "33%",
+                  label:  "less likely men are to seek medical care than women",
+                  source: "WellMed Medical Group",
+                  href:   "https://www.wellmedhealthcare.com/patients/healthyliving/habits-wellness/understanding-mens-reluctance-to-see-a-doctor/",
+                  caption: "Underserved",
+                },
+                {
+                  value:  "$4.7B",
+                  label:  "projected US men&apos;s foot care market by 2030",
+                  source: "Industry projection",
+                  href:   null,
+                  caption: "Market opportunity",
+                },
+              ].map(({ value, label, source, href, caption }, i, arr) => (
+                <div key={caption} style={{
+                  padding:     "28px 28px",
+                  background:  c.surface,
+                  borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+                }}>
+                  <p style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "10px",
+                    fontWeight:    700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color:         c.cognac,
+                    margin:        "0 0 12px",
+                  }}>{caption}</p>
+                  <p style={{
+                    fontFamily:    font.display,
+                    fontSize:      "clamp(28px, 4vw, 40px)",
+                    fontWeight:    500,
+                    color:         c.ink,
+                    margin:        "0 0 8px",
+                    letterSpacing: "-0.02em",
+                    lineHeight:    1.0,
+                  }}>{value}</p>
+                  <p style={{
+                    fontFamily: font.sans,
+                    fontSize:   "13px",
+                    lineHeight: 1.5,
+                    color:      c.body,
+                    margin:     "0 0 10px",
+                  }} dangerouslySetInnerHTML={{ __html: label }} />
+                  {href ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer" style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "11px",
+                      color:         c.muted,
+                      textDecoration: "underline",
+                      textDecorationColor: c.border,
+                    }}>{source}</a>
+                  ) : (
+                    <span style={{ fontFamily: font.sans, fontSize: "11px", color: c.muted }}>{source}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+
             <p style={bodyText}>
-              Zoom out and the picture sharpens. 30% of people with foot pain do nothing about it, and only a third ever seek expert care. Toenail fungus affects 1 in 10 adults overall, jumping to 1 in 2 over 70. The problem compounds as the audience ages. Meanwhile, men&apos;s grooming has become a $90.7B category projected to hit $153.6B by 2033, with 59% of men saying they&apos;re concerned about aging. The demand for men&apos;s wellness resources is growing. The supply for foot-specific guidance is not.
+              Foot pain is near-universal in this audience. Action is not. Men over 40 sit in the peak risk window for plantar fasciitis, hallux rigidus, and fungal infections, and they are the demographic least likely to act. The market knows the audience exists. Men&apos;s grooming is now a <a href="https://www.grandviewresearch.com/industry-analysis/mens-personal-care-market-report" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>$90.7B category</a>. The supply of foot-specific guidance has not caught up.
             </p>
             <Callout label="Design synthesis">
-              Men need a foot health resource that&apos;s male-specific, clinically grounded, and product-informed. No existing site occupies that intersection.
+              Men need a foot health resource that is male-specific, clinically grounded, and product-informed. No existing site occupies that intersection.
             </Callout>
           </Section>
 
           {/* -- 02 Problem -------------------------------- */}
           <Section label="02" title="The Competitive Gap">
             <p style={bodyText}>
-              Three categories of content exist for men&apos;s foot health. Each covers part of the problem. None covers all of it.
+              Three categories of content exist for men&apos;s foot health. Each one does part of the job and stops short of the rest.
+            </p>
+            <p style={bodyText}>
+              Clinical sources (<a href="https://www.webmd.com" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>WebMD</a>, <a href="https://www.mayoclinic.org" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Mayo Clinic</a>, <a href="https://my.clevelandclinic.org" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Cleveland Clinic</a>) deliver accuracy without a voice. Product-first content (sneaker blogs, GQ, Amazon listicles) names brands without explaining the underlying condition. Wellness platforms (<a href="https://www.healthline.com" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Healthline</a>, <a href="https://www.verywellhealth.com" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Verywell Health</a>) write for a general audience that defaults to women. Each stops short of the same intersection.
             </p>
             {/* Venn diagram — competitive gap */}
             <div style={{ display: "flex", justifyContent: "center", marginTop: "32px", marginBottom: "8px" }}>
@@ -355,12 +436,89 @@ export default function MSRCaseStudy() {
               </svg>
             </div>
             <p style={{ ...bodyText, marginTop: "24px" }}>
-              Men&apos;s Sole Revival sits at the intersection: male-specific, clinically grounded, and product-informed. Not a compromise between the three categories. The resource that should exist where they overlap.
+              The intersection is where the audience actually lives. Male-specific, clinically grounded, and product-informed. Not a compromise between the three categories. The resource that should exist where they overlap.
             </p>
           </Section>
 
-          {/* -- 03 The Pivot ------------------------------ */}
-          <Section label="03" title="The Pivot">
+          {/* -- 03 Competitor Analysis ------------------- */}
+          <Section label="03" title="Competitor Analysis">
+            <p style={bodyText}>
+              Five categories shape how a man over 40 thinks about foot health: clinical, athletic, orthopedic, wellness, and grooming. None of them speak to him directly about feet. Mapping their feature sets, pricing models, and tone shows where the gap lives and what MSR can borrow.
+            </p>
+
+            {/* Competitor matrix */}
+            <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+                <thead>
+                  <tr style={{ background: c.bgSection }}>
+                    {[
+                      { label: "Category",     width: "16%" },
+                      { label: "Examples",     width: "20%" },
+                      { label: "Model",        width: "16%" },
+                      { label: "Captures user with", width: "24%" },
+                      { label: "Loses user at",   width: "24%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "Captures user with" ? c.accent : c.muted, fontWeight: label === "Captures user with" ? 700 : 600 }}>{label}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    {
+                      cat: "Men&apos;s grooming",
+                      ex:  "Hims, Roman, Manscaped, Harry&apos;s",
+                      mod: "Subscription DTC, intake quiz",
+                      cap: "Defuses embarrassment. \"We handle this here, no judgment.\"",
+                      lose: "Foot health is unaddressed. No condition vocabulary.",
+                    },
+                    {
+                      cat: "Athletic / performance footwear",
+                      ex:  "Runner&apos;s World, Believe in the Run, Road Runner Sports",
+                      mod: "Editorial + affiliate",
+                      cap: "Gear specificity. Performance frame.",
+                      lose: "Foot health framed as performance only. No clinical layer.",
+                    },
+                    {
+                      cat: "Orthopedic",
+                      ex:  "Vionic, Orthofeet, Aetrex",
+                      mod: "Direct sale + Rx referral",
+                      cap: "Condition validation. Therapeutic credibility.",
+                      lose: "Aging signal. Beige clinical aesthetic men avoid.",
+                    },
+                    {
+                      cat: "Wellness",
+                      ex:  "Healthline, Verywell Health, WebMD foot care",
+                      mod: "Ads + editorial",
+                      cap: "Symptom answers. Editorial authority.",
+                      lose: "Female default. No men&apos;s framing. No product layer.",
+                    },
+                    {
+                      cat: "Men&apos;s hair / skincare",
+                      ex:  "Hims, Keeps, Tiege Hanley",
+                      mod: "Subscription DTC, intake quiz",
+                      cap: "Visible-aging concerns. Routine logic.",
+                      lose: "Below-the-ankle is not in scope.",
+                    },
+                  ].map(({ cat, ex, mod, cap, lose }, i) => (
+                    <tr key={cat} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }} dangerouslySetInnerHTML={{ __html: cat }} />
+                      <td style={{ ...tdStyle, color: c.body }} dangerouslySetInnerHTML={{ __html: ex }} />
+                      <td style={{ ...tdStyle, color: c.body }}>{mod}</td>
+                      <td style={{ ...tdStyle, color: c.ink }} dangerouslySetInnerHTML={{ __html: cap }} />
+                      <td style={{ ...tdStyle, color: c.muted, fontStyle: "italic" }} dangerouslySetInnerHTML={{ __html: lose }} />
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <Callout label="Synthesis">
+              The audience moves through these categories in order. Grooming gives him permission to pay attention. Athletic content gives him gear. Wellness gives him language for symptoms. Orthopedic gives him names for conditions. Hair and skincare give him the model: short intake, specific recommendation, no judgment. MSR uses each one&apos;s entry move and avoids each one&apos;s exit. The result is the foot health resource the audience already knows how to read.
+            </Callout>
+          </Section>
+
+          {/* -- 04 The Pivot ----------------------------- */}
+          <Section label="04" title="The Pivot">
             <p style={bodyText}>
               The original plan was a premium men&apos;s foot care e-commerce site. Curated product kits: antifungal treatment, toe separators, insoles, foot cream. Headless Shopify, Next.js frontend, dark editorial brand.
             </p>
@@ -379,8 +537,8 @@ export default function MSRCaseStudy() {
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Dimension", "Before", "After"].map((h) => (
-                      <th key={h} style={thStyle}>{h}</th>
+                    {["Dimension", "Before", "", "After"].map((h, i) => (
+                      <th key={i} style={{ ...thStyle, width: h === "" ? "44px" : undefined }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -394,7 +552,8 @@ export default function MSRCaseStudy() {
                     <tr key={dim} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
                       <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{dim}</td>
                       <td style={{ ...tdStyle, color: c.muted, textDecoration: "line-through", textDecorationColor: c.border }}>{before}</td>
-                      <td style={{ ...tdStyle, color: c.ink }}>{after}</td>
+                      <td style={{ ...tdStyle, color: c.cognac, fontWeight: 700, textAlign: "center", fontSize: "18px", lineHeight: 1 }}>&rarr;</td>
+                      <td style={{ ...tdStyle, color: c.ink, fontWeight: 600 }}>{after}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -406,15 +565,233 @@ export default function MSRCaseStudy() {
             </Callout>
           </Section>
 
-          {/* -- 04 Design Decisions ----------------------- */}
-          <Section label="04" title="Design Decisions">
+          {/* -- 05 Site Architecture --------------------- */}
+          <Section label="05" title="Site Architecture">
+
+            {/* IA tree (Figma Artifact 01) */}
+            <div style={{
+              position:    "relative",
+              aspectRatio: "1920 / 1131",
+              marginBottom: "32px",
+              border:      `1px solid ${c.border}`,
+              background:  c.bgSection,
+              overflow:    "hidden",
+            }}>
+              <Image
+                src="/images/work/msr/msr-ia-tree.webp"
+                alt="MSR information architecture. Every route from the homepage to detail pages. A right-side symptom tag rail (cracked heels, toenail fungus, foot pain, alignment, etc.) feeds the Library and Self-Assessment routes so users can arrive symptom-first."
+                fill
+                sizes="(max-width: 767px) 100vw, 1100px"
+                style={{ objectFit: "contain", objectPosition: "top" }}
+              />
+            </div>
+
+            {/* Annotation under the IA tree */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "16px", marginBottom: "32px" }}>
+              <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                <span style={{
+                  width: "4px", height: "4px", borderRadius: "50%",
+                  background: c.cognac, flexShrink: 0, marginTop: "9px",
+                }} />
+                <p style={{
+                  fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+                  color: c.body, margin: 0,
+                }}>
+                  <span style={{ color: c.ink, fontWeight: 600 }}>Symptoms live in a tag rail, not the nav</span>
+                  {" · "}A man with cracked heels should not have to know whether the answer is a routine, a kit, or an article. The tag pulls relevant content from all three. The nav stays clean. The symptom does the routing.
+                </p>
+              </div>
+            </div>
+
             <p style={bodyText}>
-              Two decisions defined the direction: the visual language and the review page layout. Each came from reasoning about the audience&apos;s emotional state and task intent, not aesthetic preference.
+              Seven page types, each designed for a different user task. The information architecture is the product strategy made navigable. Every route maps to a specific intent.
+            </p>
+
+            {/* Route table */}
+            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+                <thead>
+                  <tr style={{ background: c.bgSection }}>
+                    {[
+                      { label: "Route",     width: "24%" },
+                      { label: "Type",      width: "22%" },
+                      { label: "User Task", width: "16%" },
+                      { label: "Purpose",   width: "38%" },
+                    ].map(({ label, width }) => (
+                      <th key={label} style={{ ...thStyle, width, color: label === "User Task" ? c.accent : c.muted, fontWeight: label === "User Task" ? 700 : 600 }}>{label}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { route: "/",               type: "Homepage",        task: "Orient",   purpose: "Understand what this site is and whether it\u2019s for me." },
+                    { route: "/learn/[slug]",    type: "Article",         task: "Learn",    purpose: "Go deeper on a foot health topic." },
+                    { route: "/reviews/[slug]",  type: "Product Review",  task: "Evaluate", purpose: "Compare and decide on a product." },
+                    { route: "/kits",            type: "Curated Kits",    task: "Browse",   purpose: "See grouped product recommendations." },
+                    { route: "/learn",           type: "Educational Hub", task: "Explore",  purpose: "Find the right starting point." },
+                    { route: "/about",           type: "Brand Story",     task: "Trust",    purpose: "Understand who built this and why." },
+                    { route: "/assessment",      type: "Self-Check Tool", task: "Act",      purpose: "Get a personalized starting point." },
+                  ].map(({ route, type, task, purpose }, i) => (
+                    <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
+                      <td style={{ ...tdStyle, fontWeight: 600, color: c.cognac }}>{task}</td>
+                      <td style={tdStyle}>{purpose}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+          </Section>
+
+          {/* -- 06 User Flows ---------------------------- */}
+          <Section label="06" title="User Flows">
+            <p style={bodyText}>
+              Two paths to the product. Symptom-first and question-first end at the same decision.
+            </p>
+            <p style={bodyText}>
+              Flow A is the symptom-first path. The user takes the assessment, answers a Q1 that branches into one of three Q2 sets, and lands on a personalized recommendation. Flow B is the question-first path. The user reads a guide, follows an in-article reference into related products and reviews, and out to the product CTA. Both paths converge on the same decision. The branch rules, click states, and end-state rationale are annotated inline.
+            </p>
+
+            {/* Artifact image */}
+            <div style={{
+              position:    "relative",
+              aspectRatio: "1920 / 1705",
+              marginTop:   "24px",
+              border:      `1px solid ${c.border}`,
+              background:  c.bgSection,
+              overflow:    "hidden",
+            }}>
+              <Image
+                src="/images/work/msr/msr-user-flows.webp"
+                alt="Artifact 02. User Flows. Two end-to-end paths through Men's Sole Revival. Flow A: Landing, CTA, Q1 Symptom, BRANCH diamond, Q2, Results loading, Personalized Recs, fork to Amazon affiliate (current) or internal product page (pivot). Flow B: Landing, Library, Article, Related Products, Reviews, outbound product CTA."
+                fill
+                sizes="(max-width: 767px) 100vw, 1100px"
+                style={{ objectFit: "contain", objectPosition: "top" }}
+              />
+            </div>
+
+            {/* Annotations */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "24px" }}>
+              {[
+                {
+                  detail: "Branch diamond",
+                  why: "Q1 asks where the trouble lives. The answer routes into one of three Q2 sets: pain, nails, or fit. The branch cuts the number of questions the user actually sees.",
+                },
+                {
+                  detail: "Fork at the end of Flow A",
+                  why: "The fork shows two end-states. The current path routes to an Amazon affiliate outbound. The pivot lands on an internal product page that captures email, reviews, and routine adherence.",
+                },
+              ].map(({ detail, why }) => (
+                <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                  <span style={{
+                    width: "4px", height: "4px", borderRadius: "50%",
+                    background: c.cognac, flexShrink: 0, marginTop: "9px",
+                  }} />
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+                    color: c.body, margin: 0,
+                  }}>
+                    <span style={{ color: c.ink, fontWeight: 600 }}>{detail}</span>
+                    {" · "}{why}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Section>
+
+          {/* -- 07 Assessment Redesign -------------------- */}
+          <Section label="07" title="Assessment Redesign">
+            <p style={bodyText}>
+              The original assessment ends in a tier label. The redesign ends in a specific next step. Three artifacts below: where the live version falls short, the new wireframes at component fidelity, and the trade-offs that drove every move.
+            </p>
+
+            {/* Problem & Comparative Analysis */}
+            <div style={{ marginTop: "32px" }}>
+              <h3 style={subheading}>Problem & comparative analysis</h3>
+              <p style={bodyText}>
+                The live assessment has Cate-flagged gaps. Five comparable intake tools (Function Health, WHOOP, BetterHelp, Hims, Eight Sleep) point to specific moves worth borrowing: symptom-first triage, why-we-ask microcopy, short branching paths, and scheduled re-engagement.
+              </p>
+              <div style={{
+                position:    "relative",
+                aspectRatio: "1920 / 1722",
+                marginTop:   "16px",
+                border:      `1px solid ${c.border}`,
+                background:  c.bgSection,
+                overflow:    "hidden",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-assessment-problem.webp"
+                  alt="Assessment redesign part 1. Current state audit of the live MSR assessment showing three Cate-flagged gaps (no symptom triage, no completed-sections view, generic result). Plus a comparative analysis of five intake tools and a list of net moves worth borrowing."
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "contain", objectPosition: "top" }}
+                />
+              </div>
+            </div>
+
+            {/* Wireframes */}
+            <div style={{ marginTop: "48px" }}>
+              <h3 style={subheading}>Wireframes at component fidelity</h3>
+              <p style={bodyText}>
+                Six desktop states. Triage as Step 0. In-progress section with a sidebar that shows completed sections, the current one, and what is left. Skip confirmation. Results loading with an acknowledgment line. The three-block result (articles to read, a routine to follow, language for a podiatrist). Email capture as the primary save with a 30 and 90 day check-in opt-in. Two mobile variants for the touch-critical states.
+              </p>
+              <div style={{
+                position:    "relative",
+                aspectRatio: "1920 / 2230",
+                marginTop:   "16px",
+                border:      `1px solid ${c.border}`,
+                background:  c.bgSection,
+                overflow:    "hidden",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-assessment-wireframes.webp"
+                  alt="Assessment redesign part 2. Six desktop wireframes at component fidelity plus two mobile variants. Each state is annotated with its role in the redesigned flow."
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "contain", objectPosition: "top" }}
+                />
+              </div>
+            </div>
+
+            {/* Trade-offs & decision note */}
+            <div style={{ marginTop: "48px" }}>
+              <h3 style={subheading}>Trade-offs and the decision argument</h3>
+              <p style={bodyText}>
+                Nine decisions documented as trade-offs. What I chose, what I deliberately did not choose, and why. Closes with the case-study argument: personalization, re-engagement, and first-party data can be earned without trading the editorial trust the audience came for.
+              </p>
+              <div style={{
+                position:    "relative",
+                aspectRatio: "1920 / 1229",
+                marginTop:   "16px",
+                border:      `1px solid ${c.border}`,
+                background:  c.bgSection,
+                overflow:    "hidden",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-assessment-tradeoffs.webp"
+                  alt="Assessment redesign part 3. Nine-row trade-off table covering entry point, save model, result format, pain answer state, progress UI, section skip, re-engagement, acknowledgment, and recommendation routing. Followed by the one-paragraph decision note."
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "contain", objectPosition: "top" }}
+                />
+              </div>
+            </div>
+          </Section>
+
+          {/* -- 08 Design Decisions ---------------------- */}
+          <Section label="08" title="Design Decisions">
+            <p style={bodyText}>
+              Two design decisions define the case study: the visual language and the review page layout. Each one is a hypothesis about the audience that the design has to pass or fail. Aesthetic preference is not part of the test.
             </p>
 
             <h3 style={subheading}>Brand Direction: Dark Editorial</h3>
             <p style={bodyText}>
-              Three visual directions were prototyped and evaluated against one question: does this aesthetic lower the stigma barrier before the first word is read?
+              <strong style={{ color: c.ink }}>Hypothesis.</strong> A dark editorial aesthetic, borrowed from premium grooming and performance gear, lowers the stigma barrier before the user reads a word.
+            </p>
+            <p style={bodyText}>
+              <strong style={{ color: c.ink }}>Test.</strong> Three visual directions were prototyped and evaluated against one question: does this aesthetic lower the stigma barrier before the first word is read?
             </p>
 
             {/* Brand directions */}
@@ -474,7 +851,7 @@ export default function MSRCaseStudy() {
               }}>
                 Visual Directions Explored
               </p>
-              {/* Row 1: Rejected directions — half-width, paired */}
+              {/* Row 1: Rejected directions — half-width, paired, with REJECTED overlay */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
                 {[
                   { src: "/images/work/msr/msr-clinical.webp", label: "Clinical \u00B7 Rejected" },
@@ -486,15 +863,38 @@ export default function MSRCaseStudy() {
                       aspectRatio:  "4/3",
                       overflow:     "hidden",
                       border:       `1px solid ${c.border}`,
-                      opacity:      0.5,
                     }}>
                       <Image
                         src={src}
                         alt={label}
                         fill
                         sizes="(max-width: 767px) 100vw, 420px"
-                        style={{ objectFit: "cover", objectPosition: "top" }}
+                        style={{ objectFit: "cover", objectPosition: "top", filter: "grayscale(0.6)", opacity: 0.85 }}
                       />
+                      {/* REJECTED diagonal stamp */}
+                      <div style={{
+                        position:       "absolute",
+                        inset:          0,
+                        display:        "flex",
+                        alignItems:     "center",
+                        justifyContent: "center",
+                        pointerEvents:  "none",
+                      }}>
+                        <span style={{
+                          fontFamily:    "var(--font-barlow-condensed), Impact, sans-serif",
+                          fontSize:      "clamp(36px, 8vw, 72px)",
+                          fontWeight:    700,
+                          letterSpacing: "0.08em",
+                          color:         "rgba(176, 58, 46, 0.9)",
+                          border:        "4px solid rgba(176, 58, 46, 0.9)",
+                          padding:       "6px 18px",
+                          transform:     "rotate(-12deg)",
+                          textTransform: "uppercase",
+                          background:    "rgba(255,255,255,0.65)",
+                        }}>
+                          Rejected
+                        </span>
+                      </div>
                     </div>
                     <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
                       {label}
@@ -503,26 +903,77 @@ export default function MSRCaseStudy() {
                 ))}
               </div>
 
-              {/* Row 2: Wireframe — full-width, structure-first framing */}
+              {/* Row 2: Wireframe explorations — three directions, the chosen one wins on bottom */}
               <div style={{ marginTop: "16px" }}>
-                <div style={{
-                  position:     "relative",
-                  aspectRatio:  "16/9",
-                  overflow:     "hidden",
-                  border:       `1px solid ${c.border}`,
-                  opacity:      0.5,
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "11px",
+                  fontWeight:    600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color:         c.muted,
+                  margin:        "0 0 12px",
                 }}>
-                  <Image
-                    src="/images/work/msr/msr-wireframe.webp"
-                    alt="Wireframe \u00B7 Structure Test"
-                    fill
-                    sizes="(max-width: 767px) 100vw, 860px"
-                    style={{ objectFit: "cover", objectPosition: "top" }}
-                  />
-                </div>
-                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
-                  Wireframe \u00B7 Structure Test
+                  Wireframe Explorations
                 </p>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
+                  {[
+                    {
+                      name:   "Hero + Topic Grid",
+                      verdict: "Chosen",
+                      desc:   "Editorial hero, then a topic grid keyed by condition. Orient → Browse → Read in one scroll.",
+                    },
+                    {
+                      name:   "Symptom-First Picker",
+                      verdict: "Rejected",
+                      desc:   "Homepage = the assessment Step 0. Strong intent capture. Felt clinical at the door before trust was earned.",
+                    },
+                    {
+                      name:   "Library-First Index",
+                      verdict: "Rejected",
+                      desc:   "Homepage = full content grid. Strong SEO surface. Buried the brand voice and the &ldquo;is this for me&rdquo; moment.",
+                    },
+                  ].map(({ name, verdict, desc }) => (
+                    <div key={name} style={{
+                      padding:    "18px 20px",
+                      border:     verdict === "Chosen" ? `2px solid ${c.cognac}` : `1px solid ${c.border}`,
+                      background: verdict === "Chosen" ? "rgba(196,112,58,0.04)" : c.surface,
+                    }}>
+                      <p style={{
+                        fontFamily:    font.sans,
+                        fontSize:      "10px",
+                        fontWeight:    700,
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        color:         verdict === "Chosen" ? c.cognac : c.muted,
+                        margin:        "0 0 8px",
+                      }}>
+                        {name} &middot; {verdict}
+                      </p>
+                      <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55, color: c.body, margin: 0 }} dangerouslySetInnerHTML={{ __html: desc }} />
+                    </div>
+                  ))}
+                </div>
+                {/* Original wireframe image, full-width, labeled as the chosen direction */}
+                <div style={{ marginTop: "16px" }}>
+                  <div style={{
+                    position:     "relative",
+                    aspectRatio:  "16/9",
+                    overflow:     "hidden",
+                    border:       `1px solid ${c.border}`,
+                  }}>
+                    <Image
+                      src="/images/work/msr/msr-wireframe.webp"
+                      alt="Wireframe of the chosen direction. Editorial hero plus a topic grid keyed by foot condition."
+                      fill
+                      sizes="(max-width: 767px) 100vw, 860px"
+                      style={{ objectFit: "cover", objectPosition: "top" }}
+                    />
+                  </div>
+                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
+                    Wireframe \u00B7 Hero + Topic Grid \u00B7 Chosen direction
+                  </p>
+                </div>
               </div>
 
               {/* Row 3: Dark Editorial — full-width, chosen direction */}
@@ -547,12 +998,118 @@ export default function MSRCaseStudy() {
               </div>
             </div>
 
-            <h3 style={subheading}>Review Pages: E-Commerce UX, Not Blog Format</h3>
+            <h3 style={subheading}>Logomark: from footprints to monogram</h3>
             <p style={bodyText}>
-              The user&apos;s task on a review page is evaluation, not reading. A blog format buries signal in narrative. The user has to read to evaluate. An e-commerce layout does the orienting work: hero image, specs grid, rating, pros/cons, buy links. Users already know how to scan this pattern from every product page they&apos;ve used.
+              <strong style={{ color: c.ink }}>Hypothesis.</strong> A serif monogram, anchored in the same typography as the editorial body, lowers the stigma barrier through quietness. The footprint mark we started with reads closer to mall-podiatry than premium grooming.
             </p>
             <p style={bodyText}>
-              This isn&apos;t a store. There&apos;s no checkout, no inventory. The UX pattern is borrowed from e-commerce because it matches the user&apos;s task, not because it serves a transaction.
+              <strong style={{ color: c.ink }}>Test.</strong> Three monogram directions were prototyped against the same question as the visual direction: does this mark lower the stigma barrier before the first word is read?
+            </p>
+
+            {/* Logomark directions */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {[
+                {
+                  name:   "M01 · Serif Monogram",
+                  font:   "Lora display",
+                  status: "Chosen",
+                  reason: "A single capital M set in the editorial body face. Anchored in the same typography as the rest of the brand. Quiet, restrained, at home next to long-form content. Reads at any size.",
+                },
+                {
+                  name:   "M02 · Lowercase Wordmark",
+                  font:   "DM Sans bold",
+                  status: "Rejected",
+                  reason: "Modern and unfussy, but plain. The lowercase choice signals casualness without earning weight. Loses the editorial argument the brand makes elsewhere.",
+                },
+                {
+                  name:   "M03 · Condensed Wordmark",
+                  font:   "Barlow Condensed bold",
+                  status: "Rejected",
+                  reason: "Confident and athletic. Reads closer to performance gear than premium editorial. Wins on masculinity, loses on stigma reduction.",
+                },
+              ].map(({ name, font: typeface, status, reason }) => (
+                <div
+                  key={name}
+                  className="cs-problem-card"
+                  style={{
+                    display:    "flex",
+                    gap:        "20px",
+                    padding:    "20px 24px",
+                    background: status === "Chosen" ? "rgba(196,112,58,0.04)" : c.surface,
+                    border:     status === "Chosen" ? `1px solid rgba(196,112,58,0.25)` : `1px solid ${c.border}`,
+                  }}
+                >
+                  <span className="cs-problem-label" style={{
+                    fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                    color: status === "Chosen" ? c.cognac : c.muted,
+                    minWidth: "200px", flexShrink: 0, paddingTop: "2px",
+                  }}>
+                    {name} · {status}
+                  </span>
+                  <div>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
+                      {typeface}
+                    </p>
+                    <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                      {reason}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* M01 chosen mark in 4 colorways */}
+            <div style={{ marginTop: "32px" }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    600,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color:         c.muted,
+                margin:        "0 0 12px",
+              }}>
+                Chosen mark · four colorways
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px" }}>
+                {[
+                  { name: "Navy",     hex: "#1C3F5E" },
+                  { name: "Cognac",   hex: "#BE7241" },
+                  { name: "Stone",    hex: "#C4BCAE" },
+                  { name: "Charcoal", hex: "#1A1A1A" },
+                ].map(({ name, hex }) => (
+                  <div key={name}>
+                    <div style={{
+                      position:    "relative",
+                      aspectRatio: "1 / 1",
+                      border:      `1px solid ${c.border}`,
+                      overflow:    "hidden",
+                    }}>
+                      <Image
+                        src={`/images/work/msr/msr-logo-m01-${name.toLowerCase()}.webp`}
+                        alt={`MSR logomark M01 in ${name}`}
+                        fill
+                        sizes="(max-width: 767px) 50vw, 220px"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: c.ink, margin: "8px 0 2px" }}>
+                      {name}
+                    </p>
+                    <p style={{ fontFamily: "monospace", fontSize: "11px", color: c.muted, margin: 0 }}>
+                      {hex}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <h3 style={subheading}>Review Pages: E-Commerce UX, Not Blog Format</h3>
+            <p style={bodyText}>
+              <strong style={{ color: c.ink }}>Hypothesis.</strong> Review readers want to evaluate, not read. A blog format buries the signal in narrative.
+            </p>
+            <p style={bodyText}>
+              <strong style={{ color: c.ink }}>Test.</strong> An e-commerce layout (hero, specs grid, rating, pros/cons, buy links) does the orienting work. Users already know how to scan this pattern from every product page they have used. The site borrows it because it matches the task, not because the site sells anything. There is no checkout. There is no inventory.
             </p>
 
             {/* Stakeholder-style decisions grid */}
@@ -604,11 +1161,103 @@ export default function MSRCaseStudy() {
             </div>
           </Section>
 
-          {/* -- 05 Design System -------------------------- */}
-          <Section label="05" title="Design System">
+          {/* -- 09 Design System ------------------------- */}
+          <Section label="09" title="Design System">
             <p style={bodyText}>
-              Three typefaces, each with a job. Barlow Condensed for display headlines. Authority and presence. Lora for editorial subheads and quotes. Readable, approachable. DM Sans for body copy and UI. Legibility at scale. The roles are explicit, not decorative.
+              Three typefaces, each with a job. The roles are explicit, not decorative. Below, each one is shown set in itself.
             </p>
+
+            {/* Typography specimens */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "0", margin: "24px 0 32px", border: `1px solid ${c.border}` }}>
+              {/* Barlow Condensed */}
+              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", borderBottom: `1px solid ${c.border}`, background: c.surface }}>
+                <p style={{
+                  fontFamily:    "var(--font-barlow-condensed), \"Barlow Condensed\", Impact, sans-serif",
+                  fontSize:      "clamp(28px, 5vw, 48px)",
+                  fontWeight:    600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.02em",
+                  lineHeight:    1.05,
+                  color:         c.ink,
+                  margin:        "0 0 12px",
+                }}>
+                  Barlow Condensed for display headlines
+                </p>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "12px",
+                  fontWeight:    600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color:         c.muted,
+                  margin:        "0 0 8px",
+                }}>
+                  Display · 600 · uppercase
+                </p>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                  Authority and presence. Used at the largest scale where a headline has to land in a glance.
+                </p>
+              </div>
+
+              {/* Lora */}
+              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", borderBottom: `1px solid ${c.border}`, background: c.surface }}>
+                <p style={{
+                  fontFamily:    "var(--font-lora), Lora, Georgia, serif",
+                  fontSize:      "clamp(22px, 3vw, 30px)",
+                  fontWeight:    400,
+                  fontStyle:     "italic",
+                  lineHeight:    1.35,
+                  color:         c.ink,
+                  margin:        "0 0 12px",
+                  letterSpacing: "-0.005em",
+                }}>
+                  &ldquo;Lora for editorial subheads and quotes.&rdquo;
+                </p>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "12px",
+                  fontWeight:    600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color:         c.muted,
+                  margin:        "0 0 8px",
+                }}>
+                  Serif · 400 italic · sub-display
+                </p>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                  Readable and approachable. Used for pull quotes, editorial subheads, and decision-note bodies.
+                </p>
+              </div>
+
+              {/* DM Sans */}
+              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", background: c.surface }}>
+                <p style={{
+                  fontFamily:    "var(--font-dm-sans), DM Sans, system-ui, sans-serif",
+                  fontSize:      "clamp(16px, 2vw, 20px)",
+                  fontWeight:    400,
+                  lineHeight:    1.55,
+                  color:         c.ink,
+                  margin:        "0 0 12px",
+                  maxWidth:      "640px",
+                }}>
+                  DM Sans for body copy and UI. Legibility at scale, optimized for screen reading at small sizes and for predictable rhythm in long-form content.
+                </p>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "12px",
+                  fontWeight:    600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color:         c.muted,
+                  margin:        "0 0 8px",
+                }}>
+                  Sans · 400 · body
+                </p>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                  Body and UI. The workhorse. Used for everything that is not a headline or a quote.
+                </p>
+              </div>
+            </div>
             <p style={bodyText}>
               The token architecture runs three tiers: CSS custom properties as the source of truth, TypeScript semantic aliases for brand-aware naming, and Tailwind utilities consumed in components. One file change propagates everywhere. The same naming convention holds across Brand, Wayfarer, and Men&apos;s Sole Revival. This wasn&apos;t retrofitted. It was a decision made before the first component was built.
             </p>
@@ -664,50 +1313,74 @@ export default function MSRCaseStudy() {
             <p style={{ ...bodyText, marginTop: "10px", fontSize: "13px", color: c.muted }}>
               Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
             </p>
-          </Section>
 
-          {/* -- 06 Site Architecture ---------------------- */}
-          <Section label="06" title="Site Architecture">
+            <h3 style={subheading}>The system on one page</h3>
             <p style={bodyText}>
-              Seven page types, each designed for a different user task. The information architecture is the product strategy made navigable. Every route maps to a specific intent.
+              Three signature documents pulled together for portfolio handoff. Each one stands on its own. Together they document the full visual system, the assessment flow, and the production component library.
             </p>
 
-            {/* Route table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Route",     width: "24%" },
-                      { label: "Type",      width: "22%" },
-                      { label: "User Task", width: "16%" },
-                      { label: "Purpose",   width: "38%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width, color: label === "User Task" ? c.accent : c.muted, fontWeight: label === "User Task" ? 700 : 600 }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { route: "/",               type: "Homepage",        task: "Orient",   purpose: "Understand what this site is and whether it\u2019s for me." },
-                    { route: "/learn/[slug]",    type: "Article",         task: "Learn",    purpose: "Go deeper on a foot health topic." },
-                    { route: "/reviews/[slug]",  type: "Product Review",  task: "Evaluate", purpose: "Compare and decide on a product." },
-                    { route: "/kits",            type: "Curated Kits",    task: "Browse",   purpose: "See grouped product recommendations." },
-                    { route: "/learn",           type: "Educational Hub", task: "Explore",  purpose: "Find the right starting point." },
-                    { route: "/about",           type: "Brand Story",     task: "Trust",    purpose: "Understand who built this and why." },
-                    { route: "/assessment",      type: "Self-Check Tool", task: "Act",      purpose: "Get a personalized starting point." },
-                  ].map(({ route, type, task, purpose }, i) => (
-                    <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.cognac }}>{task}</td>
-                      <td style={tdStyle}>{purpose}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            {/* Signature embeds */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "16px" }}>
+              {[
+                {
+                  slug:    "brand",
+                  number:  "02",
+                  label:   "BRAND & IDENTITY",
+                  caption: "Wordmark at four sizes, three logomark directions explored, four colorways of the chosen mark, lockups, palette of eight, typography specs with live specimen, glyph set, and four application mockups.",
+                },
+                {
+                  slug:    "product",
+                  number:  "03",
+                  label:   "PRODUCT UI/UX",
+                  caption: "Flow map of the redesigned assessment. Five primary screens with arrows, four dashed branch states, six-cell annotation grid (tap targets, loading, haptic, error handling, accessibility, motion), legend strip.",
+                },
+                {
+                  slug:    "system",
+                  number:  "04",
+                  label:   "DESIGN SYSTEMS",
+                  caption: "Typography hierarchy with specimen, fifteen color tokens, four-point spacing scale, twelve icons, buttons by variant and state, inputs, controls, links, badges, and the CSS token output.",
+                },
+              ].map(({ slug, number, label, caption }) => (
+                <div key={slug}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
+                    <span style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "11px",
+                      fontWeight:    700,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color:         c.cognac,
+                    }}>{number}</span>
+                    <span style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "11px",
+                      fontWeight:    700,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color:         c.ink,
+                    }}>{label}</span>
+                  </div>
+                  <div style={{
+                    position:    "relative",
+                    aspectRatio: "1600 / 1100",
+                    border:      `1px solid ${c.border}`,
+                    background:  c.bgSection,
+                    overflow:    "hidden",
+                  }}>
+                    <Image
+                      src={`/images/work/msr/msr-sig-${slug}.webp`}
+                      alt={`MSR ${label} signature`}
+                      fill
+                      sizes="(max-width: 767px) 100vw, 1100px"
+                      style={{ objectFit: "contain", objectPosition: "top" }}
+                    />
+                  </div>
+                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.55, margin: "10px 0 0", maxWidth: "780px" }}>
+                    {caption}
+                  </p>
+                </div>
+              ))}
             </div>
-
           </Section>
 
         </div>{/* /content wrapper — break out for full-width walkthrough */}
@@ -942,10 +1615,10 @@ export default function MSRCaseStudy() {
         {/* Resume content wrapper for remaining sections */}
         <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
-          {/* -- 07 Evaluation Plan ----------------------- */}
-          <Section label="07" title="Evaluation Plan">
+          {/* -- 10 Impact -------------------------------- */}
+          <Section label="10" title="Impact">
             <p style={bodyText}>
-              No live metrics. No user testing budget. Self-initiated means defining what success looks like before the data exists. These aren&apos;t aspirational KPIs. They&apos;re the specific questions the design hypotheses need to answer.
+              Success is defined before the data exists. Below: proxy metrics for each hypothesis, a phased evaluation plan, and the decision criteria that would tell us to stop, iterate, or scale. No fabricated numbers. No live data yet. Five things to measure, in priority order.
             </p>
 
             {/* Validation approach box */}
@@ -1033,8 +1706,8 @@ export default function MSRCaseStudy() {
 
           </Section>
 
-          {/* -- 08 Reflection ---------------------------- */}
-          <Section label="08" title="Reflection">
+          {/* -- 11 Reflection ---------------------------- */}
+          <Section label="11" title="Reflection">
             <p style={bodyText}>
               The first build spent three weeks fighting a stack that wasn&apos;t right for the problem. The friction was the signal and I waited too long to act on it. The pivot from e-commerce to content wasn&apos;t a retreat. It was the moment the project found its actual shape.
             </p>
@@ -1158,7 +1831,7 @@ const c2 = {
   bg:        "#FFFFFF",
   bgSection: "#FAFAF9",
   surface:   "#FFFFFF",
-  border:    "#E8E4DE",
+  border:    "#A99B8A",
   cognac:    "#C4703A",
 };
 
@@ -1271,7 +1944,7 @@ const thStyle: React.CSSProperties = {
   color:         "#8A8680",
   padding:       "12px 16px",
   textAlign:     "left",
-  borderBottom:  "1px solid #E8E4DE",
+  borderBottom:  "1px solid #A99B8A",
 };
 
 const tdStyle: React.CSSProperties = {
@@ -1279,5 +1952,5 @@ const tdStyle: React.CSSProperties = {
   fontSize:     "14px",
   color:        "#3D4440",
   padding:      "14px 16px",
-  borderBottom: "1px solid #E8E4DE",
+  borderBottom: "1px solid #A99B8A",
 };

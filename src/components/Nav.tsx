@@ -64,9 +64,9 @@ export default function Nav() {
             ? "1px solid rgba(245,243,239,0.08)"
             : scrolled
               ? "1px solid rgba(232,228,222,0.6)"
-              : "1px solid #E8E4DE",
+              : "1px solid #A99B8A",
           boxShadow:      !menuOpen && scrolled
-            ? "0 1px 8px rgba(37,43,40,0.06)"
+            ? "0 1px 8px rgba(37,43,40,0.12)"
             : "none",
           transition:     "background 0.3s, border-color 0.3s, box-shadow 0.3s, backdrop-filter 0.3s",
         }}

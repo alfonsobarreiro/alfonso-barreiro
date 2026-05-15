@@ -26,7 +26,7 @@ const c = {
   bg:          "#FFFFFF",
   bgSection:   "#FAFAF9",
   surface:     "#FFFFFF",
-  border:      "#E8E4DE",
+  border:      "#A99B8A",
 };
 
 const font = {
@@ -141,13 +141,13 @@ export default function PresentationsIndex() {
                   textDecoration: "none",
                   color: "inherit",
                   background: "#FAFAF9",
-                  border: "1px solid #C9BFB0",
+                  border: "1px solid #7E715F",
                   borderRadius: 0,
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
                   transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                  boxShadow: "0 4px 14px rgba(37,43,40,0.08), 0 1px 3px rgba(37,43,40,0.05)",
+                  boxShadow: "0 4px 14px rgba(37,43,40,0.22), 0 1px 3px rgba(37,43,40,0.22)",
                 }}
                 className="deck-card"
               >
@@ -212,7 +212,7 @@ export default function PresentationsIndex() {
       <style>{`
         .deck-card:hover {
           transform: translateY(-3px);
-          box-shadow: 0 18px 44px rgba(37,43,40,0.14), 0 4px 12px rgba(37,43,40,0.08);
+          box-shadow: 0 18px 44px rgba(37,43,40,0.22), 0 4px 12px rgba(37,43,40,0.22);
         }
       `}</style>
     </>

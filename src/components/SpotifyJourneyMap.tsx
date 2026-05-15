@@ -5,8 +5,8 @@ const c = {
   body:        "#3D4440",
   muted:       "#8A8680",
   bgSection:   "#EBEBEA",
-  border:      "#E8E4DE",
-  borderStrong:"#C9BFB0",
+  border:      "#A99B8A",
+  borderStrong:"#7E715F",
   green:       "#1DB954",
 };
 

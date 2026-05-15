@@ -55,7 +55,7 @@ const pillPrimary: React.CSSProperties = {
 };
 const pillDefault: React.CSSProperties = {
   ...pillBase,
-  border:     "1px solid #C9BFB0",
+  border:     "1px solid #7E715F",
   background: "#FFFFFF",
   color:      "#3D4440",
 };
@@ -192,7 +192,7 @@ export default function About() {
                 borderRadius: "50%",
                 overflow:     "hidden",
                 marginBottom: "24px",
-                border:       "2px solid #E8E4DE",
+                border:       "2px solid #A99B8A",
               }}
             >
               <Image
@@ -211,7 +211,7 @@ export default function About() {
                 alignItems:   "center",
                 gap:          "8px",
                 background:   "#EBEBEA",
-                border:       "1px solid #E8E4DE",
+                border:       "1px solid #A99B8A",
                 padding:      "6px 14px",
                 marginBottom: "24px",
               }}
@@ -319,7 +319,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 style={pillDefault}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#7E715F"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <DownloadIcon /> Resume
               </a>
@@ -329,7 +329,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 style={pillDefault}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#C9BFB0"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#7E715F"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <LinkedInIcon /> LinkedIn
               </a>
@@ -351,11 +351,11 @@ export default function About() {
             className="skills-box scroll-reveal"
             style={{
               background:   "#FAFAF9",
-              border:       "1px solid #C9BFB0",
+              border:       "1px solid #7E715F",
               borderLeft:   "3px solid #C17F4A",
               borderRadius: 0,
               padding:      "44px",
-              boxShadow:    "0 4px 14px rgba(37,43,40,0.06), 0 1px 3px rgba(37,43,40,0.04)",
+              boxShadow:    "0 4px 14px rgba(37,43,40,0.12), 0 1px 3px rgba(37,43,40,0.10)",
               position:     "sticky",
               top:          "120px",
               alignSelf:    "start",
@@ -367,7 +367,7 @@ export default function About() {
                 style={{
                   marginBottom:  i < skillGroups.length - 1 ? "32px" : 0,
                   paddingBottom: i < skillGroups.length - 1 ? "32px" : 0,
-                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #E8E4DE" : "none",
+                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #A99B8A" : "none",
                 }}
               >
                 <p
@@ -395,7 +395,7 @@ export default function About() {
                         background:   "#F5F5F4",
                         color:        "#252B28",
                         fontWeight:   400,
-                        border:       "1px solid #E8E4DE",
+                        border:       "1px solid #A99B8A",
                       }}
                     >
                       {skill}
@@ -412,7 +412,7 @@ export default function About() {
           className="process-box scroll-reveal"
           style={{
             background:  "#FFFFFF",
-            border:      "1px solid #E8E4DE",
+            border:      "1px solid #A99B8A",
             padding:     "44px 52px",
           }}
         >

@@ -119,7 +119,7 @@ export default function ConnectPage() {
           gap: 12px;
           width: 100%;
           padding: 10px 14px;
-          border: 1px solid #C9BFB0;
+          border: 1px solid #7E715F;
           background: transparent;
           color: #252B28;
           font-size: 14px;
@@ -131,7 +131,7 @@ export default function ConnectPage() {
         .connect-row:hover {
           background: #FAFAF9;
           transform: translateY(-3px);
-          box-shadow: 0 18px 44px rgba(37,43,40,0.14), 0 4px 12px rgba(37,43,40,0.08);
+          box-shadow: 0 18px 44px rgba(37,43,40,0.22), 0 4px 12px rgba(37,43,40,0.22);
         }
 
         /* ── Solid variant (cognac fill) ──────────────── */
@@ -213,7 +213,7 @@ export default function ConnectPage() {
           }
           .connect-right {
             padding-left: 32px;
-            border-left: 1px solid #C9BFB0;
+            border-left: 1px solid #7E715F;
           }
           .connect-divider { display: none; }
         }
@@ -233,7 +233,7 @@ export default function ConnectPage() {
               style={{
                 borderRadius: "50%",
                 overflow: "hidden",
-                boxShadow: "0 2px 12px rgba(37,43,40,0.12)",
+                boxShadow: "0 2px 12px rgba(37,43,40,0.26)",
                 flexShrink: 0,
               }}
             >
@@ -353,7 +353,7 @@ export default function ConnectPage() {
           className="connect-divider"
           style={{
             height: 1,
-            backgroundColor: "#C9BFB0",
+            backgroundColor: "#7E715F",
             margin: "20px 0",
           }}
         />
