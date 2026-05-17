@@ -4,17 +4,24 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — Alfonso Barreiro",
+  title: "Contact",
   description:
-    "Get in touch. Open to full-time UX/UI roles, contract work, and thoughtful conversations about design problems worth solving.",
+    "Get in touch. Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.",
+  alternates: { canonical: "https://www.barreiro.com/contact" },
   openGraph: {
-    title: "Contact · Alfonso Barreiro",
-    description:
-      "Open to full-time UX/UI roles, contract work, and design problems worth solving.",
-    url: "https://barreiro.com/contact",
-    siteName: "Alfonso Barreiro",
-    locale: "en_US",
     type: "website",
+    url: "https://www.barreiro.com/contact",
+    title: "Contact — Alfonso Barreiro",
+    description:
+      "Get in touch. Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.",
+    images: ["/contact/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact — Alfonso Barreiro",
+    description:
+      "Get in touch. Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.",
+    images: ["/contact/opengraph-image"],
   },
 };
 
@@ -82,9 +89,9 @@ export default function ContactPage() {
                 margin:     "0 0 40px",
                 maxWidth:   "460px",
               }}>
-                Open to full-time UX/UI roles, contract work, and thoughtful
-                conversations about design problems worth solving. I&apos;ll
-                get back to you within a day or two.
+                Open to full-time UX/UI roles and selective contract work.
+                Portland, OR or remote. I&apos;ll get back to you within a day
+                or two.
               </p>
               <p style={{
                 fontFamily: font,

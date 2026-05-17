@@ -238,7 +238,7 @@ export default function About() {
                   color:         "#3D4440",
                 }}
               >
-                Open to full-time roles · Portland, OR or remote
+                Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
               </span>
             </div>
 

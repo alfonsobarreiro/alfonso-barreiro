@@ -3,19 +3,27 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 
 export const metadata: Metadata = {
-  title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform \u00B7 Alfonso Barreiro",
+  title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform",
   description:
     "Case study: Designing a content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier.",
+  alternates: { canonical: "https://www.barreiro.com/work/mens-sole-revival" },
   openGraph: {
-    title: "Men\u2019s Sole Revival \u00B7 Alfonso Barreiro",
-    description:
-      "A UX case study on building a content-first foot health platform for men.",
-    url: "https://barreiro.com/work/mens-sole-revival",
-    siteName: "Alfonso Barreiro",
-    locale: "en_US",
     type: "article",
+    url: "https://www.barreiro.com/work/mens-sole-revival",
+    title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform",
+    description:
+      "Case study: Designing a content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier.",
+    images: ["/work/mens-sole-revival/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform",
+    description:
+      "Case study: Designing a content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier.",
+    images: ["/work/mens-sole-revival/opengraph-image"],
   },
 };
 
@@ -43,6 +51,12 @@ const font = {
 export default function MSRCaseStudy() {
   return (
     <>
+      <CaseStudySchema
+        name="Men’s Sole Revival · Foot Health Content Platform"
+        description="A content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier."
+        slug="mens-sole-revival"
+        dateCreated="2026-04"
+      />
       <Nav />
 
       <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>

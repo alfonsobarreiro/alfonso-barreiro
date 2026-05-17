@@ -452,7 +452,7 @@ export default function ConnectPage() {
                 letterSpacing: "0.04em",
               }}
             >
-              Open to full-time roles · Portland, OR or remote
+              Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
             </span>
           </div>
         </div>
