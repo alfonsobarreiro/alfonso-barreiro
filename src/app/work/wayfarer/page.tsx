@@ -299,6 +299,10 @@ export default function WayfarerCaseStudy() {
                 </div>
               ))}
             </div>
+
+            <Callout label="What ties them together">
+              Travel content is invitation, not data. The original site treated it like data.
+            </Callout>
           </Section>
 
           {/* -- 03 What Not to Build ----------------------- */}
@@ -410,6 +414,10 @@ export default function WayfarerCaseStudy() {
             <p style={{ ...bodyText, marginTop: "20px" }}>
               The design logic: the signup flow is the first interaction a new user has with Wayfarer. If it mirrors the discovery experience (explore, choose, refine, confirm), the form becomes part of the product, not a gate in front of it.
             </p>
+
+            <Callout label="Why staged">
+              Each step asks for one thing. The form earns trust before it asks for preferences.
+            </Callout>
           </Section>
 
         </div>{/* /content wrapper -- break out for full-width walkthrough */}
@@ -487,24 +495,27 @@ export default function WayfarerCaseStudy() {
               }}>
                 {[
                   {
-                    src:     "/images/work/wayfarer/wayfarer-globe-overview.webp",
-                    alt:     "Wayfarer globe explorer showing 3D Earth with destination pins across continents",
-                    label:   "01",
-                    caption: "The globe loads with destination pins visible across continents. The user's first instinct is to rotate and explore.",
+                    src:      "/images/work/wayfarer/wayfarer-globe-overview.webp",
+                    alt:      "Wayfarer globe explorer showing 3D Earth with destination pins across continents",
+                    label:    "01",
+                    decision: "Discovery starts at world view",
+                    caption:  "The globe loads with destination pins visible across continents. The user's first instinct is to rotate and explore.",
                   },
                   {
-                    src:     "/images/work/wayfarer/wayfarer-globe-flyto.webp",
-                    alt:     "Globe flying to Asia region with destination pins enlarging on approach",
-                    label:   "02",
-                    caption: "Clicking a region triggers a fly-to animation. Pins enlarge as the camera approaches. Hover reveals destination name and tagline.",
+                    src:      "/images/work/wayfarer/wayfarer-globe-flyto.webp",
+                    alt:      "Globe flying to Asia region with destination pins enlarging on approach",
+                    label:    "02",
+                    decision: "The camera does the navigating",
+                    caption:  "Clicking a region triggers a fly-to animation. Pins enlarge as the camera approaches. Hover reveals destination name and tagline.",
                   },
                   {
-                    src:     "/images/work/wayfarer/wayfarer-destination-detail.webp",
-                    alt:     "Destination detail page for a selected location showing hero image, info grid, and travel tips",
-                    label:   "03",
-                    caption: "The detail page follows a rigid structure: hero, info grid, description, gallery, tips, highlights, related destinations, map.",
+                    src:      "/images/work/wayfarer/wayfarer-destination-detail.webp",
+                    alt:      "Destination detail page for a selected location showing hero image, info grid, and travel tips",
+                    label:    "03",
+                    decision: "One template, every destination",
+                    caption:  "The detail page follows a rigid structure: hero, info grid, description, gallery, tips, highlights, related destinations, map.",
                   },
-                ].map(({ src, alt, label, caption }) => (
+                ].map(({ src, alt, label, decision, caption }) => (
                   <div key={`globe-${label}`}>
                     <div style={{
                       position:     "relative",
@@ -532,22 +543,34 @@ export default function WayfarerCaseStudy() {
                         paddingTop:    "2px",
                         flexShrink:    0,
                       }}>{label}</span>
-                      <p style={{
-                        fontFamily: font.sans,
-                        fontSize:   "13px",
-                        lineHeight: 1.65,
-                        color:      "rgba(245,243,239,0.5)",
-                        margin:     0,
-                      }}>{caption}</p>
+                      <div>
+                        <p style={{
+                          fontFamily:    font.sans,
+                          fontSize:      "12px",
+                          fontWeight:    700,
+                          letterSpacing: "0.02em",
+                          color:         "#F5F5F4",
+                          margin:        "0 0 4px",
+                        }}>{decision}</p>
+                        <p style={{
+                          fontFamily: font.sans,
+                          fontSize:   "13px",
+                          lineHeight: 1.65,
+                          color:      "rgba(245,243,239,0.5)",
+                          margin:     0,
+                        }}>{caption}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Globe annotations */}
+              {/* Globe annotations — UI decisions called out, not just features */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
                   { detail: "Mapbox GL with 3D projection and atmosphere", why: "The globe feels physical. Fog and lighting effects create depth that a flat map can't." },
+                  { detail: "Bhutan preselected on first load",            why: "The detail card is populated before the user clicks. The empty state never shows." },
+                  { detail: "Instructional copy adjacent to the map",       why: "The user sees the affordance where the interaction lives, not in a separate hero block." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -604,10 +627,11 @@ export default function WayfarerCaseStudy() {
                 />
               </div>
 
-              {/* Grid annotations */}
+              {/* Grid annotations — UI decisions called out */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { detail: "Count badges on every filter", why: "Users see how many destinations live under each region before committing to a filter. Less blind clicking, more informed scanning." },
+                  { detail: "Count badges on every filter",   why: "Users see how many destinations live under each region before committing to a filter. Less blind clicking, more informed scanning." },
+                  { detail: "Hover preselects on the map",     why: "Browsing the grid drives the globe in parallel. Two entry points stay tied together instead of being separate flows." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
@@ -676,10 +700,12 @@ export default function WayfarerCaseStudy() {
                 ]}
               />
 
-              {/* Signup annotations */}
+              {/* Signup annotations — UI decisions called out */}
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
                 {[
-                  { detail: "Zod schema validation per step", why: "Errors surface before the user moves forward. No surprise failures at the end of a 5-step flow." },
+                  { detail: "Zod schema validation per step",   why: "Errors surface before the user moves forward. No surprise failures at the end of a 5-step flow." },
+                  { detail: "Numeric budget ranges, not labels", why: "$50–100/day, $100–250/day, $250–500/day, $500+. Replaces 'Mid-Range' and 'Luxury' so users see the actual commitment." },
+                  { detail: "Review step before commit",         why: "Edit-back capability. The user confirms what they built, not what the system thinks they meant." },
                 ].map(({ detail, why }) => (
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
