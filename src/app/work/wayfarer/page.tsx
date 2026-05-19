@@ -252,10 +252,10 @@ export default function WayfarerCaseStudy() {
               The audience: adventurous travelers aged 21&ndash;30, digitally native, mobile-first, more interested in authentic cultural experiences than resort packages. They research before they commit. They browse before they plan. Wayfarer&apos;s job is to help them discover where to go next, not to book the flight.
             </p>
             <Callout label="Design constraint">
-              Wayfarer is a discovery tool, not a booking platform. The brief said so explicitly. Everything I built had to survive that filter.
+              Wayfarer is a discovery tool, not a booking platform. The brief said so explicitly.
             </Callout>
             <p style={bodyText}>
-              The original style guide specified Space Grotesk for headings, Inter for body copy, and a palette anchored in navy, lavender, and terra cotta. I treated these as constraints, not suggestions.
+              The original style guide specified Space Grotesk for headings, Inter for body copy, and a palette anchored in navy, lavender, and terra cotta.
             </p>
           </Section>
 
@@ -268,15 +268,15 @@ export default function WayfarerCaseStudy() {
               {[
                 {
                   label: "Onboarding friction",
-                  text: "The multi-step signup form was the most cited pain point. Users dropped off mid-flow. Steps felt repetitive. There was no clear signal of progress or what the form was building toward. For a discovery platform, the signup flow is the first act of discovery. If it feels like paperwork, the product has already failed its promise.",
+                  text: "The multi-step signup form was the most cited pain point. Users dropped off mid-flow. Steps felt repetitive. There was no clear signal of progress or what the form was building toward.",
                 },
                 {
                   label: "Layout inconsistency",
-                  text: "The existing design didn\u2019t hold together across screen sizes. Spacing shifted unpredictably. The hierarchy broke on mobile. Components that looked intentional on desktop felt accidental on smaller viewports. Inconsistency erodes trust, and trust is the currency of a platform asking users to plan a trip they haven\u2019t taken yet.",
+                  text: "The existing design didn\u2019t hold together across screen sizes. Spacing shifted unpredictably. The hierarchy broke on mobile. Components that looked intentional on desktop felt accidental on smaller viewports.",
                 },
                 {
                   label: "No visual storytelling",
-                  text: "Travel is one of the most visually rich categories in design. The existing site underused it. The homepage didn\u2019t pull users into the experience. Destinations were listed, not revealed. The design treated travel content as data when it should have treated it as invitation.",
+                  text: "The homepage didn\u2019t pull users into the experience. Destinations were listed, not revealed.",
                 },
               ].map(({ label, text }) => (
                 <div
@@ -317,11 +317,11 @@ export default function WayfarerCaseStudy() {
               Booking UI pulled attention away from the core experience. It introduced a transactional mental model into a platform designed for exploration. A user browsing destinations in Kyoto doesn&apos;t need hotel pricing competing for their attention. They need the content that makes them want to go in the first place.
             </p>
             <p style={bodyText}>
-              I scaled it back. Removed hotel and car booking from destination pages. Kept the discovery flow, the globe explorer, the trip planner, and the multi-step signup as the center of gravity. The booking UI was good work. It just wasn&apos;t right work.
+              I scaled it back. Removed hotel and car booking from destination pages. Kept the discovery flow, the globe explorer, the trip planner, and the multi-step signup as the center of gravity.
             </p>
 
             <Callout label="Key insight">
-              AI tools expand what&apos;s possible to build. They don&apos;t expand what should be built. When the tools make everything buildable, the design discipline shifts from &ldquo;can we?&rdquo; to &ldquo;should we?&rdquo;
+              AI tools expand what&apos;s possible to build. They don&apos;t expand what should be built.
             </Callout>
 
             {/* What was cut vs what survived */}
@@ -412,7 +412,7 @@ export default function WayfarerCaseStudy() {
               ))}
             </div>
             <p style={{ ...bodyText, marginTop: "20px" }}>
-              The design logic: the signup flow is the first interaction a new user has with Wayfarer. If it mirrors the discovery experience (explore, choose, refine, confirm), the form becomes part of the product, not a gate in front of it.
+              The signup is the user&apos;s first interaction with Wayfarer. If it mirrors discovery (explore, choose, refine, confirm), it becomes part of the product, not a gate in front of it.
             </p>
 
             <Callout label="Why staged">
@@ -743,7 +743,7 @@ export default function WayfarerCaseStudy() {
 
             <h3 style={subheading}>Six page types, each owns a task</h3>
             <p style={bodyText}>
-              Six routes, six user verbs: orient, browse, explore, evaluate, plan, personalize. Six covers the full discovery cycle without padding. Anything beyond it would be feature for feature&apos;s sake.
+              Six routes, six user verbs: orient, browse, explore, evaluate, plan, personalize. Six covers the full discovery cycle without padding.
             </p>
 
             {/* Route table */}
@@ -780,10 +780,6 @@ export default function WayfarerCaseStudy() {
                 </tbody>
               </table>
             </div>
-            <p style={{ ...bodyText, marginTop: "20px" }}>
-              The discipline that produced this list is the same one in &sect;03: every page that didn&apos;t earn its task got cut.
-            </p>
-
             <h3 style={subheading}>What was rejected</h3>
             <p style={bodyText}>
               Three IA approaches lost the filter:
@@ -802,7 +798,7 @@ export default function WayfarerCaseStudy() {
           {/* -- 06 Design System -------------------------- */}
           <Section label="06" title="Design System">
             <p style={bodyText}>
-              The original DesignLab style guide defined the palette, typography, logo rules, and image direction. I treated every spec as a constraint, not a suggestion. Two typefaces, each with a defined role. Space Grotesk for headings: commanding without being aggressive. Inter for body: clean and legible at every size. No decorative pairing. The roles are structural.
+              The original DesignLab style guide defined the palette, typography, logo rules, and image direction. Two typefaces, each with a role. Space Grotesk for headings. Inter for body.
             </p>
 
             {/* Style guide specs — 2x2 grid */}
@@ -941,7 +937,7 @@ export default function WayfarerCaseStudy() {
                 <tbody>
                   {[
                     { token: "brand-500",   wayfarer: "#3E3C78", brand: "#1C3F5E", msr: "#1C3F5E" },
-                    { token: "brand-900",   wayfarer: "#2C2B5A", brand: "#091016", msr: "#091016" },
+                    { token: "brand-900",   wayfarer: "#2C2B5A", brand: "#091016", msr: "#13100C" },
                     { token: "accent-500",  wayfarer: "#D27A5E", brand: "#C4703A", msr: "#C4703A" },
                     { token: "neutral-50",  wayfarer: "#F8F9FB", brand: "#F8F7F7", msr: "#F8F7F7" },
                     { token: "neutral-500", wayfarer: "#6B6560", brand: "#6B6560", msr: "#6B6560" },
@@ -1017,7 +1013,7 @@ export default function WayfarerCaseStudy() {
               </table>
             </div>
             <p style={{ ...bodyText, marginTop: "20px" }}>
-              The expansion isn&apos;t scope creep. &sect;03 shows the booking UI that got cut after AI-assisted development made it easy to build. The discipline was holding the brief intact while expanding what was built around it.
+              The expansion isn&apos;t scope creep. &sect;03 shows the booking UI that got cut after AI made it easy to build.
             </p>
 
             <h3 style={subheading}>What&apos;s structurally validated now</h3>
@@ -1058,49 +1054,54 @@ export default function WayfarerCaseStudy() {
               </p>
             </div>
 
-            {/* Threshold table */}
-            <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Hypothesis", width: "26%" },
-                      { label: "Metric",     width: "22%" },
-                      { label: "Threshold",  width: "14%" },
-                      { label: "Rationale",  width: "38%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { hypothesis: "Globe drives discovery",       metric: "Time to first destination click",  threshold: "< 30s",     rationale: "If the globe is doing its job, curiosity should outpace confusion" },
-                    { hypothesis: "Signup feels like discovery",  metric: "Completion rate",                  threshold: "> 80%",     rationale: "5 steps is a lot. If the framing works, users finish because they want their results" },
-                    { hypothesis: "Steps feel purposeful",        metric: "Per-step drop-off",                threshold: "< 10%",     rationale: "Even drop-off signals each step earns its place. A spike at step 3 means interests feel like work" },
-                    { hypothesis: "Detail pages answer the question", metric: "Time on detail page",          threshold: "> 90s",     rationale: "Users reading tips and checking the gallery are engaged. Under 60s means the content isn't pulling" },
-                    { hypothesis: "Trip planner is intuitive",    metric: "Build 3-day trip task time",       threshold: "< 4 min",   rationale: "Drag-to-reorder should be discoverable. If users struggle, the affordance failed" },
-                  ].map(({ hypothesis, metric, threshold, rationale }, i) => (
-                    <tr key={hypothesis} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{hypothesis}</td>
-                      <td style={tdStyle}>{metric}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.navy }}>{threshold}</td>
-                      <td style={{ ...tdStyle, fontSize: "12px", color: c.muted }}>{rationale}</td>
+            <details style={{ marginTop: "8px" }}>
+              <summary style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.navy, cursor: "pointer", padding: "12px 0", letterSpacing: "0.02em" }}>
+                Show metrics + thresholds
+              </summary>
+              {/* Threshold table */}
+              <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+                  <thead>
+                    <tr style={{ background: c.bgSection }}>
+                      {[
+                        { label: "Hypothesis", width: "26%" },
+                        { label: "Metric",     width: "22%" },
+                        { label: "Threshold",  width: "14%" },
+                        { label: "Rationale",  width: "38%" },
+                      ].map(({ label, width }) => (
+                        <th key={label} style={{ ...thStyle, width }}>{label}</th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {[
+                      { hypothesis: "Globe drives discovery",       metric: "Time to first destination click",  threshold: "< 30s",     rationale: "If the globe is doing its job, curiosity should outpace confusion" },
+                      { hypothesis: "Signup feels like discovery",  metric: "Completion rate",                  threshold: "> 80%",     rationale: "5 steps is a lot. If the framing works, users finish because they want their results" },
+                      { hypothesis: "Steps feel purposeful",        metric: "Per-step drop-off",                threshold: "< 10%",     rationale: "Even drop-off signals each step earns its place. A spike at step 3 means interests feel like work" },
+                      { hypothesis: "Detail pages answer the question", metric: "Time on detail page",          threshold: "> 90s",     rationale: "Users reading tips and checking the gallery are engaged. Under 60s means the content isn't pulling" },
+                      { hypothesis: "Trip planner is intuitive",    metric: "Build 3-day trip task time",       threshold: "< 4 min",   rationale: "Drag-to-reorder should be discoverable. If users struggle, the affordance failed" },
+                    ].map(({ hypothesis, metric, threshold, rationale }, i) => (
+                      <tr key={hypothesis} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                        <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{hypothesis}</td>
+                        <td style={tdStyle}>{metric}</td>
+                        <td style={{ ...tdStyle, fontWeight: 600, color: c.navy }}>{threshold}</td>
+                        <td style={{ ...tdStyle, fontSize: "12px", color: c.muted }}>{rationale}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
 
           </Section>
 
           {/* -- 09 Reflection ---------------------------- */}
           <Section label="09" title="Reflection">
             <p style={bodyText}>
-              AI-assisted development changed the process. Figma mockups to functional React components in hours. The hotel booking UI, the car rental pages, the pricing filters: all built, all working, all wrong for the brief. The design work was deciding what to remove, not what to build.
+              AI-assisted development changed the process. Figma mockups to functional React components in hours. The hotel booking UI, the car rental pages, the pricing filters: all built, all working, all wrong for the brief.
             </p>
             <p style={bodyText}>
-              I&apos;d test the globe interaction model first if I had more time. The 3D globe is the signature feature, but it&apos;s also the riskiest. On mobile, a globe is hard to navigate with touch. On desktop, it&apos;s engaging but potentially slow for users who already know what region they want. The continent filter grid exists as a fallback, but I don&apos;t know yet whether users treat the globe as the front door or a novelty. That question matters more than any visual polish.
+              I&apos;d test the globe interaction model first if I had more time. The 3D globe is the signature feature, but it&apos;s also the riskiest. On mobile, a globe is hard to navigate with touch. On desktop, it&apos;s engaging but potentially slow for users who already know what region they want. The continent filter grid exists as a fallback, but I don&apos;t know yet whether users treat the globe as the front door or a novelty.
             </p>
 
             <h3 style={subheading}>What wasn&apos;t done</h3>
