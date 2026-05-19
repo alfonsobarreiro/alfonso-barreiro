@@ -60,8 +60,8 @@ export default function Slide1() {
           <div className="relative flex-1 flex flex-col" style={{ minHeight: 380 }}>
             <div className="absolute inset-0">
               <Image src="/images/work/msr/pexels-17979558.jpg" alt="" fill className="object-cover object-center" style={{ opacity: 0.5 }} priority />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #091016 0%, rgba(9,16,22,0.7) 40%, rgba(9,16,22,0.3) 100%)" }} />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #091016 0%, transparent 50%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #13100C 0%, rgba(19,16,12,0.7) 40%, rgba(19,16,12,0.3) 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #13100C 0%, transparent 50%)" }} />
             </div>
             <div className="relative z-10 flex-1 flex flex-col justify-center px-10 py-10">
               <p className="font-body font-semibold uppercase tracking-widest mb-3" style={{ color: "#C4703A", fontSize: 9 }}>For men over 40 who are finally paying attention.</p>
@@ -72,7 +72,7 @@ export default function Slide1() {
                 <div className="rounded-sm px-4 py-2 font-body font-semibold" style={{ border: "1px solid rgba(255,255,255,0.4)", color: "rgba(255,255,255,0.7)", fontSize: 10 }}>Browse Guides</div>
               </div>
             </div>
-            <div className="relative z-10 flex items-center px-4 py-2" style={{ background: "rgba(9,16,22,0.7)", borderTop: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(8px)" }}>
+            <div className="relative z-10 flex items-center px-4 py-2" style={{ background: "rgba(19,16,12,0.7)", borderTop: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(8px)" }}>
               <span className="font-body font-bold uppercase tracking-widest mr-4 pr-4" style={{ color: "rgba(255,255,255,0.25)", fontSize: 8, borderRight: "1px solid rgba(255,255,255,0.1)" }}>Browse topics</span>
               {["Nails","Alignment","Routine","Foot Health","Fit","Pain","Evidence-Based"].map((t) => (
                 <span key={t} className="font-body font-semibold uppercase tracking-widest mx-2" style={{ color: "rgba(255,255,255,0.35)", fontSize: 8 }}>{t}<span className="ml-2" style={{ color: "#C4703A" }}>&middot;</span></span>
@@ -88,7 +88,7 @@ export default function Slide1() {
             <div className="pl-6" />
             {stats.map((s, i) => (
               <div key={s.value} className={i === 0 ? "pr-6 pt-1" : "pl-6 pt-1"} style={i === 0 ? { borderRight: "1px solid #EEEDEC" } : undefined}>
-                <span className="font-display block leading-none" style={{ color: "#091016", fontSize: 32, fontWeight: 800 }}>{s.value}</span>
+                <span className="font-display block leading-none" style={{ color: "#13100C", fontSize: 32, fontWeight: 800 }}>{s.value}</span>
                 <span className="font-body block mt-1 leading-snug" style={{ color: "#6B6560", fontSize: 10 }}>{s.label}</span>
                 <span className="font-body block mt-1 font-semibold" style={{ color: "#C4703A", fontSize: 9 }}>{s.context}</span>
               </div>
@@ -98,7 +98,7 @@ export default function Slide1() {
           {/* From the Guides */}
           <div className="grid grid-cols-2" style={{ background: "#FFFFFF", borderTop: "1px solid #EEEDEC", minHeight: 180 }}>
             <div className="flex flex-col justify-between p-8">
-              <p className="font-display uppercase leading-[0.9]" style={{ color: "#091016", fontSize: 36, fontWeight: 800 }}>From<br />The<br /><span style={{ color: "#C4703A" }}>*</span>Guides.</p>
+              <p className="font-display uppercase leading-[0.9]" style={{ color: "#13100C", fontSize: 36, fontWeight: 800 }}>From<br />The<br /><span style={{ color: "#C4703A" }}>*</span>Guides.</p>
             </div>
             <div className="flex flex-col">
               {articles.map((a) => (
@@ -108,7 +108,7 @@ export default function Slide1() {
                   </div>
                   <div className="flex flex-col justify-center min-w-0">
                     <span className="font-body font-semibold uppercase tracking-wider" style={{ color: "#C4703A", fontSize: 8 }}>{a.category} &middot; {a.readTime} read</span>
-                    <span className="font-display uppercase leading-tight mt-0.5" style={{ color: "#091016", fontSize: 11, fontWeight: 700 }}>{a.title}</span>
+                    <span className="font-display uppercase leading-tight mt-0.5" style={{ color: "#13100C", fontSize: 11, fontWeight: 700 }}>{a.title}</span>
                   </div>
                 </div>
               ))}

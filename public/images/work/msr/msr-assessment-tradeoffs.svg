@@ -1,0 +1,71 @@
+<svg width="1920" height="1229" viewBox="0 0 1920 1229" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1229" fill="white"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0.12em"><tspan x="120" y="90.751">ARTIFACT 03D &#xb7; TRADE-OFFS &#38; DECISION NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="44" letter-spacing="0em"><tspan x="120" y="155.104">What I chose. What I deliberately did not choose. Why.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" letter-spacing="0em"><tspan x="120" y="215.774">A senior-test list. Nine decisions documented as trade-offs with their alternatives. Closes with a one-paragraph case-study argument.</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0.12em"><tspan x="120" y="300.751">SECTION 06 &#xb7; TRADE-OFFS MADE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="22" letter-spacing="0em"><tspan x="120" y="334.052">Nine decisions. Each one defensible against its rejected alternative.</tspan></text>
+<rect width="1680" height="36" transform="translate(120 400)" fill="#EEEDEC"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="500" letter-spacing="0.12em"><tspan x="136" y="421.91">DECISION</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="500" letter-spacing="0.12em"><tspan x="316" y="421.91">CHOSE</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="500" letter-spacing="0.12em"><tspan x="516" y="421.91">DID NOT CHOOSE</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="500" letter-spacing="0.12em"><tspan x="736" y="421.91">WHY</tspan></text>
+<rect width="1680" height="50" transform="translate(120 436)" fill="white"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="463.092">Entry point</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="463.092">Symptom-first triage</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="463.092">Force all five sections</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="463.392">Matches arrival pattern. Cuts median time. Forced sections produce drop-off in the unrelated ones.</tspan></text>
+<rect x="120" y="485" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="50" transform="translate(120 486)" fill="#EEEDEC"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="513.092">Save model</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="513.092">Email primary, PDF secondary</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="513.092">PDF primary, email optional</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="513.392">Current product captures zero data. Email at moment of highest utility is the defensible trade.</tspan></text>
+<rect x="120" y="535" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="50" transform="translate(120 536)" fill="white"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="563.092">Result format</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="563.092">Three specific blocks</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="563.092">Tier label with generic CTA</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="563.392">Specific beats generic. The flag pattern is in the data already.</tspan></text>
+<rect x="120" y="585" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="50" transform="translate(120 586)" fill="#EEEDEC"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="613.092">Pain answer state</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="613.092">Check / No / Not sure</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="613.092">Binary check or no check</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="613.392">Pain is interoceptive and ambiguous. Binary produces false positives.</tspan></text>
+<rect x="120" y="635" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="64" transform="translate(120 636)" fill="white"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="663.092">Progress UI</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="663.092">Vertical sidebar with </tspan><tspan x="316" y="681.092">checkmarks</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="663.092">Linear progress bar only</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="663.392">Linear bar shows percentage. Sidebar shows agency.</tspan></text>
+<rect x="120" y="699" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="64" transform="translate(120 700)" fill="#EEEDEC"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="727.092">Section skip</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="727.092">Inline link with one-tap </tspan><tspan x="316" y="745.092">confirm</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="727.092">No skip or hidden skip</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="727.392">Some sections will not apply after triage. Forced participation is a tax.</tspan></text>
+<rect x="120" y="763" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="50" transform="translate(120 764)" fill="white"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="791.092">Re-engagement</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="791.092">30 and 90 day emails</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="791.092">One-shot result</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="791.392">Foot health changes over months. One visit is a missed loop.</tspan></text>
+<rect x="120" y="813" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="64" transform="translate(120 814)" fill="#EEEDEC"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="841.092">Acknowledgment</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="841.092">One line + 800 to 1200 ms </tspan><tspan x="316" y="859.092">hold</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="841.092">Instant cut to results</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="841.392">The result carries emotional weight. Brief pause respects the work.</tspan></text>
+<rect x="120" y="877" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="64" transform="translate(120 878)" fill="white"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="136" y="905.092">Recommendation routing</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="316" y="905.092">Mapped: flags to specific </tspan><tspan x="316" y="923.092">output</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="516" y="905.092">Static recommendation per tier</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" letter-spacing="0em"><tspan x="736" y="905.392">The data exists. Use it.</tspan></text>
+<rect x="120" y="941" width="1680" height="1" fill="#EEEDEC"/>
+<rect width="1680" height="147" transform="translate(120 1002)" fill="#EEEDEC"/>
+<rect x="148" y="1026" width="4" height="99" fill="#BE7241"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0.12em"><tspan x="176" y="1036.75">DECISION NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="13" font-style="italic" letter-spacing="0em"><tspan x="176" y="1059.76">The original assessment promised a personalized starting point and delivered a tier label. The redesign closes that gap on three fronts. Symptom triage as Step 0 respects how men actually arrive. A persistent sidebar with checkmarks gives them agency to skip what </tspan><tspan x="176" y="1079.76">does not apply. The result is three specific things, not a number: articles to read, a routine to follow, and language to bring to a professional. The save model is rebalanced. Email becomes the primary save with a 30 and 90 day check-in, earning the right to capture </tspan><tspan x="176" y="1099.76">data at the moment of highest user value. PDF stays as the doctor-visit artifact, repositioned for that specific job. The argument the case study makes is that personalization, re-engagement, and first-party data can be earned without trading the editorial trust the </tspan><tspan x="176" y="1119.76">audience came for.</tspan></text>
+</svg>

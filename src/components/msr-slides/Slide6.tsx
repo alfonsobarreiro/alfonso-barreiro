@@ -14,7 +14,7 @@ const tiers = [
 
 const tokenRows = [
   { token: "brand-500",   brand: "#1C3F5E", wayfarer: "#2D5A3D", msr: "#1C3F5E" },
-  { token: "brand-900",   brand: "#091016", wayfarer: "#0A1A10", msr: "#091016" },
+  { token: "brand-900",   brand: "#091016", wayfarer: "#0A1A10", msr: "#13100C" },
   { token: "accent-500",  brand: "#C4703A", wayfarer: "#B8860B", msr: "#C4703A" },
   { token: "neutral-50",  brand: "#F8F7F7", wayfarer: "#F7F8F5", msr: "#F8F7F7" },
   { token: "neutral-500", brand: "#6B6560", wayfarer: "#5E6B5A", msr: "#6B6560" },
@@ -24,7 +24,7 @@ function TokenCell({ hex, highlight }: { hex: string; highlight?: boolean }) {
   return (
     <div className="flex items-center gap-2">
       <div className="rounded-sm flex-shrink-0" style={{ width: 14, height: 14, background: hex, border: "1px solid rgba(0,0,0,0.08)" }} />
-      <code className="font-body" style={{ fontSize: 9, color: highlight ? "#091016" : "#938C86", fontWeight: highlight ? 600 : 400 }}>{hex}</code>
+      <code className="font-body" style={{ fontSize: 9, color: highlight ? "#13100C" : "#938C86", fontWeight: highlight ? 600 : 400 }}>{hex}</code>
     </div>
   );
 }
@@ -40,7 +40,7 @@ export default function Slide6() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Typography + Token Architecture</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#091016", fontSize: 30, fontWeight: 800, maxWidth: 900 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 30, fontWeight: 800, maxWidth: 900 }}>
           Three typefaces, each with a job.{" "}
           <span style={{ color: "#C4703A" }}>One token system, zero drift.</span>
         </h1>
@@ -48,9 +48,9 @@ export default function Slide6() {
         <div className="grid grid-cols-3 gap-5 mb-4">
           {typefaces.map((tf) => (
             <div key={tf.family} className="rounded-lg p-5 relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
-              <div className={tf.cssClass} style={{ fontSize: 56, fontWeight: tf.weight, fontStyle: tf.italic ? "italic" : "normal", color: "#091016", lineHeight: 1, marginBottom: 12 }}>{tf.specimen}</div>
+              <div className={tf.cssClass} style={{ fontSize: 56, fontWeight: tf.weight, fontStyle: tf.italic ? "italic" : "normal", color: "#13100C", lineHeight: 1, marginBottom: 12 }}>{tf.specimen}</div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="font-body font-semibold" style={{ color: "#091016", fontSize: 13 }}>{tf.family}</span>
+                <span className="font-body font-semibold" style={{ color: "#13100C", fontSize: 13 }}>{tf.family}</span>
                 <span className="font-body rounded-full px-2 py-0.5" style={{ fontSize: 9, fontWeight: 600, color: "#C4703A", background: "rgba(196,112,58,0.08)", border: "1px solid rgba(196,112,58,0.2)" }}>{tf.role}</span>
               </div>
               <p className="font-body leading-snug" style={{ color: "#6B6560", fontSize: 11 }}>{tf.usage}</p>
@@ -64,13 +64,13 @@ export default function Slide6() {
         <div className="flex gap-5">
           {/* Left: Token tiers */}
           <div className="flex flex-col" style={{ flex: "1 1 0" }}>
-            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#091016", fontSize: 14, fontWeight: 700 }}>3-Tier Token System</h2>
+            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#13100C", fontSize: 14, fontWeight: 700 }}>3-Tier Token System</h2>
             <div className="flex items-center gap-0">
               {tiers.map((tier, i) => (
                 <div key={tier.label} className="flex items-center flex-1 min-w-0">
                   <div className="rounded-lg p-3 flex flex-col w-full" style={{ background: i === 0 ? "linear-gradient(135deg, rgba(196,112,58,0.08) 0%, rgba(196,112,58,0.02) 100%)" : "#FFFFFF", border: i === 0 ? "1px solid rgba(196,112,58,0.25)" : "1px solid #EEEDEC" }}>
                     <span className="font-display" style={{ fontSize: 8, fontWeight: 700, color: i === 0 ? "#C4703A" : "#B7B2AE", letterSpacing: "0.15em" }}>TIER {i + 1}</span>
-                    <span className="font-body font-semibold mt-1" style={{ color: "#091016", fontSize: 10, lineHeight: 1.3 }}>{tier.label}</span>
+                    <span className="font-body font-semibold mt-1" style={{ color: "#13100C", fontSize: 10, lineHeight: 1.3 }}>{tier.label}</span>
                     <p className="font-body mt-1" style={{ color: "#6B6560", fontSize: 9, lineHeight: 1.4 }}>{tier.desc}</p>
                     <div className="rounded px-2 py-0.5 mt-2" style={{ background: "#F8F7F7", border: "1px solid #EEEDEC" }}>
                       <code className="font-body" style={{ fontSize: 8, color: "#C4703A" }}>{tier.example}</code>
@@ -88,7 +88,7 @@ export default function Slide6() {
 
           {/* Right: Token table */}
           <div className="flex flex-col" style={{ flex: "1.1 1 0" }}>
-            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#091016", fontSize: 14, fontWeight: 700 }}>AB Core Library Variables</h2>
+            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#13100C", fontSize: 14, fontWeight: 700 }}>AB Core Library Variables</h2>
             <div className="rounded-lg overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
               <div className="grid px-4 py-1.5" style={{ gridTemplateColumns: "100px 1fr 1fr 1fr", background: "#F8F7F7", borderBottom: "1px solid #EEEDEC" }}>
                 {["Token","Brand","Wayfarer","Men\u2019s Sole Revival"].map((h, i) => (

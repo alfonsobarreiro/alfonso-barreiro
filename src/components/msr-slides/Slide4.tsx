@@ -28,7 +28,7 @@ export default function Slide4() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>E-Commerce UX Patterns</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.05] tracking-tight mb-8" style={{ color: "#091016", fontSize: 40, fontWeight: 800, maxWidth: 820 }}>
+        <h1 className="font-display uppercase leading-[1.05] tracking-tight mb-8" style={{ color: "#13100C", fontSize: 40, fontWeight: 800, maxWidth: 820 }}>
           The user&rsquo;s task is evaluation, not reading.{" "}
           <span style={{ color: "#C4703A" }}>The layout should match the task.</span>
         </h1>
@@ -67,7 +67,7 @@ export default function Slide4() {
           <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-2.5 mb-4">
               <div className="flex items-center justify-center rounded-full" style={{ width: 22, height: 22, background: "#C4703A", color: "#FFFFFF", fontSize: 12, fontWeight: 700 }}>✓</div>
-              <span className="font-body font-semibold" style={{ color: "#091016", fontSize: 14 }}>E-Commerce Pattern &mdash; Chosen</span>
+              <span className="font-body font-semibold" style={{ color: "#13100C", fontSize: 14 }}>E-Commerce Pattern &mdash; Chosen</span>
             </div>
             <div className="rounded-xl p-6 flex-1 relative overflow-hidden" style={{ background: "#FFFFFF", border: "2px solid #C4703A", boxShadow: "0 4px 20px rgba(196,112,58,0.1)" }}>
               <div className="flex flex-col gap-3">

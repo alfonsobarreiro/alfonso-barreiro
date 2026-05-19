@@ -1,0 +1,144 @@
+<svg width="1920" height="1131" viewBox="0 0 1920 1131" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1131" fill="white"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="bold" letter-spacing="0.08em"><tspan x="120" y="92.092">ARTIFACT 01 &#xb7; INFORMATION ARCHITECTURE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="40" font-weight="500" letter-spacing="0em"><tspan x="120" y="148.64">Every page and every tag, in one tree.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="16" letter-spacing="0em"><tspan x="120" y="197.456">Top-level routes branch from the Homepage. Detail pages sit one level below as dynamic slugs. A right-side symptom rail </tspan><tspan x="120" y="221.456">feeds both Guides and Assessment, the two routes that need to be findable by what hurts.</tspan></text>
+<rect width="160" height="80" transform="translate(1640 80)" fill="#EEEDEC"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="32" font-weight="500" letter-spacing="0em"><tspan x="1660" y="121.712">14</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0.06em"><tspan x="1660" y="140.092">PAGE TYPES</tspan></text>
+<rect x="680.5" y="290.5" width="259" height="85" fill="#1C3F5E"/>
+<rect x="680.5" y="290.5" width="259" height="85" stroke="#1C3F5E"/>
+<text fill="#82A8CA" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="773.694" y="321.41">ROOT &#xb7; ORIENT</tspan></text>
+<text fill="white" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="20" font-weight="500" letter-spacing="0em"><tspan x="760.059" y="348.82">Homepage</tspan></text>
+<rect x="150.5" y="490.5" width="167" height="77" fill="white"/>
+<rect x="150.5" y="490.5" width="167" height="77" stroke="#938C86"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="232.037" y="512.91">/</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="214.21" y="533.774">Home</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="214.443" y="551.91">ORIENT</tspan></text>
+<rect x="342.75" y="490.75" width="166.5" height="76.5" fill="white"/>
+<rect x="342.75" y="490.75" width="166.5" height="76.5" stroke="#BE7241" stroke-width="1.5"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="405.615" y="512.91">/GUIDES</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="402.19" y="533.774">Guides</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="408.579" y="551.91">LEARN</tspan></text>
+<rect x="534.75" y="490.75" width="166.5" height="76.5" fill="white"/>
+<rect x="534.75" y="490.75" width="166.5" height="76.5" stroke="#BE7241" stroke-width="1.5"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="593.46" y="512.91">/REVIEWS</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="570.812" y="533.774">Reviews Index</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="591.188" y="551.91">EVALUATE</tspan></text>
+<rect x="918.5" y="490.5" width="167" height="77" fill="white"/>
+<rect x="918.5" y="490.5" width="167" height="77" stroke="#938C86"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="974.897" y="512.91">/ROUTINES</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="972.585" y="533.774">Routines</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="978.31" y="551.91">EXPLORE</tspan></text>
+<rect x="1110.75" y="490.75" width="166.5" height="76.5" fill="white"/>
+<rect x="1110.75" y="490.75" width="166.5" height="76.5" stroke="#BE7241" stroke-width="1.5"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="1158.9" y="512.91">/ASSESSMENT</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="1152.53" y="533.774">Assessment</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="1166.24" y="551.91">DIAGNOSE</tspan></text>
+<rect x="1302.5" y="490.5" width="167" height="77" fill="white"/>
+<rect x="1302.5" y="490.5" width="167" height="77" stroke="#938C86"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="1366.84" y="512.91">/ABOUT</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="1365.19" y="533.774">About</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="1369.15" y="551.91">TRUST</tspan></text>
+<rect x="342.5" y="628.5" width="167" height="63" fill="#EEEDEC"/>
+<rect x="342.5" y="628.5" width="167" height="63" stroke="#EEEDEC"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="386.462" y="652.41">/GUIDES/[SLUG]</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="382.564" y="673.274">Article detail</tspan></text>
+<rect x="534.5" y="628.5" width="167" height="63" fill="#EEEDEC"/>
+<rect x="534.5" y="628.5" width="167" height="63" stroke="#EEEDEC"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="574.306" y="652.41">/REVIEWS/[SLUG]</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="573.621" y="673.274">Review detail</tspan></text>
+<rect x="918.5" y="628.5" width="167" height="63" fill="#EEEDEC"/>
+<rect x="918.5" y="628.5" width="167" height="63" stroke="#EEEDEC"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="955.743" y="652.41">/ROUTINES/[SLUG]</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="955.352" y="673.274">Routine detail</tspan></text>
+<rect x="1110.5" y="628.5" width="167" height="63" fill="#EEEDEC"/>
+<rect x="1110.5" y="628.5" width="167" height="63" stroke="#EEEDEC"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="1135.58" y="652.41">/ASSESSMENT/RESULTS</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="1169.45" y="673.274">Results</tspan></text>
+<rect x="1302.5" y="628.5" width="167" height="63" fill="#EEEDEC"/>
+<rect x="1302.5" y="628.5" width="167" height="63" stroke="#EEEDEC"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="1361.1" y="652.41">/WAITLIST</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="1360.45" y="673.274">Waitlist</tspan></text>
+<rect x="160.5" y="708.5" width="167" height="77" fill="white"/>
+<rect x="160.5" y="708.5" width="167" height="77" stroke="#938C86"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="221.789" y="730.91">/SEARCH</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="220.546" y="751.774">Search</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="231.723" y="769.91">FIND</tspan></text>
+<rect x="352.5" y="708.5" width="167" height="77" fill="white"/>
+<rect x="352.5" y="708.5" width="167" height="77" stroke="#938C86"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" letter-spacing="0.04em"><tspan x="410.166" y="730.91">/CONTACT</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" font-weight="600" letter-spacing="0em"><tspan x="408.383" y="751.774">Contact</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="418.028" y="769.91">REACH</tspan></text>
+<rect width="260" height="705" transform="translate(1540 290)" fill="#EEEDEC"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.08em"><tspan x="1560" y="323.91">SYMPTOM TAGS</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1560" y="352.092">Cross-cutting taxonomy. Feeds both </tspan><tspan x="1560" y="370.092">Guides and Assessment.</tspan></text>
+<rect x="1560.5" y="407.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="407.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="429.433">Cracked heels</tspan></text>
+<rect x="1560.5" y="455.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="455.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="477.433">Toenail fungus</tspan></text>
+<rect x="1560.5" y="503.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="503.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="525.433">Foot odor</tspan></text>
+<rect x="1560.5" y="551.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="551.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="573.433">Foot pain</tspan></text>
+<rect x="1560.5" y="599.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="599.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="621.433">Heel pain &#xb7; plantar</tspan></text>
+<rect x="1560.5" y="647.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="647.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="669.433">Alignment &#xb7; pronation</tspan></text>
+<rect x="1560.5" y="695.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="695.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="717.433">Shoe fit</tspan></text>
+<rect x="1560.5" y="743.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="743.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="765.433">Nail health</tspan></text>
+<rect x="1560.5" y="791.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="791.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="813.433">Athlete&#39;s foot</tspan></text>
+<rect x="1560.5" y="839.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="839.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="861.433">Bunions</tspan></text>
+<rect x="1560.5" y="887.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="887.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="909.433">Calluses</tspan></text>
+<rect x="1560.5" y="935.5" width="219" height="35" fill="white"/>
+<rect x="1560.5" y="935.5" width="219" height="35" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="1574" y="957.433">Numbness &#xb7; diabetes</tspan></text>
+<rect width="880" height="56" transform="translate(160 846)" fill="#EEEDEC"/>
+<rect width="18" height="18" transform="translate(184 865)" fill="#1C3F5E"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="212" y="878.092">Root / Entry point</tspan></text>
+<rect x="345.5" y="865.5" width="17" height="17" fill="white"/>
+<rect x="345.5" y="865.5" width="17" height="17" stroke="#938C86"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="373" y="878.092">Primary page &#xb7; Task-aligned</tspan></text>
+<rect x="562.5" y="865.5" width="17" height="17" fill="white"/>
+<rect x="562.5" y="865.5" width="17" height="17" stroke="#BE7241"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="590" y="878.092">Active path &#xb7; Priority</tspan></text>
+<rect width="18" height="18" transform="translate(738 865)" fill="#EEEDEC"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="766" y="878.092">Detail / dynamic slug</tspan></text>
+<rect width="1680" height="115" transform="translate(120 936)" fill="#EEEDEC"/>
+<rect width="4" height="67" transform="translate(148 960)" fill="#BE7241"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.08em"><tspan x="176" y="969.91">DECISION NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="176" y="996.856">Symptoms live in a tag rail, not in the nav. A man with cracked heels shouldn't have to know whether the answer is a routine, a guide, or a review. The tag pulls relevant content from all three. The nav stays clean; </tspan><tspan x="176" y="1020.86">the symptom does the routing.</tspan></text>
+<path d="M810 376V433H234V490" stroke="#1C3F5E"/>
+<path d="M810 376V433H426V490" stroke="#1C3F5E"/>
+<path d="M810 376V433H618V490" stroke="#1C3F5E"/>
+<path d="M810 376V433M810 433V433ZM810 433V490" stroke="#1C3F5E"/>
+<path d="M810 376V433H1002V490" stroke="#1C3F5E"/>
+<path d="M810 376V433H1194V490" stroke="#1C3F5E"/>
+<path d="M810 376V433H1386V490" stroke="#1C3F5E"/>
+<path d="M426 568V598M426 598V598ZM426 598V628" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M618 568V598M618 598V598ZM618 598V628" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M810 568V598M810 598V598ZM810 598V628" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M1002 568V598M1002 598V598ZM1002 598V628" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M1194 568V598M1194 598V598ZM1194 598V628" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M1386 568V598M1386 598V598ZM1386 598V628" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M170 568V638H244V708" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M170 568V638H436V708" stroke="#938C86" stroke-dasharray="4 4"/>
+<path d="M1540 669H1510V460H1194V486" stroke="#BE7241" stroke-dasharray="4 4"/>
+<path d="M1540 705H1490V446H426V486" stroke="#BE7241" stroke-dasharray="4 4"/>
+</svg>

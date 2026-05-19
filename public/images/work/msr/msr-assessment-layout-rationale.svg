@@ -1,0 +1,45 @@
+<svg width="1920" height="1100" viewBox="0 0 1920 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1100" fill="#F1EFEC"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="bold" letter-spacing="0em"><tspan x="120" y="92.092">ARTIFACT 03I &#xb7; LAYOUT RATIONALE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="40" letter-spacing="0em"><tspan x="120" y="152.14">Why this form looks the way it does.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="16" letter-spacing="0em"><tspan x="120" y="195.956">Four layout decisions defended on usability, cognition, and emotional grounds. Each was a deliberate choice over a documented alternative. None of them is decorative.</tspan></text>
+<rect x="1640" y="80" width="160" height="80" rx="2" fill="#EDEAE6"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="32" letter-spacing="0em"><tspan x="1660" y="126.212">4</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1660" y="140.092">layout decisions</tspan></text>
+<rect x="120.5" y="280.5" width="819" height="359" rx="3.5" fill="white"/>
+<rect x="120.5" y="280.5" width="819" height="359" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="152" y="317.91">DECISION 01 &#xb7; ALIGNMENT</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" letter-spacing="0em"><tspan x="152" y="352.284">The form is centered on the canvas.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" letter-spacing="0em"><tspan x="152" y="403.774">Centered framing keeps the user&#x2019;s focus on the active item and removes peripheral competition. The form is the </tspan><tspan x="152" y="421.774">work; nothing else should pull the eye.</tspan></text>
+<rect x="152" y="490" width="756" height="80" rx="2" fill="#EDEAE6"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="168" y="511.069">ALTERNATIVE CONSIDERED</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="13" font-style="italic" letter-spacing="0em"><tspan x="168" y="531.258">Considered: left-aligned with the progress sidebar floated right. Rejected because pain answers especially need a single </tspan><tspan x="168" y="548.258">visual anchor.</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="152" y="621.91">GROUNDED IN &#xb7; USABILITY &#xb7; COGNITION</tspan></text>
+<rect x="970.5" y="280.5" width="819" height="359" rx="3.5" fill="white"/>
+<rect x="970.5" y="280.5" width="819" height="359" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1002" y="317.91">DECISION 02 &#xb7; COMPOSITION</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" letter-spacing="0em"><tspan x="1002" y="352.284">Supporting education sits beside the form, not below it.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" letter-spacing="0em"><tspan x="1002" y="403.774">Side-by-side keeps the question and its context in one glance. Users do not have to scroll between &#34;what is being </tspan><tspan x="1002" y="421.774">asked&#34; and &#34;why we are asking it.&#34;</tspan></text>
+<rect x="1002" y="490" width="756" height="80" rx="2" fill="#EDEAE6"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="1018" y="511.069">ALTERNATIVE CONSIDERED</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="13" font-style="italic" letter-spacing="0em"><tspan x="1018" y="531.258">Considered: tooltip-on-hover for context. Rejected because hover affordances fail on mobile and hide load-bearing </tspan><tspan x="1018" y="548.258">reasoning behind a gesture.</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1002" y="621.91">GROUNDED IN &#xb7; COGNITION &#xb7; CONTENT HIERARCHY</tspan></text>
+<rect x="120.5" y="670.5" width="819" height="359" rx="3.5" fill="white"/>
+<rect x="120.5" y="670.5" width="819" height="359" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="152" y="707.91">DECISION 03 &#xb7; MEASURE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" letter-spacing="0em"><tspan x="152" y="742.284">Width is constrained to ~640px on the form column.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" letter-spacing="0em"><tspan x="152" y="793.774">Items are short observations. A narrow column keeps reading flow tight and prevents the eye from over-scanning </tspan><tspan x="152" y="811.774">across the page. Each item gets attention.</tspan></text>
+<rect x="152" y="880" width="756" height="80" rx="2" fill="#EDEAE6"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="168" y="901.069">ALTERNATIVE CONSIDERED</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="13" font-style="italic" letter-spacing="0em"><tspan x="168" y="921.258">Considered: full-bleed form occupying 1100px. Rejected because longer line lengths slow comprehension on questions that </tspan><tspan x="168" y="938.258">should feel quick to read.</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="152" y="1011.91">GROUNDED IN &#xb7; READABILITY &#xb7; COMPLETION</tspan></text>
+<rect x="970.5" y="670.5" width="819" height="359" rx="3.5" fill="white"/>
+<rect x="970.5" y="670.5" width="819" height="359" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1002" y="707.91">DECISION 04 &#xb7; TONE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" letter-spacing="0em"><tspan x="1002" y="742.284">Editorial typography, not clinical typography.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="14" letter-spacing="0em"><tspan x="1002" y="793.774">Lora serifs in the section headers and a warm stone palette make the assessment feel like considered guidance, not </tspan><tspan x="1002" y="811.774">a triage form. The goal is to lower the stigma barrier before the first word is read.</tspan></text>
+<rect x="1002" y="880" width="756" height="80" rx="2" fill="#EDEAE6"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="1018" y="901.069">ALTERNATIVE CONSIDERED</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="13" font-style="italic" letter-spacing="0em"><tspan x="1018" y="921.258">Considered: utility-form aesthetic borrowed from healthcare intake (system sans + cool grays). Rejected because the </tspan><tspan x="1018" y="938.258">audience is already avoiding the topic; clinical visuals reinforce the avoidance.</tspan></text>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1002" y="1011.91">GROUNDED IN &#xb7; AUDIENCE PSYCHOLOGY &#xb7; BUSINESS GOAL</tspan></text>
+</svg>

@@ -2,7 +2,7 @@ import { SlideFrame, Eyebrow, wf } from "./SlideFrame";
 
 const rows = [
   { token: "brand-500",   wayfarer: "#3E3C78", portfolio: "#1C3F5E", msr: "#1C3F5E" },
-  { token: "brand-900",   wayfarer: "#2C2B5A", portfolio: "#091016", msr: "#091016" },
+  { token: "brand-900",   wayfarer: "#2C2B5A", portfolio: "#091016", msr: "#13100C" },
   { token: "accent-500",  wayfarer: "#D27A5E", portfolio: "#C4703A", msr: "#C4703A" },
   { token: "neutral-50",  wayfarer: "#F8F9FB", portfolio: "#F8F7F7", msr: "#F8F7F7" },
   { token: "neutral-500", wayfarer: "#6B6560", portfolio: "#6B6560", msr: "#6B6560" },

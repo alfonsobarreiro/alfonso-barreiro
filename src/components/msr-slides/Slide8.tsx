@@ -25,7 +25,7 @@ export default function Slide8() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Evaluation Plan</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#091016", fontSize: 28, fontWeight: 800, maxWidth: 1000 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 28, fontWeight: 800, maxWidth: 1000 }}>
           Reasoned, not tested.{" "}
           <span style={{ color: "#C4703A" }}>Here&rsquo;s how I&rsquo;ll find out if the reasoning holds.</span>
         </h1>
@@ -39,7 +39,7 @@ export default function Slide8() {
           </div>
           {criteria.map((c, i) => (
             <div key={c.measure} className="grid px-5 py-[7px] items-start" style={{ gridTemplateColumns: "200px 240px 1fr", background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < criteria.length - 1 ? "1px solid #EEEDEC" : "none" }}>
-              <span className="font-body font-medium" style={{ fontSize: 11, color: "#091016" }}>{c.measure}</span>
+              <span className="font-body font-medium" style={{ fontSize: 11, color: "#13100C" }}>{c.measure}</span>
               <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{c.metric}</span>
               <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{c.why}</span>
             </div>

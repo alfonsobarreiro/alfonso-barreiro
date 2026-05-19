@@ -11,7 +11,7 @@ export default function Slide9() {
         <div className="mb-10">
           <Image src="/images/work/msr/logo-msr-light.svg" alt="Men\u2019s Sole Revival" width={280} height={123} />
         </div>
-        <h1 className="font-display leading-[1.1] tracking-tight" style={{ color: "#091016", fontSize: 72, fontWeight: 800, maxWidth: 800, margin: "0 0 24px" }}>
+        <h1 className="font-display leading-[1.1] tracking-tight" style={{ color: "#13100C", fontSize: 72, fontWeight: 800, maxWidth: 800, margin: "0 0 24px" }}>
           Thank you.
         </h1>
         <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: 22, maxWidth: 560, margin: "0 0 56px" }}>

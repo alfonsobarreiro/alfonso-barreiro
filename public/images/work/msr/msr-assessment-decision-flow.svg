@@ -1,0 +1,233 @@
+<svg width="1600" height="2520" viewBox="0 0 1600 2520" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1600" height="2520" fill="#F8F7F7"/>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="bold" letter-spacing="0.12em"><tspan x="40" y="50.751">ARTIFACT 03G &#xb7; ASSESSMENT DECISION FLOW</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="20" letter-spacing="0em"><tspan x="40" y="92.32">Every branch in the assessment routing, surfaced as a flowchart. Diamonds are decisions; rectangles are screens or actions; pills are start and end </tspan><tspan x="40" y="122.32">states.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.12em"><tspan x="1200" y="149.91">LEGEND</tspan></text>
+<rect x="1200.5" y="156.5" width="23" height="15" rx="1.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#403D3A" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="1232" y="167.751">Screen / action</tspan></text>
+<rect x="1200.5" y="180.5" width="23" height="15" rx="1.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#403D3A" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="1232" y="191.751">Decision</tspan></text>
+<rect x="1200" y="204" width="24" height="16" rx="8" fill="#091016"/>
+<text fill="#403D3A" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="1232" y="215.751">Start / end</tspan></text>
+<rect x="650" y="200" width="180" height="44" rx="22" fill="#091016"/>
+<text fill="white" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="bold" letter-spacing="0.14em"><tspan x="719.5" y="225.751">START</tspan></text>
+<rect x="600.5" y="280.5" width="279" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="301.069">FRAME 01</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="318.933">Intro screen</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="614" y="336.751">Warning strip &#xb7; stats &#xb7; primary CTA</tspan></text>
+<line x1="740.75" y1="244" x2="740.75" y2="268" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 268L744.33 275.5H735.67L740 268Z" fill="#938C86"/>
+<rect x="600.5" y="390.5" width="279" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="411.069">FRAME 02&#x2013;03</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="428.933">Triage screen</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="614" y="446.751">5 symptom chips &#xb7; fallback link</tspan></text>
+<line x1="740.75" y1="350" x2="740.75" y2="378" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 378L744.33 385.5H735.67L740 378Z" fill="#938C86"/>
+<rect x="600.5" y="500.5" width="279" height="69" rx="3.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#A35E32" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="521.069">DECISION</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="538.933">Selected one or more symptoms?</tspan></text>
+<line x1="740.75" y1="460" x2="740.75" y2="488" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 488L744.33 495.5H735.67L740 488Z" fill="#938C86"/>
+<rect x="380.5" y="620.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="394" y="646.933">Filter sections</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="394" y="666.751">symptomToSections() narrows the flow to 1&#x2013;3 sections</tspan></text>
+<rect x="780.5" y="620.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="794" y="646.933">Show all sections</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="794" y="666.751">User clicked &#34;Not sure &#x2192; show me everything&#34;</tspan></text>
+<line x1="740.75" y1="570" x2="740.75" y2="595" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="594.25" x2="740" y2="594.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540.75" y1="595" x2="540.75" y2="608" stroke="#938C86" stroke-width="1.5"/>
+<path d="M540 608L544.33 615.5H535.67L540 608Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="648" y="598.41">YES</tspan></text>
+<line x1="740.75" y1="570" x2="740.75" y2="595" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="594.25" x2="940" y2="594.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="940.75" y1="595" x2="940.75" y2="608" stroke="#938C86" stroke-width="1.5"/>
+<path d="M940 608L944.33 615.5H935.67L940 608Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="848" y="598.41">NO</tspan></text>
+<rect x="600.5" y="730.5" width="279" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="751.069">FRAME 04/05/06/07</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="768.933">For each visible section</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="614" y="786.751">Render header &#xb7; stat &#xb7; 5&#x2013;7 items</tspan></text>
+<line x1="540.75" y1="690" x2="540.75" y2="710" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="709.25" x2="740" y2="709.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="710" x2="740.75" y2="718" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 718L744.33 725.5H735.67L740 718Z" fill="#938C86"/>
+<line x1="940.75" y1="690" x2="940.75" y2="710" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="709.25" x2="940" y2="709.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="710" x2="740.75" y2="718" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 718L744.33 725.5H735.67L740 718Z" fill="#938C86"/>
+<rect x="600.5" y="840.5" width="279" height="69" rx="3.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#A35E32" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="861.069">DECISION</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="878.933">Is this the Pain section?</tspan></text>
+<line x1="740.75" y1="800" x2="740.75" y2="828" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 828L744.33 835.5H735.67L740 828Z" fill="#938C86"/>
+<rect x="380.5" y="960.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="394" y="986.933">Binary items</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="394" y="1006.75">Render Check / Unchecked checkboxes</tspan></text>
+<rect x="780.5" y="960.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="794" y="981.069">FRAME 05</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="794" y="998.933">Three-state items</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="794" y="1016.75">Render Yes / No / Not sure radios</tspan></text>
+<line x1="740.75" y1="910" x2="740.75" y2="935" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="934.25" x2="740" y2="934.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540.75" y1="935" x2="540.75" y2="948" stroke="#938C86" stroke-width="1.5"/>
+<path d="M540 948L544.33 955.5H535.67L540 948Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="648" y="938.41">NO</tspan></text>
+<line x1="740.75" y1="910" x2="740.75" y2="935" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="934.25" x2="940" y2="934.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="940.75" y1="935" x2="940.75" y2="948" stroke="#938C86" stroke-width="1.5"/>
+<path d="M940 948L944.33 955.5H935.67L940 948Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="848" y="938.41">YES</tspan></text>
+<rect x="600.5" y="1070.5" width="279" height="69" rx="3.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#A35E32" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="1091.07">DECISION</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="1108.93">Any items flagged in this section?</tspan></text>
+<line x1="540.75" y1="1030" x2="540.75" y2="1050" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="1049.25" x2="740" y2="1049.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="1050" x2="740.75" y2="1058" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1058L744.33 1065.5H735.67L740 1058Z" fill="#938C86"/>
+<line x1="940.75" y1="1030" x2="940.75" y2="1050" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="1049.25" x2="940" y2="1049.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="1050" x2="740.75" y2="1058" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1058L744.33 1065.5H735.67L740 1058Z" fill="#938C86"/>
+<rect x="380.5" y="1190.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="394" y="1216.93">Ask duration</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="394" y="1236.75">Recent / Ongoing / Chronic radio</tspan></text>
+<rect x="780.5" y="1190.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="794" y="1216.93">Skip duration question</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="794" y="1236.75">No flags = no duration needed</tspan></text>
+<line x1="740.75" y1="1140" x2="740.75" y2="1165" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="1164.25" x2="740" y2="1164.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540.75" y1="1165" x2="540.75" y2="1178" stroke="#938C86" stroke-width="1.5"/>
+<path d="M540 1178L544.33 1185.5H535.67L540 1178Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="648" y="1168.41">YES</tspan></text>
+<line x1="740.75" y1="1140" x2="740.75" y2="1165" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="1164.25" x2="940" y2="1164.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="940.75" y1="1165" x2="940.75" y2="1178" stroke="#938C86" stroke-width="1.5"/>
+<path d="M940 1178L944.33 1185.5H935.67L940 1178Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="848" y="1168.41">NO</tspan></text>
+<rect x="600.5" y="1300.5" width="279" height="69" rx="3.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#A35E32" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="1321.07">DECISION</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="1338.93">Last section in flow?</tspan></text>
+<line x1="540.75" y1="1260" x2="540.75" y2="1280" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="1279.25" x2="740" y2="1279.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="1280" x2="740.75" y2="1288" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1288L744.33 1295.5H735.67L740 1288Z" fill="#938C86"/>
+<line x1="940.75" y1="1260" x2="940.75" y2="1280" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="1279.25" x2="940" y2="1279.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="1280" x2="740.75" y2="1288" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1288L744.33 1295.5H735.67L740 1288Z" fill="#938C86"/>
+<rect x="380.5" y="1420.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="394" y="1446.93">Advance to next section</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="394" y="1466.75">sectionIndex += 1 &#xb7; loop back</tspan></text>
+<rect x="780.5" y="1420.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="794" y="1441.07">FRAME 08</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="794" y="1458.93">Acknowledgment</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="794" y="1476.75">&#34;Got it. Here&#39;s where you stand.&#34; 1s hold</tspan></text>
+<line x1="740.75" y1="1370" x2="740.75" y2="1395" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="1394.25" x2="740" y2="1394.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540.75" y1="1395" x2="540.75" y2="1408" stroke="#938C86" stroke-width="1.5"/>
+<path d="M540 1408L544.33 1415.5H535.67L540 1408Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="648" y="1398.41">NO</tspan></text>
+<line x1="740.75" y1="1370" x2="740.75" y2="1395" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="1394.25" x2="940" y2="1394.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="940.75" y1="1395" x2="940.75" y2="1408" stroke="#938C86" stroke-width="1.5"/>
+<path d="M940 1408L944.33 1415.5H935.67L940 1408Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="848" y="1398.41">YES</tspan></text>
+<rect x="600.5" y="1530.5" width="279" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="1551.07">lib/assessment-routing</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="1568.93">composeResult()</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="614" y="1586.75">Bucket flags &#xb7; apply duration shift &#xb7; check </tspan><tspan x="614" y="1600.75">notSure</tspan></text>
+<line x1="940.75" y1="1490" x2="940.75" y2="1510" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="1509.25" x2="940" y2="1509.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="1510" x2="740.75" y2="1518" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1518L744.33 1525.5H735.67L740 1518Z" fill="#938C86"/>
+<rect x="600.5" y="1640.5" width="279" height="69" rx="3.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#A35E32" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="1661.07">DECISION</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="1678.93">notSureCount &#x2265; 3?</tspan></text>
+<line x1="740.75" y1="1600" x2="740.75" y2="1628" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1628L744.33 1635.5H735.67L740 1628Z" fill="#938C86"/>
+<rect x="380.5" y="1760.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="394" y="1786.93">Add uncertainty prep bullet</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="394" y="1806.75">+ &#34;I had trouble telling whether some items applied to </tspan><tspan x="394" y="1820.75">me&#x2026;&#34;</tspan></text>
+<rect x="780.5" y="1760.5" width="319" height="69" rx="3.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#A35E32" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="794" y="1781.07">DECISION</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="794" y="1798.93">Any section bucket = high?</tspan></text>
+<line x1="740.75" y1="1710" x2="740.75" y2="1735" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="1734.25" x2="740" y2="1734.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540.75" y1="1735" x2="540.75" y2="1748" stroke="#938C86" stroke-width="1.5"/>
+<path d="M540 1748L544.33 1755.5H535.67L540 1748Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="648" y="1738.41">YES</tspan></text>
+<line x1="740.75" y1="1710" x2="740.75" y2="1735" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="1734.25" x2="940" y2="1734.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="940.75" y1="1735" x2="940.75" y2="1748" stroke="#938C86" stroke-width="1.5"/>
+<path d="M940 1748L944.33 1755.5H935.67L940 1748Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="848" y="1738.41">NO</tspan></text>
+<rect x="380.5" y="1880.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="394" y="1901.07">FRAME 10/11</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="394" y="1918.93">Show clinic callout</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="394" y="1936.75">Accent banner &#xb7; prep bullets &#xb7; clinic rec</tspan></text>
+<rect x="780.5" y="1880.5" width="319" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="794" y="1901.07">FRAME 09</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="794" y="1918.93">No clinic callout</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="794" y="1936.75">Three-block result only</tspan></text>
+<line x1="540.75" y1="1830" x2="540.75" y2="1868" stroke="#938C86" stroke-width="1.5"/>
+<path d="M540 1868L544.33 1875.5H535.67L540 1868Z" fill="#938C86"/>
+<line x1="940.75" y1="1830" x2="940.75" y2="1855" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="1854.25" x2="940" y2="1854.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540.75" y1="1855" x2="540.75" y2="1868" stroke="#938C86" stroke-width="1.5"/>
+<path d="M540 1868L544.33 1875.5H535.67L540 1868Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="748" y="1858.41">YES</tspan></text>
+<line x1="940.75" y1="1830" x2="940.75" y2="1868" stroke="#938C86" stroke-width="1.5"/>
+<path d="M940 1868L944.33 1875.5H935.67L940 1868Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="948" y="1858.41">NO</tspan></text>
+<rect x="600.5" y="1990.5" width="279" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="2011.07">FRAME 09/10/11</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="2028.93">Results screen</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="614" y="2046.75">Three-block &#xb7; per-section summary &#xb7; save row</tspan></text>
+<line x1="540.75" y1="1950" x2="540.75" y2="1970" stroke="#938C86" stroke-width="1.5"/>
+<line x1="540" y1="1969.25" x2="740" y2="1969.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="1970" x2="740.75" y2="1978" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1978L744.33 1985.5H735.67L740 1978Z" fill="#938C86"/>
+<line x1="940.75" y1="1950" x2="940.75" y2="1970" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="1969.25" x2="940" y2="1969.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="1970" x2="740.75" y2="1978" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 1978L744.33 1985.5H735.67L740 1978Z" fill="#938C86"/>
+<rect x="600.5" y="2100.5" width="279" height="69" rx="3.5" fill="#F4F2F0" stroke="#C4703A"/>
+<text fill="#A35E32" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="2121.07">DECISION</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="2138.93">Save action?</tspan></text>
+<line x1="740.75" y1="2060" x2="740.75" y2="2088" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 2088L744.33 2095.5H735.67L740 2088Z" fill="#938C86"/>
+<rect x="220.5" y="2220.5" width="239" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="234" y="2241.07">FRAME 12</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="234" y="2258.93">Email</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="234" y="2276.75">Submit &#xb7; Resend (stub) &#xb7; 30/90 opt-in</tspan></text>
+<rect x="600.5" y="2220.5" width="279" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#1C3F5E" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0.12em"><tspan x="614" y="2241.07">lib/generateAssessmentPDF</tspan></text>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="614" y="2258.93">PDF</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="614" y="2276.75">Render doctor-visit artifact &#xb7; download</tspan></text>
+<rect x="1020.5" y="2220.5" width="239" height="69" rx="3.5" fill="white" stroke="#B7B2AE"/>
+<text fill="#091016" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-weight="bold" letter-spacing="0em"><tspan x="1034" y="2246.93">Restart</tspan></text>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="1034" y="2266.75">Clear sessionStorage &#xb7; loop back to intro</tspan></text>
+<line x1="740.75" y1="2170" x2="740.75" y2="2195" stroke="#938C86" stroke-width="1.5"/>
+<line x1="340" y1="2194.25" x2="740" y2="2194.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="340.75" y1="2195" x2="340.75" y2="2208" stroke="#938C86" stroke-width="1.5"/>
+<path d="M340 2208L344.33 2215.5H335.67L340 2208Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="548" y="2198.41">EMAIL</tspan></text>
+<line x1="740.75" y1="2170" x2="740.75" y2="2208" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 2208L744.33 2215.5H735.67L740 2208Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="748" y="2198.41">PDF</tspan></text>
+<line x1="740.75" y1="2170" x2="740.75" y2="2195" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740" y1="2194.25" x2="1140" y2="2194.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="1140.75" y1="2195" x2="1140.75" y2="2208" stroke="#938C86" stroke-width="1.5"/>
+<path d="M1140 2208L1144.33 2215.5H1135.67L1140 2208Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0.06em"><tspan x="948" y="2198.41">RESTART</tspan></text>
+<rect x="550" y="2330" width="380" height="44" rx="22" fill="#091016"/>
+<text fill="white" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="bold" letter-spacing="0.14em"><tspan x="569.5" y="2355.75">END &#xb7; SAVED &#xb7; 30 / 90 DAY FOLLOW-UP IF OPTED IN</tspan></text>
+<line x1="340.75" y1="2290" x2="340.75" y2="2310" stroke="#938C86" stroke-width="1.5"/>
+<line x1="340" y1="2309.25" x2="740" y2="2309.25" stroke="#938C86" stroke-width="1.5"/>
+<line x1="740.75" y1="2310" x2="740.75" y2="2318" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 2318L744.33 2325.5H735.67L740 2318Z" fill="#938C86"/>
+<line x1="740.75" y1="2290" x2="740.75" y2="2318" stroke="#938C86" stroke-width="1.5"/>
+<path d="M740 2318L744.33 2325.5H735.67L740 2318Z" fill="#938C86"/>
+<text fill="#6B6560" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" letter-spacing="0em"><tspan x="984.84" y="2450.75">Restart resets state and re-enters at the Intro screen (top of </tspan><tspan x="1105" y="2464.75">this diagram).</tspan></text>
+</svg>

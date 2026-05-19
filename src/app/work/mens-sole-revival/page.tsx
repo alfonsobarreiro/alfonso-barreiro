@@ -80,7 +80,7 @@ export default function MSRCaseStudy() {
         {/* -- Hero ---------------------------------------- */}
         <header
           style={{
-            background:  "#091016",
+            background:  "#13100C",
             padding:     "clamp(64px, 10vw, 120px) clamp(24px, 5vw, 80px)",
             position:    "relative",
             overflow:    "hidden",
@@ -132,7 +132,7 @@ export default function MSRCaseStudy() {
               margin:      "0 0 40px",
               maxWidth:    "640px",
             }}>
-              77% of US adults report annual foot pain. Men are 33% less likely than women to seek care. The audience exists. The resource didn&apos;t. I built MSR, then pivoted from e-commerce to content authority when the unit economics broke in week three.
+              Men over 40 quietly Google their foot problems. Clinical sites scare them; commerce sites push to them. I designed MSR for the middle. Live since April 2026. The first plan was e-commerce; I shifted to content authority in week three when the research kept telling me the same thing: information, not products.
             </p>
 
             {/* Metadata row */}
@@ -160,6 +160,81 @@ export default function MSRCaseStudy() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* Thumbnail tape \u2014 preview what's downstream */}
+            <div style={{
+              marginTop:  "56px",
+              paddingTop: "32px",
+              borderTop:  "1px solid rgba(245,243,239,0.1)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                <span style={{ width: "24px", height: "1px", background: c.cognac }} />
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "11px",
+                  fontWeight:    600,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color:         c.cognac,
+                  margin:        0,
+                }}>
+                  What&apos;s downstream
+                </p>
+              </div>
+
+              <div style={{
+                display:           "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gap:                "16px",
+              }}>
+                {[
+                  { label: "05 \u00B7 Architecture",     src: "/images/work/msr/msr-ia-tree.svg",                    href: "#section-05" },
+                  { label: "06 \u00B7 Flows",            src: "/images/work/msr/msr-user-flows.svg",                 href: "#section-06" },
+                  { label: "07 \u00B7 Decision logic",   src: "/images/work/msr/msr-assessment-decision-flow.svg",   href: "#section-07" },
+                  { label: "07 \u00B7 Wireframes",       src: "/images/work/msr/msr-assessment-wireframes.svg",      href: "#section-07" },
+                  { label: "\u2197 Live product",   src: "/images/work/msr/msr-homepage.webp",                  href: "https://www.menssolerevival.com/", external: true },
+                ].map(({ label, src, href, external }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="cs-thumb"
+                    style={{
+                      display:         "block",
+                      textDecoration:  "none",
+                    }}
+                  >
+                    <div style={{
+                      position:     "relative",
+                      aspectRatio:  "16 / 11",
+                      overflow:     "hidden",
+                      background:   external ? "#0F161D" : "#F5F3EF",
+                      border:       "1px solid rgba(245,243,239,0.1)",
+                    }}>
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        sizes="(max-width: 767px) 50vw, 220px"
+                        style={{ objectFit: external ? "cover" : "contain", objectPosition: "center" }}
+                      />
+                    </div>
+                    <p style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "11px",
+                      fontWeight:    600,
+                      letterSpacing: "0.10em",
+                      textTransform: "uppercase",
+                      color:         "rgba(245,243,239,0.75)",
+                      margin:        "10px 0 0",
+                    }}>
+                      {label}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </header>
@@ -410,7 +485,7 @@ export default function MSRCaseStudy() {
               </svg>
             </div>
             <p style={{ ...bodyText, marginTop: "24px" }}>
-              The intersection is where the audience actually lives. Male-specific, clinically grounded, and product-informed. Not a compromise between the three categories. The resource that should exist where they overlap.
+              The intersection is where the audience actually lives: male-specific, clinically grounded, and product-informed. It&apos;s the resource that should exist where the three categories overlap, not a compromise between them.
             </p>
           </Section>
 
@@ -497,10 +572,10 @@ export default function MSRCaseStudy() {
               The original plan was a premium men&apos;s foot care e-commerce site. Curated product kits: antifungal treatment, toe separators, insoles, foot cream. Headless Shopify, Next.js frontend, dark editorial brand.
             </p>
             <p style={bodyText}>
-              The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. Three weeks of modeling margins that wouldn&apos;t work was the signal: the friction wasn&apos;t execution. It was the starting point.
+              The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. Three weeks of margin modeling kept pointing to the same answer: the friction wasn&apos;t execution. It was the starting point.
             </p>
             <p style={bodyText}>
-              The market itself wasn&apos;t the problem. The sizing supported the thesis. The unit economics didn&apos;t.
+              The market sizing supported the thesis. The unit economics did not.
             </p>
             <p style={bodyText}>
               Then the market research showed the real problem. I used a jobs-to-be-done frame to redefine it: these men aren&apos;t hiring a product. They&apos;re hiring a reason to start paying attention. The gap wasn&apos;t in the products. It was in the information layer that should precede them. Men over 40 who aren&apos;t already thinking about their feet are expensive to convert. They need a resource they trust before they&apos;ll buy anything. The e-commerce model puts the transaction before the relationship that makes the transaction possible.
@@ -511,7 +586,7 @@ export default function MSRCaseStudy() {
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
-                    {["Dimension", "Before", "", "After"].map((h, i) => (
+                    {["Dimension", "Original Model", "", "Pivoted Model"].map((h, i) => (
                       <th key={i} style={{ ...thStyle, width: h === "" ? "44px" : undefined }}>{h}</th>
                     ))}
                   </tr>
@@ -525,7 +600,7 @@ export default function MSRCaseStudy() {
                   ].map(({ dim, before, after }, i) => (
                     <tr key={dim} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
                       <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{dim}</td>
-                      <td style={{ ...tdStyle, color: c.muted, textDecoration: "line-through", textDecorationColor: c.border }}>{before}</td>
+                      <td style={{ ...tdStyle, color: c.muted }}>{before}</td>
                       <td style={{ ...tdStyle, color: c.cognac, fontWeight: 700, textAlign: "center", fontSize: "18px", lineHeight: 1 }}>&rarr;</td>
                       <td style={{ ...tdStyle, color: c.ink, fontWeight: 600 }}>{after}</td>
                     </tr>
@@ -552,8 +627,8 @@ export default function MSRCaseStudy() {
               overflow:    "hidden",
             }}>
               <Image
-                src="/images/work/msr/msr-ia-tree.webp"
-                alt="MSR information architecture. Every route from the homepage to detail pages. A right-side symptom tag rail (cracked heels, toenail fungus, foot pain, alignment, etc.) feeds the Library and Self-Assessment routes so users can arrive symptom-first."
+                src="/images/work/msr/msr-ia-tree.svg"
+                alt="MSR information architecture. Every route from the homepage to detail pages. A right-side symptom tag rail (cracked heels, toenail fungus, foot pain, alignment, etc.) feeds the Guides and Assessment routes so users can arrive symptom-first."
                 fill
                 sizes="(max-width: 767px) 100vw, 1100px"
                 style={{ objectFit: "contain", objectPosition: "top" }}
@@ -578,7 +653,7 @@ export default function MSRCaseStudy() {
             </div>
 
             <p style={bodyText}>
-              Seven page types, each designed for a different user task. The information architecture is the product strategy made navigable. Every route maps to a specific intent.
+              Seven primary routes, each designed for a different user task. The information architecture is the product strategy made navigable. Every route maps to a specific intent.
             </p>
 
             {/* Route table */}
@@ -598,13 +673,13 @@ export default function MSRCaseStudy() {
                 </thead>
                 <tbody>
                   {[
-                    { route: "/",               type: "Homepage",        task: "Orient",   purpose: "Understand what this site is and whether it\u2019s for me." },
-                    { route: "/learn/[slug]",    type: "Article",         task: "Learn",    purpose: "Go deeper on a foot health topic." },
-                    { route: "/reviews/[slug]",  type: "Product Review",  task: "Evaluate", purpose: "Compare and decide on a product." },
-                    { route: "/kits",            type: "Curated Kits",    task: "Browse",   purpose: "See grouped product recommendations." },
-                    { route: "/learn",           type: "Educational Hub", task: "Explore",  purpose: "Find the right starting point." },
-                    { route: "/about",           type: "Brand Story",     task: "Trust",    purpose: "Understand who built this and why." },
-                    { route: "/assessment",      type: "Self-Check Tool", task: "Act",      purpose: "Get a personalized starting point." },
+                    { route: "/",                  type: "Homepage",        task: "Orient",   purpose: "Understand what this site is and whether it\u2019s for me." },
+                    { route: "/guides",            type: "Guides Index",    task: "Browse",   purpose: "Find the right starting point." },
+                    { route: "/guides/[slug]",     type: "Article",         task: "Learn",    purpose: "Go deeper on a foot health topic." },
+                    { route: "/reviews/[slug]",    type: "Product Review",  task: "Evaluate", purpose: "Compare and decide on a product." },
+                    { route: "/routines/[slug]",   type: "Routine",         task: "Explore",  purpose: "Follow a recommended routine." },
+                    { route: "/about",             type: "Brand Story",     task: "Trust",    purpose: "Understand who built this and why." },
+                    { route: "/assessment",        type: "Self-Check Tool", task: "Act",      purpose: "Get a personalized starting point." },
                   ].map(({ route, type, task, purpose }, i) => (
                     <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
                       <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
@@ -631,15 +706,15 @@ export default function MSRCaseStudy() {
             {/* Artifact image */}
             <div style={{
               position:    "relative",
-              aspectRatio: "1920 / 1705",
+              aspectRatio: "1920 / 1306",
               marginTop:   "24px",
               border:      `1px solid ${c.border}`,
               background:  c.bgSection,
               overflow:    "hidden",
             }}>
               <Image
-                src="/images/work/msr/msr-user-flows.webp"
-                alt="Artifact 02. User Flows. Two end-to-end paths through Men's Sole Revival. Flow A: Landing, CTA, Q1 Symptom, BRANCH diamond, Q2, Results loading, Personalized Recs, fork to Amazon affiliate (current) or internal product page (pivot). Flow B: Landing, Library, Article, Related Products, Reviews, outbound product CTA."
+                src="/images/work/msr/msr-user-flows.svg"
+                alt="Artifact 02. User Flows. Two end-to-end paths through Men's Sole Revival. Flow A: Landing, Take Assessment CTA, Triage Step 0, Q1 branch diamond, Q2 sets for Pain Nails or Fit, Results loading, Recommendations, fork to Amazon outbound or internal Routine and Review. Flow B: Landing, Guides Index, Article detail, Related callout, fork to Review detail or Amazon outbound."
                 fill
                 sizes="(max-width: 767px) 100vw, 1100px"
                 style={{ objectFit: "contain", objectPosition: "top" }}
@@ -678,14 +753,14 @@ export default function MSRCaseStudy() {
           {/* -- 07 Assessment Redesign -------------------- */}
           <Section label="07" title="Assessment Redesign">
             <p style={bodyText}>
-              The original assessment ends in a tier label. The redesign ends in a specific next step. Three artifacts below: where the live version falls short, the new wireframes at component fidelity, and the trade-offs that drove every move.
+              The original assessment ends in a tier label. The redesign ends in a specific next step. Six artifacts below: where the live version falls short, every question grouped by section, the wireframes at component fidelity, the decision flow behind the routing, the trade-offs that drove every scope move, and the layout rationale that defends every visual decision.
             </p>
 
             {/* Problem & Comparative Analysis */}
             <div style={{ marginTop: "32px" }}>
               <h3 style={subheading}>Problem & comparative analysis</h3>
               <p style={bodyText}>
-                The live assessment has Cate-flagged gaps. Five comparable intake tools (Function Health, WHOOP, BetterHelp, Hims, Eight Sleep) point to specific moves worth borrowing: symptom-first triage, why-we-ask microcopy, short branching paths, and scheduled re-engagement.
+                The live assessment has three gaps worth closing. Five comparable intake tools (Function Health, WHOOP, BetterHelp, Hims, Eight Sleep) point to specific moves worth borrowing: symptom-first triage, why-we-ask microcopy, short branching paths, and scheduled re-engagement.
               </p>
               <div style={{
                 position:    "relative",
@@ -696,8 +771,32 @@ export default function MSRCaseStudy() {
                 overflow:    "hidden",
               }}>
                 <Image
-                  src="/images/work/msr/msr-assessment-problem.webp"
-                  alt="Assessment redesign part 1. Current state audit of the live MSR assessment showing three Cate-flagged gaps (no symptom triage, no completed-sections view, generic result). Plus a comparative analysis of five intake tools and a list of net moves worth borrowing."
+                  src="/images/work/msr/msr-assessment-problem.svg"
+                  alt="Assessment redesign part 1. Current state audit of the live MSR assessment showing three gaps to close (no symptom triage, no completed-sections view, generic result). Plus a comparative analysis of five intake tools and a list of net moves worth borrowing."
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "contain", objectPosition: "top" }}
+                />
+              </div>
+            </div>
+
+            {/* Question list */}
+            <div style={{ marginTop: "48px" }}>
+              <h3 style={subheading}>Every question, in order</h3>
+              <p style={bodyText}>
+                Twenty-nine items across five sections. Step 0 is the only branching question; after triage, each visible section shows its full item set. Pain and Inflammation is the only three-state section because pain is interoceptive and binary forces false positives. The rest are binary checks. The note at the bottom of each section translates the flag count into a recommendation tier.
+              </p>
+              <div style={{
+                position:    "relative",
+                aspectRatio: "1920 / 1262",
+                marginTop:   "16px",
+                border:      `1px solid ${c.border}`,
+                background:  c.bgSection,
+                overflow:    "hidden",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-assessment-question-list.svg"
+                  alt="Artifact 03h. Question list. Every assessment item grouped by section. Step 0 Triage banner with five symptom chips (Nails, Skin, Pain, Alignment, Footwear fit, Not sure). Five section cards in a grid: Nail Health (seven items, binary), Skin and Heels (six items, binary), Pain and Inflammation (six items, three-state), Alignment and Structure (five items, binary), Footwear Fit (five items, binary). Each section card includes its subtitle, numbered item list, and a NOTE explaining the flag-count threshold."
                   fill
                   sizes="(max-width: 767px) 100vw, 1100px"
                   style={{ objectFit: "contain", objectPosition: "top" }}
@@ -720,10 +819,34 @@ export default function MSRCaseStudy() {
                 overflow:    "hidden",
               }}>
                 <Image
-                  src="/images/work/msr/msr-assessment-wireframes.webp"
+                  src="/images/work/msr/msr-assessment-wireframes.svg"
                   alt="Assessment redesign part 2. Six desktop wireframes at component fidelity plus two mobile variants. Each state is annotated with its role in the redesigned flow."
                   fill
                   sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "contain", objectPosition: "top" }}
+                />
+              </div>
+            </div>
+
+            {/* Decision flow */}
+            <div style={{ marginTop: "48px" }}>
+              <h3 style={subheading}>Decision flow</h3>
+              <p style={bodyText}>
+                Every branch in the routing logic, surfaced as a flowchart. Diamonds are decisions, rectangles are screens or actions, pills are start and end states. The Pain section is the only branch that renders three-state radios; everything else is binary. composeResult bucketizes flags, shifts on duration, and only surfaces the clinic callout when a section bucket reads high. Email and PDF endings opt the user into 30 and 90 day follow-ups.
+              </p>
+              <div style={{
+                position:    "relative",
+                aspectRatio: "1600 / 2520",
+                marginTop:   "16px",
+                border:      `1px solid ${c.border}`,
+                background:  c.bgSection,
+                overflow:    "hidden",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-assessment-decision-flow.svg"
+                  alt="Artifact 03g. Assessment Decision Flow. Vertical flowchart starting from Intro, branching at Triage (selected one or more symptoms?), into Filter sections or Show all sections, then into the For each visible section loop with the Pain section decision routing into binary or three-state items. Any items flagged decision routes into Ask duration or Skip duration. Last section decision routes into Advance or Acknowledgment. composeResult routes into uncertainty prep bullet or clinic callout. Results screen, save action, then ends in Email, PDF, or Restart."
+                  fill
+                  sizes="(max-width: 767px) 100vw, 720px"
                   style={{ objectFit: "contain", objectPosition: "top" }}
                 />
               </div>
@@ -744,8 +867,32 @@ export default function MSRCaseStudy() {
                 overflow:    "hidden",
               }}>
                 <Image
-                  src="/images/work/msr/msr-assessment-tradeoffs.webp"
+                  src="/images/work/msr/msr-assessment-tradeoffs.svg"
                   alt="Assessment redesign part 3. Nine-row trade-off table covering entry point, save model, result format, pain answer state, progress UI, section skip, re-engagement, acknowledgment, and recommendation routing. Followed by the one-paragraph decision note."
+                  fill
+                  sizes="(max-width: 767px) 100vw, 1100px"
+                  style={{ objectFit: "contain", objectPosition: "top" }}
+                />
+              </div>
+            </div>
+
+            {/* Layout rationale */}
+            <div style={{ marginTop: "48px" }}>
+              <h3 style={subheading}>Layout rationale</h3>
+              <p style={bodyText}>
+                Four layout decisions, each defended on usability, cognition, and emotional grounds. Each one was a deliberate choice over a documented alternative. The form is centered, supporting education sits beside it, the column is narrow, and the typography is editorial. The goal across all four is to lower the stigma barrier before the user reads a word.
+              </p>
+              <div style={{
+                position:    "relative",
+                aspectRatio: "1920 / 1100",
+                marginTop:   "16px",
+                border:      `1px solid ${c.border}`,
+                background:  c.bgSection,
+                overflow:    "hidden",
+              }}>
+                <Image
+                  src="/images/work/msr/msr-assessment-layout-rationale.svg"
+                  alt="Artifact 03i. Layout rationale. Four decision cards in a two-by-two grid. Decision 01 Alignment: the form is centered on the canvas, alternative considered was left-aligned with sidebar floated right. Decision 02 Composition: supporting education sits beside the form, alternative was tooltip on hover. Decision 03 Measure: width is constrained to approximately 640px, alternative was full-bleed at 1100px. Decision 04 Tone: editorial typography in Lora plus a warm stone palette, alternative was healthcare-intake utility-form aesthetic."
                   fill
                   sizes="(max-width: 767px) 100vw, 1100px"
                   style={{ objectFit: "contain", objectPosition: "top" }}
@@ -1254,7 +1401,7 @@ export default function MSRCaseStudy() {
                 <tbody>
                   {[
                     { token: "brand-500",   brand: "#1C3F5E", wayfarer: "#2D5A3D", msr: "#1C3F5E" },
-                    { token: "brand-900",   brand: "#091016", wayfarer: "#0A1A10", msr: "#091016" },
+                    { token: "brand-900",   brand: "#091016", wayfarer: "#0A1A10", msr: "#13100C" },
                     { token: "accent-500",  brand: "#C4703A", wayfarer: "#B8860B", msr: "#C4703A" },
                     { token: "neutral-50",  brand: "#F8F7F7", wayfarer: "#F7F8F5", msr: "#F8F7F7" },
                     { token: "neutral-500", brand: "#6B6560", wayfarer: "#5E6B5A", msr: "#6B6560" },
@@ -1293,29 +1440,32 @@ export default function MSRCaseStudy() {
               Three signature documents pulled together for portfolio handoff. Each one stands on its own. Together they document the full visual system, the assessment flow, and the production component library.
             </p>
 
-            {/* Signature embeds */}
+            {/* Signature + components embeds */}
             <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "16px" }}>
               {[
                 {
-                  slug:    "brand",
+                  src:     "/images/work/msr/msr-sig-brand.webp",
+                  aspect:  "1600 / 1100",
                   number:  "02",
                   label:   "BRAND & IDENTITY",
                   caption: "Wordmark at four sizes, three logomark directions explored, four colorways of the chosen mark, lockups, palette of eight, typography specs with live specimen, glyph set, and four application mockups.",
                 },
                 {
-                  slug:    "product",
+                  src:     "/images/work/msr/msr-sig-product.webp",
+                  aspect:  "1600 / 1100",
                   number:  "03",
                   label:   "PRODUCT UI/UX",
                   caption: "Flow map of the redesigned assessment. Five primary screens with arrows, four dashed branch states, six-cell annotation grid (tap targets, loading, haptic, error handling, accessibility, motion), legend strip.",
                 },
                 {
-                  slug:    "system",
+                  src:     "/images/work/msr/msr-design-system-components.png",
+                  aspect:  "1920 / 5863",
                   number:  "04",
-                  label:   "DESIGN SYSTEMS",
-                  caption: "Typography hierarchy with specimen, fifteen color tokens, four-point spacing scale, twelve icons, buttons by variant and state, inputs, controls, links, badges, and the CSS token output.",
+                  label:   "DESIGN SYSTEM · COMPONENTS",
+                  caption: "Spacing on a 4-point base, radius scale, zero-drift token mapping for every component. Primary button by variant and state, article header, inputs, icons, and the CSS custom-property output side-by-side with the design tokens.",
                 },
-              ].map(({ slug, number, label, caption }) => (
-                <div key={slug}>
+              ].map(({ src, aspect, number, label, caption }) => (
+                <div key={src}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
                     <span style={{
                       fontFamily:    font.sans,
@@ -1336,14 +1486,14 @@ export default function MSRCaseStudy() {
                   </div>
                   <div style={{
                     position:    "relative",
-                    aspectRatio: "1600 / 1100",
+                    aspectRatio: aspect,
                     border:      `1px solid ${c.border}`,
                     background:  c.bgSection,
                     overflow:    "hidden",
                   }}>
                     <Image
-                      src={`/images/work/msr/msr-sig-${slug}.webp`}
-                      alt={`MSR ${label} signature`}
+                      src={src}
+                      alt={`MSR ${label}`}
                       fill
                       sizes="(max-width: 767px) 100vw, 1100px"
                       style={{ objectFit: "contain", objectPosition: "top" }}
@@ -1361,7 +1511,7 @@ export default function MSRCaseStudy() {
 
         {/* -- Visual Walkthrough ---------------------------------- */}
         <div style={{
-          background:   "#091016",
+          background:   "#13100C",
           borderTop:    "1px solid rgba(245,243,239,0.08)",
           borderBottom: "1px solid rgba(245,243,239,0.08)",
           padding:      "72px clamp(24px, 5vw, 80px)",

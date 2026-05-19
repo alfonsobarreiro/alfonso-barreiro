@@ -133,8 +133,9 @@ export default function Hero() {
               fontWeight:   400,
             }}
           >
-            Three case studies below. Each one walks through how I frame the
-            problem, name the trade-offs, and decide what to cut.
+            Three case studies below: a Spotify control set for power users
+            on shared screens, a travel discovery platform with an interactive
+            globe, and a foot health resource for men over 40.
           </p>
 
           {/* CTAs */}

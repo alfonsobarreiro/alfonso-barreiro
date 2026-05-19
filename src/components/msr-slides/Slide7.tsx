@@ -28,7 +28,7 @@ export default function Slide7() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Site Architecture</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#091016", fontSize: 30, fontWeight: 800, maxWidth: 900 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 30, fontWeight: 800, maxWidth: 900 }}>
           Seven page types, each designed for{" "}
           <span style={{ color: "#C4703A" }}>a different user task.</span>
         </h1>
@@ -42,7 +42,7 @@ export default function Slide7() {
           {routes.map((r, i) => (
             <div key={r.route} className="grid px-5 py-[7px] items-center" style={{ gridTemplateColumns: "160px 130px 80px 1fr", background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < routes.length - 1 ? "1px solid #EEEDEC" : "none" }}>
               <code className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{r.route}{r.count && <span style={{ color: "#B7B2AE" }}> ({r.count} published)</span>}</code>
-              <span className="font-body font-medium" style={{ fontSize: 11, color: "#091016" }}>{r.type}</span>
+              <span className="font-body font-medium" style={{ fontSize: 11, color: "#13100C" }}>{r.type}</span>
               <span className="font-body font-semibold" style={{ fontSize: 11, color: "#C4703A" }}>{r.task}</span>
               <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{r.desc}</span>
             </div>
@@ -54,7 +54,7 @@ export default function Slide7() {
             <div key={s.label} className="flex flex-col">
               <div className="flex items-center gap-2 mb-2">
                 <div className="rounded-full" style={{ width: 6, height: 6, background: "#C4703A" }} />
-                <span className="font-body font-semibold" style={{ fontSize: 11, color: "#091016" }}>{s.label}</span>
+                <span className="font-body font-semibold" style={{ fontSize: 11, color: "#13100C" }}>{s.label}</span>
               </div>
               <div className="rounded-lg overflow-hidden relative" style={{ height: 200, border: "1px solid #EEEDEC", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}

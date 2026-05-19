@@ -459,9 +459,9 @@ export default function About() {
               maxWidth:      "760px",
             }}
           >
-            The problem comes first. Figma comes last. Research shapes the brief.
-            The brief shapes the structure. The structure shapes the interface.
-            The decisions that matter most happen before the first frame.
+            Figma comes last. By the time I open it, the research, the brief,
+            and the structure have already done most of the work. The interface
+            is the last step, not the first place I look for answers.
           </p>
         </div>
 

@@ -27,7 +27,7 @@ export default function Slide2() {
         </div>
 
         <div className="max-w-[680px] mb-12">
-          <p className="font-heading italic leading-relaxed" style={{ color: "#091016", fontSize: 20 }}>
+          <p className="font-heading italic leading-relaxed" style={{ color: "#13100C", fontSize: 20 }}>
             I kept Googling the same thing &mdash; &ldquo;cracked heels men fix&rdquo; &mdash; and landing on the same three articles written for women, repackaged with a stock photo of a guy.
           </p>
           <p className="font-body leading-relaxed mt-4" style={{ color: "#6B6560", fontSize: 15 }}>
@@ -51,7 +51,7 @@ export default function Slide2() {
               <div key={b.id} className="rounded-xl p-6 flex flex-col" style={{ flex: "1 1 0", background: "#FFFFFF", border: "1px solid #EEEDEC", opacity: 0.75 }}>
                 <div className="flex items-center gap-2.5 mb-4">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ background: b.color }} />
-                  <span className="font-body font-medium" style={{ color: "#091016", fontSize: 14 }}>{b.label}</span>
+                  <span className="font-body font-medium" style={{ color: "#13100C", fontSize: 14 }}>{b.label}</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {b.examples.map((ex) => (

@@ -1,0 +1,145 @@
+<svg width="1920" height="1262" viewBox="0 0 1920 1262" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1262" fill="#F1EFEC"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="bold" letter-spacing="0em"><tspan x="120" y="92.092">ARTIFACT 03H &#xb7; QUESTION LIST</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="40" font-weight="500" letter-spacing="0em"><tspan x="120" y="152.14">Every question, in order, grouped by section.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="16" letter-spacing="0em"><tspan x="120" y="195.956">Step 0 is the only branching question. After triage, each visible section shows its full item set. Pain &#38; Inflammation is the only three-state section (Yes / No / Not sure). The rest are binary </tspan><tspan x="120" y="216.956">checks. Section text below is the exact UI string from the live assessment.</tspan></text>
+<rect x="1640" y="80" width="160" height="80" rx="2" fill="#EDEAE6"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="32" font-weight="500" letter-spacing="0em"><tspan x="1660" y="126.212">29</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1660" y="140.092">items across 5 sections</tspan></text>
+<mask id="path-7-inside-1_33275_3" fill="white">
+<path d="M120 284C120 281.791 121.791 280 124 280H1796C1798.21 280 1800 281.791 1800 284V416C1800 418.209 1798.21 420 1796 420H124C121.791 420 120 418.209 120 416V284Z"/>
+</mask>
+<path d="M120 284C120 281.791 121.791 280 124 280H1796C1798.21 280 1800 281.791 1800 284V416C1800 418.209 1798.21 420 1796 420H124C121.791 420 120 418.209 120 416V284Z" fill="#EDEAE6"/>
+<path d="M120 280H1800H120ZM1800 420H120H1800ZM124 420C120.134 420 117 416.866 117 413V287C117 283.134 120.134 280 124 280C123.448 280 123 281.791 123 284V416C123 418.209 123.448 420 124 420ZM1800 280V420V280Z" fill="#BE7241" mask="url(#path-7-inside-1_33275_3)"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="307.91">STEP 0 &#xb7; TRIAGE &#xb7; 5 SYMPTOM CHIPS</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="22" font-weight="500" letter-spacing="0em"><tspan x="144" y="338.052">Where does it hurt? Pick all that apply, or &#34;Show me everything.&#34;</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" font-style="italic" letter-spacing="0em"><tspan x="144" y="366.933">Branches into 1&#x2013;5 sections based on selection. &#34;Not sure &#x2192; show me everything&#34; surfaces all 5.</tspan></text>
+<rect x="144.5" y="384.5" width="49" height="23" rx="11.5" fill="white"/>
+<rect x="144.5" y="384.5" width="49" height="23" rx="11.5" stroke="#BBC4CD"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0em"><tspan x="156" y="399.751">Nails</tspan></text>
+<rect x="202.5" y="384.5" width="43" height="23" rx="11.5" fill="white"/>
+<rect x="202.5" y="384.5" width="43" height="23" rx="11.5" stroke="#BBC4CD"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0em"><tspan x="214" y="399.751">Skin</tspan></text>
+<rect x="254.5" y="384.5" width="43" height="23" rx="11.5" fill="white"/>
+<rect x="254.5" y="384.5" width="43" height="23" rx="11.5" stroke="#BBC4CD"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0em"><tspan x="266" y="399.751">Pain</tspan></text>
+<rect x="306.5" y="384.5" width="73" height="23" rx="11.5" fill="white"/>
+<rect x="306.5" y="384.5" width="73" height="23" rx="11.5" stroke="#BBC4CD"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0em"><tspan x="318" y="399.751">Alignment</tspan></text>
+<rect x="388.5" y="384.5" width="91" height="23" rx="11.5" fill="white"/>
+<rect x="388.5" y="384.5" width="91" height="23" rx="11.5" stroke="#BBC4CD"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0em"><tspan x="400" y="399.751">Footwear fit</tspan></text>
+<rect x="488.5" y="384.5" width="193" height="23" rx="11.5" fill="white"/>
+<rect x="488.5" y="384.5" width="193" height="23" rx="11.5" stroke="#BBC4CD"/>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="11" font-weight="500" letter-spacing="0em"><tspan x="500" y="399.751">Not sure &#x2192; show me everything</tspan></text>
+<rect x="120.5" y="460.5" width="539" height="367" rx="3.5" fill="white"/>
+<rect x="120.5" y="460.5" width="539" height="367" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="489.91">SECTION 01 &#xb7; BINARY CHECK (&#x2713; / UNCHECKED)</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" font-weight="500" letter-spacing="0em"><tspan x="144" y="522.284">Nail Health</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="144" y="544.092">Check both feet. Toenail problems are common and treatable. Most men don&#39;t know </tspan><tspan x="144" y="560.092">what they&#39;re looking at.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="607.91">01</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="609.092">Nails are thick, yellowed, white, or brittle</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="629.91">02</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="631.092">Nails crumble or break easily at the edges</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="651.91">03</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="653.092">One or more nails are lifting away from the nail bed</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="673.91">04</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="675.092">Any nail has dark spots or streaks under it</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="695.91">05</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="697.092">Big toenail curves into the skin at the sides</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="717.91">06</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="719.092">Nails are growing unevenly or in a curved shape</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="739.91">07</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="741.092">There is pain, redness, or discharge around any nail</tspan></text>
+<rect x="144" y="760" width="492" height="60" rx="2" fill="#EDEAE6"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="158" y="779.069">NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="158" y="795.892">3+ checks likely points to fungal infection or an ingrown nail. Both are treatable.</tspan></text>
+<rect x="690.5" y="460.5" width="539" height="345" rx="3.5" fill="white"/>
+<rect x="690.5" y="460.5" width="539" height="345" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="489.91">SECTION 02 &#xb7; BINARY CHECK (&#x2713; / UNCHECKED)</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" font-weight="500" letter-spacing="0em"><tspan x="714" y="522.284">Skin &#38; Heels</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="714" y="544.092">Your heels have no oil glands. Cracking isn&#39;t a hygiene failure. It&#39;s biology. But it is fixable.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="607.91">01</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="609.092">Heels have visible cracks or fissures (even shallow ones)</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="629.91">02</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="631.092">Skin on heels or balls of feet is hard, calloused, or rough</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="651.91">03</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="653.092">Skin peels between or around toes (athlete&#x2019;s foot pattern)</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="673.91">04</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="675.092">There is redness, scaling, or itching between toes</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="695.91">05</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="697.092">Heels crack and bleed during dry months or after activity</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="717.91">06</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="719.092">Skin on the soles feels tight or pulls when flexing the foot</tspan></text>
+<rect x="714" y="738" width="492" height="60" rx="2" fill="#EDEAE6"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="728" y="757.069">NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="728" y="773.892">2+ checks: a daily emollient routine after a shower solves most of this in 2 to 3 weeks.</tspan></text>
+<rect x="1260.5" y="460.5" width="539" height="345" rx="3.5" fill="white"/>
+<rect x="1260.5" y="460.5" width="539" height="345" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="489.91">SECTION 03 &#xb7; THREE-STATE (YES / NO / NOT SURE)</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" font-weight="500" letter-spacing="0em"><tspan x="1284" y="522.284">Pain &#38; Inflammation</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="1284" y="544.092">Foot pain is information. Where it hurts tells you what is causing it.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="607.91">01</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1314" y="609.092">Sharp heel pain with the first steps in the morning (then eases)</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="629.91">02</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1314" y="631.092">Burning or aching in the arch during or after standing</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="651.91">03</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1314" y="653.092">Ball-of-foot pain when walking or wearing dress shoes</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="673.91">04</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1314" y="675.092">Any joint in the foot is swollen, red, or warm to touch</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="695.91">05</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1314" y="697.092">Pain in the big toe joint, especially after rich food or alcohol</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="717.91">06</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="1314" y="719.092">General aching in both feet by end of day</tspan></text>
+<rect x="1284" y="738" width="492" height="60" rx="2" fill="#EDEAE6"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="1298" y="757.069">NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="1298" y="773.892">Three-state because pain is interoceptive. Binary forces false positives. The only </tspan><tspan x="1298" y="788.892">section that asks for duration after the items.</tspan></text>
+<rect x="120.5" y="858.5" width="539" height="323" rx="3.5" fill="white"/>
+<rect x="120.5" y="858.5" width="539" height="323" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="887.91">SECTION 04 &#xb7; BINARY CHECK (&#x2713; / UNCHECKED)</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" font-weight="500" letter-spacing="0em"><tspan x="144" y="920.284">Alignment &#38; Structure</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="144" y="942.092">Your toes set the foundation. Misalignment doesn&#39;t stay in your feet. It travels up to </tspan><tspan x="144" y="958.092">knees, hips, lower back.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="1005.91">01</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="1007.09">Big toe leans toward the second toe (early bunion formation)</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="1027.91">02</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="1029.09">Lesser toes (2nd to 4th) curl downward when you relax your foot</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="1049.91">03</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="1051.09">You have corns or calluses on the tops of bent toes</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="1071.91">04</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="1073.09">You feel stiffness or limited movement in your big toe joint</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="144" y="1093.91">05</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="174" y="1095.09">Your feet turn outward when you walk (duck-footed gait)</tspan></text>
+<rect x="144" y="1114" width="492" height="60" rx="2" fill="#EDEAE6"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="158" y="1133.07">NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="158" y="1149.89">Alignment issues compound over years. Toe spreader exercises and footwear changes </tspan><tspan x="158" y="1164.89">early can slow or reverse drift.</tspan></text>
+<rect x="690.5" y="858.5" width="539" height="323" rx="3.5" fill="white"/>
+<rect x="690.5" y="858.5" width="539" height="323" rx="3.5" stroke="#BBC4CD"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="887.91">SECTION 05 &#xb7; BINARY CHECK (&#x2713; / UNCHECKED)</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="24" font-weight="500" letter-spacing="0em"><tspan x="714" y="920.284">Footwear Fit</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="714" y="942.092">The most upstream variable. Most foot problems trace back here.</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="1005.91">01</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="1007.09">Toes feel compressed when shoes are laced or buckled</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="1027.91">02</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="1029.09">Haven&#39;t had feet measured in the last 5 years</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="1049.91">03</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="1051.09">Shoe width pinches the widest part of your foot</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="1071.91">04</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="1073.09">Your heel slips out of the back when you walk</tspan></text>
+<text fill="#938C86" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="714" y="1093.91">05</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" letter-spacing="0em"><tspan x="744" y="1095.09">You wear the same size you&#39;ve worn since your 20s</tspan></text>
+<rect x="714" y="1114" width="492" height="60" rx="2" fill="#EDEAE6"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="9" font-weight="bold" letter-spacing="0em"><tspan x="728" y="1133.07">NOTE</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="12" font-style="italic" letter-spacing="0em"><tspan x="728" y="1149.89">Feet change shape and size as you age. If you have not been measured in a few years, </tspan><tspan x="728" y="1164.89">you probably are not in the right size.</tspan></text>
+<mask id="path-117-inside-2_33275_3" fill="white">
+<path d="M1260 862C1260 859.791 1261.79 858 1264 858H1796C1798.21 858 1800 859.791 1800 862V1178C1800 1180.21 1798.21 1182 1796 1182H1264C1261.79 1182 1260 1180.21 1260 1178V862Z"/>
+</mask>
+<path d="M1260 862C1260 859.791 1261.79 858 1264 858H1796C1798.21 858 1800 859.791 1800 862V1178C1800 1180.21 1798.21 1182 1796 1182H1264C1261.79 1182 1260 1180.21 1260 1178V862Z" fill="#EDEAE6"/>
+<path d="M1260 858H1800H1260ZM1800 1182H1260H1800ZM1264 1182C1260.13 1182 1257 1178.87 1257 1175V865C1257 861.134 1260.13 858 1264 858C1263.45 858 1263 859.791 1263 862V1178C1263 1180.21 1263.45 1182 1264 1182ZM1800 858V1182V858Z" fill="#BE7241" mask="url(#path-117-inside-2_33275_3)"/>
+<text fill="#BE7241" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="1284" y="887.91">PATTERN</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="Lora" font-size="22" font-weight="500" letter-spacing="0em"><tspan x="1284" y="918.052">Sections share four affordances.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="13" letter-spacing="0em"><tspan x="1284" y="944.933">Eyebrow with section number and answer-type tag. Title in Lora. Subtitle </tspan><tspan x="1284" y="961.933">explaining why this section exists. Numbered checklist of 5&#x2013;7 items. Note at the </tspan><tspan x="1284" y="978.933">bottom that triages the flag count into a recommendation.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="1284" y="1070.09">01 &#x2014; Sections are introduced by symptom, not by anatomy.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="1284" y="1100.09">02 &#x2014; Items are first-person observations the user can verify in 5 seconds.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="1284" y="1130.09">03 &#x2014; Pain is the only three-state section. Pain answers are interoceptive.</tspan></text>
+<text fill="#1D1C1B" style="white-space: pre" xml:space="preserve" font-family="DM Sans" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="1284" y="1160.09">04 &#x2014; Flag count thresholds (1 / 2+ / 3+) gate the recommendation tier.</tspan></text>
+</svg>
