@@ -3,11 +3,9 @@
 import { useState, useEffect } from "react";
 
 const quotes = [
-  { text: "I don't want my partner's eyes to catch my home screen.", source: "Reddit, Oct 2024" },
   { text: "Recently Played is literally the ONE AND ONLY feature of the app I use.", source: "Reddit, Oct 2024" },
-  { text: "Spotify always shows the cringiest thing you've listened to.", source: "Reddit, Jul 2023" },
   { text: "I'd play 1 second of a track so it would show in Recently Played.", source: "Spotify Community, 2020" },
-  { text: "That annoyed me so much — I left Spotify.", source: "Reddit, Jul 2023" },
+  { text: "That annoyed me so much I left Spotify.", source: "Reddit, Jul 2023" },
   { text: "Listening history is like a diary of my music journey.", source: "Spotify Community, 2021" },
   { text: "Apple Music lets you clear listening history. Spotify should too.", source: "App Store, 2023" },
   { text: "Why hasn't Spotify added a clear history option yet?", source: "Spotify Community, Jun 2020" },

@@ -191,7 +191,7 @@ export default function SpotifyCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer" },
                 { label: "Type",     value: "Solo · Concept" },
                 { label: "Timeline", value: "Nov – Dec 2025" },
-                { label: "Methods",  value: "Competitive Audit · Persona Analysis · Constraint Mapping · AI-Assisted Research Synthesis" },
+                { label: "Methods",  value: "Competitive Audit · Persona Analysis · Constraint Mapping · Community Signal Synthesis" },
                 { label: "Outcome",  value: "Three controls that close the gap between user need and platform capability, without breaking discovery" },
               ].map(({ label, value }) => (
                 <div key={label}>
@@ -274,7 +274,7 @@ export default function SpotifyCaseStudy() {
           {/* ── 01 · Problem & Constraints ───────────────── */}
           <Section label="01" title="Problem &amp; Constraints">
             <p style={bodyText}>
-              I noticed a gap in one of Spotify&apos;s highest-traffic surfaces. The Recently Played shelf sits at the top of every user&apos;s Home feed, updates automatically based on listening history, and offers no meaningful controls. No way to remove an item. No way to pin a favorite. No way to pause the feed from logging activity. The shelf is always visible, on your screen and on anyone else&apos;s. One user put it plainly: &ldquo;I don&apos;t want my partner&apos;s eyes to catch my home screen.&rdquo; That&apos;s not a UX complaint. That&apos;s a shelf with consequences.
+              I noticed a gap in one of Spotify&apos;s highest-traffic surfaces. The Recently Played shelf sits at the top of every user&apos;s Home feed, updates automatically based on listening history, and offers no meaningful controls. No way to remove an item. No way to pin a favorite. No way to pause the feed from logging activity. The shelf is always visible, on your screen and on anyone else&apos;s.
             </p>
             <p style={bodyText}>
               <strong>Before.</strong> The shelf records every play and orders by recency. That&apos;s the entire interaction model. A track played by accident sits there. Music played for someone else logs the same as anything else. The only way to push a favorite to the top is to play it for one second and force-quit, then repeat. Community forums document users doing exactly that. The workaround is the evidence the shelf is missing controls.
@@ -490,14 +490,14 @@ export default function SpotifyCaseStudy() {
           {/* ── 03 · Design Decisions ────────────────── */}
           <Section label="03" title="Design Decisions">
             <p style={bodyText}>
-              Pin, Remove, and Pause weren't the first ideas. They were what survived the filter. Early directions included global history clearing, a private listening mode, and surfacing controls from Settings. Each was ruled out: too broad in scope, too deep in the navigation stack, or too likely to degrade recommendation signals. What remained were three actions that could live on the shelf, complete in 1–2 steps, and reverse without permanent consequence.
+              Pin, Remove, and Pause came out of a longer list. Early directions included global history clearing, a private listening mode, and surfacing controls from Settings. Each was ruled out: too broad in scope, too deep in the navigation stack, or too likely to degrade recommendation signals. The three that remained could live on the shelf, complete in 1–2 steps, and reverse without permanent consequence.
             </p>
             <p style={bodyText}>
-              Every survivor passed one test: <strong>don't break discovery.</strong>
+              One rule applied to every option: <strong>don't break discovery.</strong>
             </p>
 
             <Callout label="Mid-project pivot">
-              I originally led with Pin, the differentiation play. Mapping stakeholder priorities revealed that Remove was the higher-urgency fix. Real users weren&apos;t asking for curation. They were asking for relief. That re-sequencing changed the entire build order.
+              I originally led with Pin, the differentiation play. Mapping stakeholder priorities showed that Remove was the higher-urgency fix. Community threads asked for relief from clutter and accidental plays, not for curation. That re-sequencing changed the entire build order.
             </Callout>
 
             {/* Stakeholder priorities */}
@@ -560,7 +560,7 @@ export default function SpotifyCaseStudy() {
           {/* ── 04 · Feature Details ─────────────────── */}
           <Section label="04" title="Feature Details">
             <p style={bodyText}>
-              Each control earned its place by surviving the filter above. Here&apos;s the reasoning behind the specific decisions that shaped Pin, Remove, and Pause.
+              Here&apos;s the reasoning behind the specific decisions that shaped Pin, Remove, and Pause.
             </p>
 
             {/* Pin */}
@@ -1048,7 +1048,7 @@ export default function SpotifyCaseStudy() {
           {/* ── 05 · Constraints & Tradeoffs ─────────── */}
           <Section label="05" title="Constraints &amp; Trade-offs">
             <p style={bodyText}>
-              Every project has a perimeter. These defined the shape of the solution. The reasoning behind each decision matters as much as the decision itself.
+              These were the trade-offs that shaped the solution. The reasoning behind each decision matters as much as the decision itself.
             </p>
 
             {/* Desktop cross-platform evidence */}
