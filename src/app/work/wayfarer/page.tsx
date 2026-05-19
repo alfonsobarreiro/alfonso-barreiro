@@ -162,6 +162,81 @@ export default function WayfarerCaseStudy() {
                 </div>
               ))}
             </div>
+
+            {/* Thumbnail tape — preview what's downstream */}
+            <div style={{
+              marginTop:  "56px",
+              paddingTop: "32px",
+              borderTop:  "1px solid rgba(245,243,239,0.1)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                <span style={{ width: "24px", height: "1px", background: c.navy }} />
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "11px",
+                  fontWeight:    600,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color:         "#C7C5E3",
+                  margin:        0,
+                }}>
+                  What&apos;s downstream
+                </p>
+              </div>
+
+              <div style={{
+                display:             "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gap:                 "16px",
+              }}>
+                {[
+                  { label: "↓ Globe explorer",     src: "/images/work/wayfarer/wayfarer-globe-overview.webp",     href: "#walkthrough-globe"  },
+                  { label: "↓ Destination detail", src: "/images/work/wayfarer/wayfarer-destination-detail.webp", href: "#walkthrough-globe"  },
+                  { label: "↓ Destinations grid",  src: "/images/work/wayfarer/wayfarer-destinations-grid.webp",  href: "#walkthrough-grid"   },
+                  { label: "↓ Signup flow",        src: "/images/work/wayfarer/wayfarer-signup-05.webp",          href: "#walkthrough-signup" },
+                  { label: "↗ Live site",          src: "/images/work/wayfarer/wayfarer-cover.webp",              href: "https://wayfarer.barreiro.com/", external: true },
+                ].map(({ label, src, href, external }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="cs-thumb"
+                    style={{
+                      display:        "block",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <div style={{
+                      position:    "relative",
+                      aspectRatio: "16 / 11",
+                      overflow:    "hidden",
+                      background:  "#0F0E1F",
+                      border:      "1px solid rgba(245,243,239,0.1)",
+                    }}>
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        sizes="(max-width: 767px) 50vw, 220px"
+                        style={{ objectFit: "cover", objectPosition: "center" }}
+                      />
+                    </div>
+                    <p style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "11px",
+                      fontWeight:    600,
+                      letterSpacing: "0.10em",
+                      textTransform: "uppercase",
+                      color:         "rgba(245,243,239,0.75)",
+                      margin:        "10px 0 0",
+                    }}>
+                      {label}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </header>
 
@@ -467,7 +542,7 @@ export default function WayfarerCaseStudy() {
             </div>
 
             {/* -- Globe Explorer --------------------------------- */}
-            <div style={{ marginBottom: "64px" }}>
+            <div id="walkthrough-globe" style={{ marginBottom: "64px", scrollMarginTop: "96px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
                 fontSize:      "13px",
@@ -590,7 +665,7 @@ export default function WayfarerCaseStudy() {
             </div>
 
             {/* -- Parallel Entry: Destinations Grid --------------- */}
-            <div style={{ marginBottom: "64px" }}>
+            <div id="walkthrough-grid" style={{ marginBottom: "64px", scrollMarginTop: "96px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
                 fontSize:      "13px",
@@ -651,7 +726,7 @@ export default function WayfarerCaseStudy() {
             </div>
 
             {/* -- Multi-Step Signup ------------------------------- */}
-            <div>
+            <div id="walkthrough-signup" style={{ scrollMarginTop: "96px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
                 fontSize:      "13px",
