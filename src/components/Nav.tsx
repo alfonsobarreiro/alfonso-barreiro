@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
+import CommandPalette, { openCommandPalette } from "./CommandPalette";
 
 const navLinks = ["work", "about"] as const;
 
@@ -124,6 +125,7 @@ export default function Nav() {
               onScrollClick={() => scrollTo(link)}
             />
           ))}
+          <SearchTrigger />
           <Link
             href="/contact"
             style={{
@@ -152,6 +154,28 @@ export default function Nav() {
             Get in touch
           </Link>
         </div>
+
+        {/* Mobile-only search icon next to hamburger */}
+        <button
+          className="nav-search-mobile"
+          onClick={() => { setMenuOpen(false); openCommandPalette(); }}
+          aria-label="Search"
+          style={{
+            display:        "none", // overridden by media query on mobile
+            alignItems:     "center",
+            justifyContent: "center",
+            background:     "none",
+            border:         "none",
+            cursor:         "pointer",
+            padding:        "4px 8px 4px 4px",
+            zIndex:         310,
+          }}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke={menuOpen ? "#F5F5F4" : "#252B28"} strokeWidth="1.6" />
+            <path d="M20 20L16.5 16.5" stroke={menuOpen ? "#F5F5F4" : "#252B28"} strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+        </button>
 
         {/* Hamburger / Close button — mobile only */}
         <button
@@ -307,7 +331,62 @@ export default function Nav() {
           © 2026 Alfonso Barreiro
         </p>
       </div>
+
+      {/* Cmd+K command palette — listens globally, opens on shortcut or via openCommandPalette() */}
+      <CommandPalette />
     </>
+  );
+}
+
+function SearchTrigger() {
+  return (
+    <button
+      onClick={() => openCommandPalette()}
+      aria-label="Search (⌘K)"
+      style={{
+        display:       "inline-flex",
+        alignItems:    "center",
+        gap:           "8px",
+        padding:       "6px 10px 6px 8px",
+        background:    "transparent",
+        border:        "1px solid #E8E4DE",
+        borderRadius:  "8px",
+        cursor:        "pointer",
+        color:         "#8A8680",
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "12px",
+        transition:    "color 0.2s, border-color 0.2s, background 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = "#252B28";
+        e.currentTarget.style.borderColor = "#C9BFB0";
+        e.currentTarget.style.background = "#FAFAF9";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = "#8A8680";
+        e.currentTarget.style.borderColor = "#E8E4DE";
+        e.currentTarget.style.background = "transparent";
+      }}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M20 20L16.5 16.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+      <span>Search</span>
+      <kbd style={{
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        fontSize:   "10px",
+        padding:    "2px 5px",
+        background: "#FAFAF9",
+        border:     "1px solid #E8E4DE",
+        borderRadius: "3px",
+        color:      "#8A8680",
+        lineHeight: 1,
+        marginLeft: "2px",
+      }}>
+        ⌘K
+      </kbd>
+    </button>
   );
 }
 

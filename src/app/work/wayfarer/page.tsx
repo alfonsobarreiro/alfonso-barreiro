@@ -1185,11 +1185,13 @@ const f = {
 function Section({ label, title, children }: { label: string; title: string; children: React.ReactNode }) {
   return (
     <section
+      id={`section-${label}`}
       style={{
         paddingTop:    "48px",
         paddingBottom: "16px",
         borderTop:     `1px solid ${c2.border}`,
         marginTop:     "48px",
+        scrollMarginTop: "96px",
       }}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", marginBottom: "32px" }}>

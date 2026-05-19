@@ -118,8 +118,9 @@ button {
 @media (max-width: 767px) {
   .hero-section    { padding: 100px 24px 60px !important; }
   .main-nav        { padding: 0 24px !important; }
-  .nav-links       { display: none !important; }
-  .hamburger       { display: flex !important; }
+  .nav-links            { display: none !important; }
+  .nav-search-mobile    { display: inline-flex !important; }
+  .hamburger            { display: flex !important; }
   .about-section   { padding: 80px 24px !important; }
   .about-grid      { grid-template-columns: 1fr !important; gap: 40px !important; }
   .process-box     { padding: 32px 24px !important; }
