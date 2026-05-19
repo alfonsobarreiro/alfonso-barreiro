@@ -149,9 +149,9 @@ export default function SpotifyCaseStudy() {
               borderLeft:     `2px solid ${c.green}`,
             }}>
               {[
-                { value: "≤ 2 taps",   label: "to pin a favorite" },
-                { value: "≤ 6 sec",    label: "to remove + undo" },
-                { value: "+8 pts",     label: "UMUX-Lite vs. baseline" },
+                { value: "≤ 2 taps",        label: "to pin a favorite (design target)" },
+                { value: "≤ 6 sec",         label: "to remove + undo (design target)" },
+                { value: "Modeled +8 pts",  label: "UMUX-Lite improvement (heuristic comparison)" },
               ].map(({ value, label }) => (
                 <div key={label}>
                   <p style={{

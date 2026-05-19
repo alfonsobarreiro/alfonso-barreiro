@@ -254,7 +254,7 @@ export default function MSRCaseStudy() {
                 {
                   value:  "77%",
                   label:  "of US adults experience annual foot pain",
-                  source: "APMA",
+                  source: "APMA, 2014",
                   href:   "https://www.prnewswire.com/news-releases/new-survey-reveals-majority-of-americans-suffer-from-foot-pain-259775741.html",
                   caption: "Scale",
                 },
@@ -266,11 +266,11 @@ export default function MSRCaseStudy() {
                   caption: "Underserved",
                 },
                 {
-                  value:  "$4.7B",
-                  label:  "projected US men&apos;s foot care market by 2030",
-                  source: "Industry projection",
-                  href:   null,
-                  caption: "Market opportunity",
+                  value:  "72%",
+                  label:  "of men would rather do household chores than go to the doctor",
+                  source: "Cleveland Clinic, 2019",
+                  href:   "https://newsroom.clevelandclinic.org/2019/09/04/cleveland-clinic-survey-men-will-do-almost-anything-to-avoid-going-to-the-doctor",
+                  caption: "Avoidance",
                 },
               ].map(({ value, label, source, href, caption }, i, arr) => (
                 <div key={caption} style={{
