@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MSRPagePeek from "@/components/MSRPagePeek";
+import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
 
 interface Project {
   index:       string;
@@ -389,10 +391,37 @@ function ProjectCard({
   );
 
   /* ── Compact layout: image top, content below ── */
+  const isMSR      = project.title === "Men's Sole Revival";
+  const isWayfarer = project.title === "Wayfarer";
+
   const compactInner = (
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      {/* Image */}
-      {project.image && (
+      {/* Image / peek */}
+      {isMSR ? (
+        <div className="compact-img" style={{
+          position:     "relative",
+          width:        "calc(100% + 80px)",
+          marginLeft:   "-40px",
+          marginTop:    "-40px",
+          marginBottom: "28px",
+          overflow:     "hidden",
+          borderBottom: "1px solid #A99B8A",
+        }}>
+          <MSRPagePeek paused={hovered} />
+        </div>
+      ) : isWayfarer ? (
+        <div className="compact-img" style={{
+          position:     "relative",
+          width:        "calc(100% + 80px)",
+          marginLeft:   "-40px",
+          marginTop:    "-40px",
+          marginBottom: "28px",
+          overflow:     "hidden",
+          borderBottom: "1px solid #A99B8A",
+        }}>
+          <WayfarerGlobePeek paused={hovered} />
+        </div>
+      ) : project.image && (
         <div className="compact-img" style={{
           position:     "relative",
           width:        "calc(100% + 80px)",
