@@ -76,24 +76,47 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
+    // Fail soft: no token → render the dark backdrop only, never crash the page.
+    // Happens if NEXT_PUBLIC_MAPBOX_TOKEN isn't set in the deploy environment.
+    if (!MAPBOX_TOKEN) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[WayfarerGlobePeek] NEXT_PUBLIC_MAPBOX_TOKEN missing — globe will not render.");
+      }
+      return;
+    }
+
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     reducedRef.current = reduced;
 
-    mapboxgl.accessToken = MAPBOX_TOKEN;
+    let map: mapboxgl.Map;
+    try {
+      mapboxgl.accessToken = MAPBOX_TOKEN;
+      map = new mapboxgl.Map({
+        container:          containerRef.current,
+        style:              "mapbox://styles/mapbox/outdoors-v12",
+        center:             INITIAL_CENTER,
+        zoom:               reduced ? SETTLED_ZOOM : INITIAL_ZOOM,
+        projection:         "globe",
+        attributionControl: false,
+        interactive:        false,
+        dragRotate:         false,
+        scrollZoom:         false,
+        doubleClickZoom:    false,
+        touchZoomRotate:    false,
+        keyboard:           false,
+      });
+    } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[WayfarerGlobePeek] Mapbox init failed:", err);
+      }
+      return;
+    }
 
-    const map = new mapboxgl.Map({
-      container:          containerRef.current,
-      style:              "mapbox://styles/mapbox/outdoors-v12",
-      center:             INITIAL_CENTER,
-      zoom:               reduced ? SETTLED_ZOOM : INITIAL_ZOOM,
-      projection:         "globe",
-      attributionControl: false,
-      interactive:        false,
-      dragRotate:         false,
-      scrollZoom:         false,
-      doubleClickZoom:    false,
-      touchZoomRotate:    false,
-      keyboard:           false,
+    // Catch async errors (bad token, restricted URL, network) without crashing React.
+    map.on("error", (e) => {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[WayfarerGlobePeek] Mapbox runtime error:", e?.error?.message || e);
+      }
     });
 
     map.on("style.load", () => {
