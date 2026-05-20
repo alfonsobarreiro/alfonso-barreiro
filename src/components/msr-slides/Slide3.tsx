@@ -26,7 +26,7 @@ export default function Slide3() {
           {/* Left */}
           <div className="flex-1 flex flex-col gap-8">
             <div className="rounded-xl p-6" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
-              <span className="font-display text-[10px] tracking-[0.25em] uppercase block mb-4" style={{ color: "#938C86" }}>The original plan</span>
+              <span className="font-display text-[10px] tracking-[0.25em] uppercase block mb-4" style={{ color: "#6B6560" }}>The original plan</span>
               <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 15 }}>Build a premium men&rsquo;s foot care e-commerce site. Curated product kits &mdash; antifungal treatment, toe separators, insoles, foot cream. Headless Shopify setup, Next.js frontend, dark editorial brand.</p>
             </div>
 
@@ -47,17 +47,17 @@ export default function Slide3() {
 
           {/* Right */}
           <div className="flex-1 flex flex-col">
-            <span className="font-display text-[10px] tracking-[0.25em] uppercase block mb-5" style={{ color: "#938C86" }}>What changed</span>
+            <span className="font-display text-[10px] tracking-[0.25em] uppercase block mb-5" style={{ color: "#6B6560" }}>What changed</span>
             <div className="rounded-xl overflow-hidden flex-1" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
               <div className="grid grid-cols-[140px_1fr_1fr] px-6 py-3" style={{ background: "#F8F7F7", borderBottom: "1px solid #EEEDEC" }}>
-                <span className="font-display text-[10px] tracking-[0.2em] uppercase" style={{ color: "#938C86" }}>&nbsp;</span>
-                <span className="font-display text-[10px] tracking-[0.2em] uppercase" style={{ color: "#B7B2AE" }}>Before</span>
+                <span className="font-display text-[10px] tracking-[0.2em] uppercase" style={{ color: "#6B6560" }}>&nbsp;</span>
+                <span className="font-display text-[10px] tracking-[0.2em] uppercase" style={{ color: "#534F4B" }}>Before</span>
                 <span className="font-display text-[10px] tracking-[0.2em] uppercase" style={{ color: "#C4703A" }}>After</span>
               </div>
               {comparisons.map((row, i) => (
                 <div key={row.dimension} className="grid grid-cols-[140px_1fr_1fr] px-6 py-4 items-start" style={{ background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < comparisons.length - 1 ? "1px solid #EEEDEC" : "none" }}>
                   <span className="font-body font-medium" style={{ color: "#6B6560", fontSize: 13 }}>{row.dimension}</span>
-                  <span className="font-body" style={{ color: "#B7B2AE", fontSize: 13, textDecoration: "line-through", textDecorationColor: "#D6D3D1" }}>{row.before}</span>
+                  <span className="font-body" style={{ color: "#534F4B", fontSize: 13, textDecoration: "line-through", textDecorationColor: "#D6D3D1" }}>{row.before}</span>
                   <span className="font-body font-medium" style={{ color: "#091016", fontSize: 13 }}>{row.after}</span>
                 </div>
               ))}

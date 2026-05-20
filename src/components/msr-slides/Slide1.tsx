@@ -17,30 +17,31 @@ const articles = [
 export default function Slide1() {
   return (
     <main className="relative overflow-hidden" style={{ width: 1440, height: 900, background: "#F8F7F7" }}>
+      <h1 className="sr-only">Men&rsquo;s Sole Revival — Case Study</h1>
       <div className="flex h-[900px]">
 
         {/* LEFT PANEL */}
         <div className="relative flex flex-col justify-between px-12 py-14" style={{ width: 520, background: "#F8F7F7" }}>
           <div>
-            <Image src="/images/work/msr/logo-msr-light.svg" alt="Men\u2019s Sole Revival" width={400} height={176} />
+            <Image src="/images/work/msr/msr-logo-m01-navy.png" alt="Men\u2019s Sole Revival" width={140} height={169} />
           </div>
           <div className="flex-1 flex flex-col justify-center -mt-4">
             <div className="w-1 h-16 rounded-full mb-7" style={{ background: "#C4703A" }} />
             <p className="font-heading italic leading-relaxed mb-6" style={{ color: "#6B6560", fontSize: 19 }}>
               The right research question is worth more than the right Shopify plugin.
             </p>
-            <p className="font-body leading-relaxed" style={{ color: "#938C86", fontSize: 14 }}>
+            <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 14 }}>
               63% of Americans report foot pain. 12% see a doctor. I built the resource that should exist between those two numbers.
             </p>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 font-body" style={{ color: "#938C86", fontSize: 11 }}>
-            <span><span style={{ color: "#B7B2AE" }}>Role:</span> UX/UI Design, Product Strategy</span>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 font-body" style={{ color: "#6B6560", fontSize: 11 }}>
+            <span><span style={{ color: "#534F4B" }}>Role:</span> UX/UI Design, Product Strategy</span>
             <span style={{ color: "#C4703A" }}>&middot;</span>
-            <span><span style={{ color: "#B7B2AE" }}>Type:</span> Self-initiated</span>
+            <span><span style={{ color: "#534F4B" }}>Type:</span> Self-initiated</span>
             <span style={{ color: "#C4703A" }}>&middot;</span>
-            <span><span style={{ color: "#B7B2AE" }}>Timeline:</span> 2024&ndash;present</span>
+            <span><span style={{ color: "#534F4B" }}>Timeline:</span> 2024&ndash;present</span>
             <span style={{ color: "#C4703A" }}>&middot;</span>
-            <span><span style={{ color: "#B7B2AE" }}>Stack:</span> Next.js, Sanity, Tailwind</span>
+            <span><span style={{ color: "#534F4B" }}>Stack:</span> Next.js, Sanity, Tailwind</span>
           </div>
         </div>
 

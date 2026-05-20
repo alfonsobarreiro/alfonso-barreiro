@@ -51,7 +51,7 @@ export default function Slide8() {
           <div className="rounded-lg p-5 relative overflow-hidden" style={{ flex: "1 1 0", background: "#FFFFFF", border: "1px solid #D6D3D1" }}>
             <div className="absolute top-0 left-0 bottom-0 w-[3px]" style={{ background: "linear-gradient(180deg, #938C86 0%, rgba(147,140,134,0.2) 100%)" }} />
             <div className="pl-3">
-              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#938C86", fontSize: 9, fontWeight: 700 }}>What Wasn&rsquo;t Done</span>
+              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#6B6560", fontSize: 9, fontWeight: 700 }}>What Wasn&rsquo;t Done</span>
               <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 11 }}>I didn&rsquo;t conduct user interviews before building. I didn&rsquo;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.</p>
             </div>
           </div>

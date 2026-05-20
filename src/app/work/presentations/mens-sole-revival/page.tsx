@@ -7,10 +7,10 @@ import MSRSlideViewer from "@/components/MSRSlideViewer";
 export const metadata: Metadata = {
   title: "Men's Sole Revival — Slide Deck · Alfonso Barreiro",
   description:
-    "The 9-slide narrative deck for the Men's Sole Revival case study: problem, pivot, brand exploration, design system, site architecture, and reflection.",
+    "The 11-slide narrative deck for the Men's Sole Revival case study: problem, pivot, brand exploration, design system, component library, site architecture, assessment redesign, and reflection.",
   openGraph: {
     title: "Men's Sole Revival — Slide Deck · Alfonso Barreiro",
-    description: "The 9-slide narrative deck for the Men's Sole Revival case study.",
+    description: "The 11-slide narrative deck for the Men's Sole Revival case study.",
     url: "https://barreiro.com/work/presentations/mens-sole-revival",
     siteName: "Alfonso Barreiro",
     locale: "en_US",
@@ -85,7 +85,7 @@ export default function MSRDeckPage() {
               color: c.muted,
               margin: 0,
             }}>
-              9 Slides · Use arrow keys to advance
+              11 Slides · Use arrow keys to advance
             </p>
           </div>
         </div>

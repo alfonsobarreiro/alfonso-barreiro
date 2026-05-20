@@ -304,7 +304,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
         .spra-ann {
           position: relative;
           padding-left: 18px;
-          border-left: 2px solid #1DB954;
+          border-left: 2px solid #1ED760;
           opacity: 0;
           transform: translateX(-6px);
         }
@@ -315,7 +315,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           font-weight: 700;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #1DB954;
+          color: #1ED760;
           margin-bottom: 8px;
         }
         .spra-ann-title {

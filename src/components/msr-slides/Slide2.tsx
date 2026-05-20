@@ -45,7 +45,7 @@ export default function Slide2() {
         </div>
 
         <div className="flex-1 flex flex-col">
-          <h3 className="font-display uppercase tracking-[0.15em] mb-6" style={{ color: "#938C86", fontSize: 11 }}>Competitive landscape &mdash; Where does the gap live?</h3>
+          <h3 className="font-display uppercase tracking-[0.15em] mb-6" style={{ color: "#6B6560", fontSize: 11 }}>Competitive landscape &mdash; Where does the gap live?</h3>
           <div className="flex gap-5 flex-1 items-stretch">
             {buckets.map((b) => (
               <div key={b.id} className="rounded-xl p-6 flex flex-col" style={{ flex: "1 1 0", background: "#FFFFFF", border: "1px solid #EEEDEC", opacity: 0.75 }}>

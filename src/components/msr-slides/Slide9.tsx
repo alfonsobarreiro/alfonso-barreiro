@@ -9,7 +9,7 @@ export default function Slide9() {
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-[88px] pb-14 text-center">
         <div className="mb-10">
-          <Image src="/images/work/msr/logo-msr-light.svg" alt="Men\u2019s Sole Revival" width={280} height={123} />
+          <Image src="/images/work/msr/msr-logo-m01-navy.png" alt="Men\u2019s Sole Revival" width={160} height={193} />
         </div>
         <h1 className="font-display leading-[1.1] tracking-tight" style={{ color: "#13100C", fontSize: 72, fontWeight: 800, maxWidth: 800, margin: "0 0 24px" }}>
           Thank you.
@@ -25,13 +25,14 @@ export default function Slide9() {
             { label: "LinkedIn",  value: "/in/alfonsobarreiro" },
           ].map(({ label, value }) => (
             <div key={label} className="text-center">
-              <p className="font-display uppercase tracking-[0.2em] mb-1" style={{ color: "#938C86", fontSize: 9, fontWeight: 600 }}>{label}</p>
+              <p className="font-display uppercase tracking-[0.2em] mb-1" style={{ color: "#6B6560", fontSize: 9, fontWeight: 600 }}>{label}</p>
               <p className="font-body" style={{ color: "#6B6560", fontSize: 14 }}>{value}</p>
             </div>
           ))}
         </div>
-        <div className="mt-14">
-          <p className="font-body font-medium" style={{ color: "#B7B2AE", fontSize: 13, letterSpacing: "0.06em" }}>Alfonso Barreiro &middot; UX/UI Designer</p>
+        <div className="mt-14 flex flex-col items-center gap-1">
+          <p className="font-body font-medium" style={{ color: "#6B6560", fontSize: 13, letterSpacing: "0.06em" }}>Alfonso Barreiro &middot; UX/UI Designer</p>
+          <p className="font-body" style={{ color: "#6B6560", fontSize: 12, letterSpacing: "0.04em" }}>Production design system audited against the live codebase</p>
         </div>
       </div>
     </div>

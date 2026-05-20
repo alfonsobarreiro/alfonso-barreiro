@@ -7,7 +7,7 @@ const c = {
   bgSection:   "#EBEBEA",
   border:      "#A99B8A",
   borderStrong:"#7E715F",
-  green:       "#1DB954",
+  green:       "#1ED760",
 };
 
 const font = {

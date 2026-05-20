@@ -24,7 +24,7 @@
  * 3. Navigation
  *    Prev / Next buttons + Left/Right arrow keys. With 40 slides, dot
  *    indicators don't scale — replaced with a click-to-jump progress bar
- *    tinted Spotify green (#1DB954) and a "N / 40" counter.
+ *    tinted Spotify green (#1ED760) and a "N / 40" counter.
  *
  * 4. Loading
  *    Only the current slide renders as an <img> at any given moment. The
@@ -38,7 +38,7 @@ const SLIDE_W = 1920;
 const SLIDE_H = 1080;
 const ASPECT  = (SLIDE_H / SLIDE_W) * 100; // 56.25%
 
-const SPOTIFY_GREEN = "#1DB954";
+const SPOTIFY_GREEN = "#1ED760";
 
 // Slide paths — 40 frames in canonical narrative order (includes 10b variant)
 const slides: { src: string; label: string }[] = [
@@ -174,6 +174,32 @@ export default function SpotifySlideViewer() {
         height: isFullscreen ? "100vh" : undefined,
       }}
     >
+      {/* ── Visually-hidden slide outline for AT users ─────────────────── */}
+      <nav
+        aria-label="Slide outline"
+        style={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0 0 0 0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      >
+        <ol>
+          {slides.map((s, i) => (
+            <li key={s.src}>
+              <button type="button" onClick={() => setCurrent(i)} aria-current={i === current ? "true" : undefined}>
+                {i + 1}. {s.label}
+              </button>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
       {/* ── Aspect-ratio shell ─────────────────────────────────────────── */}
       <div
         ref={containerRef}
@@ -190,6 +216,10 @@ export default function SpotifySlideViewer() {
       >
         {/* ── Scaled slide canvas ──────────────────────────────────────── */}
         <div
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`Slide ${current + 1} of ${slides.length}: ${currentSlide.label}`}
+          aria-live="polite"
           style={{
             position:        "absolute",
             top:             0,

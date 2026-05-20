@@ -23,7 +23,7 @@ export default function Slide5() {
           Clinical says &lsquo;this is a medical problem.&rsquo; Salesy says &lsquo;this is an emergency.&rsquo;{" "}
           <span style={{ color: "#C4703A" }}>Editorial says &lsquo;this is something men handle.&rsquo;</span>
         </h1>
-        <p className="font-body leading-relaxed mb-8" style={{ color: "#938C86", fontSize: 13 }}>Does this aesthetic lower the stigma barrier before the first word is read?</p>
+        <p className="font-body leading-relaxed mb-8" style={{ color: "#6B6560", fontSize: 13 }}>Does this aesthetic lower the stigma barrier before the first word is read?</p>
 
         <div className="grid grid-cols-4 gap-5 flex-1">
           {directions.map((d) => {

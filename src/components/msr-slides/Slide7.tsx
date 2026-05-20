@@ -2,13 +2,14 @@
 // Image paths updated to /images/work/msr/
 
 const routes = [
-  { route: "/",              type: "Homepage",        task: "Orient",   desc: "Understand what this site is and whether it\u2019s for me.",  count: undefined },
-  { route: "/learn/[slug]",  type: "Article",         task: "Learn",    desc: "Go deeper on a foot health topic.",                          count: 6 },
-  { route: "/reviews/[slug]",type: "Product Review",  task: "Evaluate", desc: "Compare and decide on a product.",                           count: 6 },
-  { route: "/kits",          type: "Curated Kits",    task: "Browse",   desc: "See grouped product recommendations.",                       count: undefined },
-  { route: "/learn",         type: "Educational Hub", task: "Explore",  desc: "Find the right starting point.",                             count: undefined },
-  { route: "/about",         type: "Brand Story",     task: "Trust",    desc: "Understand who built this and why.",                         count: undefined },
-  { route: "/assessment",    type: "Self-Check Tool", task: "Act",      desc: "Get a personalized starting point.",                         count: undefined },
+  { route: "/",              type: "Homepage",        task: "Orient",   desc: "Understand what this site is and whether it\u2019s for me." },
+  { route: "/guides/[slug]", type: "Article",         task: "Learn",    desc: "Go deeper on a foot health topic." },
+  { route: "/reviews/[slug]",type: "Product Review",  task: "Evaluate", desc: "Compare and decide on a product." },
+  { route: "/kits",          type: "Curated Kits",    task: "Browse",   desc: "See grouped product recommendations." },
+  { route: "/guides",        type: "Educational Hub", task: "Explore",  desc: "Find the right starting point." },
+  { route: "/about",         type: "Brand Story",     task: "Trust",    desc: "Understand who built this and why." },
+  { route: "/assessment",    type: "Self-Check Tool", task: "Act",      desc: "Get a personalized starting point." },
+  { route: "/routines",      type: "Routine Library", task: "Apply",    desc: "Build a daily habit from what the assessment surfaced." },
 ];
 
 const screens = [
@@ -29,7 +30,7 @@ export default function Slide7() {
         </div>
 
         <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 30, fontWeight: 800, maxWidth: 900 }}>
-          Seven page types, each designed for{" "}
+          Eight page types, each designed for{" "}
           <span style={{ color: "#C4703A" }}>a different user task.</span>
         </h1>
 
@@ -41,7 +42,7 @@ export default function Slide7() {
           </div>
           {routes.map((r, i) => (
             <div key={r.route} className="grid px-5 py-[7px] items-center" style={{ gridTemplateColumns: "160px 130px 80px 1fr", background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < routes.length - 1 ? "1px solid #EEEDEC" : "none" }}>
-              <code className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{r.route}{r.count && <span style={{ color: "#B7B2AE" }}> ({r.count} published)</span>}</code>
+              <code className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{r.route}</code>
               <span className="font-body font-medium" style={{ fontSize: 11, color: "#13100C" }}>{r.type}</span>
               <span className="font-body font-semibold" style={{ fontSize: 11, color: "#C4703A" }}>{r.task}</span>
               <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{r.desc}</span>

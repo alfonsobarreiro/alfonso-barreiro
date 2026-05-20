@@ -51,7 +51,9 @@ import Slide3 from "@/components/msr-slides/Slide3";
 import Slide4 from "@/components/msr-slides/Slide4";
 import Slide5 from "@/components/msr-slides/Slide5";
 import Slide6 from "@/components/msr-slides/Slide6";
+import Slide6b from "@/components/msr-slides/Slide6b";
 import Slide7 from "@/components/msr-slides/Slide7";
+import Slide7a from "@/components/msr-slides/Slide7a";
 import Slide8 from "@/components/msr-slides/Slide8";
 import Slide9 from "@/components/msr-slides/Slide9";
 
@@ -59,7 +61,7 @@ const SLIDE_W = 1440;
 const SLIDE_H = 900;
 const ASPECT  = (SLIDE_H / SLIDE_W) * 100; // 62.5%
 
-const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7, Slide8, Slide9];
+const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide6b, Slide7, Slide7a, Slide8, Slide9];
 
 export default function MSRSlideViewer() {
   const [current, setCurrent]     = useState(0); // 0-indexed
@@ -106,6 +108,12 @@ export default function MSRSlideViewer() {
         setCurrent((c) => Math.min(c + 1, slides.length - 1));
       } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         setCurrent((c) => Math.max(c - 1, 0));
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        setCurrent(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        setCurrent(slides.length - 1);
       } else if (e.key === "f" || e.key === "F") {
         toggleFullscreen();
       }
@@ -122,6 +130,9 @@ export default function MSRSlideViewer() {
   return (
     <div
       ref={rootRef}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Men’s Sole Revival case study slides"
       style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
         padding: isFullscreen ? "0" : "0 clamp(4px, 2vw, 40px)",
@@ -165,7 +176,15 @@ export default function MSRSlideViewer() {
             Their own outer div only has minHeight:900 (not height:900),
             so percentage heights would be undefined without this wrapper.
           */}
-          <div className="msr-slide" style={{ width: SLIDE_W, height: SLIDE_H, overflow: "hidden" }}>
+          <div
+            className="msr-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`Slide ${current + 1} of ${slides.length}`}
+            aria-live="polite"
+            aria-atomic="true"
+            style={{ width: SLIDE_W, height: SLIDE_H, overflow: "hidden" }}
+          >
             <CurrentSlide />
           </div>
         </div>
@@ -240,17 +259,21 @@ export default function MSRSlideViewer() {
         </button>
 
         {/* Dot indicators */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <div role="tablist" aria-label="Choose slide" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           {slides.map((_, i) => (
             <button
               key={i}
-              onClick={() => setCurrent(i)}
+              role="tab"
+              aria-selected={i === current}
+              aria-current={i === current ? "true" : undefined}
               aria-label={`Go to slide ${i + 1}`}
+              tabIndex={i === current ? 0 : -1}
+              onClick={() => setCurrent(i)}
               style={{
                 width:        i === current ? "18px" : "6px",
                 height:       "6px",
                 borderRadius: "3px",
-                background:   i === current ? "#C4703A" : "#D6D3D1",
+                background:   i === current ? "#C4703A" : "#534F4B",
                 border:       "none",
                 cursor:       "pointer",
                 padding:      0,
@@ -288,14 +311,17 @@ export default function MSRSlideViewer() {
       </div>
 
       {/* Slide counter */}
-      <p style={{
-        textAlign:   "center",
-        fontSize:    "11px",
-        color:       "#8A8680",
-        margin:      "6px 0 0",
-        fontFamily:  "var(--font-dm-sans), sans-serif",
-        letterSpacing: "0.05em",
-      }}>
+      <p
+        aria-hidden="true"
+        style={{
+          textAlign:     "center",
+          fontSize:      "11px",
+          color:         "#6B6560",
+          margin:        "6px 0 0",
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          letterSpacing: "0.05em",
+        }}
+      >
         {current + 1} / {slides.length} — Use ← → arrow keys to navigate
       </p>
     </div>

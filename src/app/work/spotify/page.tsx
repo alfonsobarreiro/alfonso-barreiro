@@ -43,7 +43,7 @@ const c = {
   surface:  "#FFFFFF",
   border:   "#A99B8A",
   borderStrong: "#7E715F",
-  green:    "#1DB954",
+  green:    "#1ED760",
 };
 
 const font = {
@@ -145,7 +145,7 @@ export default function SpotifyCaseStudy() {
               gap:            "clamp(20px, 4vw, 48px)",
               padding:        "20px 24px",
               marginBottom:   "40px",
-              background:     "rgba(29,185,84,0.06)",
+              background:     "rgba(30,215,96,0.06)",
               borderLeft:     `2px solid ${c.green}`,
             }}>
               {[
@@ -190,7 +190,7 @@ export default function SpotifyCaseStudy() {
               {[
                 { label: "Role",     value: "UX/UI Designer" },
                 { label: "Type",     value: "Solo · Concept" },
-                { label: "Timeline", value: "Nov – Dec 2025" },
+                { label: "Timeline", value: "Nov to Dec 2025" },
                 { label: "Methods",  value: "Competitive Audit · Persona Analysis · Constraint Mapping · Community Signal Synthesis" },
                 { label: "Outcome",  value: "Three controls that close the gap between user need and platform capability, without breaking discovery" },
               ].map(({ label, value }) => (
@@ -442,7 +442,7 @@ export default function SpotifyCaseStudy() {
                     { platform: "Spotify (current)",  remove: "✗", clear: "✗", pause: "✗", pin: "✗",  proposed: false },
                     { platform: "Spotify (proposed)", remove: "✓", clear: "✓", pause: "✓", pin: "✓",  proposed: true  },
                   ].map(({ platform, remove, clear, pause, pin, proposed }, i) => (
-                    <tr key={platform} style={{ background: proposed ? "rgba(29,185,84,0.06)" : i % 2 === 0 ? c.surface : c.bg }}>
+                    <tr key={platform} style={{ background: proposed ? "rgba(30,215,96,0.06)" : i % 2 === 0 ? c.surface : c.bg }}>
                       <td style={{ ...tdStyle, fontWeight: proposed ? 600 : 400, color: proposed ? c.ink : c.body }}>{platform}</td>
                       <td style={{ ...tdStyle, color: remove.startsWith("✓") ? c.green : c.muted }}>{remove}</td>
                       <td style={{ ...tdStyle, color: clear.startsWith("✓") ? c.green : c.muted }}>{clear}</td>
@@ -792,8 +792,8 @@ export default function SpotifyCaseStudy() {
 
               {/* Animated prototype preview + step narration + toast details */}
               <div style={{
-                background:   "rgba(29,185,84,0.03)",
-                border:       "1px solid rgba(29,185,84,0.1)",
+                background:   "rgba(30,215,96,0.03)",
+                border:       "1px solid rgba(30,215,96,0.1)",
                 borderRadius: "12px",
                 padding:      "clamp(16px, 3vw, 32px) clamp(12px, 3vw, 24px)",
                 marginBottom: "48px",
@@ -807,7 +807,7 @@ export default function SpotifyCaseStudy() {
                   gap:                 "clamp(16px, 3vw, 32px)",
                   marginTop:           "clamp(24px, 4vw, 40px)",
                   paddingTop:          "clamp(24px, 4vw, 32px)",
-                  borderTop:           "1px solid rgba(29,185,84,0.15)",
+                  borderTop:           "1px solid rgba(30,215,96,0.15)",
                 }}>
                   {[
                     { label: "01", caption: "Same entry point. Long-press surfaces the same action sheet as Pin." },
@@ -1039,6 +1039,83 @@ export default function SpotifyCaseStudy() {
                 display:   "block",
               }}
             />
+
+            {/* ── States covered vs deferred ─────────────── */}
+            <div style={{
+              maxWidth:     "860px",
+              margin:       "56px auto 0",
+              padding:      "32px",
+              background:   "rgba(245,243,239,0.03)",
+              border:       "1px solid rgba(245,243,239,0.08)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+                <span style={{ width: "16px", height: "1px", background: c.green }} />
+                <span style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "10px",
+                  fontWeight:    600,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color:         c.green,
+                }}>States covered, states deferred</span>
+              </div>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "14px",
+                lineHeight: 1.7,
+                color:      "rgba(245,243,239,0.7)",
+                margin:     "0 0 20px",
+              }}>
+                The diagram covers reachable controls. Four shelf states sit outside the happy path and need naming.
+              </p>
+
+              <dl style={{ margin: 0, display: "grid", gap: "16px" }}>
+                {[
+                  {
+                    label: "Discoverability",
+                    body: "Long-press has no current affordance on the Recently Played shelf. First-time users get a one-time tooltip on the first scroll after release, plus a small “Tap to manage” inline hint that appears once the shelf accumulates 5+ items. Both decay after the first successful long-press. Deliberately not added: a permanent kebab or chevron next to each tile. It would teach the gesture but compete with album art and erode the calm shelf the design depends on.",
+                  },
+                  {
+                    label: "Loading",
+                    body: "The shelf already renders skeleton tiles while history fetches. The long-press gesture stays suppressed until the fetch resolves, so the existing skeleton covers the controls without new design.",
+                  },
+                  {
+                    label: "Error",
+                    body: "A failed Pin, Remove, or Pause sync surfaces inline retry inside the action sheet, not a global toast. The user keeps their place in the sheet. Full error spec lives in the engineering handoff.",
+                  },
+                  {
+                    label: "Persistent Pause",
+                    body: "When listening history is paused, the shelf header shows a small “Paused” chip beside the section title. The global state is legible without re-opening the action sheet, which closes the visibility loop Pause otherwise leaves open.",
+                  },
+                  {
+                    label: "Empty",
+                    body: "Recently Played hides itself at zero items, so the controls never need to render against an empty shelf. No empty-state design required at this level.",
+                  },
+                ].map(({ label, body }) => (
+                  <div key={label}>
+                    <dt style={{
+                      fontFamily: font.sans,
+                      fontSize:   "13px",
+                      fontWeight: 700,
+                      color:      "#F5F5F4",
+                      margin:     "0 0 4px",
+                    }}>
+                      {label}
+                    </dt>
+                    <dd style={{
+                      fontFamily: font.sans,
+                      fontSize:   "13px",
+                      lineHeight: 1.65,
+                      color:      "rgba(245,243,239,0.55)",
+                      margin:     0,
+                    }}>
+                      {body}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
           </div>
         </div>
 

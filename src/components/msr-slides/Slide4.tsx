@@ -37,8 +37,8 @@ export default function Slide4() {
           {/* LEFT: Blog */}
           <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="flex items-center justify-center rounded-full" style={{ width: 22, height: 22, background: "#EEEDEC", color: "#B7B2AE", fontSize: 12, fontWeight: 700 }}>✕</div>
-              <span className="font-body font-medium" style={{ color: "#938C86", fontSize: 14 }}>Blog Format &mdash; Rejected</span>
+              <div className="flex items-center justify-center rounded-full" style={{ width: 22, height: 22, background: "#EEEDEC", color: "#534F4B", fontSize: 12, fontWeight: 700 }}>✕</div>
+              <span className="font-body font-medium" style={{ color: "#6B6560", fontSize: 14 }}>Blog Format &mdash; Rejected</span>
             </div>
             <div className="rounded-xl p-6 flex-1 relative" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC", opacity: 0.7 }}>
               <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none" style={{ zIndex: 2 }}>
@@ -60,7 +60,7 @@ export default function Slide4() {
                 </div>
               </div>
             </div>
-            <p className="font-body leading-relaxed mt-4" style={{ color: "#938C86", fontSize: 12 }}>The user has to read to evaluate. Signal is buried in narrative.</p>
+            <p className="font-body leading-relaxed mt-4" style={{ color: "#6B6560", fontSize: 12 }}>The user has to read to evaluate. Signal is buried in narrative.</p>
           </div>
 
           {/* RIGHT: E-Commerce */}
@@ -73,14 +73,14 @@ export default function Slide4() {
               <div className="flex flex-col gap-3">
                 {ecomElements.map((el) => (
                   <div key={el.label}>
-                    <span className="font-display block mb-1.5 uppercase tracking-[0.15em]" style={{ color: "#938C86", fontSize: 8 }}>{el.label}</span>
+                    <span className="font-display block mb-1.5 uppercase tracking-[0.15em]" style={{ color: "#6B6560", fontSize: 8 }}>{el.label}</span>
                     <div className="rounded flex items-center justify-center" style={{ width: "100%", height: el.h, background: el.label.startsWith("Buy") ? "linear-gradient(135deg, rgba(196,112,58,0.12) 0%, rgba(196,112,58,0.04) 100%)" : "#F8F7F7", border: el.label.startsWith("Buy") ? "1px solid rgba(196,112,58,0.25)" : "1px solid #EEEDEC" }}>
-                      {el.label === "Hero image" && <span className="font-body" style={{ color: "#B7B2AE", fontSize: 9 }}>Product hero — full width</span>}
+                      {el.label === "Hero image" && <span className="font-body" style={{ color: "#534F4B", fontSize: 9 }}>Product hero — full width</span>}
                       {el.label === "Specs grid" && (
                         <div className="grid grid-cols-3 gap-2 w-full px-3">
                           {["Weight","Drop","Price"].map((spec) => (
                             <div key={spec} className="text-center">
-                              <span className="font-body block" style={{ color: "#B7B2AE", fontSize: 7 }}>{spec}</span>
+                              <span className="font-body block" style={{ color: "#534F4B", fontSize: 7 }}>{spec}</span>
                               <div className="rounded mx-auto mt-1" style={{ width: "60%", height: 4, background: "#D6D3D1" }} />
                             </div>
                           ))}
@@ -90,7 +90,7 @@ export default function Slide4() {
                         <div className="flex items-center gap-1.5">
                           {[1,2,3,4].map((s) => <span key={s} style={{ color: "#C4703A", fontSize: 10 }}>★</span>)}
                           <span style={{ color: "#D6D3D1", fontSize: 10 }}>★</span>
-                          <span className="font-body ml-1" style={{ color: "#938C86", fontSize: 9 }}>4.2 / 5</span>
+                          <span className="font-body ml-1" style={{ color: "#6B6560", fontSize: 9 }}>4.2 / 5</span>
                         </div>
                       )}
                       {el.label === "Pros / Cons" && (
@@ -101,7 +101,7 @@ export default function Slide4() {
                           </div>
                           <div>
                             <span className="font-body block mb-1" style={{ color: "#6B6560", fontSize: 8 }}>Cons</span>
-                            {[1,2].map((n) => <div key={n} className="flex items-center gap-1.5 mb-1"><span style={{ color: "#938C86", fontSize: 7 }}>&minus;</span><div className="rounded-sm" style={{ width: `${60+n*10}%`, height: 3, background: "#EEEDEC" }} /></div>)}
+                            {[1,2].map((n) => <div key={n} className="flex items-center gap-1.5 mb-1"><span style={{ color: "#6B6560", fontSize: 7 }}>&minus;</span><div className="rounded-sm" style={{ width: `${60+n*10}%`, height: 3, background: "#EEEDEC" }} /></div>)}
                           </div>
                         </div>
                       )}
@@ -117,7 +117,7 @@ export default function Slide4() {
 
         <div className="mt-5 rounded-xl px-7 py-5 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(196,112,58,0.06) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.2)" }}>
           <p className="font-heading italic leading-relaxed relative z-10" style={{ color: "#C4703A", fontSize: 18 }}>&ldquo;Long-form editorial is right when the user is learning. An e-commerce layout is right when the user is deciding. MSR&rsquo;s review pages are for deciding.&rdquo;</p>
-          <p className="font-body leading-relaxed mt-4 relative z-10" style={{ color: "#938C86", fontSize: 12 }}>This isn&rsquo;t a store. There&rsquo;s no checkout, no inventory. The UX pattern is borrowed from e-commerce because it matches the user&rsquo;s task, not because it serves a transaction.</p>
+          <p className="font-body leading-relaxed mt-4 relative z-10" style={{ color: "#6B6560", fontSize: 12 }}>This isn&rsquo;t a store. There&rsquo;s no checkout, no inventory. The UX pattern is borrowed from e-commerce because it matches the user&rsquo;s task, not because it serves a transaction.</p>
         </div>
       </div>
     </div>

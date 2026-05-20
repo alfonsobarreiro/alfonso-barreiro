@@ -54,7 +54,7 @@ export default function Slide6() {
                 <span className="font-body rounded-full px-2 py-0.5" style={{ fontSize: 9, fontWeight: 600, color: "#C4703A", background: "rgba(196,112,58,0.08)", border: "1px solid rgba(196,112,58,0.2)" }}>{tf.role}</span>
               </div>
               <p className="font-body leading-snug" style={{ color: "#6B6560", fontSize: 11 }}>{tf.usage}</p>
-              <p className="font-body mt-1.5" style={{ color: "#938C86", fontSize: 10 }}>Weights: {tf.weights}</p>
+              <p className="font-body mt-1.5" style={{ color: "#6B6560", fontSize: 10 }}>Weights: {tf.weights}</p>
             </div>
           ))}
         </div>
@@ -104,12 +104,21 @@ export default function Slide6() {
                 </div>
               ))}
             </div>
-            <p className="font-body leading-snug mt-2" style={{ color: "#938C86", fontSize: 9 }}>Same naming convention, different values per project. The AB Core Library holds primitives for Brand, Wayfarer, and Men&rsquo;s Sole Revival.</p>
+            <p className="font-body leading-snug mt-2" style={{ color: "#6B6560", fontSize: 9 }}>Same naming convention, different values per project. The AB Core Library holds primitives for Brand, Wayfarer, and Men&rsquo;s Sole Revival.</p>
           </div>
         </div>
 
         <div className="mt-4 rounded-lg px-6 py-3 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(196,112,58,0.06) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.2)" }}>
-          <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: 15 }}>&ldquo;Token parity between Figma and code. One file change propagates everywhere.&rdquo;</p>
+          <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: 15 }}>&ldquo;Token parity between Figma and code, verified by audit. One file change propagates everywhere.&rdquo;</p>
+        </div>
+
+        {/* What ships — audit callout */}
+        <div className="mt-3 rounded-lg flex items-center gap-4 px-5 py-3" style={{ background: "#FFFFFF", border: "1px solid rgba(196,112,58,0.25)" }}>
+          <div style={{ width: 3, height: 28, background: "#C4703A", flexShrink: 0 }} />
+          <div className="flex flex-col gap-1 flex-1 min-w-0">
+            <span className="font-display tracking-[0.14em] uppercase" style={{ fontSize: 9, color: "#C4703A", fontWeight: 700 }}>What ships</span>
+            <p className="font-body leading-snug" style={{ fontSize: 11, color: "#13100C" }}>167 color tokens · 25 spacings · 8 radii · 19 type styles · Light + Dark · 13 component sets. Reconciled against the production codebase.</p>
+          </div>
         </div>
       </div>
     </div>
