@@ -4,6 +4,7 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SpotifyJourneyMap from "@/components/SpotifyJourneyMap";
+import SpotifyPrototypeWalkthroughs from "@/components/SpotifyPrototypeWalkthroughs";
 import SpotifyQuoteRotator from "@/components/SpotifyQuoteRotator";
 import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
@@ -124,7 +125,7 @@ export default function SpotifyCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              Recently Played Controls
+              Spotify Recently Played: three lightweight controls for users on shared screens. Pin, Remove, Pause.
             </h1>
 
             <p style={{
@@ -133,51 +134,10 @@ export default function SpotifyCaseStudy() {
               lineHeight:  1.55,
               color:       "rgba(245,243,239,0.65)",
               margin:      "0 0 40px",
-              maxWidth:    "560px",
+              maxWidth:    "640px",
             }}>
-              I&apos;m a daily Spotify power user. Recently Played is where most of my listening starts. Years inside it gave me three additive ideas. Pin to keep a favorite within reach. Remove to hide an accidental play. Pause to keep the shelf still when someone borrows the phone. Concept project. The validation framework is the deliverable.
+              I&apos;m a daily Spotify power user. Recently Played is where most of my listening starts, and the shelf records every play with no controls. Community forums document users force-quitting tracks to push favorites up; the workaround is the evidence. The hard part was deciding what not to ship: global history delete, recommendation tuning, and private mode all pulled toward a larger system. Three on-shelf controls survived. Concept project, evaluated through the lens of likely stakeholder constraints.
             </p>
-
-            {/* Acceptance criteria strip — proxy metrics surfaced in first scroll */}
-            <div style={{
-              display:        "flex",
-              flexWrap:       "wrap",
-              gap:            "clamp(20px, 4vw, 48px)",
-              padding:        "20px 24px",
-              marginBottom:   "40px",
-              background:     "rgba(30,215,96,0.06)",
-              borderLeft:     `2px solid ${c.green}`,
-            }}>
-              {[
-                { value: "≤ 2 taps",        label: "to pin a favorite (design target)" },
-                { value: "≤ 6 sec",         label: "to remove + undo (design target)" },
-                { value: "Modeled +8 pts",  label: "UMUX-Lite improvement (heuristic comparison)" },
-              ].map(({ value, label }) => (
-                <div key={label}>
-                  <p style={{
-                    fontFamily:    font.display,
-                    fontSize:      "clamp(18px, 2.6vw, 22px)",
-                    fontWeight:    500,
-                    color:         c.green,
-                    margin:        "0 0 2px",
-                    letterSpacing: "-0.01em",
-                  }}>
-                    {value}
-                  </p>
-                  <p style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "11px",
-                    fontWeight:    600,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color:         "rgba(245,243,239,0.55)",
-                    margin:        0,
-                  }}>
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
 
             {/* Metadata row */}
             <div style={{
@@ -1194,6 +1154,9 @@ export default function SpotifyCaseStudy() {
 
           </div>
         </div>
+
+        {/* ── Prototype Walkthroughs ─────────────────── */}
+        <SpotifyPrototypeWalkthroughs />
 
         {/* ── Content wrapper (continued) ──────────────────────── */}
         <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
