@@ -125,7 +125,7 @@ export default function SpotifyCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              Spotify Recently Played: three lightweight controls for users on shared screens. Pin, Remove, Pause.
+              Spotify Recently Played: Pin, Remove, Pause. Three reversible controls for a shelf that records everything.
             </h1>
 
             <p style={{
@@ -136,7 +136,7 @@ export default function SpotifyCaseStudy() {
               margin:      "0 0 40px",
               maxWidth:    "640px",
             }}>
-              I&apos;m a daily Spotify power user. Recently Played is where most of my listening starts, and the shelf records every play with no controls. Community forums document users force-quitting tracks to push favorites up; the workaround is the evidence. The hard part was deciding what not to ship: global history delete, recommendation tuning, and private mode all pulled toward a larger system. Three on-shelf controls survived. Concept project, evaluated through the lens of likely stakeholder constraints.
+              Recently Played is where most listening starts on shared screens, and the shelf records every play with no controls. Community forums document users force-quitting tracks to push favorites up; the workaround is the evidence. The hard part was deciding what not to ship: global history delete, recommendation tuning, and private mode all pulled toward a larger system.
             </p>
 
             {/* Metadata row */}
@@ -151,8 +151,7 @@ export default function SpotifyCaseStudy() {
                 { label: "Role",     value: "UX/UI Designer" },
                 { label: "Type",     value: "Solo · Concept" },
                 { label: "Timeline", value: "Nov to Dec 2025" },
-                { label: "Methods",  value: "Competitive Audit · Persona Analysis · Constraint Mapping · Community Signal Synthesis" },
-                { label: "Outcome",  value: "Three additive shelf-native controls. Reversible by default. Designed to preserve recommendation integrity." },
+                { label: "Methods",  value: "Constraint mapping · Community signal synthesis" },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.green, margin: "0 0 4px" }}>
