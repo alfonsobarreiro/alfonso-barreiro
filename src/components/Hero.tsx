@@ -98,7 +98,7 @@ export default function Hero() {
                 margin:        0,
               }}
             >
-              UX / UI Designer · Research. Decide. Ship.
+              UX / UI Designer · Portland, OR
             </p>
           </div>
 

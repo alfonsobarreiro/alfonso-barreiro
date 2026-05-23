@@ -36,7 +36,7 @@ const projects: Project[] = [
     title:       "Wayfarer",
     subtitle:    "Travel Discovery Platform",
     description:
-      "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet.",
+      "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
     status:      "live",
@@ -48,7 +48,7 @@ const projects: Project[] = [
     title:       "Men's Sole Revival",
     subtitle:    "Foot Health Content Platform",
     description:
-      "A foot health resource for men over 40. Editorial, clinically grounded, product-informed. The plan was e-commerce until the unit economics broke in week three; the pivot to content authority is what shipped. Live since April 2026.",
+      "A foot health resource for men over 40. The plan was e-commerce until the unit economics broke in week three; the pivot to content authority is what shipped. Live since April 2026.",
     tags:        ["Content UX", "Visual Design", "Design System"],
     year:        "2026",
     status:      "live",
@@ -176,17 +176,6 @@ export default function Work() {
               Three <span style={{ color: "#C17F4A" }}>case studies.</span>
             </h2>
           </div>
-          <span
-            className="work-header-sub"
-            style={{
-              fontSize:      "13px",
-              color:         "#8A8680",
-              letterSpacing: "0.04em",
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-            }}
-          >
-            Research → Prototype
-          </span>
         </div>
 
         {/* Bento grid */}
