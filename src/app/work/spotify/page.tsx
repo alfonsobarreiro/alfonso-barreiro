@@ -406,7 +406,7 @@ export default function SpotifyCaseStudy() {
                       alt={`${name} persona portrait`}
                       width={72}
                       height={72}
-                      style={{ borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+                      style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
                     />
                     <div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "4px" }}>

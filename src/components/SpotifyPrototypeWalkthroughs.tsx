@@ -19,7 +19,10 @@ type Flow = {
   title:    string;
   duration: string;
   accent:   { bar: string; chipBg: string; chipText: string; ts: string };
-  embed?:   string;
+  /** Path to an animated GIF or MP4 recording, served from /public. */
+  recording?: string;
+  /** Alt text describing what the recording shows. */
+  recordingAlt?: string;
   steps:    { t: string; text: string }[];
 };
 
@@ -28,64 +31,70 @@ const flows: Flow[] = [
     id:       "pin",
     chip:     "PIN",
     title:    "Pin a favorite to the top",
-    duration: "0:38",
+    duration: "0:09",
     accent: {
       bar:      "#1ED760",
       chipBg:   "#D4F0DD",
       chipText: "#06451F",
       ts:       "#0C6E32",
     },
+    recording:    "/images/work/spotify/pin-happy.webm",
+    recordingAlt: "Pin happy path: long-press The Roses, tap Pin on top, tile moves to position 1, snackbar confirms.",
     steps: [
-      { t: "0:00", text: "Recently Played shelf in default state, six tiles visible." },
-      { t: "0:04", text: "Long-press on the third tile. Action sheet rises with a 200ms ease-out." },
-      { t: "0:09", text: "Pin row highlighted. Tap commits the action." },
-      { t: "0:11", text: "Tile animates from position 3 to position 1 in 250ms. Adjacent tiles reflow." },
-      { t: "0:15", text: "Snackbar appears: “Song pinned.” with Undo button. 5s timer visible." },
-      { t: "0:20", text: "Snackbar dismisses. Pin chip persists on the tile at position 1." },
-      { t: "0:28", text: "Cap-reached state shown briefly: 5th pin attempt → Pin row visibly Disabled with inline microcopy." },
+      { t: "0:00", text: "Instruction pill fades in: “Long-press The Roses.”" },
+      { t: "0:02", text: "User taps The Roses (right column, row 2, marked by the green affordance outline)." },
+      { t: "0:03", text: "Action sheet rises with a 200ms ease-out. Pill swaps to “Tap ‘Pin on top.’”" },
+      { t: "0:05", text: "User taps the Pin on top row." },
+      { t: "0:06", text: "Tile reflows from position 3 to position 1 in 250ms. Toast slides up: “Song pinned.” with green Undo button." },
+      { t: "0:07", text: "Conclusion pill: “The Roses pinned to the top.” Loop dissolves back to start." },
     ],
   },
   {
     id:       "remove",
     chip:     "REMOVE",
     title:    "Remove an item without library impact",
-    duration: "0:32",
+    duration: "0:10",
     accent: {
       bar:      "#E22134",
       chipBg:   "#FCD9DC",
       chipText: "#7A0A14",
       ts:       "#A0151F",
     },
+    recording:    "/images/work/spotify/undo-happy.webm",
+    recordingAlt: "Remove flow with Undo: long-press an accidental play, tap Remove, snackbar appears, tap Undo to restore.",
     steps: [
-      { t: "0:00", text: "Recently Played shelf with an accidental play visible." },
-      { t: "0:03", text: "Long-press → action sheet opens. Remove row in Accent / Red." },
-      { t: "0:08", text: "Tap Remove. Tile collapses with a 250ms ease-out." },
-      { t: "0:10", text: "Snackbar: “Removed from Recently Played.” + Undo, 5s timer." },
-      { t: "0:14", text: "Undo path: tap Undo → tile re-enters at original index." },
-      { t: "0:22", text: "Timeout path: 5s expires, removal commits. Tile gone." },
-      { t: "0:28", text: "Library check: open Liked Songs / playlist; track is still there. Device-scoped scope made visible." },
+      { t: "0:00", text: "Instruction pill fades in: “Long-press This is Madonna.”" },
+      { t: "0:02", text: "User taps Madonna (left column, row 2, marked by the green affordance outline)." },
+      { t: "0:03", text: "Action sheet rises. Pill swaps to “Tap ‘Remove from Recently Played.’”" },
+      { t: "0:05", text: "User taps the Remove row in Accent / Red." },
+      { t: "0:06", text: "Madonna’s tile fades out, shelf reflows. Toast slides up: “Removed from Recently Played.” with green Undo button." },
+      { t: "0:07", text: "User taps Undo on the toast (400ms smart-animate)." },
+      { t: "0:08", text: "Madonna fades back in at her original index. Conclusion pill swaps to “Removal undone.”" },
+      { t: "0:09", text: "Demo dissolves back to pre-intro so the flow replays." },
     ],
   },
   {
     id:       "pause",
     chip:     "PAUSE",
     title:    "Pause history for a guest’s visit",
-    duration: "0:44",
+    duration: "0:21",
     accent: {
       bar:      "#F5B921",
       chipBg:   "#FFE9B8",
       chipText: "#5C3A00",
       ts:       "#7A4F00",
     },
+    recording:    "/images/work/spotify/pause-happy.webm",
+    recordingAlt: "Pause happy path: long-press Hollow Coves, toggle Pause listening history, shelf dims, snackbar confirms.",
     steps: [
-      { t: "0:00", text: "Recently Played shelf in default state." },
-      { t: "0:04", text: "Long-press → action sheet. Pause toggle row visible." },
-      { t: "0:08", text: "Toggle on. 200ms toggle animation." },
-      { t: "0:10", text: "Snackbar: “Listening history paused for 12h.” + Undo." },
-      { t: "0:14", text: "Shelf dims to 50% opacity. “Paused” chip appears in shelf header." },
-      { t: "0:22", text: "Time-skip 12h. Auto-resume snackbar at top of shelf: “Listening history resumed.”" },
-      { t: "0:30", text: "Tiles re-saturate. Chip disappears from header." },
-      { t: "0:38", text: "User-toggle-off path shown alternately: user opens sheet, toggles off, resume happens instantly." },
+      { t: "0:00", text: "Instruction pill fades in: “Long-press Hollow Coves.”" },
+      { t: "0:02", text: "User taps Hollow Coves (right column, row 1, marked by the green affordance outline)." },
+      { t: "0:03", text: "Action sheet rises. Pill swaps to “Toggle ‘Pause listening history.’”" },
+      { t: "0:05", text: "User taps the Pause listening history row." },
+      { t: "0:06", text: "Toggle crossfades from off to on in 300ms. Sheet holds 0.6s so the state change is visible." },
+      { t: "0:07", text: "Sheet slides down. Shelf dims to 50% opacity. Toast slides up: “Listening history paused for 12h.” with green Undo button." },
+      { t: "0:08", text: "Conclusion pill: “History paused for 12 hours.”" },
+      { t: "0:10", text: "Demo dissolves back to pre-intro so the flow replays." },
     ],
   },
 ];
@@ -220,47 +229,100 @@ export default function SpotifyPrototypeWalkthroughs() {
               >
 
                 {/* Recording slot */}
-                <div
-                  style={{
-                    border:         `1px dashed ${flow.accent.bar}66`,
-                    borderRadius:   "8px",
-                    aspectRatio:    "16 / 10",
-                    display:        "flex",
-                    flexDirection:  "column",
-                    alignItems:     "center",
-                    justifyContent: "center",
-                    gap:            "12px",
-                    background:     `linear-gradient(180deg, ${flow.accent.chipBg}26 0%, transparent 100%)`,
-                    padding:        "24px",
-                    textAlign:      "center",
-                  }}
-                  role="img"
-                  aria-label={`Prototype recording placeholder for ${flow.chip.toLowerCase()} flow`}
-                >
-                  <span
+                {flow.recording ? (
+                  <div
                     style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "11px",
-                      fontWeight:    700,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color:         c.muted,
+                      display:        "flex",
+                      alignItems:     "flex-start",
+                      justifyContent: "center",
                     }}
                   >
-                    Prototype Recording
-                  </span>
-                  <span
+                    {/* Phone-bezel wrapper: hugs the recording with 4px padding so the
+                        dark surround reads as a thin device bezel. */}
+                    <div
+                      style={{
+                        background:   "#0A0A0A",
+                        padding:      "4px",
+                        borderRadius: "28px",
+                        boxShadow:    "0 8px 32px rgba(0,0,0,0.25)",
+                        display:      "inline-block",
+                      }}
+                    >
+                      {/* Auto-detect file type. MP4/WebM use <video> for crisp playback;
+                          GIF falls back to a plain <img> tag so Next.js does not strip the animation. */}
+                      {/\.(mp4|webm|mov)$/i.test(flow.recording) ? (
+                        <video
+                          src={flow.recording}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          aria-label={flow.recordingAlt ?? `${flow.chip} walkthrough`}
+                          style={{
+                            display:      "block",
+                            width:        "clamp(157px, 16vw, 202px)",
+                            height:       "auto",
+                            borderRadius: "24px",
+                          }}
+                        />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={flow.recording}
+                          alt={flow.recordingAlt ?? `${flow.chip} walkthrough`}
+                          style={{
+                            display:      "block",
+                            width:        "clamp(157px, 16vw, 202px)",
+                            height:       "auto",
+                            borderRadius: "24px",
+                          }}
+                        />
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div
                     style={{
-                      fontFamily: font.sans,
-                      fontSize:   "13px",
-                      lineHeight: 1.5,
-                      color:      c.body,
-                      maxWidth:   "320px",
+                      border:         `1px dashed ${flow.accent.bar}66`,
+                      borderRadius:   "8px",
+                      aspectRatio:    "16 / 10",
+                      display:        "flex",
+                      flexDirection:  "column",
+                      alignItems:     "center",
+                      justifyContent: "center",
+                      gap:            "12px",
+                      background:     `linear-gradient(180deg, ${flow.accent.chipBg}26 0%, transparent 100%)`,
+                      padding:        "24px",
+                      textAlign:      "center",
                     }}
+                    role="img"
+                    aria-label={`Prototype recording placeholder for ${flow.chip.toLowerCase()} flow`}
                   >
-                    Capture from the interactive Figma prototype. Linked from the case study.
-                  </span>
-                </div>
+                    <span
+                      style={{
+                        fontFamily:    font.sans,
+                        fontSize:      "11px",
+                        fontWeight:    700,
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        color:         c.muted,
+                      }}
+                    >
+                      Prototype Recording
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: font.sans,
+                        fontSize:   "13px",
+                        lineHeight: 1.5,
+                        color:      c.body,
+                        maxWidth:   "320px",
+                      }}
+                    >
+                      Capture from the interactive Figma prototype. Linked from the case study.
+                    </span>
+                  </div>
+                )}
 
                 {/* Annotations */}
                 <div>

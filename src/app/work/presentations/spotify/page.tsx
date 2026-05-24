@@ -5,11 +5,11 @@ import Footer from "@/components/Footer";
 import SpotifySlideViewer from "@/components/SpotifySlideViewer";
 
 export const metadata: Metadata = {
-  title: "Spotify: Recently Played Controls — Slide Deck · Alfonso Barreiro",
+  title: "Spotify: Recently Played Controls · Slide Deck · Alfonso Barreiro",
   description:
-    "The 40-slide narrative deck for the Spotify Recently Played Controls case study — research, UX architecture, and the design of three new controls.",
+    "The 40-slide narrative deck for the Spotify Recently Played Controls case study: research, UX architecture, and the design of three new controls.",
   openGraph: {
-    title: "Spotify: Recently Played Controls — Slide Deck · Alfonso Barreiro",
+    title: "Spotify: Recently Played Controls · Slide Deck · Alfonso Barreiro",
     description:
       "The 40-slide narrative deck for the Spotify Recently Played Controls case study.",
     url: "https://barreiro.com/work/presentations/spotify",

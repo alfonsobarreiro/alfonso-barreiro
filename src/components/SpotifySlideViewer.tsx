@@ -46,7 +46,7 @@ const slides: { src: string; label: string }[] = [
   { src: "/images/work/spotify/deck/slide-01.png",  label: "Understanding the Challenge" },
   { src: "/images/work/spotify/deck/slide-02.png",  label: "What Users Are Asking For" },
   { src: "/images/work/spotify/deck/slide-03.png",  label: "Why This Matters" },
-  { src: "/images/work/spotify/deck/slide-04.png",  label: "Why This Matters — Expanded" },
+  { src: "/images/work/spotify/deck/slide-04.png",  label: "Why This Matters · Expanded" },
   { src: "/images/work/spotify/deck/slide-05.png",  label: "Problem Definition" },
   { src: "/images/work/spotify/deck/slide-06.png",  label: "Understanding the User Needs" },
   { src: "/images/work/spotify/deck/slide-07.png",  label: "Where Recently Played Shows Up" },
@@ -55,16 +55,16 @@ const slides: { src: string; label: string }[] = [
   { src: "/images/work/spotify/deck/slide-10.png",  label: "Evaluating the Opportunity" },
   { src: "/images/work/spotify/deck/slide-10b.png", label: "Frame the Design Space" },
   { src: "/images/work/spotify/deck/slide-11.png",  label: "Designing Within Constraints" },
-  { src: "/images/work/spotify/deck/slide-12.png",  label: "Designing Within Constraints — Expanded" },
+  { src: "/images/work/spotify/deck/slide-12.png",  label: "Designing Within Constraints · Expanded" },
   { src: "/images/work/spotify/deck/slide-13.png",  label: "What This Opportunity Enables" },
   { src: "/images/work/spotify/deck/slide-14.png",  label: "Early Design Directions" },
   { src: "/images/work/spotify/deck/slide-15.png",  label: "What the Market Already Teaches Us" },
   { src: "/images/work/spotify/deck/slide-16.png",  label: "Competitive Patterns at a Glance" },
   { src: "/images/work/spotify/deck/slide-17.png",  label: "Exploring the Design Space" },
   { src: "/images/work/spotify/deck/slide-18.png",  label: "What the Solution Needs to Achieve" },
-  { src: "/images/work/spotify/deck/slide-19.png",  label: "Exploration Themes — Part 1" },
+  { src: "/images/work/spotify/deck/slide-19.png",  label: "Exploration Themes · Part 1" },
   { src: "/images/work/spotify/deck/slide-20.png",  label: "Sketching Possible Interaction Patterns" },
-  { src: "/images/work/spotify/deck/slide-21.png",  label: "Exploration Themes — Part 2" },
+  { src: "/images/work/spotify/deck/slide-21.png",  label: "Exploration Themes · Part 2" },
   { src: "/images/work/spotify/deck/slide-22.png",  label: "Arriving at a Unified Approach" },
   { src: "/images/work/spotify/deck/slide-23.png",  label: "Introducing the Final Interaction Model" },
   { src: "/images/work/spotify/deck/slide-24.png",  label: "What the Final Model Solves" },
@@ -289,7 +289,7 @@ export default function SpotifySlideViewer() {
         ref={progressRef}
         onClick={handleProgressClick}
         role="slider"
-        aria-label="Slide position — click to jump"
+        aria-label="Slide position. Click to jump."
         aria-valuemin={1}
         aria-valuemax={slides.length}
         aria-valuenow={current + 1}
@@ -403,7 +403,7 @@ export default function SpotifySlideViewer() {
         fontFamily:    "var(--font-dm-sans), sans-serif",
         letterSpacing: "0.05em",
       }}>
-        {current + 1} / {slides.length} — Use ← → arrow keys to navigate
+        {current + 1} / {slides.length} · Use ← → arrow keys to advance
       </p>
     </div>
   );

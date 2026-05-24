@@ -65,8 +65,8 @@ export default function SpotifyJourneyMap() {
             <Image
               src="/images/work/spotify/spotify-journey-slice.webp"
               alt="User Journey Map preview showing Stages 1 through 3 of Ranger Dave's flow: Launch and Landing, Scan Recents, Choose Action"
-              width={1700}
-              height={2160}
+              width={883}
+              height={1080}
               style={{ width: "100%", height: "auto", display: "block" }}
             />
 
