@@ -1201,7 +1201,7 @@ export default function SpotifyCaseStudy() {
                   color:      c.body,
                   margin:     0,
                 }}>
-                  Desktop users access the same controls through right-click, matching existing Spotify paradigms. The interaction model stays consistent across surfaces without forcing mobile patterns onto desktop.
+                  Desktop users access the same controls through right-click, matching how Spotify already handles other context actions. The interaction model stays consistent across surfaces without forcing mobile patterns onto desktop.
                 </p>
               </div>
             </div>
