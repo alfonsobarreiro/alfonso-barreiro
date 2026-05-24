@@ -322,7 +322,7 @@ export default function MSRSlideViewer() {
           letterSpacing: "0.05em",
         }}
       >
-        {current + 1} / {slides.length} — Use ← → arrow keys to navigate
+        {current + 1} / {slides.length} · Use ← → arrow keys to advance
       </p>
     </div>
   );

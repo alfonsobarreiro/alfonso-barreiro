@@ -5,11 +5,11 @@ import Footer from "@/components/Footer";
 import MSRSlideViewer from "@/components/MSRSlideViewer";
 
 export const metadata: Metadata = {
-  title: "Men's Sole Revival — Slide Deck · Alfonso Barreiro",
+  title: "Men's Sole Revival · Slide Deck · Alfonso Barreiro",
   description:
     "The 11-slide narrative deck for the Men's Sole Revival case study: problem, pivot, brand exploration, design system, component library, site architecture, assessment redesign, and reflection.",
   openGraph: {
-    title: "Men's Sole Revival — Slide Deck · Alfonso Barreiro",
+    title: "Men's Sole Revival · Slide Deck · Alfonso Barreiro",
     description: "The 11-slide narrative deck for the Men's Sole Revival case study.",
     url: "https://barreiro.com/work/presentations/mens-sole-revival",
     siteName: "Alfonso Barreiro",

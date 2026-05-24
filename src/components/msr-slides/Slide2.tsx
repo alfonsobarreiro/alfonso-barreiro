@@ -28,7 +28,7 @@ export default function Slide2() {
 
         <div className="max-w-[680px] mb-12">
           <p className="font-heading italic leading-relaxed" style={{ color: "#13100C", fontSize: 20 }}>
-            I kept Googling the same thing &mdash; &ldquo;cracked heels men fix&rdquo; &mdash; and landing on the same three articles written for women, repackaged with a stock photo of a guy.
+            I kept Googling the same thing (&ldquo;cracked heels men fix&rdquo;) and landing on the same three articles written for women, repackaged with a stock photo of a guy.
           </p>
           <p className="font-body leading-relaxed mt-4" style={{ color: "#6B6560", fontSize: 15 }}>
             The clinical sources were accurate but impersonal. The product sites were selling, not teaching. Nothing spoke to men who actually wanted to understand what was happening to their feet.
@@ -45,7 +45,7 @@ export default function Slide2() {
         </div>
 
         <div className="flex-1 flex flex-col">
-          <h3 className="font-display uppercase tracking-[0.15em] mb-6" style={{ color: "#6B6560", fontSize: 11 }}>Competitive landscape &mdash; Where does the gap live?</h3>
+          <h3 className="font-display uppercase tracking-[0.15em] mb-6" style={{ color: "#6B6560", fontSize: 11 }}>Competitive landscape: Where does the gap live?</h3>
           <div className="flex gap-5 flex-1 items-stretch">
             {buckets.map((b) => (
               <div key={b.id} className="rounded-xl p-6 flex flex-col" style={{ flex: "1 1 0", background: "#FFFFFF", border: "1px solid #EEEDEC", opacity: 0.75 }}>

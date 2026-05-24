@@ -38,7 +38,7 @@ export default function Slide4() {
           <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-2.5 mb-4">
               <div className="flex items-center justify-center rounded-full" style={{ width: 22, height: 22, background: "#EEEDEC", color: "#534F4B", fontSize: 12, fontWeight: 700 }}>✕</div>
-              <span className="font-body font-medium" style={{ color: "#6B6560", fontSize: 14 }}>Blog Format &mdash; Rejected</span>
+              <span className="font-body font-medium" style={{ color: "#6B6560", fontSize: 14 }}>Blog Format · Rejected</span>
             </div>
             <div className="rounded-xl p-6 flex-1 relative" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC", opacity: 0.7 }}>
               <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none" style={{ zIndex: 2 }}>
@@ -67,7 +67,7 @@ export default function Slide4() {
           <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-2.5 mb-4">
               <div className="flex items-center justify-center rounded-full" style={{ width: 22, height: 22, background: "#C4703A", color: "#FFFFFF", fontSize: 12, fontWeight: 700 }}>✓</div>
-              <span className="font-body font-semibold" style={{ color: "#13100C", fontSize: 14 }}>E-Commerce Pattern &mdash; Chosen</span>
+              <span className="font-body font-semibold" style={{ color: "#13100C", fontSize: 14 }}>E-Commerce Pattern · Chosen</span>
             </div>
             <div className="rounded-xl p-6 flex-1 relative overflow-hidden" style={{ background: "#FFFFFF", border: "2px solid #C4703A", boxShadow: "0 4px 20px rgba(196,112,58,0.1)" }}>
               <div className="flex flex-col gap-3">
@@ -75,7 +75,7 @@ export default function Slide4() {
                   <div key={el.label}>
                     <span className="font-display block mb-1.5 uppercase tracking-[0.15em]" style={{ color: "#6B6560", fontSize: 8 }}>{el.label}</span>
                     <div className="rounded flex items-center justify-center" style={{ width: "100%", height: el.h, background: el.label.startsWith("Buy") ? "linear-gradient(135deg, rgba(196,112,58,0.12) 0%, rgba(196,112,58,0.04) 100%)" : "#F8F7F7", border: el.label.startsWith("Buy") ? "1px solid rgba(196,112,58,0.25)" : "1px solid #EEEDEC" }}>
-                      {el.label === "Hero image" && <span className="font-body" style={{ color: "#534F4B", fontSize: 9 }}>Product hero — full width</span>}
+                      {el.label === "Hero image" && <span className="font-body" style={{ color: "#534F4B", fontSize: 9 }}>Product hero · full width</span>}
                       {el.label === "Specs grid" && (
                         <div className="grid grid-cols-3 gap-2 w-full px-3">
                           {["Weight","Drop","Price"].map((spec) => (

@@ -121,7 +121,7 @@ export default function MSRCaseStudy() {
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
             }}>
-              Men&apos;s Sole Revival: a foot health resource for men over 40. Editorial, clinically grounded, product-informed.
+              Men&apos;s Sole Revival: a foot health resource for men over 40.
             </h1>
 
             <p style={{

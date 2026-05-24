@@ -59,7 +59,7 @@ export default function Slide6() {
           ))}
         </div>
 
-        <p className="font-heading italic leading-relaxed mb-5" style={{ color: "#C4703A", fontSize: 13 }}>&ldquo;The roles are explicit, not decorative. Each typeface was chosen for what it does in context &mdash; not how it looks next to the others.&rdquo;</p>
+        <p className="font-heading italic leading-relaxed mb-5" style={{ color: "#C4703A", fontSize: 13 }}>&ldquo;The roles are explicit, not decorative. Each typeface was chosen for what it does in context, not how it looks next to the others.&rdquo;</p>
 
         <div className="flex gap-5">
           {/* Left: Token tiers */}
