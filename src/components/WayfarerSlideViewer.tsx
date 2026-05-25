@@ -280,7 +280,7 @@ export default function WayfarerSlideViewer() {
         fontFamily:    "var(--font-dm-sans), sans-serif",
         letterSpacing: "0.05em",
       }}>
-        {current + 1} / {slides.length} — Use ← → arrow keys to navigate · F for fullscreen
+        {current + 1} / {slides.length} · Use ← → arrow keys to advance · F for fullscreen
       </p>
     </div>
   );

@@ -54,7 +54,7 @@ export default function Slide10() {
         margin: "44px 0 0", maxWidth: 980,
         fontSize: 18, lineHeight: 1.55, color: wf.n700,
       }}>
-        Step 2 establishes context. Step 3 maps interests. Step 4 anchors aspiration. The review screen lets users correct before committing. Each step earns its place — when the framing works, users finish because they want their result.
+        Step 2 establishes context. Step 3 maps interests. Step 4 anchors aspiration. The review screen lets users correct before committing. Each step earns its place. When the framing works, users finish because they want their result.
       </p>
     </SlideFrame>
   );

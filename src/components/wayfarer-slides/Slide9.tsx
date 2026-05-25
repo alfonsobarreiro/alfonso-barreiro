@@ -15,7 +15,7 @@ export default function Slide9() {
         margin: "20px 0 40px", maxWidth: 980,
         fontSize: 18, lineHeight: 1.55, color: wf.n700,
       }}>
-        The globe is the primary entry. Click a region, fly to the continent, hover a pin, open the detail page. The destinations grid is the parallel fallback — same content, filtered by continent, matched to users who already know what region they want.
+        The globe is the primary entry. Click a region, fly to the continent, hover a pin, open the detail page. The destinations grid is the parallel fallback: same content, filtered by continent, matched to users who already know what region they want.
       </p>
 
       <div style={{ display: "flex", gap: 32 }}>

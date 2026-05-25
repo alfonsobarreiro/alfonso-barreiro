@@ -7,11 +7,11 @@ const cards = [
   },
   {
     title: "What I’d test first",
-    body:  "The globe interaction model. It’s the signature feature but also the riskiest on mobile. I don’t know yet whether users treat it as the front door or a novelty — and that question matters more than any visual polish.",
+    body:  "The globe interaction model. It’s the signature feature but also the riskiest on mobile. I don’t know yet whether users treat it as the front door or a novelty, and that question matters more than any visual polish.",
   },
   {
     title: "The honest gap",
-    body:  "No competitive analysis, no user research, no card sort. Decisions reasoned from the brief and the style guide — not validated by talking to the audience. That’s the next step, not a finished one.",
+    body:  "No competitive analysis, no user research, no card sort. Decisions reasoned from the brief and the style guide, not validated by talking to the audience. That’s the next step, not a finished one.",
   },
 ];
 
@@ -24,7 +24,7 @@ export default function Slide15() {
         fontSize: 48, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.015em",
         color: wf.n900, maxWidth: 1100,
       }}>
-        The hardest decision wasn’t any single UI choice.
+        Three reflections on a four-week sprint.
       </h2>
 
       <div style={{ display: "flex", gap: 24 }}>

@@ -5,11 +5,11 @@ import Footer from "@/components/Footer";
 import WayfarerSlideViewer from "@/components/WayfarerSlideViewer";
 
 export const metadata: Metadata = {
-  title: "Wayfarer: Travel Discovery — Slide Deck · Alfonso Barreiro",
+  title: "Wayfarer: Travel Discovery · Slide Deck · Alfonso Barreiro",
   description:
-    "The 16-slide narrative deck for the Wayfarer travel discovery case study — brief, problem framing, design decisions, and the discipline of scope.",
+    "The 16-slide narrative deck for the Wayfarer travel discovery case study: brief, problem framing, design decisions, and the discipline of scope.",
   openGraph: {
-    title: "Wayfarer: Travel Discovery — Slide Deck · Alfonso Barreiro",
+    title: "Wayfarer: Travel Discovery · Slide Deck · Alfonso Barreiro",
     description:
       "The 16-slide narrative deck for the Wayfarer travel discovery case study.",
     url: "https://barreiro.com/work/presentations/wayfarer",
