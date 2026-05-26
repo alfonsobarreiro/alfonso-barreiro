@@ -243,65 +243,80 @@ export default function SpotifyCaseStudy() {
           </div>
         </header>
 
-        {/* ── Cover image ──────────────────────────── */}
-        <div style={{ background: c.bgSection, padding: "64px clamp(24px, 5vw, 80px) 0" }}>
+        {/* ── Feature + System at a glance ────────────────────── */}
+        <div style={{ background: c.bgSection, padding: "64px clamp(24px, 5vw, 80px)" }}>
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
-              <Image
-                src="/images/work/spotify/spotify-hero-cover.webp"
-                alt="Spotify Recently Played Controls. UI preview showing Pin, Remove, and Pause controls on the Home shelf"
-                fill
-                sizes="(max-width: 767px) 100vw, 860px"
-                style={{ objectFit: "cover" }}
-                priority
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* ── System at a glance: Three Controls overview ──────── */}
-        <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 64px" }}>
-          <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <div style={{
-              background:   "#FFFFFF",
-              borderRadius: "8px",
-              padding:      "32px 24px",
-              border:       `1px solid ${c.border}`,
+            <div className="cs-spotify-cover-grid" style={{
+              display:             "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap:                 "clamp(32px, 5vw, 64px)",
+              alignItems:          "center",
             }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         c.accent,
-                margin:        "0 0 20px",
-                textAlign:     "center",
+              {/* Left — live animation of the Remove flow (same one on the homepage hero) */}
+              <div className="cs-spotify-cover-anim" style={{
+                display:        "flex",
+                justifyContent: "center",
+                alignItems:     "center",
+                width:          "100%",
               }}>
-                The system at a glance
-              </p>
-              <div style={{ position: "relative", width: "100%", maxWidth: "720px", margin: "0 auto" }}>
-                <Image
-                  src="/images/work/spotify/spotify-overview-three-controls-cropped.webp"
-                  alt="The three core actions: Pin item, Remove from Recently Played, and Pause Listening History. Each is shelf-native, reversible, and completes in 1 to 2 taps."
-                  width={3640}
-                  height={520}
-                  sizes="(max-width: 860px) 100vw, 720px"
-                  style={{ width: "100%", height: "auto" }}
-                />
+                <SpotifyRemoveAnimation variant="bare" />
               </div>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "12px",
-                lineHeight:    1.5,
-                color:         c.muted,
-                textAlign:     "center",
-                margin:        "20px 0 0",
+
+              {/* Right — system at a glance */}
+              <div style={{
+                background:   "#FFFFFF",
+                borderRadius: "8px",
+                padding:      "32px 24px",
+                border:       `1px solid ${c.border}`,
               }}>
-                Three actions. All shelf-native. All reversible. No settings menus, no buried toggles.
-              </p>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "11px",
+                  fontWeight:    700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color:         c.accent,
+                  margin:        "0 0 20px",
+                }}>
+                  The system at a glance
+                </p>
+                <div style={{ position: "relative", width: "100%" }}>
+                  <Image
+                    src="/images/work/spotify/spotify-overview-three-controls-cropped.webp"
+                    alt="The three core actions: Pin item, Remove from Recently Played, and Pause Listening History. Each is shelf-native, reversible, and completes in 1 to 2 taps."
+                    width={3640}
+                    height={520}
+                    sizes="(max-width: 860px) 100vw, 480px"
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </div>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "12px",
+                  lineHeight:    1.5,
+                  color:         c.muted,
+                  margin:        "20px 0 0",
+                }}>
+                  Three actions. All shelf-native. All reversible. No settings menus, no buried toggles.
+                </p>
+              </div>
             </div>
           </div>
+          <style>{`
+            /* Sized to ~64% of the previous cover width — matches the 36% size-down
+               applied to the MSR case study cover preview. */
+            .cs-spotify-cover-anim .spra-bare {
+              width: clamp(170px, 23vw, 270px);
+            }
+            @media (max-width: 720px) {
+              .cs-spotify-cover-grid {
+                grid-template-columns: 1fr !important;
+              }
+              .cs-spotify-cover-anim .spra-bare {
+                width: clamp(155px, 45vw, 230px);
+              }
+            }
+          `}</style>
         </div>
 
         {/* ── Content wrapper ──────────────────────── */}
@@ -1422,11 +1437,11 @@ export default function SpotifyCaseStudy() {
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
-                Men&apos;s Sole Revival
+                Wayfarer
               </p>
             </div>
             <Link
-              href="/work/mens-sole-revival"
+              href="/work/wayfarer"
               style={{
                 display:       "inline-flex",
                 alignItems:    "center",

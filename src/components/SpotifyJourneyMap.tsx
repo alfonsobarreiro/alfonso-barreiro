@@ -5,6 +5,7 @@ const c = {
   body:        "#3D4440",
   muted:       "#8A8680",
   bgSection:   "#EBEBEA",
+  surface:     "#FFFFFF",
   border:      "#A99B8A",
   borderStrong:"#7E715F",
   green:       "#1ED760",
@@ -26,128 +27,81 @@ export default function SpotifyJourneyMap() {
         marginTop:    "48px",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "none", margin: "0 auto" }}>
 
         {/* ── Eyebrow ── */}
-        <p
-          style={{
-            fontFamily:    font.sans,
-            fontSize:      "11px",
-            fontWeight:    600,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color:         c.muted,
-            margin:        "0 0 32px",
-          }}
-        >
-          User Journey Map
-        </p>
-
-        {/* ── Two-column: slice + insight ── */}
-        <div
-          style={{
-            display:             "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap:                 "clamp(32px, 5vw, 64px)",
-            alignItems:          "center",
-          }}
-          className="cs-journey-grid"
-        >
-          {/* Left — cropped slice with fade-right gradient */}
-          <div
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+          <span style={{ width: "24px", height: "1px", background: c.muted }} />
+          <p
             style={{
-              position:   "relative",
-              overflow:   "hidden",
-              border:     `1px solid ${c.borderStrong}`,
-              flexShrink: 0,
+              fontFamily:    font.sans,
+              fontSize:      "11px",
+              fontWeight:    600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color:         c.muted,
+              margin:        0,
             }}
           >
-            <Image
-              src="/images/work/spotify/spotify-journey-slice.webp"
-              alt="User Journey Map preview showing Stages 1 through 3 of Ranger Dave's flow: Launch and Landing, Scan Recents, Choose Action"
-              width={883}
-              height={1080}
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
+            User Journey Map · Ranger Dave · 7 Stages
+          </p>
+        </div>
 
-            {/* Right-edge fade to signal continuation */}
-            <div
-              style={{
-                position:   "absolute",
-                top:        0,
-                right:      0,
-                bottom:     0,
-                width:      "100px",
-                background: `linear-gradient(to right, transparent, ${c.bgSection})`,
-                pointerEvents: "none",
-              }}
-            />
+        {/* ── Full map, section width ── */}
+        <div
+          style={{
+            position:   "relative",
+            overflow:   "hidden",
+            border:     `1px solid ${c.borderStrong}`,
+            background: c.surface,
+          }}
+        >
+          <Image
+            src="/images/work/spotify/spotify-journey-map.webp"
+            alt="Complete 7-stage User Journey Map for Ranger Dave: Launch and Landing, Scan Recents, Choose Action, Long-press to Reveal, Confirm Decision, Resolve State, and Return to Listening. Each stage notes the user's thought, feeling, and the friction point between Stages 3 and 4 where no visual cue signals that long-press is available."
+            width={1920}
+            height={1080}
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
 
-            {/* Stage indicator */}
-            <div
-              style={{
-                position:   "absolute",
-                bottom:     "14px",
-                left:       "14px",
-                padding:    "4px 10px",
-                background: "rgba(37,43,40,0.75)",
-                backdropFilter: "blur(4px)",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "10px",
-                  fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         "#F5F5F4",
-                }}
-              >
-                Stages 1–3 of 7
-              </span>
-            </div>
-          </div>
-
-          {/* Right — insight text */}
-          <div>
-            <h3
-              style={{
-                fontFamily:    font.display,
-                fontSize:      "clamp(24px, 3vw, 38px)",
-                fontWeight:    400,
-                color:         c.ink,
-                margin:        "0 0 20px",
-                letterSpacing: "-0.025em",
-                lineHeight:    1.15,
-              }}
-            >
-              The gap between seeing a control and trusting it.
-            </h3>
-            <p
-              style={{
-                fontFamily: font.sans,
-                fontSize:   "clamp(15px, 1.8vw, 17px)",
-                lineHeight: 1.7,
-                color:      c.body,
-                margin:     0,
-              }}
-            >
-              Mapping Ranger Dave&rsquo;s 7-stage journey surfaced the highest-friction moment: Stage 3 to Stage 4, from spotting a long-press affordance to committing to an action. No visual cue that the gesture existed. The shelf gave no signal that anything was interactive. That gap drove the decision to design for immediate discoverability, not power-user access patterns.
-            </p>
-          </div>
+        {/* ── Insight as caption below ── */}
+        <div
+          style={{
+            marginTop:   "32px",
+            paddingTop:  "24px",
+            borderTop:   `1px solid ${c.border}`,
+            maxWidth:    "880px",
+          }}
+        >
+          <h3
+            style={{
+              fontFamily:    font.display,
+              fontSize:      "clamp(20px, 2.4vw, 28px)",
+              fontWeight:    400,
+              color:         c.ink,
+              margin:        "0 0 12px",
+              letterSpacing: "-0.02em",
+              lineHeight:    1.2,
+            }}
+          >
+            The gap between seeing a control and trusting it.
+          </h3>
+          <p
+            style={{
+              fontFamily: font.sans,
+              fontSize:   "15px",
+              lineHeight: 1.7,
+              color:      c.body,
+              margin:     0,
+            }}
+          >
+            Mapping Ranger Dave&rsquo;s 7-stage journey surfaced the highest-friction moment: Stage 3 to Stage 4, from spotting a long-press affordance to committing to an action. No visual cue that the gesture existed. The shelf gave no signal that anything was interactive. That gap drove the decision to design for immediate discoverability, not power-user access patterns.
+          </p>
         </div>
 
       </div>
-
-      {/* Mobile responsive override */}
-      <style>{`
-        @media (max-width: 640px) {
-          .cs-journey-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

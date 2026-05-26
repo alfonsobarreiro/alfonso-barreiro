@@ -1202,11 +1202,11 @@ export default function WayfarerCaseStudy() {
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
-                Spotify: Recently Played Controls
+                Men&apos;s Sole Revival
               </p>
             </div>
             <Link
-              href="/work/spotify"
+              href="/work/mens-sole-revival"
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",

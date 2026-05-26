@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MSRPagePeek from "@/components/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
-import SpotifyShelfPeek from "@/components/SpotifyShelfPeek";
+import SpotifyDiagramPeek from "@/components/SpotifyDiagramPeek";
 
 interface Project {
   index:       string;
@@ -22,6 +22,18 @@ interface Project {
 const projects: Project[] = [
   {
     index:       "01",
+    title:       "Men's Sole Revival",
+    subtitle:    "Foot Health Content Platform",
+    description:
+      "A foot health resource for men over 40. The plan was e-commerce until the unit economics broke in week three; the pivot to content authority is what shipped. Live since April 2026.",
+    tags:        ["Content UX", "Visual Design", "Design System"],
+    year:        "2026",
+    status:      "live",
+    href:        "/work/mens-sole-revival",
+    image:       "/cs-msr-preview.jpg",
+  },
+  {
+    index:       "02",
     title:       "Spotify",
     subtitle:    "Recently Played Controls",
     description:
@@ -33,7 +45,7 @@ const projects: Project[] = [
     image:       "/cs-spotify-preview.png",
   },
   {
-    index:       "02",
+    index:       "03",
     title:       "Wayfarer",
     subtitle:    "Travel Discovery Platform",
     description:
@@ -43,18 +55,6 @@ const projects: Project[] = [
     status:      "live",
     href:        "/work/wayfarer",
     image:       "/cs-wayfarer-preview.jpg",
-  },
-  {
-    index:       "03",
-    title:       "Men's Sole Revival",
-    subtitle:    "Foot Health Content Platform",
-    description:
-      "A foot health resource for men over 40. The plan was e-commerce until the unit economics broke in week three; the pivot to content authority is what shipped. Live since April 2026.",
-    tags:        ["Content UX", "Visual Design", "Design System"],
-    year:        "2026",
-    status:      "live",
-    href:        "/work/mens-sole-revival",
-    image:       "/cs-msr-preview.jpg",
   },
 ];
 
@@ -249,48 +249,32 @@ function ProjectCard({
     >
       {/* Left: all text content */}
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
-        {/* Header row */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "28px" }}>
-          <span style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "11px",
-            fontWeight:    600,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            color:         "#C17F4A",
-          }}>
-            {project.index}
-          </span>
-          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        {/* Title block — title left, year rectangle pushed flush right */}
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "14px", marginBottom: "4px", flexWrap: "wrap" }}>
+            <h3 style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "clamp(24px, 2.8vw, 36px)",
+              fontWeight:    600,
+              color:         "#252B28",
+              margin:        0,
+              letterSpacing: "-0.02em",
+            }}>
+              {project.title}
+            </h3>
             <span style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "11px",
+              fontSize:      "12px",
               padding:       "4px 12px",
-              border:        "1px solid rgba(193,127,74,0.30)",
-              color:         "#C17F4A",
-              fontWeight:    600,
+              border:        "1px solid #A99B8A",
+              color:         "#8A8680",
+              fontWeight:    500,
               letterSpacing: "0.06em",
+              whiteSpace:    "nowrap",
             }}>
-              Case Study
-            </span>
-            <span style={{ fontSize: "12px", color: "#8A8680", fontFamily: "var(--font-dm-sans), sans-serif" }}>
               {project.year}
             </span>
           </div>
-        </div>
-
-        {/* Title block */}
-        <div style={{ flex: 1 }}>
-          <h3 style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(24px, 2.8vw, 36px)",
-            fontWeight:    600,
-            color:         "#252B28",
-            margin:        "0 0 4px",
-            letterSpacing: "-0.02em",
-          }}>
-            {project.title}
-          </h3>
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize:   "15px",
@@ -352,31 +336,20 @@ function ProjectCard({
       </div>
 
       {/* Right: image / peek — absolute within its grid column, bleeds to card edges */}
-      {project.title === "Spotify" ? (
-        <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
-          <div className="feat-img-inner" style={{
-            position:   "absolute",
-            top:        "-44px",
-            right:      "-48px",
-            bottom:     "-44px",
-            left:       0,
-            overflow:   "hidden",
-            transition: "transform 0.4s ease",
-            transform:  hovered ? "scale(1.03)" : "scale(1)",
-          }}>
-            <SpotifyShelfPeek paused={hovered} />
-          </div>
-        </div>
-      ) : project.image && (
-        <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
-          <div className="feat-img-inner" style={{
-            position: "absolute",
-            top:      "-44px",
-            right:    "-48px",
-            bottom:   "-44px",
-            left:     0,
-            overflow: "hidden",
-          }}>
+      <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
+        <div className="feat-img-inner" style={{
+          position: "absolute",
+          top:      "-44px",
+          right:    "-48px",
+          bottom:   "-44px",
+          left:     0,
+          overflow: "hidden",
+        }}>
+          {project.title === "Men's Sole Revival" ? (
+            <MSRPagePeek paused={hovered} />
+          ) : project.title === "Wayfarer" ? (
+            <WayfarerGlobePeek paused={hovered} />
+          ) : project.image && (
             <Image
               src={project.image}
               alt={`${project.title}: ${project.subtitle} preview`}
@@ -389,54 +362,46 @@ function ProjectCard({
                 transform:      hovered ? "scale(1.03)" : "scale(1)",
               }}
             />
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 
   /* ── Compact layout: image top, content below ── */
   const isMSR      = project.title === "Men's Sole Revival";
   const isWayfarer = project.title === "Wayfarer";
+  const isSpotify  = project.title === "Spotify";
+
+  // Shared compact image wrapper styles — 16:10 aspect to match the featured top card
+  const compactImgWrapper: React.CSSProperties = {
+    position:     "relative",
+    width:        "calc(100% + 80px)",
+    marginLeft:   "-40px",
+    marginTop:    "-40px",
+    marginBottom: "28px",
+    aspectRatio:  "16 / 10",
+    overflow:     "hidden",
+    borderBottom: "1px solid #A99B8A",
+  };
 
   const compactInner = (
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       {/* Image / peek */}
       {isMSR ? (
-        <div className="compact-img" style={{
-          position:     "relative",
-          width:        "calc(100% + 80px)",
-          marginLeft:   "-40px",
-          marginTop:    "-40px",
-          marginBottom: "28px",
-          overflow:     "hidden",
-          borderBottom: "1px solid #A99B8A",
-        }}>
+        <div className="compact-img" style={compactImgWrapper}>
           <MSRPagePeek paused={hovered} />
         </div>
       ) : isWayfarer ? (
-        <div className="compact-img" style={{
-          position:     "relative",
-          width:        "calc(100% + 80px)",
-          marginLeft:   "-40px",
-          marginTop:    "-40px",
-          marginBottom: "28px",
-          overflow:     "hidden",
-          borderBottom: "1px solid #A99B8A",
-        }}>
+        <div className="compact-img" style={compactImgWrapper}>
           <WayfarerGlobePeek paused={hovered} />
         </div>
+      ) : isSpotify ? (
+        <div className="compact-img" style={compactImgWrapper}>
+          <SpotifyDiagramPeek />
+        </div>
       ) : project.image && (
-        <div className="compact-img" style={{
-          position:     "relative",
-          width:        "calc(100% + 80px)",
-          marginLeft:   "-40px",
-          marginTop:    "-40px",
-          marginBottom: "28px",
-          height:       "280px",
-          overflow:     "hidden",
-          borderBottom: "1px solid #A99B8A",
-        }}>
+        <div className="compact-img" style={{ ...compactImgWrapper, background: "#0F0F0F" }}>
           <Image
             src={project.image}
             alt={`${project.title}: ${project.subtitle} preview`}
@@ -444,7 +409,7 @@ function ProjectCard({
             sizes="600px"
             style={{
               objectFit:      "cover",
-              objectPosition: project.title === "Wayfarer" ? "center 48%" : "center center",
+              objectPosition: "center center",
               transition:     "transform 0.4s ease",
               transform:      hovered ? "scale(1.03)" : "scale(1)",
             }}
@@ -452,47 +417,31 @@ function ProjectCard({
         </div>
       )}
 
-      {/* Header row */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
+      {/* Title row — title left, year rectangle pushed flush right */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "12px", marginBottom: "4px", flexWrap: "wrap" }}>
+        <h3 style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "clamp(20px, 2vw, 28px)",
+          fontWeight:    600,
+          color:         "#252B28",
+          margin:        0,
+          letterSpacing: "-0.02em",
+        }}>
+          {project.title}
+        </h3>
         <span style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "11px",
-          fontWeight:    600,
-          letterSpacing: "0.15em",
-          textTransform: "uppercase",
-          color:         "#C17F4A",
+          padding:       "4px 10px",
+          border:        "1px solid #A99B8A",
+          color:         "#8A8680",
+          fontWeight:    500,
+          letterSpacing: "0.06em",
+          whiteSpace:    "nowrap",
         }}>
-          {project.index}
+          {project.year}
         </span>
-        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-          <span style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "11px",
-            padding:       "4px 12px",
-            border:        isLive ? "1px solid rgba(193,127,74,0.30)" : "1px solid #A99B8A",
-            color:         isLive ? "#C17F4A" : "#8A8680",
-            fontWeight:    isLive ? 600 : 500,
-            letterSpacing: "0.06em",
-          }}>
-            {isLive ? "Case Study" : "Coming Soon"}
-          </span>
-          <span style={{ fontSize: "12px", color: "#8A8680", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-            {project.year}
-          </span>
-        </div>
       </div>
-
-      {/* Title */}
-      <h3 style={{
-        fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(20px, 2vw, 28px)",
-        fontWeight:    600,
-        color:         "#252B28",
-        margin:        "0 0 4px",
-        letterSpacing: "-0.02em",
-      }}>
-        {project.title}
-      </h3>
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
         fontSize:   "14px",

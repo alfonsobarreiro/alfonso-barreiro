@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-// MSR homepage screenshot is 1280 × 4000 (logical px, captured at 2x DPR).
-// Aspect: 0.32 (very tall) — auto-scroll the image vertically inside a 16:10 frame.
+// MSR homepage screenshot is 1280 × 5348 (logical px) — full-page capture of the
+// current live site. Aspect: 0.239 (very tall) — auto-scroll the image vertically
+// inside a 16:10 frame.
 const IMG_W = 1280;
-const IMG_H = 4000;
+const IMG_H = 5348;
 
 export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
   const [reduced, setReduced] = useState(false);
@@ -68,7 +69,7 @@ export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
 
       <style>{`
         .msr-page-track {
-          animation: msr-page-scroll 42s ease-in-out infinite alternate;
+          animation: msr-page-scroll 72s ease-in-out infinite alternate;
         }
         .msr-page-track[data-paused],
         .msr-page-track[data-reduced] {
@@ -76,20 +77,20 @@ export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
         }
         @keyframes msr-page-scroll {
           /*
-           * Track's height is determined by aspectRatio (1280/4000 of width).
+           * Track's height is determined by aspectRatio (1280/5348 of width).
            * Translating by translateY(calc(<container-height> - 100%)) is the goal,
            * but we don't know container height in CSS. Instead, we use the fact that
            * the container is aspectRatio 16/10 — its height is 62.5% of width.
-           * Track height = 100% of width × (4000/1280) = 312.5% of width.
+           * Track height = 100% of width × (5348/1280) = 417.8% of width.
            * We need to translate up so the BOTTOM of the track lines up with the
            * BOTTOM of the container at the end of the animation.
            *   shift = trackHeight - containerHeight
-           *         = 312.5%-of-W − 62.5%-of-W
-           *         = 250%-of-W
-           * Converted to % of TRACK height: 250 / 312.5 = 80%.
+           *         = 417.8%-of-W − 62.5%-of-W
+           *         = 355.3%-of-W
+           * Converted to % of TRACK height: 355.3 / 417.8 = 85%.
            */
           from { transform: translateY(0); }
-          to   { transform: translateY(-80%); }
+          to   { transform: translateY(-85%); }
         }
       `}</style>
     </div>

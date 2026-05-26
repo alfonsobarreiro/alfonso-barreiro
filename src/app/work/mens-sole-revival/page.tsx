@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import MSRPagePeek from "@/components/MSRPagePeek";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 
 export const metadata: Metadata = {
@@ -289,18 +290,18 @@ export default function MSRCaseStudy() {
           </div>
         </div>
 
-        {/* -- Cover image --------------------------------- */}
+        {/* -- Cover: live MSRPagePeek preview (sized to 64% of section width) -- */}
         <div style={{ background: c.bgSection, padding: "48px clamp(24px, 5vw, 80px) 0" }}>
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <Image
-              src="/images/work/msr/msr-cover.webp"
-              alt="Men's Sole Revival homepage. Dark editorial design with foot health content"
-              width={1440}
-              height={810}
-              sizes="(max-width: 767px) 100vw, 860px"
-              style={{ width: "100%", height: "auto", borderRadius: "4px" }}
-              priority
-            />
+            <div style={{
+              width:        "64%",
+              margin:       "0 auto",
+              overflow:     "hidden",
+              borderRadius: "4px",
+              border:       `1px solid ${c.border}`,
+            }}>
+              <MSRPagePeek />
+            </div>
           </div>
         </div>
 
@@ -975,47 +976,24 @@ export default function MSRCaseStudy() {
               {/* Row 1: Rejected directions — half-width, paired, with REJECTED overlay */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
                 {[
-                  { src: "/images/work/msr/msr-clinical.webp", label: "Clinical \u00B7 Rejected" },
-                  { src: "/images/work/msr/msr-salesy.webp",   label: "Salesy \u00B7 Rejected" },
-                ].map(({ src, label }) => (
+                  { src: "/images/work/msr/msr-clinical.webp", label: "Clinical \u00B7 Rejected", position: "center top" },
+                  { src: "/images/work/msr/msr-salesy.webp",   label: "Salesy \u00B7 Rejected",   position: "center top" },
+                ].map(({ src, label, position }) => (
                   <div key={label}>
                     <div style={{
                       position:     "relative",
                       aspectRatio:  "4/3",
                       overflow:     "hidden",
                       border:       `1px solid ${c.border}`,
+                      background:   c.bgSection,
                     }}>
                       <Image
                         src={src}
                         alt={label}
                         fill
                         sizes="(max-width: 767px) 100vw, 420px"
-                        style={{ objectFit: "cover", objectPosition: "top", filter: "grayscale(0.6)", opacity: 0.85 }}
+                        style={{ objectFit: "contain", objectPosition: position }}
                       />
-                      {/* REJECTED diagonal stamp */}
-                      <div style={{
-                        position:       "absolute",
-                        inset:          0,
-                        display:        "flex",
-                        alignItems:     "center",
-                        justifyContent: "center",
-                        pointerEvents:  "none",
-                      }}>
-                        <span style={{
-                          fontFamily:    "var(--font-barlow-condensed), Impact, sans-serif",
-                          fontSize:      "clamp(36px, 8vw, 72px)",
-                          fontWeight:    700,
-                          letterSpacing: "0.08em",
-                          color:         "rgba(176, 58, 46, 0.9)",
-                          border:        "4px solid rgba(176, 58, 46, 0.9)",
-                          padding:       "6px 18px",
-                          transform:     "rotate(-12deg)",
-                          textTransform: "uppercase",
-                          background:    "rgba(255,255,255,0.65)",
-                        }}>
-                          Rejected
-                        </span>
-                      </div>
                     </div>
                     <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
                       {label}
@@ -1074,26 +1052,6 @@ export default function MSRCaseStudy() {
                       <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55, color: c.body, margin: 0 }} dangerouslySetInnerHTML={{ __html: desc }} />
                     </div>
                   ))}
-                </div>
-                {/* Original wireframe image, full-width, labeled as the chosen direction */}
-                <div style={{ marginTop: "16px" }}>
-                  <div style={{
-                    position:     "relative",
-                    aspectRatio:  "16/9",
-                    overflow:     "hidden",
-                    border:       `1px solid ${c.border}`,
-                  }}>
-                    <Image
-                      src="/images/work/msr/msr-wireframe.webp"
-                      alt="Wireframe of the chosen direction. Editorial hero plus a topic grid keyed by foot condition."
-                      fill
-                      sizes="(max-width: 767px) 100vw, 860px"
-                      style={{ objectFit: "cover", objectPosition: "top" }}
-                    />
-                  </div>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
-                    Wireframe \u00B7 Hero + Topic Grid \u00B7 Chosen direction
-                  </p>
                 </div>
               </div>
 
@@ -1955,11 +1913,11 @@ export default function MSRCaseStudy() {
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
-                Wayfarer: Travel Discovery Platform
+                Spotify: Recently Played Controls
               </p>
             </div>
             <Link
-              href="/work/wayfarer"
+              href="/work/spotify"
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",
