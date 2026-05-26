@@ -152,6 +152,7 @@ export default function SpotifyCaseStudy() {
                 { label: "Type",     value: "Solo · Concept" },
                 { label: "Timeline", value: "Nov to Dec 2025" },
                 { label: "Methods",  value: "Constraint mapping · Community signal synthesis" },
+                { label: "Outcome",  value: "Three-sprint concept plan with decisions log + hypothetical test synthesis." },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.green, margin: "0 0 4px" }}>

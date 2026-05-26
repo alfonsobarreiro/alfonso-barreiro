@@ -133,7 +133,7 @@ export default function WayfarerCaseStudy() {
               margin:      "0 0 40px",
               maxWidth:    "640px",
             }}>
-              A DesignLab capstone that started with one brief and kept going. 40+ destinations, an interactive globe, a 5-step signup. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don&apos;t exist yet.
+              A DesignLab capstone built well past the original brief. 40+ destinations, an interactive globe, a 5-step signup. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don&apos;t exist yet.
             </p>
 
             {/* Metadata row */}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MSRPagePeek from "@/components/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
+import SpotifyShelfPeek from "@/components/SpotifyShelfPeek";
 
 interface Project {
   index:       string;
@@ -350,8 +351,23 @@ function ProjectCard({
         </div>
       </div>
 
-      {/* Right: image — absolute within its grid column, bleeds to card edges */}
-      {project.image && (
+      {/* Right: image / peek — absolute within its grid column, bleeds to card edges */}
+      {project.title === "Spotify" ? (
+        <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
+          <div className="feat-img-inner" style={{
+            position:   "absolute",
+            top:        "-44px",
+            right:      "-48px",
+            bottom:     "-44px",
+            left:       0,
+            overflow:   "hidden",
+            transition: "transform 0.4s ease",
+            transform:  hovered ? "scale(1.03)" : "scale(1)",
+          }}>
+            <SpotifyShelfPeek paused={hovered} />
+          </div>
+        </div>
+      ) : project.image && (
         <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
           <div className="feat-img-inner" style={{
             position: "absolute",
