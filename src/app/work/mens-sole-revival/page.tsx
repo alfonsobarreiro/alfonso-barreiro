@@ -1894,6 +1894,53 @@ export default function MSRCaseStudy() {
           </div>
         </div>
 
+        {/* -- Figma source CTA -------------------------- */}
+        <div
+          style={{
+            background:  "#13100C",
+            padding:     "80px clamp(24px, 5vw, 80px)",
+          }}
+        >
+          <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
+            <div style={{ maxWidth: "640px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.cognac, margin: "0 0 12px" }}>
+                Source
+              </p>
+              <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 400, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+                The whole project lives in Figma.
+              </p>
+              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: "rgba(245,243,239,0.65)", margin: 0 }}>
+                Every artifact above comes from the file. Research briefs, IA, the assessment redesign 03a&ndash;03i, brand identity, design system, website pages, and the directions explored before the pivot. Eight sections, ten artifacts, thirteen component sets.
+              </p>
+            </div>
+            <a
+              href="https://www.figma.com/design/ftIe1aelQLB7hOR4PUA9lR/Men-s-Sole-Revival"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display:        "inline-flex",
+                alignItems:     "center",
+                gap:            "10px",
+                padding:        "14px 32px",
+                background:     c.cognac,
+                borderRadius:   "8px",
+                color:          "#F5F5F4",
+                fontFamily:     font.sans,
+                fontSize:       "13px",
+                fontWeight:     500,
+                letterSpacing:  "0.06em",
+                textDecoration: "none",
+                transition:     "opacity 0.2s",
+              }}
+            >
+              Open Figma file
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
         {/* -- Next case study CTA ----------------------- */}
         <div
           style={{
