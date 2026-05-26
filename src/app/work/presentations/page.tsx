@@ -5,7 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Presentations — Case Study Slide Decks · Alfonso Barreiro",
+  title: "Presentations · Case Study Slide Decks · Alfonso Barreiro",
   description:
     "The narrative slide decks for each case study. Skim the deck, or dive into the long-form write-up.",
   openGraph: {
@@ -49,7 +49,7 @@ const decks: Deck[] = [
     slug: "wayfarer",
     title: "Wayfarer: Travel Discovery",
     subtitle:
-      "A concept travel discovery platform — brief framing, the discipline of scope, and what AI-assisted development should and shouldn't expand.",
+      "A concept travel discovery platform. Brief framing, the discipline of scope, and what AI-assisted development should and shouldn't expand.",
     cover: "/images/work/wayfarer/wayfarer-cover.webp",
     coverAlt: "Wayfarer homepage with a tropical coastline hero image",
     meta: "16 slides · 6 min read",
@@ -59,9 +59,9 @@ const decks: Deck[] = [
     slug: "mens-sole-revival",
     title: "Men's Sole Revival",
     subtitle:
-      "Content-first foot health for men — brand direction, design system, and the editorial argument for the pivot from e-commerce.",
+      "Content-first foot health for men. Brand direction, design system, and the editorial argument for the pivot from e-commerce.",
     cover: "/images/work/msr/msr-cover.webp",
-    coverAlt: "Men's Sole Revival homepage — dark editorial design",
+    coverAlt: "Men's Sole Revival homepage · dark editorial design",
     meta: "9 slides · 5 min read",
     caseStudyHref: "/work/mens-sole-revival",
   },
@@ -119,7 +119,7 @@ export default function PresentationsIndex() {
               margin: 0,
               maxWidth: "640px",
             }}>
-              The narrative version of each project — if you want the argument before the long read, or the argument instead of the long read.
+              The narrative version of each project. The argument before the long read, or the argument instead of the long read.
             </p>
           </div>
         </div>
