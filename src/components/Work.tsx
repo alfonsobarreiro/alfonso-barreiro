@@ -25,7 +25,7 @@ const projects: Project[] = [
     title:       "Men's Sole Revival",
     subtitle:    "Foot Health Content Platform",
     description:
-      "A foot health resource for men over 40. The plan was e-commerce until the unit economics broke in week three; the pivot to content authority is what shipped. Live since April 2026.",
+      "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
     tags:        ["Content UX", "Visual Design", "Design System"],
     year:        "2026",
     status:      "live",

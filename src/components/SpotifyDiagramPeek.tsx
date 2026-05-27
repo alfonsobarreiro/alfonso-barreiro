@@ -5,19 +5,20 @@ import { useEffect, useState } from "react";
 /**
  * SpotifyDiagramPeek
  * ─────────────────────────────────────────────────────────────────────────────
- * Spotify card preview on /#work. Slow zoom-out reveal of the Pause state
- * flow diagram. Starts tight on the center, eases out to show the full graph,
- * holds, then quietly resets.
+ * Spotify card preview on /#work. Stays zoomed in on the Pause state flow
+ * diagram so the node labels are legible at thumb size, and runs a soft
+ * horizontal pan so the eye sees the full graph across one calm cycle.
+ *
+ * Zoom level stays constant (scale 1.75) — no zoom in/out. Pan eases left
+ * to right and back, ~22s per round trip, on `alternate` so the motion is
+ * symmetric and never feels like a snap-back.
  *
  * Uses a plain <img> tag (no Next/Image, no CSS background-image) for the
- * highest-fidelity render path. Animation is driven by transform: scale
- * (GPU-accelerated) on top of a base width: 110% so the end state shows
- * almost the entire diagram.
+ * highest-fidelity render path. Pan is driven by GPU-accelerated transform
+ * with `will-change: transform`.
  *
- * 16-second loop: 0–65% zoom out, 65–85% hold at the wide view, 85–100% ease
- * back in for the next cycle.
- *
- * Respects prefers-reduced-motion — freezes at the wide (zoomed-out) state.
+ * Respects prefers-reduced-motion — freezes at the centered pan position
+ * (still informative as a still).
  */
 
 export default function SpotifyDiagramPeek() {
@@ -68,17 +69,16 @@ export default function SpotifyDiagramPeek() {
           transform-origin: center center;
           will-change: transform;
           backface-visibility: hidden;
-          /* Custom easing for very smooth, gentle motion. */
-          animation: sdp-zoom 75s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+          /* Soft pan, constant zoom — eye reads labels at thumb size. */
+          animation: sdp-pan 22s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
         }
         .sdp-img[data-stopped] {
           animation: none;
-          transform: scale(1);
+          transform: scale(1.75) translateX(0);
         }
-        @keyframes sdp-zoom {
-          0%        { transform: scale(2.2); }   /* zoomed in on center */
-          65%, 85%  { transform: scale(1.0); }   /* full diagram, hold */
-          100%      { transform: scale(2.2); }   /* ease back for next loop */
+        @keyframes sdp-pan {
+          from { transform: scale(1.75) translateX(-8%); }
+          to   { transform: scale(1.75) translateX(8%); }
         }
       `}</style>
     </div>
