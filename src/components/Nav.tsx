@@ -122,6 +122,7 @@ export default function Nav() {
               key={link}
               label={link}
               isHome={isHome}
+              routeHref={link === "about" ? "/about" : undefined}
               onScrollClick={() => scrollTo(link)}
             />
           ))}
@@ -238,30 +239,51 @@ export default function Nav() {
         </div>
 
         {/* Nav links */}
-        {navLinks.map((link) => (
-          isHome ? (
+        {navLinks.map((link) => {
+          const overlayLinkStyle: React.CSSProperties = {
+            fontFamily:     "var(--font-dm-sans), sans-serif",
+            fontSize:       "clamp(42px, 12vw, 72px)",
+            fontWeight:     500,
+            color:          "rgba(245,243,239,0.85)",
+            letterSpacing:  "-0.025em",
+            lineHeight:     1.1,
+            background:     "none",
+            border:         "none",
+            borderBottom:   "1px solid rgba(245,243,239,0.08)",
+            cursor:         "pointer",
+            padding:        "12px 0",
+            textAlign:      "left",
+            transition:     "color 0.2s",
+            width:          "100%",
+            display:        "block",
+            textDecoration: "none",
+          };
+          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "#C17F4A");
+          const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "rgba(245,243,239,0.85)");
+
+          // "about" always routes to /about, regardless of current page
+          if (link === "about") {
+            return (
+              <Link
+                key={link}
+                href="/about"
+                onClick={() => setMenuOpen(false)}
+                style={overlayLinkStyle}
+                onMouseEnter={onEnter}
+                onMouseLeave={onLeave}
+              >
+                About
+              </Link>
+            );
+          }
+
+          return isHome ? (
             <button
               key={link}
               onClick={() => handleNavClick(link)}
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(42px, 12vw, 72px)",
-                fontWeight:    500,
-                color:         "rgba(245,243,239,0.85)",
-                letterSpacing: "-0.025em",
-                lineHeight:    1.1,
-                background:    "none",
-                border:        "none",
-                borderBottom:  "1px solid rgba(245,243,239,0.08)",
-                cursor:        "pointer",
-                padding:       "12px 0",
-                textAlign:     "left",
-                transition:    "color 0.2s",
-                width:         "100%",
-                display:       "block",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#C17F4A")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,243,239,0.85)")}
+              style={overlayLinkStyle}
+              onMouseEnter={onEnter}
+              onMouseLeave={onLeave}
             >
               {link.charAt(0).toUpperCase() + link.slice(1)}
             </button>
@@ -270,28 +292,14 @@ export default function Nav() {
               key={link}
               href={`/#${link}`}
               onClick={() => setMenuOpen(false)}
-              style={{
-                fontFamily:     "var(--font-dm-sans), sans-serif",
-                fontSize:       "clamp(42px, 12vw, 72px)",
-                fontWeight:     500,
-                color:          "rgba(245,243,239,0.85)",
-                letterSpacing:  "-0.025em",
-                lineHeight:     1.1,
-                borderBottom:   "1px solid rgba(245,243,239,0.08)",
-                padding:        "12px 0",
-                textAlign:      "left",
-                transition:     "color 0.2s",
-                width:          "100%",
-                display:        "block",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#C17F4A")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,243,239,0.85)")}
+              style={overlayLinkStyle}
+              onMouseEnter={onEnter}
+              onMouseLeave={onLeave}
             >
               {link.charAt(0).toUpperCase() + link.slice(1)}
             </Link>
-          )
-        ))}
+          );
+        })}
 
         {/* CTA */}
         <Link
@@ -393,10 +401,12 @@ function SearchTrigger() {
 function NavLink({
   label,
   isHome,
+  routeHref,
   onScrollClick,
 }: {
   label: string;
   isHome: boolean;
+  routeHref?: string;
   onScrollClick: () => void;
 }) {
   const sharedStyle: React.CSSProperties = {
@@ -413,6 +423,20 @@ function NavLink({
     textDecoration: "none",
     display:       "inline-block",
   };
+
+  // If a routeHref is provided, always navigate to that route (regardless of current page)
+  if (routeHref) {
+    return (
+      <Link
+        href={routeHref}
+        style={sharedStyle}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "#252B28")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8680")}
+      >
+        {label}
+      </Link>
+    );
+  }
 
   if (isHome) {
     return (
