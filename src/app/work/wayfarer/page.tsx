@@ -42,6 +42,13 @@ const c = {
   border:      "#A99B8A",
   borderStrong:"#7E715F",
   navy:        "#3E3C78",   // Wayfarer brand accent (original brief)
+
+  // Hue-matched text colors for use over the dark navy (#1E1C3A) sections.
+  // Same blue-violet family as #C7C5E3, stepped down for hierarchy.
+  // All clear WCAG AA at the relevant sizes.
+  onNavy:      "#E0DEF0",   // primary text over navy (high contrast)
+  onNavyMuted: "#B4B2D4",   // body text over navy (~6.5:1)
+  onNavySoft:  "#9C9AC0",   // annotation / tertiary text (~5:1)
 };
 
 const font = {
@@ -128,8 +135,8 @@ export default function WayfarerCaseStudy() {
             <p style={{
               fontFamily:  font.sans,
               fontSize:    "clamp(16px, 2.2vw, 20px)",
-              lineHeight:  1.55,
-              color:       "rgba(245,243,239,0.65)",
+              lineHeight:  1.6,
+              color:       c.onNavyMuted,
               margin:      "0 0 40px",
               maxWidth:    "640px",
             }}>
@@ -156,7 +163,7 @@ export default function WayfarerCaseStudy() {
                   <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#C7C5E3", margin: "0 0 4px" }}>
                     {label}
                   </p>
-                  <p style={{ fontFamily: font.sans, fontSize: "14px", color: "rgba(245,243,239,0.75)", margin: 0 }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.onNavy, margin: 0 }}>
                     {value}
                   </p>
                 </div>
@@ -228,7 +235,7 @@ export default function WayfarerCaseStudy() {
                       fontWeight:    600,
                       letterSpacing: "0.10em",
                       textTransform: "uppercase",
-                      color:         "rgba(245,243,239,0.75)",
+                      color:         c.onNavy,
                       margin:        "10px 0 0",
                     }}>
                       {label}
@@ -532,9 +539,9 @@ export default function WayfarerCaseStudy() {
               </h2>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "15px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
+                fontSize:   "16px",
+                lineHeight: 1.7,
+                color:      c.onNavyMuted,
                 margin:     0,
               }}>
                 Three features carry the case study: the globe explorer that makes discovery spatial, the destinations grid that offers a filter-first parallel path, and the multi-step signup that turns preference collection into the first act of exploration.
@@ -554,9 +561,9 @@ export default function WayfarerCaseStudy() {
               }}>Globe Explorer</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
+                fontSize:   "15px",
+                lineHeight: 1.7,
+                color:      c.onNavyMuted,
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
               }}>
@@ -629,9 +636,9 @@ export default function WayfarerCaseStudy() {
                         }}>{decision}</p>
                         <p style={{
                           fontFamily: font.sans,
-                          fontSize:   "13px",
-                          lineHeight: 1.65,
-                          color:      "rgba(245,243,239,0.5)",
+                          fontSize:   "14px",
+                          lineHeight: 1.7,
+                          color:      c.onNavyMuted,
                           margin:     0,
                         }}>{caption}</p>
                       </div>
@@ -653,10 +660,10 @@ export default function WayfarerCaseStudy() {
                       background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
-                      color: "rgba(245,243,239,0.4)", margin: 0,
+                      fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
+                      color: c.onNavySoft, margin: 0,
                     }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      <span style={{ color: c.onNavy, fontWeight: 600 }}>{detail}</span>
                       {" \u00B7 "}{why}
                     </p>
                   </div>
@@ -677,9 +684,9 @@ export default function WayfarerCaseStudy() {
               }}>Parallel Entry · Destinations Grid</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
+                fontSize:   "15px",
+                lineHeight: 1.7,
+                color:      c.onNavyMuted,
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
               }}>
@@ -714,10 +721,10 @@ export default function WayfarerCaseStudy() {
                       background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
-                      color: "rgba(245,243,239,0.4)", margin: 0,
+                      fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
+                      color: c.onNavySoft, margin: 0,
                     }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      <span style={{ color: c.onNavy, fontWeight: 600 }}>{detail}</span>
                       {" \u00B7 "}{why}
                     </p>
                   </div>
@@ -738,9 +745,9 @@ export default function WayfarerCaseStudy() {
               }}>Multi-Step Signup</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
+                fontSize:   "15px",
+                lineHeight: 1.7,
+                color:      c.onNavyMuted,
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
               }}>
@@ -788,10 +795,10 @@ export default function WayfarerCaseStudy() {
                       background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
-                      color: "rgba(245,243,239,0.4)", margin: 0,
+                      fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
+                      color: c.onNavySoft, margin: 0,
                     }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      <span style={{ color: c.onNavy, fontWeight: 600 }}>{detail}</span>
                       {" \u00B7 "}{why}
                     </p>
                   </div>
