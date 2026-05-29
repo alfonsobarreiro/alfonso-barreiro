@@ -149,9 +149,12 @@ export default function AboutPage() {
         `}</style>
 
         {/* ── Hero ───────────────────────────────────────────────────── */}
-        {/* Hero photo: Kelly Sikkema, Unsplash (free license). Hands writing
-            on a notebook on a wooden table, soft natural light. Reinforces
-            the "thinking before screens" thesis and the warm cognac palette. */}
+        {/* Hero photo: Brad Neathery, Unsplash (free license). Designer's hand
+            sketching lettering in a notebook on a warm wooden desk, with a
+            DSLR and laptop in the wider frame. Source image is landscape
+            (2400x1603); the 3:4 portrait container crops on the hand and
+            notebook via objectPosition. Reinforces the "thinking before
+            screens" thesis and the warm cognac palette. */}
         <section
           style={{
             padding:    "140px clamp(32px, 6vw, 80px) 96px",
@@ -207,11 +210,11 @@ export default function AboutPage() {
                 >
                   <Image
                     src="/about-hero.jpg"
-                    alt="Hands writing in a notebook on a wooden table, soft natural light."
+                    alt="A designer's hand sketching lettering in a notebook on a warm wooden desk, wristwatch visible, DSLR and laptop in the frame."
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 540px"
-                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    style={{ objectFit: "cover", objectPosition: "35% center" }}
                   />
                 </div>
                 <p
@@ -224,7 +227,7 @@ export default function AboutPage() {
                     margin:        "10px 0 0",
                   }}
                 >
-                  Photo · Kelly Sikkema · Unsplash
+                  Photo · Brad Neathery · Unsplash
                 </p>
               </div>
             </div>
