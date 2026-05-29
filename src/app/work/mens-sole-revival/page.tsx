@@ -413,10 +413,10 @@ export default function MSRCaseStudy() {
             {/* Venn diagram — competitive gap */}
             <div style={{ display: "flex", justifyContent: "center", marginTop: "32px", marginBottom: "8px" }}>
               <svg
-                viewBox="0 0 560 420"
+                viewBox="0 0 560 444"
                 width="560"
-                height="420"
-                style={{ maxWidth: "100%", height: "auto", overflow: "hidden" }}
+                height="444"
+                style={{ maxWidth: "100%", height: "auto", overflow: "visible" }}
                 aria-label="Venn diagram showing Men's Sole Revival at the intersection of Clinical, Wellness, and Product-First content"
               >
                 <defs>
