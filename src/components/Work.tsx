@@ -8,7 +8,6 @@ import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
 import SpotifyDiagramPeek from "@/components/SpotifyDiagramPeek";
 
 interface Project {
-  index:       string;
   title:       string;
   subtitle:    string;
   description: string;
@@ -21,7 +20,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    index:       "01",
     title:       "Men's Sole Revival",
     subtitle:    "Foot Health Content Platform",
     description:
@@ -33,7 +31,6 @@ const projects: Project[] = [
     image:       "/cs-msr-preview.jpg",
   },
   {
-    index:       "02",
     title:       "Spotify",
     subtitle:    "Recently Played Controls",
     description:
@@ -45,7 +42,6 @@ const projects: Project[] = [
     image:       "/cs-spotify-preview.png",
   },
   {
-    index:       "03",
     title:       "Wayfarer",
     subtitle:    "Travel Discovery Platform",
     description:
@@ -249,32 +245,29 @@ function ProjectCard({
     >
       {/* Left: all text content */}
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
-        {/* Title block — title left, year rectangle pushed flush right */}
+        {/* Title block — title with inline year */}
         <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "14px", marginBottom: "4px", flexWrap: "wrap" }}>
-            <h3 style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(24px, 2.8vw, 36px)",
-              fontWeight:    600,
-              color:         "#252B28",
-              margin:        0,
-              letterSpacing: "-0.02em",
-            }}>
-              {project.title}
-            </h3>
+          <h3 style={{
+            fontFamily:    "var(--font-dm-sans), sans-serif",
+            fontSize:      "clamp(24px, 2.8vw, 36px)",
+            fontWeight:    600,
+            color:         "#252B28",
+            margin:        "0 0 4px",
+            letterSpacing: "-0.02em",
+          }}>
+            {project.title}
             <span style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "12px",
-              padding:       "4px 12px",
-              border:        "1px solid #A99B8A",
+              fontWeight:    400,
               color:         "#8A8680",
-              fontWeight:    500,
-              letterSpacing: "0.06em",
+              marginLeft:    "12px",
+              fontSize:      "0.6em",
+              letterSpacing: "0.02em",
+              verticalAlign: "middle",
               whiteSpace:    "nowrap",
             }}>
-              {project.year}
+              · {project.year}
             </span>
-          </div>
+          </h3>
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize:   "15px",
@@ -417,31 +410,28 @@ function ProjectCard({
         </div>
       )}
 
-      {/* Title row — title left, year rectangle pushed flush right */}
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "12px", marginBottom: "4px", flexWrap: "wrap" }}>
-        <h3 style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(20px, 2vw, 28px)",
-          fontWeight:    600,
-          color:         "#252B28",
-          margin:        0,
-          letterSpacing: "-0.02em",
-        }}>
-          {project.title}
-        </h3>
+      {/* Title row — title with inline year */}
+      <h3 style={{
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "clamp(20px, 2vw, 28px)",
+        fontWeight:    600,
+        color:         "#252B28",
+        margin:        "0 0 4px",
+        letterSpacing: "-0.02em",
+      }}>
+        {project.title}
         <span style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
-          padding:       "4px 10px",
-          border:        "1px solid #A99B8A",
+          fontWeight:    400,
           color:         "#8A8680",
-          fontWeight:    500,
-          letterSpacing: "0.06em",
+          marginLeft:    "10px",
+          fontSize:      "0.55em",
+          letterSpacing: "0.02em",
+          verticalAlign: "middle",
           whiteSpace:    "nowrap",
         }}>
-          {project.year}
+          · {project.year}
         </span>
-      </div>
+      </h3>
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
         fontSize:   "14px",
