@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
@@ -148,46 +149,104 @@ export default function AboutPage() {
         `}</style>
 
         {/* ── Hero ───────────────────────────────────────────────────── */}
+        {/* Hero photo: Kelly Sikkema, Unsplash (free license). Hands writing
+            on a notebook on a wooden table, soft natural light. Reinforces
+            the "thinking before screens" thesis and the warm cognac palette. */}
         <section
           style={{
-            padding:    "180px clamp(32px, 6vw, 80px) 96px",
+            padding:    "140px clamp(32px, 6vw, 80px) 96px",
             background: "#FFFFFF",
           }}
         >
-          <div style={innerWrapper}>
-            <div style={eyebrowRow}>
-              <span style={eyebrowDash} />
-              <p style={{ ...eyebrowLabel, color: "#8A8680" }}>About</p>
+          <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
+            <div className="about-hero-grid">
+              {/* Left: text */}
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div style={eyebrowRow}>
+                  <span style={eyebrowDash} />
+                  <p style={{ ...eyebrowLabel, color: "#8A8680" }}>About</p>
+                </div>
+                <h1
+                  style={{
+                    fontFamily:    "var(--font-dm-sans), sans-serif",
+                    fontSize:      "clamp(36px, 4.8vw, 60px)",
+                    fontWeight:    600,
+                    color:         "#252B28",
+                    margin:        "0 0 12px",
+                    letterSpacing: "-0.025em",
+                    lineHeight:    1.1,
+                  }}
+                >
+                  Most design problems aren&apos;t visual problems.
+                </h1>
+                <p
+                  style={{
+                    fontFamily:    "var(--font-dm-sans), sans-serif",
+                    fontSize:      "clamp(20px, 2.6vw, 30px)",
+                    fontWeight:    500,
+                    color:         "#C17F4A",
+                    margin:        0,
+                    letterSpacing: "-0.02em",
+                    lineHeight:    1.2,
+                  }}
+                >
+                  They&apos;re decisions someone hasn&apos;t made yet.
+                </p>
+              </div>
+
+              {/* Right: hero photo */}
+              <div>
+                <div
+                  style={{
+                    position:    "relative",
+                    width:       "100%",
+                    aspectRatio: "3 / 4",
+                    overflow:    "hidden",
+                    background:  "#F5F5F4",
+                  }}
+                >
+                  <Image
+                    src="/about-hero.jpg"
+                    alt="Hands writing in a notebook on a wooden table, soft natural light."
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 540px"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                  />
+                </div>
+                <p
+                  style={{
+                    fontFamily:    "var(--font-dm-sans), sans-serif",
+                    fontSize:      "10px",
+                    color:         "#A99B8A",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    margin:        "10px 0 0",
+                  }}
+                >
+                  Photo · Kelly Sikkema · Unsplash
+                </p>
+              </div>
             </div>
-            <h1
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(36px, 5.5vw, 68px)",
-                fontWeight:    600,
-                color:         "#252B28",
-                margin:        "0 0 12px",
-                letterSpacing: "-0.025em",
-                lineHeight:    1.1,
-                maxWidth:      "880px",
-              }}
-            >
-              Most design problems aren&apos;t visual problems.
-            </h1>
-            <p
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(22px, 3vw, 36px)",
-                fontWeight:    500,
-                color:         "#C17F4A",
-                margin:        0,
-                letterSpacing: "-0.02em",
-                lineHeight:    1.2,
-                maxWidth:      "880px",
-              }}
-            >
-              They&apos;re decisions someone hasn&apos;t made yet.
-            </p>
           </div>
+
+          <style>{`
+            .about-hero-grid {
+              display: grid;
+              grid-template-columns: 1.1fr 0.9fr;
+              gap: 64px;
+              align-items: stretch;
+            }
+            @media (max-width: 768px) {
+              .about-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+              }
+              .about-hero-grid > div:last-child {
+                order: -1;
+              }
+            }
+          `}</style>
         </section>
 
         {/* ── What pulled me into design ─────────────────────────────── */}
