@@ -608,57 +608,7 @@ export default function SpotifyCaseStudy() {
 
           </Section>
 
-          {/* ── 04 · Feature Details ─────────────────── */}
-          <Section label="04" title="Feature Details">
-            <p style={bodyText}>
-              Here&apos;s the reasoning behind the specific decisions that shaped Pin, Remove, and Pause.
-            </p>
-
-            {/* Pin */}
-            <FeatureCard
-              number="01"
-              name="Pin"
-              tagline="Bring your favorites to the front"
-              body="Community forums documented users playing one second of a track to push it to the top of Recently Played. That workaround is the evidence Pin isn't speculative. Cap at 4 keeps it lightweight and out of playlist territory."
-              decisions={[
-                "Cap at 4 pins: prevents scope creep into playlist management; keeps taps-to-pin ≤2.",
-                "Visible Pinned row: makes the feature discoverable; signals clearly that pinning does something.",
-                "Undo on pin/unpin: reversibility is a first-class affordance, not an afterthought.",
-                "Drag/↑↓ reorder: gives power users control over order without requiring a separate screen.",
-              ]}
-            />
-
-            {/* Remove */}
-            <FeatureCard
-              number="02"
-              name="Remove"
-              tagline="Hide an accidental or contextual listen without deleting it"
-              body="Per-item removal, device-scoped. Hides the item from the shelf without deleting listening history. The distinction is explicit in microcopy because Engineering and Support both flagged it as a top confusion risk."
-              decisions={[
-                "Device-scoped: satisfies privacy use case without touching global history or affecting recommendations signal.",
-                "Does not delete history: protects recommendation integrity; avoids a misleading mental model.",
-                "Undo available: keeps the action reversible; reduces CSAT risk.",
-                "Microcopy matters here: 'Removed from this device. Doesn\u2019t delete your listening history.'",
-              ]}
-            />
-
-            {/* Pause */}
-            <FeatureCard
-              number="03"
-              name="Pause"
-              tagline="Stop the clock on a session you'd rather not save"
-              body="Time-boxed pause on history logging: 15 min, 1 hr, 3 hrs, or Until tomorrow. Auto-resumes at the selected time. This constraint came directly from ML: permanent pausing degrades training signal."
-              decisions={[
-                "Time-boxed only: permanent pause would degrade ML training signal. Ruled out in alignment with Recommendations & ML.",
-                "Chip + Resume affordance: makes active pause state visible; gives users an easy escape hatch mid-session.",
-                "Auto-resume: reduces cognitive load; users shouldn't need to remember to turn it back on.",
-                "Start/see/stop in ≤3 clicks: the key metric for this feature; drove the chip placement decision.",
-              ]}
-            />
-
-          </Section>
-
-        </div>{/* /content wrapper (04-05) — break out for full-width walkthrough */}
+        </div>{/* /content wrapper (03 → walkthrough) — break out for full-width walkthrough */}
 
         {/* ── Visual Walkthrough ──────────────────────────── */}
         <div style={{
@@ -1175,6 +1125,56 @@ export default function SpotifyCaseStudy() {
 
         {/* ── Content wrapper (continued) ──────────────────────── */}
         <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
+
+          {/* ── 04 · Feature Details ─────────────────── */}
+          <Section label="04" title="Feature Details">
+            <p style={bodyText}>
+              Here&apos;s the reasoning behind the specific decisions that shaped Pin, Remove, and Pause.
+            </p>
+
+            {/* Pin */}
+            <FeatureCard
+              number="01"
+              name="Pin"
+              tagline="Bring your favorites to the front"
+              body="Community forums documented users playing one second of a track to push it to the top of Recently Played. That workaround is the evidence Pin isn't speculative. Cap at 4 keeps it lightweight and out of playlist territory."
+              decisions={[
+                "Cap at 4 pins: prevents scope creep into playlist management; keeps taps-to-pin ≤2.",
+                "Visible Pinned row: makes the feature discoverable; signals clearly that pinning does something.",
+                "Undo on pin/unpin: reversibility is a first-class affordance, not an afterthought.",
+                "Drag/↑↓ reorder: gives power users control over order without requiring a separate screen.",
+              ]}
+            />
+
+            {/* Remove */}
+            <FeatureCard
+              number="02"
+              name="Remove"
+              tagline="Hide an accidental or contextual listen without deleting it"
+              body="Per-item removal, device-scoped. Hides the item from the shelf without deleting listening history. The distinction is explicit in microcopy because Engineering and Support both flagged it as a top confusion risk."
+              decisions={[
+                "Device-scoped: satisfies privacy use case without touching global history or affecting recommendations signal.",
+                "Does not delete history: protects recommendation integrity; avoids a misleading mental model.",
+                "Undo available: keeps the action reversible; reduces CSAT risk.",
+                "Microcopy matters here: 'Removed from this device. Doesn\u2019t delete your listening history.'",
+              ]}
+            />
+
+            {/* Pause */}
+            <FeatureCard
+              number="03"
+              name="Pause"
+              tagline="Stop the clock on a session you'd rather not save"
+              body="Time-boxed pause on history logging: 15 min, 1 hr, 3 hrs, or Until tomorrow. Auto-resumes at the selected time. This constraint came directly from ML: permanent pausing degrades training signal."
+              decisions={[
+                "Time-boxed only: permanent pause would degrade ML training signal. Ruled out in alignment with Recommendations & ML.",
+                "Chip + Resume affordance: makes active pause state visible; gives users an easy escape hatch mid-session.",
+                "Auto-resume: reduces cognitive load; users shouldn't need to remember to turn it back on.",
+                "Start/see/stop in ≤3 clicks: the key metric for this feature; drove the chip placement decision.",
+              ]}
+            />
+
+          </Section>
 
           {/* ── 05 · Constraints & Tradeoffs ─────────── */}
           <Section label="05" title="Constraints &amp; Trade-offs">
