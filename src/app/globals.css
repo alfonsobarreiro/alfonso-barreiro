@@ -138,6 +138,12 @@ button {
   .cs-problem-card  { flex-direction: column !important; gap: 8px !important; }
   .cs-problem-label { min-width: unset !important; padding-top: 0 !important; }
 
+  /* Case study — Wayfarer §01 Context & Brief: collapse Brief/Audience to one column */
+  .cs-context-grid  { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* Case study — Wayfarer §03 What Not to Build: collapse table+callout sidebar to stacked */
+  .cs-nb-grid       { grid-template-columns: 1fr !important; gap: 24px !important; }
+
   /* Case study — journey map: contain horizontal scroll within the block */
   .cs-journey-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
@@ -307,6 +313,12 @@ button {
 /* ── Case study nav ── */
 .cs-back-link       { color: #8A8680; transition: color 0.2s; }
 .cs-back-link:hover { color: #252B28; }
+
+/* ── Case study — Wayfarer §03 table + Callout sidebar ──
+   When a Callout sits in the right column of the cs-nb-grid layout,
+   strip its own top margin so it aligns to the top of the row with
+   the table on the left. */
+.cs-nb-grid > blockquote { margin: 0 !important; }
 
 /* ── Case study hero thumbnail tape (MSR + Wayfarer)
    Per Cate's review: removed hover border treatment. The lift (translateY)

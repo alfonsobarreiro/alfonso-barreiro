@@ -75,8 +75,9 @@ export default function WayfarerCaseStudy() {
             href="/#work"
             style={{
               fontFamily:     font.sans,
-              fontSize:       "13px",
-              color:          c.muted,
+              fontSize:       "14px",
+              fontWeight:     500,
+              color:          c.body,
               textDecoration: "none",
               display:        "inline-block",
             }}
@@ -86,7 +87,8 @@ export default function WayfarerCaseStudy() {
         </div>
 
         {/* -- Hero ---------------------------------------- */}
-        <header
+        <section
+          aria-labelledby="cs-wayfarer-hero-h1"
           style={{
             background:  "#1E1C3A",
             padding:     "clamp(64px, 10vw, 120px) clamp(24px, 5vw, 80px)",
@@ -120,10 +122,10 @@ export default function WayfarerCaseStudy() {
               </span>
             </div>
 
-            <h1 style={{
+            <h1 id="cs-wayfarer-hero-h1" style={{
               fontFamily:    font.display,
               fontSize:      "clamp(32px, 6vw, 64px)",
-              fontWeight:    400,
+              fontWeight:    500,
               color:         "#F5F5F4",
               margin:        "0 0 16px",
               letterSpacing: "-0.03em",
@@ -245,7 +247,7 @@ export default function WayfarerCaseStudy() {
               </div>
             </div>
           </div>
-        </header>
+        </section>
 
         {/* -- Links ---------------------------------------- */}
         <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
@@ -325,20 +327,65 @@ export default function WayfarerCaseStudy() {
         {/* -- Content wrapper ----------------------------- */}
         <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
-          {/* -- 01 Context & Brief ------------------------ */}
+          {/* -- 01 Context & Brief ------------------------
+              Two-column "Brief / Audience" layout per Cate's review:
+              "Option 2 — Intentional Two-Column Structure: Design Goal +
+              Audience side-by-side, then Constraints + additional context
+              underneath." Removes the halfway-editorial-halfway-dashboard
+              feel of the previous stacked layout. Refactoring UI Part 3
+              (establish spacing, avoid ambiguous spacing) + Part 4
+              (constrained line length). */}
           <Section label="01" title="Context &amp; Brief">
-            <p style={bodyText}>
-              DesignLab assigned me a travel discovery platform called Wayfarer. The brief was specific: redesign the homepage and fix the onboarding flow. Users found the existing multi-step signup confusing, repetitive, and inefficient. The layout was inconsistent across devices. The visual language didn&apos;t match the audience it was trying to reach.
-            </p>
-            <p style={bodyText}>
-              The audience: adventurous travelers aged 21&ndash;30, digitally native, mobile-first, more interested in authentic cultural experiences than resort packages. They research before they commit. They browse before they plan. Wayfarer&apos;s job is to help them discover where to go next, not to book the flight.
-            </p>
+            <div
+              className="cs-context-grid"
+              style={{
+                display:             "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap:                 "clamp(32px, 5vw, 56px)",
+                marginBottom:        "8px",
+              }}
+            >
+              <div>
+                <h3 style={{ ...subheading, margin: "0 0 12px" }}>The brief</h3>
+                <p style={{ ...bodyText, maxWidth: "none", margin: 0 }}>
+                  DesignLab assigned me a travel discovery platform called Wayfarer. The brief was specific: redesign the homepage and fix the onboarding flow. Users found the existing multi-step signup confusing, repetitive, and inefficient. The layout was inconsistent across devices. The visual language didn&apos;t match the audience it was trying to reach.
+                </p>
+              </div>
+              <div>
+                <h3 style={{ ...subheading, margin: "0 0 12px" }}>The audience</h3>
+                <p style={{ ...bodyText, maxWidth: "none", margin: 0 }}>
+                  Adventurous travelers aged 21&ndash;30, digitally native, mobile-first, more interested in authentic cultural experiences than resort packages. They research before they commit. They browse before they plan. Wayfarer&apos;s job is to help them discover where to go next, not to book the flight.
+                </p>
+              </div>
+            </div>
+
             <Callout label="Design constraint">
               Wayfarer is a discovery tool, not a booking platform. The brief said so explicitly.
             </Callout>
-            <p style={bodyText}>
-              The original style guide specified Space Grotesk for headings, Inter for body copy, and a palette anchored in navy, lavender, and terra cotta.
-            </p>
+
+            {/* Style guide micro-strip — small, contained spec row instead
+                of a one-line orphan paragraph. */}
+            <div style={{
+              display:       "flex",
+              flexWrap:      "wrap",
+              gap:           "12px 28px",
+              paddingTop:    "20px",
+              marginTop:     "12px",
+              borderTop:     `1px solid ${c.border}`,
+              fontFamily:    font.sans,
+              fontSize:      "13px",
+              color:         c.body,
+            }}>
+              <span style={{ color: c.muted, textTransform: "uppercase", letterSpacing: "0.1em", fontSize: "11px", fontWeight: 700 }}>
+                Style guide
+              </span>
+              <span>
+                <span style={{ color: c.muted }}>Type · </span>Space Grotesk &middot; Inter
+              </span>
+              <span>
+                <span style={{ color: c.muted }}>Palette · </span>Navy &middot; Lavender &middot; Terra cotta
+              </span>
+            </div>
           </Section>
 
           {/* -- 02 The Problem ----------------------------- */}
@@ -402,45 +449,62 @@ export default function WayfarerCaseStudy() {
               I scaled it back. Removed hotel and car booking from destination pages. Kept the discovery flow, the globe explorer, the trip planner, and the multi-step signup as the center of gravity.
             </p>
 
-            <Callout label="Key insight">
-              AI tools expand what&apos;s possible to build. They don&apos;t expand what should be built.
-            </Callout>
-
-            {/* What was cut vs what survived */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {["Status", "Feature", "Rationale"].map((h) => (
-                      <th key={h} style={thStyle}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { status: "Cut",      feature: "Hotel search and booking",      rationale: "Transactional UI on a discovery platform. Competes for attention with content that drives curiosity." },
-                    { status: "Cut",      feature: "Car rental browsing",           rationale: "Same problem. Adds logistics where the user is still in exploration mode." },
-                    { status: "Cut",      feature: "Price-based filtering",          rationale: "Price anchors the user in booking behavior. Discovery should be destination-led, not cost-led." },
-                    { status: "Cut",      feature: "Booking confirmation flow",      rationale: "Entire transactional path removed. Wayfarer connects users to content, not transactions." },
-                    { status: "Kept",     feature: "Globe explorer",                 rationale: "Primary discovery interface. Curiosity-driven. Matches the brief." },
-                    { status: "Kept",     feature: "Destination detail pages",        rationale: "Content, gallery, travel tips, map. Everything that makes a user want to go." },
-                    { status: "Kept",     feature: "Multi-step signup",              rationale: "Preference collection that personalizes discovery. The form serves the product." },
-                    { status: "Kept",     feature: "Trip planner",                   rationale: "Turns discovery into intention. The bridge between browsing and planning." },
-                  ].map(({ status, feature, rationale }, i) => (
-                    <tr key={feature} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: status === "Cut" ? c.muted : c.navy, textDecoration: status === "Cut" ? "line-through" : "none", textDecorationColor: c.border }}>
-                        {status}
-                      </td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: status === "Cut" ? c.muted : c.ink, textDecoration: status === "Cut" ? "line-through" : "none", textDecorationColor: c.border }}>
-                        {feature}
-                      </td>
-                      <td style={{ ...tdStyle, color: status === "Cut" ? c.muted : c.body }}>
-                        {rationale}
-                      </td>
+            {/* Cut/Kept inventory + Key insight side-by-side per Cate's review:
+                "You could potentially float key insight blocks or supporting
+                information beside those sections instead." The table reads as
+                evidence; the Callout reads as the principle that drove the cuts.
+                Refactoring UI Part 3 — use the surrounding whitespace intentionally
+                instead of letting tables stretch into empty page. */}
+            <div
+              className="cs-nb-grid"
+              style={{
+                display:             "grid",
+                gridTemplateColumns: "1.6fr 1fr",
+                gap:                 "32px",
+                alignItems:          "start",
+                marginTop:           "32px",
+              }}
+            >
+              {/* What was cut vs what survived */}
+              <div className="cs-table-scroll" style={{ border: `1px solid ${c.border}`, overflow: "hidden" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                  <thead>
+                    <tr style={{ background: c.bgSection }}>
+                      {["Status", "Feature", "Rationale"].map((h) => (
+                        <th key={h} style={thStyle}>{h}</th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {[
+                      { status: "Cut",      feature: "Hotel search and booking",      rationale: "Transactional UI on a discovery platform. Competes for attention with content that drives curiosity." },
+                      { status: "Cut",      feature: "Car rental browsing",           rationale: "Same problem. Adds logistics where the user is still in exploration mode." },
+                      { status: "Cut",      feature: "Price-based filtering",          rationale: "Price anchors the user in booking behavior. Discovery should be destination-led, not cost-led." },
+                      { status: "Cut",      feature: "Booking confirmation flow",      rationale: "Entire transactional path removed. Wayfarer connects users to content, not transactions." },
+                      { status: "Kept",     feature: "Globe explorer",                 rationale: "Primary discovery interface. Curiosity-driven. Matches the brief." },
+                      { status: "Kept",     feature: "Destination detail pages",        rationale: "Content, gallery, travel tips, map. Everything that makes a user want to go." },
+                      { status: "Kept",     feature: "Multi-step signup",              rationale: "Preference collection that personalizes discovery. The form serves the product." },
+                      { status: "Kept",     feature: "Trip planner",                   rationale: "Turns discovery into intention. The bridge between browsing and planning." },
+                    ].map(({ status, feature, rationale }, i) => (
+                      <tr key={feature} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
+                        <td style={{ ...tdStyle, fontWeight: 600, color: status === "Cut" ? c.muted : c.navy, textDecoration: status === "Cut" ? "line-through" : "none", textDecorationColor: c.border }}>
+                          {status}
+                        </td>
+                        <td style={{ ...tdStyle, fontWeight: 600, color: status === "Cut" ? c.muted : c.ink, textDecoration: status === "Cut" ? "line-through" : "none", textDecorationColor: c.border }}>
+                          {feature}
+                        </td>
+                        <td style={{ ...tdStyle, color: status === "Cut" ? c.muted : c.body }}>
+                          {rationale}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <Callout label="Key insight">
+                AI tools expand what&apos;s possible to build. They don&apos;t expand what should be built.
+              </Callout>
             </div>
           </Section>
 
