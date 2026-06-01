@@ -1225,10 +1225,10 @@ export default function WayfarerCaseStudy() {
                 },
                 {
                   src:     "/images/work/wayfarer/wayfarer-sig-typography.webp",
-                  aspect:  "1920 / 1194",
+                  aspect:  "1920 / 1786",
                   number:  "02",
                   label:   "TYPOGRAPHY",
-                  caption: "Two typefaces, two jobs, no decorative middle. Display sizes for Space Grotesk, body sizes for Inter, plus a decision note framing why the roles stay structurally separate.",
+                  caption: "Two typefaces, two jobs, no decorative middle. Space Grotesk for the display layer (Display 60 through H4 20). Inter for body, small, and label. Three weight chips per family plus a decision note framing why the roles stay structurally separate.",
                 },
                 {
                   src:     "/images/work/wayfarer/wayfarer-sig-color.webp",
