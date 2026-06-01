@@ -1017,11 +1017,61 @@ export default function WayfarerCaseStudy() {
                 </div>
               </div>
 
-              {/* Logo usage */}
+              {/* Logo usage \u2014 leads with two visual variants per Cate's
+                  review: "you reference 'Logo Usage,' but the logo itself
+                  doesn't appear visually in the section." Variants below
+                  also pre-demonstrate the Background rule. */}
               <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
                 <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
                   Logo Usage
                 </p>
+
+                {/* Visual variants */}
+                <div style={{
+                  display:             "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap:                 "10px",
+                  marginBottom:        "20px",
+                }}>
+                  {/* Dark wordmark on light bg */}
+                  <div style={{
+                    padding:    "28px 16px",
+                    background: c.bgSection,
+                    border:     `1px solid ${c.border}`,
+                    display:    "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                    <Image
+                      src="/images/work/wayfarer/wayfarer-logo.svg"
+                      alt="Wayfarer wordmark on a light background"
+                      width={240}
+                      height={47}
+                      style={{ width: "100%", maxWidth: "140px", height: "auto", display: "block" }}
+                      unoptimized
+                    />
+                  </div>
+                  {/* Inverted wordmark on dark bg */}
+                  <div style={{
+                    padding:    "28px 16px",
+                    background: "#1E1C3A",
+                    border:     `1px solid ${c.border}`,
+                    display:    "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                    <Image
+                      src="/images/work/wayfarer/wayfarer-logo.svg"
+                      alt="Wayfarer wordmark, white treatment on a dark navy background"
+                      width={240}
+                      height={47}
+                      style={{ width: "100%", maxWidth: "140px", height: "auto", display: "block", filter: "invert(1) brightness(2)" }}
+                      unoptimized
+                    />
+                  </div>
+                </div>
+
+                {/* Spec rows */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                   {[
                     { rule: "Clearspace", spec: "Equal to the uppercase \u201CW\u201D height on all sides" },
