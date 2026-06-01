@@ -256,36 +256,41 @@ export default function MSRCaseStudy() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
               {[
-                { label: "Live product", href: "https://www.menssolerevival.com/", external: true },
-                { label: "Slide deck",   href: "/work/presentations/mens-sole-revival", external: false },
-              ].map(({ label, href, external }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
-                  style={{
-                    display:        "inline-flex",
-                    alignItems:     "center",
-                    gap:            "8px",
-                    padding:        "10px 18px",
-                    background:     c.surface,
-                    border:         `1px solid ${c.borderStrong}`,
-                    borderRadius:   "6px",
-                    color:          c.ink,
-                    fontFamily:     font.sans,
-                    fontSize:       "13px",
-                    fontWeight:     500,
-                    letterSpacing:  "0.02em",
-                    textDecoration: "none",
-                  }}
-                >
-                  {label}
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-                    <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </Link>
-              ))}
+                // Primary CTA — the live, deployed product (strongest proof of work)
+                { label: "Live product", href: "https://www.menssolerevival.com/",        external: true,  variant: "primary" },
+                // Secondary — slide deck lives on the portfolio itself (internal nav)
+                { label: "Slide deck",   href: "/work/presentations/mens-sole-revival",   external: false, variant: "ghost"   },
+              ].map(({ label, href, external, variant }) => {
+                const isPrimary = variant === "primary";
+                return (
+                  <Link
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    style={{
+                      display:        "inline-flex",
+                      alignItems:     "center",
+                      gap:            "8px",
+                      padding:        "10px 18px",
+                      background:     isPrimary ? c.ink        : c.surface,
+                      border:         isPrimary ? "none"       : `1px solid ${c.borderStrong}`,
+                      borderRadius:   "6px",
+                      color:          isPrimary ? "#F5F5F4"    : c.ink,
+                      fontFamily:     font.sans,
+                      fontSize:       "13px",
+                      fontWeight:     500,
+                      letterSpacing:  "0.02em",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {label}
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                      <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

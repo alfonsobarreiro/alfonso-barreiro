@@ -263,10 +263,10 @@ export default function WayfarerCaseStudy() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
               {[
-                // Primary CTA — slide deck lives on the portfolio itself (internal nav)
-                { label: "View slide deck",   href: "/work/presentations/wayfarer",        external: false, variant: "primary" },
-                // Secondary — the live, deployed Wayfarer app
-                { label: "Live site \u2197",   href: "https://wayfarer.barreiro.com/",      external: true,  variant: "ghost"   },
+                // Primary CTA — the live, deployed Wayfarer app (strongest proof of work)
+                { label: "Live site ↗",   href: "https://wayfarer.barreiro.com/",      external: true,  variant: "primary" },
+                // Secondary — slide deck lives on the portfolio itself (internal nav)
+                { label: "View slide deck",   href: "/work/presentations/wayfarer",        external: false, variant: "ghost"   },
                 // Figma file intentionally hidden for now — uncomment to expose later
                 // { label: "Figma file",   href: "https://www.figma.com/design/glE8OOm7wbnBsEqD0L4YWz/Wayfarer-Travel", external: true, variant: "ghost" },
               ].map(({ label, href, external, variant }) => {

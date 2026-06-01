@@ -308,12 +308,13 @@ button {
 .cs-back-link       { color: #8A8680; transition: color 0.2s; }
 .cs-back-link:hover { color: #252B28; }
 
-/* ── Case study hero thumbnail tape (MSR + Wayfarer) ── */
+/* ── Case study hero thumbnail tape (MSR + Wayfarer)
+   Per Cate's review: removed hover border treatment. The lift (translateY)
+   plus the label brightening provide a strong enough hover response on their
+   own; the border-color shift was overdesigned on top of the existing motion. */
 .cs-thumb { transition: transform 0.25s ease, opacity 0.2s ease; }
-.cs-thumb > div { transition: border-color 0.2s ease; }
 .cs-thumb > p   { transition: color 0.2s ease; }
 .cs-thumb:hover { transform: translateY(-2px); }
-.cs-thumb:hover > div { border-color: #BE7241 !important; }
 .cs-thumb:hover > p   { color: #F5F3EF !important; }
 
 /* ── MSR Slide viewer ──────────────────────────────────────────────────────
