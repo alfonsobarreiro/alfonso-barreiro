@@ -243,6 +243,51 @@ export default function SpotifyCaseStudy() {
           </div>
         </header>
 
+        {/* ── Links — top-of-page CTA to the slide deck ────────────
+            Mirrors the Wayfarer/MSR pattern so the deck is reachable
+            without scrolling. This is a concept project (no Live Site),
+            so the deck is the primary action. */}
+        <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
+          <div style={{ maxWidth: "none", margin: "0 auto" }}>
+            <p style={{
+              fontFamily:    font.sans,
+              fontSize:      "11px",
+              fontWeight:    600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color:         c.muted,
+              margin:        "0 0 16px",
+            }}>
+              Links
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
+              <Link
+                href="/work/presentations/spotify"
+                style={{
+                  display:        "inline-flex",
+                  alignItems:     "center",
+                  gap:            "8px",
+                  padding:        "10px 18px",
+                  background:     c.ink,
+                  border:         "none",
+                  borderRadius:   "6px",
+                  color:          "#F5F5F4",
+                  fontFamily:     font.sans,
+                  fontSize:       "13px",
+                  fontWeight:     500,
+                  letterSpacing:  "0.02em",
+                  textDecoration: "none",
+                }}
+              >
+                View slide deck
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                  <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* ── Feature + System at a glance ────────────────────── */}
         <div style={{ background: c.bgSection, padding: "64px clamp(24px, 5vw, 80px)" }}>
           <div style={{ maxWidth: "none", margin: "0 auto" }}>

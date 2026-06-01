@@ -43,12 +43,17 @@ const c = {
   borderStrong:"#7E715F",
   navy:        "#3E3C78",   // Wayfarer brand accent (original brief)
 
-  // Hue-matched text colors for use over the dark navy (#1E1C3A) sections.
-  // Same blue-violet family as #C7C5E3, stepped down for hierarchy.
-  // All clear WCAG AA at the relevant sizes.
-  onNavy:      "#E0DEF0",   // primary text over navy (high contrast)
-  onNavyMuted: "#B4B2D4",   // body text over navy (~6.5:1)
-  onNavySoft:  "#9C9AC0",   // annotation / tertiary text (~5:1)
+  // Text colors for use over the dark navy (#1E1C3A) sections.
+  // Warm off-white family (not same-hue lavender) — the earlier pass
+  // tried Refactoring UI's "same hue, lighter and more saturated" rule,
+  // but on this particular navy the lavender tints read as muddled blue.
+  // A neutral warm off-white reads more confidently as editorial body
+  // copy and lets the actual Wayfarer brand accents (navy bar, lavender
+  // decorative bullets) carry the hue. All values clear WCAG AA at the
+  // relevant sizes.
+  onNavy:      "#F5F3EF",   // primary text over navy (~15:1)
+  onNavyMuted: "#D0CCC4",   // body text over navy (~10.5:1)
+  onNavySoft:  "#9D988F",   // annotation / tertiary text (~6:1)
 };
 
 const font = {
@@ -116,7 +121,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    600,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color:         "#C7C5E3",
+                color:         c.onNavyMuted,
               }}>
                 Wayfarer &middot; UX Case Study
               </span>
@@ -162,7 +167,7 @@ export default function WayfarerCaseStudy() {
                 { label: "Outcome",  value: "Discovery-first platform shipped. Trip planner architecture defined." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#C7C5E3", margin: "0 0 4px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.onNavyMuted, margin: "0 0 4px" }}>
                     {label}
                   </p>
                   <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.onNavy, margin: 0 }}>
@@ -186,7 +191,7 @@ export default function WayfarerCaseStudy() {
                   fontWeight:    600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color:         "#C7C5E3",
+                  color:         c.onNavyMuted,
                   margin:        0,
                 }}>
                   What&apos;s downstream
@@ -588,7 +593,7 @@ export default function WayfarerCaseStudy() {
                   fontWeight:    600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color:         "#C7C5E3",
+                  color:         c.onNavyMuted,
                 }}>The Product</span>
               </div>
               <h2 style={{
@@ -620,7 +625,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color:         "#C7C5E3",
+                color:         c.onNavyMuted,
                 margin:        "0 0 12px",
               }}>Globe Explorer</h3>
               <p style={{
@@ -685,7 +690,7 @@ export default function WayfarerCaseStudy() {
                         fontSize:      "10px",
                         fontWeight:    700,
                         letterSpacing: "0.14em",
-                        color:         "#C7C5E3",
+                        color:         c.onNavyMuted,
                         paddingTop:    "2px",
                         flexShrink:    0,
                       }}>{label}</span>
@@ -721,7 +726,7 @@ export default function WayfarerCaseStudy() {
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
                       width: "4px", height: "4px", borderRadius: "50%",
-                      background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
+                      background: c.onNavyMuted, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
                       fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
@@ -743,7 +748,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color:         "#C7C5E3",
+                color:         c.onNavyMuted,
                 margin:        "0 0 12px",
               }}>Parallel Entry · Destinations Grid</h3>
               <p style={{
@@ -782,7 +787,7 @@ export default function WayfarerCaseStudy() {
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
                       width: "4px", height: "4px", borderRadius: "50%",
-                      background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
+                      background: c.onNavyMuted, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
                       fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
@@ -804,7 +809,7 @@ export default function WayfarerCaseStudy() {
                 fontWeight:    700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color:         "#C7C5E3",
+                color:         c.onNavyMuted,
                 margin:        "0 0 12px",
               }}>Multi-Step Signup</h3>
               <p style={{
@@ -856,7 +861,7 @@ export default function WayfarerCaseStudy() {
                   <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
                       width: "4px", height: "4px", borderRadius: "50%",
-                      background: "#C7C5E3", flexShrink: 0, marginTop: "7px",
+                      background: c.onNavyMuted, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
                       fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
