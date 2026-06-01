@@ -372,7 +372,7 @@ export default function SpotifyCaseStudy() {
 
             <h3 style={subheading}>Spotify Personas</h3>
             <p style={bodyText}>
-              These three personas are synthesized from public sources: Spotify Community forum threads, App Store reviews, Reddit discussions about the Recently Played shelf, and Spotify&apos;s published persona work. I used them as the lens for every design decision because they represent the real behavioral range of Recently Played users. The tension between them is what made the design hard: Melanie needs social curation, Dave needs fast access under time pressure, and Stephen tells you where the feature boundary is.
+              These three personas are synthesized from public sources: Spotify Community forum threads, App Store reviews, and Reddit discussions of the Recently Played shelf. The framing was also informed by conversations with practitioners inside the music streaming industry. I treated them as a research lens, not a research finding. They represent the behavioral range visible in public discourse, and the tension between them is what made the design hard: Melanie needs social curation, Dave needs fast access under time pressure, and Stephen tells you where the feature boundary is.
             </p>
             {(() => {
               const personas = [
