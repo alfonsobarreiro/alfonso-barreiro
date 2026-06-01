@@ -274,8 +274,8 @@ export default function WayfarerCaseStudy() {
                 { label: "Live site ↗",   href: "https://wayfarer.barreiro.com/",      external: true,  variant: "primary" },
                 // Secondary — slide deck lives on the portfolio itself (internal nav)
                 { label: "View slide deck",   href: "/work/presentations/wayfarer",        external: false, variant: "ghost"   },
-                // Figma file intentionally hidden for now — uncomment to expose later
-                // { label: "Figma file",   href: "https://www.figma.com/design/glE8OOm7wbnBsEqD0L4YWz/Wayfarer-Travel", external: true, variant: "ghost" },
+                // Tertiary — Figma source, now exposed alongside the editorial DS section
+                { label: "Figma file",  href: "https://www.figma.com/design/glE8OOm7wbnBsEqD0L4YWz/Wayfarer-Travel", external: true, variant: "ghost"   },
               ].map(({ label, href, external, variant }) => {
                 const isPrimary = variant === "primary";
                 return (
@@ -946,182 +946,215 @@ export default function WayfarerCaseStudy() {
             </p>
           </Section>
 
+
+
           {/* -- 06 Design System -------------------------- */}
           <Section label="06" title="Design System">
             <p style={bodyText}>
-              The original DesignLab style guide defined the palette, typography, logo rules, and image direction. Two typefaces, each with a role. Space Grotesk for headings. Inter for body.
+              The original DesignLab style guide defined the palette, typography, logo rules, and image direction. Two typefaces, each with a role. Below, each one is shown set in itself.
             </p>
 
-            {/* Style guide specs — 2x2 grid */}
-            <div className="cs-design-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginTop: "24px" }}>
-
-              {/* Typography */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Typography
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Headings (H1-H4)</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Space Grotesk Bold</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>60, 48, 32, 24px</p>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Body</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.ink, margin: 0 }}>Inter Regular</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "2px 0 0" }}>20, 18, 16px</p>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>Usage</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: 0 }}>Bold for section headings, Regular for body copy</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Color palette — Primary + Secondary */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Palette
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 2px" }}>Primary</p>
-                  {[
-                    { name: "Navy",        hex: "#3E3C78" },
-                    { name: "Lavender",    hex: "#C5C7E3" },
-                    { name: "Deep Indigo", hex: "#2C2B5A" },
-                  ].map(({ name, hex }) => (
-                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
-                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
-                    </div>
-                  ))}
-                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Secondary</p>
-                  {[
-                    { name: "Terra Cotta", hex: "#D27A5E" },
-                    { name: "Sage Green",  hex: "#A3C9A8" },
-                  ].map(({ name, hex }) => (
-                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
-                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
-                    </div>
-                  ))}
-                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "10px 0 2px" }}>Neutrals</p>
-                  {[
-                    { name: "Dark Charcoal", hex: "#2E2E30" },
-                    { name: "Light Gray",    hex: "#D8D9E0" },
-                    { name: "Off-White",     hex: "#F8F9FB" },
-                  ].map(({ name, hex }) => (
-                    <div key={name} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ width: 16, height: 16, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, flex: 1 }}>{name}</span>
-                      <span style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted }}>{hex}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Logo usage \u2014 leads with two visual variants per Cate's
-                  review: "you reference 'Logo Usage,' but the logo itself
-                  doesn't appear visually in the section." Variants below
-                  also pre-demonstrate the Background rule. */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Logo Usage
-                </p>
-
-                {/* Visual variants */}
-                <div style={{
-                  display:             "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap:                 "10px",
-                  marginBottom:        "20px",
+            {/* Typography specimens — each font set in itself */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 0, margin: "24px 0 40px", border: `1px solid ${c.border}` }}>
+              {/* Space Grotesk */}
+              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", borderBottom: `1px solid ${c.border}`, background: c.surface }}>
+                <p style={{
+                  fontFamily:    "var(--font-space-grotesk), \"Space Grotesk\", sans-serif",
+                  fontSize:      "clamp(28px, 5vw, 48px)",
+                  fontWeight:    700,
+                  letterSpacing: "-0.02em",
+                  lineHeight:    1.05,
+                  color:         c.ink,
+                  margin:        "0 0 12px",
                 }}>
-                  {/* Dark wordmark on light bg */}
-                  <div style={{
-                    padding:    "28px 16px",
-                    background: c.bgSection,
-                    border:     `1px solid ${c.border}`,
-                    display:    "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                    <Image
-                      src="/images/work/wayfarer/wayfarer-logo.svg"
-                      alt="Wayfarer wordmark on a light background"
-                      width={240}
-                      height={47}
-                      style={{ width: "100%", maxWidth: "140px", height: "auto", display: "block" }}
-                      unoptimized
-                    />
-                  </div>
-                  {/* Inverted wordmark on dark bg */}
-                  <div style={{
-                    padding:    "28px 16px",
-                    background: "#1E1C3A",
-                    border:     `1px solid ${c.border}`,
-                    display:    "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                    <Image
-                      src="/images/work/wayfarer/wayfarer-logo.svg"
-                      alt="Wayfarer wordmark, white treatment on a dark navy background"
-                      width={240}
-                      height={47}
-                      style={{ width: "100%", maxWidth: "140px", height: "auto", display: "block", filter: "invert(1) brightness(2)" }}
-                      unoptimized
-                    />
-                  </div>
-                </div>
-
-                {/* Spec rows */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  {[
-                    { rule: "Clearspace", spec: "Equal to the uppercase \u201CW\u201D height on all sides" },
-                    { rule: "Minimum size", spec: "40px (mobile), 60px (desktop)" },
-                    { rule: "Background", spec: "White logo on colored or dark backgrounds; dark logo on light backgrounds only" },
-                    { rule: "Positioning", spec: "Top-left corner across all viewports" },
-                  ].map(({ rule, spec }) => (
-                    <div key={rule}>
-                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
-                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
-                    </div>
-                  ))}
-                </div>
+                  Space Grotesk for headings.
+                </p>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "12px",
+                  fontWeight:    600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color:         c.muted,
+                  margin:        "0 0 8px",
+                }}>
+                  Display · 700 · -2% tracking
+                </p>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                  Geometric sans with strong personality. Sized 60 / 48 / 32 / 24 px across H1 to H4 for editorial display moments.
+                </p>
               </div>
 
-              {/* Image style */}
-              <div style={{ padding: "24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.navy, margin: "0 0 16px" }}>
-                  Image Style
+              {/* Inter */}
+              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", background: c.surface }}>
+                <p style={{
+                  fontFamily:    "var(--font-inter), Inter, system-ui, sans-serif",
+                  fontSize:      "clamp(16px, 2vw, 20px)",
+                  fontWeight:    400,
+                  lineHeight:    1.55,
+                  color:         c.ink,
+                  margin:        "0 0 12px",
+                  maxWidth:      "640px",
+                }}>
+                  Inter for body and UI. Legibility at scale, optimized for screen reading at small sizes and for predictable rhythm in long-form content.
                 </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  {[
-                    { rule: "Hero imagery", spec: "Full-bleed with relaxed focal crop" },
-                    { rule: "Destination cards", spec: "Consistent rounded corners across all card types" },
-                    { rule: "Icons", spec: "Secondary icons in terra cotta (#D27A5E) to maintain visual consistency" },
-                  ].map(({ rule, spec }) => (
-                    <div key={rule}>
-                      <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
-                      <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
-                    </div>
-                  ))}
-                </div>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "12px",
+                  fontWeight:    600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color:         c.muted,
+                  margin:        "0 0 8px",
+                }}>
+                  Sans · 400 · body
+                </p>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                  Body, UI, and form labels. Sized 20 / 18 / 16 px. The workhorse, used everywhere outside the display layer.
+                </p>
               </div>
             </div>
 
-            <p style={{ ...bodyText, marginTop: "24px" }}>
+            {/* Palette */}
+            <h3 style={subheading}>Palette</h3>
+            <p style={bodyText}>
+              Anchored in navy, lavender, and terra cotta. Sage green and warm neutrals fill the supporting layer.
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px", margin: "16px 0 40px" }}>
+              {[
+                {
+                  label: "Primary",
+                  colors: [
+                    { name: "Navy",        hex: "#3E3C78" },
+                    { name: "Lavender",    hex: "#C5C7E3" },
+                    { name: "Deep Indigo", hex: "#2C2B5A" },
+                  ],
+                },
+                {
+                  label: "Secondary",
+                  colors: [
+                    { name: "Terra Cotta", hex: "#D27A5E" },
+                    { name: "Sage Green",  hex: "#A3C9A8" },
+                  ],
+                },
+                {
+                  label: "Neutrals",
+                  colors: [
+                    { name: "Dark Charcoal", hex: "#2E2E30" },
+                    { name: "Light Gray",    hex: "#D8D9E0" },
+                    { name: "Off-White",     hex: "#F8F9FB" },
+                  ],
+                },
+              ].map(({ label, colors }) => (
+                <div key={label}>
+                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: c.muted, margin: "0 0 10px" }}>
+                    {label}
+                  </p>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "10px" }}>
+                    {colors.map(({ name, hex }) => (
+                      <div key={name} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 14px", background: c.surface, border: `1px solid ${c.border}` }}>
+                        <span style={{ width: 32, height: 32, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 4, flexShrink: 0 }} />
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.ink, margin: 0 }}>{name}</p>
+                          <p style={{ fontFamily: "monospace", fontSize: "11px", color: c.muted, margin: 0 }}>{hex}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Logo */}
+            <h3 style={subheading}>Logo</h3>
+            <p style={bodyText}>
+              The wordmark anchors the brand. Two treatments, one set of rules.
+            </p>
+
+            <div style={{
+              display:             "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap:                 "10px",
+              margin:              "16px 0 24px",
+            }}>
+              <div style={{
+                padding:    "32px 16px",
+                background: c.bgSection,
+                border:     `1px solid ${c.border}`,
+                display:    "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}>
+                <Image
+                  src="/images/work/wayfarer/wayfarer-logo.svg"
+                  alt="Wayfarer wordmark on a light background"
+                  width={240}
+                  height={47}
+                  style={{ width: "100%", maxWidth: "160px", height: "auto", display: "block" }}
+                  unoptimized
+                />
+              </div>
+              <div style={{
+                padding:    "32px 16px",
+                background: "#1E1C3A",
+                border:     `1px solid ${c.border}`,
+                display:    "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}>
+                <Image
+                  src="/images/work/wayfarer/wayfarer-logo.svg"
+                  alt="Wayfarer wordmark, white treatment on a dark navy background"
+                  width={240}
+                  height={47}
+                  style={{ width: "100%", maxWidth: "160px", height: "auto", display: "block", filter: "invert(1) brightness(2)" }}
+                  unoptimized
+                />
+              </div>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "20px 32px", margin: "0 0 40px" }}>
+              {[
+                { rule: "Clearspace", spec: "Equal to the uppercase W height on all sides" },
+                { rule: "Minimum size", spec: "40px (mobile), 60px (desktop)" },
+                { rule: "Background", spec: "White on dark; dark on light" },
+                { rule: "Positioning", spec: "Top-left across all viewports" },
+              ].map(({ rule, spec }) => (
+                <div key={rule}>
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                  <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Imagery */}
+            <h3 style={subheading}>Imagery</h3>
+            <p style={bodyText}>
+              Hero photography uses full-bleed crops with relaxed focal points. Destination cards stay consistent across card types. Icons follow the secondary palette.
+            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "20px 32px", margin: "8px 0 40px" }}>
+              {[
+                { rule: "Hero imagery",       spec: "Full-bleed with relaxed focal crop" },
+                { rule: "Destination cards",  spec: "Consistent rounded corners across all card types" },
+                { rule: "Icons",              spec: "Secondary icons in terra cotta (#D27A5E)" },
+              ].map(({ rule, spec }) => (
+                <div key={rule}>
+                  <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                  <p style={{ fontFamily: font.sans, fontSize: "13px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Token architecture */}
+            <h3 style={subheading}>Token architecture</h3>
+            <p style={bodyText}>
               The token architecture follows the same three-tier pattern as Men&apos;s Sole Revival and the portfolio site: CSS custom properties as the source of truth, TypeScript semantic aliases for component consumption, and Tailwind utilities for development. Same naming convention across all three projects. One vocabulary, different values per property.
             </p>
 
-            <details style={{ marginTop: "8px" }}>
-              <summary style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.navy, cursor: "pointer", padding: "12px 0", letterSpacing: "0.02em" }}>
-                Show the cross-project token comparison table
-              </summary>
-            {/* Token table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
+            {/* Token table — un-hidden (was inside <details>) */}
+            <div className="cs-table-scroll" style={{ marginTop: "16px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
               <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ background: c.bgSection }}>
@@ -1171,9 +1204,18 @@ export default function WayfarerCaseStudy() {
             <p style={{ ...bodyText, marginTop: "10px", fontSize: "13px", color: c.muted }}>
               Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
             </p>
-            </details>
-          </Section>
 
+            {/* PHASE 2 TODO — Signature artifacts (Figma exports).
+                MSR has full-page Figma export images here (Brand & Identity,
+                Product UI/UX, Design System · Components — see
+                src/app/work/mens-sole-revival/page.tsx around line 1406-1480
+                for the pattern). Wayfarer's Figma file doesn't yet have
+                parallel signature boards built out. When those are designed
+                and exported, drop the WebPs in
+                public/images/work/wayfarer/wayfarer-sig-*.webp and add the
+                matching block here. */}
+
+          </Section>
 
           {/* -- 07 Outcomes ------------------------------- */}
           <Section label="07" title="Outcomes">
@@ -1312,6 +1354,53 @@ export default function WayfarerCaseStudy() {
           </Section>
 
         </div>{/* /content wrapper */}
+
+        {/* -- Figma source CTA -------------------------- */}
+        <div
+          style={{
+            background:  "#1E1C3A",
+            padding:     "80px clamp(24px, 5vw, 80px)",
+          }}
+        >
+          <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
+            <div style={{ maxWidth: "640px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#D27A5E", margin: "0 0 12px" }}>
+                Source
+              </p>
+              <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 500, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+                The whole project lives in Figma.
+              </p>
+              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.onNavyMuted, margin: 0 }}>
+                Style guide, IA, signup flow, destination templates, and the design system tokens. The file is the source of truth; this case study is the editorial cut.
+              </p>
+            </div>
+            <a
+              href="https://www.figma.com/design/glE8OOm7wbnBsEqD0L4YWz/Wayfarer-Travel"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display:        "inline-flex",
+                alignItems:     "center",
+                gap:            "10px",
+                padding:        "14px 32px",
+                background:     "#D27A5E",
+                borderRadius:   "8px",
+                color:          "#F5F5F4",
+                fontFamily:     font.sans,
+                fontSize:       "13px",
+                fontWeight:     500,
+                letterSpacing:  "0.06em",
+                textDecoration: "none",
+                transition:     "opacity 0.2s",
+              }}
+            >
+              Open Figma file
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
         {/* -- Next case study CTA ----------------------- */}
         <div
