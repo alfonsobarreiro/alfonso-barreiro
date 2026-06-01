@@ -1205,15 +1205,94 @@ export default function WayfarerCaseStudy() {
               Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
             </p>
 
-            {/* PHASE 2 TODO — Signature artifacts (Figma exports).
-                MSR has full-page Figma export images here (Brand & Identity,
-                Product UI/UX, Design System · Components — see
-                src/app/work/mens-sole-revival/page.tsx around line 1406-1480
-                for the pattern). Wayfarer's Figma file doesn't yet have
-                parallel signature boards built out. When those are designed
-                and exported, drop the WebPs in
-                public/images/work/wayfarer/wayfarer-sig-*.webp and add the
-                matching block here. */}
+            {/* Signature artifacts — four Figma pages pulled out for portfolio
+                handoff. Each one stands on its own. Together they document the
+                visual system, the production component library, and the IA the
+                product is built on. */}
+            <h3 style={subheading}>The system, by page</h3>
+            <p style={bodyText}>
+              Four pages from the Wayfarer Figma file, exported at native resolution. Each is its own deep dive; together they show the design system at the depth a senior reviewer would want.
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "16px" }}>
+              {[
+                {
+                  src:     "/images/work/wayfarer/wayfarer-sig-typography.webp",
+                  aspect:  "1920 / 1194",
+                  number:  "01",
+                  label:   "TYPOGRAPHY",
+                  caption: "Two typefaces, two jobs, no decorative middle. Display sizes for Space Grotesk, body sizes for Inter, plus a decision note framing why the roles stay structurally separate.",
+                },
+                {
+                  src:     "/images/work/wayfarer/wayfarer-sig-color.webp",
+                  aspect:  "1920 / 3442",
+                  number:  "02",
+                  label:   "COLOR",
+                  caption: "One palette, three roles, two modes. Ten-step primitive ramps for Brand (Navy), Accent (Terra Cotta), Sage, and Neutral, plus utility colors, plus fifty-plus semantic tokens that swap between Light and Dark cleanly.",
+                },
+                {
+                  src:     "/images/work/wayfarer/wayfarer-sig-components-teaser.webp",
+                  aspect:  "1664 / 1279",
+                  number:  "03",
+                  label:   "COMPONENTS · TEASER",
+                  caption: "Eighteen sections of production components in the file, each mapped to its source file in the Next.js app. The Color section is shown here; type styles, buttons, inputs, navbar, footer, modals, and destination cards continue down the page.",
+                },
+                {
+                  src:     "/images/work/wayfarer/wayfarer-sig-sitemap.webp",
+                  aspect:  "1920 / 1378",
+                  number:  "04",
+                  label:   "SITE MAP & USER FLOW",
+                  caption: "Six routes, two flows, one discovery loop. The IA tree shows every route, modal, and overlay; the user flow shows the curiosity-to-commitment path from land through to print-to-PDF export.",
+                },
+              ].map(({ src, aspect, number, label, caption }) => (
+                <div key={src}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
+                    <span style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "11px",
+                      fontWeight:    700,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color:         c.accent,
+                    }}>{number}</span>
+                    <span style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "11px",
+                      fontWeight:    700,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color:         c.ink,
+                    }}>{label}</span>
+                  </div>
+                  <div style={{
+                    position:    "relative",
+                    aspectRatio: aspect,
+                    border:      `1px solid ${c.border}`,
+                    background:  c.bgSection,
+                    overflow:    "hidden",
+                  }}>
+                    <Image
+                      src={src}
+                      alt={`Wayfarer ${label}`}
+                      fill
+                      sizes="(max-width: 767px) 100vw, 1100px"
+                      style={{ objectFit: "contain", objectPosition: "top" }}
+                    />
+                  </div>
+                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.55, margin: "10px 0 0", maxWidth: "780px" }}>
+                    {caption}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* TODO PHASE 1B — Add Brand & Identity signature artifact (01)
+                once the Wayfarer Figma Brand & Identity page is augmented from
+                3 sections (Signature / Colorways / Usage) to 7 (add Palette,
+                Typography, Glyphs, Applications to match MSR's brand sig
+                quality bar). When done, prepend a new entry with
+                number "01" and label "BRAND & IDENTITY" to the array above
+                and renumber the others 02-05. */}
 
           </Section>
 
