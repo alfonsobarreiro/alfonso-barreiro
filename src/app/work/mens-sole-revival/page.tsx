@@ -1705,8 +1705,36 @@ export default function MSRCaseStudy() {
           {/* -- 10 Impact -------------------------------- */}
           <Section label="10" title="Impact">
             <p style={bodyText}>
-              Success is defined before the data exists. Below: proxy metrics for each hypothesis, a phased evaluation plan, and the decision criteria that would tell us to stop, iterate, or scale. No fabricated numbers. No live data yet. Five things to measure, in priority order.
+              The site went live in April 2026, so the first real numbers are in. Below: early outcomes from the first nine weeks, then proxy metrics for each remaining hypothesis, a phased evaluation plan, and the decision criteria that would tell us to stop, iterate, or scale. No fabricated numbers.
             </p>
+
+            {/* Early outcomes box (live data) */}
+            <div style={{
+              margin:     "24px 0",
+              padding:    "24px 28px",
+              background: c.surface,
+              border:     `1px solid ${c.border}`,
+              borderLeft: `3px solid ${c.cognac}`,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "10px",
+                fontWeight:    700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         c.cognac,
+                margin:        "0 0 10px",
+              }}>Early outcomes &middot; first 9 weeks live (GA4, Apr&ndash;Jun 2026)</p>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+                <strong style={{ color: c.ink }}>4m 53s average engaged time per session.</strong> High for a content site, and the exact signal MSR was built to produce: visitors stay to read, they don&apos;t bounce.
+              </p>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+                <strong style={{ color: c.ink }}>~3.2 sessions per user</strong> across 33 early visitors in 6 countries, with zero paid promotion. Early readers come back.
+              </p>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                <strong style={{ color: c.ink }}>The honest gap:</strong> traffic is almost entirely direct; organic search is just beginning. SEO is the clear next lever, and the phased plan below is how I&apos;ll measure whether engaged time holds as the audience grows.
+              </p>
+            </div>
 
             {/* Validation approach box */}
             <div style={{
