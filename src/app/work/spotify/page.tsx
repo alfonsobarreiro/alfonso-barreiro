@@ -218,7 +218,7 @@ export default function SpotifyCaseStudy() {
                         src={src}
                         alt=""
                         fill
-                        sizes="(max-width: 767px) 50vw, 220px"
+                        sizes="(min-width: 768px) 220px, (min-width: 425px) 50vw, 100vw"
                         style={{
                           objectFit:      dark ? "cover" : "contain",
                           objectPosition: position,
@@ -722,9 +722,11 @@ export default function SpotifyCaseStudy() {
               </p>
               <div style={{
                 display:             "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
                 gap:                 "clamp(16px, 3vw, 32px)",
                 alignItems:          "start",
+                maxWidth:            "640px",
+                margin:              "0 auto",
               }}>
                 {[
                   {
@@ -759,7 +761,7 @@ export default function SpotifyCaseStudy() {
                         src={src}
                         alt={alt}
                         fill
-                        sizes="(max-width: 767px) 100vw, 33vw"
+                        sizes="(min-width: 768px) 220px, (min-width: 425px) 50vw, 100vw"
                         style={{ objectFit: "cover", objectPosition: "top" }}
                       />
                     </div>
@@ -939,9 +941,11 @@ export default function SpotifyCaseStudy() {
               </p>
               <div style={{
                 display:             "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
                 gap:                 "clamp(16px, 3vw, 32px)",
                 alignItems:          "start",
+                maxWidth:            "640px",
+                margin:              "0 auto",
               }}>
                 {[
                   {
@@ -976,7 +980,7 @@ export default function SpotifyCaseStudy() {
                         src={src}
                         alt={alt}
                         fill
-                        sizes="(max-width: 767px) 100vw, 33vw"
+                        sizes="(min-width: 768px) 220px, (min-width: 425px) 50vw, 100vw"
                         style={{ objectFit: "cover", objectPosition: "top" }}
                       />
                     </div>
