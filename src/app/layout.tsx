@@ -3,6 +3,11 @@ import { DM_Serif_Display, DM_Sans, Barlow_Condensed, Lora, Space_Grotesk, Inter
 import Script from "next/script";
 import "./globals.css";
 
+// GA4 Measurement ID — set NEXT_PUBLIC_GA_ID on Vercel to enable.
+// Inert when missing; vanilla <Script> tags mirror the Clarity pattern
+// already in this file rather than pulling in @next/third-parties.
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
   weight: "400",
@@ -97,6 +102,11 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
+  // Google Search Console verification — set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+  // on Vercel with the meta-content value from Search Console. Inert when missing.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  },
 };
 
 export default function RootLayout({
@@ -115,6 +125,20 @@ export default function RootLayout({
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "wsni68sbvw");`}
         </Script>
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaId}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
