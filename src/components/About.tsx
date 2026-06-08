@@ -253,8 +253,8 @@ export default function About() {
                 lineHeight:    1.15,
               }}
             >
-              Thirty years of building.<br />
-              <span style={{ color: "#C17F4A" }}>Still asking why it doesn&apos;t work better.</span>
+              Different problems, same question:<br />
+              <span style={{ color: "#C17F4A" }}>Why doesn&apos;t this work better?</span>
             </h2>
 
             <p
@@ -266,11 +266,10 @@ export default function About() {
                 marginBottom: "20px",
               }}
             >
-              I wrote my first code at eight, typing BASIC line by line from a magazine
-              into an Atari 800. I built my first website at 22, a Rush fan site that
-              probably broke every design rule that existed. Thirty years later, I&apos;m
-              still doing the same thing: staring at something on a screen and asking
-              why it doesn&apos;t work better.
+              I learned BASIC from a magazine, typing it line by line. I built my
+              first website as a Rush fan site that probably broke every design
+              rule that existed. I&apos;m still doing the same thing: staring at
+              something on a screen and asking why it doesn&apos;t work better.
             </p>
             <p
               style={{
@@ -296,7 +295,7 @@ export default function About() {
                 marginBottom: "40px",
               }}
             >
-              At 56, I still learn like I&apos;m running out of time. I&apos;m teaching
+              I still learn like I&apos;m running out of time. I&apos;m teaching
               myself Hiragana. I walk five miles a day, building back toward a marathon.
               I meditate. I watch birds. I read everything. If that sounds like someone
               with too many interests, you&apos;re probably right. But the curiosity is
