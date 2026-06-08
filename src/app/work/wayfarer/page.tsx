@@ -204,6 +204,7 @@ export default function WayfarerCaseStudy() {
                 gap:                 "16px",
               }}>
                 {[
+                  { label: "↓ Site map (IA)",      src: "/images/work/wayfarer/wayfarer-sig-sitemap.webp",        href: "#section-05"         },
                   { label: "↓ Globe explorer",     src: "/images/work/wayfarer/wayfarer-globe-overview.webp",     href: "#walkthrough-globe"  },
                   { label: "↓ Destination detail", src: "/images/work/wayfarer/wayfarer-destination-detail.webp", href: "#walkthrough-globe"  },
                   { label: "↓ Destinations grid",  src: "/images/work/wayfarer/wayfarer-destinations-grid.webp",  href: "#walkthrough-grid"   },
@@ -313,19 +314,42 @@ export default function WayfarerCaseStudy() {
           </div>
         </div>
 
-        {/* -- Cover image --------------------------------- */}
+        {/* -- Cover image ---------------------------------
+            Structure-first: the IA tree, not the globe, is the
+            first image after the hero. The case study's central
+            claim is that browse-first IA beat search-first IA;
+            leading with the site map makes that claim land at
+            first scroll instead of waiting until §05. The globe
+            still appears second in the thumbnail tape above and
+            in §04's walkthrough — it isn't hidden, it just isn't
+            the headline. */}
         <div style={{ background: c.bgSection, padding: "48px clamp(24px, 5vw, 80px) 0" }}>
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
+            <div style={{
+              position:    "relative",
+              aspectRatio: "1920 / 1378",
+              overflow:    "hidden",
+              background:  "#1E1C3A",
+            }}>
               <Image
-                src="/images/work/wayfarer/wayfarer-cover.webp"
-                alt="Wayfarer Travel homepage with interactive globe explorer and destination discovery"
+                src="/images/work/wayfarer/wayfarer-sig-sitemap.webp"
+                alt="Wayfarer site map — six routes, two flows, one discovery loop. Browse-first information architecture with the globe and grid landing on the same destination pages."
                 fill
                 sizes="(max-width: 767px) 100vw, 860px"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "contain" }}
                 priority
               />
             </div>
+            <p style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "12px",
+              color:         "rgba(37,43,40,0.55)",
+              letterSpacing: "0.04em",
+              margin:        "12px 0 0",
+              textAlign:     "center",
+            }}>
+              The IA artifact, surfaced first. Full system in &sect;05; the globe walkthrough sits in &sect;04.
+            </p>
           </div>
         </div>
 
