@@ -156,7 +156,7 @@ export default function Work() {
                   fontFamily:    "var(--font-dm-sans), sans-serif",
                 }}
               >
-                Selected Work
+                Selected Work · 2026
               </p>
             </div>
             <h2

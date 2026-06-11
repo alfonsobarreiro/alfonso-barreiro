@@ -120,22 +120,24 @@ export default function Hero() {
             <span style={{ color: "#C17F4A" }}>Barreiro</span>
           </h1>
 
-          {/* Supporting statement */}
+          {/* Positioning statement — lifted from /about, the sharper one-line
+              value capture the homepage was missing. Replaces the previous
+              "three case studies below" directory line; the visible case
+              studies in the Work section now carry the directory job. */}
           <p
             className="hero-reveal"
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
               fontSize:     "clamp(16px, 1.7vw, 19px)",
               lineHeight:   1.65,
-              color:        "#8A8680",
+              color:        "#3D4440",
               maxWidth:     "480px",
               marginBottom: "44px",
               fontWeight:   400,
             }}
           >
-            Three case studies below: a Spotify control set for power users
-            on shared screens, a travel discovery platform with an interactive
-            globe, and a foot health resource for men over 40.
+            Most design problems aren&apos;t visual problems. They&apos;re
+            decisions someone hasn&apos;t made yet.
           </p>
 
           {/* CTAs */}

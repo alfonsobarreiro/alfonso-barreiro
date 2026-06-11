@@ -302,11 +302,15 @@ export default function About() {
               the same muscle I use in research. I just don&apos;t turn it off.
             </p>
 
-            {/* Contact CTAs — primary message link + direct channels */}
-            <div style={{ display: "grid", gridTemplateColumns: "auto auto", justifyContent: "start", gap: "10px" }}>
+            {/* Contact CTAs — primary message link + resume. Trimmed from
+                four (was: Send / Resume / LinkedIn / Coffee in Portland) to
+                two for home restraint, matching the Cate-style quieter
+                home pattern. LinkedIn + Cal.com booking still live on
+                /contact and in the footer. */}
+            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
               <Link
                 href="/contact"
-                style={{ ...pillPrimary, gridColumn: "1 / -1", transition: "transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s" }}
+                style={{ ...pillPrimary, transition: "transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s" }}
                 onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(193,127,74,0.25)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
               >
@@ -321,26 +325,6 @@ export default function About() {
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#7E715F"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <DownloadIcon /> Resume
-              </a>
-              <a
-                href="https://www.linkedin.com/in/alfonso-barreiro/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={pillDefault}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#7E715F"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                <LinkedInIcon /> LinkedIn
-              </a>
-              <a
-                href="https://cal.com/alfonso-barreiro"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ ...pillAccent, gridColumn: "1 / -1" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.75)"; e.currentTarget.style.background = "rgba(193,127,74,0.12)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.45)"; e.currentTarget.style.background = "rgba(193,127,74,0.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                <CoffeeIcon /> Coffee in Portland
               </a>
             </div>
           </div>
