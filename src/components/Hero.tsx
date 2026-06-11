@@ -243,7 +243,7 @@ export default function Hero() {
                 fontWeight:    700,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color:         "#C17F4A",
+                color:         "#8A8680",
                 margin:        "0 0 8px",
               }}
             >
@@ -315,7 +315,7 @@ export default function Hero() {
           letterSpacing: "0.12em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          animation:     "scrollBounce 2s ease-in-out 1.2s 3",
+          animation:     "scrollBounce 2s ease-in-out 1.2s 3, scrollFadeOut 0.5s ease-out 7.2s forwards",
         }}
       >
         <div
@@ -343,6 +343,13 @@ export default function Hero() {
           .hero-featured {
             width: 100% !important;
           }
+        }
+        /* Scroll indicator: fade out after the 3rd bounce completes (1.2s
+           delay + 3 × 2s bounce = 7.2s). Honors the restraint elsewhere on
+           the page instead of leaving a static indicator parked at the
+           bottom of the hero. */
+        @keyframes scrollFadeOut {
+          to { opacity: 0; }
         }
       `}</style>
     </section>

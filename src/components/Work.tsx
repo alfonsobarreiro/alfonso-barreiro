@@ -182,7 +182,7 @@ export default function Work() {
             display:             "grid",
             gridTemplateColumns: "1fr 1fr",
             gridTemplateRows:    "auto auto",
-            gap:                 "16px",
+            gap:                 "24px",
           }}
         >
           {/* Feature card — spans both columns */}
