@@ -327,29 +327,18 @@ export default function WayfarerCaseStudy() {
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <div style={{
               position:    "relative",
-              aspectRatio: "1920 / 1378",
+              aspectRatio: "2 / 1",
               overflow:    "hidden",
-              background:  "#1E1C3A",
             }}>
               <Image
-                src="/images/work/wayfarer/wayfarer-sig-sitemap.webp"
-                alt="Wayfarer site map — six routes, two flows, one discovery loop. Browse-first information architecture with the globe and grid landing on the same destination pages."
+                src="/images/work/wayfarer/wayfarer-cover.webp"
+                alt="Wayfarer homepage. Interactive globe explorer with hidden gems grid below, the visitor's first encounter with the product."
                 fill
-                sizes="(max-width: 767px) 100vw, 860px"
-                style={{ objectFit: "contain" }}
+                sizes="(max-width: 767px) 100vw, 1280px"
+                style={{ objectFit: "cover", objectPosition: "top" }}
                 priority
               />
             </div>
-            <p style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "12px",
-              color:         "rgba(37,43,40,0.55)",
-              letterSpacing: "0.04em",
-              margin:        "12px 0 0",
-              textAlign:     "center",
-            }}>
-              The IA artifact, surfaced first. Full system in &sect;05; the globe walkthrough sits in &sect;04.
-            </p>
           </div>
         </div>
 
@@ -1268,13 +1257,6 @@ export default function WayfarerCaseStudy() {
                   label:   "COMPONENTS · TEASER",
                   caption: "Eighteen sections of production components in the file, each mapped to its source file in the Next.js app. The Color section is shown here; type styles, buttons, inputs, navbar, footer, modals, and destination cards continue down the page.",
                 },
-                {
-                  src:     "/images/work/wayfarer/wayfarer-sig-sitemap.webp",
-                  aspect:  "1920 / 1378",
-                  number:  "05",
-                  label:   "SITE MAP & USER FLOW",
-                  caption: "Six routes, two flows, one discovery loop. The IA tree shows every route, modal, and overlay; the user flow shows the curiosity-to-commitment path from land through to print-to-PDF export.",
-                },
               ].map(({ src, aspect, number, label, caption }) => (
                 <div key={src}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
@@ -1315,6 +1297,177 @@ export default function WayfarerCaseStudy() {
                   </p>
                 </div>
               ))}
+
+              {/* -- 05: Site Map & User Flow — code-rendered ----
+                  Replaces the previous Figma artifact at this gallery
+                  position. The artifact rendered at gallery scale put
+                  text at ~9px on-screen. Re-rendering the IA in code
+                  using the page's design tokens lets every label sit
+                  at native size, sharp at any viewport, with the same
+                  editorial cadence as the rest of §06.
+                  Source data is duplicated with §05's route table; the
+                  two render the same IA in different modes (table vs
+                  visual diagram + flow). */}
+              <div>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
+                  <span style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "11px",
+                    fontWeight:    700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color:         c.accent,
+                  }}>05</span>
+                  <span style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "11px",
+                    fontWeight:    700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color:         c.ink,
+                  }}>SITE MAP &amp; USER FLOW</span>
+                </div>
+
+                <div style={{
+                  border:     `1px solid ${c.border}`,
+                  background: c.bgSection,
+                  padding:    "clamp(24px, 3.5vw, 44px)",
+                }}>
+                  {/* SITE MAP */}
+                  <p style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "10px",
+                    fontWeight:    700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color:         c.muted,
+                    margin:        "0 0 14px",
+                  }}>Site Map</p>
+
+                  <div style={{
+                    background: c.surface,
+                    border:     `1px solid ${c.border}`,
+                  }}>
+                    {[
+                      { kind: "ROUTE",   path: "/",                       desc: "Home · hero, destinations carousel, why-wayfarer, get-started",      indent: 0 },
+                      { kind: "MODAL",   path: "Sign Up modal",           desc: "5-step zod-validated signup",                                         indent: 1 },
+                      { kind: "MODAL",   path: "Sign In modal",           desc: "Single-step email + password",                                        indent: 1 },
+                      { kind: "ROUTE",   path: "/destinations",           desc: "Filterable catalog of 87 destinations",                               indent: 0 },
+                      { kind: "ROUTE",   path: "/destinations/[slug]",    desc: "Detail page · hero / about / gallery / highlights / map / sidebar",   indent: 1 },
+                      { kind: "ROUTE",   path: "/discover",               desc: "3D Mapbox globe + Hidden Gems grid",                                  indent: 0 },
+                      { kind: "ROUTE",   path: "/planner",                desc: "Drag-reorder itinerary + saved-locations rail + print-to-PDF",        indent: 0 },
+                      { kind: "MODAL",   path: "Picker modal",            desc: "Add a segment or save a destination",                                 indent: 1 },
+                      { kind: "OVERLAY", path: "Search overlay (⌘K)", desc: "Globally-available cmd-K palette",                                    indent: 0 },
+                    ].map(({ kind, path, desc, indent }, i, arr) => {
+                      const isLast = i === arr.length - 1;
+                      const chipBg = kind === "ROUTE" ? "rgba(62,60,120,0.10)"
+                                  : kind === "MODAL" ? "rgba(193,127,74,0.12)"
+                                  : "rgba(138,134,128,0.16)";
+                      const chipFg = kind === "ROUTE" ? c.navy
+                                  : kind === "MODAL" ? c.accent
+                                  : c.muted;
+                      return (
+                        <div key={path} style={{
+                          padding:      "14px clamp(16px, 2vw, 22px)",
+                          paddingLeft:  `calc(clamp(16px, 2vw, 22px) + ${indent * 24}px)`,
+                          borderBottom: isLast ? "none" : `1px solid ${c.border}`,
+                        }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "4px", flexWrap: "wrap" }}>
+                            <span style={{
+                              display:       "inline-flex",
+                              alignItems:    "center",
+                              padding:       "3px 9px",
+                              fontFamily:    font.sans,
+                              fontSize:      "10px",
+                              fontWeight:    700,
+                              letterSpacing: "0.14em",
+                              textTransform: "uppercase",
+                              background:    chipBg,
+                              color:         chipFg,
+                              flexShrink:    0,
+                            }}>{kind}</span>
+                            <span style={{
+                              fontFamily:   "ui-monospace, 'SF Mono', Menlo, monospace",
+                              fontSize:     "14px",
+                              fontWeight:   600,
+                              color:        c.ink,
+                              overflowWrap: "anywhere",
+                            }}>{path}</span>
+                          </div>
+                          <p style={{
+                            fontFamily: font.sans,
+                            fontSize:   "13px",
+                            color:      c.body,
+                            lineHeight: 1.5,
+                            margin:     0,
+                          }}>{desc}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* PRIMARY USER FLOW */}
+                  <p style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "10px",
+                    fontWeight:    700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color:         c.muted,
+                    margin:        "32px 0 14px",
+                  }}>Primary User Flow &middot; Curiosity to Commitment</p>
+
+                  <div style={{
+                    display:             "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+                    gap:                 "10px",
+                  }}>
+                    {[
+                      { step: "01", verb: "Land",   where: "Homepage" },
+                      { step: "02", verb: "Browse", where: "Discover · /destinations" },
+                      { step: "03", verb: "Decide", where: "Detail · /destinations/[slug]" },
+                      { step: "04", verb: "Save",   where: "Saved Locations rail · /planner" },
+                      { step: "05", verb: "Commit", where: "Promote saved · segment" },
+                      { step: "06", verb: "Export", where: "Print-to-PDF" },
+                    ].map(({ step, verb, where }) => (
+                      <div key={step} style={{
+                        background: c.surface,
+                        border:     `1px solid ${c.border}`,
+                        padding:    "14px",
+                      }}>
+                        <p style={{
+                          fontFamily:    font.sans,
+                          fontSize:      "10px",
+                          fontWeight:    700,
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          color:         c.accent,
+                          margin:        "0 0 6px",
+                        }}>Step {step}</p>
+                        <p style={{
+                          fontFamily:    font.sans,
+                          fontSize:      "17px",
+                          fontWeight:    700,
+                          color:         c.ink,
+                          letterSpacing: "-0.01em",
+                          margin:        "0 0 6px",
+                        }}>{verb}</p>
+                        <p style={{
+                          fontFamily: font.sans,
+                          fontSize:   "12px",
+                          color:      c.muted,
+                          lineHeight: 1.45,
+                          margin:     0,
+                        }}>{where}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.55, margin: "10px 0 0", maxWidth: "780px" }}>
+                  Six routes, two flows, one discovery loop. The site map shows every route, modal, and overlay; the user flow tracks the path from curiosity at step one to commitment at step six. Rendered in code at native text size so every label stays legible at every width.
+                </p>
+              </div>
             </div>
 
           </Section>
