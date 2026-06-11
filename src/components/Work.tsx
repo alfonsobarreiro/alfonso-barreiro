@@ -218,7 +218,12 @@ function ProjectCard({
     textDecoration: "none",
     color:          "inherit",
     background:     "#FAFAF9",
-    border:         "1px solid #7E715F",
+    /* Border softened from #7E715F (warm dark gray) to a low-opacity
+       version of the same hue. Cards were over-contained — the shadow
+       carries elevation, the border just anchors the edge. Tuned up
+       from 0.18 to 0.25 so the edge stays present rather than
+       evaporating. */
+    border:         "1px solid rgba(126, 113, 95, 0.25)",
     borderRadius:   0,
     padding:        featured ? "44px 48px" : "40px 40px",
     height:         "100%",
@@ -316,7 +321,7 @@ function ProjectCard({
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          opacity:       hovered ? 1 : 0.45,
+          opacity:       hovered ? 1 : 0.6,
           transition:    "opacity 0.25s ease",
         }}>
           View Case Study
@@ -486,7 +491,7 @@ function ProjectCard({
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          opacity:       hovered ? 1 : 0.45,
+          opacity:       hovered ? 1 : 0.6,
           transition:    "opacity 0.25s ease",
         }}>
           View Case Study

@@ -184,22 +184,28 @@ export default function About() {
               </p>
             </div>
 
-            {/* Photo */}
+            {/* Photo — editorial portrait crop at the source's native 3:4
+                aspect (750x1000). Was 180x180 circle which wasted the
+                vertical portrait by squaring it; now 240x320 with subtle
+                8px corners reads as editorial gravitas without going
+                full square-fine-art. No border per direction — the image
+                edges speak for themselves, with a soft box-shadow doing
+                the elevation work the removed border used to do. */}
             <div
               style={{
-                width:        "180px",
-                height:       "180px",
-                borderRadius: "50%",
+                width:        "240px",
+                height:       "320px",
+                borderRadius: "8px",
                 overflow:     "hidden",
-                marginBottom: "24px",
-                border:       "2px solid #A99B8A",
+                marginBottom: "28px",
+                boxShadow:    "0 4px 18px rgba(37, 43, 40, 0.10), 0 1px 3px rgba(37, 43, 40, 0.06)",
               }}
             >
               <Image
                 src="/Alfonso-Barreiro-outdoors.png"
                 alt="Alfonso Barreiro"
-                width={180}
-                height={180}
+                width={240}
+                height={320}
                 style={{ objectFit: "cover", objectPosition: "center top" }}
               />
             </div>
@@ -327,6 +333,38 @@ export default function About() {
                 <DownloadIcon /> Resume
               </a>
             </div>
+
+            {/* Coffee in Portland — personality garnish. Lives as a small
+                inline line below the two CTAs rather than a third button.
+                Keeps the home-restraint pattern while bringing back the
+                warmth the earlier CTA-trim removed. */}
+            <p
+              style={{
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontSize:   "13px",
+                color:      "#8A8680",
+                margin:     "18px 0 0",
+                lineHeight: 1.55,
+              }}
+            >
+              Coffee in Portland?{" "}
+              <a
+                href="https://cal.com/alfonso-barreiro"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color:          "#C17F4A",
+                  textDecoration: "none",
+                  borderBottom:   "1px solid rgba(193,127,74,0.35)",
+                  paddingBottom:  "1px",
+                  transition:     "border-color 0.2s, color 0.2s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.75)"; e.currentTarget.style.color = "#A35E32"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.35)"; e.currentTarget.style.color = "#C17F4A"; }}
+              >
+                Book a time
+              </a>
+            </p>
           </div>
 
           {/* Right — Skills */}
@@ -334,7 +372,8 @@ export default function About() {
             className="skills-box scroll-reveal"
             style={{
               background:   "#FAFAF9",
-              border:       "1px solid #7E715F",
+              /* Border softened — same direction as Work cards. */
+              border:       "1px solid rgba(126, 113, 95, 0.25)",
               borderLeft:   "3px solid #C17F4A",
               borderRadius: 0,
               padding:      "44px",
@@ -395,7 +434,8 @@ export default function About() {
           className="process-box scroll-reveal"
           style={{
             background:  "#FFFFFF",
-            border:      "1px solid #A99B8A",
+            /* Border softened — quieter than the previous #A99B8A. */
+            border:      "1px solid rgba(126, 113, 95, 0.18)",
             padding:     "44px 52px",
           }}
         >

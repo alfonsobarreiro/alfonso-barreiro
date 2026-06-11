@@ -123,7 +123,10 @@ export default function Hero() {
           {/* Positioning statement — lifted from /about, the sharper one-line
               value capture the homepage was missing. Replaces the previous
               "three case studies below" directory line; the visible case
-              studies in the Work section now carry the directory job. */}
+              studies in the Work section now carry the directory job. Third
+              beat ("Documented across three brands on one portable system.")
+              gives the rhythm the Cate-style three-pillar shape and surfaces
+              the three-brands-one-system differentiator. */}
           <p
             className="hero-reveal"
             style={{
@@ -137,7 +140,8 @@ export default function Hero() {
             }}
           >
             Most design problems aren&apos;t visual problems. They&apos;re
-            decisions someone hasn&apos;t made yet.
+            decisions someone hasn&apos;t made yet. Documented across three
+            brands on one portable system.
           </p>
 
           {/* CTAs */}
@@ -243,7 +247,7 @@ export default function Hero() {
                 fontWeight:    700,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color:         "#8A8680",
+                color:         "#252B28",
                 margin:        "0 0 8px",
               }}
             >

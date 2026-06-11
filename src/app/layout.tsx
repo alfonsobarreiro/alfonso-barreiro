@@ -25,11 +25,19 @@ const dmSans = DM_Sans({
 
 // MSR slide fonts — loaded here so slides embedded in the portfolio
 // have correct typography. Scoped via .msr-slide CSS class in globals.css.
+// preload: false means these fonts are NOT in the <link rel="preload">
+// tags on every page — only fetched when actually rendered (i.e. inside
+// .msr-slide / .wayfarer-slide containers on case-study pages). Removes
+// the slide-font weight from the home / about / contact first-paint
+// without breaking the case studies. The CSS variable is still defined
+// site-wide via the <html> className so .msr-slide / .wayfarer-slide
+// scoping in globals.css continues to work.
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["700", "800"],
   variable: "--font-barlow-condensed",
   display: "swap",
+  preload: false,
 });
 
 const lora = Lora({
@@ -38,6 +46,7 @@ const lora = Lora({
   style: ["normal", "italic"],
   variable: "--font-lora",
   display: "swap",
+  preload: false,
 });
 
 // Wayfarer slide fonts — scoped via .wayfarer-slide CSS class in globals.css.
@@ -46,6 +55,7 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
   display: "swap",
+  preload: false,
 });
 
 const inter = Inter({
@@ -53,6 +63,7 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
