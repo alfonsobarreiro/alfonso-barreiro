@@ -35,7 +35,7 @@ const c = {
   ink:         "#252B28",
   body:        "#3D4440",
   muted:       "#8A8680",
-  accent:      "#C17F4A",
+  accent:      "#7A8B6E",
   bg:          "#FFFFFF",
   bgSection:   "#FAFAF9",
   surface:     "#FFFFFF",
@@ -1361,7 +1361,7 @@ export default function WayfarerCaseStudy() {
                     ].map(({ kind, path, desc, indent }, i, arr) => {
                       const isLast = i === arr.length - 1;
                       const chipBg = kind === "ROUTE" ? "rgba(62,60,120,0.10)"
-                                  : kind === "MODAL" ? "rgba(193,127,74,0.12)"
+                                  : kind === "MODAL" ? "rgba(122,139,110,0.12)"
                                   : "rgba(138,134,128,0.16)";
                       const chipFg = kind === "ROUTE" ? c.navy
                                   : kind === "MODAL" ? c.accent
@@ -1715,7 +1715,7 @@ const c2 = {
   ink:       "#252B28",
   body:      "#3D4440",
   muted:     "#8A8680",
-  accent:    "#C17F4A",
+  accent:    "#7A8B6E",
   bg:        "#FFFFFF",
   bgSection: "#FAFAF9",
   surface:   "#FFFFFF",

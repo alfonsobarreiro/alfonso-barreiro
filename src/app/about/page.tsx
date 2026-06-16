@@ -37,7 +37,7 @@ const eyebrowDash: React.CSSProperties = {
   display:    "inline-block",
   width:      "24px",
   height:     "1px",
-  background: "#C17F4A",
+  background: "#7A8B6E",
 };
 
 const eyebrowLabel: React.CSSProperties = {
@@ -46,7 +46,7 @@ const eyebrowLabel: React.CSSProperties = {
   fontWeight:    600,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
-  color:         "#C17F4A",
+  color:         "#7A8B6E",
   margin:        0,
 };
 
@@ -116,18 +116,18 @@ export default function AboutPage() {
             transition:     transform 0.25s ease, box-shadow 0.25s ease, background 0.2s, border-color 0.2s, color 0.2s;
           }
           .about-cta-primary {
-            background:   #C17F4A;
-            border:       1px solid #C17F4A;
+            background:   #3D2645;
+            border:       1px solid #3D2645;
             color:        #FFFFFF;
           }
           .about-cta-primary:hover {
             transform:    translateY(-2px);
-            box-shadow:   0 4px 12px rgba(193,127,74,0.25);
-            background:   #A96A3A;
+            box-shadow:   0 4px 12px rgba(61,38,69,0.25);
+            background:   #2A1830;
           }
           .about-cta-secondary {
             background:   #FFFFFF;
-            border:       1px solid #7E715F;
+            border:       1px solid #B8B0A2;
             color:        #3D4440;
           }
           .about-cta-secondary:hover {
@@ -136,15 +136,15 @@ export default function AboutPage() {
             color:        #252B28;
           }
           .about-studio-link {
-            color:           #C17F4A;
+            color:           #5F7556;
             text-decoration: none;
             font-weight:     500;
-            border-bottom:   1px solid rgba(193,127,74,0.3);
+            border-bottom:   1px solid rgba(122,139,110,0.35);
             transition:      border-color 0.2s, color 0.2s;
           }
           .about-studio-link:hover {
-            border-bottom-color: #C17F4A;
-            color:               #A96A3A;
+            border-bottom-color: #7A8B6E;
+            color:               #4A5C42;
           }
         `}</style>
 
@@ -154,7 +154,7 @@ export default function AboutPage() {
             DSLR and laptop in the wider frame. Source image is landscape
             (2400x1603); the 3:4 portrait container crops on the hand and
             notebook via objectPosition. Reinforces the "thinking before
-            screens" thesis and the warm cognac palette. */}
+            screens" thesis. */}
         <section
           style={{
             padding:    "140px clamp(32px, 6vw, 80px) 96px",
@@ -187,7 +187,7 @@ export default function AboutPage() {
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     fontSize:      "clamp(20px, 2.6vw, 30px)",
                     fontWeight:    500,
-                    color:         "#C17F4A",
+                    color:         "#3D2645",
                     margin:        0,
                     letterSpacing: "-0.02em",
                     lineHeight:    1.2,

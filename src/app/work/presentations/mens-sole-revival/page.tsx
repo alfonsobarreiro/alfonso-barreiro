@@ -22,7 +22,7 @@ const c = {
   ink:         "#252B28",
   body:        "#3D4440",
   muted:       "#8A8680",
-  accent:      "#C17F4A",
+  accent:      "#7A8B6E",
   bg:          "#FFFFFF",
   bgSection:   "#FFFFFF",
   border:      "#A99B8A",

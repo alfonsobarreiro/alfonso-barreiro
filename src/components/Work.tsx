@@ -142,7 +142,7 @@ export default function Work() {
                   display:    "inline-block",
                   width:      "24px",
                   height:     "1px",
-                  background: "#C17F4A",
+                  background: "#7A8B6E",
                 }}
               />
               <p
@@ -170,7 +170,7 @@ export default function Work() {
                 lineHeight:    1.1,
               }}
             >
-              Three <span style={{ color: "#C17F4A" }}>case studies.</span>
+              Three <span style={{ color: "#3D2645" }}>case studies.</span>
             </h2>
           </div>
         </div>
@@ -187,15 +187,15 @@ export default function Work() {
         >
           {/* Feature card — spans both columns */}
           <div className="scroll-reveal" style={{ gridColumn: "1 / -1" }}>
-            <ProjectCard project={projects[0]} featured />
+            <ProjectCard project={projects[0]} index={0} featured />
           </div>
 
           {/* Pair row */}
           <div className="scroll-reveal" style={{ height: "100%" }}>
-            <ProjectCard project={projects[1]} />
+            <ProjectCard project={projects[1]} index={1} />
           </div>
           <div className="scroll-reveal" style={{ height: "100%" }}>
-            <ProjectCard project={projects[2]} />
+            <ProjectCard project={projects[2]} index={2} />
           </div>
         </div>
       </div>
@@ -205,9 +205,11 @@ export default function Work() {
 
 function ProjectCard({
   project,
+  index,
   featured = false,
 }: {
   project: Project;
+  index: number;
   featured?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
@@ -218,23 +220,56 @@ function ProjectCard({
     textDecoration: "none",
     color:          "inherit",
     background:     "#FAFAF9",
-    /* Border softened from #7E715F (warm dark gray) to a low-opacity
-       version of the same hue. Cards were over-contained — the shadow
-       carries elevation, the border just anchors the edge. Tuned up
-       from 0.18 to 0.25 so the edge stays present rather than
-       evaporating. */
+    /* Flat cards, no drop shadows. Border carries the edge; the
+       aubergine header strip carries the brand color. Card auto-sizes
+       to content (no height:100%) so the border always wraps content. */
     border:         "1px solid rgba(126, 113, 95, 0.25)",
     borderRadius:   0,
-    padding:        featured ? "44px 48px" : "40px 40px",
-    height:         "100%",
+    padding:        featured ? "0 48px 44px" : "0 40px 40px",
     boxSizing:      "border-box",
-    transition:     "transform 0.25s ease, box-shadow 0.25s ease",
+    transition:     "transform 0.25s ease, border-color 0.25s ease",
     transform:      hovered && isLive ? "translateY(-3px)" : "translateY(0)",
-    boxShadow:      hovered && isLive
-      ? "0 18px 44px rgba(37,43,40,0.22), 0 4px 12px rgba(37,43,40,0.22)"
-      : "0 4px 14px rgba(37,43,40,0.22), 0 1px 3px rgba(37,43,40,0.22)",
     cursor:         isLive ? "pointer" : "default",
   };
+
+  const aubergineHeader = (
+    <div
+      style={{
+        background:    "#3D2645",
+        padding:       "18px 28px",
+        margin:        featured ? "0 -48px 32px" : "0 -40px 28px",
+        display:       "flex",
+        alignItems:    "center",
+        gap:           "16px",
+      }}
+    >
+      <span style={{ width: "24px", height: "1px", background: "#7A8B6E", flexShrink: 0 }} />
+      <span
+        style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "10px",
+          fontWeight:    700,
+          letterSpacing: "0.18em",
+          color:         "#7A8B6E",
+          flexShrink:    0,
+        }}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <span
+        style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      featured ? "clamp(20px, 2.4vw, 28px)" : "clamp(18px, 2vw, 22px)",
+          fontWeight:    500,
+          color:         "#FAFAF9",
+          letterSpacing: "-0.015em",
+          marginLeft:    "auto",
+        }}
+      >
+        {project.title}
+      </span>
+    </div>
+  );
 
   /* ── Featured layout: content left, image right ── */
   const featuredInner = (
@@ -245,42 +280,33 @@ function ProjectCard({
         gridTemplateColumns: "1fr 1.4fr",
         gap:                 "48px",
         alignItems:          "stretch",
-        minHeight:           "320px",
+        /* Sized so the right-column 16:10 image peek doesn't clip
+           at the bottom on desktop viewports. */
+        minHeight:           "420px",
       }}
     >
       {/* Left: all text content */}
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
-        {/* Title block — title with inline year */}
+        {/* Subtitle row — title now lives in the aubergine header strip above */}
         <div style={{ flex: 1 }}>
-          <h3 style={{
+          <p style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(24px, 2.8vw, 36px)",
-            fontWeight:    600,
+            fontSize:      "16px",
             color:         "#252B28",
-            margin:        "0 0 4px",
-            letterSpacing: "-0.02em",
+            margin:        "0 0 6px",
+            fontWeight:    500,
+            letterSpacing: "-0.01em",
           }}>
-            {project.title}
+            {project.subtitle}
             <span style={{
               fontWeight:    400,
               color:         "#8A8680",
-              marginLeft:    "12px",
-              fontSize:      "0.6em",
+              marginLeft:    "10px",
               letterSpacing: "0.02em",
-              verticalAlign: "middle",
               whiteSpace:    "nowrap",
             }}>
               · {project.year}
             </span>
-          </h3>
-          <p style={{
-            fontFamily: "var(--font-dm-sans), sans-serif",
-            fontSize:   "15px",
-            color:      "#8A8680",
-            margin:     "0 0 20px",
-            fontWeight: 400,
-          }}>
-            {project.subtitle}
           </p>
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
@@ -315,7 +341,7 @@ function ProjectCard({
           display:       "flex",
           alignItems:    "center",
           gap:           "8px",
-          color:         "#C17F4A",
+          color:         "#7A8B6E",
           fontSize:      "12px",
           fontWeight:    600,
           letterSpacing: "0.08em",
@@ -337,7 +363,7 @@ function ProjectCard({
       <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
         <div className="feat-img-inner" style={{
           position: "absolute",
-          top:      "-44px",
+          top:      0,
           right:    "-48px",
           bottom:   "-44px",
           left:     0,
@@ -376,7 +402,7 @@ function ProjectCard({
     position:     "relative",
     width:        "calc(100% + 80px)",
     marginLeft:   "-40px",
-    marginTop:    "-40px",
+    marginTop:    0,
     marginBottom: "28px",
     aspectRatio:  "16 / 10",
     overflow:     "hidden",
@@ -415,35 +441,25 @@ function ProjectCard({
         </div>
       )}
 
-      {/* Title row — title with inline year */}
-      <h3 style={{
+      {/* Subtitle row — title now lives in the aubergine header strip above */}
+      <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(20px, 2vw, 28px)",
-        fontWeight:    600,
+        fontSize:      "15px",
         color:         "#252B28",
-        margin:        "0 0 4px",
-        letterSpacing: "-0.02em",
+        margin:        "0 0 18px",
+        fontWeight:    500,
+        letterSpacing: "-0.01em",
       }}>
-        {project.title}
+        {project.subtitle}
         <span style={{
           fontWeight:    400,
           color:         "#8A8680",
           marginLeft:    "10px",
-          fontSize:      "0.55em",
           letterSpacing: "0.02em",
-          verticalAlign: "middle",
           whiteSpace:    "nowrap",
         }}>
           · {project.year}
         </span>
-      </h3>
-      <p style={{
-        fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "14px",
-        color:      "#8A8680",
-        margin:     "0 0 18px",
-      }}>
-        {project.subtitle}
       </p>
 
       {/* Description */}
@@ -485,7 +501,7 @@ function ProjectCard({
           display:       "flex",
           alignItems:    "center",
           gap:           "8px",
-          color:         "#C17F4A",
+          color:         "#7A8B6E",
           fontSize:      "12px",
           fontWeight:    600,
           letterSpacing: "0.08em",
@@ -515,7 +531,12 @@ function ProjectCard({
     </div>
   );
 
-  const content = featured ? featuredInner : compactInner;
+  const content = (
+    <>
+      {aubergineHeader}
+      {featured ? featuredInner : compactInner}
+    </>
+  );
 
   if (isLive) {
     return (

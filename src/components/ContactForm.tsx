@@ -33,8 +33,8 @@ export default function ContactForm() {
     background:   "transparent",
     border:       "none",
     borderBottom: focusedField === field
-      ? "1px solid #C17F4A"
-      : "1px solid #7E715F",
+      ? "1px solid #7A8B6E"
+      : "1px solid #B8B0A2",
     borderRadius: 0,
     padding:      "12px 0",
     color:        "#252B28",
@@ -43,7 +43,7 @@ export default function ContactForm() {
     fontWeight:   400,
     outline:      "none",
     transition:   "border-color 0.2s",
-    caretColor:   "#C17F4A",
+    caretColor:   "#7A8B6E",
   });
 
   const labelStyle: React.CSSProperties = {
@@ -52,14 +52,14 @@ export default function ContactForm() {
     fontWeight:    600,
     letterSpacing: "0.13em",
     textTransform: "uppercase",
-    color:         "#C17F4A",
+    color:         "#7A8B6E",
     fontFamily:    font,
     marginBottom:  "2px",
   };
 
   if (formState === "success") {
     return (
-      <div style={{ padding: "48px", border: "1px solid rgba(193,127,74,0.30)", textAlign: "center", background: "#FAFAF9" }}>
+      <div style={{ padding: "48px", border: "1px solid rgba(122,139,110,0.30)", textAlign: "center", background: "#FAFAF9" }}>
         <p style={{ fontFamily: font, fontSize: "24px", fontWeight: 600, color: "#252B28", marginBottom: "12px", letterSpacing: "-0.02em" }}>
           Message sent.
         </p>
@@ -111,7 +111,7 @@ export default function ContactForm() {
         )}
         <button type="submit" disabled={formState === "submitting"} style={{
           padding: "15px 36px",
-          background: formState === "submitting" ? "rgba(193,127,74,0.6)" : "#C17F4A",
+          background: formState === "submitting" ? "rgba(61,38,69,0.6)" : "#3D2645",
           color: "#FFFFFF", border: "none", borderRadius: "8px",
           fontSize: "13px", fontWeight: 600, fontFamily: font,
           letterSpacing: "0.07em", textTransform: "uppercase",

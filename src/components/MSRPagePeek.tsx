@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-// MSR homepage screenshot is 1280 × 5348 (logical px) — full-page capture of the
-// current live site. Aspect: 0.239 (very tall) — auto-scroll the image vertically
-// inside a 16:10 frame.
+// MSR homepage screenshot is 1280 × 5474 (logical px) — full-page capture of the
+// current live site, stitched from PDF with page-break whitespace trimmed top + bottom.
+// Aspect: 0.234 (very tall) — auto-scroll the image vertically inside a 16:10 frame.
 const IMG_W = 1280;
-const IMG_H = 5348;
+const IMG_H = 5474;
 
 export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
   const [reduced, setReduced] = useState(false);
@@ -77,17 +77,17 @@ export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
         }
         @keyframes msr-page-scroll {
           /*
-           * Track's height is determined by aspectRatio (1280/5348 of width).
+           * Track's height is determined by aspectRatio (1280/5474 of width).
            * Translating by translateY(calc(<container-height> - 100%)) is the goal,
            * but we don't know container height in CSS. Instead, we use the fact that
            * the container is aspectRatio 16/10 — its height is 62.5% of width.
-           * Track height = 100% of width × (5348/1280) = 417.8% of width.
+           * Track height = 100% of width × (5474/1280) = 427.7% of width.
            * We need to translate up so the BOTTOM of the track lines up with the
            * BOTTOM of the container at the end of the animation.
            *   shift = trackHeight - containerHeight
-           *         = 417.8%-of-W − 62.5%-of-W
-           *         = 355.3%-of-W
-           * Converted to % of TRACK height: 355.3 / 417.8 = 85%.
+           *         = 427.7%-of-W − 62.5%-of-W
+           *         = 365.2%-of-W
+           * Converted to % of TRACK height: 365.2 / 427.7 = 85%.
            */
           from { transform: translateY(0); }
           to   { transform: translateY(-85%); }

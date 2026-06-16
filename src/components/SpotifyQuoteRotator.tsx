@@ -22,7 +22,7 @@ interface SpotifyQuoteRotatorProps {
 }
 
 export default function SpotifyQuoteRotator({
-  accentColor = "#C17F4A",
+  accentColor = "#7A8B6E",
   mutedColor = "#8A8680",
   bodyColor = "#3D4440",
   borderColor = "#A99B8A",

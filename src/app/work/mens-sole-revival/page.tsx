@@ -35,13 +35,13 @@ const c = {
   ink:         "#252B28",
   body:        "#3D4440",
   muted:       "#8A8680",
-  accent:      "#C17F4A",
+  accent:      "#7A8B6E",
   bg:          "#FFFFFF",
   bgSection:   "#FAFAF9",
   surface:     "#FFFFFF",
   border:      "#A99B8A",
   borderStrong:"#7E715F",
-  cognac:      "#C4703A",   // MSR brand accent
+  cognac:      "#C4703A",   // MSR brand accent (stays — MSR's own brand)
 };
 
 const font = {
@@ -460,17 +460,17 @@ export default function MSRCaseStudy() {
 
                 {/* ── Circle labels ── */}
                 {/* Clinical */}
-                <text x="130" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C17F4A" style={{ textTransform: "uppercase" }}>CLINICAL</text>
+                <text x="130" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C4703A" style={{ textTransform: "uppercase" }}>CLINICAL</text>
                 <text x="130" y="132" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">WebMD, Mayo Clinic</text>
                 <text x="130" y="147" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Cleveland Clinic</text>
 
                 {/* Product-First */}
-                <text x="430" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C17F4A" style={{ textTransform: "uppercase" }}>PRODUCT-FIRST</text>
+                <text x="430" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C4703A" style={{ textTransform: "uppercase" }}>PRODUCT-FIRST</text>
                 <text x="430" y="132" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Sneaker blogs, GQ</text>
                 <text x="430" y="147" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Amazon listicles</text>
 
                 {/* Wellness */}
-                <text x="280" y="390" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C17F4A" style={{ textTransform: "uppercase" }}>WELLNESS</text>
+                <text x="280" y="390" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C4703A" style={{ textTransform: "uppercase" }}>WELLNESS</text>
                 <text x="280" y="407" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Healthline, Verywell Health</text>
 
                 {/* ── Pairwise gap labels ── */}
@@ -1989,12 +1989,12 @@ const c2 = {
   ink:       "#252B28",
   body:      "#3D4440",
   muted:     "#8A8680",
-  accent:    "#C17F4A",
+  accent:    "#7A8B6E",
   bg:        "#FFFFFF",
   bgSection: "#FAFAF9",
   surface:   "#FFFFFF",
   border:    "#A99B8A",
-  cognac:    "#C4703A",
+  cognac:    "#C4703A",  // MSR brand accent (stays)
 };
 
 const f = {

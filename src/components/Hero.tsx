@@ -83,7 +83,7 @@ export default function Hero() {
                 display:    "inline-block",
                 width:      "32px",
                 height:     "1px",
-                background: "#C17F4A",
+                background: "#7A8B6E",
                 flexShrink: 0,
               }}
             />
@@ -102,13 +102,14 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Name */}
+          {/* Name — Alfonso in light weight cedes the line to Barreiro,
+              which carries the brand color (aubergine) at medium weight. */}
           <h1
             className="hero-reveal"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(48px, 7.5vw, 96px)",
-              fontWeight:    500,
+              fontWeight:    300,
               lineHeight:    0.95,
               letterSpacing: "-0.025em",
               color:         "#252B28",
@@ -117,7 +118,7 @@ export default function Hero() {
           >
             Alfonso
             <br />
-            <span style={{ color: "#C17F4A" }}>Barreiro</span>
+            <span style={{ color: "#3D2645", fontWeight: 500 }}>Barreiro</span>
           </h1>
 
           {/* Positioning statement — lifted from /about, the sharper one-line
@@ -164,11 +165,9 @@ export default function Hero() {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 4px 12px rgba(37,43,40,0.26)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
               }}
             >
               View Work
@@ -194,13 +193,11 @@ export default function Hero() {
                 e.currentTarget.style.borderColor = "#8A8680";
                 e.currentTarget.style.color       = "#252B28";
                 e.currentTarget.style.transform   = "translateY(-2px)";
-                e.currentTarget.style.boxShadow   = "0 4px 12px rgba(37,43,40,0.22)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = "#7E715F";
                 e.currentTarget.style.color       = "#3D4440";
                 e.currentTarget.style.transform   = "translateY(0)";
-                e.currentTarget.style.boxShadow   = "none";
               }}
             >
               Say hello
@@ -274,7 +271,7 @@ export default function Hero() {
                 display:        "inline-flex",
                 alignItems:     "center",
                 gap:            "8px",
-                color:          "#C17F4A",
+                color:          "#7A8B6E",
                 fontSize:       "12px",
                 fontWeight:     600,
                 fontFamily:     "var(--font-dm-sans), sans-serif",

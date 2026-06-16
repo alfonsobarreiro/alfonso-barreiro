@@ -45,7 +45,7 @@ export default function Contact() {
     background:      "transparent",
     border:          "none",
     borderBottom:    focusedField === field
-      ? "1px solid #C17F4A"
+      ? "1px solid #7A8B6E"
       : "1px solid rgba(245,243,239,0.20)",
     borderRadius:    0,
     padding:         "12px 0",
@@ -55,7 +55,7 @@ export default function Contact() {
     fontWeight:      400,
     outline:         "none",
     transition:      "border-color 0.2s",
-    caretColor:      "#C17F4A",
+    caretColor:      "#7A8B6E",
   });
 
   const labelStyle = {
@@ -64,7 +64,7 @@ export default function Contact() {
     fontWeight:    600,
     letterSpacing: "0.13em",
     textTransform: "uppercase" as const,
-    color:         "#C17F4A",
+    color:         "#7A8B6E",
     fontFamily:    "var(--font-dm-sans), sans-serif",
     marginBottom:  "2px",
   };
@@ -104,7 +104,7 @@ export default function Contact() {
                 display:    "inline-block",
                 width:      "24px",
                 height:     "1px",
-                background: "#C17F4A",
+                background: "#7A8B6E",
               }}
             />
             <p
@@ -134,7 +134,7 @@ export default function Contact() {
             }}
           >
             Let&apos;s make<br />
-            <span style={{ color: "#C17F4A" }}>something good.</span>
+            <span style={{ color: "#3D2645" }}>something good.</span>
           </h2>
 
           <p
@@ -178,7 +178,7 @@ export default function Contact() {
             <div
               style={{
                 padding:   "48px",
-                border:    "1px solid rgba(193,127,74,0.30)",
+                border:    "1px solid rgba(61,38,69,0.30)",
                 textAlign: "center",
               }}
             >
@@ -277,7 +277,7 @@ export default function Contact() {
                   disabled={formState === "submitting"}
                   style={{
                     padding:       "15px 36px",
-                    background:    formState === "submitting" ? "rgba(193,127,74,0.6)" : "#C17F4A",
+                    background:    formState === "submitting" ? "rgba(61,38,69,0.6)" : "#3D2645",
                     color:         "#F5F5F4",
                     border:        "none",
                     borderRadius:  "8px",

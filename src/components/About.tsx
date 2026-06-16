@@ -49,8 +49,8 @@ const pillPrimary: React.CSSProperties = {
   ...pillBase,
   padding:    "12px 24px",
   fontSize:   "12px",
-  background: "#C17F4A",
-  border:     "1px solid #C17F4A",
+  background: "#3D2645",
+  border:     "1px solid #3D2645",
   color:      "#FFFFFF",
 };
 const pillDefault: React.CSSProperties = {
@@ -61,9 +61,9 @@ const pillDefault: React.CSSProperties = {
 };
 const pillAccent: React.CSSProperties = {
   ...pillBase,
-  border:     "1px solid rgba(193,127,74,0.45)",
-  background: "rgba(193,127,74,0.06)",
-  color:      "#C17F4A",
+  border:     "1px solid rgba(61,38,69,0.45)",
+  background: "rgba(61,38,69,0.06)",
+  color:      "#3D2645",
 };
 
 const skillGroups = [
@@ -166,7 +166,7 @@ export default function About() {
                   display:    "inline-block",
                   width:      "24px",
                   height:     "1px",
-                  background: "#C17F4A",
+                  background: "#7A8B6E",
                 }}
               />
               <p
@@ -198,7 +198,7 @@ export default function About() {
                 borderRadius: "8px",
                 overflow:     "hidden",
                 marginBottom: "28px",
-                boxShadow:    "0 4px 18px rgba(37, 43, 40, 0.10), 0 1px 3px rgba(37, 43, 40, 0.06)",
+                border:       "1px solid rgba(126, 113, 95, 0.25)",
               }}
             >
               <Image
@@ -228,7 +228,7 @@ export default function About() {
                   width:        "7px",
                   height:       "7px",
                   borderRadius: "50%",
-                  background:   "#C17F4A",
+                  background:   "#7A8B6E",
                   flexShrink:   0,
                   // CSS pulse animation via style tag below
                   animation:    "pulse 2.2s ease-in-out infinite",
@@ -260,7 +260,7 @@ export default function About() {
               }}
             >
               Different problems, same question:<br />
-              <span style={{ color: "#C17F4A" }}>Why doesn&apos;t this work better?</span>
+              <span style={{ color: "#3D2645" }}>Why doesn&apos;t this work better?</span>
             </h2>
 
             <p
@@ -317,8 +317,8 @@ export default function About() {
               <Link
                 href="/contact"
                 style={{ ...pillPrimary, transition: "transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s" }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(193,127,74,0.25)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Send a message <ArrowIcon />
               </Link>
@@ -353,14 +353,14 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color:          "#C17F4A",
+                  color:          "#5F7556",
                   textDecoration: "none",
-                  borderBottom:   "1px solid rgba(193,127,74,0.35)",
+                  borderBottom:   "1px solid rgba(122,139,110,0.35)",
                   paddingBottom:  "1px",
                   transition:     "border-color 0.2s, color 0.2s",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.75)"; e.currentTarget.style.color = "#A35E32"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(193,127,74,0.35)"; e.currentTarget.style.color = "#C17F4A"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(122,139,110,0.75)"; e.currentTarget.style.color = "#4A5C42"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(122,139,110,0.35)"; e.currentTarget.style.color = "#5F7556"; }}
               >
                 Book a time
               </a>
@@ -374,10 +374,9 @@ export default function About() {
               background:   "#FAFAF9",
               /* Border softened — same direction as Work cards. */
               border:       "1px solid rgba(126, 113, 95, 0.25)",
-              borderLeft:   "3px solid #C17F4A",
+              borderLeft:   "3px solid #3D2645",
               borderRadius: 0,
               padding:      "44px",
-              boxShadow:    "0 4px 14px rgba(37,43,40,0.12), 0 1px 3px rgba(37,43,40,0.10)",
               position:     "sticky",
               top:          "120px",
               alignSelf:    "start",
@@ -399,7 +398,7 @@ export default function About() {
                     fontWeight:    600,
                     letterSpacing: "0.13em",
                     textTransform: "uppercase",
-                    color:         "#C17F4A",
+                    color:         "#5F7556",
                     marginBottom:  "14px",
                   }}
                 >
@@ -452,7 +451,7 @@ export default function About() {
                 display:    "inline-block",
                 width:      "20px",
                 height:     "1px",
-                background: "#C17F4A",
+                background: "#7A8B6E",
                 flexShrink: 0,
               }}
             />
@@ -463,7 +462,7 @@ export default function About() {
                 fontWeight:    600,
                 letterSpacing: "0.13em",
                 textTransform: "uppercase",
-                color:         "#C17F4A",
+                color:         "#5F7556",
                 margin:        0,
               }}
             >

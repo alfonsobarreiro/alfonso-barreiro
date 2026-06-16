@@ -44,9 +44,8 @@ export default function CookieConsent() {
         maxWidth:   "340px",
         width:      "calc(100vw - 64px)",
         background: "#252B28",
-        border:     "1px solid rgba(193,127,74,0.25)",
+        border:     "1px solid rgba(122,139,110,0.25)",
         padding:    "28px 32px",
-        boxShadow:  "0 16px 48px rgba(0,0,0,0.24), 0 4px 16px rgba(0,0,0,0.12)",
         // Fade + slide in
         animation:  "cookieSlideIn 0.35s ease forwards",
       }}
@@ -65,7 +64,7 @@ export default function CookieConsent() {
             display:    "inline-block",
             width:      "20px",
             height:     "1px",
-            background: "#C17F4A",
+            background: "#7A8B6E",
             flexShrink: 0,
           }}
         />
@@ -76,7 +75,7 @@ export default function CookieConsent() {
             fontWeight:    600,
             letterSpacing: "0.13em",
             textTransform: "uppercase",
-            color:         "#C17F4A",
+            color:         "#7A8B6E",
             margin:        0,
           }}
         >
@@ -103,8 +102,8 @@ export default function CookieConsent() {
           style={{
             flex:          1,
             padding:       "10px 0",
-            background:    "#C17F4A",
-            color:         "#F5F5F4",
+            background:    "#3D2645",
+            color:         "#FAFAF9",
             border:        "none",
             borderRadius:  "8px",
             fontSize:      "12px",

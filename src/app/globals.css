@@ -5,34 +5,43 @@
 @source "../components/wayfarer-slides";
 
 @theme inline {
-  /* ── Brand primitives ── */
-  --color-brand-50:  #F0EDE7;
-  --color-brand-100: #E3DDD4;
-  --color-brand-200: #7E715F;
-  --color-brand-300: #C17F4A; /* accent / cognac */
-  --color-brand-400: #A86A38;
-  --color-brand-500: #8F5630;
-  --color-brand-600: #744228;
+  /* ── Brand (aubergine) ── */
+  --color-brand-50:  #F0EDF2;
+  --color-brand-100: #DCD3DF;
+  --color-brand-200: #7A6580;
+  --color-brand-300: #3D2645; /* primary aubergine — brand */
+  --color-brand-400: #341F3B;
+  --color-brand-500: #2A1830;
+  --color-brand-600: #1F1224;
   --color-brand-700: #252B28; /* ink */
   --color-brand-800: #1C211E;
   --color-brand-900: #181C1A;
 
+  /* ── Accent (sage) ── */
+  --color-accent-50:  #EEF1EB;
+  --color-accent-100: #D5DDCE;
+  --color-accent-200: #B0BFA6;
+  --color-accent-300: #7A8B6E; /* primary sage — accent */
+  --color-accent-400: #5F7556;
+  --color-accent-500: #4A5C42;
+
   /* ── Neutral scale ── */
-  --color-neutral-50:  #F5F5F4;
+  --color-neutral-50:  #FAFAF9;
   --color-neutral-100: #EBEBEA;
-  --color-neutral-200: #A99B8A;
+  --color-neutral-200: #C9C5BD;
   --color-neutral-800: #3D4440;
   --color-neutral-900: #252B28;
 
   /* ── Semantic tokens ── */
-  --color-background:          #F5F5F4;
+  --color-background:          #FAFAF9;
   --color-surface:             #FFFFFF;
   --color-foreground:          #252B28;
   --color-foreground-secondary:#3D4440;
   --color-foreground-muted:    #8A8680;
-  --color-accent:              #C17F4A;
-  --color-border:              #A99B8A;
-  --color-border-strong:       #7E715F;
+  --color-brand:               #3D2645; /* aubergine — wordmark, work tiles, footer */
+  --color-accent:              #7A8B6E; /* sage — rules, links, ornaments */
+  --color-border:              #E0DCD3;
+  --color-border-strong:       #B8B0A2;
 
   /* ── Typography ── */
   --font-sans:    var(--font-dm-sans);
@@ -83,7 +92,7 @@ main > footer {
 /* ── Scrollbar ── */
 ::-webkit-scrollbar        { width: 5px; }
 ::-webkit-scrollbar-track  { background: #FFFFFF; }
-::-webkit-scrollbar-thumb  { background: #7E715F; border-radius: 3px; }
+::-webkit-scrollbar-thumb  { background: #B8B0A2; border-radius: 3px; }
 
 /* ── Base links ── */
 a {
@@ -93,9 +102,9 @@ a {
 
 /* Replace browser default blue outline with brand-aware focus ring */
 a:focus                { outline: none; }
-a:focus-visible        { outline: 2px solid #C17F4A; outline-offset: 2px; }
+a:focus-visible        { outline: 2px solid #7A8B6E; outline-offset: 2px; }
 button:focus           { outline: none; }
-button:focus-visible   { outline: 2px solid #C17F4A; outline-offset: 2px; }
+button:focus-visible   { outline: 2px solid #7A8B6E; outline-offset: 2px; }
 
 button {
   font-family: inherit;
@@ -275,7 +284,7 @@ button {
   }
   .cs-persona-collapse > .cs-persona-collapse-summary::after {
     content: " ↓";
-    color: #C17F4A;
+    color: #7A8B6E;
     margin-left: 6px;
   }
   .cs-persona-collapse[open] > .cs-persona-collapse-summary::after {

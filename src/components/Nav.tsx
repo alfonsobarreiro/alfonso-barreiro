@@ -66,10 +66,7 @@ export default function Nav() {
             : scrolled
               ? "1px solid rgba(232,228,222,0.6)"
               : "1px solid #A99B8A",
-          boxShadow:      !menuOpen && scrolled
-            ? "0 1px 8px rgba(37,43,40,0.12)"
-            : "none",
-          transition:     "background 0.3s, border-color 0.3s, box-shadow 0.3s, backdrop-filter 0.3s",
+          transition:     "background 0.3s, border-color 0.3s, backdrop-filter 0.3s",
         }}
       >
         {/* Logo + wordmark */}
@@ -92,7 +89,7 @@ export default function Nav() {
                 lineHeight:    1,
               }}
             >
-              Alfonso <span style={{ color: "#C17F4A" }}>Barreiro</span>
+              Alfonso <span style={{ color: "#3D2645" }}>Barreiro</span>
             </span>
           </button>
         ) : (
@@ -110,7 +107,7 @@ export default function Nav() {
                 lineHeight:    1,
               }}
             >
-              Alfonso <span style={{ color: "#C17F4A" }}>Barreiro</span>
+              Alfonso <span style={{ color: "#3D2645" }}>Barreiro</span>
             </span>
           </Link>
         )}
@@ -131,7 +128,7 @@ export default function Nav() {
             href="/contact"
             style={{
               padding:        "10px 24px",
-              background:     "#C17F4A",
+              background:     "#3D2645",
               border:         "none",
               borderRadius:   "8px",
               color:          "#FFFFFF",
@@ -145,11 +142,9 @@ export default function Nav() {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(193,127,74,0.3)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
             }}
           >
             Get in touch
@@ -225,14 +220,14 @@ export default function Nav() {
       >
         {/* Eyebrow */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "48px" }}>
-          <span style={{ width: "20px", height: "1px", background: "#C17F4A" }} />
+          <span style={{ width: "20px", height: "1px", background: "#7A8B6E" }} />
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "11px",
             fontWeight:    600,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color:         "#C17F4A",
+            color:         "#7A8B6E",
           }}>
             Navigation
           </span>
@@ -258,7 +253,7 @@ export default function Nav() {
             display:        "block",
             textDecoration: "none",
           };
-          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "#C17F4A");
+          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "#7A8B6E");
           const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "rgba(245,243,239,0.85)");
 
           // "about" always routes to /about, regardless of current page
@@ -308,7 +303,7 @@ export default function Nav() {
           style={{
             marginTop:      "40px",
             padding:        "16px 32px",
-            background:     "#C17F4A",
+            background:     "#3D2645",
             border:         "none",
             borderRadius:   "8px",
             color:          "#FFFFFF",
@@ -367,7 +362,7 @@ function SearchTrigger() {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.color = "#252B28";
-        e.currentTarget.style.borderColor = "#C9BFB0";
+        e.currentTarget.style.borderColor = "#B8B0A2";
         e.currentTarget.style.background = "#FAFAF9";
       }}
       onMouseLeave={(e) => {

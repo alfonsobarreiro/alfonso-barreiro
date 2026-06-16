@@ -2,13 +2,16 @@ import Link from "next/link";
 import LogoMark from "./LogoMark";
 
 /* ─────────────────────────────────────────────
-   Tokens
+   Tokens — cream footer, aubergine ink
 ───────────────────────────────────────────── */
 const font = "var(--font-dm-sans), -apple-system, sans-serif";
 
-const bg     = "#252B28";
-const accent = "#C17F4A";
-const light  = "#F5F5F4";
+const bg     = "#FAFAF9";  // cream surface
+const brand  = "#3D2645";  // aubergine — wordmark + primary CTA
+const accent = "#7A8B6E";  // sage — eyebrow rule + accent span
+const ink    = "#252B28";
+const ink2   = "#3D4440";
+const muted  = "#8A8680";
 
 /* ─────────────────────────────────────────────
    Icons
@@ -34,7 +37,7 @@ const ArrowIcon = () => (
 ───────────────────────────────────────────── */
 export default function Footer() {
   return (
-    <footer style={{ background: bg }}>
+    <footer style={{ background: bg, borderTop: "1px solid rgba(126,113,95,0.25)" }}>
       <div style={{ padding: "56px clamp(32px, 6vw, 80px) 32px" }}>
 
         {/* ── CTA section: microcopy (left) + buttons (right) ── */}
@@ -48,7 +51,7 @@ export default function Footer() {
             gap:            "28px",
             paddingBottom:  "32px",
             marginBottom:   "32px",
-            borderBottom:   "1px solid rgba(245,243,239,0.08)",
+            borderBottom:   "1px solid rgba(126,113,95,0.18)",
           }}
         >
           {/* Left: microcopy */}
@@ -57,18 +60,18 @@ export default function Footer() {
               fontFamily:    font,
               fontSize:      "clamp(18px, 2vw, 22px)",
               fontWeight:    600,
-              color:         light,
+              color:         ink,
               margin:        "0 0 8px",
               letterSpacing: "-0.015em",
               lineHeight:    1.25,
             }}>
-              Let&apos;s work <span style={{ color: accent }}>together.</span>
+              Let&apos;s work <span style={{ color: brand }}>together.</span>
             </p>
             <p style={{
               fontFamily: font,
               fontSize:   "13px",
               lineHeight: 1.55,
-              color:      "rgba(245,243,239,0.55)",
+              color:      ink2,
               margin:     0,
             }}>
               Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
@@ -114,17 +117,17 @@ export default function Footer() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <LogoMark size={20} variant="light" opacity={0.4} />
+            <LogoMark size={20} variant="dark" opacity={0.6} />
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               <span style={{
                 fontFamily:    font,
                 fontSize:      "14px",
                 fontWeight:    600,
-                color:         "rgba(245,243,239,0.55)",
+                color:         ink2,
                 letterSpacing: "-0.015em",
                 lineHeight:    1,
               }}>
-                Alfonso <span style={{ color: accent }}>Barreiro</span>
+                Alfonso <span style={{ color: brand }}>Barreiro</span>
               </span>
               <span style={{
                 fontFamily:    font,
@@ -132,7 +135,7 @@ export default function Footer() {
                 fontWeight:    500,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color:         "rgba(245,243,239,0.25)",
+                color:         muted,
                 lineHeight:    1,
               }}>
                 UX / UI Designer · Portland, OR
@@ -143,7 +146,7 @@ export default function Footer() {
           <p style={{
             fontFamily: font,
             fontSize:   "12px",
-            color:      "rgba(245,243,239,0.3)",
+            color:      muted,
             margin:     0,
           }}>
             © 2026 Alfonso Barreiro
@@ -169,24 +172,22 @@ export default function Footer() {
           cursor:          pointer;
         }
         .footer-pill--default {
-          border:     1px solid rgba(245,243,239,0.20);
-          background: rgba(245,243,239,0.04);
-          color:      rgba(245,243,239,0.65);
+          border:     1px solid rgba(126,113,95,0.40);
+          background: transparent;
+          color:      ${ink2};
         }
         .footer-pill--default:hover {
-          border-color: rgba(245,243,239,0.45);
-          background:   rgba(245,243,239,0.08);
-          color:        rgba(245,243,239,0.90);
+          border-color: ${ink};
+          color:        ${ink};
         }
         .footer-pill--accent {
-          border:     1px solid rgba(193,127,74,0.55);
-          background: rgba(193,127,74,0.14);
-          color:      ${light};
+          border:     1px solid ${brand};
+          background: ${brand};
+          color:      ${bg};
         }
         .footer-pill--accent:hover {
-          border-color: ${accent};
-          background:   ${accent};
-          color:        ${light};
+          background: #2A1830;
+          border-color: #2A1830;
         }
 
         /* Mobile: stack microcopy above CTAs */
