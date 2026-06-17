@@ -239,7 +239,7 @@ function ResultRow({
         border: "none",
         cursor: "pointer",
         textAlign: "left",
-        borderLeft: selected ? "2px solid #7A8B6E" : "2px solid transparent",
+        borderLeft: selected ? "2px solid var(--color-accent)" : "2px solid transparent",
       }}
     >
       <KindBadge kind={entry.kind} />
@@ -285,7 +285,7 @@ function ResultRow({
 
 function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
   const map: Record<SearchEntry["kind"], { label: string; bg: string; color: string }> = {
-    "case-study":   { label: "Case",   bg: "rgba(61,38,69,0.12)", color: "#3D2645" },
+    "case-study":   { label: "Case",   bg: "rgba(61,38,69,0.12)", color: "var(--color-brand)" },
     "section":      { label: "§",      bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
     "page":         { label: "Page",   bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
     "presentation": { label: "Slides", bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },

@@ -64,7 +64,7 @@ export default function CookieConsent() {
             display:    "inline-block",
             width:      "20px",
             height:     "1px",
-            background: "#7A8B6E",
+            background: "var(--color-accent)",
             flexShrink: 0,
           }}
         />
@@ -75,7 +75,7 @@ export default function CookieConsent() {
             fontWeight:    600,
             letterSpacing: "0.13em",
             textTransform: "uppercase",
-            color:         "#7A8B6E",
+            color:         "var(--color-accent)",
             margin:        0,
           }}
         >
@@ -102,7 +102,7 @@ export default function CookieConsent() {
           style={{
             flex:          1,
             padding:       "10px 0",
-            background:    "#3D2645",
+            background:    "var(--color-brand)",
             color:         "#FAFAF9",
             border:        "none",
             borderRadius:  "8px",

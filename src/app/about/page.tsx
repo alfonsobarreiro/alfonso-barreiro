@@ -37,7 +37,7 @@ const eyebrowDash: React.CSSProperties = {
   display:    "inline-block",
   width:      "24px",
   height:     "1px",
-  background: "#7A8B6E",
+  background: "var(--color-accent)",
 };
 
 const eyebrowLabel: React.CSSProperties = {
@@ -46,7 +46,7 @@ const eyebrowLabel: React.CSSProperties = {
   fontWeight:    600,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
-  color:         "#7A8B6E",
+  color:         "var(--color-accent)",
   margin:        0,
 };
 
@@ -116,8 +116,8 @@ export default function AboutPage() {
             transition:     transform 0.25s ease, box-shadow 0.25s ease, background 0.2s, border-color 0.2s, color 0.2s;
           }
           .about-cta-primary {
-            background:   #3D2645;
-            border:       1px solid #3D2645;
+            background:   var(--color-brand);
+            border:       1px solid var(--color-brand);
             color:        #FFFFFF;
           }
           .about-cta-primary:hover {
@@ -136,14 +136,14 @@ export default function AboutPage() {
             color:        #252B28;
           }
           .about-studio-link {
-            color:           #5F7556;
+            color:           var(--color-accent-hover);
             text-decoration: none;
             font-weight:     500;
             border-bottom:   1px solid rgba(122,139,110,0.35);
             transition:      border-color 0.2s, color 0.2s;
           }
           .about-studio-link:hover {
-            border-bottom-color: #7A8B6E;
+            border-bottom-color: var(--color-accent);
             color:               #4A5C42;
           }
         `}</style>
@@ -187,7 +187,7 @@ export default function AboutPage() {
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     fontSize:      "clamp(20px, 2.6vw, 30px)",
                     fontWeight:    500,
-                    color:         "#3D2645",
+                    color:         "var(--color-brand)",
                     margin:        0,
                     letterSpacing: "-0.02em",
                     lineHeight:    1.2,

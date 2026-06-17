@@ -33,7 +33,7 @@ export default function ContactForm() {
     background:   "transparent",
     border:       "none",
     borderBottom: focusedField === field
-      ? "1px solid #7A8B6E"
+      ? "1px solid var(--color-accent)"
       : "1px solid #B8B0A2",
     borderRadius: 0,
     padding:      "12px 0",
@@ -43,7 +43,7 @@ export default function ContactForm() {
     fontWeight:   400,
     outline:      "none",
     transition:   "border-color 0.2s",
-    caretColor:   "#7A8B6E",
+    caretColor:   "var(--color-accent)",
   });
 
   const labelStyle: React.CSSProperties = {
@@ -52,7 +52,7 @@ export default function ContactForm() {
     fontWeight:    600,
     letterSpacing: "0.13em",
     textTransform: "uppercase",
-    color:         "#7A8B6E",
+    color:         "var(--color-accent)",
     fontFamily:    font,
     marginBottom:  "2px",
   };
@@ -111,7 +111,7 @@ export default function ContactForm() {
         )}
         <button type="submit" disabled={formState === "submitting"} style={{
           padding: "15px 36px",
-          background: formState === "submitting" ? "rgba(61,38,69,0.6)" : "#3D2645",
+          background: formState === "submitting" ? "rgba(61,38,69,0.6)" : "var(--color-brand)",
           color: "#FFFFFF", border: "none", borderRadius: "8px",
           fontSize: "13px", fontWeight: 600, fontFamily: font,
           letterSpacing: "0.07em", textTransform: "uppercase",

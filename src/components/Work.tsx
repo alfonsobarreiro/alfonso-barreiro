@@ -142,7 +142,7 @@ export default function Work() {
                   display:    "inline-block",
                   width:      "24px",
                   height:     "1px",
-                  background: "#7A8B6E",
+                  background: "var(--color-accent)",
                 }}
               />
               <p
@@ -170,7 +170,7 @@ export default function Work() {
                 lineHeight:    1.1,
               }}
             >
-              Three <span style={{ color: "#3D2645" }}>case studies.</span>
+              Three <span style={{ color: "var(--color-brand)" }}>case studies.</span>
             </h2>
           </div>
         </div>
@@ -235,7 +235,7 @@ function ProjectCard({
   const aubergineHeader = (
     <div
       style={{
-        background:    "#3D2645",
+        background:    "var(--color-brand)",
         padding:       "18px 28px",
         margin:        featured ? "0 -48px 32px" : "0 -40px 28px",
         display:       "flex",
@@ -243,14 +243,14 @@ function ProjectCard({
         gap:           "16px",
       }}
     >
-      <span style={{ width: "24px", height: "1px", background: "#7A8B6E", flexShrink: 0 }} />
+      <span style={{ width: "24px", height: "1px", background: "var(--color-accent)", flexShrink: 0 }} />
       <span
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "10px",
           fontWeight:    700,
           letterSpacing: "0.18em",
-          color:         "#7A8B6E",
+          color:         "var(--color-accent)",
           flexShrink:    0,
         }}
       >
@@ -341,7 +341,7 @@ function ProjectCard({
           display:       "flex",
           alignItems:    "center",
           gap:           "8px",
-          color:         "#7A8B6E",
+          color:         "var(--color-accent)",
           fontSize:      "12px",
           fontWeight:    600,
           letterSpacing: "0.08em",
@@ -501,7 +501,7 @@ function ProjectCard({
           display:       "flex",
           alignItems:    "center",
           gap:           "8px",
-          color:         "#7A8B6E",
+          color:         "var(--color-accent)",
           fontSize:      "12px",
           fontWeight:    600,
           letterSpacing: "0.08em",

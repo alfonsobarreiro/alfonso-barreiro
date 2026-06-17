@@ -29,8 +29,8 @@ const c = {
   ink:    "#252B28",
   body:   "#3D4440",
   muted:  "#8A8680",
-  brand:  "#3D2645",
-  accent: "#7A8B6E",
+  brand:  "var(--color-brand)",
+  accent: "var(--color-accent)",
 };
 
 const font = "var(--font-dm-sans), -apple-system, sans-serif";

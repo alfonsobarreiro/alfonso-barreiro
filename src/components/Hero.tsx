@@ -83,7 +83,7 @@ export default function Hero() {
                 display:    "inline-block",
                 width:      "32px",
                 height:     "1px",
-                background: "#7A8B6E",
+                background: "var(--color-accent)",
                 flexShrink: 0,
               }}
             />
@@ -118,7 +118,7 @@ export default function Hero() {
           >
             Alfonso
             <br />
-            <span style={{ color: "#3D2645", fontWeight: 500 }}>Barreiro</span>
+            <span style={{ color: "var(--color-brand)", fontWeight: 500 }}>Barreiro</span>
           </h1>
 
           {/* Positioning statement — lifted from /about, the sharper one-line
@@ -271,7 +271,7 @@ export default function Hero() {
                 display:        "inline-flex",
                 alignItems:     "center",
                 gap:            "8px",
-                color:          "#7A8B6E",
+                color:          "var(--color-accent)",
                 fontSize:       "12px",
                 fontWeight:     600,
                 fontFamily:     "var(--font-dm-sans), sans-serif",

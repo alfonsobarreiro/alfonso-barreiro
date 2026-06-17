@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { DM_Serif_Display, DM_Sans, Barlow_Condensed, Lora, Space_Grotesk, Inter } from "next/font/google";
 import Script from "next/script";
+import BrandSwitch from "@/components/BrandSwitch";
 import "./globals.css";
+
+// Pre-hydration brand setter: runs before first paint so ?brand=c / ?brand=e
+// apply without flashing the default aubergine palette. The BrandSwitch
+// component below handles client-side route changes.
+const BRAND_BOOT_SCRIPT = `(function(){try{var p=new URLSearchParams(window.location.search);var b=p.get("brand");if(b==="c"||b==="e"||b==="aubergine"){document.documentElement.setAttribute("data-brand",b);}}catch(e){}})();`;
 
 // GA4 Measurement ID — set NEXT_PUBLIC_GA_ID on Vercel to enable.
 // Inert when missing; vanilla <Script> tags mirror the Clarity pattern
@@ -126,8 +133,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSerifDisplay.variable} ${dmSans.variable} ${barlowCondensed.variable} ${lora.variable} ${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" className={`${dmSerifDisplay.variable} ${dmSans.variable} ${barlowCondensed.variable} ${lora.variable} ${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: BRAND_BOOT_SCRIPT }} />
+      </head>
       <body className="antialiased" suppressHydrationWarning>
+        <Suspense fallback={null}>
+          <BrandSwitch />
+        </Suspense>
         {children}
         <Script id="ms-clarity" strategy="afterInteractive">
           {`(function(c,l,a,r,i,t,y){

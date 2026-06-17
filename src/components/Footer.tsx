@@ -7,8 +7,8 @@ import LogoMark from "./LogoMark";
 const font = "var(--font-dm-sans), -apple-system, sans-serif";
 
 const bg     = "#FAFAF9";  // cream surface
-const brand  = "#3D2645";  // aubergine — wordmark + primary CTA
-const accent = "#7A8B6E";  // sage — eyebrow rule + accent span
+const brand  = "var(--color-brand)";  // aubergine — wordmark + primary CTA
+const accent = "var(--color-accent)";  // sage — eyebrow rule + accent span
 const ink    = "#252B28";
 const ink2   = "#3D4440";
 const muted  = "#8A8680";

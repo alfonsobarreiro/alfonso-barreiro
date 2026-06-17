@@ -89,7 +89,7 @@ export default function Nav() {
                 lineHeight:    1,
               }}
             >
-              Alfonso <span style={{ color: "#3D2645" }}>Barreiro</span>
+              Alfonso <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
             </span>
           </button>
         ) : (
@@ -107,7 +107,7 @@ export default function Nav() {
                 lineHeight:    1,
               }}
             >
-              Alfonso <span style={{ color: "#3D2645" }}>Barreiro</span>
+              Alfonso <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
             </span>
           </Link>
         )}
@@ -128,7 +128,7 @@ export default function Nav() {
             href="/contact"
             style={{
               padding:        "10px 24px",
-              background:     "#3D2645",
+              background:     "var(--color-brand)",
               border:         "none",
               borderRadius:   "8px",
               color:          "#FFFFFF",
@@ -220,14 +220,14 @@ export default function Nav() {
       >
         {/* Eyebrow */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "48px" }}>
-          <span style={{ width: "20px", height: "1px", background: "#7A8B6E" }} />
+          <span style={{ width: "20px", height: "1px", background: "var(--color-accent)" }} />
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "11px",
             fontWeight:    600,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color:         "#7A8B6E",
+            color:         "var(--color-accent)",
           }}>
             Navigation
           </span>
@@ -253,7 +253,7 @@ export default function Nav() {
             display:        "block",
             textDecoration: "none",
           };
-          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "#7A8B6E");
+          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "var(--color-accent)");
           const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "rgba(245,243,239,0.85)");
 
           // "about" always routes to /about, regardless of current page
@@ -303,7 +303,7 @@ export default function Nav() {
           style={{
             marginTop:      "40px",
             padding:        "16px 32px",
-            background:     "#3D2645",
+            background:     "var(--color-brand)",
             border:         "none",
             borderRadius:   "8px",
             color:          "#FFFFFF",

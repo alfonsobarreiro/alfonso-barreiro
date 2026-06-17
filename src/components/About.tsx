@@ -49,8 +49,8 @@ const pillPrimary: React.CSSProperties = {
   ...pillBase,
   padding:    "12px 24px",
   fontSize:   "12px",
-  background: "#3D2645",
-  border:     "1px solid #3D2645",
+  background: "var(--color-brand)",
+  border:     "1px solid var(--color-brand)",
   color:      "#FFFFFF",
 };
 const pillDefault: React.CSSProperties = {
@@ -63,7 +63,7 @@ const pillAccent: React.CSSProperties = {
   ...pillBase,
   border:     "1px solid rgba(61,38,69,0.45)",
   background: "rgba(61,38,69,0.06)",
-  color:      "#3D2645",
+  color:      "var(--color-brand)",
 };
 
 const skillGroups = [
@@ -166,7 +166,7 @@ export default function About() {
                   display:    "inline-block",
                   width:      "24px",
                   height:     "1px",
-                  background: "#7A8B6E",
+                  background: "var(--color-accent)",
                 }}
               />
               <p
@@ -228,7 +228,7 @@ export default function About() {
                   width:        "7px",
                   height:       "7px",
                   borderRadius: "50%",
-                  background:   "#7A8B6E",
+                  background:   "var(--color-accent)",
                   flexShrink:   0,
                   // CSS pulse animation via style tag below
                   animation:    "pulse 2.2s ease-in-out infinite",
@@ -260,7 +260,7 @@ export default function About() {
               }}
             >
               Different problems, same question:<br />
-              <span style={{ color: "#3D2645" }}>Why doesn&apos;t this work better?</span>
+              <span style={{ color: "var(--color-brand)" }}>Why doesn&apos;t this work better?</span>
             </h2>
 
             <p
@@ -353,14 +353,14 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color:          "#5F7556",
+                  color:          "var(--color-accent-hover)",
                   textDecoration: "none",
                   borderBottom:   "1px solid rgba(122,139,110,0.35)",
                   paddingBottom:  "1px",
                   transition:     "border-color 0.2s, color 0.2s",
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(122,139,110,0.75)"; e.currentTarget.style.color = "#4A5C42"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(122,139,110,0.35)"; e.currentTarget.style.color = "#5F7556"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(122,139,110,0.35)"; e.currentTarget.style.color = "var(--color-accent-hover)"; }}
               >
                 Book a time
               </a>
@@ -374,7 +374,7 @@ export default function About() {
               background:   "#FAFAF9",
               /* Border softened — same direction as Work cards. */
               border:       "1px solid rgba(126, 113, 95, 0.25)",
-              borderLeft:   "3px solid #3D2645",
+              borderLeft:   "3px solid var(--color-brand)",
               borderRadius: 0,
               padding:      "44px",
               position:     "sticky",
@@ -398,7 +398,7 @@ export default function About() {
                     fontWeight:    600,
                     letterSpacing: "0.13em",
                     textTransform: "uppercase",
-                    color:         "#5F7556",
+                    color:         "var(--color-accent-hover)",
                     marginBottom:  "14px",
                   }}
                 >
@@ -451,7 +451,7 @@ export default function About() {
                 display:    "inline-block",
                 width:      "20px",
                 height:     "1px",
-                background: "#7A8B6E",
+                background: "var(--color-accent)",
                 flexShrink: 0,
               }}
             />
@@ -462,7 +462,7 @@ export default function About() {
                 fontWeight:    600,
                 letterSpacing: "0.13em",
                 textTransform: "uppercase",
-                color:         "#5F7556",
+                color:         "var(--color-accent-hover)",
                 margin:        0,
               }}
             >

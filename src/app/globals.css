@@ -48,6 +48,34 @@
   --font-display: var(--font-dm-serif-display);
 }
 
+/* ── Brand-aware semantic tokens ──
+   Default is C (Crimson + Deep Teal). The previous aubergine system and the
+   runner-up E (Petrol Blue) stay reachable via ?brand=aubergine and ?brand=e
+   for comparison. BrandSwitch reads the param and sets data-brand on <html>;
+   the boot script in layout.tsx runs pre-hydration to avoid a flash.
+   The Tailwind @theme inline tokens above are unused by the chrome — every
+   brand reference goes through var(--color-brand) / var(--color-accent) /
+   var(--color-accent-hover) / var(--color-focus-ring). */
+:root,
+:root[data-brand="c"] {
+  --color-brand:        #8C1A1A; /* Crimson */
+  --color-accent:       #0F3D3E; /* Deep Teal */
+  --color-accent-hover: #0A2D2E;
+  --color-focus-ring:   #0F3D3E;
+}
+:root[data-brand="aubergine"] {
+  --color-brand:        #3D2645;
+  --color-accent:       #7A8B6E;
+  --color-accent-hover: #5F7556;
+  --color-focus-ring:   #7A8B6E;
+}
+:root[data-brand="e"] {
+  --color-brand:        #1F4A6E; /* Petrol Blue */
+  --color-accent:       #BC9A2D; /* Burnt Ochre */
+  --color-accent-hover: #A07F1F;
+  --color-focus-ring:   #1F4A6E;
+}
+
 /* ── Reset ── placed in @layer base so Tailwind utilities (@layer utilities) take precedence */
 @layer base {
   *, *::before, *::after {
@@ -102,9 +130,9 @@ a {
 
 /* Replace browser default blue outline with brand-aware focus ring */
 a:focus                { outline: none; }
-a:focus-visible        { outline: 2px solid #7A8B6E; outline-offset: 2px; }
+a:focus-visible        { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
 button:focus           { outline: none; }
-button:focus-visible   { outline: 2px solid #7A8B6E; outline-offset: 2px; }
+button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
 
 button {
   font-family: inherit;
@@ -284,7 +312,7 @@ button {
   }
   .cs-persona-collapse > .cs-persona-collapse-summary::after {
     content: " ↓";
-    color: #7A8B6E;
+    color: var(--color-accent);
     margin-left: 6px;
   }
   .cs-persona-collapse[open] > .cs-persona-collapse-summary::after {

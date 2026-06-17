@@ -45,7 +45,7 @@ export default function Contact() {
     background:      "transparent",
     border:          "none",
     borderBottom:    focusedField === field
-      ? "1px solid #7A8B6E"
+      ? "1px solid var(--color-accent)"
       : "1px solid rgba(245,243,239,0.20)",
     borderRadius:    0,
     padding:         "12px 0",
@@ -55,7 +55,7 @@ export default function Contact() {
     fontWeight:      400,
     outline:         "none",
     transition:      "border-color 0.2s",
-    caretColor:      "#7A8B6E",
+    caretColor:      "var(--color-accent)",
   });
 
   const labelStyle = {
@@ -64,7 +64,7 @@ export default function Contact() {
     fontWeight:    600,
     letterSpacing: "0.13em",
     textTransform: "uppercase" as const,
-    color:         "#7A8B6E",
+    color:         "var(--color-accent)",
     fontFamily:    "var(--font-dm-sans), sans-serif",
     marginBottom:  "2px",
   };
@@ -104,7 +104,7 @@ export default function Contact() {
                 display:    "inline-block",
                 width:      "24px",
                 height:     "1px",
-                background: "#7A8B6E",
+                background: "var(--color-accent)",
               }}
             />
             <p
@@ -134,7 +134,7 @@ export default function Contact() {
             }}
           >
             Let&apos;s make<br />
-            <span style={{ color: "#3D2645" }}>something good.</span>
+            <span style={{ color: "var(--color-brand)" }}>something good.</span>
           </h2>
 
           <p
@@ -277,7 +277,7 @@ export default function Contact() {
                   disabled={formState === "submitting"}
                   style={{
                     padding:       "15px 36px",
-                    background:    formState === "submitting" ? "rgba(61,38,69,0.6)" : "#3D2645",
+                    background:    formState === "submitting" ? "rgba(61,38,69,0.6)" : "var(--color-brand)",
                     color:         "#F5F5F4",
                     border:        "none",
                     borderRadius:  "8px",

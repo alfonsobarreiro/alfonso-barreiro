@@ -50,7 +50,7 @@ const contactLinks: {
   {
     href: "mailto:alfonso@barreiro.com",
     label: "alfonso@barreiro.com",
-    iconBg: "#3D2645",
+    iconBg: "var(--color-brand)",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -136,8 +136,8 @@ export default function ConnectPage() {
 
         /* ── Solid variant (cognac fill) ──────────────── */
         .connect-row.solid {
-          background: #3D2645;
-          border-color: #3D2645;
+          background: var(--color-brand);
+          border-color: var(--color-brand);
           color: #FFFFFF;
           font-weight: 600;
         }
@@ -271,7 +271,7 @@ export default function ConnectPage() {
                 style={{
                   fontSize: 14,
                   fontWeight: 500,
-                  color: "#3D2645",
+                  color: "var(--color-brand)",
                   margin: "0 0 4px",
                   letterSpacing: "0.02em",
                   textWrap: "balance",
@@ -314,14 +314,14 @@ export default function ConnectPage() {
             </a>
 
             <a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" className="connect-row">
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#3D2645" }}>
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
                 <WayfarerGlobe />
               </span>
               <span>Wayfarer Travel website</span>
             </a>
 
             <a href="https://www.menssolerevival.com/" target="_blank" rel="noopener noreferrer" className="connect-row">
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#3D2645" }}>
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/work/msr/logo-msr-mark.svg"
@@ -340,7 +340,7 @@ export default function ConnectPage() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <a href="https://alphabeta.design/" target="_blank" rel="noopener noreferrer" className="connect-row solid">
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF", fontWeight: 700, fontSize: 13, color: "#3D2645", letterSpacing: "-0.02em" }}>
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF", fontWeight: 700, fontSize: 13, color: "var(--color-brand)", letterSpacing: "-0.02em" }}>
                 AB
               </span>
               <span>Alpha Beta Design</span>
@@ -371,7 +371,7 @@ export default function ConnectPage() {
               className="connect-row solid"
             >
               <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF" }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3D2645" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: "var(--color-brand)" }}>
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                   <circle cx="9" cy="7" r="4" />
                   <line x1="19" y1="8" x2="19" y2="14" />
@@ -387,7 +387,7 @@ export default function ConnectPage() {
               rel="noopener noreferrer"
               className="connect-row"
             >
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#3D2645" }}>
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true">
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
@@ -401,7 +401,7 @@ export default function ConnectPage() {
               rel="noopener noreferrer"
               className="connect-row"
             >
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#3D2645" }}>
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true">
                   <path d="M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0zm7.93 5.527c1.297 1.583 2.087 3.601 2.13 5.79-.306-.063-3.368-.685-6.456-.297-.066-.152-.13-.305-.197-.456-.19-.448-.4-.89-.61-1.32 3.42-1.394 4.97-3.4 5.133-3.717zM12 2.166c2.31 0 4.42.86 6.03 2.276-.14.198-1.54 2.075-4.85 3.314-1.524-2.8-3.21-5.09-3.475-5.45A9.8 9.8 0 0112 2.166zM7.65 3.026c.253.34 1.91 2.64 3.453 5.38-4.34 1.155-8.166 1.135-8.58 1.13.604-2.888 2.56-5.292 5.127-6.51zM2.166 12.01v-.31c.404.008 4.903.066 9.537-1.324.267.523.522 1.054.756 1.59l-.366.105c-4.787 1.546-7.328 5.77-7.54 6.125A9.8 9.8 0 012.166 12.01zm9.834 9.824a9.78 9.78 0 01-6.043-2.075c.166-.34 2.054-3.97 7.29-5.798l.06-.02c1.31 3.397 1.846 6.25 1.985 7.067a9.76 9.76 0 01-3.292.826zm5.346-1.78c-.094-.563-.59-3.29-1.81-6.64 2.913-.466 5.463.292 5.78.398-.402 2.56-1.873 4.772-3.97 6.242z" />
                 </svg>
@@ -453,7 +453,7 @@ export default function ConnectPage() {
                 width: 7,
                 height: 7,
                 borderRadius: "50%",
-                backgroundColor: "#3D2645",
+                backgroundColor: "var(--color-brand)",
                 flexShrink: 0,
                 animation: "pulse 2.2s ease-in-out infinite",
               }}
