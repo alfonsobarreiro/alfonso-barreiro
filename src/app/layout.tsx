@@ -111,15 +111,31 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.barreiro.com",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-    },
-  },
+  // Index in production only. Staging (staging.barreiro.com) and every
+  // other Vercel preview deploy gets a noindex/nofollow meta tag so search
+  // engines never list staging content or compete with prod for SEO.
+  // Belt-and-suspenders alongside the Disallow in robots.ts.
+  robots:
+    process.env.VERCEL_ENV === "production"
+      ? {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+          },
+        }
+      : {
+          index: false,
+          follow: false,
+          nocache: true,
+          googleBot: {
+            index: false,
+            follow: false,
+            noimageindex: true,
+          },
+        },
   // Google Search Console verification — set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
   // on Vercel with the meta-content value from Search Console. Inert when missing.
   verification: {
