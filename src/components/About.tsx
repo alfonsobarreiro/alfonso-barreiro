@@ -274,6 +274,7 @@ export default function About() {
                 lineHeight:   1.75,
                 color:        "#3D4440",
                 marginBottom: "20px",
+                maxWidth:     "640px",
               }}
             >
               I learned BASIC from a magazine, typing it line by line. I built my
@@ -288,6 +289,7 @@ export default function About() {
                 lineHeight:   1.75,
                 color:        "#3D4440",
                 marginBottom: "40px",
+                maxWidth:     "640px",
               }}
             >
               I design from the gaps I actually live in. Spotify is my most-used app,

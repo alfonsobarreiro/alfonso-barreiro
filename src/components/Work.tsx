@@ -368,13 +368,16 @@ function ProjectCard({
         {project.subtitle} · {project.year}
       </p>
 
-      {/* Description */}
+      {/* Description — capped so the line length stays in the 55-75 char
+          readability band on tablet, where the work-row collapses to a
+          single column and the content cell suddenly becomes full-width. */}
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
         fontSize:   "clamp(15px, 1.4vw, 17px)",
         lineHeight: 1.7,
         color:      "#3D4440",
         margin:     "0 0 18px",
+        maxWidth:   "640px",
       }}>
         {project.description}
       </p>
@@ -388,6 +391,7 @@ function ProjectCard({
         fontStyle:     "italic",
         margin:        "0 0 28px",
         letterSpacing: "-0.005em",
+        maxWidth:      "640px",
       }}>
         {project.thesis}
       </p>
