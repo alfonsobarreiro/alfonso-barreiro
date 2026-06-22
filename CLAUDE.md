@@ -6,8 +6,17 @@ Alfonso's personal portfolio site. Next.js + TypeScript.
 
 **Host: Vercel. Always. Never another host.**
 
-Push to main → Vercel builds and ships automatically. No manual build step.
-Production: https://barreiro.com
+Two environments, both Vercel + GitHub auto-deploy:
+
+- `main` → Production → https://barreiro.com
+- `staging` → Preview → https://staging.barreiro.com
+
+Push to `staging` first. Merge to `main` only when staging looks good.
+No manual build step on either.
+
+Env vars (`NEXT_PUBLIC_MAPBOX_TOKEN`, etc.) live in Vercel → Settings →
+Environment Variables, applied to all three environments. Changes need
+a redeploy to take effect.
 
 ## Local dev
 
