@@ -82,19 +82,37 @@ export default function SpotifyFramedAnimation() {
           max-width: 320px;
         }
 
-        /* Narrow card (or stacked mobile work row): collapse the icon column
-           gracefully — let the phone breathe, drop the icon notes. */
+        /* Mobile: keep the desktop "phone-left + icons-right" composition.
+           Two constraints to override:
+           1) the SFA root's own 16:10 lock (set above)
+           2) the parent .work-row-image's 16:10 + overflow:hidden, which
+              clips anything taller. Use :has() to relax the parent only
+              when it contains this card. */
         @media (max-width: 540px) {
+          .work-row-image:has(.sfa-root) {
+            aspect-ratio: auto !important;
+            overflow: visible !important;
+          }
           .sfa-root {
-            grid-template-columns: 1fr;
-            justify-items: center;
+            aspect-ratio: auto;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
             gap: 16px;
+            padding: 20px;
+            align-items: center;
+          }
+          .sfa-phone {
+            height: auto;
+            width: 100%;
+            max-width: 200px;
+            aspect-ratio: 780 / 1711;
           }
           .sfa-icons {
-            grid-template-rows: none;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: none;
+            grid-template-rows: auto auto auto;
+            gap: 14px;
+            height: auto;
             max-width: 100%;
-            width: 100%;
+            align-content: center;
           }
         }
       `}</style>
@@ -161,8 +179,12 @@ function IconCell({ color, glyph, name, note }: {
           margin: 0;
         }
         @media (max-width: 540px) {
-          .sfa-cell { flex-direction: column; align-items: center; text-align: center; gap: 6px; }
-          .sfa-cell-note { display: none; }
+          /* Keep the horizontal badge+text layout on mobile because the
+             icon column now stacks vertically on the right of the phone. */
+          .sfa-cell { gap: 10px; }
+          .sfa-cell-name { font-size: 13px; }
+          .sfa-cell-note { font-size: 11px; line-height: 1.35; }
+          .sfa-badge { width: 32px; height: 32px; }
         }
       `}</style>
     </div>
