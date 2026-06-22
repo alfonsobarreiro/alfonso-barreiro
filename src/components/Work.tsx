@@ -5,12 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import MSRPagePeek from "@/components/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
-import SpotifyDiagramPeek from "@/components/SpotifyDiagramPeek";
+import SpotifyFramedAnimation from "@/components/SpotifyFramedAnimation";
 
 interface Project {
   title:       string;
   subtitle:    string;
   description: string;
+  /** One-line "what I figured out" — signals decision-making depth. Renders italic deep-teal under the description. */
+  thesis:      string;
+  /** Hover-revealed meta line: role · year · status. Editorial eyebrow style. */
+  meta:        string;
   tags:        string[];
   year:        string;
   status:      "live" | "coming-soon";
@@ -18,23 +22,19 @@ interface Project {
   image?:      string;
 }
 
+/* Order: Spotify → Wayfarer → MSR.
+   MSR is already the hero (13× over the live site), so leading with it again
+   would repeat the same evidence twice. Spotify opens the work section with
+   interaction craft, Wayfarer carries the shipped-product range, MSR closes
+   with the measurable-result case the hero set up. */
 const projects: Project[] = [
-  {
-    title:       "Men's Sole Revival",
-    subtitle:    "Foot Health Content Platform",
-    description:
-      "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
-    tags:        ["Content UX", "Visual Design", "Design System"],
-    year:        "2026",
-    status:      "live",
-    href:        "/work/mens-sole-revival",
-    image:       "/cs-msr-preview.jpg",
-  },
   {
     title:       "Spotify",
     subtitle:    "Recently Played Controls",
     description:
       "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
+    thesis:      "Three controls Spotify should have built already.",
+    meta:        "DESIGNER · 2026 · CONCEPT",
     tags:        ["UX Research", "Interaction Design", "Prototyping"],
     year:        "2026",
     status:      "live",
@@ -46,11 +46,26 @@ const projects: Project[] = [
     subtitle:    "Travel Discovery Platform",
     description:
       "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
+    thesis:      "Trip planning without forcing dates that don't exist yet.",
+    meta:        "DESIGNER · 2026 · LIVE",
     tags:        ["UX/UI Design", "Information Architecture", "Design System"],
     year:        "2026",
     status:      "live",
     href:        "/work/wayfarer",
     image:       "/cs-wayfarer-preview.jpg",
+  },
+  {
+    title:       "Men's Sole Revival",
+    subtitle:    "Foot Health Content Platform",
+    description:
+      "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
+    thesis:      "Pivoted from e-commerce to editorial in week 3.",
+    meta:        "DESIGNER · 2026 · LIVE SINCE APRIL",
+    tags:        ["Content UX", "Visual Design", "Design System"],
+    year:        "2026",
+    status:      "live",
+    href:        "/work/mens-sole-revival",
+    image:       "/cs-msr-preview.jpg",
   },
 ];
 
@@ -172,31 +187,38 @@ export default function Work() {
             >
               Three <span style={{ color: "var(--color-brand)" }}>case studies.</span>
             </h2>
+            <p
+              style={{
+                fontFamily:   "var(--font-dm-sans), sans-serif",
+                fontSize:     "clamp(15px, 1.5vw, 17px)",
+                lineHeight:   1.65,
+                color:        "#3D4440",
+                margin:       "20px 0 0",
+                maxWidth:     "640px",
+                fontWeight:   400,
+              }}
+            >
+              Consumer apps, e-commerce, and travel. Built solo, remote, end to end. Different industries, same operating model: research first, decisions made explicit, shipped to a live product.
+            </p>
           </div>
         </div>
 
-        {/* Bento grid */}
+        {/* Zigzag editorial rows — each case study gets its own full row
+            with image (60%) and content (40%) alternating sides. Image-left
+            on odd rows, image-right on even rows. */}
         <div
-          className="work-bento-grid"
+          className="work-zigzag"
           style={{
-            display:             "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gridTemplateRows:    "auto auto",
-            gap:                 "24px",
+            display:        "flex",
+            flexDirection:  "column",
+            gap:            "clamp(120px, 13vw, 180px)",
           }}
         >
-          {/* Feature card — spans both columns */}
-          <div className="scroll-reveal" style={{ gridColumn: "1 / -1" }}>
-            <ProjectCard project={projects[0]} index={0} featured />
-          </div>
-
-          {/* Pair row */}
-          <div className="scroll-reveal" style={{ height: "100%" }}>
-            <ProjectCard project={projects[1]} index={1} />
-          </div>
-          <div className="scroll-reveal" style={{ height: "100%" }}>
-            <ProjectCard project={projects[2]} index={2} />
-          </div>
+          {projects.map((project, idx) => (
+            <div key={project.title} className="scroll-reveal">
+              <ProjectCard project={project} index={idx} imageOnRight={idx % 2 === 1} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -205,281 +227,173 @@ export default function Work() {
 
 function ProjectCard({
   project,
-  index,
-  featured = false,
+  imageOnRight = false,
 }: {
   project: Project;
-  index: number;
+  index?: number;
   featured?: boolean;
+  imageOnRight?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const isLive = project.status === "live" && !!project.href;
 
-  const cardStyle: React.CSSProperties = {
-    display:        "block",
-    textDecoration: "none",
-    color:          "inherit",
-    background:     "#FAFAF9",
-    /* Flat cards, no drop shadows. Border carries the edge; the
-       aubergine header strip carries the brand color. Card auto-sizes
-       to content (no height:100%) so the border always wraps content. */
-    border:         "1px solid rgba(126, 113, 95, 0.25)",
-    borderRadius:   0,
-    padding:        featured ? "0 48px 44px" : "0 40px 40px",
-    boxSizing:      "border-box",
-    transition:     "transform 0.25s ease, border-color 0.25s ease",
-    transform:      hovered && isLive ? "translateY(-3px)" : "translateY(0)",
-    cursor:         isLive ? "pointer" : "default",
-  };
-
-  const aubergineHeader = (
-    <div
-      style={{
-        background:    "var(--color-brand)",
-        padding:       "18px 28px",
-        margin:        featured ? "0 -48px 32px" : "0 -40px 28px",
-        display:       "flex",
-        alignItems:    "center",
-        gap:           "16px",
-      }}
-    >
-      <span style={{ width: "24px", height: "1px", background: "var(--color-accent)", flexShrink: 0 }} />
-      <span
-        style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "10px",
-          fontWeight:    700,
-          letterSpacing: "0.18em",
-          color:         "var(--color-accent)",
-          flexShrink:    0,
-        }}
-      >
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <span
-        style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      featured ? "clamp(20px, 2.4vw, 28px)" : "clamp(18px, 2vw, 22px)",
-          fontWeight:    500,
-          color:         "#FAFAF9",
-          letterSpacing: "-0.015em",
-          marginLeft:    "auto",
-        }}
-      >
-        {project.title}
-      </span>
-    </div>
-  );
-
-  /* ── Featured layout: content left, image right ── */
-  const featuredInner = (
-    <div
-      className="feat-inner"
-      style={{
-        display:             "grid",
-        gridTemplateColumns: "1fr 1.4fr",
-        gap:                 "48px",
-        alignItems:          "stretch",
-        /* Sized so the right-column 16:10 image peek doesn't clip
-           at the bottom on desktop viewports. */
-        minHeight:           "420px",
-      }}
-    >
-      {/* Left: all text content */}
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
-        {/* Subtitle row — title now lives in the aubergine header strip above */}
-        <div style={{ flex: 1 }}>
-          <p style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "16px",
-            color:         "#252B28",
-            margin:        "0 0 6px",
-            fontWeight:    500,
-            letterSpacing: "-0.01em",
-          }}>
-            {project.subtitle}
-            <span style={{
-              fontWeight:    400,
-              color:         "#8A8680",
-              marginLeft:    "10px",
-              letterSpacing: "0.02em",
-              whiteSpace:    "nowrap",
-            }}>
-              · {project.year}
-            </span>
-          </p>
-          <p style={{
-            fontFamily: "var(--font-dm-sans), sans-serif",
-            fontSize:   "14px",
-            lineHeight: 1.7,
-            color:      "#3D4440",
-            margin:     "0 0 24px",
-          }}>
-            {project.description}
-          </p>
-        </div>
-
-        {/* Tags */}
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "24px" }}>
-          {project.tags.map((tag) => (
-            <span key={tag} style={{
-              fontFamily:   "var(--font-dm-sans), sans-serif",
-              fontSize:     "12px",
-              padding:      "5px 14px",
-              background:   "#F5F5F4",
-              color:        "#3D4440",
-              fontWeight:   500,
-              border:       "1px solid #A99B8A",
-            }}>
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div style={{
-          display:       "flex",
-          alignItems:    "center",
-          gap:           "8px",
-          color:         "var(--color-accent)",
-          fontSize:      "12px",
-          fontWeight:    600,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          opacity:       hovered ? 1 : 0.6,
-          transition:    "opacity 0.25s ease",
-        }}>
-          View Case Study
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-            style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.25s ease" }}
-          >
-            <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-      </div>
-
-      {/* Right: image / peek — absolute within its grid column, bleeds to card edges */}
-      <div className="feat-img-col" style={{ position: "relative", minHeight: "280px" }}>
-        <div className="feat-img-inner" style={{
-          position: "absolute",
-          top:      0,
-          right:    "-48px",
-          bottom:   "-44px",
-          left:     0,
-          overflow: "hidden",
-        }}>
-          {project.title === "Men's Sole Revival" ? (
-            <MSRPagePeek paused={hovered} />
-          ) : project.title === "Wayfarer" ? (
-            <WayfarerGlobePeek paused={hovered} />
-          ) : project.image && (
-            <Image
-              src={project.image}
-              alt={`${project.title}: ${project.subtitle} preview`}
-              fill
-              sizes="700px"
-              style={{
-                objectFit:      "cover",
-                objectPosition: "center top",
-                transition:     "transform 0.4s ease",
-                transform:      hovered ? "scale(1.03)" : "scale(1)",
-              }}
-            />
-          )}
-        </div>
-      </div>
-    </div>
-  );
-
-  /* ── Compact layout: image top, content below ── */
   const isMSR      = project.title === "Men's Sole Revival";
   const isWayfarer = project.title === "Wayfarer";
   const isSpotify  = project.title === "Spotify";
 
-  // Shared compact image wrapper styles — 16:10 aspect to match the featured top card
-  const compactImgWrapper: React.CSSProperties = {
-    position:     "relative",
-    width:        "calc(100% + 80px)",
-    marginLeft:   "-40px",
-    marginTop:    0,
-    marginBottom: "28px",
-    aspectRatio:  "16 / 10",
-    overflow:     "hidden",
-    borderBottom: "1px solid #A99B8A",
+  // Editorial row — 2-col grid, image on one side (60%), content on the other (40%).
+  // On mobile the row collapses to image-top + content-below via the
+  // .work-row class + globals.css media query.
+  const rowStyle: React.CSSProperties = {
+    display:             "grid",
+    gridTemplateColumns: imageOnRight ? "0.66fr 1fr" : "1fr 0.66fr",
+    gap:                 "clamp(32px, 5vw, 72px)",
+    alignItems:          "center",
+    textDecoration:      "none",
+    color:               "inherit",
+    cursor:              isLive ? "pointer" : "default",
   };
 
-  const compactInner = (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      {/* Image / peek */}
+  const imgBox: React.CSSProperties = {
+    position:     "relative",
+    width:        "100%",
+    aspectRatio:  "16 / 10",
+    overflow:     "hidden",
+    background:   "#0F0F0F",
+    order:        imageOnRight ? 2 : 0,
+    transition:   "transform 0.3s ease",
+    transform:    hovered && isLive ? "translateY(-3px)" : "translateY(0)",
+  };
+
+  const imageBlock = (
+    <div style={imgBox} className="work-row-image">
       {isMSR ? (
-        <div className="compact-img" style={compactImgWrapper}>
-          <MSRPagePeek paused={hovered} />
-        </div>
+        <MSRPagePeek paused={hovered} />
       ) : isWayfarer ? (
-        <div className="compact-img" style={compactImgWrapper}>
-          <WayfarerGlobePeek paused={hovered} />
-        </div>
+        <WayfarerGlobePeek paused={hovered} />
       ) : isSpotify ? (
-        <div className="compact-img" style={compactImgWrapper}>
-          <SpotifyDiagramPeek />
-        </div>
+        <SpotifyFramedAnimation />
       ) : project.image && (
-        <div className="compact-img" style={{ ...compactImgWrapper, background: "#0F0F0F" }}>
-          <Image
-            src={project.image}
-            alt={`${project.title}: ${project.subtitle} preview`}
-            fill
-            sizes="600px"
-            style={{
-              objectFit:      "cover",
-              objectPosition: "center center",
-              transition:     "transform 0.4s ease",
-              transform:      hovered ? "scale(1.03)" : "scale(1)",
-            }}
-          />
-        </div>
+        <Image
+          src={project.image}
+          alt={`${project.title}: ${project.subtitle} preview`}
+          fill
+          sizes="(max-width: 767px) 100vw, 60vw"
+          style={{
+            objectFit:      "cover",
+            objectPosition: "center center",
+            transition:     "transform 0.4s ease",
+            transform:      hovered ? "scale(1.03)" : "scale(1)",
+          }}
+        />
       )}
 
-      {/* Subtitle row — title now lives in the aubergine header strip above */}
+      {/* Thesis band — slides up from the bottom on hover.
+          Gives each card a third hover beat (image lift + scale + this), and
+          surfaces the project's one-line thesis without making the reader
+          travel all the way to the content column to find it.
+
+          Skipped on Spotify because the SpotifyFramedAnimation already
+          carries the thesis in its own caption inside the frame; doubling
+          it on hover reads as a duplicated line. */}
+      {!isSpotify && (
+      <div
+        aria-hidden="true"
+        style={{
+          position:       "absolute",
+          left:           0,
+          right:          0,
+          bottom:         0,
+          padding:        "18px 22px 20px",
+          background:     "linear-gradient(to top, rgba(15,15,15,0.96) 0%, rgba(15,15,15,0.72) 60%, rgba(15,15,15,0) 100%)",
+          color:          "#FAFAF9",
+          transform:      hovered ? "translateY(0)" : "translateY(100%)",
+          opacity:        hovered ? 1 : 0,
+          transition:     "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease",
+          pointerEvents:  "none",
+          zIndex:         5,
+        }}
+      >
+        <p style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "11px",
+          fontWeight:    700,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          color:         "var(--color-accent)",
+          margin:        "0 0 6px",
+        }}>
+          {project.tags[0]} · {project.meta.split(" · ").pop()}
+        </p>
+        <p style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "clamp(15px, 1.4vw, 18px)",
+          fontWeight:    500,
+          lineHeight:    1.35,
+          letterSpacing: "-0.005em",
+          color:         "#FAFAF9",
+          margin:        0,
+        }}>
+          {project.thesis}
+        </p>
+      </div>
+      )}
+    </div>
+  );
+
+  const contentBlock = (
+    <div className="work-row-content" style={{ order: imageOnRight ? 1 : 2 }}>
+      {/* Title — display weight, room to breathe now. */}
+      <h3 style={{
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "clamp(34px, 4.5vw, 56px)",
+        fontWeight:    600,
+        color:         "#252B28",
+        margin:        "0 0 10px",
+        letterSpacing: "-0.025em",
+        lineHeight:    1.05,
+      }}>
+        {project.title}
+      </h3>
+
+      {/* Subtitle + year — quiet editorial eyebrow */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "15px",
-        color:         "#252B28",
-        margin:        "0 0 18px",
+        fontSize:      "14px",
+        color:         "#8A8680",
+        margin:        "0 0 24px",
         fontWeight:    500,
-        letterSpacing: "-0.01em",
+        letterSpacing: "0.02em",
       }}>
-        {project.subtitle}
-        <span style={{
-          fontWeight:    400,
-          color:         "#8A8680",
-          marginLeft:    "10px",
-          letterSpacing: "0.02em",
-          whiteSpace:    "nowrap",
-        }}>
-          · {project.year}
-        </span>
+        {project.subtitle} · {project.year}
       </p>
 
       {/* Description */}
       <p style={{
-        fontFamily:        "var(--font-dm-sans), sans-serif",
-        fontSize:          "14px",
-        lineHeight:        1.7,
-        color:             "#3D4440",
-        margin:            "0 0 24px",
-        flex:              1,
-        display:           "-webkit-box",
-        WebkitLineClamp:   3,
-        WebkitBoxOrient:   "vertical" as const,
-        overflow:          "hidden",
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        fontSize:   "clamp(15px, 1.4vw, 17px)",
+        lineHeight: 1.7,
+        color:      "#3D4440",
+        margin:     "0 0 18px",
       }}>
         {project.description}
       </p>
 
+      {/* Thesis — italic accent line */}
+      <p style={{
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "14px",
+        lineHeight:    1.55,
+        color:         "var(--color-accent)",
+        fontStyle:     "italic",
+        margin:        "0 0 28px",
+        letterSpacing: "-0.005em",
+      }}>
+        {project.thesis}
+      </p>
+
       {/* Tags */}
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "24px" }}>
+      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "28px" }}>
         {project.tags.map((tag) => (
           <span key={tag} style={{
             fontFamily:   "var(--font-dm-sans), sans-serif",
@@ -488,7 +402,7 @@ function ProjectCard({
             background:   "#F5F5F4",
             color:        "#3D4440",
             fontWeight:   500,
-            border:       "1px solid #A99B8A",
+            border:       "1px solid #A8A39A",
           }}>
             {tag}
           </span>
@@ -501,13 +415,13 @@ function ProjectCard({
           display:       "flex",
           alignItems:    "center",
           gap:           "8px",
-          color:         "var(--color-accent)",
-          fontSize:      "12px",
+          color:         "var(--color-brand)",
+          fontSize:      "13px",
           fontWeight:    600,
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          opacity:       hovered ? 1 : 0.6,
+          opacity:       hovered ? 1 : 0.75,
           transition:    "opacity 0.25s ease",
         }}>
           View Case Study
@@ -520,7 +434,7 @@ function ProjectCard({
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "12px",
+          fontSize:   "13px",
           color:      "#8A8680",
           margin:     0,
           fontStyle:  "italic",
@@ -531,10 +445,10 @@ function ProjectCard({
     </div>
   );
 
-  const content = (
+  const inner = (
     <>
-      {aubergineHeader}
-      {featured ? featuredInner : compactInner}
+      {imageBlock}
+      {contentBlock}
     </>
   );
 
@@ -544,10 +458,10 @@ function ProjectCard({
         href={project.href!}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="work-card"
-        style={cardStyle}
+        className="work-row"
+        style={rowStyle}
       >
-        {content}
+        {inner}
       </Link>
     );
   }
@@ -556,10 +470,11 @@ function ProjectCard({
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="work-card"
-      style={cardStyle}
+      className="work-row"
+      style={rowStyle}
     >
-      {content}
+      {inner}
     </div>
   );
 }
+

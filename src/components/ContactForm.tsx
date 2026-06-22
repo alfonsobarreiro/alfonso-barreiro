@@ -112,7 +112,7 @@ export default function ContactForm() {
         <button type="submit" disabled={formState === "submitting"} style={{
           padding: "15px 36px",
           background: formState === "submitting" ? "rgba(61,38,69,0.6)" : "var(--color-brand)",
-          color: "#FFFFFF", border: "none", borderRadius: "8px",
+          color: "#FFFFFF", border: "none", borderRadius: 0,
           fontSize: "13px", fontWeight: 600, fontFamily: font,
           letterSpacing: "0.07em", textTransform: "uppercase",
           cursor: formState === "submitting" ? "not-allowed" : "pointer",

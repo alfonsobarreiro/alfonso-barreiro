@@ -25,7 +25,7 @@ export default function SpotifyQuoteRotator({
   accentColor = "var(--color-accent)",
   mutedColor = "#8A8680",
   bodyColor = "#3D4440",
-  borderColor = "#A99B8A",
+  borderColor = "#A8A39A",
   bgColor = "#FFFFFF",
   fontSans = "var(--font-dm-sans), system-ui, sans-serif",
   fontDisplay = "var(--font-dm-serif-display), Georgia, serif",

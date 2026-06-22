@@ -114,7 +114,7 @@ export default function CommandPalette() {
           maxWidth: "640px",
           background: "#FFFFFF",
           border: "1px solid #E8E4DE",
-          borderRadius: "12px",
+          borderRadius: 0,
           boxShadow: "0 18px 60px rgba(37,43,40,0.18), 0 4px 12px rgba(37,43,40,0.08)",
           overflow: "hidden",
         }}

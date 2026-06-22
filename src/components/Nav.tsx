@@ -65,7 +65,7 @@ export default function Nav() {
             ? "1px solid rgba(245,243,239,0.08)"
             : scrolled
               ? "1px solid rgba(232,228,222,0.6)"
-              : "1px solid #A99B8A",
+              : "1px solid #A8A39A",
           transition:     "background 0.3s, border-color 0.3s, backdrop-filter 0.3s",
         }}
       >
@@ -74,9 +74,12 @@ export default function Nav() {
           <button
             onClick={handleLogoClick}
             aria-label="Back to top"
+            className="site-logo"
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px" }}
           >
-            <LogoMark size={24} variant={menuOpen ? "light" : "dark"} />
+            <span className="site-logo-mark">
+              <LogoMark size={24} variant={menuOpen ? "light" : "dark"} />
+            </span>
             <span
               className="nav-wordmark"
               style={{
@@ -85,16 +88,19 @@ export default function Nav() {
                 fontWeight:    600,
                 letterSpacing: "-0.015em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
-                transition:    "color 0.3s",
+                transition:    "color 0.25s ease",
                 lineHeight:    1,
               }}
             >
-              Alfonso <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
+              <span className="site-logo-first">Alfonso</span>{" "}
+              <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
             </span>
           </button>
         ) : (
-          <Link href="/" aria-label="Back to home" style={{ lineHeight: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
-            <LogoMark size={24} variant={menuOpen ? "light" : "dark"} />
+          <Link href="/" aria-label="Back to home" className="site-logo" style={{ lineHeight: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+            <span className="site-logo-mark">
+              <LogoMark size={24} variant={menuOpen ? "light" : "dark"} />
+            </span>
             <span
               className="nav-wordmark"
               style={{
@@ -103,11 +109,12 @@ export default function Nav() {
                 fontWeight:    600,
                 letterSpacing: "-0.015em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
-                transition:    "color 0.3s",
+                transition:    "color 0.25s ease",
                 lineHeight:    1,
               }}
             >
-              Alfonso <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
+              <span className="site-logo-first">Alfonso</span>{" "}
+              <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
             </span>
           </Link>
         )}
@@ -130,7 +137,7 @@ export default function Nav() {
               padding:        "10px 24px",
               background:     "var(--color-brand)",
               border:         "none",
-              borderRadius:   "8px",
+              borderRadius:   0,
               color:          "#FFFFFF",
               fontSize:       "13px",
               fontWeight:     500,
@@ -305,7 +312,7 @@ export default function Nav() {
             padding:        "16px 32px",
             background:     "var(--color-brand)",
             border:         "none",
-            borderRadius:   "8px",
+            borderRadius:   0,
             color:          "#FFFFFF",
             fontSize:       "13px",
             fontWeight:     600,
@@ -353,7 +360,7 @@ function SearchTrigger() {
         padding:       "6px 10px 6px 8px",
         background:    "transparent",
         border:        "1px solid #E8E4DE",
-        borderRadius:  "8px",
+        borderRadius:  0,
         cursor:        "pointer",
         color:         "#8A8680",
         fontFamily:    "var(--font-dm-sans), sans-serif",

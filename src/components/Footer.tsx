@@ -37,7 +37,7 @@ const ArrowIcon = () => (
 ───────────────────────────────────────────── */
 export default function Footer() {
   return (
-    <footer style={{ background: bg, borderTop: "1px solid rgba(126,113,95,0.25)" }}>
+    <footer style={{ background: bg, borderTop: "1px solid rgba(110, 110, 108, 0.25)" }}>
       <div style={{ padding: "56px clamp(32px, 6vw, 80px) 32px" }}>
 
         {/* ── CTA section: microcopy (left) + buttons (right) ── */}
@@ -51,7 +51,7 @@ export default function Footer() {
             gap:            "28px",
             paddingBottom:  "32px",
             marginBottom:   "32px",
-            borderBottom:   "1px solid rgba(126,113,95,0.18)",
+            borderBottom:   "1px solid rgba(110, 110, 108, 0.18)",
           }}
         >
           {/* Left: microcopy */}
@@ -161,7 +161,7 @@ export default function Footer() {
           align-items:     center;
           gap:             8px;
           padding:         10px 18px;
-          border-radius:   4px;
+          border-radius:   0;
           font-family:     var(--font-dm-sans), -apple-system, sans-serif;
           font-size:       11px;
           font-weight:     600;
@@ -172,7 +172,7 @@ export default function Footer() {
           cursor:          pointer;
         }
         .footer-pill--default {
-          border:     1px solid rgba(126,113,95,0.40);
+          border:     1px solid rgba(110, 110, 108, 0.40);
           background: transparent;
           color:      ${ink2};
         }
@@ -186,8 +186,11 @@ export default function Footer() {
           color:      ${bg};
         }
         .footer-pill--accent:hover {
-          background: #2A1830;
-          border-color: #2A1830;
+          /* Brand crimson, slightly deeper. var() doesn't apply inside
+             template-literal style strings, so we shade via the
+             color-mix wrapper that reads --color-brand at runtime. */
+          background:   color-mix(in srgb, var(--color-brand) 88%, #000);
+          border-color: color-mix(in srgb, var(--color-brand) 88%, #000);
         }
 
         /* Mobile: stack microcopy above CTAs */

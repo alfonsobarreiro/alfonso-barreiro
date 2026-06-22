@@ -112,7 +112,7 @@ export default function AboutPage() {
             letter-spacing: 0.08em;
             text-transform: uppercase;
             text-decoration: none;
-            border-radius:  4px;
+            border-radius:  0;
             transition:     transform 0.25s ease, box-shadow 0.25s ease, background 0.2s, border-color 0.2s, color 0.2s;
           }
           .about-cta-primary {
@@ -221,7 +221,7 @@ export default function AboutPage() {
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     fontSize:      "10px",
-                    color:         "#A99B8A",
+                    color:         "#A8A39A",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
                     margin:        "10px 0 0",
@@ -285,6 +285,62 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* ── How I work — the remote-work narrative as the spine.
+             Prose first (three chapters: in-office, going remote, the
+             current remote chapter). Visual timeline below locks the
+             career arc in one frame. */}
+        <section style={sectionWrapper("#FFFFFF")}>
+          <div style={innerWrapper}>
+            <h2 style={sectionH2}>How I work</h2>
+            <p style={body}>
+              I started in Albuquerque in 2010, as the founder of a small consultancy. Then seven years at CliffDweller Digital. Agency work, hands-on, in-person every day. In 2018 I moved to Boomtime as VP of Operations, same city, same desk, same shared room. That&apos;s where I learned what most designers learn: the desk next to you is half the work.
+            </p>
+            <p style={body}>
+              I went remote in 2019, about a year and a half into Boomtime. At first the change was mine, not the company&apos;s. Then the rest of the industry caught up. We shipped UX/UI work for a hundred-plus client websites without an office. I held the design quality bar the same way I&apos;d held it in person: tight feedback loops, written critique, fewer meetings, more artifacts. The work didn&apos;t suffer. Some of it got cleaner.
+            </p>
+            <p style={body}>
+              Two-plus years followed at VARA Winery &amp; Distillery as Director of Marketing &amp; DTC. Back in-person in Albuquerque, running the site redesign and the brand identity for a new spirits line. Then in late 2024 I left the director seat to go all-in on UX/UI. The remote chapter resumed in Portland: independent practice, DesignLab UX Academy, three case studies. None of them built from a shared room.
+            </p>
+            <p style={{ ...body, margin: "0 0 64px" }}>
+              Remote isn&apos;t a constraint; it&apos;s a discipline. The three case studies on this site are evidence the model works at the artifact level. Built solo, remote, end to end.
+            </p>
+
+            <RemoteTimeline />
+          </div>
+        </section>
+
+        {/* ── Where I add value — the business-benefit beats lifted from
+             the resume. Converts the craft signal into a hire signal so a
+             skimming hiring manager sees what they get if they bring me on. */}
+        <section style={sectionWrapper("#FAFAF9")}>
+          <div style={innerWrapper}>
+            <h2 style={sectionH2}>Where I add value</h2>
+            <p style={{ ...body, marginBottom: "40px" }}>
+              The shorter version of how the work pays back.
+            </p>
+
+            <p style={beliefClaim}>I frame the problem before Figma opens.</p>
+            <p style={beliefBody}>
+              Most design hours go to the wrong question. I push for a sharp problem statement at the start so the team doesn&apos;t spend three weeks building a beautiful answer to the wrong brief. The case studies show the artifact; the savings happen earlier.
+            </p>
+
+            <p style={beliefClaim}>I tie design decisions to business outcomes.</p>
+            <p style={beliefBody}>
+              Revenue, retention, ship dates, ML-signal integrity. Every callout you see in the case studies names a trade-off in those terms. Stakeholders stop arguing about taste when the cost is named in the language they already track.
+            </p>
+
+            <p style={beliefClaim}>I talk fluently with PMs, engineers, and stakeholders.</p>
+            <p style={beliefBody}>
+              Eighteen years across marketing, operations, and product mean I can hold a technical review, a stakeholder briefing, and a research synthesis without translation cost. Less translation, fewer meetings, fewer surprises.
+            </p>
+
+            <p style={beliefClaim}>I run AI-augmented research and synthesis.</p>
+            <p style={{ ...beliefBody, marginBottom: 0 }}>
+              Claude for clustering 200-plus community posts. AI-assisted competitive audits. AI-augmented production workflows that cut a creative team&apos;s timelines twenty percent at VARA without dropping quality. The model is the second pair of hands, not the designer.
+            </p>
+          </div>
+        </section>
+
         {/* ── How I think about the work ─────────────────────────────── */}
         <section style={sectionWrapper("#FAFAF9")}>
           <div style={innerWrapper}>
@@ -316,18 +372,35 @@ export default function AboutPage() {
               producing, not prototyping.
             </p>
 
-            <p style={beliefClaim}>Silence is never neutral.</p>
+            <p style={beliefClaim}>The best design decisions are also the cleanest business calls.</p>
             <p style={beliefBody}>
-              When users do something and the interface doesn&apos;t respond, they
-              don&apos;t think the system is processing. They think it&apos;s broken.
-              Every action needs a reply.
+              Revenue, retention, ship dates, ML-signal integrity. When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
             </p>
 
-            <p style={beliefClaim}>Hierarchy beats decoration.</p>
+            <p style={beliefClaim}>Translation cost between disciplines is real.</p>
             <p style={{ ...beliefBody, marginBottom: 0 }}>
-              If everything on the page competes equally for attention, nothing wins.
-              Most of what looks like visual taste is actually weight, contrast, and
-              restraint.
+              Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them moves faster, ships cleaner, and survives the messy projects. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Alpha Beta Design ──────────────────────────────────────── */}
+        <section style={sectionWrapper("#FAFAF9")}>
+          <div style={innerWrapper}>
+            <h2 style={sectionH2}>Alpha Beta Design</h2>
+            <p style={{ ...body, margin: 0 }}>
+              On the side, I run a small studio called{" "}
+              <a
+                href="https://alphabeta.design/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="about-studio-link"
+              >
+                Alpha Beta Design
+              </a>
+              . It&apos;s a portable design system and a set of microsite templates I
+              use for client work. The portfolio site you&apos;re on is built on it.
+              Wayfarer and Men&apos;s Sole Revival are too.
             </p>
           </div>
         </section>
@@ -351,23 +424,20 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Alpha Beta Design ──────────────────────────────────────── */}
+        {/* ── Off-screen — moved from the home About to keep the home tighter
+             (two paragraphs, not three). The Hiragana/walks/birds material
+             reads more honestly here, alongside the "On the shelf" reading
+             section, than as a closer on the homepage. ────────────────── */}
         <section style={sectionWrapper("#FAFAF9")}>
           <div style={innerWrapper}>
-            <h2 style={sectionH2}>Alpha Beta Design</h2>
+            <h2 style={sectionH2}>Off-screen</h2>
             <p style={{ ...body, margin: 0 }}>
-              On the side, I run a small studio called{" "}
-              <a
-                href="https://alphabeta.design/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="about-studio-link"
-              >
-                Alpha Beta Design
-              </a>
-              . It&apos;s a portable design system and a set of microsite templates I
-              use for client work. The portfolio site you&apos;re on is built on it.
-              Wayfarer and Men&apos;s Sole Revival are too.
+              I still learn like I&apos;m running out of time. I&apos;m teaching
+              myself Hiragana. I walk five miles a day, building back toward a
+              marathon. I meditate. I watch birds. I read everything. If that
+              sounds like someone with too many interests, you&apos;re probably
+              right. But the curiosity is the same muscle I use in research. I
+              just don&apos;t turn it off.
             </p>
           </div>
         </section>
@@ -411,5 +481,232 @@ export default function AboutPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+/* ── Remote timeline — visual career arc.
+   Fifteen-year horizontal strip with proportional chapter bars.
+   In-office chapters render in ink; remote chapters render in crimson.
+   A dashed vertical mark at 2020 anchors "remote since" to the year.
+   Below, a small grid of chapter cards with role + location + one line. */
+function RemoteTimeline() {
+  // Year span: 2010 → end of 2025 = 15 years total. Each chapter's
+  // proportional width comes from its share of those 15 years.
+  const YEARS = 15;
+  const TIMELINE_START = 2010;
+  const REMOTE_START = 2019;
+
+  const chapters: {
+    name: string;
+    role: string;
+    location: string;
+    note: string;
+    start: number;
+    end: number;
+    remote: boolean;
+  }[] = [
+    { name: "Sola Fide Design",   role: "Founder",                        location: "Albuquerque",        note: "Brand identity, web design, campaign creative for e-commerce and small business.",         start: 2010,    end: 2011,    remote: false },
+    { name: "CliffDweller Digital", role: "Web Designer & Developer",      location: "Albuquerque",        note: "50+ responsive websites. Started running user tests on priority projects.",                start: 2011,    end: 2018,    remote: false },
+    { name: "Boomtime",            role: "Lead Graphic Design",            location: "Albuquerque",        note: "Joined as Lead Graphic Design. Set the visual quality bar for client work before going remote and stepping up to VP.",  start: 2018,    end: 2019.5,  remote: false },
+    { name: "Boomtime",            role: "VP of Operations · remote",      location: "Remote · Albuquerque", note: "Promoted to VP and went remote. Same client roster, distributed team, same quality bar.",        start: 2019.5, end: 2021.75, remote: true  },
+    { name: "VARA Winery & Distillery", role: "Director of Marketing & DTC", location: "Albuquerque",          note: "Back in-person at the winery. Redesigned the site and brand identity for a new spirits line. AI-assisted workflows.", start: 2022.25, end: 2024.85, remote: false },
+    { name: "Independent Practice",     role: "UX/UI Designer",             location: "Remote · Portland",    note: "DesignLab UX Academy. Three case studies. Build in Figma, ship in Next.js.",               start: 2024.85, end: 2025.5,  remote: true  },
+  ];
+
+  const yearTicks = [2010, 2014, 2018, 2020, 2024];
+
+  return (
+    <div style={{ width: "100%" }}>
+      {/* Top eyebrow */}
+      <p style={{
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "11px",
+        fontWeight:    700,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         "var(--color-accent)",
+        margin:        "0 0 12px",
+      }}>
+        Career arc · fifteen years
+      </p>
+      <h3 style={{
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "clamp(22px, 2.4vw, 30px)",
+        fontWeight:    600,
+        color:         "#252B28",
+        margin:        "0 0 32px",
+        letterSpacing: "-0.02em",
+        lineHeight:    1.2,
+      }}>
+        Six chapters. Two remote periods. One through-line.
+      </h3>
+
+      {/* The strip */}
+      <div className="rt-strip-wrap" style={{ position: "relative", marginBottom: "32px" }}>
+        {/* Year ticks above */}
+        <div style={{
+          position: "relative",
+          height: "20px",
+          marginBottom: "6px",
+        }}>
+          {yearTicks.map((y) => {
+            const leftPct = ((y - TIMELINE_START) / YEARS) * 100;
+            return (
+              <span key={y} style={{
+                position:      "absolute",
+                left:          `${leftPct}%`,
+                top:           0,
+                transform:     "translateX(-50%)",
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "11px",
+                fontWeight:    600,
+                color:         "#8A8680",
+                letterSpacing: "0.06em",
+              }}>{y}</span>
+            );
+          })}
+        </div>
+
+        {/* Bars row */}
+        <div style={{
+          position: "relative",
+          height: "44px",
+          background: "#F5F3EE",
+          border: "1px solid #DEDCD7",
+        }}>
+          {chapters.map((ch) => {
+            const leftPct  = ((ch.start - TIMELINE_START) / YEARS) * 100;
+            const widthPct = ((ch.end - ch.start) / YEARS) * 100;
+            return (
+              <div
+                key={ch.name + ch.start}
+                title={`${ch.role} · ${ch.name} · ${Math.floor(ch.start)}–${ch.end >= 2025.4 ? "now" : Math.floor(ch.end)}`}
+                style={{
+                  position:   "absolute",
+                  top:        "4px",
+                  bottom:     "4px",
+                  left:       `${leftPct}%`,
+                  width:      `${widthPct}%`,
+                  background: ch.remote ? "var(--color-brand)" : "#252B28",
+                  opacity:    0.92,
+                  borderRight: ch.end < 2025.4 ? "1px solid rgba(255,255,255,0.7)" : "none",
+                  cursor:     "default",
+                }}
+              />
+            );
+          })}
+
+          {/* 2020 dashed marker */}
+          <span style={{
+            position: "absolute",
+            top:      "-22px",
+            bottom:   "-22px",
+            left:     `${((REMOTE_START - TIMELINE_START) / YEARS) * 100}%`,
+            width:    "0",
+            borderLeft: "1.5px dashed var(--color-brand)",
+            pointerEvents: "none",
+          }} aria-hidden />
+        </div>
+
+        {/* Remote-since callout below the strip, aligned to 2020 */}
+        <div style={{
+          position: "relative",
+          marginTop: "10px",
+          height: "20px",
+        }}>
+          <span style={{
+            position:      "absolute",
+            left:          `${((REMOTE_START - TIMELINE_START) / YEARS) * 100}%`,
+            top:           0,
+            transform:     "translateX(-50%)",
+            fontFamily:    "var(--font-dm-sans), sans-serif",
+            fontSize:      "10px",
+            fontWeight:    700,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color:         "var(--color-brand)",
+            whiteSpace:    "nowrap",
+          }}>
+            ↑ First remote chapter · 2019
+          </span>
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div style={{
+        display: "flex",
+        gap: "24px",
+        flexWrap: "wrap",
+        marginBottom: "40px",
+      }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "#3D4440", letterSpacing: "0.02em" }}>
+          <span style={{ display: "inline-block", width: "14px", height: "10px", background: "#252B28" }} aria-hidden />
+          In-office · 2010–2019, 2022–2024
+        </span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "#3D4440", letterSpacing: "0.02em" }}>
+          <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-brand)" }} aria-hidden />
+          Remote · 2019–2021, 2024–now
+        </span>
+      </div>
+
+      {/* Chapter cards */}
+      <div className="rt-cards" style={{
+        display:             "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap:                 "16px",
+      }}>
+        {chapters.map((ch) => {
+          const yearLabel = ch.end >= 2025.4
+            ? `${Math.floor(ch.start)} → now`
+            : `${Math.floor(ch.start)} → ${Math.floor(ch.end)}`;
+          return (
+            <article key={ch.name + ch.start} style={{
+              background:  "#FFFFFF",
+              border:      "1px solid #DEDCD7",
+              borderTop:   `3px solid ${ch.remote ? "var(--color-brand)" : "#252B28"}`,
+              padding:     "20px 22px",
+            }}>
+              <p style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "10px",
+                fontWeight:    700,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color:         ch.remote ? "var(--color-brand)" : "#8A8680",
+                margin:        "0 0 6px",
+              }}>{yearLabel}{ch.remote ? " · Remote" : ""}</p>
+              <p style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "16px",
+                fontWeight:    700,
+                color:         "#252B28",
+                margin:        "0 0 4px",
+                letterSpacing: "-0.01em",
+              }}>{ch.name}</p>
+              <p style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "13px",
+                fontWeight:    500,
+                color:         "#3D4440",
+                margin:        "0 0 10px",
+              }}>{ch.role} · {ch.location}</p>
+              <p style={{
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontSize:   "12px",
+                lineHeight: 1.55,
+                color:      "#8A8680",
+                margin:     0,
+              }}>{ch.note}</p>
+            </article>
+          );
+        })}
+      </div>
+
+      <style>{`
+        @media (max-width: 760px) {
+          .rt-cards { grid-template-columns: 1fr !important; gap: 12px !important; }
+        }
+      `}</style>
+    </div>
   );
 }

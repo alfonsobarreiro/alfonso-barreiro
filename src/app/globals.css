@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* HMR bump 2026-06-19 13:03 / 14:32 / 15:18 / 15:42 — force recompile */
+
 /* Ensure Tailwind scans slide components so slide-only classes (mb-*, px-*, py-*, etc.) are generated */
 @source "../components/msr-slides";
 @source "../components/wayfarer-slides";
@@ -138,6 +140,26 @@ button {
   font-family: inherit;
 }
 
+/* ── Site logo hover ──────────────────────────────────────────────
+   Same calm energy as the buttons: the whole logo lifts 2px on hover,
+   "Alfonso" flips to the brand color so the wordmark reads crimson,
+   and the mark dips its opacity a touch. No rotation, no scale. */
+.site-logo {
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+.site-logo:hover                 { transform: translateY(-2px); }
+.site-logo-mark                  { display: inline-flex; transition: opacity 0.25s ease; }
+.site-logo:hover .site-logo-mark { opacity: 0.78; }
+.site-logo-first                 { transition: color 0.25s ease; }
+.site-logo:hover .site-logo-first { color: var(--color-brand); }
+@media (prefers-reduced-motion: reduce) {
+  .site-logo,
+  .site-logo-mark,
+  .site-logo-first              { transition: none !important; }
+  .site-logo:hover              { transform: none !important; }
+}
+
 /* ── Scroll reveal & hero reveal: respect reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal,
@@ -189,9 +211,12 @@ button {
   /* Spotify — hide case study slides section on mobile */
   .cs-slides-section { display: none !important; }
 
-  /* Work — bento grid: single column */
+  /* Work — equal grid (legacy): single column on phones */
   .work-bento-grid     { grid-template-columns: 1fr !important; }
   .work-bento-grid > * { grid-column: 1 !important; }
+
+  /* Work — zigzag mobile gap: clamp(120px,13vw,180px) is too much stacked */
+  .work-zigzag         { gap: 64px !important; }
 
   /* Work — section header: hide "Research → Prototype" subtitle */
   .work-header-sub     { display: none !important; }
@@ -319,6 +344,15 @@ button {
     content: " ↑";
   }
 }
+/* Work zigzag: collapse to image-top + content-below at tablet width too.
+   At 768–900px the two-column row gets too cramped (image ~60% leaves content ~280px).
+   Stack rows like mobile until the viewport is wide enough to support the alternation. */
+@media (max-width: 900px) {
+  .work-row                   { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .work-row .work-row-image   { grid-column: 1 !important; order: 0 !important; }
+  .work-row .work-row-content { grid-column: 1 !important; order: 3 !important; }
+}
+
 @media (min-width: 768px) {
   .hamburger { display: none !important; }
 

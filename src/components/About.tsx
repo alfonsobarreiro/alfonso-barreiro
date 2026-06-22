@@ -35,7 +35,7 @@ const pillBase: React.CSSProperties = {
   alignItems:     "center",
   gap:            "8px",
   padding:        "10px 20px",
-  borderRadius:   "4px",
+  borderRadius:   0,
   fontSize:       "11px",
   fontWeight:     600,
   fontFamily:     "var(--font-dm-sans), sans-serif",
@@ -55,7 +55,7 @@ const pillPrimary: React.CSSProperties = {
 };
 const pillDefault: React.CSSProperties = {
   ...pillBase,
-  border:     "1px solid #7E715F",
+  border:     "1px solid #6E6E6A",
   background: "#FFFFFF",
   color:      "#3D4440",
 };
@@ -69,14 +69,17 @@ const pillAccent: React.CSSProperties = {
 const skillGroups = [
   {
     category: "Research & Discovery",
+    value:    "Sharpens the problem before the team commits. Cuts the false-start weeks where a beautiful answer gets built for the wrong brief.",
     skills:   ["User Interviews", "Competitive Analysis", "Heuristic Evaluation", "AI-Assisted Research"],
   },
   {
     category: "Design & Systems",
+    value:    "Tokenized systems halve handoff time and let multiple products share one vocabulary. Accessibility shipped from day one, not patched in QA.",
     skills:   ["Interaction Design", "Design Systems", "Accessibility (WCAG)", "Responsive UI"],
   },
   {
     category: "Delivery & Craft",
+    value:    "Prototypes that earn their keep. Usability findings that move the next sprint, not the next slide. Dev handoff that engineers actually use.",
     skills:   ["Figma", "Prototyping", "Dev Handoff", "Usability Testing"],
   },
 ];
@@ -193,12 +196,13 @@ export default function About() {
                 the elevation work the removed border used to do. */}
             <div
               style={{
-                width:        "240px",
-                height:       "320px",
-                borderRadius: "8px",
+                width:        "100%",
+                maxWidth:     "240px",
+                aspectRatio:  "3 / 4",
+                borderRadius: 0,
                 overflow:     "hidden",
                 marginBottom: "28px",
-                border:       "1px solid rgba(126, 113, 95, 0.25)",
+                border:       "1px solid rgba(110, 110, 108, 0.25)",
               }}
             >
               <Image
@@ -206,7 +210,7 @@ export default function About() {
                 alt="Alfonso Barreiro"
                 width={240}
                 height={320}
-                style={{ objectFit: "cover", objectPosition: "center top" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
               />
             </div>
 
@@ -217,7 +221,7 @@ export default function About() {
                 alignItems:   "center",
                 gap:          "8px",
                 background:   "#EBEBEA",
-                border:       "1px solid #A99B8A",
+                border:       "1px solid #A8A39A",
                 padding:      "6px 14px",
                 marginBottom: "24px",
               }}
@@ -283,7 +287,7 @@ export default function About() {
                 fontSize:     "16px",
                 lineHeight:   1.75,
                 color:        "#3D4440",
-                marginBottom: "20px",
+                marginBottom: "40px",
               }}
             >
               I design from the gaps I actually live in. Spotify is my most-used app,
@@ -292,21 +296,10 @@ export default function About() {
               carry about neglecting their own bodies, so I built a resource for it.
               Each project starts with a real problem I can feel, not a brief I was handed.
             </p>
-            <p
-              style={{
-                fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "16px",
-                lineHeight:   1.75,
-                color:        "#3D4440",
-                marginBottom: "40px",
-              }}
-            >
-              I still learn like I&apos;m running out of time. I&apos;m teaching
-              myself Hiragana. I walk five miles a day, building back toward a marathon.
-              I meditate. I watch birds. I read everything. If that sounds like someone
-              with too many interests, you&apos;re probably right. But the curiosity is
-              the same muscle I use in research. I just don&apos;t turn it off.
-            </p>
+            {/* Para 3 (Hiragana, walks, birds, etc.) moved to /about's
+                "Off-screen" section — keeps the home About at 2 paragraphs
+                for the Cate-style quieter home pattern. The deeper personal
+                voice still lives one click away. */}
 
             {/* Contact CTAs — primary message link + resume. Trimmed from
                 four (was: Send / Resume / LinkedIn / Coffee in Portland) to
@@ -328,7 +321,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 style={pillDefault}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#7E715F"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#6E6E6A"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <DownloadIcon /> Resume
               </a>
@@ -373,7 +366,7 @@ export default function About() {
             style={{
               background:   "#FAFAF9",
               /* Border softened — same direction as Work cards. */
-              border:       "1px solid rgba(126, 113, 95, 0.25)",
+              border:       "1px solid rgba(110, 110, 108, 0.25)",
               borderLeft:   "3px solid var(--color-brand)",
               borderRadius: 0,
               padding:      "44px",
@@ -388,7 +381,7 @@ export default function About() {
                 style={{
                   marginBottom:  i < skillGroups.length - 1 ? "32px" : 0,
                   paddingBottom: i < skillGroups.length - 1 ? "32px" : 0,
-                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #A99B8A" : "none",
+                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #A8A39A" : "none",
                 }}
               >
                 <p
@@ -399,10 +392,24 @@ export default function About() {
                     letterSpacing: "0.13em",
                     textTransform: "uppercase",
                     color:         "var(--color-accent-hover)",
-                    marginBottom:  "14px",
+                    marginBottom:  "10px",
                   }}
                 >
                   {group.category}
+                </p>
+                {/* Business-value paragraph — converts the skill pills below
+                    from a capability list into a value statement. */}
+                <p
+                  style={{
+                    fontFamily:   "var(--font-dm-sans), sans-serif",
+                    fontSize:     "13.5px",
+                    lineHeight:   1.55,
+                    color:        "#3D4440",
+                    margin:       "0 0 16px",
+                    fontWeight:   400,
+                  }}
+                >
+                  {group.value}
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {group.skills.map((skill) => (
@@ -416,7 +423,7 @@ export default function About() {
                         background:   "#F5F5F4",
                         color:        "#252B28",
                         fontWeight:   400,
-                        border:       "1px solid #A99B8A",
+                        border:       "1px solid #A8A39A",
                       }}
                     >
                       {skill}
@@ -425,6 +432,45 @@ export default function About() {
                 </div>
               </div>
             ))}
+
+            {/* About-page discovery CTA — quieter than the home CTAs in the
+                left column, sits at the foot of the skills box for a reader
+                who wants the full story. */}
+            <div
+              style={{
+                marginTop:  "32px",
+                paddingTop: "24px",
+                borderTop:  "1px solid #DEDCD7",
+              }}
+            >
+              <Link
+                href="/about"
+                style={{
+                  display:        "inline-flex",
+                  alignItems:     "center",
+                  gap:            "8px",
+                  fontFamily:     "var(--font-dm-sans), sans-serif",
+                  fontSize:       "13px",
+                  fontWeight:     600,
+                  letterSpacing:  "0.04em",
+                  color:          "var(--color-brand)",
+                  textDecoration: "none",
+                  borderBottom:   "1px solid rgba(110, 110, 108, 0.30)",
+                  paddingBottom:  "2px",
+                  transition:     "border-color 0.2s, color 0.2s, transform 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--color-brand)";
+                  e.currentTarget.style.transform   = "translateX(2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(110, 110, 108, 0.30)";
+                  e.currentTarget.style.transform   = "translateX(0)";
+                }}
+              >
+                Read the full About <ArrowIcon />
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -433,8 +479,8 @@ export default function About() {
           className="process-box scroll-reveal"
           style={{
             background:  "#FFFFFF",
-            /* Border softened — quieter than the previous #A99B8A. */
-            border:      "1px solid rgba(126, 113, 95, 0.18)",
+            /* Border softened — quieter than the previous #A8A39A. */
+            border:      "1px solid rgba(110, 110, 108, 0.18)",
             padding:     "44px 52px",
           }}
         >

@@ -131,6 +131,14 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
     });
 
     map.on("load", () => {
+      // Force the canvas to match the actual rendered container size.
+      // If the layout shifts (zigzag rows, breakpoint flips) between init and
+      // load, the canvas can stay locked at its initial dimensions.
+      map.resize();
+      // Belt-and-suspenders: re-call after the page paints once.
+      requestAnimationFrame(() => map.resize());
+      setTimeout(() => map.resize(), 300);
+
       // Drop markers — same shape as DestinationMap but smaller / non-interactive
       DESTINATIONS.forEach((d) => {
         const el = document.createElement("div");
@@ -181,9 +189,18 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
 
     mapRef.current = map;
 
+    // Resize the map when its container changes size. Without this, the map
+    // keeps its initial canvas dimensions even when the layout grows around it
+    // (e.g. moving from a narrow card to a wider editorial row).
+    const ro = new ResizeObserver(() => {
+      if (mapRef.current) mapRef.current.resize();
+    });
+    if (containerRef.current) ro.observe(containerRef.current);
+
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
+      ro.disconnect();
       map.remove();
       mapRef.current = null;
     };

@@ -1,2120 +1,2093 @@
 import type { Metadata } from "next";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import MSRPagePeek from "@/components/MSRPagePeek";
-import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import RelatedCaseStudies from "@/components/RelatedCaseStudies";
+import BackToTop from "@/components/BackToTop";
+import ScrollProgress from "@/components/ScrollProgress";
+
+/* ---------------------------------------------------------------------------
+   /work/mens-sole-revival-v2
+
+   Pentagram-inspired rebuild of the MSR case study. Image-first, big-three
+   structure (Problem / Bet / Shipped) with decision callouts. Lives at /v2
+   while in flight; current /work/mens-sole-revival stays untouched. Swap
+   when signed off.
+
+   Voice: all body + callout copy ran through the voice-writing skill before
+   landing here (see Voice Profile · 2026-06-16).
+--------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
-  title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform",
+  title: "Men’s Sole Revival · Foot Health Content Platform",
   description:
-    "Case study: Designing a content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier.",
+    "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
   alternates: { canonical: "https://www.barreiro.com/work/mens-sole-revival" },
   openGraph: {
     type: "article",
     url: "https://www.barreiro.com/work/mens-sole-revival",
-    title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform",
+    title: "Men’s Sole Revival · Foot Health Content Platform",
     description:
-      "Case study: Designing a content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier.",
+      "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
     images: ["/work/mens-sole-revival/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Men\u2019s Sole Revival \u00B7 Foot Health Content Platform",
+    title: "Men’s Sole Revival · Foot Health Content Platform",
     description:
-      "Case study: Designing a content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier.",
+      "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
     images: ["/work/mens-sole-revival/opengraph-image"],
   },
 };
 
-/* -------------------------------------------------
-   Color tokens (matching globals.css / Work.tsx)
-------------------------------------------------- */
 const c = {
-  ink:         "#252B28",
-  body:        "#3D4440",
-  muted:       "#8A8680",
-  accent:      "var(--color-accent)",
-  bg:          "#FFFFFF",
-  bgSection:   "#FAFAF9",
-  surface:     "#FFFFFF",
-  border:      "#A99B8A",
-  borderStrong:"#7E715F",
-  cognac:      "#C4703A",   // MSR brand accent (stays — MSR's own brand)
+  // Match the home pattern: white page surface with a subtle off-white box.
+  // Previously #FAFAF9 cream surface, which gave a warm editorial feel but
+  // didn't match the home About section. Switched to white so case-study
+  // chrome reads the same as the home throughout the site.
+  surface:  "#FFFFFF",
+  ink:      "#252B28",
+  ink2:     "#3D4440",
+  muted:    "#8A8680",
+  brand:    "var(--color-brand)",   // C: crimson — runtime-swappable
+  accent:   "var(--color-accent)",  // C: deep teal
+  accent2:  "var(--color-accent-hover)",
+  // Gray borders (kept from previous pass) — read cleaner against the cool
+  // crimson/teal brand than warm-tan borders did.
+  border:        "#DEDCD7",
+  borderStrong:  "#A8A6A0",
+  // Off-white box on white surface — identical to the home About skills box.
+  callout:       "#FAFAF9",
 };
 
 const font = {
-  display: "var(--font-dm-sans), -apple-system, sans-serif",
-  sans:    "var(--font-dm-sans), -apple-system, sans-serif",
+  sans: "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
-export default function MSRCaseStudy() {
+const SECTION_X = "clamp(24px, 6vw, 80px)";
+const CONTENT_MAX = "1240px";
+const PROSE_MAX   = "680px";
+
+/* ---------- small atoms ---------- */
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+      <span style={{ display: "inline-block", width: "32px", height: "1px", background: c.accent }} />
+      <span style={{
+        fontFamily:    font.sans,
+        fontSize:      "11px",
+        fontWeight:    600,
+        letterSpacing: "0.16em",
+        textTransform: "uppercase",
+        color:         c.accent,
+      }}>
+        {children}
+      </span>
+    </div>
+  );
+}
+
+function Tag({ children }: { children: React.ReactNode }) {
+  return (
+    <span style={{
+      fontFamily:    font.sans,
+      fontSize:      "11px",
+      fontWeight:    500,
+      letterSpacing: "0.10em",
+      textTransform: "uppercase",
+      color:         c.ink2,
+      padding:       "6px 14px",
+      border:        `1px solid ${c.borderStrong}`,
+    }}>
+      {children}
+    </span>
+  );
+}
+
+function Callout({
+  decision, why, cost,
+}: { decision: string; why: string; cost: string }) {
+  const labelStyle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "10px",
+    fontWeight:    700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color:         c.accent,
+    margin:        "0 0 8px",
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "15px",
+    lineHeight: 1.7,
+    color:      c.ink2,
+    margin:     0,
+  };
+  return (
+    <aside style={{
+      background:   c.callout,
+      borderLeft:   `4px solid ${c.brand}`,
+      padding:      "28px 32px",
+      maxWidth:     "680px",
+      marginTop:    "40px",
+    }}>
+      <p style={labelStyle}>Decision</p>
+      <p style={{
+        fontFamily:    font.sans,
+        fontSize:      "20px",
+        fontWeight:    600,
+        color:         c.brand,
+        margin:        "0 0 24px",
+        letterSpacing: "-0.01em",
+        lineHeight:    1.3,
+      }}>
+        {decision}
+      </p>
+
+      <p style={labelStyle}>Why</p>
+      <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
+
+      <p style={labelStyle}>Cost</p>
+      <p style={bodyStyle}>{cost}</p>
+    </aside>
+  );
+}
+
+/* Full-bleed image wrapper.
+   `cropAspect` shows only the TOP portion of tall captures so the hero
+   of the captured page lands first; pass null to show the natural image. */
+function HeroImage({
+  src, alt, cropAspect, priority = false,
+}: { src: string; alt: string; cropAspect?: string | null; priority?: boolean }) {
+  if (cropAspect) {
+    return (
+      <div style={{
+        width:        "100%",
+        maxWidth:     CONTENT_MAX,
+        margin:       "0 auto",
+        aspectRatio:  cropAspect,
+        position:     "relative",
+        overflow:     "hidden",
+        background:   c.ink,
+        border:       `1px solid ${c.border}`,
+      }}>
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes="(max-width: 1240px) 100vw, 1240px"
+          style={{
+            objectFit:      "cover",
+            objectPosition: "top center",
+          }}
+        />
+      </div>
+    );
+  }
+  // Natural aspect — use width/height with intrinsic sizing
+  return (
+    <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+      <Image
+        src={src}
+        alt={alt}
+        width={2880}
+        height={2048}
+        priority={priority}
+        sizes="(max-width: 1240px) 100vw, 1240px"
+        style={{
+          width:  "100%",
+          height: "auto",
+          display: "block",
+          border:  `1px solid ${c.border}`,
+        }}
+      />
+    </div>
+  );
+}
+
+/* ---------- page ---------- */
+
+export default function MSRv2() {
   return (
     <>
-      <CaseStudySchema
-        name="Men’s Sole Revival · Foot Health Content Platform"
-        description="A content-first foot health resource for men, using editorial authority, e-commerce UX patterns, and a token-driven design system to lower the stigma barrier."
-        slug="mens-sole-revival"
-        dateCreated="2026-04"
-      />
       <Nav />
 
-      <main className="cs-content-wrap" style={{ background: c.bg, paddingTop: "72px" }}>
+      <main style={{ background: c.surface, paddingTop: "72px" }}>
 
-        {/* -- Back link ---------------------------------- */}
-        <div style={{ maxWidth: "none", margin: "0 auto", padding: "24px clamp(24px, 5vw, 80px) 0" }}>
-          <Link
-            href="/#work"
-            style={{
-              fontFamily:     font.sans,
-              fontSize:       "13px",
-              color:          c.muted,
-              textDecoration: "none",
-              display:        "inline-block",
-            }}
-          >
+        {/* Back link */}
+        <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `24px ${SECTION_X} 0` }}>
+          <Link href="/#work" style={{
+            fontFamily:     font.sans,
+            fontSize:       "13px",
+            color:          c.muted,
+            textDecoration: "none",
+          }}>
             ← Back to work
           </Link>
         </div>
 
-        {/* -- Hero ---------------------------------------- */}
-        <header
-          style={{
-            background:  "#13100C",
-            padding:     "clamp(64px, 10vw, 120px) clamp(24px, 5vw, 80px)",
-            position:    "relative",
-            overflow:    "hidden",
+        {/* ─────────────────────────────────────────────
+            Title block — Pentagram-style: meta, title,
+            one-liner, tags, live link. No image yet.
+        ───────────────────────────────────────────── */}
+        <header style={{
+          maxWidth: CONTENT_MAX,
+          margin:   "0 auto",
+          padding:  `120px ${SECTION_X} 80px`,
+        }}>
+          <Eyebrow>Project · 2026</Eyebrow>
+
+          <h1 style={{
+            fontFamily:    font.sans,
+            fontSize:      "clamp(48px, 8vw, 96px)",
+            fontWeight:    500,
+            color:         c.ink,
+            margin:        "0 0 32px",
+            letterSpacing: "-0.03em",
+            lineHeight:    1,
+            maxWidth:      "13ch",
+          }}>
+            Men&apos;s Sole <span style={{ color: c.brand }}>Revival</span>
+          </h1>
+
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "clamp(20px, 2.4vw, 26px)",
+            lineHeight:    1.45,
+            fontWeight:    400,
+            color:         c.ink2,
+            maxWidth:      "640px",
+            margin:        "0 0 40px",
+            letterSpacing: "-0.005em",
+          }}>
+            A diagnostic-first foot-health resource for men over 40. Research, assessment redesign, brand identity, and a production design system.
+          </p>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "40px" }}>
+            <Tag>Brand Identity</Tag>
+            <Tag>Content UX</Tag>
+            <Tag>Design System</Tag>
+            <Tag>Editorial</Tag>
+          </div>
+
+          <a
+            href="https://www.menssolerevival.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display:        "inline-flex",
+              alignItems:     "center",
+              gap:            "10px",
+              fontFamily:     font.sans,
+              fontSize:       "13px",
+              fontWeight:     600,
+              letterSpacing:  "0.10em",
+              textTransform:  "uppercase",
+              color:          c.accent2,
+              textDecoration: "none",
+              borderBottom:   `1px solid ${c.accent}`,
+              paddingBottom:  "2px",
+            }}
+          >
+            menssolerevival.com →
+          </a>
+        </header>
+
+        {/* ─────────────────────────────────────────────
+            Hero image — full homepage capture, cropped
+            to top portion so the hero lands first.
+        ───────────────────────────────────────────── */}
+        <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+          <HeroImage
+            src="/images/work/msr/v2/homepage-live.jpg"
+            alt="Men’s Sole Revival homepage — diagnostic-first hero with assessment CTA and editorial article grid."
+            cropAspect="16 / 10"
+            priority
+          />
+        </section>
+
+        {/* ─────────────────────────────────────────────
+            Pull quote — full-width, generous breathing
+        ───────────────────────────────────────────── */}
+        <section style={{
+          maxWidth: CONTENT_MAX,
+          margin:   "0 auto",
+          padding:  `40px ${SECTION_X} 120px`,
+        }}>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "clamp(28px, 4vw, 44px)",
+            fontWeight:    500,
+            color:         c.brand,
+            margin:        0,
+            lineHeight:    1.25,
+            letterSpacing: "-0.015em",
+            maxWidth:      "900px",
+          }}>
+            &ldquo;The middle, where someone could teach men what&rsquo;s happening to their feet and what to do about it, didn&rsquo;t exist.&rdquo;
+          </p>
+        </section>
+
+        {/* ─────────────────────────────────────────────
+            §01 — The problem
+        ───────────────────────────────────────────── */}
+        <BigThree
+          number="01"
+          heading="The problem"
+          image="/images/work/msr/v2/assessment-intro.jpg"
+          imageAlt="Assessment intro page — &ldquo;The Men&rsquo;s Foot Health Assessment.&rdquo; 5-minute self-check with the SEE A DOCTOR IF triage box and three real numbers (77%, 1 in 3, 63–72%)."
+          imageCrop={null}
+          body={
+            <>
+              Men over 40 quietly Google their foot problems. Clinical sites scare them. Commerce sites push to them. The middle, where someone could teach them what&rsquo;s happening and what to do about it, didn&rsquo;t exist. The articles that ranked were written for women, repackaged with a stock photo of a guy.
+            </>
+          }
+          callout={{
+            decision: "Pivot from e-commerce to editorial in week 3.",
+            why:      "Three weeks of margin modeling kept pointing to the same answer. The friction wasn’t execution. It was the starting point. These men aren’t hiring a product. They’re hiring a reason to start paying attention.",
+            cost:     "Threw out the Shopify spec. Restarted the IA from scratch.",
           }}
-        >
-          {/* Cognac accent bar */}
-          <div style={{
-            position:   "absolute",
-            top:        0,
-            left:       0,
-            right:      0,
-            height:     "3px",
-            background: c.cognac,
-          }} />
+        />
 
-          <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            {/* Eyebrow */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
-              <span style={{ width: "24px", height: "1px", background: c.cognac }} />
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color:         c.cognac,
-              }}>
-                Men&apos;s Sole Revival &middot; UX Case Study
-              </span>
-            </div>
+        {/* ─────────────────────────────────────────────
+            Research strip — compact bridge between §01
+            and §02. Names the three-week arc that landed
+            on the pivot. Visible at-a-glance.
+        ───────────────────────────────────────────── */}
+        <section style={{ padding: `0 0 80px` }}>
+          <ResearchStrip />
+        </section>
 
-            <h1 style={{
-              fontFamily:    font.display,
-              fontSize:      "clamp(32px, 6vw, 64px)",
-              fontWeight:    400,
-              color:         "#F5F5F4",
-              margin:        "0 0 16px",
-              letterSpacing: "-0.03em",
-              lineHeight:    1.05,
-            }}>
-              Men&apos;s Sole Revival: a foot health resource for men over 40.
-            </h1>
+        {/* ─────────────────────────────────────────────
+            §02 — The bet (inlined; uses a code-rendered
+            pivot infographic — before/after with cognac
+            arrow — so the visual and the body actually
+            agree on the *decision* not the geometry)
+        ───────────────────────────────────────────── */}
+        <section style={{ padding: `0 0 120px` }}>
+          <div style={{ padding: `0 ${SECTION_X} 64px` }}>
+            <PivotInfographic />
+          </div>
 
-            <p style={{
-              fontFamily:  font.sans,
-              fontSize:    "clamp(16px, 2.2vw, 20px)",
-              lineHeight:  1.55,
-              color:       "rgba(245,243,239,0.65)",
-              margin:      "0 0 40px",
-              maxWidth:    "640px",
-            }}>
-              Men over 40 quietly Google their foot problems. Clinical sites scare them; commerce sites push to them. I designed MSR for the middle. Live since April 2026. The first plan was e-commerce; I shifted to content authority in week three when the research kept telling me the same thing: information, not products.
-            </p>
-
-            {/* Metadata row */}
+          <div style={{ padding: `0 ${SECTION_X}` }}>
             <div style={{
-              display:    "flex",
-              flexWrap:   "wrap",
-              gap:        "32px",
-              paddingTop: "32px",
-              borderTop:  "1px solid rgba(245,243,239,0.1)",
-            }}>
-              {[
-                { label: "Role",     value: "UX/UI Designer \u00B7 Content Strategist" },
-                { label: "Type",     value: "Solo \u00B7 Self-initiated" },
-                { label: "Timeline", value: "Jan \u2013 Apr 2026" },
-                { label: "Status",   value: "Live since April 2026 \u00B7 menssolerevival.com" },
-                { label: "Methods",  value: "Market Research \u00B7 Competitive Analysis \u00B7 Content UX \u00B7 AI-Assisted Development" },
-                { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority." },
-              ].map(({ label, value }) => (
-                <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.cognac, margin: "0 0 4px" }}>
-                    {label}
-                  </p>
-                  <p style={{ fontFamily: font.sans, fontSize: "14px", color: "rgba(245,243,239,0.75)", margin: 0 }}>
-                    {value}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Thumbnail tape \u2014 preview what's downstream */}
-            <div style={{
-              marginTop:  "56px",
-              paddingTop: "32px",
-              borderTop:  "1px solid rgba(245,243,239,0.1)",
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-                <span style={{ width: "24px", height: "1px", background: c.cognac }} />
-                <p style={{
+              maxWidth:            CONTENT_MAX,
+              margin:              "0 auto",
+              display:             "grid",
+              gridTemplateColumns: "1fr 1.6fr",
+              gap:                 "64px",
+              alignItems:          "start",
+            }} className="msr2-row">
+              <div>
+                <span style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
+                  fontWeight:    700,
+                  letterSpacing: "0.20em",
+                  color:         c.accent,
+                  display:       "block",
+                  marginBottom:  "12px",
+                }}>02</span>
+                <h2 style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "clamp(32px, 4vw, 48px)",
                   fontWeight:    600,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color:         c.cognac,
+                  color:         c.ink,
                   margin:        0,
+                  letterSpacing: "-0.025em",
+                  lineHeight:    1.05,
                 }}>
-                  What&apos;s downstream
-                </p>
+                  The bet.
+                </h2>
               </div>
 
-              <div style={{
-                display:           "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                gap:                "16px",
-              }}>
-                {[
-                  { label: "05 \u00B7 Architecture",     src: "/images/work/msr/msr-ia-tree.svg",                    href: "#section-05" },
-                  { label: "06 \u00B7 Flows",            src: "/images/work/msr/msr-user-flows.svg",                 href: "#section-06" },
-                  { label: "07 \u00B7 Decision logic",   src: "/images/work/msr/msr-assessment-decision-flow.svg",   href: "#section-07" },
-                  { label: "07 \u00B7 Wireframes",       src: "/images/work/msr/msr-assessment-wireframes.svg",      href: "#section-07" },
-                  { label: "\u2197 Live product",   src: "/images/work/msr/msr-homepage.webp",                  href: "https://www.menssolerevival.com/", external: true },
-                ].map(({ label, src, href, external }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
-                    className="cs-thumb"
-                    style={{
-                      display:         "block",
-                      textDecoration:  "none",
-                    }}
-                  >
-                    <div style={{
-                      position:     "relative",
-                      aspectRatio:  "16 / 11",
-                      overflow:     "hidden",
-                      background:   external ? "#0F161D" : "#F5F3EF",
-                      border:       "1px solid rgba(245,243,239,0.1)",
-                    }}>
-                      <Image
-                        src={src}
-                        alt=""
-                        fill
-                        sizes="(max-width: 767px) 50vw, 220px"
-                        style={{ objectFit: external ? "cover" : "contain", objectPosition: "center" }}
-                      />
-                    </div>
-                    <p style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "11px",
-                      fontWeight:    600,
-                      letterSpacing: "0.10em",
-                      textTransform: "uppercase",
-                      color:         "rgba(245,243,239,0.75)",
-                      margin:        "10px 0 0",
-                    }}>
-                      {label}
-                    </p>
-                  </Link>
-                ))}
+              <div>
+                <p style={{
+                  fontFamily: font.sans,
+                  fontSize:   "clamp(16px, 1.6vw, 18px)",
+                  lineHeight: 1.75,
+                  color:      c.ink2,
+                  margin:     0,
+                  maxWidth:   PROSE_MAX,
+                }}>
+                  Build a male-specific foot-health resource at the intersection of clinical, wellness, and product-first. The first plan was e-commerce. Three weeks into margin modeling, the research kept pointing at the same thing: information, not products. I pivoted to content authority and used e-commerce UX patterns to frame editorial decisions.
+                </p>
+                <Callout
+                  decision="Triangle positioning over standard niche framing."
+                  why="A &ldquo;men&rsquo;s wellness blog&rdquo; already has 100 competitors. The intersection of male-specific × clinical × product-first is where the audience actually lives. Nothing else occupies it."
+                  cost="Harder to explain in one line. SEO targeting needs three keyword pillars instead of one."
+                />
               </div>
             </div>
           </div>
-        </header>
+        </section>
 
-        {/* -- Links ---------------------------------------- */}
-        <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
-          <div style={{ maxWidth: "none", margin: "0 auto" }}>
+        {/* ─────────────────────────────────────────────
+            Brand identity — built in code (type sample +
+            color swatches) so the brand reads on the page
+            without a separate exported visual.
+        ───────────────────────────────────────────── */}
+        <section style={{ padding: `0 0 120px` }}>
+          <div style={{ padding: `0 ${SECTION_X} 64px` }}>
+            <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+              <div style={{
+                background:          "#13100C",
+                padding:             "clamp(40px, 6vw, 80px) clamp(28px, 5vw, 64px)",
+                display:             "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap:                 "48px",
+                alignItems:          "center",
+                border:              `1px solid ${c.border}`,
+              }} className="msr2-brand-grid">
+                {/* Left: wordmark + voice line. The old twin-feet mark was
+                    removed (legacy brand asset, not the current MSR lockup).
+                    Typographic-only card now — Barlow Condensed carries
+                    the identity without any feet imagery. */}
+                <div>
+                  <h3 style={{
+                    fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                    fontSize:      "clamp(56px, 7vw, 96px)",
+                    fontWeight:    800,
+                    color:         "#F5F0E8",
+                    margin:        0,
+                    letterSpacing: "0.01em",
+                    lineHeight:    0.92,
+                    textTransform: "uppercase",
+                  }}>
+                    Men&rsquo;s<br/>Sole<br/>Revival
+                  </h3>
+                  <p style={{
+                    fontFamily:    "var(--font-lora), Lora, Georgia, serif",
+                    fontSize:      "clamp(15px, 1.6vw, 18px)",
+                    color:         "#C4703A",
+                    fontStyle:     "italic",
+                    margin:        "24px 0 0",
+                    lineHeight:    1.45,
+                    letterSpacing: "-0.005em",
+                    maxWidth:      "32ch",
+                  }}>
+                    &ldquo;After years of neglect, men over 40 finally have a place to start.&rdquo;
+                  </p>
+                </div>
+
+                {/* Right: color swatches */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }} className="msr2-swatch-grid">
+                  <SwatchBlock label="Editorial Ink"  hex="#13100C" textColor="#F5F0E8" />
+                  <SwatchBlock label="Cognac"         hex="#C4703A" textColor="#F5F0E8" />
+                  <SwatchBlock label="Deep Cognac"    hex="#A35E32" textColor="#F5F0E8" />
+                  <SwatchBlock label="Paper"          hex="#F5F0E8" textColor="#13100C" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Heading + body */}
+          <div style={{ padding: `0 ${SECTION_X}` }}>
+            <div style={{
+              maxWidth:            CONTENT_MAX,
+              margin:              "0 auto",
+              display:             "grid",
+              gridTemplateColumns: "1fr 1.6fr",
+              gap:                 "64px",
+              alignItems:          "start",
+            }} className="msr2-row">
+              <div>
+                <Eyebrow>Brand identity</Eyebrow>
+                <h2 style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "clamp(32px, 4vw, 48px)",
+                  fontWeight:    600,
+                  color:         c.ink,
+                  margin:        0,
+                  letterSpacing: "-0.025em",
+                  lineHeight:    1.05,
+                }}>
+                  A brand that&rsquo;s actually for men.
+                </h2>
+              </div>
+              <div>
+                <p style={{
+                  fontFamily: font.sans,
+                  fontSize:   "clamp(16px, 1.6vw, 18px)",
+                  lineHeight: 1.75,
+                  color:      c.ink2,
+                  margin:     0,
+                  maxWidth:   PROSE_MAX,
+                }}>
+                  Most men&rsquo;s wellness brands aren&rsquo;t for men. They&rsquo;re rebranded women&rsquo;s content with a stock photo of a guy. MSR starts from how men actually search for foot problems: quietly, with shame, after years of neglect. The brand voice is direct and clinical, never cold. Barlow Condensed for editorial heat, Lora for long-form trust, cognac as a grounded accent against editorial near-black.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────────────────────────────────────────
+            Design system — replaced the single
+            design-system-signature.png export (Ryan's
+            "looks like you're hiding something" critique)
+            with a CSS-only 3-tab carousel: Color tokens,
+            Type ramp, Components. Each tab is legibly
+            scaled and contains the actual data.
+        ───────────────────────────────────────────── */}
+        <section style={{ padding: `0 0 120px` }}>
+          <div style={{ padding: `0 ${SECTION_X} 48px` }}>
+            <div style={{
+              maxWidth:            CONTENT_MAX,
+              margin:              "0 auto",
+              display:             "grid",
+              gridTemplateColumns: "1fr 1.6fr",
+              gap:                 "64px",
+              alignItems:          "start",
+            }} className="msr2-row">
+              <div>
+                <Eyebrow>Design system</Eyebrow>
+                <h2 style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "clamp(32px, 4vw, 48px)",
+                  fontWeight:    600,
+                  color:         c.ink,
+                  margin:        0,
+                  letterSpacing: "-0.025em",
+                  lineHeight:    1.05,
+                }}>
+                  Built once.<br/>Used everywhere.
+                </h2>
+              </div>
+              <div>
+                <p style={{
+                  fontFamily: font.sans,
+                  fontSize:   "clamp(16px, 1.6vw, 18px)",
+                  lineHeight: 1.75,
+                  color:      c.ink2,
+                  margin:     0,
+                  maxWidth:   PROSE_MAX,
+                }}>
+                  Token-led from the start. Color, type, spacing as primitives. Article pattern, assessment branch, review card, routine prompt all read from the same vocabulary. Thirteen components carry every page on the site. Documented in Figma so the next designer who picks this up doesn&rsquo;t have to rebuild the rules.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Three-tab carousel — click 01 / 02 / 03 in the bar above to switch. */}
+          <div style={{ padding: `0 ${SECTION_X}` }}>
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight:    600,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.18em",
               textTransform: "uppercase",
               color:         c.muted,
               margin:        "0 0 16px",
+              maxWidth:      CONTENT_MAX,
+              marginInline:  "auto",
             }}>
-              Links
+              <span style={{ color: c.accent }}>→ </span>
+              Click 01 · 02 · 03 to switch panels
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
-              {[
-                // Primary CTA — the live, deployed product (strongest proof of work)
-                { label: "Live product", href: "https://www.menssolerevival.com/",        external: true,  variant: "primary" },
-                // Secondary — slide deck lives on the portfolio itself (internal nav)
-                { label: "Slide deck",   href: "/work/presentations/mens-sole-revival",   external: false, variant: "ghost"   },
-              ].map(({ label, href, external, variant }) => {
-                const isPrimary = variant === "primary";
-                return (
-                  <Link
-                    key={label}
-                    href={href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
-                    style={{
-                      display:        "inline-flex",
-                      alignItems:     "center",
-                      gap:            "8px",
-                      padding:        "10px 18px",
-                      background:     isPrimary ? c.ink        : c.surface,
-                      border:         isPrimary ? "none"       : `1px solid ${c.borderStrong}`,
-                      borderRadius:   "6px",
-                      color:          isPrimary ? "#F5F5F4"    : c.ink,
-                      fontFamily:     font.sans,
-                      fontSize:       "13px",
-                      fontWeight:     500,
-                      letterSpacing:  "0.02em",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {label}
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-                      <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </Link>
-                );
-              })}
-            </div>
+            <DesignSystemCarousel />
           </div>
-        </div>
+        </section>
 
-        {/* -- Cover: live MSRPagePeek preview (sized to 64% of section width) -- */}
-        <div style={{ background: c.bgSection, padding: "48px clamp(24px, 5vw, 80px) 0" }}>
-          <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <div style={{
-              width:        "64%",
-              margin:       "0 auto",
-              overflow:     "hidden",
-              borderRadius: "4px",
-              border:       `1px solid ${c.border}`,
-            }}>
-              <MSRPagePeek />
-            </div>
-          </div>
-        </div>
+        {/* ─────────────────────────────────────────────
+            §03 — Shipped (image stack — multiple shots)
+        ───────────────────────────────────────────── */}
+        <section style={{ padding: `0 ${SECTION_X} 40px` }}>
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
 
-        {/* -- Content wrapper ----------------------------- */}
-        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
-
-          {/* -- 01 Context -------------------------------- */}
-          <Section label="01" title="Context">
-            <p style={bodyText}>
-              I kept Googling &ldquo;cracked heels men fix&rdquo; and landing on the same three articles written for women, repackaged with a stock photo of a guy. The clinical sources were accurate but impersonal. The product sites were selling, not teaching. Nothing spoke to men who actually wanted to understand what was happening to their feet and what to do about it.
-            </p>
-            <p style={bodyText}>
-              The numbers back up the gap. Three of them set up everything that follows.
-            </p>
-
-            {/* 3-stat strip */}
-            <div style={{
-              display:         "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap:             "0",
-              margin:          "32px 0",
-              border:          `1px solid ${c.border}`,
-              borderRadius:    "0",
-            }}>
-              {[
-                {
-                  value:  "77%",
-                  label:  "of US adults experience annual foot pain",
-                  source: "APMA, 2014",
-                  href:   "https://www.prnewswire.com/news-releases/new-survey-reveals-majority-of-americans-suffer-from-foot-pain-259775741.html",
-                  caption: "Scale",
-                },
-                {
-                  value:  "33%",
-                  label:  "less likely men are to seek medical care than women",
-                  source: "WellMed Medical Group",
-                  href:   "https://www.wellmedhealthcare.com/patients/healthyliving/habits-wellness/understanding-mens-reluctance-to-see-a-doctor/",
-                  caption: "Underserved",
-                },
-                {
-                  value:  "72%",
-                  label:  "of men would rather do household chores than go to the doctor",
-                  source: "Cleveland Clinic, 2019",
-                  href:   "https://newsroom.clevelandclinic.org/2019/09/04/cleveland-clinic-survey-men-will-do-almost-anything-to-avoid-going-to-the-doctor",
-                  caption: "Avoidance",
-                },
-              ].map(({ value, label, source, href, caption }, i, arr) => (
-                <div key={caption} style={{
-                  padding:     "28px 28px",
-                  background:  c.surface,
-                  borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                }}>
-                  <p style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "10px",
-                    fontWeight:    700,
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    color:         c.cognac,
-                    margin:        "0 0 12px",
-                  }}>{caption}</p>
-                  <p style={{
-                    fontFamily:    font.display,
-                    fontSize:      "clamp(28px, 4vw, 40px)",
-                    fontWeight:    500,
-                    color:         c.ink,
-                    margin:        "0 0 8px",
-                    letterSpacing: "-0.02em",
-                    lineHeight:    1.0,
-                  }}>{value}</p>
-                  <p style={{
-                    fontFamily: font.sans,
-                    fontSize:   "13px",
-                    lineHeight: 1.5,
-                    color:      c.body,
-                    margin:     "0 0 10px",
-                  }} dangerouslySetInnerHTML={{ __html: label }} />
-                  {href ? (
-                    <a href={href} target="_blank" rel="noopener noreferrer" style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "11px",
-                      color:         c.muted,
-                      textDecoration: "underline",
-                      textDecorationColor: c.border,
-                    }}>{source}</a>
-                  ) : (
-                    <span style={{ fontFamily: font.sans, fontSize: "11px", color: c.muted }}>{source}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <p style={bodyText}>
-              Foot pain is near-universal in this audience. Action is not. Men over 40 sit in the peak risk window for plantar fasciitis, hallux rigidus, and fungal infections, and they are the demographic least likely to act. The market knows the audience exists. Men&apos;s grooming is now a <a href="https://www.grandviewresearch.com/industry-analysis/mens-personal-care-market-report" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>$90.7B category</a>. The supply of foot-specific guidance has not caught up.
-            </p>
-            <Callout label="Design synthesis">
-              Men need a foot health resource that is male-specific, clinically grounded, and product-informed. No existing site occupies that intersection.
-            </Callout>
-          </Section>
-
-          {/* -- 02 Problem -------------------------------- */}
-          <Section label="02" title="The Competitive Gap">
-            <p style={bodyText}>
-              Three categories of content exist for men&apos;s foot health. Each one does part of the job and stops short of the rest.
-            </p>
-            <p style={bodyText}>
-              Clinical sources (<a href="https://www.webmd.com" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>WebMD</a>, <a href="https://www.mayoclinic.org" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Mayo Clinic</a>, <a href="https://my.clevelandclinic.org" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Cleveland Clinic</a>) deliver accuracy without a voice. Product-first content (sneaker blogs, GQ, Amazon listicles) names brands without explaining the underlying condition. Wellness platforms (<a href="https://www.healthline.com" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Healthline</a>, <a href="https://www.verywellhealth.com" target="_blank" rel="noopener noreferrer" style={{ color: c.body, textDecoration: "underline", textDecorationColor: c.border }}>Verywell Health</a>) write for a general audience that defaults to women. Each stops short of the same intersection.
-            </p>
-            {/* Venn diagram — competitive gap */}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "32px", marginBottom: "8px" }}>
-              <svg
-                viewBox="0 0 560 444"
-                width="560"
-                height="444"
-                style={{ maxWidth: "100%", height: "auto", overflow: "visible" }}
-                aria-label="Venn diagram showing Men's Sole Revival at the intersection of Clinical, Wellness, and Product-First content"
-              >
-                <defs>
-                  {/* Clinical — soft slate blue */}
-                  <radialGradient id="fillClinical" cx="40%" cy="38%" r="60%">
-                    <stop offset="0%" stopColor="#7BA7C4" stopOpacity="0.55" />
-                    <stop offset="100%" stopColor="#7BA7C4" stopOpacity="0.28" />
-                  </radialGradient>
-                  {/* Product-First — soft amber/warm */}
-                  <radialGradient id="fillProduct" cx="60%" cy="38%" r="60%">
-                    <stop offset="0%" stopColor="#C4903A" stopOpacity="0.48" />
-                    <stop offset="100%" stopColor="#C4903A" stopOpacity="0.22" />
-                  </radialGradient>
-                  {/* Wellness — soft sage green */}
-                  <radialGradient id="fillWellness" cx="50%" cy="35%" r="60%">
-                    <stop offset="0%" stopColor="#6BA896" stopOpacity="0.52" />
-                    <stop offset="100%" stopColor="#6BA896" stopOpacity="0.26" />
-                  </radialGradient>
-                  {/* Clip paths for triple intersection */}
-                  <clipPath id="clipClinical"><circle cx="196" cy="182" r="148" /></clipPath>
-                  <clipPath id="clipProduct"><circle cx="364" cy="182" r="148" /></clipPath>
-                  <clipPath id="clipWellness"><circle cx="280" cy="282" r="148" /></clipPath>
-                </defs>
-
-                {/* ── Three circles ── */}
-                <circle cx="196" cy="182" r="148" fill="url(#fillClinical)" />
-                <circle cx="364" cy="182" r="148" fill="url(#fillProduct)" />
-                <circle cx="280" cy="282" r="148" fill="url(#fillWellness)" />
-
-                {/* ── Triple intersection — filled cognac via nested clip paths ── */}
-                <g clipPath="url(#clipClinical)">
-                  <g clipPath="url(#clipProduct)">
-                    <circle cx="280" cy="282" r="148" fill="#C4703A" fillOpacity="0.82" clipPath="url(#clipWellness)" />
-                  </g>
-                </g>
-
-                {/* ── Circle labels ── */}
-                {/* Clinical */}
-                <text x="130" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C4703A" style={{ textTransform: "uppercase" }}>CLINICAL</text>
-                <text x="130" y="132" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">WebMD, Mayo Clinic</text>
-                <text x="130" y="147" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Cleveland Clinic</text>
-
-                {/* Product-First */}
-                <text x="430" y="114" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C4703A" style={{ textTransform: "uppercase" }}>PRODUCT-FIRST</text>
-                <text x="430" y="132" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Sneaker blogs, GQ</text>
-                <text x="430" y="147" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Amazon listicles</text>
-
-                {/* Wellness */}
-                <text x="280" y="390" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fontWeight="700" letterSpacing="1.2" fill="#C4703A" style={{ textTransform: "uppercase" }}>WELLNESS</text>
-                <text x="280" y="407" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="11" fill="#8A8680">Healthline, Verywell Health</text>
-
-                {/* ── Pairwise gap labels ── */}
-                {/* Clinical ∩ Product — top center */}
-                <text x="280" y="118" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">no male focus</text>
-
-                {/* Clinical ∩ Wellness — left */}
-                <text x="166" y="263" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">no product</text>
-                <text x="166" y="278" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">guidance</text>
-
-                {/* Product ∩ Wellness — right */}
-                <text x="386" y="263" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">no clinical</text>
-                <text x="386" y="278" textAnchor="middle" fontFamily="var(--font-dm-sans), system-ui, sans-serif" fontSize="12" fontWeight="600" fill="#3D4440" fontStyle="italic">rigor</text>
-
-                {/* ── Center label on the intersection ── */}
-                <text x="280" y="214" textAnchor="middle" fontFamily="var(--font-dm-sans), -apple-system, sans-serif" fontSize="18" fill="white" fontWeight="600" letterSpacing="-0.015em" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Men&apos;s Sole</text>
-                <text x="280" y="234" textAnchor="middle" fontFamily="var(--font-dm-sans), -apple-system, sans-serif" fontSize="18" fill="white" fontWeight="600" letterSpacing="-0.015em" style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.18))" }}>Revival</text>
-              </svg>
-            </div>
-            <p style={{ ...bodyText, marginTop: "24px" }}>
-              The intersection is where the audience actually lives: male-specific, clinically grounded, and product-informed. It&apos;s the resource that should exist where the three categories overlap, not a compromise between them.
-            </p>
-          </Section>
-
-          {/* -- 03 Competitor Analysis ------------------- */}
-          <Section label="03" title="Competitor Analysis">
-            <p style={bodyText}>
-              Five categories shape how a man over 40 thinks about foot health: clinical, athletic, orthopedic, wellness, and grooming. None of them speak to him directly about feet. Mapping their feature sets, pricing models, and tone shows where the gap lives and what MSR can borrow.
-            </p>
-
-            {/* Competitor matrix */}
-            <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Category",     width: "16%" },
-                      { label: "Examples",     width: "20%" },
-                      { label: "Model",        width: "16%" },
-                      { label: "Captures user with", width: "24%" },
-                      { label: "Loses user at",   width: "24%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width, color: label === "Captures user with" ? c.accent : c.muted, fontWeight: label === "Captures user with" ? 700 : 600 }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    {
-                      cat: "Men&apos;s grooming",
-                      ex:  "Hims, Roman, Manscaped, Harry&apos;s",
-                      mod: "Subscription DTC, intake quiz",
-                      cap: "Defuses embarrassment. \"We handle this here, no judgment.\"",
-                      lose: "Foot health is unaddressed. No condition vocabulary.",
-                    },
-                    {
-                      cat: "Athletic / performance footwear",
-                      ex:  "Runner&apos;s World, Believe in the Run, Road Runner Sports",
-                      mod: "Editorial + affiliate",
-                      cap: "Gear specificity. Performance frame.",
-                      lose: "Foot health framed as performance only. No clinical layer.",
-                    },
-                    {
-                      cat: "Orthopedic",
-                      ex:  "Vionic, Orthofeet, Aetrex",
-                      mod: "Direct sale + Rx referral",
-                      cap: "Condition validation. Therapeutic credibility.",
-                      lose: "Aging signal. Beige clinical aesthetic men avoid.",
-                    },
-                    {
-                      cat: "Wellness",
-                      ex:  "Healthline, Verywell Health, WebMD foot care",
-                      mod: "Ads + editorial",
-                      cap: "Symptom answers. Editorial authority.",
-                      lose: "Female default. No men&apos;s framing. No product layer.",
-                    },
-                    {
-                      cat: "Men&apos;s hair / skincare",
-                      ex:  "Hims, Keeps, Tiege Hanley",
-                      mod: "Subscription DTC, intake quiz",
-                      cap: "Visible-aging concerns. Routine logic.",
-                      lose: "Below-the-ankle is not in scope.",
-                    },
-                  ].map(({ cat, ex, mod, cap, lose }, i) => (
-                    <tr key={cat} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }} dangerouslySetInnerHTML={{ __html: cat }} />
-                      <td style={{ ...tdStyle, color: c.body }} dangerouslySetInnerHTML={{ __html: ex }} />
-                      <td style={{ ...tdStyle, color: c.body }}>{mod}</td>
-                      <td style={{ ...tdStyle, color: c.ink }} dangerouslySetInnerHTML={{ __html: cap }} />
-                      <td style={{ ...tdStyle, color: c.muted, fontStyle: "italic" }} dangerouslySetInnerHTML={{ __html: lose }} />
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <Callout label="Synthesis">
-              The audience moves through these categories in order. Grooming gives him permission to pay attention. Athletic content gives him gear. Wellness gives him language for symptoms. Orthopedic gives him names for conditions. Hair and skincare give him the model: short intake, specific recommendation, no judgment. MSR uses each one&apos;s entry move and avoids each one&apos;s exit. The result is the foot health resource the audience already knows how to read.
-            </Callout>
-          </Section>
-
-          {/* -- 04 The Pivot ----------------------------- */}
-          <Section label="04" title="The Pivot">
-            <p style={bodyText}>
-              The original plan was a premium men&apos;s foot care e-commerce site. Curated product kits: antifungal treatment, toe separators, insoles, foot cream. Headless Shopify, Next.js frontend, dark editorial brand.
-            </p>
-            <p style={bodyText}>
-              The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. Three weeks of margin modeling kept pointing to the same answer: the friction wasn&apos;t execution. It was the starting point.
-            </p>
-            <p style={bodyText}>
-              The market sizing supported the thesis. The unit economics did not.
-            </p>
-            <p style={bodyText}>
-              Then the market research showed the real problem. I used a jobs-to-be-done frame to redefine it: these men aren&apos;t hiring a product. They&apos;re hiring a reason to start paying attention. The gap wasn&apos;t in the products. It was in the information layer that should precede them. Men over 40 who aren&apos;t already thinking about their feet are expensive to convert. They need a resource they trust before they&apos;ll buy anything. The e-commerce model puts the transaction before the relationship that makes the transaction possible.
-            </p>
-
-            {/* Before / After table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {["Dimension", "Original Model", "", "Pivoted Model"].map((h, i) => (
-                      <th key={i} style={{ ...thStyle, width: h === "" ? "44px" : undefined }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { dim: "Revenue",     before: "Product sales",     after: "Affiliate links + brand partnerships" },
-                    { dim: "Page design",  before: "Product listings",  after: "Review pages using e-commerce UX patterns" },
-                    { dim: "Content",      before: "Catalog copy",      after: "Pillar articles + product comparison reviews" },
-                    { dim: "Growth",       before: "Paid acquisition",  after: "SEO, social, direct brand outreach" },
-                  ].map(({ dim, before, after }, i) => (
-                    <tr key={dim} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{dim}</td>
-                      <td style={{ ...tdStyle, color: c.muted }}>{before}</td>
-                      <td style={{ ...tdStyle, color: c.cognac, fontWeight: 700, textAlign: "center", fontSize: "18px", lineHeight: 1 }}>&rarr;</td>
-                      <td style={{ ...tdStyle, color: c.ink, fontWeight: 600 }}>{after}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <Callout label="Key insight">
-              The pivot wasn&apos;t away from e-commerce. It was toward content as the product, using e-commerce UX patterns to frame editorial decisions.
-            </Callout>
-          </Section>
-
-          {/* -- 05 Site Architecture --------------------- */}
-          <Section label="05" title="Site Architecture">
-
-            {/* IA tree (Figma Artifact 01) */}
-            <div style={{
-              position:    "relative",
-              aspectRatio: "1920 / 1131",
-              marginBottom: "32px",
-              border:      `1px solid ${c.border}`,
-              background:  c.bgSection,
-              overflow:    "hidden",
-            }}>
-              <Image
-                src="/images/work/msr/msr-ia-tree.svg"
-                alt="MSR information architecture. Every route from the homepage to detail pages. A right-side symptom tag rail (cracked heels, toenail fungus, foot pain, alignment, etc.) feeds the Guides and Assessment routes so users can arrive symptom-first."
-                fill
-                sizes="(max-width: 767px) 100vw, 1100px"
-                style={{ objectFit: "contain", objectPosition: "top" }}
-              />
-            </div>
-
-            {/* Annotation under the IA tree */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "16px", marginBottom: "32px" }}>
-              <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+            {/* Heading + body */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "64px", alignItems: "start", marginBottom: "64px" }} className="msr2-row">
+              <div>
                 <span style={{
-                  width: "4px", height: "4px", borderRadius: "50%",
-                  background: c.cognac, flexShrink: 0, marginTop: "9px",
-                }} />
-                <p style={{
-                  fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
-                  color: c.body, margin: 0,
-                }}>
-                  <span style={{ color: c.ink, fontWeight: 600 }}>Symptoms live in a tag rail, not the nav</span>
-                  {" · "}A man with cracked heels should not have to know whether the answer is a routine, a kit, or an article. The tag pulls relevant content from all three. The nav stays clean. The symptom does the routing.
-                </p>
-              </div>
-            </div>
-
-            <p style={bodyText}>
-              Seven primary routes, each designed for a different user task. The information architecture is the product strategy made navigable. Every route maps to a specific intent.
-            </p>
-
-            {/* Route table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Route",     width: "24%" },
-                      { label: "Type",      width: "22%" },
-                      { label: "User Task", width: "16%" },
-                      { label: "Purpose",   width: "38%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width, color: label === "User Task" ? c.accent : c.muted, fontWeight: label === "User Task" ? 700 : 600 }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { route: "/",                  type: "Homepage",        task: "Orient",   purpose: "Understand what this site is and whether it\u2019s for me." },
-                    { route: "/guides",            type: "Guides Index",    task: "Browse",   purpose: "Find the right starting point." },
-                    { route: "/guides/[slug]",     type: "Article",         task: "Learn",    purpose: "Go deeper on a foot health topic." },
-                    { route: "/reviews/[slug]",    type: "Product Review",  task: "Evaluate", purpose: "Compare and decide on a product." },
-                    { route: "/routines/[slug]",   type: "Routine",         task: "Explore",  purpose: "Follow a recommended routine." },
-                    { route: "/about",             type: "Brand Story",     task: "Trust",    purpose: "Understand who built this and why." },
-                    { route: "/assessment",        type: "Self-Check Tool", task: "Act",      purpose: "Get a personalized starting point." },
-                  ].map(({ route, type, task, purpose }, i) => (
-                    <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.cognac }}>{task}</td>
-                      <td style={tdStyle}>{purpose}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-          </Section>
-
-          {/* -- 06 User Flows ---------------------------- */}
-          <Section label="06" title="User Flows">
-            <p style={bodyText}>
-              Two paths to the product. Symptom-first and question-first end at the same decision.
-            </p>
-            <p style={bodyText}>
-              Flow A is the symptom-first path. The user takes the assessment, answers a Q1 that branches into one of three Q2 sets, and lands on a personalized recommendation. Flow B is the question-first path. The user reads a guide, follows an in-article reference into related products and reviews, and out to the product CTA. Both paths converge on the same decision. The branch rules, click states, and end-state rationale are annotated inline.
-            </p>
-
-            {/* Artifact image */}
-            <div style={{
-              position:    "relative",
-              aspectRatio: "1920 / 1306",
-              marginTop:   "24px",
-              border:      `1px solid ${c.border}`,
-              background:  c.bgSection,
-              overflow:    "hidden",
-            }}>
-              <Image
-                src="/images/work/msr/msr-user-flows.svg"
-                alt="Artifact 02. User Flows. Two end-to-end paths through Men's Sole Revival. Flow A: Landing, Take Assessment CTA, Triage Step 0, Q1 branch diamond, Q2 sets for Pain Nails or Fit, Results loading, Recommendations, fork to Amazon outbound or internal Routine and Review. Flow B: Landing, Guides Index, Article detail, Related callout, fork to Review detail or Amazon outbound."
-                fill
-                sizes="(max-width: 767px) 100vw, 1100px"
-                style={{ objectFit: "contain", objectPosition: "top" }}
-              />
-            </div>
-
-            {/* Annotations */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "24px" }}>
-              {[
-                {
-                  detail: "Branch diamond",
-                  why: "Q1 asks where the trouble lives. The answer routes into one of three Q2 sets: pain, nails, or fit. The branch cuts the number of questions the user actually sees.",
-                },
-                {
-                  detail: "Fork at the end of Flow A",
-                  why: "The fork shows two end-states. The current path routes to an Amazon affiliate outbound. The pivot lands on an internal product page that captures email, reviews, and routine adherence.",
-                },
-              ].map(({ detail, why }) => (
-                <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <span style={{
-                    width: "4px", height: "4px", borderRadius: "50%",
-                    background: c.cognac, flexShrink: 0, marginTop: "9px",
-                  }} />
-                  <p style={{
-                    fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
-                    color: c.body, margin: 0,
-                  }}>
-                    <span style={{ color: c.ink, fontWeight: 600 }}>{detail}</span>
-                    {" · "}{why}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          {/* -- 07 Assessment Redesign -------------------- */}
-          <Section label="07" title="Assessment Redesign">
-            <p style={bodyText}>
-              The original assessment ends in a tier label. The redesign ends in a specific next step. Six artifacts below: where the live version falls short, every question grouped by section, the wireframes at component fidelity, the decision flow behind the routing, the trade-offs that drove every scope move, and the layout rationale that defends every visual decision.
-            </p>
-
-            {/* Problem & Comparative Analysis */}
-            <div style={{ marginTop: "32px" }}>
-              <h3 style={subheading}>Problem & comparative analysis</h3>
-              <p style={bodyText}>
-                The live assessment has three gaps worth closing. Five comparable intake tools (Function Health, WHOOP, BetterHelp, Hims, Eight Sleep) point to specific moves worth borrowing: symptom-first triage, why-we-ask microcopy, short branching paths, and scheduled re-engagement.
-              </p>
-              <div style={{
-                position:    "relative",
-                aspectRatio: "1920 / 1722",
-                marginTop:   "16px",
-                border:      `1px solid ${c.border}`,
-                background:  c.bgSection,
-                overflow:    "hidden",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-assessment-problem.svg"
-                  alt="Assessment redesign part 1. Current state audit of the live MSR assessment showing three gaps to close (no symptom triage, no completed-sections view, generic result). Plus a comparative analysis of five intake tools and a list of net moves worth borrowing."
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "contain", objectPosition: "top" }}
-                />
-              </div>
-            </div>
-
-            {/* Question list */}
-            <div style={{ marginTop: "48px" }}>
-              <h3 style={subheading}>Every question, in order</h3>
-              <p style={bodyText}>
-                Twenty-nine items across five sections. Step 0 is the only branching question; after triage, each visible section shows its full item set. Pain and Inflammation is the only three-state section because pain is interoceptive and binary forces false positives. The rest are binary checks. The note at the bottom of each section translates the flag count into a recommendation tier.
-              </p>
-              <div style={{
-                position:    "relative",
-                aspectRatio: "1920 / 1262",
-                marginTop:   "16px",
-                border:      `1px solid ${c.border}`,
-                background:  c.bgSection,
-                overflow:    "hidden",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-assessment-question-list.svg"
-                  alt="Artifact 03h. Question list. Every assessment item grouped by section. Step 0 Triage banner with five symptom chips (Nails, Skin, Pain, Alignment, Footwear fit, Not sure). Five section cards in a grid: Nail Health (seven items, binary), Skin and Heels (six items, binary), Pain and Inflammation (six items, three-state), Alignment and Structure (five items, binary), Footwear Fit (five items, binary). Each section card includes its subtitle, numbered item list, and a NOTE explaining the flag-count threshold."
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "contain", objectPosition: "top" }}
-                />
-              </div>
-            </div>
-
-            {/* Wireframes */}
-            <div style={{ marginTop: "48px" }}>
-              <h3 style={subheading}>Wireframes at component fidelity</h3>
-              <p style={bodyText}>
-                Six desktop states. Triage as Step 0. In-progress section with a sidebar that shows completed sections, the current one, and what is left. Skip confirmation. Results loading with an acknowledgment line. The three-block result (articles to read, a routine to follow, language for a podiatrist). Email capture as the primary save with a 30 and 90 day check-in opt-in. Two mobile variants for the touch-critical states.
-              </p>
-              <div style={{
-                position:    "relative",
-                aspectRatio: "1920 / 2230",
-                marginTop:   "16px",
-                border:      `1px solid ${c.border}`,
-                background:  c.bgSection,
-                overflow:    "hidden",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-assessment-wireframes.svg"
-                  alt="Assessment redesign part 2. Six desktop wireframes at component fidelity plus two mobile variants. Each state is annotated with its role in the redesigned flow."
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "contain", objectPosition: "top" }}
-                />
-              </div>
-            </div>
-
-            {/* Decision flow */}
-            <div style={{ marginTop: "48px" }}>
-              <h3 style={subheading}>Decision flow</h3>
-              <p style={bodyText}>
-                Every branch in the routing logic, surfaced as a flowchart. Diamonds are decisions, rectangles are screens or actions, pills are start and end states. The Pain section is the only branch that renders three-state radios; everything else is binary. composeResult bucketizes flags, shifts on duration, and only surfaces the clinic callout when a section bucket reads high. Email and PDF endings opt the user into 30 and 90 day follow-ups.
-              </p>
-              <div style={{
-                position:    "relative",
-                aspectRatio: "1600 / 2520",
-                marginTop:   "16px",
-                border:      `1px solid ${c.border}`,
-                background:  c.bgSection,
-                overflow:    "hidden",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-assessment-decision-flow.svg"
-                  alt="Artifact 03g. Assessment Decision Flow. Vertical flowchart starting from Intro, branching at Triage (selected one or more symptoms?), into Filter sections or Show all sections, then into the For each visible section loop with the Pain section decision routing into binary or three-state items. Any items flagged decision routes into Ask duration or Skip duration. Last section decision routes into Advance or Acknowledgment. composeResult routes into uncertainty prep bullet or clinic callout. Results screen, save action, then ends in Email, PDF, or Restart."
-                  fill
-                  sizes="(max-width: 767px) 100vw, 720px"
-                  style={{ objectFit: "contain", objectPosition: "top" }}
-                />
-              </div>
-            </div>
-
-            {/* Trade-offs & decision note */}
-            <div style={{ marginTop: "48px" }}>
-              <h3 style={subheading}>Trade-offs and the decision argument</h3>
-              <p style={bodyText}>
-                Nine decisions documented as trade-offs. What I chose, what I deliberately did not choose, and why. Closes with the case-study argument: personalization, re-engagement, and first-party data can be earned without trading the editorial trust the audience came for.
-              </p>
-              <div style={{
-                position:    "relative",
-                aspectRatio: "1920 / 1229",
-                marginTop:   "16px",
-                border:      `1px solid ${c.border}`,
-                background:  c.bgSection,
-                overflow:    "hidden",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-assessment-tradeoffs.svg"
-                  alt="Assessment redesign part 3. Nine-row trade-off table covering entry point, save model, result format, pain answer state, progress UI, section skip, re-engagement, acknowledgment, and recommendation routing. Followed by the one-paragraph decision note."
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "contain", objectPosition: "top" }}
-                />
-              </div>
-            </div>
-
-            {/* Layout rationale */}
-            <div style={{ marginTop: "48px" }}>
-              <h3 style={subheading}>Layout rationale</h3>
-              <p style={bodyText}>
-                Four layout decisions, each defended on usability, cognition, and emotional grounds. Each one was a deliberate choice over a documented alternative. The form is centered, supporting education sits beside it, the column is narrow, and the typography is editorial. The goal across all four is to lower the stigma barrier before the user reads a word.
-              </p>
-              <div style={{
-                position:    "relative",
-                aspectRatio: "1920 / 1100",
-                marginTop:   "16px",
-                border:      `1px solid ${c.border}`,
-                background:  c.bgSection,
-                overflow:    "hidden",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-assessment-layout-rationale.svg"
-                  alt="Artifact 03i. Layout rationale. Four decision cards in a two-by-two grid. Decision 01 Alignment: the form is centered on the canvas, alternative considered was left-aligned with sidebar floated right. Decision 02 Composition: supporting education sits beside the form, alternative was tooltip on hover. Decision 03 Measure: width is constrained to approximately 640px, alternative was full-bleed at 1100px. Decision 04 Tone: editorial typography in Lora plus a warm stone palette, alternative was healthcare-intake utility-form aesthetic."
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "contain", objectPosition: "top" }}
-                />
-              </div>
-            </div>
-          </Section>
-
-          {/* -- 08 Design Decisions ---------------------- */}
-          <Section label="08" title="Design Decisions">
-            <p style={bodyText}>
-              Two design decisions define the case study: the visual language and the review page layout. Each one is a hypothesis about the audience that the design has to pass or fail. Aesthetic preference is not part of the test.
-            </p>
-
-            <h3 style={subheading}>Brand Direction: Dark Editorial</h3>
-            <p style={bodyText}>
-              <strong style={{ color: c.ink }}>Hypothesis.</strong> A dark editorial aesthetic, borrowed from premium grooming and performance gear, lowers the stigma barrier before the user reads a word.
-            </p>
-            <p style={bodyText}>
-              <strong style={{ color: c.ink }}>Test.</strong> Three visual directions were prototyped and evaluated against one question: does this aesthetic lower the stigma barrier before the first word is read?
-            </p>
-
-            {/* Brand directions */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              {[
-                {
-                  name:   "Clinical",
-                  status: "Rejected",
-                  reason: "Medical authority is precisely the barrier these men are already dealing with. Clinical design confirms the user\u2019s fear: \u2018this requires professional help.\u2019 That\u2019s what drives them away.",
-                },
-                {
-                  name:   "Salesy",
-                  status: "Rejected",
-                  reason: "Hesitation in this audience comes from shame, not indecision. Pressure amplifies shame. Fear-based design destroys trust before it starts.",
-                },
-                {
-                  name:   "Dark Editorial",
-                  status: "Chosen",
-                  reason: "The visual language of premium grooming brands and men\u2019s performance gear. Brands men already trust for personal care. The aesthetic says this topic is handled here with confidence, not apology.",
-                },
-              ].map(({ name, status, reason }) => (
-                <div
-                  key={name}
-                  className="cs-problem-card"
-                  style={{
-                    display:    "flex",
-                    gap:        "20px",
-                    padding:    "20px 24px",
-                    background: status === "Chosen" ? "rgba(196,112,58,0.04)" : c.surface,
-                    border:     status === "Chosen" ? `1px solid rgba(196,112,58,0.25)` : `1px solid ${c.border}`,
-                  }}
-                >
-                  <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: status === "Chosen" ? c.cognac : status === "Rejected" ? c.muted : c.accent,
-                    minWidth: "160px", flexShrink: 0, paddingTop: "2px",
-                  }}>
-                    {name} · {status}
-                  </span>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                    {reason}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Brand screenshots */}
-            <div style={{ marginTop: "32px" }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>
-                Visual Directions Explored
-              </p>
-              {/* Row 1: Rejected directions — half-width, paired, with REJECTED overlay */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
-                {[
-                  { src: "/images/work/msr/msr-clinical.webp", label: "Clinical \u00B7 Rejected", position: "center top" },
-                  { src: "/images/work/msr/msr-salesy.webp",   label: "Salesy \u00B7 Rejected",   position: "center top" },
-                ].map(({ src, label, position }) => (
-                  <div key={label}>
-                    <div style={{
-                      position:     "relative",
-                      aspectRatio:  "4/3",
-                      overflow:     "hidden",
-                      border:       `1px solid ${c.border}`,
-                      background:   c.bgSection,
-                    }}>
-                      <Image
-                        src={src}
-                        alt={label}
-                        fill
-                        sizes="(max-width: 767px) 100vw, 420px"
-                        style={{ objectFit: "contain", objectPosition: position }}
-                      />
-                    </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, margin: "8px 0 0" }}>
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Row 2: Wireframe explorations — three directions, the chosen one wins on bottom */}
-              <div style={{ marginTop: "16px" }}>
-                <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
+                  fontWeight:    700,
+                  letterSpacing: "0.20em",
+                  color:         c.accent,
+                  display:       "block",
+                  marginBottom:  "12px",
+                }}>03</span>
+                <h2 style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "clamp(32px, 4vw, 48px)",
                   fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 12px",
+                  color:         c.ink,
+                  margin:        0,
+                  letterSpacing: "-0.025em",
+                  lineHeight:    1.05,
                 }}>
-                  Wireframe Explorations
-                </p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
-                  {[
-                    {
-                      name:   "Hero + Topic Grid",
-                      verdict: "Chosen",
-                      desc:   "Editorial hero, then a topic grid keyed by condition. Orient → Browse → Read in one scroll.",
-                    },
-                    {
-                      name:   "Symptom-First Picker",
-                      verdict: "Rejected",
-                      desc:   "Homepage = the assessment Step 0. Strong intent capture. Felt clinical at the door before trust was earned.",
-                    },
-                    {
-                      name:   "Library-First Index",
-                      verdict: "Rejected",
-                      desc:   "Homepage = full content grid. Strong SEO surface. Buried the brand voice and the &ldquo;is this for me&rdquo; moment.",
-                    },
-                  ].map(({ name, verdict, desc }) => (
-                    <div key={name} style={{
-                      padding:    "18px 20px",
-                      border:     verdict === "Chosen" ? `2px solid ${c.cognac}` : `1px solid ${c.border}`,
-                      background: verdict === "Chosen" ? "rgba(196,112,58,0.04)" : c.surface,
-                    }}>
-                      <p style={{
+                  Shipped.
+                </h2>
+              </div>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "clamp(16px, 1.6vw, 18px)",
+                lineHeight: 1.75,
+                color:      c.ink2,
+                margin:     0,
+                maxWidth:   PROSE_MAX,
+              }}>
+                menssolerevival.com, live since April 2026. Long-form pillar articles, a five-section assessment that branches by symptom, product reviews structured for trust, and an editorial system documented in 13 components. The site exists where the three categories overlap, not as a compromise between them.
+              </p>
+            </div>
+
+            {/* Image stack — 3 shots showing the live work. The hero shot
+                is the Reviews index (product reviews structured for trust),
+                replacing the earlier toenail-fungus article hero which led
+                with a foot photo. Reviews page reads as editorial product
+                grid, no body imagery. */}
+            <div style={{ display: "grid", gap: "40px", marginBottom: "40px" }}>
+              <div style={{ width: "100%", aspectRatio: "16 / 10", position: "relative", overflow: "hidden", border: `1px solid ${c.border}` }}>
+                <Image
+                  src="/images/work/msr/v2/reviews-page.jpg"
+                  alt="Product reviews index on the live site — &lsquo;PRODUCT REVIEWS&rsquo; editorial grid with disclosure-first article cards organized by category."
+                  fill
+                  sizes="(max-width: 1240px) 100vw, 1240px"
+                  style={{ objectFit: "cover", objectPosition: "top center" }}
+                />
+              </div>
+
+              {/* Assessment — always-visible 3-thumb strip + expander to 12 */}
+              <div>
+                {/* Two assessment captures from the live site, displayed at
+                    natural aspect so each page fits in full (no crop). 02 is
+                    the symptom triage; 03 is the first symptom section that
+                    triage routes you to. The intro page was dropped — these
+                    two carry the flow story on their own. */}
+                <div style={{
+                  display:             "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap:                 "24px",
+                  marginBottom:        "20px",
+                  alignItems:          "start",
+                }} className="msr2-assessment-pair">
+                  <figure style={{ margin: 0 }}>
+                    <div style={{ border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "hidden", position: "relative" }}>
+                      <Image
+                        src="/images/work/msr/v2/assessment-triage.jpg"
+                        alt="Symptom triage — &lsquo;Where&rsquo;s the trouble?&rsquo; Select-all-that-apply across pain, nails, skin, alignment, footwear fit."
+                        width={1440}
+                        height={900}
+                        sizes="(max-width: 760px) 100vw, 50vw"
+                        style={{ width: "100%", height: "auto", display: "block" }}
+                      />
+                      <span style={{
+                        position:      "absolute",
+                        top:           "10px",
+                        left:          "10px",
+                        background:    "rgba(255,255,255,0.94)",
+                        padding:       "5px 12px",
                         fontFamily:    font.sans,
                         fontSize:      "10px",
                         fontWeight:    700,
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color:         verdict === "Chosen" ? c.cognac : c.muted,
-                        margin:        "0 0 8px",
-                      }}>
-                        {name} &middot; {verdict}
-                      </p>
-                      <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55, color: c.body, margin: 0 }} dangerouslySetInnerHTML={{ __html: desc }} />
+                        letterSpacing: "0.18em",
+                        color:         c.ink,
+                      }}>02</span>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Row 3: Dark Editorial — full-width, chosen direction */}
-              <div style={{ marginTop: "16px" }}>
-                <div style={{
-                  position:     "relative",
-                  aspectRatio:  "16/9",
-                  overflow:     "hidden",
-                  border:       `2px solid ${c.cognac}`,
-                }}>
-                  <Image
-                    src="/images/work/msr/msr-hero-cover.webp"
-                    alt="Dark Editorial \u00B7 Chosen"
-                    fill
-                    sizes="(max-width: 767px) 100vw, 860px"
-                    style={{ objectFit: "cover", objectPosition: "top" }}
-                  />
-                </div>
-                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.ink, margin: "8px 0 0", fontWeight: 600 }}>
-                  Dark Editorial \u00B7 Chosen
-                </p>
-              </div>
-            </div>
-
-            <h3 style={subheading}>Logomark: from footprints to monogram</h3>
-            <p style={bodyText}>
-              <strong style={{ color: c.ink }}>Hypothesis.</strong> A serif monogram, anchored in the same typography as the editorial body, lowers the stigma barrier through quietness. The footprint mark we started with reads closer to mall-podiatry than premium grooming.
-            </p>
-            <p style={bodyText}>
-              <strong style={{ color: c.ink }}>Test.</strong> Three monogram directions were prototyped against the same question as the visual direction: does this mark lower the stigma barrier before the first word is read?
-            </p>
-
-            {/* Logomark directions */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              {[
-                {
-                  name:   "M01 · Serif Monogram",
-                  font:   "Lora display",
-                  status: "Chosen",
-                  reason: "A single capital M set in the editorial body face. Anchored in the same typography as the rest of the brand. Quiet, restrained, at home next to long-form content. Reads at any size.",
-                },
-                {
-                  name:   "M02 · Lowercase Wordmark",
-                  font:   "DM Sans bold",
-                  status: "Rejected",
-                  reason: "Modern and unfussy, but plain. The lowercase choice signals casualness without earning weight. Loses the editorial argument the brand makes elsewhere.",
-                },
-                {
-                  name:   "M03 · Condensed Wordmark",
-                  font:   "Barlow Condensed bold",
-                  status: "Rejected",
-                  reason: "Confident and athletic. Reads closer to performance gear than premium editorial. Wins on masculinity, loses on stigma reduction.",
-                },
-              ].map(({ name, font: typeface, status, reason }) => (
-                <div
-                  key={name}
-                  className="cs-problem-card"
-                  style={{
-                    display:    "flex",
-                    gap:        "20px",
-                    padding:    "20px 24px",
-                    background: status === "Chosen" ? "rgba(196,112,58,0.04)" : c.surface,
-                    border:     status === "Chosen" ? `1px solid rgba(196,112,58,0.25)` : `1px solid ${c.border}`,
-                  }}
-                >
-                  <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: status === "Chosen" ? c.cognac : c.muted,
-                    minWidth: "200px", flexShrink: 0, paddingTop: "2px",
-                  }}>
-                    {name} · {status}
-                  </span>
-                  <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
-                      {typeface}
-                    </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                      {reason}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* M01 chosen mark in 4 colorways */}
-            <div style={{ marginTop: "32px" }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>
-                Chosen mark · four colorways
-              </p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px" }}>
-                {[
-                  { name: "Navy",     hex: "#1C3F5E" },
-                  { name: "Cognac",   hex: "#BE7241" },
-                  { name: "Stone",    hex: "#C4BCAE" },
-                  { name: "Charcoal", hex: "#1A1A1A" },
-                ].map(({ name, hex }) => (
-                  <div key={name}>
-                    <div style={{
-                      position:    "relative",
-                      aspectRatio: "1 / 1",
-                      border:      `1px solid ${c.border}`,
-                      overflow:    "hidden",
+                    <figcaption style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "12px",
+                      color:         c.muted,
+                      margin:        "12px 0 0",
+                      lineHeight:    1.55,
                     }}>
+                      <strong style={{ color: c.ink, fontWeight: 600 }}>Triage:</strong> select-all-that-apply across five symptom areas. Routes you only to the sections that apply.
+                    </figcaption>
+                  </figure>
+                  <figure style={{ margin: 0 }}>
+                    <div style={{ border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "hidden", position: "relative" }}>
                       <Image
-                        src={`/images/work/msr/msr-logo-m01-${name.toLowerCase()}.webp`}
-                        alt={`MSR logomark M01 in ${name}`}
-                        fill
-                        sizes="(max-width: 767px) 50vw, 220px"
-                        style={{ objectFit: "cover" }}
+                        src="/images/work/msr/v2/assessment-section.jpg"
+                        alt="Section 01 (Nail Health) — symptom checklist with prevalence stat, peer-reviewed citation, and copy that explains what 3+ checks means."
+                        width={1440}
+                        height={1821}
+                        sizes="(max-width: 760px) 100vw, 50vw"
+                        style={{ width: "100%", height: "auto", display: "block" }}
                       />
+                      <span style={{
+                        position:      "absolute",
+                        top:           "10px",
+                        left:          "10px",
+                        background:    "rgba(255,255,255,0.94)",
+                        padding:       "5px 12px",
+                        fontFamily:    font.sans,
+                        fontSize:      "10px",
+                        fontWeight:    700,
+                        letterSpacing: "0.18em",
+                        color:         c.ink,
+                      }}>03</span>
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: c.ink, margin: "8px 0 2px" }}>
-                      {name}
-                    </p>
-                    <p style={{ fontFamily: "monospace", fontSize: "11px", color: c.muted, margin: 0 }}>
-                      {hex}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <h3 style={subheading}>Review Pages: E-Commerce UX, Not Blog Format</h3>
-            <p style={bodyText}>
-              <strong style={{ color: c.ink }}>Hypothesis.</strong> Review readers want to evaluate, not read. A blog format buries the signal in narrative.
-            </p>
-            <p style={bodyText}>
-              <strong style={{ color: c.ink }}>Test.</strong> An e-commerce layout (hero, specs grid, rating, pros/cons, buy links) does the orienting work. Users already know how to scan this pattern from every product page they have used. The site borrows it because it matches the task, not because the site sells anything. There is no checkout. There is no inventory.
-            </p>
-
-            {/* Stakeholder-style decisions grid */}
-            <div style={{ margin: "32px 0", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <div style={{
-                padding:      "16px 24px",
-                background:   c.bgSection,
-                borderBottom: `1px solid ${c.border}`,
-              }}>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        0,
-                }}>
-                  Key Design Decisions
-                </p>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
-                {[
-                  { area: "Brand",         decision: "Dark editorial as stigma reduction", rationale: "Visual familiarity with premium grooming brands lowers the barrier before the first word is read" },
-                  { area: "Layout",        decision: "E-commerce UX for review pages",      rationale: "Match the layout to the task. Evaluation requires scanning, not reading prose" },
-                  { area: "Content",       decision: "Pillar articles build SEO authority",  rationale: "Long-form editorial is right when the user is learning. Depth earns organic traffic over time" },
-                  { area: "Architecture",  decision: "Every page maps to a user task",       rationale: "Orient, Learn, Evaluate, Browse, Explore, Trust, Act. The IA is the product strategy made navigable" },
-                ].map(({ area, decision, rationale }, i) => (
-                  <div
-                    key={area}
-                    style={{
-                      padding:     "20px 24px",
-                      background:  c.surface,
-                      borderRight: i < 3 ? `1px solid ${c.border}` : "none",
-                    }}
-                  >
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
-                      {area}
-                    </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.ink, margin: "0 0 6px", lineHeight: 1.4 }}>
-                      {decision}
-                    </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0 }}>
-                      {rationale}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Section>
-
-          {/* -- 09 Design System ------------------------- */}
-          <Section label="09" title="Design System">
-            <p style={bodyText}>
-              Three typefaces, each with a job. The roles are explicit, not decorative. Below, each one is shown set in itself.
-            </p>
-
-            {/* Typography specimens */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "0", margin: "24px 0 32px", border: `1px solid ${c.border}` }}>
-              {/* Barlow Condensed */}
-              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", borderBottom: `1px solid ${c.border}`, background: c.surface }}>
-                <p style={{
-                  fontFamily:    "var(--font-barlow-condensed), \"Barlow Condensed\", Impact, sans-serif",
-                  fontSize:      "clamp(28px, 5vw, 48px)",
-                  fontWeight:    600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.02em",
-                  lineHeight:    1.05,
-                  color:         c.ink,
-                  margin:        "0 0 12px",
-                }}>
-                  Barlow Condensed for display headlines
-                </p>
+                    <figcaption style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "12px",
+                      color:         c.muted,
+                      margin:        "12px 0 0",
+                      lineHeight:    1.55,
+                    }}>
+                      <strong style={{ color: c.ink, fontWeight: 600 }}>Section:</strong> symptom checklist with prevalence stat + peer-reviewed source. Threshold copy explains what the count means.
+                    </figcaption>
+                  </figure>
+                </div>
                 <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "12px",
-                  fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
                   color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
-                  Display · 600 · uppercase
-                </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
-                  Authority and presence. Used at the largest scale where a headline has to land in a glance.
-                </p>
-              </div>
-
-              {/* Lora */}
-              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", borderBottom: `1px solid ${c.border}`, background: c.surface }}>
-                <p style={{
-                  fontFamily:    "var(--font-lora), Lora, Georgia, serif",
-                  fontSize:      "clamp(22px, 3vw, 30px)",
-                  fontWeight:    400,
-                  fontStyle:     "italic",
-                  lineHeight:    1.35,
-                  color:         c.ink,
-                  margin:        "0 0 12px",
-                  letterSpacing: "-0.005em",
-                }}>
-                  &ldquo;Lora for editorial subheads and quotes.&rdquo;
-                </p>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "12px",
-                  fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
-                  Serif · 400 italic · sub-display
-                </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
-                  Readable and approachable. Used for pull quotes, editorial subheads, and decision-note bodies.
-                </p>
-              </div>
-
-              {/* DM Sans */}
-              <div style={{ padding: "28px clamp(20px, 4vw, 36px)", background: c.surface }}>
-                <p style={{
-                  fontFamily:    "var(--font-dm-sans), DM Sans, system-ui, sans-serif",
-                  fontSize:      "clamp(16px, 2vw, 20px)",
-                  fontWeight:    400,
                   lineHeight:    1.55,
-                  color:         c.ink,
-                  margin:        "0 0 12px",
-                  maxWidth:      "640px",
+                  margin:        "0",
+                  letterSpacing: "0.01em",
                 }}>
-                  DM Sans for body copy and UI. Legibility at scale, optimized for screen reading at small sizes and for predictable rhythm in long-form content.
-                </p>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "12px",
-                  fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
-                  Sans · 400 · body
-                </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
-                  Body and UI. The workhorse. Used for everything that is not a headline or a quote.
+                  Two of the assessment&rsquo;s twelve frames. The full flow lives at <a href="https://www.menssolerevival.com/assessment" target="_blank" rel="noopener noreferrer" style={{ color: c.accent, textDecoration: "underline", textDecorationThickness: "1px", textUnderlineOffset: "3px" }}>menssolerevival.com/assessment</a>.
                 </p>
               </div>
             </div>
-            <p style={bodyText}>
-              The token architecture runs three tiers: CSS custom properties as the source of truth, TypeScript semantic aliases for brand-aware naming, and Tailwind utilities consumed in components. One file change propagates everywhere. The same naming convention holds across Brand, Wayfarer, and Men&apos;s Sole Revival. This wasn&apos;t retrofitted. It was a decision made before the first component was built.
-            </p>
 
-            {/* Token table */}
-            <div className="cs-table-scroll" style={{ marginTop: "8px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Token",    width: "22%" },
-                      { label: "Brand",    width: "26%" },
-                      { label: "Wayfarer", width: "26%" },
-                      { label: "MSR",      width: "26%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width, color: label === "MSR" ? c.accent : c.muted, fontWeight: label === "MSR" ? 700 : 600 }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { token: "brand-500",   brand: "#1C3F5E", wayfarer: "#2D5A3D", msr: "#1C3F5E" },
-                    { token: "brand-900",   brand: "#091016", wayfarer: "#0A1A10", msr: "#13100C" },
-                    { token: "accent-500",  brand: "#C4703A", wayfarer: "#B8860B", msr: "#C4703A" },
-                    { token: "neutral-50",  brand: "#F8F7F7", wayfarer: "#F7F8F5", msr: "#F8F7F7" },
-                    { token: "neutral-500", brand: "#6B6560", wayfarer: "#5E6B5A", msr: "#6B6560" },
-                  ].map(({ token, brand, wayfarer, msr }, i) => (
-                    <tr key={token} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{token}</td>
-                      <td style={tdStyle}>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                          <span style={{ width: 14, height: 14, background: brand, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{brand}</span>
-                        </span>
-                      </td>
-                      <td style={tdStyle}>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                          <span style={{ width: 14, height: 14, background: wayfarer, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.muted }}>{wayfarer}</span>
-                        </span>
-                      </td>
-                      <td style={tdStyle}>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                          <span style={{ width: 14, height: 14, background: msr, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.ink, fontWeight: 600 }}>{msr}</span>
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            {/* Annotated assessment — Pentagram-pattern decision callouts on
+                top of the Nail Health section capture. Single visual that
+                signals "I can articulate why every component is shaped the
+                way it is." Lives between the assessment 2-up and the
+                affiliate Decision callout. */}
+            <div style={{ marginTop: "80px", marginBottom: "40px" }}>
+              <AnnotatedAssessment />
             </div>
-            <p style={{ ...bodyText, marginTop: "10px", fontSize: "13px", color: c.muted }}>
-              Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
-            </p>
 
-            <h3 style={subheading}>The system on one page</h3>
-            <p style={bodyText}>
-              Three signature documents pulled together for portfolio handoff. Each one stands on its own. Together they document the full visual system, the assessment flow, and the production component library.
-            </p>
+            <Callout
+              decision="Affiliate CTAs, not product listings."
+              why="Revenue comes from referrals, not transactions. The trust model requires editorial independence from the products reviewed."
+              cost="Lower per-conversion revenue. Slower monetization ramp."
+            />
 
-            {/* Signature + components embeds */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "16px" }}>
+            {/* What I cut — decision-transparency callout. Surfaces what
+                got dropped from the original scope, not just what shipped. */}
+            <WhatICut />
+
+            {/* Early outcomes — real GA4 data from the live site. Single
+                highest hiring signal on the page. */}
+            <EarlyOutcomes />
+
+            {/* What could still go wrong — honest risks callout. Pairs
+                with EarlyOutcomes (which showed what's working) to surface
+                what's unproven. Decision-transparency move. */}
+            <HonestRisks />
+
+            {/* Assessment funnel visual — pairs with the Voice-of-the-User
+                callout below. Five-node horizontal flow visualizing the
+                6 → 6 → 6 → 5 → 3 funnel + the 13× return-views annotation. */}
+            <AssessmentFunnelFlow />
+
+            {/* Voice of the user — real GA4 behavioral data pulled
+                June 2026, ~10 weeks live. Three paragraphs covering the
+                editorial bet (pillar engagement), affiliate bet (review
+                read-time), and the honest scale. */}
+            <UserResearch />
+          </div>
+        </section>
+
+        {/* ─────────────────────────────────────────────
+            Mobile frames as a sidekick — proof of
+            responsive thinking without overwhelming
+        ───────────────────────────────────────────── */}
+        <section style={{ padding: `120px ${SECTION_X} 120px` }}>
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+            <Eyebrow>Mobile</Eyebrow>
+            <p style={{
+              fontFamily:    font.sans,
+              fontSize:      "clamp(20px, 2vw, 24px)",
+              fontWeight:    500,
+              color:         c.ink,
+              margin:        "0 0 48px",
+              letterSpacing: "-0.01em",
+              lineHeight:    1.4,
+              maxWidth:      PROSE_MAX,
+            }}>
+              The mobile read is the dominant one. Pillar articles, assessment, and reviews all designed mobile-first.
+            </p>
+            {/* Three real mobile captures from the live site at 390×844
+                (natural viewport size). Displayed at their full intrinsic
+                aspect ratio — no crop. The whole screen content fits inside
+                each frame. */}
+            <div style={{
+              display:             "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap:                 "24px",
+              alignItems:          "start",
+              maxWidth:            "1080px",
+              margin:              "0 auto",
+            }} className="msr2-mobile-grid">
               {[
-                {
-                  src:     "/images/work/msr/msr-sig-brand.webp",
-                  aspect:  "1600 / 1100",
-                  number:  "02",
-                  label:   "BRAND & IDENTITY",
-                  caption: "Wordmark at four sizes, three logomark directions explored, four colorways of the chosen mark, lockups, palette of eight, typography specs with live specimen, glyph set, and four application mockups.",
-                },
-                {
-                  src:     "/images/work/msr/msr-sig-product.webp",
-                  aspect:  "1600 / 1100",
-                  number:  "03",
-                  label:   "PRODUCT UI/UX",
-                  caption: "Flow map of the redesigned assessment. Five primary screens with arrows, four dashed branch states, six-cell annotation grid (tap targets, loading, haptic, error handling, accessibility, motion), legend strip.",
-                },
-                {
-                  src:     "/images/work/msr/msr-design-system-components.png",
-                  aspect:  "1920 / 5863",
-                  number:  "04",
-                  label:   "DESIGN SYSTEM · COMPONENTS",
-                  caption: "Spacing on a 4-point base, radius scale, zero-drift token mapping for every component. Primary button by variant and state, article header, inputs, icons, and the CSS custom-property output side-by-side with the design tokens.",
-                },
-              ].map(({ src, aspect, number, label, caption }) => (
-                <div key={src}>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
-                    <span style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "11px",
-                      fontWeight:    700,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color:         c.cognac,
-                    }}>{number}</span>
-                    <span style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "11px",
-                      fontWeight:    700,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color:         c.ink,
-                    }}>{label}</span>
-                  </div>
-                  <div style={{
-                    position:    "relative",
-                    aspectRatio: aspect,
-                    border:      `1px solid ${c.border}`,
-                    background:  c.bgSection,
-                    overflow:    "hidden",
-                  }}>
+                { src: "mobile-home.jpg",       label: "Homepage",     alt: "Mobile homepage — &lsquo;FIX YOUR FEET. KEEP UP WITH EVERYTHING ELSE.&rsquo; with Take the Assessment and Browse Guides CTAs." },
+                { src: "mobile-guides.jpg",     label: "Guides index", alt: "Mobile guides index — &lsquo;THE KNOWLEDGE BASE.&rsquo; with symptom-filtered article cards." },
+                { src: "mobile-assessment.jpg", label: "Assessment",   alt: "Mobile assessment intro — 5-minute self-check with SEE A DOCTOR IF triage box." },
+              ].map((m) => (
+                <figure key={m.src} style={{ margin: 0 }}>
+                  <div style={{ border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "hidden" }}>
                     <Image
-                      src={src}
-                      alt={`MSR ${label}`}
-                      fill
-                      sizes="(max-width: 767px) 100vw, 1100px"
-                      style={{ objectFit: "contain", objectPosition: "top" }}
+                      src={`/images/work/msr/v2/${m.src}`}
+                      alt={m.alt}
+                      width={390}
+                      height={844}
+                      sizes="(max-width: 760px) 100vw, 33vw"
+                      style={{ width: "100%", height: "auto", display: "block" }}
                     />
                   </div>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.55, margin: "10px 0 0", maxWidth: "780px" }}>
-                    {caption}
-                  </p>
-                </div>
+                  <figcaption style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "11px",
+                    fontWeight:    600,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color:         c.muted,
+                    margin:        "12px 0 0",
+                    textAlign:     "center",
+                  }}>{m.label}</figcaption>
+                </figure>
               ))}
             </div>
-          </Section>
+          </div>
+        </section>
 
-        </div>{/* /content wrapper — break out for full-width walkthrough */}
+        {/* Depth section removed. v2 used to point readers to v1 "for the
+            full process," which read as "v2 isn't the real case study." With
+            the research strip, pivot infographic, what-I-cut, and early
+            outcomes blocks now in place, v2 IS the canonical case study —
+            no pointer-to-v1 needed. */}
 
-        {/* -- Visual Walkthrough ---------------------------------- */}
-        <div style={{
-          background:   "#13100C",
-          borderTop:    "1px solid rgba(245,243,239,0.08)",
-          borderBottom: "1px solid rgba(245,243,239,0.08)",
-          padding:      "72px clamp(24px, 5vw, 80px)",
-          marginTop:    "48px",
+        {/* ─────────────────────────────────────────────
+            Meta block — Pentagram-style bottom strip
+        ───────────────────────────────────────────── */}
+        <section style={{
+          borderTop:    `1px solid ${c.border}`,
+          padding:      `64px ${SECTION_X}`,
+          background:   c.surface,
         }}>
-          <div style={{ maxWidth: "none", margin: "0 auto" }}>
-
-            {/* Header */}
-            <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-                <span style={{ width: "20px", height: "1px", background: c.cognac }} />
-                <span style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    600,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color:         c.cognac,
-                }}>The Product</span>
-              </div>
-              <h2 style={{
-                fontFamily:    font.display,
-                fontSize:      "clamp(22px, 3.5vw, 36px)",
-                fontWeight:    400,
-                color:         "#F5F5F4",
-                margin:        "0 0 16px",
-                letterSpacing: "-0.025em",
-              }}>
-                Every page serves a task, not a template
-              </h2>
-              <p style={{
-                fontFamily: font.sans,
-                fontSize:   "15px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
-                margin:     0,
-              }}>
-                The information architecture maps directly to user intent. Three core page types cover the path from orientation to decision. Each layout was chosen for the task it serves, not for visual consistency across pages.
-              </p>
-            </div>
-
-            {/* ── Homepage ──────────────── */}
-            <div style={{ marginBottom: "64px" }}>
-              <h3 style={{
-                fontFamily:    font.sans,
-                fontSize:      "13px",
-                fontWeight:    700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.cognac,
-                margin:        "0 0 12px",
-              }}>Orient</h3>
-              <p style={{
-                fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
-                margin:     "0 0 24px",
-                maxWidth:   "560px",
-              }}>
-                The homepage answers one question: is this site for me? Dark editorial sets the tone before a word is read. The topic grid orients by condition, not by product category. The assessment CTA gives a personalized entry point.
-              </p>
-              <div style={{
-                position:     "relative",
-                aspectRatio:  "16/9",
-                overflow:     "hidden",
-                background:   "rgba(245,243,239,0.04)",
-                border:       "1px solid rgba(245,243,239,0.1)",
-                borderRadius: "8px",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-homepage.webp"
-                  alt="Men's Sole Revival homepage. Dark editorial design with topic grid and assessment CTA"
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                />
-              </div>
-
-              {/* Annotations */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
-                {[
-                  { detail: "Assessment CTA in hero", why: "Gives the hesitant user a low-commitment starting point. \u201CWhat\u2019s going on with my feet?\u201D before \u201CRead about fungus.\u201D" },
-                ].map(({ detail, why }) => (
-                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                    <span style={{
-                      width: "4px", height: "4px", borderRadius: "50%",
-                      background: c.cognac, flexShrink: 0, marginTop: "7px",
-                    }} />
-                    <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
-                      color: "rgba(245,243,239,0.4)", margin: 0,
-                    }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
-                      {" \u00B7 "}{why}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ── Article ──────────────── */}
-            <div style={{ marginBottom: "64px" }}>
-              <h3 style={{
-                fontFamily:    font.sans,
-                fontSize:      "13px",
-                fontWeight:    700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.cognac,
-                margin:        "0 0 12px",
-              }}>Learn</h3>
-              <p style={{
-                fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
-                margin:     "0 0 24px",
-                maxWidth:   "560px",
-              }}>
-                Pillar articles are the content authority engine. Long-form editorial built for the user who wants to understand, not just skim. Each article targets a high-search-volume foot health question men are already asking.
-              </p>
-              <div style={{
-                position:     "relative",
-                aspectRatio:  "16/9",
-                overflow:     "hidden",
-                background:   "rgba(245,243,239,0.04)",
-                border:       "1px solid rgba(245,243,239,0.1)",
-                borderRadius: "8px",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-article.webp"
-                  alt="Men's Sole Revival article page. Long-form editorial with clear typography hierarchy"
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                />
-              </div>
-
-              {/* Annotations */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
-                {[
-                  { detail: "Internal linking to reviews and routines", why: "Articles drive traffic. Product reviews and routines capture the intent. Content flows toward decisions." },
-                ].map(({ detail, why }) => (
-                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                    <span style={{
-                      width: "4px", height: "4px", borderRadius: "50%",
-                      background: c.cognac, flexShrink: 0, marginTop: "7px",
-                    }} />
-                    <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
-                      color: "rgba(245,243,239,0.4)", margin: 0,
-                    }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
-                      {" \u00B7 "}{why}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ── Review ──────────────── */}
-            <div>
-              <h3 style={{
-                fontFamily:    font.sans,
-                fontSize:      "13px",
-                fontWeight:    700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.cognac,
-                margin:        "0 0 12px",
-              }}>Evaluate</h3>
-              <p style={{
-                fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
-                color:      "rgba(245,243,239,0.5)",
-                margin:     "0 0 24px",
-                maxWidth:   "560px",
-              }}>
-                Product reviews use e-commerce layout patterns because the user&apos;s task is evaluation, not reading. Hero image, specs grid, star rating, pros/cons, affiliate CTAs. The format matches the mental model from every product page they&apos;ve used.
-              </p>
-              <div style={{
-                position:     "relative",
-                aspectRatio:  "16/9",
-                overflow:     "hidden",
-                background:   "rgba(245,243,239,0.04)",
-                border:       "1px solid rgba(245,243,239,0.1)",
-                borderRadius: "8px",
-              }}>
-                <Image
-                  src="/images/work/msr/msr-review.webp"
-                  alt="Men's Sole Revival product review. E-commerce UX patterns with specs grid, rating, and affiliate CTAs"
-                  fill
-                  sizes="(max-width: 767px) 100vw, 1100px"
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                />
-              </div>
-
-              {/* Annotations */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "24px" }}>
-                {[
-                  { detail: "Affiliate CTAs, not product listings", why: "Revenue comes from referrals, not transactions. The trust model requires editorial independence from the products reviewed." },
-                ].map(({ detail, why }) => (
-                  <div key={detail} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                    <span style={{
-                      width: "4px", height: "4px", borderRadius: "50%",
-                      background: c.cognac, flexShrink: 0, marginTop: "7px",
-                    }} />
-                    <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
-                      color: "rgba(245,243,239,0.4)", margin: 0,
-                    }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
-                      {" \u00B7 "}{why}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>{/* /Visual Walkthrough */}
-
-        {/* Resume content wrapper for remaining sections */}
-        <div style={{ maxWidth: "none", margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
-
-          {/* -- 10 Impact -------------------------------- */}
-          <Section label="10" title="Impact">
-            <p style={bodyText}>
-              The site went live in April 2026, so the first real numbers are in. Below: early outcomes from the first nine weeks, then proxy metrics for each remaining hypothesis, a phased evaluation plan, and the decision criteria that would tell us to stop, iterate, or scale. No fabricated numbers.
-            </p>
-
-            {/* Early outcomes box (live data) */}
-            <div style={{
-              margin:     "24px 0",
-              padding:    "24px 28px",
-              background: c.surface,
-              border:     `1px solid ${c.border}`,
-              borderLeft: `3px solid ${c.cognac}`,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "10px",
-                fontWeight:    700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         c.cognac,
-                margin:        "0 0 10px",
-              }}>Early outcomes &middot; first 9 weeks live (GA4, Apr&ndash;Jun 2026)</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
-                <strong style={{ color: c.ink }}>4m 53s average engaged time per session.</strong> High for a content site, and the exact signal MSR was built to produce: visitors stay to read, they don&apos;t bounce.
-              </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
-                <strong style={{ color: c.ink }}>~3.2 sessions per user</strong> across 33 early visitors in 6 countries, with zero paid promotion. Early readers come back.
-              </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                <strong style={{ color: c.ink }}>The honest gap:</strong> traffic is almost entirely direct; organic search is just beginning. SEO is the clear next lever, and the phased plan below is how I&apos;ll measure whether engaged time holds as the audience grows.
-              </p>
-            </div>
-
-            {/* Validation approach box */}
-            <div style={{
-              margin:     "24px 0",
-              padding:    "24px 28px",
-              background: c.surface,
-              border:     `1px solid ${c.border}`,
-              borderLeft: `3px solid ${c.cognac}`,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "10px",
-                fontWeight:    700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         c.cognac,
-                margin:        "0 0 10px",
-              }}>Validation approach</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
-                <strong style={{ color: c.ink }}>Phase 1 (0&ndash;3 months):</strong> Content publishing cadence, organic search impressions, Reddit community engagement. Signal: is anyone finding this?
-              </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
-                <strong style={{ color: c.ink }}>Phase 2 (3&ndash;6 months):</strong> Time on page for reviews vs. articles, email signup rate, return visitor ratio. Signal: does the content structure match user intent?
-              </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                <strong style={{ color: c.ink }}>Phase 3 (6&ndash;12 months):</strong> Affiliate click-through rates, brand partnership response rate, SEO keyword rankings. Signal: is this a viable business?
-              </p>
-            </div>
-
-            {/* Threshold table with rationale */}
-            <div className="cs-table-scroll" style={{ marginTop: "24px", border: `1px solid ${c.border}`, overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
-                <thead>
-                  <tr style={{ background: c.bgSection }}>
-                    {[
-                      { label: "Hypothesis", width: "26%" },
-                      { label: "Metric",     width: "22%" },
-                      { label: "Threshold",  width: "16%" },
-                      { label: "Rationale",  width: "36%" },
-                    ].map(({ label, width }) => (
-                      <th key={label} style={{ ...thStyle, width, color: label === "Rationale" ? c.accent : c.muted, fontWeight: label === "Rationale" ? 700 : 600 }}>{label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { hypothesis: "Men find this content",         metric: "Organic search traffic",     threshold: "500 visits/mo by month 6",    rationale: "Baseline for niche health content sites with 10+ indexed pages" },
-                    { hypothesis: "Readers come back",             metric: "Email signup rate",          threshold: "2\u20134% from article pages",     rationale: "Industry avg for content sites; a signup signals intent to return" },
-                    { hypothesis: "E-commerce layout works",       metric: "Time on review pages",       threshold: "> 2 min avg",                  rationale: "If users spend time, the layout is doing the orienting work" },
-                    { hypothesis: "Site reads as credible",        metric: "Brand outreach response",    threshold: "1 of 3 responds",              rationale: "Vivobarefoot, Altra, Correct Toes. One conversation validates the media property thesis" },
-                    { hypothesis: "Community trusts the content",  metric: "Reddit engagement",          threshold: "Shared without prompting",     rationale: "Organic uptake in r/BarefootRunning or r/PlantarFasciitis is the early trust signal" },
-                  ].map(({ hypothesis, metric, threshold, rationale }, i) => (
-                    <tr key={hypothesis} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{hypothesis}</td>
-                      <td style={tdStyle}>{metric}</td>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.cognac }}>{threshold}</td>
-                      <td style={{ ...tdStyle, fontSize: "13px", color: c.body }}>{rationale}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Decision criteria box */}
-            <div style={{
-              margin:     "24px 0 0",
-              padding:    "20px 24px",
-              background: c.bgSection,
-              border:     `1px solid ${c.border}`,
-            }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "10px",
-                fontWeight:    700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 10px",
-              }}>Decision criteria</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
-                If Phase 1 signals are flat after 3 months of consistent publishing, the content strategy hypothesis is wrong. Revisit topic selection, distribution channels, and SEO targeting before investing in Phase 2 metrics. If review page time-on-page is below threshold, the e-commerce layout assumption needs usability testing. The plan is designed to fail fast and fail specifically.
-              </p>
-            </div>
-
-          </Section>
-
-          {/* -- 11 Reflection ---------------------------- */}
-          <Section label="11" title="Reflection">
-            <p style={bodyText}>
-              The first build spent three weeks fighting a stack that wasn&apos;t right for the problem. The friction was the signal and I waited too long to act on it. The pivot from e-commerce to content wasn&apos;t a retreat. It was the moment the project found its actual shape.
-            </p>
-            <p style={bodyText}>
-              The absence of user validation is the biggest open question. The e-commerce layout for reviews is the call I&apos;d make again, but it hasn&apos;t been tested with the actual audience. The competitive analysis and UX reasoning are sound, but reasoning isn&apos;t evidence. The evaluation plan is how I&apos;ll find out if the reasoning holds.
-            </p>
-            <p style={bodyText}>
-              Content authority takes time. The honest uncertainty: whether the SEO ramp will produce the audience before the motivation to sustain the project runs out. That&apos;s not a design problem. It&apos;s the real risk of building something this slowly, alone.
-            </p>
-
-            <h3 style={subheading}>What wasn&apos;t done</h3>
-            <p style={bodyText}>
-              I didn&apos;t conduct user interviews before building. I didn&apos;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.
-            </p>
-          </Section>
-
-        </div>{/* /content wrapper */}
-
-        {/* -- Slide deck CTA (compact inline bar) ------- */}
-        <div
-          style={{
-            borderTop:   `1px solid ${c.border}`,
-            padding:     "20px clamp(24px, 5vw, 80px)",
-            marginTop:   "80px",
-          }}
-        >
           <div style={{
-            maxWidth: "none",
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-          }}>
-            <p style={{
-              fontFamily: font.sans,
-              fontSize:   "14px",
-              color:      c.muted,
-              margin:     0,
-            }}>
-              Prefer the narrative version?
-            </p>
-            <Link
-              href="/work/presentations/mens-sole-revival"
-              style={{
-                fontFamily:     font.sans,
-                fontSize:       "14px",
-                fontWeight:     600,
-                color:          c.ink,
-                textDecoration: "none",
-                display:        "inline-flex",
-                alignItems:     "center",
-                gap:            "4px",
-              }}
-            >
-              View the 9-slide deck
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
+            maxWidth:            CONTENT_MAX,
+            margin:              "0 auto",
+            display:             "grid",
+            gridTemplateColumns: "repeat(5, 1fr)",
+            gap:                 "32px",
+          }} className="msr2-meta">
+            <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
+            <MetaCell label="Year"   value="2026" />
+            <MetaCell label="Sector" value="Health · Editorial" />
+            <MetaCell label="Stack"  value="Figma · Next.js · Vercel" />
+            <MetaCell label="Live"   value={<a href="https://www.menssolerevival.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>menssolerevival.com</a>} />
           </div>
-        </div>
+        </section>
 
-        {/* -- Figma source CTA -------------------------- */}
-        <div
-          style={{
-            background:  "#13100C",
-            padding:     "80px clamp(24px, 5vw, 80px)",
-          }}
-        >
-          <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
-            <div style={{ maxWidth: "640px" }}>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.cognac, margin: "0 0 12px" }}>
-                Source
-              </p>
-              <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 400, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
-                The whole project lives in Figma.
-              </p>
-              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: "rgba(245,243,239,0.65)", margin: 0 }}>
-                Every artifact above comes from the file. Research briefs, IA, the assessment redesign 03a&ndash;03i, brand identity, design system, website pages, and the directions explored before the pivot. Eight sections, ten artifacts, thirteen component sets.
-              </p>
-            </div>
-            <a
-              href="https://www.figma.com/design/ftIe1aelQLB7hOR4PUA9lR/Men-s-Sole-Revival"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display:        "inline-flex",
-                alignItems:     "center",
-                gap:            "10px",
-                padding:        "14px 32px",
-                background:     c.cognac,
-                borderRadius:   "8px",
-                color:          "#F5F5F4",
-                fontFamily:     font.sans,
-                fontSize:       "13px",
-                fontWeight:     500,
-                letterSpacing:  "0.06em",
-                textDecoration: "none",
-                transition:     "opacity 0.2s",
-              }}
-            >
-              Open Figma file
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        {/* -- Next case study CTA ----------------------- */}
-        <div
-          style={{
-            background:  c.bgSection,
-            borderTop:   `1px solid ${c.border}`,
-            padding:     "80px clamp(24px, 5vw, 80px)",
-          }}
-        >
-          <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
-            <div>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
-                Next Case Study
-              </p>
-              <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
-                Spotify: Recently Played Controls
-              </p>
-            </div>
-            <Link
-              href="/work/spotify"
-              style={{
-                display:        "inline-flex",
-                alignItems:     "center",
-                gap:            "10px",
-                padding:        "12px 28px",
-                background:     c.ink,
-                borderRadius:   "8px",
-                color:          "#F5F5F4",
-                fontFamily:     font.sans,
-                fontSize:       "13px",
-                fontWeight:     500,
-                letterSpacing:  "0.06em",
-                textDecoration: "none",
-                transition:     "opacity 0.2s",
-              }}
-            >
-              View Case Study
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        <Footer />
       </main>
+
+      <ScrollProgress />
+      <RelatedCaseStudies current="mens-sole-revival" />
+      <Footer />
+      <BackToTop />
+
+      {/* Responsive */}
+      <style>{`
+        /* Design system carousel — CSS-only tabs (hidden radios + ~ sibling) */
+        .msr2-ds-carousel > input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+        .msr2-ds-panel { display: none; }
+        #msr2-ds-tab-1:checked ~ .msr2-ds-panels > [data-panel="1"] { display: block; }
+        #msr2-ds-tab-2:checked ~ .msr2-ds-panels > [data-panel="2"] { display: block; }
+        #msr2-ds-tab-3:checked ~ .msr2-ds-panels > [data-panel="3"] { display: block; }
+        /* Tab active states — read which radio is checked, highlight the matching tab label */
+        #msr2-ds-tab-1:checked ~ .msr2-ds-nav .msr2-ds-tab-1,
+        #msr2-ds-tab-2:checked ~ .msr2-ds-nav .msr2-ds-tab-2,
+        #msr2-ds-tab-3:checked ~ .msr2-ds-nav .msr2-ds-tab-3 {
+          background: #FFFFFF;
+          box-shadow: inset 0 -3px 0 var(--color-brand);
+        }
+        .msr2-ds-tab:hover { background: rgba(255,255,255,0.5); }
+
+        @media (max-width: 760px) {
+          .msr2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .msr2-pair             { grid-template-columns: 1fr !important; }
+          .msr2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+          .msr2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
+          .msr2-swatch-grid      { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+          .msr2-component-grid   { grid-template-columns: 1fr !important; gap: 0 !important; }
+          .msr2-component-grid > div { padding-top: 12px !important; }
+          .msr2-strip            { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .msr2-grid12           { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+          .msr-funnel-stats      { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+          /* Mobile frame grid — 3-col desktop → 1-col on phones (each phone capture is already small enough to read at full width on a real phone) */
+          .msr2-mobile-grid      { grid-template-columns: 1fr !important; gap: 24px !important; }
+          /* Assessment pair — side-by-side on desktop → stacked on phones */
+          .msr2-assessment-pair  { grid-template-columns: 1fr !important; gap: 24px !important; }
+          /* Annotated assessment — image + rail → stacked on phones */
+          .msr2-annotated-grid   { grid-template-columns: 1fr !important; gap: 32px !important; }
+          /* Funnel — collapse to 2 rows on phones (steps wrap) */
+          .msr2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+          .msr2-funnel-row > div[aria-hidden] { display: none !important; }
+          /* Carousel tabs — stack vertically on phones */
+          .msr2-ds-nav           { flex-direction: column !important; }
+          .msr2-ds-nav .msr2-ds-tab { border-right: none !important; border-bottom: 1px solid var(--color-border) !important; }
+          /* Carousel color grid — 2-col on phones */
+          .msr2-ds-color-grid    { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+          .msr2-ds-type-grid     { grid-template-columns: 1fr !important; gap: 24px !important; }
+          /* Pivot infographic — stack columns, push the arrow between them */
+          .msr2-pivot-grid       { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .msr2-pivot-arrow      { padding-top: 0 !important; flex-direction: row !important; justify-content: center; }
+          .msr2-pivot-arrow svg  { transform: rotate(90deg); }
+          /* Research strip — stack the three weeks */
+          .msr2-research-strip   { grid-template-columns: 1fr !important; gap: 20px !important; }
+        }
+      `}</style>
     </>
   );
 }
 
-/* -------------------------------------------------
-   Sub-components
-------------------------------------------------- */
+/* ---------- BigThree section template ---------- */
 
-const c2 = {
-  ink:       "#252B28",
-  body:      "#3D4440",
-  muted:     "#8A8680",
-  accent:    "var(--color-accent)",
-  bg:        "#FFFFFF",
-  bgSection: "#FAFAF9",
-  surface:   "#FFFFFF",
-  border:    "#A99B8A",
-  cognac:    "#C4703A",  // MSR brand accent (stays)
-};
-
-const f = {
-  display: "var(--font-dm-sans), -apple-system, sans-serif",
-  sans:    "var(--font-dm-sans), -apple-system, sans-serif",
-};
-
-function Section({ label, title, children }: { label: string; title: string; children: React.ReactNode }) {
+function BigThree({
+  number, heading, image, imageAlt, imageCrop, body, callout,
+}: {
+  number: string;
+  heading: string;
+  image: string;
+  imageAlt: string;
+  imageCrop: string | null;
+  body: React.ReactNode;
+  callout: { decision: string; why: string; cost: string };
+}) {
   return (
-    <section
-      id={`section-${label}`}
-      style={{
-        paddingTop:    "48px",
-        paddingBottom: "16px",
-        borderTop:     `1px solid ${c2.border}`,
-        marginTop:     "48px",
-        scrollMarginTop: "96px",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "baseline", gap: "16px", marginBottom: "32px" }}>
-        <span style={{
-          fontFamily:    f.sans,
-          fontSize:      "11px",
-          fontWeight:    700,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color:         c2.accent,
-        }}>
-          {label}
-        </span>
-        <h2
-          style={{
-            fontFamily:    f.display,
-            fontSize:      "clamp(22px, 3.5vw, 36px)",
-            fontWeight:    400,
-            color:         c2.ink,
-            margin:        0,
-            letterSpacing: "-0.025em",
-          }}
-          dangerouslySetInnerHTML={{ __html: title }}
-        />
+    <section style={{ padding: `0 0 120px` }}>
+      {/* Image first — full-bleed within content max */}
+      <div style={{ padding: `0 ${SECTION_X} 64px` }}>
+        <HeroImage src={image} alt={imageAlt} cropAspect={imageCrop} />
       </div>
-      {children}
+
+      {/* Heading + body */}
+      <div style={{ padding: `0 ${SECTION_X}` }}>
+        <div style={{
+          maxWidth:             CONTENT_MAX,
+          margin:               "0 auto",
+          display:              "grid",
+          gridTemplateColumns:  "1fr 1.6fr",
+          gap:                  "64px",
+          alignItems:           "start",
+        }} className="msr2-row">
+          <div>
+            <span style={{
+              fontFamily:    font.sans,
+              fontSize:      "11px",
+              fontWeight:    700,
+              letterSpacing: "0.20em",
+              color:         c.accent,
+              display:       "block",
+              marginBottom:  "12px",
+            }}>
+              {number}
+            </span>
+            <h2 style={{
+              fontFamily:    font.sans,
+              fontSize:      "clamp(32px, 4vw, 48px)",
+              fontWeight:    600,
+              color:         c.ink,
+              margin:        0,
+              letterSpacing: "-0.025em",
+              lineHeight:    1.05,
+            }}>
+              {heading}.
+            </h2>
+          </div>
+
+          <div>
+            <p style={{
+              fontFamily: font.sans,
+              fontSize:   "clamp(16px, 1.6vw, 18px)",
+              lineHeight: 1.75,
+              color:      c.ink2,
+              margin:     0,
+              maxWidth:   PROSE_MAX,
+            }}>
+              {body}
+            </p>
+            <Callout {...callout} />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
-function Callout({ children, label }: { children: React.ReactNode; label?: string }) {
+/* ---------- pivot infographic (§02 visual)
+   Replaces an earlier positioning triangle. The triangle described the
+   intersection geometrically; this shows the actual decision — the week-3
+   pivot from e-commerce to editorial. Two columns (original plan vs. what
+   shipped) with a cognac arrow and one-line rationale at center. */
+
+function PivotInfographic() {
+  const ink    = "#13100C";   // MSR editorial near-black
+  const paper  = "#F5F0E8";   // MSR cream
+  const cognac = "#C4703A";   // MSR brand
+  const muted  = "#8A8680";
+
+  const originalPlan = [
+    "Shopify storefront",
+    "Product reviews",
+    "Cart / checkout",
+    "Subscription tier",
+    "Newsletter popup",
+  ];
+  const whatShipped = [
+    "Long-form pillars",
+    "Assessment branch",
+    "Affiliate context",
+    "Routine prompts",
+    "No popups",
+  ];
+
+  const colLabel: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "10px",
+    fontWeight:    700,
+    color:         muted,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    margin:        "0 0 10px",
+  };
+  const colDisplay: React.CSSProperties = {
+    fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+    fontSize:      "clamp(34px, 4.5vw, 52px)",
+    fontWeight:    800,
+    color:         paper,
+    letterSpacing: "0.01em",
+    textTransform: "uppercase",
+    lineHeight:    1,
+    margin:        "0 0 28px",
+  };
+  const liBase: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "14px",
+    color:      paper,
+    margin:     "0 0 10px",
+    letterSpacing: "0.01em",
+  };
+
   return (
-    <blockquote style={{
-      margin:      "32px 0",
-      padding:     "24px 28px",
-      background:  c2.surface,
-      border:      `1px solid ${c2.border}`,
-      borderLeft:  `3px solid ${c2.cognac}`,
-    }}>
-      {label && (
-        <p style={{
-          fontFamily:    f.sans,
-          fontSize:      "10px",
-          fontWeight:    700,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase" as const,
-          color:         c2.cognac,
-          margin:        "0 0 10px",
-        }}>
-          {label}
-        </p>
-      )}
-      <p style={{
-        fontFamily:  f.display,
-        fontSize:    "clamp(17px, 2.2vw, 20px)",
-        lineHeight:  1.5,
-        color:       c2.ink,
-        fontStyle:   "italic",
-        margin:      0,
+    <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+      <div style={{
+        background: ink,
+        padding:    "clamp(48px, 6vw, 80px) clamp(28px, 5vw, 64px)",
+        border:     `1px solid ${c.border}`,
       }}>
-        {children}
-      </p>
-    </blockquote>
+        {/* Eyebrow */}
+        <p style={{
+          fontFamily:    font.sans,
+          fontSize:      "11px",
+          fontWeight:    600,
+          color:         muted,
+          letterSpacing: "0.20em",
+          textTransform: "uppercase",
+          margin:        "0 0 40px",
+          textAlign:     "center",
+        }}>
+          Three weeks of margin modeling, one pivot
+        </p>
+
+        {/* Two columns + center arrow */}
+        <div style={{
+          display:             "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          gap:                 "clamp(24px, 4vw, 56px)",
+          alignItems:          "start",
+        }} className="msr2-pivot-grid">
+          {/* LEFT — original plan, struck-through */}
+          <div>
+            <p style={colLabel}>The Original Plan</p>
+            <p style={{
+              ...colDisplay,
+              opacity:               0.5,
+              textDecoration:        "line-through",
+              textDecorationColor:   cognac,
+              textDecorationThickness:"2px",
+            }}>
+              E-commerce
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {originalPlan.map((item) => (
+                <li key={item} style={{ ...liBase, opacity: 0.55, textDecoration: "line-through" }}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* CENTER — arrow + one-line rationale */}
+          <div style={{
+            display:        "flex",
+            flexDirection:  "column",
+            alignItems:     "center",
+            paddingTop:     "32px",
+          }} className="msr2-pivot-arrow">
+            <svg width="64" height="32" viewBox="0 0 64 32" fill="none" aria-hidden>
+              <path d="M2 16H58M46 4L60 16L46 28" stroke={cognac} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <p style={{
+              fontFamily:    font.sans,
+              fontSize:      "11px",
+              fontWeight:    700,
+              color:         cognac,
+              letterSpacing: "0.20em",
+              textTransform: "uppercase",
+              margin:        "20px 0 10px",
+              textAlign:     "center",
+            }}>
+              Week 3
+            </p>
+            <p style={{
+              fontFamily:  font.sans,
+              fontSize:    "12px",
+              color:       paper,
+              opacity:     0.72,
+              margin:      0,
+              maxWidth:    "180px",
+              textAlign:   "center",
+              lineHeight:  1.55,
+              letterSpacing: "0.01em",
+            }}>
+              Margin modeling kept pointing at information, not products.
+            </p>
+          </div>
+
+          {/* RIGHT — what shipped */}
+          <div>
+            <p style={colLabel}>What Shipped</p>
+            <p style={colDisplay}>Editorial</p>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {whatShipped.map((item) => (
+                <li key={item} style={liBase}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
-/* -------------------------------------------------
-   Shared style objects
-------------------------------------------------- */
+/* ---------- research strip (compact §01→§02 bridge) ---------- */
 
-const bodyText: React.CSSProperties = {
-  fontFamily: "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:   "16px",
-  lineHeight: 1.75,
-  color:      "#3D4440",
-  margin:     "0 0 20px",
-};
+function ResearchStrip() {
+  const stepLabel: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "10px",
+    fontWeight:    700,
+    color:         c.accent,
+    letterSpacing: "0.20em",
+    textTransform: "uppercase",
+    margin:        "0 0 6px",
+  };
+  const stepBody: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "15px",
+    color:         c.ink,
+    fontWeight:    500,
+    margin:        0,
+    letterSpacing: "-0.005em",
+  };
 
-const subheading: React.CSSProperties = {
-  fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:      "20px",
-  fontWeight:    600,
-  color:         "#252B28",
-  margin:        "40px 0 16px",
-  letterSpacing: "-0.015em",
-};
+  return (
+    <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `0 ${SECTION_X}` }}>
+      <div style={{
+        display:             "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap:                 "32px",
+        borderTop:           `1px solid ${c.border}`,
+        borderBottom:        `1px solid ${c.border}`,
+        padding:             "28px 0",
+      }} className="msr2-research-strip">
+        <div>
+          <p style={stepLabel}>Week 1</p>
+          <p style={stepBody}>Margin modeling</p>
+        </div>
+        <div>
+          <p style={stepLabel}>Week 2</p>
+          <p style={stepBody}>Customer interviews</p>
+        </div>
+        <div>
+          <p style={stepLabel}>Week 3</p>
+          <p style={stepBody}>The pivot</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-const thStyle: React.CSSProperties = {
-  fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:      "11px",
-  fontWeight:    700,
-  letterSpacing: "0.1em",
-  textTransform: "uppercase",
-  color:         "#8A8680",
-  padding:       "12px 16px",
-  textAlign:     "left",
-  borderBottom:  "1px solid #A99B8A",
-};
+/* ---------- "What I cut" callout (§03 transparency addition) ---------- */
 
-const tdStyle: React.CSSProperties = {
-  fontFamily:   "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:     "14px",
-  color:        "#3D4440",
-  padding:      "14px 16px",
-  borderBottom: "1px solid #A99B8A",
-};
+function WhatICut() {
+  const labelStyle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "10px",
+    fontWeight:    700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color:         c.accent,
+    margin:        "0 0 8px",
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "15px",
+    lineHeight: 1.7,
+    color:      c.ink2,
+    margin:     0,
+  };
+  return (
+    <aside style={{
+      background: c.callout,
+      border:     `1px solid ${c.border}`,
+      borderLeft: `4px solid ${c.brand}`,
+      padding:    "28px 32px",
+      maxWidth:   "780px",
+      marginTop:  "40px",
+    }}>
+      <p style={labelStyle}>What I cut</p>
+      <p style={{ ...bodyStyle, margin: "0 0 22px" }}>
+        Shopify spec. Product-comparison cards. Five-star rating system. Newsletter popup. Subscription tier.
+      </p>
+      <p style={labelStyle}>Replaced with</p>
+      <p style={bodyStyle}>
+        Editorial pillars. Symptom-branching assessment. Affiliate context, not product listings. Routine prompts under every article. No popups.
+      </p>
+    </aside>
+  );
+}
+
+/* ---------- Early outcomes box (real GA4 data — §03 closer) ---------- */
+
+function EarlyOutcomes() {
+  const labelStyle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "10px",
+    fontWeight:    700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color:         c.accent,
+    margin:        "0 0 10px",
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "15px",
+    lineHeight: 1.7,
+    color:      c.ink2,
+    margin:     "0 0 12px",
+  };
+  return (
+    <aside style={{
+      background: c.callout,
+      border:     `1px solid ${c.border}`,
+      borderLeft: `4px solid ${c.brand}`,
+      padding:    "32px 36px",
+      maxWidth:   "780px",
+      marginTop:  "32px",
+    }}>
+      <p style={labelStyle}>Early outcomes · first 10 weeks live (GA4, Apr–Jun 2026)</p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>4m 53s average engaged time per session.</strong> High for a content site, and the exact signal MSR was built to produce: visitors stay to read, they don&apos;t bounce.
+      </p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>~3.2 sessions per user</strong> across 41 early visitors in 6 countries, with zero paid promotion. Early readers come back.
+      </p>
+      <p style={{ ...bodyStyle, margin: 0 }}>
+        <strong style={{ color: c.ink }}>The honest gap:</strong> Search Console shows 4 impressions and 0 clicks across the same window, all on a single branded query. Discovery is direct or referral-based; organic search has not yet started. SEO is the clear next lever, and the phased plan below is how I&apos;ll measure whether engaged time holds as the audience grows.
+      </p>
+    </aside>
+  );
+}
+
+/* ---------- What could still go wrong (honest risks callout)
+   Mirrors the EarlyOutcomes pattern (crimson left border, off-white box)
+   but flips the polarity: names the unproven levers instead of the
+   working ones. This is the "senior-of-senior" move — most portfolios
+   only show what worked. Listing real risks at the end signals
+   decision-transparency + intellectual honesty. */
+
+function HonestRisks() {
+  const labelStyle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "10px",
+    fontWeight:    700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color:         c.accent,
+    margin:        "0 0 14px",
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "15px",
+    lineHeight: 1.7,
+    color:      c.ink2,
+    margin:     "0 0 12px",
+  };
+  return (
+    <aside style={{
+      background: c.callout,
+      border:     `1px solid ${c.border}`,
+      borderLeft: `4px solid ${c.brand}`,
+      padding:    "32px 36px",
+      maxWidth:   "780px",
+      marginTop:  "32px",
+    }}>
+      <p style={labelStyle}>What could still go wrong</p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>SEO is unproven.</strong> Engaged time can hold or collapse as the audience grows past 41 visitors. Won&rsquo;t know for six months.
+      </p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>Affiliate is slow by design.</strong> Editorial independence is the trade. If volume doesn&rsquo;t ramp, the math stops working.
+      </p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>The voice is polarizing.</strong> Half the audience will bounce on the first paragraph. That&rsquo;s the bet, not the bug.
+      </p>
+      <p style={{ ...bodyStyle, margin: 0 }}>
+        <strong style={{ color: c.ink }}>One author.</strong> Every published page is mine. Volume is capped at what one person can write.
+      </p>
+    </aside>
+  );
+}
+
+/* ---------- Voice of the user — real GA4 behavioral data.
+   Three paragraphs, three different bets each validated by a specific
+   number: editorial (pillar article engagement), affiliate (product
+   review read-time), and the honest scale (small N, real pattern). */
+
+function UserResearch() {
+  const labelStyle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "10px",
+    fontWeight:    700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color:         c.accent,
+    margin:        "0 0 14px",
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "15px",
+    lineHeight: 1.7,
+    color:      c.ink2,
+    margin:     "0 0 12px",
+  };
+  // Scannable stats strip: lifts the four numbers a hiring manager
+  // can use to evaluate the funnel at a glance. The aside below has
+  // the prose context for anyone who keeps reading.
+  const stats = [
+    { num: "6",   label: "users started the flow" },
+    { num: "100%", label: "finished the triage step" },
+    { num: "83%", label: "reached results" },
+    { num: "13×", label: "avg results revisits" },
+  ];
+
+  return (
+    <>
+      <div style={{
+        display:             "grid",
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap:                 "16px",
+        maxWidth:            "780px",
+        marginTop:           "32px",
+        marginBottom:        "16px",
+      }} className="msr-funnel-stats">
+        {stats.map((s) => (
+          <div key={s.label} style={{
+            background:  "#FFFFFF",
+            border:      `1px solid ${c.border}`,
+            borderTop:   `3px solid ${c.brand}`,
+            padding:     "20px 18px",
+          }}>
+            <p style={{
+              fontFamily:    "var(--font-barlow-condensed), sans-serif",
+              fontSize:      "clamp(36px, 4vw, 56px)",
+              fontWeight:    600,
+              color:         c.brand,
+              margin:        "0 0 6px",
+              letterSpacing: "-0.02em",
+              lineHeight:    1.0,
+            }}>{s.num}</p>
+            <p style={{
+              fontFamily:    font.sans,
+              fontSize:      "12px",
+              lineHeight:    1.45,
+              color:         c.ink2,
+              margin:        0,
+              letterSpacing: "0.01em",
+            }}>{s.label}</p>
+          </div>
+        ))}
+      </div>
+      <p style={{
+        fontFamily:    font.sans,
+        fontSize:      "11px",
+        letterSpacing: "0.10em",
+        textTransform: "uppercase",
+        color:         c.muted,
+        margin:        "0 0 16px",
+        maxWidth:      "780px",
+      }}>
+        Assessment funnel · live data · n = 6 users over 10 weeks
+      </p>
+
+    <aside style={{
+      background: c.callout,
+      border:     `1px solid ${c.border}`,
+      borderLeft: `4px solid ${c.brand}`,
+      padding:    "32px 36px",
+      maxWidth:   "780px",
+      marginTop:  "0",
+    }}>
+      <p style={labelStyle}>Voice of the user · Behavioral data (GA4)</p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>One pillar article holds 9m 30s of engagement per reader, with 9 views per active user.</strong> Four readers have returned to &ldquo;Men&rsquo;s Foot Health: Evidence-Based Care for Men Over 40&rdquo; nine times each. Long-form reading, not skimming. That was the editorial bet.
+      </p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>The product-review trust model also produces real read-time.</strong> Three readers average 4m 45s on a single Superfeet insole review. Editorial independence is producing trust, not bounce. That was the affiliate bet.
+      </p>
+      <p style={bodyStyle}>
+        <strong style={{ color: c.ink }}>The assessment funnel holds end-to-end.</strong> Six users started the 12-frame flow. All six finished the triage step. Five reached the results page. Three downloaded the PDF takeaway. The five who reached results came back to that page an average of thirteen times. The results aren&rsquo;t a finish line. They&rsquo;re a reference document.
+      </p>
+      <p style={{ ...bodyStyle, margin: 0 }}>
+        <strong style={{ color: c.ink }}>The honest scale:</strong> 41 active users over 10 weeks. The sample is small. The behavior pattern is real.
+      </p>
+    </aside>
+    </>
+  );
+}
+
+/* ---------- Annotated assessment screen
+   Pentagram-pattern annotation: one full-size screenshot with numbered
+   hotspots, each pointing at a specific design decision. Right-rail list
+   spells out the four moves. Single visual that signals "I can articulate
+   why every component is shaped the way it is." */
+
+function AnnotatedAssessment() {
+  const annotations = [
+    { num: "01", x: "14%", y: "23%", title: "Skip is always one tap away.",      body: "Sticky section nav lists only the sections the user triaged. The Skip This Section button never disappears." },
+    { num: "02", x: "55%", y: "33%", title: "Stat, then source. Never the reverse.", body: "8.57% prevalence with a peer-reviewed citation directly under it. Journal, author, year. Trust before recommendation." },
+    { num: "03", x: "55%", y: "55%", title: "Humane checklist language.",         body: "&ldquo;Nails are thick, yellowed, white, or brittle&rdquo; instead of clinical terms. Written the way a man actually describes what he sees." },
+    { num: "04", x: "55%", y: "72%", title: "Every section closes with a 3-beat block.",   body: "&ldquo;3+ checks likely points to fungal infection or an ingrown nail. Both are treatable. The guide at the end points you in the right direction.&rdquo; What the count means &middot; reassurance &middot; next step. The user never gets left with a raw number." },
+  ];
+
+  const eyebrowStyle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "11px",
+    fontWeight:    700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color:         c.accent,
+    margin:        "0 0 12px",
+  };
+  const subheadStyle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "clamp(18px, 2vw, 22px)",
+    fontWeight:    500,
+    color:         c.ink,
+    margin:        "0 0 40px",
+    letterSpacing: "-0.01em",
+    lineHeight:    1.35,
+  };
+  const itemTitle: React.CSSProperties = {
+    fontFamily:    font.sans,
+    fontSize:      "15px",
+    fontWeight:    600,
+    color:         c.ink,
+    margin:        "0 0 6px",
+    letterSpacing: "-0.005em",
+    lineHeight:    1.35,
+  };
+  const itemBody: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "14px",
+    lineHeight: 1.6,
+    color:      c.ink2,
+    margin:     0,
+  };
+  const badge: React.CSSProperties = {
+    display:        "inline-flex",
+    width:          "28px",
+    height:         "28px",
+    borderRadius:   "50%",
+    background:     "var(--color-brand)",
+    color:          "#FFFFFF",
+    fontFamily:     font.sans,
+    fontSize:       "11px",
+    fontWeight:     700,
+    alignItems:     "center",
+    justifyContent: "center",
+    flexShrink:     0,
+  };
+
+  return (
+    <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+      <p style={eyebrowStyle}>Section 01 &middot; Nail Health &middot; annotated</p>
+      <p style={subheadStyle}>Four decisions visible on one screen.</p>
+
+      <div style={{
+        display:             "grid",
+        gridTemplateColumns: "1.4fr 1fr",
+        gap:                 "32px",
+        alignItems:          "start",
+      }} className="msr2-annotated-grid">
+        {/* Image with overlaid numbered hotspots */}
+        <div style={{ position: "relative", border: `1px solid ${c.border}`, background: "#FFFFFF" }}>
+          <Image
+            src="/images/work/msr/v2/assessment-section.jpg"
+            alt="Nail Health section of the live assessment, with numbered annotation hotspots calling out the four design decisions described in the right-hand list."
+            width={1440}
+            height={1821}
+            sizes="(max-width: 760px) 100vw, 50vw"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+          {annotations.map((a) => (
+            <span
+              key={a.num}
+              style={{
+                position:       "absolute",
+                left:           a.x,
+                top:            a.y,
+                transform:      "translate(-50%, -50%)",
+                ...badge,
+                border:         "2px solid #FFFFFF",
+                boxShadow:      "0 2px 8px rgba(0,0,0,0.25)",
+              }}
+              aria-hidden
+            >
+              {a.num}
+            </span>
+          ))}
+        </div>
+
+        {/* Right rail: annotation list */}
+        <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          {annotations.map((a) => (
+            <li key={a.num} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "16px", marginBottom: "28px" }}>
+              <span style={badge}>{a.num}</span>
+              <div>
+                <p style={itemTitle}>{a.title}</p>
+                <p style={itemBody} dangerouslySetInnerHTML={{ __html: a.body }} />
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Assessment funnel visual
+   Pairs with the Voice-of-the-User callout. Five-node horizontal flow:
+   Started → Triage → Sections → Results → PDF. Numbers under each step,
+   muted treatment on the drop-off step, and the "× 13 return views"
+   annotation under Results. */
+
+function AssessmentFunnelFlow() {
+  const steps = [
+    { num: "01", label: "Started",  count: 6, drop: false },
+    { num: "02", label: "Triage",   count: 6, drop: false },
+    { num: "03", label: "Sections", count: 6, drop: false },
+    { num: "04", label: "Results",  count: 5, drop: true, sublabel: "&times; 13 avg return views per user" },
+    { num: "05", label: "PDF",      count: 3, drop: true },
+  ];
+
+  return (
+    <aside style={{
+      background: c.callout,
+      border:     `1px solid ${c.border}`,
+      borderLeft: `4px solid ${c.brand}`,
+      padding:    "28px 36px",
+      maxWidth:   "880px",
+      marginTop:  "32px",
+    }}>
+      <p style={{
+        fontFamily:    font.sans,
+        fontSize:      "10px",
+        fontWeight:    700,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         c.accent,
+        margin:        "0 0 18px",
+      }}>
+        Assessment funnel &middot; 6 started &middot; 3 finished with the takeaway
+      </p>
+
+      <div style={{
+        display:             "grid",
+        gridTemplateColumns: "1fr auto 1fr auto 1fr auto 1fr auto 1fr",
+        alignItems:          "stretch",
+        gap:                 "4px",
+      }} className="msr2-funnel-row">
+        {steps.map((s, i) => (
+          <React.Fragment key={s.num}>
+            <div style={{
+              background: "#FFFFFF",
+              border:     `1px solid ${c.border}`,
+              padding:    "14px 12px",
+              textAlign:  "center",
+              opacity:    s.drop ? 0.85 : 1,
+            }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "10px",
+                fontWeight:    700,
+                letterSpacing: "0.15em",
+                color:         c.accent,
+                margin:        "0 0 6px",
+              }}>{s.num}</p>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "12px",
+                fontWeight:    500,
+                color:         c.ink,
+                margin:        "0 0 10px",
+                letterSpacing: "-0.005em",
+              }}>{s.label}</p>
+              <p style={{
+                fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                fontSize:      "clamp(28px, 3.6vw, 40px)",
+                fontWeight:    800,
+                color:         c.ink,
+                margin:        0,
+                lineHeight:    1,
+                letterSpacing: "0.01em",
+              }}>{s.count}</p>
+              {s.sublabel && (
+                <p style={{
+                  fontFamily: font.sans,
+                  fontSize:   "10px",
+                  color:      c.muted,
+                  margin:     "8px 0 0",
+                  lineHeight: 1.35,
+                }} dangerouslySetInnerHTML={{ __html: s.sublabel }} />
+              )}
+            </div>
+            {i < steps.length - 1 && (
+              <div style={{
+                display:        "flex",
+                alignItems:     "center",
+                justifyContent: "center",
+                color:          c.accent,
+                fontSize:       "16px",
+              }} aria-hidden>&rarr;</div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+/* ---------- design system carousel (3 tabs, CSS-only)
+   Replaces the single design-system-signature.png export, which read at small
+   scale as "I'm hiding something." Three tabs: Color, Type, Components.
+   Pure CSS interaction via hidden radio inputs + ~ sibling selector. Server-
+   component safe (no React state required). */
+
+function DSPanelColor() {
+  const tokens = [
+    { label: "Editorial Ink", hex: "#13100C", role: "Display + body ink" },
+    { label: "Cognac",        hex: "#C4703A", role: "Brand + key actions" },
+    { label: "Deep Cognac",   hex: "#A35E32", role: "Hover + emphasis" },
+    { label: "Paper",         hex: "#F5F0E8", role: "Surface" },
+    { label: "Stone",         hex: "#A99B8A", role: "Borders + secondary" },
+    { label: "Pulse Red",     hex: "#C8341A", role: "Severity high" },
+  ];
+  return (
+    <div>
+      <p style={{
+        fontFamily:    font.sans,
+        fontSize:      "15px",
+        lineHeight:    1.6,
+        color:         c.ink2,
+        margin:        "0 0 32px",
+        maxWidth:      PROSE_MAX,
+      }}>
+        Six tokens. Every color on every page resolves through one of these. Cognac is the only saturated tone; everything else is a paper-to-ink scale.
+      </p>
+      <div style={{
+        display:             "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap:                 "16px",
+      }} className="msr2-ds-color-grid">
+        {tokens.map((t) => (
+          <div key={t.hex} style={{ border: `1px solid ${c.border}` }}>
+            <div style={{ background: t.hex, aspectRatio: "1.6 / 1" }} />
+            <div style={{ padding: "14px 16px 16px" }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "13px",
+                fontWeight:    600,
+                color:         c.ink,
+                margin:        "0 0 4px",
+                letterSpacing: "-0.005em",
+              }}>{t.label}</p>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                color:         c.muted,
+                margin:        "0 0 6px",
+                letterSpacing: "0.04em",
+              }}>{t.hex}</p>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "12px",
+                color:      c.ink2,
+                margin:     0,
+                lineHeight: 1.5,
+              }}>{t.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DSPanelType() {
+  return (
+    <div>
+      <p style={{
+        fontFamily: font.sans,
+        fontSize:   "15px",
+        lineHeight: 1.6,
+        color:      c.ink2,
+        margin:     "0 0 32px",
+        maxWidth:   PROSE_MAX,
+      }}>
+        Two faces, no third. Barlow Condensed carries every display and section label. Lora carries every long-form paragraph and italic callout.
+      </p>
+      <div style={{
+        display:             "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap:                 "32px",
+      }} className="msr2-ds-type-grid">
+        {/* Barlow Condensed */}
+        <div style={{ border: `1px solid ${c.border}`, padding: "32px 28px", background: "#FFFFFF" }}>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "10px",
+            fontWeight:    700,
+            color:         c.accent,
+            letterSpacing: "0.20em",
+            textTransform: "uppercase",
+            margin:        "0 0 16px",
+          }}>Display · Barlow Condensed</p>
+          <p style={{
+            fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+            fontSize:      "clamp(72px, 9vw, 120px)",
+            fontWeight:    800,
+            color:         "#13100C",
+            margin:        "0 0 18px",
+            lineHeight:    0.9,
+            letterSpacing: "0.01em",
+          }}>Aa</p>
+          <p style={{
+            fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+            fontSize:      "22px",
+            fontWeight:    800,
+            color:         "#13100C",
+            margin:        "0 0 10px",
+            textTransform: "uppercase",
+            letterSpacing: "0.01em",
+          }}>The Men&rsquo;s Foot Health Assessment</p>
+          <p style={{
+            fontFamily: font.sans,
+            fontSize:   "11px",
+            color:      c.muted,
+            margin:     0,
+            letterSpacing: "0.05em",
+          }}>700, 800 weights · uppercase displays + section labels</p>
+        </div>
+
+        {/* Lora */}
+        <div style={{ border: `1px solid ${c.border}`, padding: "32px 28px", background: "#FFFFFF" }}>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "10px",
+            fontWeight:    700,
+            color:         c.accent,
+            letterSpacing: "0.20em",
+            textTransform: "uppercase",
+            margin:        "0 0 16px",
+          }}>Long-form · Lora</p>
+          <p style={{
+            fontFamily: "var(--font-lora), Lora, Georgia, serif",
+            fontSize:   "clamp(72px, 9vw, 120px)",
+            color:      "#13100C",
+            margin:     "0 0 18px",
+            lineHeight: 0.9,
+          }}>Aa</p>
+          <p style={{
+            fontFamily: "var(--font-lora), Lora, Georgia, serif",
+            fontSize:   "17px",
+            color:      "#13100C",
+            margin:     "0 0 6px",
+            lineHeight: 1.55,
+          }}>Long-form reading sits in Lora. Italic for citations and callouts.</p>
+          <p style={{
+            fontFamily: "var(--font-lora), Lora, Georgia, serif",
+            fontSize:   "15px",
+            color:      "#3D4440",
+            margin:     "0 0 10px",
+            lineHeight: 1.55,
+            fontStyle:  "italic",
+          }}>&ldquo;After years of neglect, men over 40 finally have a place to start.&rdquo;</p>
+          <p style={{
+            fontFamily: font.sans,
+            fontSize:   "11px",
+            color:      c.muted,
+            margin:     0,
+            letterSpacing: "0.05em",
+          }}>400, 500, 600, 700 weights · roman + italic</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DSPanelComponents() {
+  const items: { num: string; name: string; role: string }[] = [
+    { num: "01", name: "Article hero",     role: "Eyebrow · title · meta · cover" },
+    { num: "02", name: "Pull quote",       role: "Italic Lora + cognac rule" },
+    { num: "03", name: "On-page nav",      role: "Sticky section TOC, mobile drawer" },
+    { num: "04", name: "Symptom card",     role: "Check-list + count threshold" },
+    { num: "05", name: "Severity gate",    role: "Tier callout (low / mid / clinic)" },
+    { num: "06", name: "Triage option",    role: "Select-all-that-apply chip" },
+    { num: "07", name: "Routine prompt",   role: "Action · cadence · duration" },
+    { num: "08", name: "Review card",      role: "Product · verdict · disclosure" },
+    { num: "09", name: "Affiliate CTA",    role: "Disclosure-first link button" },
+    { num: "10", name: "Editorial figure", role: "Inline image + caption + credit" },
+    { num: "11", name: "Footnote rail",    role: "Citation list + cross-links" },
+    { num: "12", name: "Author byline",    role: "Photo · role · update date" },
+    { num: "13", name: "Site footer",      role: "Nav · sources · accessibility" },
+  ];
+  return (
+    <div>
+      <p style={{
+        fontFamily: font.sans,
+        fontSize:   "15px",
+        lineHeight: 1.6,
+        color:      c.ink2,
+        margin:     "0 0 24px",
+        maxWidth:   PROSE_MAX,
+      }}>
+        Thirteen components carry every page. Each one is documented in the Figma source with use rules, anatomy, and the data shape it expects.
+      </p>
+      <div style={{
+        display:             "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gap:                 "12px 32px",
+      }} className="msr2-component-grid">
+        {items.map((it) => (
+          <div key={it.num} style={{
+            display:    "flex",
+            alignItems: "baseline",
+            gap:        "12px",
+            borderTop:  `1px solid ${c.border}`,
+            paddingTop: "10px",
+          }}>
+            <span style={{
+              fontFamily:    font.sans,
+              fontSize:      "10px",
+              fontWeight:    700,
+              color:         c.accent,
+              letterSpacing: "0.15em",
+              minWidth:      "20px",
+            }}>{it.num}</span>
+            <div style={{ flex: 1 }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "14px",
+                fontWeight:    500,
+                color:         c.ink,
+                margin:        "0 0 2px",
+                letterSpacing: "-0.005em",
+              }}>{it.name}</p>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "12px",
+                color:      c.muted,
+                margin:     0,
+                lineHeight: 1.45,
+              }}>{it.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DesignSystemCarousel() {
+  return (
+    <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+      <div className="msr2-ds-carousel" style={{
+        border:     `1px solid ${c.border}`,
+        background: "#FAFAF9",
+      }}>
+        {/* Hidden radios drive the tabs (CSS sibling selector). */}
+        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-1" defaultChecked aria-label="Color tokens panel" />
+        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-2" aria-label="Type ramp panel" />
+        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-3" aria-label="Components panel" />
+
+        {/* Tab nav */}
+        <div className="msr2-ds-nav" style={{
+          display:      "flex",
+          borderBottom: `1px solid ${c.border}`,
+        }}>
+          {[
+            { id: "msr2-ds-tab-1", num: "01", label: "Color tokens" },
+            { id: "msr2-ds-tab-2", num: "02", label: "Type ramp" },
+            { id: "msr2-ds-tab-3", num: "03", label: "Components" },
+          ].map((tab, i, arr) => (
+            <label
+              key={tab.id}
+              htmlFor={tab.id}
+              className={`msr2-ds-tab msr2-ds-tab-${i + 1}`}
+              style={{
+                flex:           1,
+                padding:        "20px 24px",
+                cursor:         "pointer",
+                display:        "flex",
+                alignItems:     "baseline",
+                gap:            "10px",
+                borderRight:    i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+                transition:     "background 0.2s, color 0.2s",
+              }}
+            >
+              <span style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    700,
+                color:         c.accent,
+                letterSpacing: "0.18em",
+              }}>{tab.num}</span>
+              <span style={{
+                fontFamily:    font.sans,
+                fontSize:      "14px",
+                fontWeight:    500,
+                color:         c.ink,
+                letterSpacing: "-0.005em",
+              }}>{tab.label}</span>
+            </label>
+          ))}
+        </div>
+
+        {/* Panels */}
+        <div className="msr2-ds-panels" style={{ padding: "clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px)" }}>
+          <div className="msr2-ds-panel" data-panel="1"><DSPanelColor /></div>
+          <div className="msr2-ds-panel" data-panel="2"><DSPanelType /></div>
+          <div className="msr2-ds-panel" data-panel="3"><DSPanelComponents /></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- brand display card (Brand section visual) ---------- */
+
+function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; textColor: string }) {
+  return (
+    <div style={{
+      background:    hex,
+      padding:       "20px 18px",
+      aspectRatio:   "1.6 / 1",
+      display:       "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+    }}>
+      <span style={{
+        fontFamily:    font.sans,
+        fontSize:      "10px",
+        fontWeight:    700,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         textColor,
+      }}>
+        {label}
+      </span>
+      <span style={{
+        fontFamily:    font.sans,
+        fontSize:      "11px",
+        color:         textColor,
+        opacity:       0.65,
+        letterSpacing: "0.04em",
+      }}>
+        {hex}
+      </span>
+    </div>
+  );
+}
+
+/* ---------- assessment frame thumbnail
+   Renders the captured full-page screenshot inside a controlled 16:20
+   aspect-ratio container with object-position: top, so the page header
+   + first scroll of content stay legible in the grid. Previously this
+   used intrinsic width/height props that compressed tall content into
+   16:10, making body text microscopic. */
+
+function AssessmentThumb({ src, alt, number }: { src: string; alt: string; number: string }) {
+  return (
+    <div style={{
+      border:      `1px solid ${c.border}`,
+      position:    "relative",
+      background:  "#FFFFFF",
+      aspectRatio: "16 / 20",
+      overflow:    "hidden",
+    }}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 760px) 100vw, 33vw"
+        style={{ objectFit: "cover", objectPosition: "top center" }}
+      />
+      <span style={{
+        position:      "absolute",
+        top:           "8px",
+        left:          "8px",
+        background:    "rgba(255,255,255,0.94)",
+        padding:       "4px 10px",
+        fontFamily:    font.sans,
+        fontSize:      "10px",
+        fontWeight:    700,
+        letterSpacing: "0.18em",
+        color:         c.ink,
+      }}>
+        {number}
+      </span>
+    </div>
+  );
+}
+
+/* ---------- meta cell ---------- */
+
+function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
+  return (
+    <div>
+      <p style={{
+        fontFamily:    font.sans,
+        fontSize:      "10px",
+        fontWeight:    700,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         c.accent,
+        margin:        "0 0 8px",
+      }}>
+        {label}
+      </p>
+      <p style={{
+        fontFamily: font.sans,
+        fontSize:   "14px",
+        lineHeight: 1.55,
+        color:      c.ink,
+        margin:     0,
+      }}>
+        {value}
+      </p>
+    </div>
+  );
+}

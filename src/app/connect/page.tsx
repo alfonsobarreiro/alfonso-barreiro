@@ -119,7 +119,7 @@ export default function ConnectPage() {
           gap: 12px;
           width: 100%;
           padding: 10px 14px;
-          border: 1px solid #7E715F;
+          border: 1px solid #6E6E6A;
           background: transparent;
           color: #252B28;
           font-size: 14px;
@@ -213,7 +213,7 @@ export default function ConnectPage() {
           }
           .connect-right {
             padding-left: 32px;
-            border-left: 1px solid #7E715F;
+            border-left: 1px solid #6E6E6A;
           }
           .connect-divider { display: none; }
         }
@@ -353,7 +353,7 @@ export default function ConnectPage() {
           className="connect-divider"
           style={{
             height: 1,
-            backgroundColor: "#7E715F",
+            backgroundColor: "#6E6E6A",
             margin: "20px 0",
           }}
         />

@@ -5,6 +5,7 @@ import Work from "@/components/Work";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import BackToTop from "@/components/BackToTop";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ function SectionDivider() {
         style={{
           width:      "48px",
           height:     "1px",
-          background: "#7E715F",
+          background: "#6E6E6A",
         }}
       />
     </div>
@@ -46,6 +47,7 @@ export default function Home() {
       <SectionDivider />
       <About />
       <Footer />
+      <BackToTop />
       <CookieConsent />
     </main>
   );
