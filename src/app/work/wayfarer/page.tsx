@@ -604,6 +604,7 @@ export default function WayfarerV2() {
           .wf2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .wf2-funnel-row > div[aria-hidden] { display: none !important; }
           .wf2-research-strip   { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .wf2-personas-grid    { grid-template-columns: 1fr !important; gap: 16px !important; }
           .wf2-annotated-grid   { grid-template-columns: 1fr !important; gap: 32px !important; }
           .wf2-ds-nav           { flex-direction: column !important; }
           .wf2-ds-nav .wf2-ds-tab { border-right: none !important; border-bottom: 1px solid var(--color-border) !important; }
@@ -1306,6 +1307,119 @@ function CutVsKept() {
    plus the lift/skip finding I pulled from the audit. Replaces the
    Figma audit export, which carried placeholder gradients where
    competitor screenshots should have been. */
+/* PersonasGrid — was a Figma slide titled "Three discovery modes Wayfarer
+   serves." The slide was just text content (3 cards on white), so framing
+   it as an image was wasteful. Now native HTML, three cards side by side,
+   collapses to a single column on mobile. */
+function PersonasGrid() {
+  const personas = [
+    {
+      tag:   "The Curious Drifter",
+      name:  "Emma",
+      meta:  "28 · UX Researcher",
+      bio:   "Has 14 days off, no idea where to go.",
+      notes: "Browses moodily, Pinterest, Instagram saves, Reddit. Decision criteria are aesthetic + emotional (\"feels like an adventure\") more than budget-led.",
+      want:  "A way to translate vibe → place.",
+      lose:  "Hours to algorithmic feeds that show only what is already popular.",
+    },
+    {
+      tag:   "The Planner",
+      name:  "Marcus",
+      meta:  "41 · Senior Engineer",
+      bio:   "Specific dates, two adults + two kids, $8K budget.",
+      notes: "Comparison-shops. Has spreadsheets. Tracks visa requirements, vaccinations, school holidays. Decision criteria are logistical first, aspirational second.",
+      want:  "Structured comparison + planning.",
+      lose:  "Trust in sites that bury the practical info (visa, weather, language) below booking widgets.",
+    },
+    {
+      tag:   "The Returner",
+      name:  "Naomi",
+      meta:  "35 · Travel Writer",
+      bio:   "Has traveled extensively. Saves destinations for later.",
+      notes: "Wayfarer is her commonplace book. Bookmarks destinations she might pitch as future stories. Decision criteria are professional + curatorial.",
+      want:  "A place to bookmark + annotate, no auth pressure.",
+      lose:  "Trust in any platform that gates content behind sign-up.",
+    },
+  ];
+  return (
+    <div
+      className="wf2-personas-grid"
+      style={{
+        display:             "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap:                 "clamp(16px, 2vw, 24px)",
+        marginBottom:        "16px",
+      }}
+    >
+      {personas.map((p) => (
+        <article
+          key={p.name}
+          style={{
+            background:   "#FAFAF9",
+            border:       `1px solid ${c.border}`,
+            padding:      "clamp(20px, 2.2vw, 28px)",
+            display:      "flex",
+            flexDirection:"column",
+            gap:          "12px",
+          }}
+        >
+          <p style={{
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            letterSpacing: "0.16em", textTransform: "uppercase",
+            color: c.brand, margin: 0,
+          }}>
+            {p.tag}
+          </p>
+          <h4 style={{
+            fontFamily: font.sans, fontSize: "clamp(18px, 1.8vw, 22px)",
+            fontWeight: 700, color: c.ink, margin: 0,
+            letterSpacing: "-0.015em", lineHeight: 1.2,
+          }}>
+            {p.name} <span style={{ fontWeight: 400, color: c.ink2 }}>· {p.meta}</span>
+          </h4>
+          <p style={{
+            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.5,
+            color: c.ink, margin: 0, fontWeight: 500,
+          }}>
+            {p.bio}
+          </p>
+          <p style={{
+            fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
+            color: c.ink2, margin: 0,
+          }}>
+            {p.notes}
+          </p>
+          <div style={{
+            marginTop:   "auto",
+            paddingTop:  "14px",
+            borderTop:   `1px solid ${c.border}`,
+            background:  c.callout,
+            margin:      "8px -16px -16px",
+            padding:     "14px 16px",
+          }}>
+            <p style={{
+              fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+              letterSpacing: "0.14em", textTransform: "uppercase",
+              color: c.accent, margin: "0 0 6px",
+            }}>
+              Want / friction
+            </p>
+            <p style={{
+              fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+              color: c.ink2, margin: 0,
+            }}>
+              <strong style={{ color: c.ink, fontWeight: 600 }}>Wants:</strong>{" "}
+              {p.want}{" "}
+              <strong style={{ color: c.ink, fontWeight: 600 }}>Loses:</strong>{" "}
+              {p.lose}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
 function CompetitorAudit() {
   const rows = [
     {
@@ -1681,16 +1795,14 @@ function ProcessGallery() {
               }}>
                 Three personas synthesized from interviews. A heuristic audit of direct and adjacent travel platforms across discovery, planning, and booking. Together they answered two questions: who is this for, and what is already broken in the category. The site map and user flow that came out of this work get their own section below.
               </p>
-              <figure style={{ margin: "0 0 32px" }}>
-                <Image
-                  src="/images/work/wayfarer/v2/figma-personas.png"
-                  alt="Three personas — synthesized from interviews. Each carries goals, behaviors, and a real travel-planning pain point."
-                  width={1664} height={372}
-                  sizes="(max-width: 1240px) 100vw, 1100px"
-                  style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-                />
-                <figcaption style={wireframeCardLabel}>Personas &middot; three traveler archetypes</figcaption>
-              </figure>
+              {/* Personas — was a Figma slide of text content (3 cards on
+                  a white background). Now native HTML so it scans + adapts
+                  responsively, with no "image of text" waste. Same content,
+                  faster to read. */}
+              <PersonasGrid />
+              <p style={{ ...wireframeCardLabel, marginTop: "10px", marginBottom: "32px" }}>
+                Personas &middot; three traveler archetypes
+              </p>
               <div style={{ margin: "0 0 32px" }}>
                 <CompetitorAudit />
                 <p style={{ ...wireframeCardLabel, marginTop: "10px" }}>Competitor audit &middot; three lifts, three skips</p>
@@ -2245,13 +2357,18 @@ function AccessibilitySection() {
 
       <div style={{ padding: `0 ${SECTION_X}` }}>
         <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-          <Image
-            src="/images/work/wayfarer/v2/a11y-audit.png"
-            alt="Wayfarer Accessibility · System Audit — contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
-            width={1920} height={2652}
-            sizes="(max-width: 1240px) 100vw, 1240px"
-            style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-          />
+          {/* Mat treatment matching the Spotify case study — gives this
+              long audit page a presentation backdrop instead of floating
+              against the page surface. */}
+          <div style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
+            <Image
+              src="/images/work/wayfarer/v2/a11y-audit.png"
+              alt="Wayfarer Accessibility · System Audit — contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
+              width={1920} height={2652}
+              sizes="(max-width: 1240px) 100vw, 1240px"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
         </div>
       </div>
     </section>

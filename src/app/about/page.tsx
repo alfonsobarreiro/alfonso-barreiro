@@ -92,6 +92,50 @@ const innerWrapper: React.CSSProperties = {
   margin:   "0 auto",
 };
 
+/* StatCell — one cell in the "by the numbers" memory anchor.
+   Big editorial number + optional unit + caption. Colors are tuned
+   for the light surface (#FAFAF9). */
+function StatCell({ n, unit, caption }: { n: string; unit: string; caption: string }) {
+  return (
+    <div>
+      <p style={{
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "clamp(80px, 11vw, 156px)",
+        fontWeight:    300,
+        lineHeight:    0.85,
+        letterSpacing: "-0.05em",
+        color:         "#252B28",
+        margin:        "0 0 16px",
+        fontVariantNumeric: "tabular-nums",
+      }}>
+        {n}
+        {unit && (
+          <span style={{
+            fontSize:      "clamp(18px, 1.6vw, 22px)",
+            fontWeight:    600,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color:         "var(--color-brand)",
+            marginLeft:    "16px",
+            display:       "inline-block",
+            verticalAlign: "middle",
+          }}>{unit}</span>
+        )}
+      </p>
+      <p style={{
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        fontSize:   "14px",
+        lineHeight: 1.55,
+        color:      "#3D4440",
+        margin:     0,
+        maxWidth:   "300px",
+      }}>
+        {caption}
+      </p>
+    </div>
+  );
+}
+
 /* ── Page ───────────────────────────────────────────────────────────── */
 
 export default function AboutPage() {
@@ -247,6 +291,72 @@ export default function AboutPage() {
               }
               .about-hero-grid > div:last-child {
                 order: -1;
+              }
+            }
+          `}</style>
+        </section>
+
+        {/* ── By the numbers — memory anchor stat block ────────────────
+              Distills the About story into three sticky figures so the
+              page has a single editorial moment people can carry away.
+              Same rhythm as the MSR funnel stats + the home 13× hook.
+              Light surface (matches the rest of the page) — the numbers
+              carry the weight without needing a dark slab to punch. */}
+        <section style={{
+          background: "#FAFAF9",
+          color:      "#252B28",
+          padding:    "clamp(60px, 7vw, 100px) clamp(24px, 5vw, 80px)",
+          borderTop:    "1px solid #E6E3DE",
+          borderBottom: "1px solid #E6E3DE",
+        }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <div
+              style={{
+                display:      "flex",
+                alignItems:   "center",
+                gap:          "14px",
+                marginBottom: "clamp(28px, 4vw, 44px)",
+              }}
+            >
+              <span style={{
+                display:    "inline-block",
+                width:      "32px",
+                height:     "1px",
+                background: "var(--color-accent)",
+                flexShrink: 0,
+              }} />
+              <p style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "12px",
+                fontWeight:    600,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color:         "#6E6E6A",
+                margin:        0,
+              }}>
+                Fifteen years · one discipline
+              </p>
+            </div>
+
+            <div
+              className="about-stats-grid"
+              style={{
+                display:             "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gap:                 "clamp(32px, 5vw, 80px)",
+                alignItems:          "end",
+              }}
+            >
+              <StatCell n="15"   unit="years"  caption="In design. Across editorial, e-commerce, hospitality, foot health, travel, and music." />
+              <StatCell n="4+"   unit=""       caption="Years remote, across two chapters since 2019. Solo, end to end, against deadlines that didn't move." />
+              <StatCell n="3"    unit=""       caption="Case studies — MSR, Spotify, Wayfarer. Same operating model. Different industries." />
+            </div>
+          </div>
+          <style>{`
+            @media (max-width: 760px) {
+              .about-stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 36px !important;
               }
             }
           `}</style>
