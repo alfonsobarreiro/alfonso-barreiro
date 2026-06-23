@@ -6,19 +6,23 @@ import { useEffect, useState } from "react";
 /**
  * MSRPagePeek
  * ─────────────────────────────────────────────────────────────────────────────
- * The live Men's Sole Revival site, presented inside a clean laptop frame
- * (lid + screen + suggested base). Replaces the previous browser-window
- * treatment so the home Work card reads as "real product on real device"
- * the way Fantasy.co's case-study tiles do.
+ * Live MSR site running inside a real MacBook Pro M4 mockup (Figma-sourced
+ * Apple device PNG). Replaces the CSS-built laptop with a true rendered
+ * device so the home Work card reads Fantasy.co-level.
  *
- * The site image (1280 × 5474) auto-scrolls vertically inside the screen
- * area to suggest the full site, paused on hover and on prefers-reduced-motion.
- *
- * Pure CSS chrome — no SVG required. Bezel + base are flat rects with
- * gentle gradients for material.
+ * Screen coordinates are measured against the 1:1 device PNG and given as
+ * percentages so the overlay re-aligns at any container size.
  */
 const IMG_W = 1280;
 const IMG_H = 5474;
+
+/* Screen area inside /devices/macbook-pro.png (1:1 mockup). */
+const SCREEN = {
+  topPct:    22.2,
+  leftPct:   17.6,
+  widthPct:  64.8,
+  heightPct: 40.4,
+};
 
 export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
   const [reduced, setReduced] = useState(false);
@@ -34,59 +38,39 @@ export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
   return (
     <div
       role="img"
-      aria-label="Men's Sole Revival homepage on a laptop"
-      className="msr-laptop-root"
+      aria-label="Men's Sole Revival homepage on a MacBook Pro"
       style={{
         position:    "relative",
         width:       "100%",
         aspectRatio: "16 / 10",
         overflow:    "hidden",
-        background:  "linear-gradient(180deg, #2A2A2C 0%, #1C1C1E 100%)",
+        background:  "#252628",
         display:     "flex",
-        flexDirection: "column",
         alignItems:  "center",
-        justifyContent: "flex-start",
-        padding:     "5% 8% 0",
+        justifyContent: "center",
       }}
     >
-      {/* Laptop lid: a slim black bezel wrapping the screen */}
-      <div
-        className="msr-laptop-lid"
-        style={{
-          position:     "relative",
-          width:        "100%",
-          flex:         "1 1 auto",
-          background:   "#0A0A0A",
-          padding:      "10px 10px 14px",
-          borderRadius: "10px 10px 4px 4px",
-          boxShadow:    "0 0 0 1px #1F1F1F, 0 18px 40px -16px rgba(0, 0, 0, 0.55)",
-        }}
-      >
-        {/* Top bezel camera hint */}
+      {/* Square device wrap: keeps the device's true 1:1 aspect so the
+          measured screen percentages always line up. Sized to fit the
+          shorter dimension of the 16:10 frame. */}
+      <div style={{
+        position:    "relative",
+        height:      "100%",
+        aspectRatio: "1 / 1",
+        flexShrink:  0,
+      }}>
+        {/* Screen content — auto-scrolling site, positioned BEHIND the
+            device mockup so the bezel + reflections always read on top. */}
         <div
-          aria-hidden
           style={{
             position:     "absolute",
-            top:          4,
-            left:         "50%",
-            transform:    "translateX(-50%)",
-            width:        4,
-            height:       4,
-            borderRadius: "50%",
-            background:   "#1F1F1F",
-            boxShadow:    "inset 0 0 0 1px #2A2A2A",
-          }}
-        />
-
-        {/* Screen — the actual MSR site content */}
-        <div
-          style={{
-            position:     "relative",
-            width:        "100%",
-            height:       "100%",
+            top:          `${SCREEN.topPct}%`,
+            left:         `${SCREEN.leftPct}%`,
+            width:        `${SCREEN.widthPct}%`,
+            height:       `${SCREEN.heightPct}%`,
             overflow:     "hidden",
             background:   "#13100C",
-            borderRadius: "2px",
+            zIndex:       1,
           }}
         >
           <div
@@ -118,35 +102,20 @@ export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
             />
           </div>
         </div>
-      </div>
 
-      {/* Laptop base: a curved trapezoid suggesting the keyboard deck.
-          Sits flush under the lid with a hint of the hinge. */}
-      <div
-        aria-hidden
-        className="msr-laptop-base"
-        style={{
-          width:        "108%",
-          height:       "5%",
-          marginTop:    "-1px",
-          background:   "linear-gradient(180deg, #1A1A1C 0%, #0E0E10 100%)",
-          borderRadius: "0 0 18px 18px",
-          boxShadow:    "0 14px 28px -12px rgba(0, 0, 0, 0.55)",
-          position:     "relative",
-        }}
-      >
-        {/* Trackpad notch hint at center of base front */}
-        <div
-          aria-hidden
+        {/* Device mockup PNG sits on top so bezel/notch/keys read correctly */}
+        <img
+          src="/devices/macbook-pro.png"
+          alt=""
           style={{
-            position:     "absolute",
-            bottom:       0,
-            left:         "50%",
-            transform:    "translateX(-50%)",
-            width:        "22%",
-            height:       "3px",
-            background:   "#262628",
-            borderRadius: "0 0 6px 6px",
+            position:      "absolute",
+            inset:         0,
+            width:         "100%",
+            height:        "100%",
+            objectFit:     "contain",
+            zIndex:        2,
+            pointerEvents: "none",
+            mixBlendMode:  "normal",
           }}
         />
       </div>

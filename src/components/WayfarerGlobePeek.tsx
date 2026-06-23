@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -38,31 +40,34 @@ const DESTINATIONS: Array<{ name: string; lng: number; lat: number }> = [
   { name: "Bali",           lng:  115.2126, lat:  -8.6705 },
   { name: "Tokyo",          lng:  139.6503, lat:  35.6762 },
   // Oceania
-  { name: "New Zealand",    lng:  168.7125, lat: -44.5638 },
-  { name: "Fiji",           lng:  178.0650, lat: -17.7134 },
-  { name: "Bora Bora",      lng: -151.7415, lat: -16.5004 },
+  { name: "Sydney",         lng:  151.2093, lat: -33.8688 },
+  { name: "Auckland",       lng:  174.7633, lat: -36.8485 },
   // Americas
-  { name: "Easter Island",  lng: -109.3521, lat: -27.1127 },
-  { name: "Patagonia",      lng:  -72.2648, lat: -50.3402 },
-  { name: "Buenos Aires",   lng:  -58.3816, lat: -34.6037 },
-  { name: "Machu Picchu",   lng:  -72.5450, lat: -13.1631 },
-  { name: "Cusco",          lng:  -71.9877, lat: -13.5316 },
-  { name: "Cartagena",      lng:  -75.4794, lat:  10.3910 },
-  { name: "Havana",         lng:  -82.3794, lat:  23.1291 },
-  { name: "Tulum",          lng:  -87.4271, lat:  20.2114 },
-  { name: "Banff",          lng: -115.5348, lat:  51.4545 },
-  // Polar / North Atlantic
-  { name: "Reykjavík",      lng:  -21.9426, lat:  64.1466 },
-  { name: "Greenland",      lng:  -42.6043, lat:  71.7069 },
-  { name: "Svalbard",       lng:   15.6267, lat:  77.9454 },
+  { name: "Mexico City",    lng:  -99.1332, lat:  19.4326 },
+  { name: "Cusco",          lng:  -71.9675, lat: -13.5320 },
+  { name: "Rio de Janeiro", lng:  -43.1729, lat: -22.9068 },
+  { name: "Banff",          lng: -115.5708, lat:  51.1784 },
+  { name: "Reykjavik",      lng:  -21.9426, lat:  64.1466 },
+  // North America
+  { name: "New Orleans",    lng:  -90.0715, lat:  29.9511 },
+  { name: "San Francisco",  lng: -122.4194, lat:  37.7749 },
 ];
 
-const ACCENT          = "#D27A5E"; // Wayfarer terra cotta — same as DestinationMap
-const ROTATE_DEG_PER_SEC = 5.5;    // time-based for consistent smoothness across frame rates
-const INITIAL_ZOOM    = 3;         // start zoomed in close
-const SETTLED_ZOOM    = 1.6;       // pull back to settled view
-const INITIAL_CENTER: [number, number] = [10, 18]; // Atlantic + Europe/Africa visible
+const ACCENT          = "#C17F4A";
+const INITIAL_ZOOM    = 3;
+const SETTLED_ZOOM    = 1.6;
+const INITIAL_CENTER: [number, number] = [10, 18];
 const ZOOM_OUT_MS     = 2800;
+const ROTATE_DEG_PER_SEC = 6;
+
+/* Screen area inside /devices/ipad.png (1:1 mockup). The iPad sits portrait
+   inside its square frame; screen takes ~56% × 67% of the canvas. */
+const SCREEN = {
+  topPct:    16.4,
+  leftPct:   22.4,
+  widthPct:  55.0,
+  heightPct: 67.0,
+};
 
 export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -76,8 +81,6 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
-    // Fail soft: no token → render the dark backdrop only, never crash the page.
-    // Happens if NEXT_PUBLIC_MAPBOX_TOKEN isn't set in the deploy environment.
     if (!MAPBOX_TOKEN) {
       if (process.env.NODE_ENV !== "production") {
         console.warn("[WayfarerGlobePeek] NEXT_PUBLIC_MAPBOX_TOKEN missing — globe will not render.");
@@ -112,7 +115,6 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
       return;
     }
 
-    // Catch async errors (bad token, restricted URL, network) without crashing React.
     map.on("error", (e) => {
       if (process.env.NODE_ENV !== "production") {
         console.warn("[WayfarerGlobePeek] Mapbox runtime error:", e?.error?.message || e);
@@ -120,7 +122,6 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
     });
 
     map.on("style.load", () => {
-      // Match Wayfarer's fog
       map.setFog({
         color:           "rgb(50, 55, 65)",
         "high-color":    "rgb(25, 28, 35)",
@@ -131,15 +132,10 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
     });
 
     map.on("load", () => {
-      // Force the canvas to match the actual rendered container size.
-      // If the layout shifts (zigzag rows, breakpoint flips) between init and
-      // load, the canvas can stay locked at its initial dimensions.
       map.resize();
-      // Belt-and-suspenders: re-call after the page paints once.
       requestAnimationFrame(() => map.resize());
       setTimeout(() => map.resize(), 300);
 
-      // Drop markers — same shape as DestinationMap but smaller / non-interactive
       DESTINATIONS.forEach((d) => {
         const el = document.createElement("div");
         el.style.cssText = `
@@ -156,8 +152,6 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
           .addTo(map);
       });
 
-      // Single rAF loop driving BOTH the opening zoom-out and the continuous
-      // rotation — managing them separately causes setCenter to interrupt easeTo.
       const startT = performance.now();
       let lastT    = startT;
       const tick = (now: number) => {
@@ -165,16 +159,14 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
         const dt = now - lastT;
         lastT = now;
 
-        // Opening zoom-out: ease from INITIAL_ZOOM → SETTLED_ZOOM over ZOOM_OUT_MS
         const elapsed = now - startT;
         let zoom = SETTLED_ZOOM;
         if (!reducedRef.current && elapsed < ZOOM_OUT_MS) {
           const t      = elapsed / ZOOM_OUT_MS;
-          const eased  = 1 - Math.pow(1 - t, 3); // ease-out-cubic
+          const eased  = 1 - Math.pow(1 - t, 3);
           zoom         = INITIAL_ZOOM + (SETTLED_ZOOM - INITIAL_ZOOM) * eased;
         }
 
-        // Rotation: time-based delta for consistent smoothness
         const c = mapRef.current.getCenter();
         let lng = c.lng;
         if (!pausedRef.current && !reducedRef.current && dt < 200) {
@@ -189,9 +181,6 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
 
     mapRef.current = map;
 
-    // Resize the map when its container changes size. Without this, the map
-    // keeps its initial canvas dimensions even when the layout grows around it
-    // (e.g. moving from a narrow card to a wider editorial row).
     const ro = new ResizeObserver(() => {
       if (mapRef.current) mapRef.current.resize();
     });
@@ -209,75 +198,58 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
   return (
     <div
       role="img"
-      aria-label="Wayfarer interactive globe preview, presented in a Studio-style screen"
-      className="wf-studio-root"
+      aria-label="Wayfarer interactive globe on an iPad"
       style={{
         position:    "relative",
         width:       "100%",
         aspectRatio: "16 / 10",
         overflow:    "hidden",
-        /* Soft gradient mat — Screen Studio's signature presentation
-           backdrop. Cool dark tones so the dark globe sits forward. */
-        background:  "linear-gradient(135deg, #3A3A40 0%, #232328 60%, #1A1A20 100%)",
-        padding:     "5% 6%",
+        background:  "#252628",
         display:     "flex",
-        alignItems:  "stretch",
+        alignItems:  "center",
+        justifyContent: "center",
       }}
     >
-      {/* Floating screen — rounded corners, soft drop shadow, optional
-          macOS window dots so it reads as "screen recording" not "raw map" */}
-      <div
-        style={{
-          position:     "relative",
-          flex:         1,
-          borderRadius: "14px",
-          overflow:     "hidden",
-          background:   "rgb(15, 15, 25)",
-          boxShadow:    "0 18px 50px -16px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04)",
-        }}
-      >
-        {/* macOS window header — thin bar with three dots, very subtle */}
+      <div style={{
+        position:    "relative",
+        height:      "100%",
+        aspectRatio: "1 / 1",
+        flexShrink:  0,
+      }}>
+        {/* Screen content (interactive globe) under the device chrome */}
         <div
-          aria-hidden
           style={{
-            position:   "absolute",
-            top:        0,
-            left:       0,
-            right:      0,
-            height:     "22px",
-            background: "rgba(15, 15, 25, 0.72)",
-            backdropFilter: "blur(6px)",
-            display:    "flex",
-            alignItems: "center",
-            gap:        "5px",
-            padding:    "0 10px",
-            zIndex:     2,
+            position:     "absolute",
+            top:          `${SCREEN.topPct}%`,
+            left:         `${SCREEN.leftPct}%`,
+            width:        `${SCREEN.widthPct}%`,
+            height:       `${SCREEN.heightPct}%`,
+            overflow:     "hidden",
+            background:   "rgb(15, 15, 25)",
+            zIndex:       1,
           }}
         >
-          {["#FF6B5C", "#FFC65B", "#5BD17A"].map((c) => (
-            <span
-              key={c}
-              style={{
-                display:      "inline-block",
-                width:        "7px",
-                height:       "7px",
-                borderRadius: "50%",
-                background:   c,
-                opacity:      0.8,
-              }}
-            />
-          ))}
+          <div
+            ref={containerRef}
+            style={{
+              position: "absolute",
+              inset:    0,
+            }}
+          />
         </div>
 
-        {/* The actual interactive globe fills the screen */}
-        <div
-          ref={containerRef}
+        {/* iPad mockup PNG on top */}
+        <img
+          src="/devices/ipad.png"
+          alt=""
           style={{
-            position: "absolute",
-            top:      "22px",
-            left:     0,
-            right:    0,
-            bottom:   0,
+            position:      "absolute",
+            inset:         0,
+            width:         "100%",
+            height:        "100%",
+            objectFit:     "contain",
+            zIndex:        2,
+            pointerEvents: "none",
           }}
         />
       </div>
