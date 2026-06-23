@@ -81,27 +81,34 @@ export default function Work() {
 
     const targets = section.querySelectorAll<HTMLElement>(".scroll-reveal");
 
-    /* 1. Hide immediately, no transition yet */
+    /* 1. Hide immediately, with a subtle scale-down so the row reads as
+          "off in the distance" before it blooms forward. 4% scale + 24px
+          translateY is the SLUX dose — premium-feeling, never theatrical. */
     targets.forEach((el) => {
-      el.style.opacity   = "0";
-      el.style.transform = "translateY(32px)";
+      el.style.opacity        = "0";
+      el.style.transform      = "translateY(24px) scale(0.96)";
+      el.style.transformOrigin = "center top";
     });
 
-    /* 2. Next frame: add transitions so the reveal animates */
+    /* 2. Next frame: register the eased transition so the reveal can animate.
+          Longer 0.9s with a calm cubic-bezier reads as deliberate rather
+          than snappy. */
     requestAnimationFrame(() => {
       targets.forEach((el, i) => {
         const delay = DELAYS[i] || "0s";
-        el.style.transition = `opacity 0.7s ease ${delay}, transform 0.7s ease ${delay}`;
+        el.style.transition =
+          `opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay},` +
+          ` transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay}`;
       });
 
-      /* 3. Observe */
+      /* 3. Observe — bloom each row to identity once it crosses the threshold */
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const el = entry.target as HTMLElement;
               el.style.opacity   = "1";
-              el.style.transform = "translateY(0)";
+              el.style.transform = "translateY(0) scale(1)";
               observer.unobserve(el);
             }
           });

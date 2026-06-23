@@ -25,20 +25,26 @@ export default function Hero() {
     if (!section) return;
     const targets = section.querySelectorAll<HTMLElement>(".hero-reveal");
 
+    /* Hero entrance: opacity + translateY + a 3% scale bloom. The scale is
+       subtle enough to read as polish, not theatre — the whole hero
+       "blooms forward" together as the page settles. */
     targets.forEach((el) => {
-      el.style.opacity   = "0";
-      el.style.transform = "translateY(24px)";
+      el.style.opacity        = "0";
+      el.style.transform      = "translateY(24px) scale(0.97)";
+      el.style.transformOrigin = "center center";
     });
 
     requestAnimationFrame(() => {
       targets.forEach((el, i) => {
         const delay = HERO_DELAYS[i] || "0s";
-        el.style.transition = `opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${delay}, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${delay}`;
+        el.style.transition =
+          `opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay},` +
+          ` transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay}`;
       });
       requestAnimationFrame(() => {
         targets.forEach((el) => {
           el.style.opacity   = "1";
-          el.style.transform = "translateY(0)";
+          el.style.transform = "translateY(0) scale(1)";
         });
       });
     });
