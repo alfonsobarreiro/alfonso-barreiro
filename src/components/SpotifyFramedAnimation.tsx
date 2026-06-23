@@ -21,14 +21,20 @@
 export default function SpotifyFramedAnimation() {
   return (
     <div className="sfa-root">
-      {/* Phone — action sheet open, rounded mobile corners */}
+      {/* Phone with full device chrome — matte bezel, dynamic-island
+          notch, home indicator. Reads as a real iPhone presenting the
+          interaction, not a flat screenshot. */}
       <div className="sfa-phone">
-        <img
-          src="/images/work/spotify/spotify-action-sheet.webp"
-          alt="Long-press an item on the Spotify Recently Played shelf opens an action sheet with Pin, Remove, and Pause Listening History."
-          loading="lazy"
-          decoding="async"
-        />
+        <div className="sfa-phone-notch" aria-hidden />
+        <div className="sfa-phone-screen">
+          <img
+            src="/images/work/spotify/spotify-action-sheet.webp"
+            alt="Long-press an item on the Spotify Recently Played shelf opens an action sheet with Pin, Remove, and Pause Listening History."
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="sfa-phone-home" aria-hidden />
       </div>
 
       {/* Icon column — three control badges, same family as the case study */}
@@ -52,23 +58,59 @@ export default function SpotifyFramedAnimation() {
           padding: clamp(20px, 3vw, 36px);
         }
 
-        /* Phone — fills the available height of the frame, rounded mobile
-           corners, action-sheet image cover-cropped to fit. */
+        /* Phone — matte black bezel wrapping a rounded screen. Aspect
+           hugs a real iPhone (clean 9:19.5 outer). Inner screen has its
+           own slightly tighter radius so the bezel reads. */
         .sfa-phone {
           position: relative;
           height: 100%;
           aspect-ratio: 780 / 1711;
-          overflow: hidden;
-          border-radius: clamp(14px, 1.8vw, 24px);
-          background: #000;
+          border-radius: clamp(22px, 2.4vw, 32px);
+          background: linear-gradient(160deg, #1A1A1C 0%, #0A0A0B 100%);
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+            0 14px 30px -10px rgba(0, 0, 0, 0.55);
+          padding: clamp(5px, 0.6vw, 9px);
           flex-shrink: 0;
         }
-        .sfa-phone img {
+        .sfa-phone-screen {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          border-radius: clamp(16px, 1.8vw, 24px);
+          background: #000;
+        }
+        .sfa-phone-screen img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           object-position: top center;
           display: block;
+        }
+        /* Dynamic-island notch hint */
+        .sfa-phone-notch {
+          position: absolute;
+          top: clamp(10px, 1.2vw, 16px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: 24%;
+          height: clamp(6px, 0.8vw, 10px);
+          background: #000;
+          border-radius: 999px;
+          z-index: 2;
+        }
+        /* Home indicator at the bottom of the screen */
+        .sfa-phone-home {
+          position: absolute;
+          bottom: clamp(7px, 0.9vw, 11px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: 36%;
+          height: clamp(3px, 0.35vw, 4px);
+          background: rgba(255, 255, 255, 0.85);
+          border-radius: 999px;
+          z-index: 2;
         }
 
         /* Icon column — three cells stacked vertically. Each cell:

@@ -209,22 +209,78 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
   return (
     <div
       role="img"
-      aria-label="Wayfarer interactive globe preview"
+      aria-label="Wayfarer interactive globe preview, presented in a Studio-style screen"
+      className="wf-studio-root"
       style={{
         position:    "relative",
         width:       "100%",
         aspectRatio: "16 / 10",
         overflow:    "hidden",
-        background:  "rgb(15, 15, 25)", // same space-color as fog so seams disappear
+        /* Soft gradient mat — Screen Studio's signature presentation
+           backdrop. Cool dark tones so the dark globe sits forward. */
+        background:  "linear-gradient(135deg, #3A3A40 0%, #232328 60%, #1A1A20 100%)",
+        padding:     "5% 6%",
+        display:     "flex",
+        alignItems:  "stretch",
       }}
     >
+      {/* Floating screen — rounded corners, soft drop shadow, optional
+          macOS window dots so it reads as "screen recording" not "raw map" */}
       <div
-        ref={containerRef}
         style={{
-          position: "absolute",
-          inset:    0,
+          position:     "relative",
+          flex:         1,
+          borderRadius: "14px",
+          overflow:     "hidden",
+          background:   "rgb(15, 15, 25)",
+          boxShadow:    "0 18px 50px -16px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04)",
         }}
-      />
+      >
+        {/* macOS window header — thin bar with three dots, very subtle */}
+        <div
+          aria-hidden
+          style={{
+            position:   "absolute",
+            top:        0,
+            left:       0,
+            right:      0,
+            height:     "22px",
+            background: "rgba(15, 15, 25, 0.72)",
+            backdropFilter: "blur(6px)",
+            display:    "flex",
+            alignItems: "center",
+            gap:        "5px",
+            padding:    "0 10px",
+            zIndex:     2,
+          }}
+        >
+          {["#FF6B5C", "#FFC65B", "#5BD17A"].map((c) => (
+            <span
+              key={c}
+              style={{
+                display:      "inline-block",
+                width:        "7px",
+                height:       "7px",
+                borderRadius: "50%",
+                background:   c,
+                opacity:      0.8,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* The actual interactive globe fills the screen */}
+        <div
+          ref={containerRef}
+          style={{
+            position: "absolute",
+            top:      "22px",
+            left:     0,
+            right:    0,
+            bottom:   0,
+          }}
+        />
+      </div>
     </div>
   );
 }
