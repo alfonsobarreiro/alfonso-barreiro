@@ -327,50 +327,83 @@ function HeroResultPanel() {
         background:  "#0F0F0F",
         textDecoration: "none",
         color:       "inherit",
-        boxShadow:   "0 24px 60px -28px rgba(0, 0, 0, 0.35)",
+        borderRadius: "12px",
+        boxShadow:   "0 24px 60px -28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.06)",
         transition:  "transform 0.3s ease",
       }}
     >
-      {/* Browser chrome strip */}
+      {/* macOS Safari-style browser chrome — light theme. Taller so the
+          URL bar reads as a real browser address bar, not just a strip. */}
       <div
         style={{
           position:   "absolute",
           top:        0,
           left:       0,
           right:      0,
-          height:     "28px",
-          background: "#252B28",
+          height:     "44px",
+          background: "linear-gradient(180deg, #F4F4F6 0%, #E8E8EA 100%)",
+          borderBottom: "1px solid #D6D6D9",
           display:    "flex",
           alignItems: "center",
-          gap:        "6px",
-          padding:    "0 12px",
+          gap:        "8px",
+          padding:    "0 14px",
           zIndex:     3,
         }}
       >
-        {["#FF6B5C", "#FFC65B", "#5BD17A"].map((c) => (
+        {/* Traffic lights */}
+        {["#FF6157", "#FFBD2E", "#28C940"].map((c) => (
           <span
             key={c}
             style={{
               display:      "inline-block",
-              width:        "9px",
-              height:       "9px",
+              width:        "12px",
+              height:       "12px",
               borderRadius: "50%",
               background:   c,
-              opacity:      0.85,
+              boxShadow:    "inset 0 0 0 0.5px rgba(0, 0, 0, 0.12)",
             }}
           />
         ))}
-        <span
+
+        {/* Address bar pill — centered between dots and right edge */}
+        <div
           style={{
-            marginLeft:    "12px",
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "10px",
-            letterSpacing: "0.08em",
-            color:         "#8A8680",
+            flex:         1,
+            marginLeft:   "12px",
+            marginRight:  "12px",
+            height:       "24px",
+            background:   "#FFFFFF",
+            border:       "1px solid #D6D6D9",
+            borderRadius: "6px",
+            display:      "flex",
+            alignItems:   "center",
+            justifyContent: "center",
+            gap:          "6px",
+            padding:      "0 12px",
           }}
         >
-          menssolerevival.com
-        </span>
+          {/* Lock icon */}
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden>
+            <path
+              d="M3.5 5V3.5a2.5 2.5 0 1 1 5 0V5M2.5 5h7v5h-7V5z"
+              stroke="#8A8680"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span
+            style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "11px",
+              fontWeight:    500,
+              letterSpacing: "0.01em",
+              color:         "#3D4440",
+            }}
+          >
+            menssolerevival.com
+          </span>
+        </div>
       </div>
 
       {/* Screen capture */}
@@ -379,10 +412,10 @@ function HeroResultPanel() {
         alt="Men's Sole Revival live site"
         style={{
           position:       "absolute",
-          top:            "28px",
+          top:            "44px",
           left:           0,
           width:          "100%",
-          height:         "calc(100% - 28px)",
+          height:         "calc(100% - 44px)",
           objectFit:      "cover",
           objectPosition: "top center",
           display:        "block",
@@ -397,7 +430,7 @@ function HeroResultPanel() {
       <div
         style={{
           position:   "absolute",
-          top:        "28px",
+          top:        "44px",
           left:       0,
           right:      0,
           bottom:     0,
