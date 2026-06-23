@@ -60,15 +60,6 @@ const INITIAL_CENTER: [number, number] = [10, 18];
 const ZOOM_OUT_MS     = 2800;
 const ROTATE_DEG_PER_SEC = 6;
 
-/* Screen area inside /devices/ipad.png (1:1 mockup). The iPad sits portrait
-   inside its square frame; screen takes ~56% × 67% of the canvas. */
-const SCREEN = {
-  topPct:    16.4,
-  leftPct:   22.4,
-  widthPct:  55.0,
-  heightPct: 67.0,
-};
-
 export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef       = useRef<mapboxgl.Map | null>(null);
@@ -198,61 +189,22 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
   return (
     <div
       role="img"
-      aria-label="Wayfarer interactive globe on an iPad"
+      aria-label="Wayfarer interactive globe preview"
       style={{
         position:    "relative",
         width:       "100%",
         aspectRatio: "16 / 10",
         overflow:    "hidden",
-        background:  "#252628",
-        display:     "flex",
-        alignItems:  "center",
-        justifyContent: "center",
+        background:  "rgb(15, 15, 25)",
       }}
     >
-      <div style={{
-        position:    "relative",
-        height:      "100%",
-        aspectRatio: "1 / 1",
-        flexShrink:  0,
-      }}>
-        {/* Screen content (interactive globe) under the device chrome */}
-        <div
-          style={{
-            position:     "absolute",
-            top:          `${SCREEN.topPct}%`,
-            left:         `${SCREEN.leftPct}%`,
-            width:        `${SCREEN.widthPct}%`,
-            height:       `${SCREEN.heightPct}%`,
-            overflow:     "hidden",
-            background:   "rgb(15, 15, 25)",
-            zIndex:       1,
-          }}
-        >
-          <div
-            ref={containerRef}
-            style={{
-              position: "absolute",
-              inset:    0,
-            }}
-          />
-        </div>
-
-        {/* iPad mockup PNG on top */}
-        <img
-          src="/devices/ipad.png"
-          alt=""
-          style={{
-            position:      "absolute",
-            inset:         0,
-            width:         "100%",
-            height:        "100%",
-            objectFit:     "contain",
-            zIndex:        2,
-            pointerEvents: "none",
-          }}
-        />
-      </div>
+      <div
+        ref={containerRef}
+        style={{
+          position: "absolute",
+          inset:    0,
+        }}
+      />
     </div>
   );
 }
