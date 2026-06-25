@@ -4,6 +4,7 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "ABD UI · Production Design System",
@@ -75,6 +76,13 @@ export default function Page() {
         description="A token-driven design system: 120 components, 15 color tokens, and a role-based token architecture published to CSS, JSON, and Figma so design and code read from one source."
         slug="abd-ui-system"
         dateCreated="2026-05"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "Work", url: "https://www.barreiro.com/#work" },
+          { name: "ABD UI · Production Design System", url: "https://www.barreiro.com/work/abd-ui-system" },
+        ]}
       />
 
       <main style={{ background: c.bg }}>

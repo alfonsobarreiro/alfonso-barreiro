@@ -8,14 +8,23 @@ export const metadata: Metadata = {
   title: "Spotify: Recently Played Controls · Slide Deck · Alfonso Barreiro",
   description:
     "The 40-slide narrative deck for the Spotify Recently Played Controls case study: research, UX architecture, and the design of three new controls.",
+  alternates: { canonical: "https://www.barreiro.com/work/presentations/spotify" },
   openGraph: {
     title: "Spotify: Recently Played Controls · Slide Deck · Alfonso Barreiro",
     description:
       "The 40-slide narrative deck for the Spotify Recently Played Controls case study.",
-    url: "https://barreiro.com/work/presentations/spotify",
+    url: "https://www.barreiro.com/work/presentations/spotify",
     siteName: "Alfonso Barreiro",
     locale: "en_US",
     type: "article",
+    images: ["/work/spotify/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spotify: Recently Played Controls · Slide Deck",
+    description:
+      "The 40-slide narrative deck for the Spotify Recently Played Controls case study.",
+    images: ["/work/spotify/opengraph-image"],
   },
 };
 

@@ -94,7 +94,7 @@ export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
           (506, 650, 897×581). At width 139.4 % of the frame the chrome
           renders ~62.5 % wide, with even breathing left/right and top/bottom. */}
       <img
-        src="/images/devices/macbook-pro-14.png"
+        src="/images/devices/macbook-pro-14.webp"
         alt=""
         aria-hidden
         style={{

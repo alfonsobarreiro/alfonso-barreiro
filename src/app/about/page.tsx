@@ -15,12 +15,14 @@ export const metadata: Metadata = {
     title: "About · Alfonso Barreiro",
     description:
       "Most design problems aren't visual problems. They're decisions someone hasn't made yet. UX/UI Designer in Portland, OR.",
+    images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
       "Most design problems aren't visual problems. They're decisions someone hasn't made yet. UX/UI Designer in Portland, OR.",
+    images: ["/about/opengraph-image"],
   },
 };
 

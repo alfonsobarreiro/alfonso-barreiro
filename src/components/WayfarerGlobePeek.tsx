@@ -445,7 +445,7 @@ export default function WayfarerGlobePeek({ paused = false }: { paused?: boolean
       </div>
 
       <img
-        src="/images/devices/ipad-pro.png"
+        src="/images/devices/ipad-pro.webp"
         alt=""
         aria-hidden
         style={{

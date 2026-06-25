@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
+import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 /* ---------------------------------------------------------------------------
    /work/spotify
@@ -295,6 +297,19 @@ export default function SpotifyV2() {
   return (
     <>
       <Nav />
+      <CaseStudySchema
+        name="Spotify · Recently Played Controls"
+        description="Concept case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity."
+        slug="spotify"
+        dateCreated="2026-05"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "Work", url: "https://www.barreiro.com/#work" },
+          { name: "Spotify · Recently Played Controls", url: "https://www.barreiro.com/work/spotify" },
+        ]}
+      />
 
       <main style={{ background: c.surface, paddingTop: "72px" }}>
 

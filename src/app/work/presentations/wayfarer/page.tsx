@@ -8,14 +8,23 @@ export const metadata: Metadata = {
   title: "Wayfarer: Travel Discovery · Slide Deck · Alfonso Barreiro",
   description:
     "The 16-slide narrative deck for the Wayfarer travel discovery case study: brief, problem framing, design decisions, and the discipline of scope.",
+  alternates: { canonical: "https://www.barreiro.com/work/presentations/wayfarer" },
   openGraph: {
     title: "Wayfarer: Travel Discovery · Slide Deck · Alfonso Barreiro",
     description:
       "The 16-slide narrative deck for the Wayfarer travel discovery case study.",
-    url: "https://barreiro.com/work/presentations/wayfarer",
+    url: "https://www.barreiro.com/work/presentations/wayfarer",
     siteName: "Alfonso Barreiro",
     locale: "en_US",
     type: "article",
+    images: ["/work/wayfarer/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wayfarer: Travel Discovery · Slide Deck",
+    description:
+      "The 16-slide narrative deck for the Wayfarer travel discovery case study.",
+    images: ["/work/wayfarer/opengraph-image"],
   },
 };
 

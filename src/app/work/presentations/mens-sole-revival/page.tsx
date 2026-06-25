@@ -8,13 +8,21 @@ export const metadata: Metadata = {
   title: "Men's Sole Revival · Slide Deck · Alfonso Barreiro",
   description:
     "The 11-slide narrative deck for the Men's Sole Revival case study: problem, pivot, brand exploration, design system, component library, site architecture, assessment redesign, and reflection.",
+  alternates: { canonical: "https://www.barreiro.com/work/presentations/mens-sole-revival" },
   openGraph: {
     title: "Men's Sole Revival · Slide Deck · Alfonso Barreiro",
     description: "The 11-slide narrative deck for the Men's Sole Revival case study.",
-    url: "https://barreiro.com/work/presentations/mens-sole-revival",
+    url: "https://www.barreiro.com/work/presentations/mens-sole-revival",
     siteName: "Alfonso Barreiro",
     locale: "en_US",
     type: "article",
+    images: ["/work/mens-sole-revival/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Men's Sole Revival · Slide Deck",
+    description: "The 11-slide narrative deck for the Men's Sole Revival case study.",
+    images: ["/work/mens-sole-revival/opengraph-image"],
   },
 };
 

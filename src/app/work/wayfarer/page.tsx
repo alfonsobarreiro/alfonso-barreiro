@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
+import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 /* ---------------------------------------------------------------------------
    /work/wayfarer
@@ -334,6 +336,19 @@ export default function WayfarerV2() {
   return (
     <>
       <Nav />
+      <CaseStudySchema
+        name="Wayfarer · Travel Discovery Platform"
+        description="Concept case study: a travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build."
+        slug="wayfarer"
+        dateCreated="2026-05"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "Work", url: "https://www.barreiro.com/#work" },
+          { name: "Wayfarer · Travel Discovery Platform", url: "https://www.barreiro.com/work/wayfarer" },
+        ]}
+      />
 
       <main style={{ background: c.surface, paddingTop: "72px" }}>
 

@@ -440,7 +440,7 @@ function HeroResultPanel() {
             offset so the iPad body fills the panel; transparent BG so the
             page surface shows through outside the device. */}
         <img
-          src="/images/devices/ipad-pro.png"
+          src="/images/devices/ipad-pro.webp"
           alt=""
           aria-hidden
           style={{

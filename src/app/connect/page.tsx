@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Connect — Alfonso Barreiro",
   description:
     "UX/UI Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+  alternates: { canonical: "https://www.barreiro.com/connect" },
   openGraph: {
     title: "Connect — Alfonso Barreiro",
     description:

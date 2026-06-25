@@ -8,13 +8,19 @@ export const metadata: Metadata = {
   title: "Presentations · Case Study Slide Decks · Alfonso Barreiro",
   description:
     "The narrative slide decks for each case study. Skim the deck, or dive into the long-form write-up.",
+  alternates: { canonical: "https://www.barreiro.com/work/presentations" },
   openGraph: {
     title: "Presentations · Alfonso Barreiro",
     description: "Narrative slide decks for each case study.",
-    url: "https://barreiro.com/work/presentations",
+    url: "https://www.barreiro.com/work/presentations",
     siteName: "Alfonso Barreiro",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Presentations · Alfonso Barreiro",
+    description: "Narrative slide decks for each case study.",
   },
 };
 

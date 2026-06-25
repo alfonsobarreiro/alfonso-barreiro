@@ -78,7 +78,7 @@ export default function SpotifyFramedAnimation() {
       />
 
       <img
-        src="/images/devices/iphone-cropped.png"
+        src="/images/devices/iphone-cropped.webp"
         alt=""
         aria-hidden
         style={{

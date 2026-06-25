@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
+import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 /* ---------------------------------------------------------------------------
    /work/mens-sole-revival-v2
@@ -284,6 +286,19 @@ export default function MSRv2() {
   return (
     <>
       <Nav />
+      <CaseStudySchema
+        name="Men's Sole Revival · Foot Health Content Platform"
+        description="Client case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week three. Live since April 2026 at menssolerevival.com."
+        slug="mens-sole-revival"
+        dateCreated="2026-04"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "Work", url: "https://www.barreiro.com/#work" },
+          { name: "Men's Sole Revival", url: "https://www.barreiro.com/work/mens-sole-revival" },
+        ]}
+      />
 
       <main style={{ background: c.surface, paddingTop: "72px" }}>
 
