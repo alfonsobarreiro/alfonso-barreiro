@@ -47,3 +47,9 @@ next-env.d.ts
 # (contains private reference materials, PDFs, etc.)
 _resources/
 .claude/
+
+# review screenshots — generated during design iteration, kept locally
+/.tmp-review/
+/*.jpeg
+/*.jpg
+/*.png
