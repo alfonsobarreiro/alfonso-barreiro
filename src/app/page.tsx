@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
 import About from "@/components/About";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <Work />
       <About />
+      <Testimonials />
       <Footer />
       <BackToTop />
     </main>
