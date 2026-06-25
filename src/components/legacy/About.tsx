@@ -57,7 +57,7 @@ const pillDefault: React.CSSProperties = {
   ...pillBase,
   border:     "1px solid #6E6E6A",
   background: "#FFFFFF",
-  color:      "#2F3531",
+  color:      "#3D4440",
 };
 const pillAccent: React.CSSProperties = {
   ...pillBase,
@@ -136,8 +136,7 @@ export default function About() {
       ref={sectionRef}
       className="about-section"
       style={{
-        padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px)",
-        borderTop:  "1px solid rgba(0, 0, 0, 0.06)",
+        padding:    "120px clamp(32px, 6vw, 80px)",
         background: "#FFFFFF",
       }}
     >
@@ -151,7 +150,7 @@ export default function About() {
             gridTemplateColumns: "1fr 1fr",
             gap:                 "80px",
             alignItems:          "start",
-            marginBottom:        "clamp(80px, 8vw, 120px)",
+            marginBottom:        "64px",
           }}
         >
           {/* Left — Bio */}
@@ -179,7 +178,7 @@ export default function About() {
                   fontWeight:    500,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color:         "#5A5752",
+                  color:         "#8A8680",
                   margin:        0,
                   fontFamily:    "var(--font-dm-sans), sans-serif",
                 }}
@@ -246,7 +245,7 @@ export default function About() {
                   fontWeight:    500,
                   letterSpacing: "0.09em",
                   textTransform: "uppercase",
-                  color:         "#2F3531",
+                  color:         "#3D4440",
                 }}
               >
                 Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
@@ -273,7 +272,7 @@ export default function About() {
                 fontFamily:   "var(--font-dm-sans), sans-serif",
                 fontSize:     "16px",
                 lineHeight:   1.75,
-                color:        "#2F3531",
+                color:        "#3D4440",
                 marginBottom: "20px",
                 maxWidth:     "640px",
               }}
@@ -288,7 +287,7 @@ export default function About() {
                 fontFamily:   "var(--font-dm-sans), sans-serif",
                 fontSize:     "16px",
                 lineHeight:   1.75,
-                color:        "#2F3531",
+                color:        "#3D4440",
                 marginBottom: "40px",
                 maxWidth:     "640px",
               }}
@@ -323,8 +322,8 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={pillDefault}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#5A5752"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#6E6E6A"; e.currentTarget.style.color = "#2F3531"; e.currentTarget.style.transform = "translateY(0)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8A8680"; e.currentTarget.style.color = "#252B28"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#6E6E6A"; e.currentTarget.style.color = "#3D4440"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 <DownloadIcon /> Resume
               </a>
@@ -338,7 +337,7 @@ export default function About() {
               style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 fontSize:   "13px",
-                color:      "#5A5752",
+                color:      "#8A8680",
                 margin:     "18px 0 0",
                 lineHeight: 1.55,
               }}
@@ -367,10 +366,12 @@ export default function About() {
           <div
             className="skills-box scroll-reveal"
             style={{
-              background:   "transparent",
+              background:   "#FAFAF9",
+              /* Border softened — same direction as Work cards. */
+              border:       "1px solid rgba(110, 110, 108, 0.25)",
               borderLeft:   "3px solid var(--color-brand)",
               borderRadius: 0,
-              padding:      "8px 0 8px 32px",
+              padding:      "44px",
               position:     "sticky",
               top:          "120px",
               alignSelf:    "start",
@@ -397,6 +398,20 @@ export default function About() {
                   }}
                 >
                   {group.category}
+                </p>
+                {/* Business-value paragraph — converts the skill pills below
+                    from a capability list into a value statement. */}
+                <p
+                  style={{
+                    fontFamily:   "var(--font-dm-sans), sans-serif",
+                    fontSize:     "13.5px",
+                    lineHeight:   1.55,
+                    color:        "#3D4440",
+                    margin:       "0 0 16px",
+                    fontWeight:   400,
+                  }}
+                >
+                  {group.value}
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {group.skills.map((skill) => (
@@ -461,64 +476,64 @@ export default function About() {
           </div>
         </div>
 
-        {/* Process note — promoted from a small bordered card to a
-            page-width editorial moment. Display-size opening line carries
-            the page's signature take; the rest reads as the supporting
-            paragraph. Aligns with the editorial cadence used in the case
-            studies (display thesis + body deck). */}
-        <section
-          className="process-section scroll-reveal"
+        {/* Process note — full-width box */}
+        <div
+          className="process-box scroll-reveal"
           style={{
-            padding:      "clamp(80px, 9vw, 128px) 0 0",
-            borderTop:    "1px solid rgba(110, 110, 108, 0.18)",
-            marginTop:    "clamp(40px, 5vw, 64px)",
-            maxWidth:     "100%",
+            background:  "#FFFFFF",
+            /* Border softened — quieter than the previous #A8A39A. */
+            border:      "1px solid rgba(110, 110, 108, 0.18)",
+            padding:     "44px 52px",
           }}
         >
+          <div
+            style={{
+              display:      "flex",
+              alignItems:   "center",
+              gap:          "12px",
+              marginBottom: "20px",
+            }}
+          >
+            <span
+              style={{
+                display:    "inline-block",
+                width:      "20px",
+                height:     "1px",
+                background: "var(--color-accent)",
+                flexShrink: 0,
+              }}
+            />
+            <p
+              style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "11px",
+                fontWeight:    600,
+                letterSpacing: "0.13em",
+                textTransform: "uppercase",
+                color:         "var(--color-accent-hover)",
+                margin:        0,
+              }}
+            >
+              How I work
+            </p>
+          </div>
           <p
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "11px",
-              fontWeight:    600,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color:         "#5A5752",
-              margin:        "0 0 28px",
-            }}
-          >
-            How I work
-          </p>
-          <h2
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(32px, 4.5vw, 56px)",
-              fontWeight:    600,
-              lineHeight:    1.1,
+              fontSize:      "clamp(18px, 2.2vw, 26px)",
+              fontWeight:    500,
+              lineHeight:    1.5,
               color:         "#252B28",
-              margin:        "0 0 24px",
-              letterSpacing: "-0.025em",
-              maxWidth:      "900px",
-            }}
-          >
-            Figma comes last.
-          </h2>
-          <p
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(17px, 1.6vw, 20px)",
-              fontWeight:    400,
-              lineHeight:    1.55,
-              color:         "#5A5752",
               margin:        0,
-              letterSpacing: "-0.005em",
+              letterSpacing: "-0.015em",
               maxWidth:      "760px",
             }}
           >
-            By the time I open it, the research, the brief, and the structure
-            have already done most of the work. The interface is the last step,
-            not the first place I look for answers.
+            Figma comes last. By the time I open it, the research, the brief,
+            and the structure have already done most of the work. The interface
+            is the last step, not the first place I look for answers.
           </p>
-        </section>
+        </div>
 
       </div>
     </section>

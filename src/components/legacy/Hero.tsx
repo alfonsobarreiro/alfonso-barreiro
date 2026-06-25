@@ -56,10 +56,10 @@ export default function Hero() {
       ref={sectionRef}
       className="hero-section"
       style={{
-        minHeight:      "auto",
+        minHeight:      "100vh",
         display:        "flex",
         alignItems:     "center",
-        padding:        "96px clamp(32px, 6vw, 80px) 56px",
+        padding:        "120px clamp(32px, 6vw, 80px) 80px",
         position:       "relative",
         overflow:       "hidden",
         background:     "#FFFFFF",
@@ -106,11 +106,11 @@ export default function Hero() {
                 fontWeight:    500,
                 letterSpacing: "0.10em",
                 textTransform: "uppercase",
-                color:         "#2F3531",
+                color:         "#3D4440",
                 margin:        0,
               }}
             >
-              UX / UI Designer · Portland
+              UX / UI Designer · Portland · Remote chapters since 2019
             </p>
           </div>
 
@@ -139,15 +139,17 @@ export default function Hero() {
               fontFamily:   "var(--font-dm-sans), sans-serif",
               fontSize:     "clamp(16px, 1.7vw, 19px)",
               lineHeight:   1.65,
-              color:        "#2F3531",
+              color:        "#3D4440",
               maxWidth:     "480px",
               marginBottom: "44px",
               fontWeight:   400,
             }}
           >
             Most design problems aren&apos;t visual problems. They&apos;re
-            decisions someone hasn&apos;t made yet: surfaced through
-            research, made explicit, shipped to a live product.
+            decisions someone hasn&apos;t made yet: surfaced through research,
+            made explicit, shipped to a live product. Fifteen years in design,
+            four-plus remote across two chapters since 2019. The case studies
+            below were built that way.
           </p>
 
           {/* CTAs */}
@@ -312,184 +314,173 @@ function HeroResultPanel() {
 
   return (
     <Link
-      href="/work/mens-sole-revival"
+      href="/legacy/work/mens-sole-revival"
       ref={panelRef}
       aria-label="Men's Sole Revival case study — 13× CTR lift"
       className="hero-result-anchor"
       style={{
-        display:        "flex",
-        flexDirection:  "column",
-        gap:            "clamp(24px, 2.8vw, 32px)",
+        position:    "relative",
+        display:     "block",
+        width:       "100%",
+        aspectRatio: "4 / 5",
+        overflow:    "hidden",
+        background:  "#0F0F0F",
         textDecoration: "none",
-        color:          "inherit",
+        color:       "inherit",
+        borderRadius: "12px",
+        boxShadow:   "0 24px 60px -28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.06)",
+        transition:  "transform 0.3s ease",
       }}
     >
-      {/* iPad — Figma iPad Pro 12.9 Space Gray PNG (transparent BG) with
-          live MSR content overlaid at the screen rectangle. PNG is sized
-          122.81 % of panel width and offset so the iPad body fills the
-          panel with a visible chrome margin around it. The iPad screen
-          sits at (17.16 %, 14.36 %, 65.72 %, 70.22 %) of the 4:5 panel.
-
-          A `.hero-ipad-tilt` wrapper carries a slow Z-axis rotation
-          (~-1 → +1 deg, 14 s ease-in-out) so the device gently sways. The
-          tilt wrapper is separate from the hover transform on .hero-ipad
-          so they don't fight each other. */}
+      {/* macOS Safari-style browser chrome — light theme. Taller so the
+          URL bar reads as a real browser address bar, not just a strip. */}
       <div
-        className="hero-ipad-tilt"
-        style={{ width: "100%", position: "relative" }}
-      >
-<div
-        className="hero-ipad"
         style={{
-          position:    "relative",
-          width:       "100%",
-          aspectRatio: "4 / 5",
-          flexShrink:  0,
-          overflow:    "visible",
-          transition:  "transform 0.3s ease",
+          position:   "absolute",
+          top:        0,
+          left:       0,
+          right:      0,
+          height:     "44px",
+          background: "linear-gradient(180deg, #F4F4F6 0%, #E8E8EA 100%)",
+          borderBottom: "1px solid #D6D6D9",
+          display:    "flex",
+          alignItems: "center",
+          gap:        "8px",
+          padding:    "0 14px",
+          zIndex:     3,
         }}
       >
-        {/* Screen content layer (above device PNG) */}
+        {/* Traffic lights */}
+        {["#FF6157", "#FFBD2E", "#28C940"].map((c) => (
+          <span
+            key={c}
+            style={{
+              display:      "inline-block",
+              width:        "12px",
+              height:       "12px",
+              borderRadius: "50%",
+              background:   c,
+              boxShadow:    "inset 0 0 0 0.5px rgba(0, 0, 0, 0.12)",
+            }}
+          />
+        ))}
+
+        {/* Address bar pill — centered between dots and right edge */}
         <div
-          className="hero-ipad-screen"
           style={{
-            position:     "absolute",
-            left:         "17.64%",
-            top:          "12.83%",
-            width:        "64.67%",
-            height:       "74.27%",
-            overflow:     "hidden",
-            borderRadius: "1.9%",
-            background:   "#0F0F0F",
-            zIndex:       2,
+            flex:         1,
+            marginLeft:   "12px",
+            marginRight:  "12px",
+            height:       "24px",
+            background:   "#FFFFFF",
+            border:       "1px solid #D6D6D9",
+            borderRadius: "6px",
+            display:      "flex",
+            alignItems:   "center",
+            justifyContent: "center",
+            gap:          "6px",
+            padding:      "0 12px",
           }}
         >
-          {/* Homepage (default visible) */}
-          <img
-            className="hero-ipad-home"
-            src="/cs-msr-homepage.jpg"
-            alt="Men's Sole Revival live site"
+          {/* Lock icon */}
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden>
+            <path
+              d="M3.5 5V3.5a2.5 2.5 0 1 1 5 0V5M2.5 5h7v5h-7V5z"
+              stroke="#8A8680"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span
             style={{
-              position: "absolute",
-              top:      0,
-              left:     0,
-              width:    "100%",
-              height:   "auto",
-              display:  "block",
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "11px",
+              fontWeight:    500,
+              letterSpacing: "0.01em",
+              color:         "#3D4440",
             }}
-          />
-
-          {/* Review page (revealed mid-cycle) */}
-          <img
-            className="hero-ipad-review"
-            src="/cs-msr-review.jpeg"
-            alt="Superfeet BLUE Insoles review on Men's Sole Revival"
-            style={{
-              position: "absolute",
-              top:      0,
-              left:     0,
-              width:    "100%",
-              height:   "auto",
-              display:  "block",
-              opacity:  0,
-            }}
-          />
-
-          {/* Black fade — covers the full end-of-review handoff. The
-              review fades out behind the black, the homepage resets and
-              fades in behind the black, then the black fades away. One
-              smooth opacity curve so the eye never catches a seam. */}
-          <div
-            className="hero-ipad-blackfade"
-            aria-hidden
-            style={{
-              position:      "absolute",
-              inset:         0,
-              background:    "#000",
-              opacity:       0,
-              pointerEvents: "none",
-              zIndex:        6,
-            }}
-          />
-
-          {/* Tap indicator — a small crimson dot with an expanding ring
-              that appears right before the review page reveals, so the
-              recruiter reads "the user just tapped a review card" rather
-              than "the screen just changed." Times to ~30 % of the 22 s
-              loop, immediately before the review fade-in at 33 %. */}
-          <div
-            className="hero-ipad-tap"
-            aria-hidden
-            style={{
-              position:      "absolute",
-              left:          "62%",
-              top:           "68%",
-              width:         "30px",
-              height:        "30px",
-              borderRadius:  "50%",
-              background:    "rgba(140, 26, 26, 0.95)",
-              transform:     "translate(-50%, -50%) scale(0)",
-              opacity:       0,
-              pointerEvents: "none",
-              zIndex:        5,
-            }}
-          />
+          >
+            menssolerevival.com
+          </span>
         </div>
-
-        {/* iPad Pro chrome (below the screen content) — scaled up and
-            offset so the iPad body fills the panel; transparent BG so the
-            page surface shows through outside the device. */}
-        <img
-          src="/images/devices/ipad-pro.png"
-          alt=""
-          aria-hidden
-          style={{
-            position:      "absolute",
-            left:          "-23.91%",
-            top:           "-9.29%",
-            width:         "148.08%",
-            maxWidth:      "none",
-            height:        "auto",
-            pointerEvents: "none",
-            zIndex:        1,
-          }}
-        />
-      </div>
       </div>
 
-      {/* Text block — below the device, left-aligned to the iPad body's
-          left edge (~14 % of the panel because the PNG is scaled 122.81 %
-          and offset -11.46 %). Right padding mirrors so the text block
-          matches the iPad's footprint exactly. */}
+      {/* Screen capture */}
+      <img
+        src="/cs-msr-homepage.jpg"
+        alt="Men's Sole Revival live site"
+        style={{
+          position:       "absolute",
+          top:            "44px",
+          left:           0,
+          width:          "100%",
+          height:         "calc(100% - 44px)",
+          objectFit:      "cover",
+          objectPosition: "top center",
+          display:        "block",
+        }}
+      />
+
+      {/* Balanced gradient: top third lets the MSR screenshot read as a
+          real shipping product, lower two thirds darkens enough that the
+          overlay text holds without making the whole panel a black slab.
+          Tuned to land between "site shows through" and "label collides
+          with FIX YOUR FEET." */}
       <div
         style={{
-          display:        "flex",
-          flexDirection:  "column",
-          alignItems:     "flex-start",
-          textAlign:      "left",
-          gap:            "10px",
-          paddingLeft:    "14%",
-          paddingRight:   "14%",
+          position:   "absolute",
+          top:        "44px",
+          left:       0,
+          right:      0,
+          bottom:     0,
+          background:
+            "linear-gradient(to bottom," +
+            " rgba(15,15,15,0.06) 0%," +
+            " rgba(15,15,15,0.22) 28%," +
+            " rgba(15,15,15,0.70) 44%," +
+            " rgba(15,15,15,0.88) 72%," +
+            " rgba(15,15,15,0.96) 100%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Top-right "Featured case study · 2026" label — pulled out of the
+          bottom-left stack so it stops fighting the MSR site's own
+          "FIX YOUR FEET" headline. Mint teal on a near-opaque dark chip so
+          the label reads cleanly against any background pixel underneath. */}
+      <p
+        style={{
+          position:      "absolute",
+          top:           "clamp(68px, 5vw + 20px, 84px)",
+          right:         "clamp(20px, 3vw, 36px)",
+          zIndex:        3,
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "11px",
+          fontWeight:    700,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          color:         "#FAFAF9",
+          background:    "rgba(15,15,15,0.88)",
+          padding:       "9px 14px",
+          margin:        0,
+          textAlign:     "right",
         }}
       >
-        {/* Eyebrow — small uppercase label matching the editorial pattern
-            used across the Work cards. Frames the stat as a feature, not
-            a floating number. */}
-        <p
-          style={{
-            fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "11px",
-            fontWeight:     600,
-            letterSpacing:  "0.18em",
-            textTransform:  "uppercase",
-            color:          "#5A5752",
-            margin:         "0",
-          }}
-        >
-          Featured Result · Live Since April
-        </p>
+        Featured case study · 2026
+      </p>
 
-        {/* Title */}
+      {/* Stat + case-study identity overlay (bottom-left) */}
+      <div
+        style={{
+          position:  "absolute",
+          left:      "clamp(20px, 3vw, 36px)",
+          right:     "clamp(20px, 3vw, 36px)",
+          bottom:    "clamp(24px, 4vw, 40px)",
+          color:     "#FAFAF9",
+          zIndex:    2,
+        }}
+      >
         <p
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -497,49 +488,60 @@ function HeroResultPanel() {
             fontWeight:    600,
             lineHeight:    1.15,
             letterSpacing: "-0.015em",
-            color:         "#252B28",
-            margin:        "8px 0 0",
+            color:         "#FAFAF9",
+            margin:        "0 0 18px",
           }}
         >
           Men&apos;s Sole Revival
         </p>
 
-        {/* Stat — the strongest number on the page reads first. */}
+        {/* The number — animated count-up */}
         <p
           style={{
-            fontFamily:         "var(--font-dm-sans), sans-serif",
-            fontSize:           "clamp(40px, 4.5vw, 56px)",
-            lineHeight:         1,
-            fontWeight:         800,
-            letterSpacing:      "-0.02em",
-            color:              "var(--color-brand)",
-            margin:             "10px 0 4px",
+            fontFamily:    "var(--font-dm-sans), sans-serif",
+            fontSize:      "clamp(88px, 10vw, 140px)",
+            fontWeight:    300,
+            lineHeight:    0.85,
+            letterSpacing: "-0.05em",
+            color:         "#FAFAF9",
+            margin:        "0 0 10px",
             fontVariantNumeric: "tabular-nums",
           }}
         >
-          {Math.round(n)}× <span style={{
-            fontSize:     "13px",
-            fontWeight:   500,
-            letterSpacing: "0.02em",
-            color:        "#5A5752",
-            marginLeft:   "8px",
-          }}>CTR lift on affiliate placements</span>
+          {Math.round(n)}<span style={{ fontWeight: 200, opacity: 0.75 }}>×</span>
         </p>
 
-        {/* CTA */}
+        {/* What the number means */}
+        <p
+          style={{
+            fontFamily:    "var(--font-dm-sans), sans-serif",
+            fontSize:      "15px",
+            lineHeight:    1.5,
+            fontWeight:    500,
+            color:         "#FAFAF9",
+            margin:        "0 0 18px",
+            maxWidth:      "380px",
+          }}
+        >
+          Click-through lift on affiliate placements after pivoting from
+          e-commerce to editorial. Live, measured, real users.
+        </p>
+
+        {/* CTA — primary-styled inline button, no longer a tiny eyebrow link */}
         <span
           className="hero-result-cta"
           style={{
-            display:       "inline-flex",
-            alignItems:    "center",
-            gap:           "8px",
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "13px",
-            fontWeight:    600,
-            letterSpacing: "0.04em",
-            color:         "var(--color-brand)",
-            marginTop:     "12px",
-            transition:    "transform 0.25s ease",
+            display:         "inline-flex",
+            alignItems:      "center",
+            gap:             "10px",
+            color:           "#FAFAF9",
+            fontSize:        "13px",
+            fontWeight:      600,
+            fontFamily:      "var(--font-dm-sans), sans-serif",
+            letterSpacing:   "0.05em",
+            padding:         "12px 18px",
+            background:      "var(--color-brand)",
+            transition:      "transform 0.25s ease, background 0.25s ease",
           }}
         >
           View case study
@@ -550,87 +552,8 @@ function HeroResultPanel() {
       </div>
 
       <style>{`
-        .hero-result-anchor:hover .hero-ipad       { transform: translateY(-3px); }
+        .hero-result-anchor:hover { transform: translateY(-3px); }
         .hero-result-anchor:hover .hero-result-cta { transform: translateX(4px); }
-
-        /* Tilt removed. The wrapper stays as a passthrough so the JSX
-           structure doesn't need to change. */
-        .hero-ipad-tilt { /* no transform */ }
-
-        /* Orchestrated cycle — 22s loop. No cursors. The homepage stays at
-           opacity 1 for the entire active phase; the review fades in over
-           it (no muddy 'fade to dark' in the middle of the crossfade), and
-           the end of the review fades through a long, smooth black layer.
-
-            0–28%   pan homepage from top to a review card (motion stop)
-           28–31%  hold homepage at motion-stop
-           31–33%  cross-fade review IN over homepage (home stays opacity 1)
-           33–76%  pan review page top → bottom
-           76–82%  hold review at bottom
-           76–88%  black rises slowly (~2.6 s) — no abrupt cut
-           87.5%   homepage position resets to top behind the black
-           88–92%  black fades out, revealing the reset homepage
-           92–100% homepage holds at top (~1.8 s before looping) */
-
-        /* Animation runs once and freezes on the final keyframe (homepage
-           at top, fully visible). Saves CPU on long sessions and stops the
-           movement from dragging the eye back while the user is reading
-           further down the page. */
-        .hero-ipad-home         { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; will-change: transform, opacity; }
-        .hero-ipad-review       { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; will-change: transform, opacity; }
-        .hero-ipad-blackfade    { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
-        .hero-ipad-tap          { animation: hero-ipad-tap       22s linear 1 forwards; will-change: transform, opacity, box-shadow; }
-
-        @keyframes hero-ipad-tap {
-          0%, 26%   { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: 0 0 0 0 rgba(140, 26, 26, 0.6); }
-          28%       { opacity: 1; transform: translate(-50%, -50%) scale(1);    box-shadow: 0 0 0 0 rgba(140, 26, 26, 0.6); }
-          30%       { opacity: 1; transform: translate(-50%, -50%) scale(0.78); box-shadow: 0 0 0 12px rgba(140, 26, 26, 0.25); }
-          32%       { opacity: 0; transform: translate(-50%, -50%) scale(0.78); box-shadow: 0 0 0 28px rgba(140, 26, 26, 0);    }
-          100%      { opacity: 0; transform: translate(-50%, -50%) scale(0);    box-shadow: 0 0 0 0 rgba(140, 26, 26, 0);    }
-        }
-
-        @keyframes hero-ipad-home {
-          0%,  5%   { transform: translateY(0);    opacity: 1; }
-          28%       { transform: translateY(-38%); opacity: 1; }
-          /* Home stays opacity 1 the entire time — review covers it on top,
-             so there's never a moment where both elements are partially
-             transparent (which is what created the dark middle frame). */
-          87.4%     { transform: translateY(-38%); opacity: 1; }
-          87.5%     { transform: translateY(0);    opacity: 1; }
-          100%      { transform: translateY(0);    opacity: 1; }
-        }
-
-        @keyframes hero-ipad-review {
-          0%,  31%  { transform: translateY(0);    opacity: 0; }
-          33%       { transform: translateY(0);    opacity: 1; }
-          76%       { transform: translateY(-31%); opacity: 1; }
-          82%       { transform: translateY(-31%); opacity: 1; }
-          /* Disappear instantly while the black is at full opacity, so
-             nobody sees the position reset on the next loop. */
-          87.4%     { transform: translateY(-31%); opacity: 1; }
-          87.5%     { transform: translateY(0);    opacity: 0; }
-          100%      { transform: translateY(0);    opacity: 0; }
-        }
-
-        /* Black rises gently 76→88 (~2.6 s) — overlaps the last segment of
-           the review pan so the bottom of the page eases into black instead
-           of cutting. Holds briefly at peak, then fades out 88→92 (~0.9 s)
-           revealing the reset homepage. */
-        @keyframes hero-ipad-blackfade {
-          0%,  76%   { opacity: 0; }
-          88%        { opacity: 1; }
-          92%        { opacity: 0; }
-          100%       { opacity: 0; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .hero-ipad-home, .hero-ipad-review, .hero-ipad-blackfade {
-            animation: none;
-          }
-          .hero-ipad-home     { opacity: 1; transform: none; }
-          .hero-ipad-review,
-          .hero-ipad-blackfade { opacity: 0; }
-        }
       `}</style>
     </Link>
   );

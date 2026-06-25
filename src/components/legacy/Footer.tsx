@@ -10,8 +10,8 @@ const bg     = "#FAFAF9";  // cream surface
 const brand  = "var(--color-brand)";  // aubergine — wordmark + primary CTA
 const accent = "var(--color-accent)";  // sage — eyebrow rule + accent span
 const ink    = "#252B28";
-const ink2   = "#2F3531";
-const muted  = "#5A5752";
+const ink2   = "#3D4440";
+const muted  = "#8A8680";
 
 /* ─────────────────────────────────────────────
    Icons
@@ -54,18 +54,25 @@ export default function Footer() {
             borderBottom:   "1px solid rgba(110, 110, 108, 0.18)",
           }}
         >
-          {/* Left: availability microcopy only — the "Let's work together"
-              headline lived here previously but duplicated the Contact hero
-              one click away. The body line + adjacent Contact pill carry the
-              same intent without the duplicate ceremony. */}
-          <div style={{ maxWidth: "560px" }}>
+          {/* Left: microcopy */}
+          <div style={{ maxWidth: "480px" }}>
             <p style={{
               fontFamily:    font,
-              fontSize:      "14px",
-              lineHeight:    1.55,
-              color:         ink2,
-              margin:        0,
-              letterSpacing: "-0.005em",
+              fontSize:      "clamp(18px, 2vw, 22px)",
+              fontWeight:    600,
+              color:         ink,
+              margin:        "0 0 8px",
+              letterSpacing: "-0.015em",
+              lineHeight:    1.25,
+            }}>
+              Let&apos;s work <span style={{ color: brand }}>together.</span>
+            </p>
+            <p style={{
+              fontFamily: font,
+              fontSize:   "13px",
+              lineHeight: 1.55,
+              color:      ink2,
+              margin:     0,
             }}>
               Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
             </p>

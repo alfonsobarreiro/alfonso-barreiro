@@ -27,23 +27,23 @@
   --color-accent-400: #5F7556;
   --color-accent-500: #4A5C42;
 
-  /* ── Neutral scale ── */
+  /* ── Neutral scale (deepened for contrast) ── */
   --color-neutral-50:  #FAFAF9;
-  --color-neutral-100: #EBEBEA;
-  --color-neutral-200: #C9C5BD;
-  --color-neutral-800: #3D4440;
+  --color-neutral-100: #E2E0DC;  /* was #EBEBEA */
+  --color-neutral-200: #A8A39A;  /* was #C9C5BD */
+  --color-neutral-800: #2F3531;  /* was #3D4440 */
   --color-neutral-900: #252B28;
 
-  /* ── Semantic tokens ── */
+  /* ── Semantic tokens (deepened for contrast) ── */
   --color-background:          #FAFAF9;
   --color-surface:             #FFFFFF;
   --color-foreground:          #252B28;
-  --color-foreground-secondary:#3D4440;
-  --color-foreground-muted:    #8A8680;
+  --color-foreground-secondary:#2F3531;  /* was #3D4440 */
+  --color-foreground-muted:    #5A5752;  /* was #8A8680 */
   --color-brand:               #3D2645; /* aubergine — wordmark, work tiles, footer */
   --color-accent:              #7A8B6E; /* sage — rules, links, ornaments */
-  --color-border:              #E0DCD3;
-  --color-border-strong:       #B8B0A2;
+  --color-border:              #BFB9AF;  /* was #E0DCD3 */
+  --color-border-strong:       #8A8680;  /* was #B8B0A2 */
 
   /* ── Typography ── */
   --font-sans:    var(--font-dm-sans);
@@ -89,11 +89,31 @@
 
 html {
   scroll-behavior: smooth;
+  /* Fantasy-style section-to-section snap with a natural feel:
+     'y proximity' lets the browser snap to the closest section when the
+     user is near it, but never traps mid-scroll (mandatory would feel
+     jail-like). Combined with overscroll-behavior: contain, the bounce
+     at top/bottom is preserved on the page itself instead of getting
+     swallowed by the parent scroll. */
+  scroll-snap-type:     y proximity;
+  overscroll-behavior:  contain;
 }
 
 html, body {
   min-height:               100vh;
   min-height:               100dvh;
+}
+
+/* Snap targets: the homepage's top-level sections. Padding-top on the
+   snap line gives the nav (~72 px) breathing room above the snapped
+   section. */
+.hero-section,
+.work-section,
+.about-section,
+main > footer {
+  scroll-snap-align:   start;
+  scroll-snap-stop:    normal;
+  scroll-margin-top:   72px;
 }
 
 body {

@@ -6,9 +6,17 @@ import { useEffect, useState } from "react";
 /**
  * MSRPagePeek
  * ─────────────────────────────────────────────────────────────────────────────
- * Live MSR site auto-scrolling inside the home Work card. No device chrome —
- * just the actual work. The 1280 × 5474 full-page capture slowly pans top to
- * bottom inside a 16:10 frame; paused on hover and on prefers-reduced-motion.
+ * MSR site auto-scrolling inside the Figma MacBook Pro 14" Space Gray mockup
+ * (public/images/devices/macbook-pro-14.png).
+ *
+ * Layout math: the PNG is 2000×2000; the laptop's display sits at
+ * (506, 650, 897, 581). The PNG renders into a 16:10 frame with object-fit
+ * cover (vertical crop 187.5px each side at 1000×625 baseline), so the
+ * display's frame-relative coordinates become:
+ *   left   25.3 %
+ *   top    22 %
+ *   width  44.85 %
+ *   height 46.5 %
  */
 const IMG_W = 1280;
 const IMG_H = 5474;
@@ -27,55 +35,95 @@ export default function MSRPagePeek({ paused = false }: { paused?: boolean }) {
   return (
     <div
       role="img"
-      aria-label="Men's Sole Revival homepage preview"
+      aria-label="Men's Sole Revival homepage on a MacBook Pro"
       style={{
         position:    "relative",
         width:       "100%",
-        aspectRatio: "16 / 10",
+        aspectRatio: "4 / 3",
         overflow:    "hidden",
-        background:  "#13100C",
       }}
     >
+      {/* Display (above the device PNG) — auto-scrolls the MSR page.
+          Sized to sit exactly inside the MBP screen bezel so the website
+          reads as the laptop's screen, not a rectangle bleeding past it. */}
       <div
-        className="msr-page-track"
-        data-paused={paused || undefined}
-        data-reduced={reduced || undefined}
         style={{
-          position: "absolute",
-          top:      0,
-          left:     0,
-          width:    "100%",
-          aspectRatio: `${IMG_W} / ${IMG_H}`,
+          position:     "absolute",
+          left:         "18%",
+          top:          "18%",
+          width:        "64%",
+          height:       "60%",
+          overflow:     "hidden",
+          background:   "#13100C",
+          borderRadius: "3px",
+          zIndex:       2,
         }}
       >
-        <img
-          src="/cs-msr-homepage.jpg"
-          alt=""
-          loading="lazy"
-          decoding="async"
+        <div
+          className="msr-page-track"
+          data-paused={paused || undefined}
+          data-reduced={reduced || undefined}
           style={{
-            position:       "absolute",
-            inset:          0,
-            width:          "100%",
-            height:         "100%",
-            objectFit:      "cover",
-            objectPosition: "top center",
-            display:        "block",
+            position:    "absolute",
+            top:         0,
+            left:        0,
+            width:       "100%",
+            aspectRatio: `${IMG_W} / ${IMG_H}`,
           }}
-        />
+        >
+          <img
+            src="/cs-msr-homepage.jpg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            style={{
+              position:       "absolute",
+              inset:          0,
+              width:          "100%",
+              height:         "100%",
+              objectFit:      "cover",
+              objectPosition: "top center",
+              display:        "block",
+            }}
+          />
+        </div>
       </div>
 
+      {/* MacBook Pro chrome (below the display) — repositioned for the new
+          4:3 showroom. The MBP chrome bbox inside the 2000×2000 PNG sits at
+          (506, 650, 897×581). At width 139.4 % of the frame the chrome
+          renders ~62.5 % wide, with even breathing left/right and top/bottom. */}
+      <img
+        src="/images/devices/macbook-pro-14.png"
+        alt=""
+        aria-hidden
+        style={{
+          position:      "absolute",
+          left:          "-16.60%",
+          top:           "-37.50%",
+          width:         "139.40%",
+          maxWidth:      "none",
+          height:        "auto",
+          pointerEvents: "none",
+          zIndex:        1,
+        }}
+      />
+
       <style>{`
+        /* Scroll the full MSR homepage top → bottom over ~32s, then snap
+           back to the top in ~2s and loop. No "alternate" — the eye reads
+           the page in one direction. */
         .msr-page-track {
-          animation: msr-page-scroll 72s ease-in-out infinite alternate;
+          animation: msr-page-scroll 34s linear infinite;
         }
         .msr-page-track[data-paused],
         .msr-page-track[data-reduced] {
           animation: none;
         }
         @keyframes msr-page-scroll {
-          from { transform: translateY(0); }
-          to   { transform: translateY(-85%); }
+          0%   { transform: translateY(0);    animation-timing-function: ease-in-out; }
+          94%  { transform: translateY(-65%); animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1); }
+          100% { transform: translateY(0);    }
         }
       `}</style>
     </div>

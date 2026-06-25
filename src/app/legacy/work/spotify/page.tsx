@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import Nav from "@/components/legacy/Nav";
+import Footer from "@/components/legacy/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -94,76 +95,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* Arc divider — marks the transition between major case-study acts
-   (Premise → Research → Decisions → Details). A subtle horizontal rule
-   with the arc name centered, so a reader scrolling top-to-bottom can
-   feel the four-act structure without re-reading every chapter pill. */
-function ArcDivider({ arc }: { arc: string }) {
-  return (
-    <div
-      role="separator"
-      aria-label={`${arc} arc begins`}
-      style={{
-        display:        "flex",
-        alignItems:     "center",
-        gap:            "20px",
-        maxWidth:       CONTENT_MAX,
-        margin:         "120px auto 80px",
-        padding:        `0 ${SECTION_X}`,
-      }}
-    >
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-      <span style={{
-        fontFamily:     font.sans,
-        fontSize:       "11px",
-        fontWeight:     700,
-        letterSpacing:  "0.30em",
-        textTransform:  "uppercase",
-        color:          c.accent,
-        whiteSpace:     "nowrap",
-      }}>{arc}</span>
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-    </div>
-  );
-}
-
-/* Academic-category pill — sits UNDER each chapter title to restore the
-   skim-friendly "Premise / Research / Decisions / Details" arc that
-   editorial chapter titles otherwise hide. Filled pill in Spotify green
-   so it reads as a different signal from the bordered Tag pills (which
-   are dimensions of the work). The reader can tell at a glance:
-   "rounded green = arc category, square border = work dimension." */
-function CategoryPill({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ margin: "10px 0 28px" }}>
-      <span style={{
-        display:        "inline-flex",
-        alignItems:     "center",
-        gap:            "6px",
-        fontFamily:     font.sans,
-        fontSize:       "10px",
-        fontWeight:     700,
-        letterSpacing:  "0.18em",
-        textTransform:  "uppercase",
-        color:          c.accent,
-        padding:        "5px 12px 5px 10px",
-        background:     "rgba(30, 215, 96, 0.10)",
-        border:         "none",
-        borderRadius:   "999px",
-      }}>
-        <span aria-hidden style={{
-          display:      "inline-block",
-          width:        "6px",
-          height:       "6px",
-          borderRadius: "50%",
-          background:   c.accent,
-        }} />
-        {children}
-      </span>
-    </div>
-  );
-}
-
 function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
@@ -225,8 +156,8 @@ function HeroImage({ src, alt, priority = false, w = 1920, h = 1080 }: {
   );
 }
 
-function BigThree({ number, heading, category, image, imageAlt, body, callout, w, h }: {
-  number: string; heading: string; category?: string; image?: string; imageAlt?: string;
+function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
+  number: string; heading: string; image?: string; imageAlt?: string;
   body: React.ReactNode; callout: { decision: string; why: string; cost: string };
   w?: number; h?: number;
 }) {
@@ -254,11 +185,6 @@ function BigThree({ number, heading, category, image, imageAlt, body, callout, w
               fontWeight: 600, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>{heading}.</h2>
-            {category && (
-              <div style={{ marginTop: "16px" }}>
-                <CategoryPill>{category}</CategoryPill>
-              </div>
-            )}
           </div>
           <div>
             <p style={{
@@ -292,6 +218,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
 /* ---------- page ---------- */
 
 export default function SpotifyV2() {
+  if (process.env.NODE_ENV === "production") notFound(); // legacy snapshot — dev only
   return (
     <>
       <Nav />
@@ -308,31 +235,28 @@ export default function SpotifyV2() {
 
         {/* Title block */}
         <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `120px ${SECTION_X} 80px` }}>
-          <Eyebrow>Concept · Self-directed</Eyebrow>
+          <Eyebrow>Concept · 2025 · Self-directed</Eyebrow>
           <h1 style={{
             fontFamily: font.sans, fontSize: "clamp(48px, 8vw, 96px)",
-            fontWeight: 500, color: c.ink, margin: "0 0 20px",
+            fontWeight: 500, color: c.ink, margin: "0 0 32px",
             letterSpacing: "-0.035em", lineHeight: 1.0,
           }}>
             Pin. Remove. <span style={{ color: c.green }}>Pause.</span>
           </h1>
-          <div style={{ marginBottom: "32px" }}>
-            <CategoryPill>Premise</CategoryPill>
-          </div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
             lineHeight: 1.4, color: c.ink2, margin: "0 0 40px",
             maxWidth: "780px", letterSpacing: "-0.01em",
           }}>
-            Three reversible controls for Spotify&rsquo;s Recently Played shelf. Each one completes in one or two taps.
+            Three reversible controls for Spotify&rsquo;s Recently Played shelf. Each one completes in one or two taps. None touch the recommendation engine.
           </p>
-          <div className="sp2-hero-tags" style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "40px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "40px" }}>
             <Tag>Feature design</Tag>
             <Tag>Interaction model</Tag>
             <Tag>Constraint mapping</Tag>
             <Tag>Reversible by default</Tag>
           </div>
-          <p className="sp2-hero-caption" style={{
+          <p style={{
             fontFamily: font.sans, fontSize: "13px", color: c.muted,
             margin: 0, lineHeight: 1.6, maxWidth: "780px",
           }}>
@@ -340,8 +264,6 @@ export default function SpotifyV2() {
           </p>
         </header>
 
-        {/* ── PREMISE arc tint ─ */}
-        <div style={{ background: "#FBF7EE", paddingTop: "80px", paddingBottom: "40px" }}>
         {/* Action sheet hero — case study opener. One affordance image
             (long-press action sheet open over a track row) + the three
             controls + power-user framing. Replaces the previous dark
@@ -368,7 +290,6 @@ export default function SpotifyV2() {
             FrictionList above; one image of text isn't an image). */}
         <BigThree
           number="01"
-          category="Premise"
           heading="The problem"
           body={
             <>
@@ -382,13 +303,6 @@ export default function SpotifyV2() {
           }}
         />
 
-        </div>
-        {/* ─ end PREMISE arc tint */}
-
-        <ArcDivider arc="Research" />
-
-        {/* ── RESEARCH arc tint ─ */}
-        <div style={{ background: "#F1F4F8", paddingTop: "80px", paddingBottom: "40px" }}>
         {/* User voices — direct quotes from public sources.
             People are reaching for affordances that don't exist yet. */}
         <UserVoices />
@@ -402,13 +316,6 @@ export default function SpotifyV2() {
             Pulled from Figma slide 16 (Competitive Patterns at a Glance). */}
         <CompetitiveAudit />
 
-        </div>
-        {/* ─ end RESEARCH arc tint */}
-
-        <ArcDivider arc="Decisions" />
-
-        {/* ── DECISIONS arc tint ─ */}
-        <div style={{ background: "#F6F1E7", paddingTop: "80px", paddingBottom: "40px" }}>
         {/* User journey — where the controls land */}
         <UserJourney />
 
@@ -416,14 +323,6 @@ export default function SpotifyV2() {
             User said: break apart the 3-tab carousel. Each phase
             gets its own breathing room. Each is image-led. */}
         <SketchesAndMidfi />
-
-        </div>
-        {/* ─ end DECISIONS arc tint */}
-
-        <ArcDivider arc="Details" />
-
-        {/* ── DETAILS arc tint ─ */}
-        <div style={{ background: "#F1F6F2", paddingTop: "80px", paddingBottom: "40px" }}>
         <DecisionLogic />
 
         {/* Prototypes — moved out of DecisionLogic so the loops have their own breathing room */}
@@ -434,7 +333,6 @@ export default function SpotifyV2() {
             body + callout below). */}
         <BigThree
           number="02"
-          category="Details"
           heading="The bet"
           body={
             <>
@@ -462,7 +360,6 @@ export default function SpotifyV2() {
             }}>
               Same logic, native shell.
             </h2>
-            <CategoryPill>Details</CategoryPill>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: "0 0 32px", maxWidth: PROSE_MAX,
@@ -503,8 +400,6 @@ export default function SpotifyV2() {
             <MetaCell label="Status" value="Concept · not shipped" />
           </div>
         </section>
-        </div>
-        {/* ─ end DETAILS arc tint */}
 
       </main>
 
@@ -543,15 +438,6 @@ export default function SpotifyV2() {
         }
         .sp2-loops-tab:hover { background: rgba(30,215,96,0.05); }
 
-        /* Tablet (≤1024px) — thicken arc dividers so the "RESEARCH" label
-           doesn't get visually lost between the rules at narrower widths. */
-        @media (max-width: 1024px) {
-          [role="separator"] > span:first-child,
-          [role="separator"] > span:last-child {
-            height: 2px !important;
-          }
-        }
-
         @media (max-width: 760px) {
           .sp2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
           .sp2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
@@ -576,18 +462,6 @@ export default function SpotifyV2() {
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; }
           .sp2-loops-row figure > div { width: 100% !important; max-width: 280px !important; }
           .sp2-tc-nav           { grid-template-columns: 1fr 1fr 1fr !important; }
-
-          /* Mobile hero — drop the two most-internal Tag pills (3rd + 4th)
-             and hide the redundant caption to reduce scroll-before-content. */
-          .sp2-hero-tags > *:nth-child(3),
-          .sp2-hero-tags > *:nth-child(4) { display: none !important; }
-          .sp2-hero-caption                { display: none !important; }
-
-          /* Mobile sticky chip nav — tighter gap + reduced letter-spacing so
-             "01 PIN · 02 REMOVE · 03 PAUSE" doesn't wrap or crowd. */
-          .sp2-control-nav ul   { gap: 12px !important; }
-          .sp2-control-nav a    { font-size: 12px !important; letter-spacing: 0.04em !important; }
-          .sp2-control-nav a span:first-child { font-size: 10px !important; }
         }
       `}</style>
     </>
@@ -672,7 +546,6 @@ function SketchesAndMidfi() {
             }}>
               From paper to pixels.
             </h2>
-            <CategoryPill>Decisions</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -885,7 +758,6 @@ function DecisionLogic() {
             }}>
               Pin. Remove. Pause.
             </h2>
-            <CategoryPill>Details</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -897,73 +769,12 @@ function DecisionLogic() {
           </div>
         </div>
 
-        {/* Sticky chapter nav — appears as the reader enters the
-            three-controls section and stays pinned through Pin / Remove /
-            Pause so the recall load (NN/g H6) of "which control am I
-            reading?" is always one glance away. Active state via
-            IntersectionObserver below. */}
-        <nav
-          aria-label="Three controls"
-          className="sp2-control-nav"
-          style={{
-            position:   "sticky",
-            top:        "72px",
-            zIndex:     10,
-            background: "rgba(255, 255, 255, 0.92)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            borderTop:    `1px solid ${c.border}`,
-            borderBottom: `1px solid ${c.border}`,
-            margin:     "0 0 40px",
-            padding:    "14px 0",
-          }}
-        >
-          <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
-            margin: 0, padding: 0, listStyle: "none",
-          }}>
-            {flows.map((f, i) => (
-              <li key={f.key}>
-                <a
-                  href={`#control-${f.key.toLowerCase()}`}
-                  data-control-anchor={f.key.toLowerCase()}
-                  style={{
-                    fontFamily:     font.sans,
-                    fontSize:       "13px",
-                    fontWeight:     600,
-                    letterSpacing:  "0.06em",
-                    textTransform:  "uppercase",
-                    color:          c.ink2,
-                    textDecoration: "none",
-                    display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
-                  }}
-                >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {f.key}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
         {flows.map((f, i) => (
-          <article
-            key={f.key}
-            id={`control-${f.key.toLowerCase()}`}
-            style={{
-              marginTop:      i === 0 ? 0 : "120px",
-              paddingTop:     i === 0 ? 0 : "80px",
-              borderTop:      i === 0 ? "none" : `1px solid ${c.border}`,
-              scrollMarginTop: "152px",
-            }}
-          >
+          <article key={f.key} style={{
+            marginTop: i === 0 ? 0 : "120px",
+            paddingTop: i === 0 ? 0 : "80px",
+            borderTop: i === 0 ? "none" : `1px solid ${c.border}`,
+          }}>
             <header style={{ marginBottom: "40px" }}>
               <p style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
@@ -1052,44 +863,6 @@ function DecisionLogic() {
           </article>
         ))}
       </div>
-
-      {/* Active-state highlight for the sticky nav above. IntersectionObserver
-          watches the three control articles and sets data-active on the
-          matching anchor so the chip underlines + colors when its section
-          is on screen. CSS handles the visual via [data-active]. */}
-      <script dangerouslySetInnerHTML={{ __html: `
-        (function() {
-          if (typeof window === "undefined") return;
-          const anchors = document.querySelectorAll('a[data-control-anchor]');
-          if (!anchors.length) return;
-          const map = {};
-          anchors.forEach(a => { map[a.getAttribute('data-control-anchor')] = a; });
-          const obs = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-              const key = e.target.id.replace('control-', '');
-              const anchor = map[key];
-              if (!anchor) return;
-              if (e.isIntersecting) {
-                anchors.forEach(a => a.removeAttribute('data-active'));
-                anchor.setAttribute('data-active', 'true');
-              }
-            });
-          }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-          ['pin', 'remove', 'pause'].forEach(k => {
-            const el = document.getElementById('control-' + k);
-            if (el) obs.observe(el);
-          });
-        })();
-      ` }} />
-      <style>{`
-        .sp2-control-nav a[data-active] {
-          color: #1ED760 !important;
-          border-bottom-color: #1ED760 !important;
-        }
-        .sp2-control-nav a:hover {
-          color: #252B28;
-        }
-      `}</style>
     </section>
   );
 }
@@ -1143,7 +916,6 @@ function Prototypes() {
             }}>
               The loops.
             </h2>
-            <CategoryPill>Details</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -1287,7 +1059,6 @@ function ShippedSection() {
             }}>
               Shipped, with receipts.
             </h2>
-            <CategoryPill>Details</CategoryPill>
           </div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1470,7 +1241,6 @@ function FrictionList() {
         }}>
           Where the shelf gets in the way.
         </h2>
-        <CategoryPill>Premise</CategoryPill>
         <p style={{
           fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
           lineHeight: 1.75, color: c.ink2, margin: "0 0 28px",
@@ -1567,7 +1337,6 @@ function ActionSheetHero() {
             }}>
               Three controls for the shelf people use every day.
             </h2>
-            <CategoryPill>Premise</CategoryPill>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
               lineHeight: 1.7, color: "rgba(250, 250, 249, 0.82)",
@@ -1712,7 +1481,6 @@ function UserVoices() {
             }}>
               The signal was in the open.
             </h2>
-            <CategoryPill>Research</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -1799,7 +1567,6 @@ function CompetitiveAudit() {
             }}>
               Five categories.<br />One open slot.
             </h2>
-            <CategoryPill>Research</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -1986,7 +1753,6 @@ function UserJourney() {
             }}>
               Where the controls land.
             </h2>
-            <CategoryPill>Decisions</CategoryPill>
           </div>
           <div>
             <p style={{

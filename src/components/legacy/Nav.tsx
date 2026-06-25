@@ -65,7 +65,7 @@ export default function Nav() {
             ? "1px solid rgba(245,243,239,0.08)"
             : scrolled
               ? "1px solid rgba(232,228,222,0.6)"
-              : "none",
+              : "1px solid #A8A39A",
           transition:     "background 0.3s, border-color 0.3s, backdrop-filter 0.3s",
         }}
       >
@@ -351,7 +351,6 @@ export default function Nav() {
 function SearchTrigger() {
   return (
     <button
-      className="nav-search-pill"
       onClick={() => openCommandPalette()}
       aria-label="Search (⌘K)"
       style={{
@@ -363,7 +362,7 @@ function SearchTrigger() {
         border:        "1px solid #E8E4DE",
         borderRadius:  0,
         cursor:        "pointer",
-        color:         "#3D4440",
+        color:         "#8A8680",
         fontFamily:    "var(--font-dm-sans), sans-serif",
         fontSize:      "12px",
         transition:    "color 0.2s, border-color 0.2s, background 0.2s",
@@ -383,8 +382,8 @@ function SearchTrigger() {
         <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
         <path d="M20 20L16.5 16.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
-      <span className="nav-search-label">Search</span>
-      <kbd className="nav-search-kbd" style={{
+      <span>Search</span>
+      <kbd style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
         fontSize:   "10px",
         padding:    "2px 5px",
@@ -397,21 +396,6 @@ function SearchTrigger() {
       }}>
         ⌘K
       </kbd>
-      <style>{`
-        /* Below 960px, collapse the search pill to icon-only so the
-           desktop nav (logo + 2 links + search + Get in touch CTA) has
-           room without elements squeezing into each other. */
-        @media (max-width: 960px) {
-          .nav-search-pill {
-            padding: 8px !important;
-            border-color: transparent !important;
-          }
-          .nav-search-pill .nav-search-label,
-          .nav-search-pill .nav-search-kbd {
-            display: none !important;
-          }
-        }
-      `}</style>
     </button>
   );
 }
@@ -431,7 +415,7 @@ function NavLink({
     background:    "none",
     border:        "none",
     cursor:        "pointer",
-    color:         "#3D4440",
+    color:         "#8A8680",
     fontSize:      "13px",
     fontWeight:    500,
     letterSpacing: "0.08em",

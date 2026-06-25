@@ -353,10 +353,27 @@ export default function AboutPage() {
             </div>
           </div>
           <style>{`
+            /* Keep the trio 3-up on mobile — stacking it vertically lost
+               the "by the numbers" gestalt. Smaller numerals + tighter gap
+               make the row fit at 375-500px while preserving the visual
+               comparison among the three stats. */
             @media (max-width: 760px) {
               .about-stats-grid {
-                grid-template-columns: 1fr !important;
-                gap: 36px !important;
+                grid-template-columns: 1fr 1fr 1fr !important;
+                gap: 12px !important;
+              }
+              .about-stats-grid p:first-child {
+                font-size: clamp(40px, 14vw, 64px) !important;
+                margin-bottom: 8px !important;
+              }
+              .about-stats-grid p:first-child > span {
+                font-size: 11px !important;
+                margin-left: 4px !important;
+                display: block !important;
+              }
+              .about-stats-grid p:last-child {
+                font-size: 11px !important;
+                line-height: 1.4 !important;
               }
             }
           `}</style>
@@ -448,6 +465,39 @@ export default function AboutPage() {
             <p style={{ ...beliefBody, marginBottom: 0 }}>
               Claude for clustering 200-plus community posts. AI-assisted competitive audits. AI-augmented production workflows that cut a creative team&apos;s timelines twenty percent at VARA without dropping quality. The model is the second pair of hands, not the designer.
             </p>
+          </div>
+        </section>
+
+        {/* ── Pull quote between the two long claim/body sections.
+             Breaks up the 9-claim stack with one editorial breath. The
+             quote ties "value" (business outcomes) to "thinking" (design as
+             decision-making) so it bridges the two sections without
+             duplicating a line from either. */}
+        <section style={{ padding: "clamp(60px, 7vw, 96px) clamp(32px, 6vw, 80px)", background: "#FAFAF9" }}>
+          <div style={innerWrapper}>
+            <figure
+              className="scroll-reveal"
+              style={{
+                margin:       0,
+                borderLeft:   "3px solid var(--color-brand)",
+                paddingLeft:  "32px",
+                maxWidth:     "780px",
+              }}
+            >
+              <blockquote
+                style={{
+                  fontFamily:    "var(--font-dm-sans), sans-serif",
+                  fontSize:      "clamp(24px, 3.2vw, 38px)",
+                  fontWeight:    500,
+                  lineHeight:    1.25,
+                  color:         "#252B28",
+                  margin:        0,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                The work that ships is the work after the decisions are clear.
+              </blockquote>
+            </figure>
           </div>
         </section>
 

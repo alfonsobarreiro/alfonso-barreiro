@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import Nav from "@/components/legacy/Nav";
+import Footer from "@/components/legacy/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -108,74 +109,6 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* Arc divider — marks the transition between major case-study acts
-   (Premise → Research → Decisions → Details). Same pattern as the
-   Spotify case study; uses Wayfarer's navy as the label color. */
-function ArcDivider({ arc }: { arc: string }) {
-  return (
-    <div
-      role="separator"
-      aria-label={`${arc} arc begins`}
-      style={{
-        display:        "flex",
-        alignItems:     "center",
-        gap:            "20px",
-        maxWidth:       CONTENT_MAX,
-        margin:         "120px auto 80px",
-        padding:        `0 ${SECTION_X}`,
-      }}
-    >
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-      <span style={{
-        fontFamily:     font.sans,
-        fontSize:       "11px",
-        fontWeight:     700,
-        letterSpacing:  "0.30em",
-        textTransform:  "uppercase",
-        color:          c.navy,
-        whiteSpace:     "nowrap",
-      }}>{arc}</span>
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-    </div>
-  );
-}
-
-/* Academic-category pill — sits UNDER each chapter title to restore
-   the skim-friendly Premise / Research / Decisions / Details arc. Navy
-   filled pill differentiates from the bordered Tag pills (work
-   dimensions). Square border = work dimension; rounded navy = arc
-   category. */
-function CategoryPill({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ margin: "10px 0 28px" }}>
-      <span style={{
-        display:        "inline-flex",
-        alignItems:     "center",
-        gap:            "6px",
-        fontFamily:     font.sans,
-        fontSize:       "10px",
-        fontWeight:     700,
-        letterSpacing:  "0.18em",
-        textTransform:  "uppercase",
-        color:          c.navy,
-        padding:        "5px 12px 5px 10px",
-        background:     "rgba(62, 60, 120, 0.10)",
-        border:         "none",
-        borderRadius:   "999px",
-      }}>
-        <span aria-hidden style={{
-          display:      "inline-block",
-          width:        "6px",
-          height:       "6px",
-          borderRadius: "50%",
-          background:   c.navy,
-        }} />
-        {children}
-      </span>
-    </div>
-  );
-}
-
 function Callout({
   decision, why, cost,
 }: { decision: string; why: string; cost: string }) {
@@ -256,11 +189,10 @@ function HeroImage({
 /* ---------- BigThree section template ---------- */
 
 function BigThree({
-  number, heading, category, image, imageAlt, imageCrop, body, callout,
+  number, heading, image, imageAlt, imageCrop, body, callout,
 }: {
   number: string;
   heading: string;
-  category?: string;
   image: string;
   imageAlt: string;
   imageCrop: string | null;
@@ -291,11 +223,6 @@ function BigThree({
             }}>
               {heading}.
             </h2>
-            {category && (
-              <div style={{ marginTop: "16px" }}>
-                <CategoryPill>{category}</CategoryPill>
-              </div>
-            )}
           </div>
           <div>
             <p style={{
@@ -331,6 +258,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
 /* ---------- page ---------- */
 
 export default function WayfarerV2() {
+  if (process.env.NODE_ENV === "production") notFound(); // legacy snapshot — dev only
   return (
     <>
       <Nav />
@@ -393,137 +321,6 @@ export default function WayfarerV2() {
           </a>
         </header>
 
-        {/* Sticky arc nav — pinned below the page nav once the reader
-            scrolls into the content arcs. Lets a recruiter jump between
-            Premise / Research / Decisions / Details without a full
-            scroll. Active state set by IntersectionObserver below. */}
-        <nav
-          aria-label="Case study arcs"
-          className="wf2-arc-nav"
-          style={{
-            position:       "sticky",
-            top:            "72px",
-            zIndex:         10,
-            /* Global `main { display: flex; flex-direction: column }` (set in
-               globals.css for the sticky-footer pattern) makes sticky
-               children unreliable. align-self + flex-shrink lock the nav so
-               it doesn't get stretched or squeezed by the flex layout, and
-               width: 100% ensures it spans the row. */
-            alignSelf:      "stretch",
-            flexShrink:     0,
-            width:          "100%",
-            background:     "rgba(255, 255, 255, 0.94)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            borderTop:      `1px solid ${c.border}`,
-            borderBottom:   `1px solid ${c.border}`,
-            padding:        "14px 0",
-          }}
-        >
-          <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
-            margin: 0, padding: `0 ${SECTION_X}`, listStyle: "none", flexWrap: "wrap",
-          }}>
-            {[
-              { key: "premise",   label: "Premise"   },
-              { key: "research",  label: "Research"  },
-              { key: "decisions", label: "Decisions" },
-              { key: "details",   label: "Details"   },
-            ].map((arc, i) => (
-              <li key={arc.key}>
-                <a
-                  href={`#arc-${arc.key}`}
-                  data-arc-anchor={arc.key}
-                  style={{
-                    fontFamily:     font.sans,
-                    fontSize:       "13px",
-                    fontWeight:     600,
-                    letterSpacing:  "0.06em",
-                    textTransform:  "uppercase",
-                    color:          c.ink2,
-                    textDecoration: "none",
-                    display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
-                  }}
-                >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {arc.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function() {
-            if (typeof window === "undefined") return;
-            /* Defer setup until the arc divs exist further down the page —
-               this script runs as soon as the browser parses it, which is
-               before the rest of the body. */
-            function wire() {
-              const anchors = document.querySelectorAll('a[data-arc-anchor]');
-              if (!anchors.length) return false;
-              const targets = ['premise', 'research', 'decisions', 'details']
-                .map(k => document.getElementById('arc-' + k))
-                .filter(Boolean);
-              if (targets.length < 4) return false;
-              const map = {};
-              anchors.forEach(a => { map[a.getAttribute('data-arc-anchor')] = a; });
-              const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                  const key = e.target.id.replace('arc-', '');
-                  const anchor = map[key];
-                  if (!anchor) return;
-                  if (e.isIntersecting) {
-                    anchors.forEach(a => a.removeAttribute('data-active'));
-                    anchor.setAttribute('data-active', 'true');
-                  }
-                });
-              }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(t => obs.observe(t));
-              return true;
-            }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(() => requestAnimationFrame(wire));
-            } else {
-              document.addEventListener('DOMContentLoaded', wire);
-            }
-          })();
-        ` }} />
-        <style>{`
-          .wf2-arc-nav a[data-active] {
-            color: ${c.navy} !important;
-            border-bottom-color: ${c.navy} !important;
-          }
-          .wf2-arc-nav a:hover { color: ${c.ink}; }
-
-          /* Fallback for narrow viewports — global "main { display: flex }"
-             (set in globals.css for the sticky-footer pattern) makes
-             position: sticky unreliable on direct children at mobile widths.
-             Switch to position: fixed so the arc nav stays anchored to the
-             top of the viewport like the page Nav above it. */
-          @media (max-width: 760px) {
-            .wf2-arc-nav {
-              position: fixed !important;
-              left: 0 !important;
-              right: 0 !important;
-              top: 72px !important;
-            }
-            /* The fixed nav lifts out of flow — push subsequent content
-               down by the nav's height (~48px) so it isn't covered. */
-            .wf2-arc-nav + script + style + div { padding-top: 48px !important; }
-          }
-        `}</style>
-
-        {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F8F1ED", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
-
         {/* ─────────────────────────────────────────────
             Hero — live homepage screenshot.
             Real product, not a deck slide.
@@ -567,7 +364,6 @@ export default function WayfarerV2() {
         ───────────────────────────────────────────── */}
         <BigThree
           number="01"
-          category="Premise"
           heading="The problem"
           image="/images/work/wayfarer/v2/live-destinations-grid-v2.webp"
           imageAlt="Live destinations grid at wayfarer.barreiro.com — 40+ destinations across seven continents, the surface the original brief tried to make the homepage."
@@ -584,14 +380,6 @@ export default function WayfarerV2() {
           }}
         />
 
-        </div>
-        {/* ─ end PREMISE arc tint */}
-
-        <ArcDivider arc="Research" />
-
-        {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#F1F2F8", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
-
         {/* ─────────────────────────────────────────────
             Research strip — three real research surfaces
             Wayfarer's equivalent of MSR's "Week 1 / 2 / 3" arc
@@ -606,14 +394,6 @@ export default function WayfarerV2() {
             the result. Three CSS-only tabs over Figma artifacts.
         ───────────────────────────────────────────── */}
         <ProcessGallery />
-
-        </div>
-        {/* ─ end RESEARCH arc tint */}
-
-        <ArcDivider arc="Decisions" />
-
-        {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F4F2EA", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Information Architecture — routes + user flow.
@@ -670,7 +450,6 @@ export default function WayfarerV2() {
                 }}>
                   The bet.
                 </h2>
-                <CategoryPill>Decisions</CategoryPill>
               </div>
               <div>
                 <p style={{
@@ -695,14 +474,6 @@ export default function WayfarerV2() {
             exported visual. Uses Wayfarer navy + coral.
         ───────────────────────────────────────────── */}
         <BrandIdentitySection />
-
-        </div>
-        {/* ─ end DECISIONS arc tint */}
-
-        <ArcDivider arc="Details" />
-
-        {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#EFF2F0", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Design System carousel — 3 tabs (Color, Type,
@@ -766,8 +537,6 @@ export default function WayfarerV2() {
             <MetaCell label="Live"   value={<a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>wayfarer.barreiro.com</a>} />
           </div>
         </section>
-        </div>
-        {/* ─ end DETAILS arc tint */}
 
       </main>
 
@@ -980,7 +749,6 @@ function BrandIdentitySection() {
             }}>
               Editorial, not booking-engine.
             </h2>
-            <CategoryPill>Decisions</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -1015,7 +783,6 @@ function DesignSystemSection() {
             }}>
               Tokens first.<br/>Code-cross-referenced.
             </h2>
-            <CategoryPill>Details</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -1251,7 +1018,6 @@ function ShippedSection() {
             }}>
               Shipped.
             </h2>
-            <CategoryPill>Details</CategoryPill>
           </div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1827,7 +1593,6 @@ function InformationArchitecture() {
             }}>
               Six routes, two flows,<br />one discovery loop.
             </h2>
-            <CategoryPill>Decisions</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -1960,7 +1725,6 @@ function ProcessGallery() {
             }}>
               How I got there.
             </h2>
-            <CategoryPill>Research</CategoryPill>
           </div>
           <div>
             <p style={{
@@ -2581,7 +2345,6 @@ function AccessibilitySection() {
             }}>
               Audited, not assumed.
             </h2>
-            <CategoryPill>Details</CategoryPill>
           </div>
           <div>
             <p style={{

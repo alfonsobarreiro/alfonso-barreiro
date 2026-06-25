@@ -15,36 +15,13 @@ export const metadata: Metadata = {
   },
 };
 
-function SectionDivider() {
-  return (
-    <div
-      style={{
-        display:        "flex",
-        justifyContent: "center",
-        alignItems:     "center",
-        padding:        "0 clamp(32px, 6vw, 80px)",
-      }}
-    >
-      <div
-        style={{
-          width:      "48px",
-          height:     "1px",
-          background: "#6E6E6A",
-        }}
-      />
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <main>
       <PersonSchema />
       <Nav />
       <Hero />
-      <SectionDivider />
       <Work />
-      <SectionDivider />
       <About />
       <Footer />
       <BackToTop />

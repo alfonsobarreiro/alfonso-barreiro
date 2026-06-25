@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import Nav from "@/components/legacy/Nav";
+import Footer from "@/components/legacy/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -104,75 +105,6 @@ function Tag({ children }: { children: React.ReactNode }) {
     }}>
       {children}
     </span>
-  );
-}
-
-/* Arc divider — marks the transition between major case-study acts
-   (Premise → Research → Decisions → Details). Same pattern as Spotify
-   + Wayfarer; uses MSR brand crimson as the label color. */
-function ArcDivider({ arc }: { arc: string }) {
-  return (
-    <div
-      role="separator"
-      aria-label={`${arc} arc begins`}
-      style={{
-        display:        "flex",
-        alignItems:     "center",
-        gap:            "20px",
-        maxWidth:       CONTENT_MAX,
-        margin:         "120px auto 80px",
-        padding:        `0 ${SECTION_X}`,
-      }}
-    >
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-      <span style={{
-        fontFamily:     font.sans,
-        fontSize:       "11px",
-        fontWeight:     700,
-        letterSpacing:  "0.30em",
-        textTransform:  "uppercase",
-        color:          c.brand,
-        whiteSpace:     "nowrap",
-      }}>{arc}</span>
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-    </div>
-  );
-}
-
-/* Academic-category pill — sits UNDER each chapter title to restore
-   the skim-friendly Premise / Research / Decisions / Details arc.
-   Crimson filled pill differentiates from the bordered Tag pills (work
-   dimensions). Square border = work dimension; rounded crimson = arc
-   category. Per case-study brand parity: Spotify=green, Wayfarer=navy,
-   MSR=crimson. */
-function CategoryPill({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ margin: "10px 0 28px" }}>
-      <span style={{
-        display:        "inline-flex",
-        alignItems:     "center",
-        gap:            "6px",
-        fontFamily:     font.sans,
-        fontSize:       "10px",
-        fontWeight:     700,
-        letterSpacing:  "0.18em",
-        textTransform:  "uppercase",
-        color:          c.brand,
-        padding:        "5px 12px 5px 10px",
-        background:     "rgba(140, 26, 26, 0.10)",
-        border:         "none",
-        borderRadius:   "999px",
-      }}>
-        <span aria-hidden style={{
-          display:      "inline-block",
-          width:        "6px",
-          height:       "6px",
-          borderRadius: "50%",
-          background:   c.brand,
-        }} />
-        {children}
-      </span>
-    </div>
   );
 }
 
@@ -281,6 +213,7 @@ function HeroImage({
 /* ---------- page ---------- */
 
 export default function MSRv2() {
+  if (process.env.NODE_ENV === "production") notFound(); // legacy snapshot — dev only
   return (
     <>
       <Nav />
@@ -366,123 +299,6 @@ export default function MSRv2() {
           </a>
         </header>
 
-        {/* Sticky arc nav — pinned below page Nav once the reader scrolls
-            into the content arcs. Jumps between Premise / Research /
-            Decisions / Details. Sticky on desktop+tablet; fixed fallback
-            at mobile (see media query in style block) because global
-            `main { display: flex }` makes sticky unreliable at small
-            viewports. */}
-        <nav
-          aria-label="Case study arcs"
-          className="msr2-arc-nav"
-          style={{
-            position:       "sticky",
-            top:            "72px",
-            zIndex:         10,
-            alignSelf:      "stretch",
-            flexShrink:     0,
-            width:          "100%",
-            background:     "rgba(255, 255, 255, 0.94)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            borderTop:      `1px solid ${c.border}`,
-            borderBottom:   `1px solid ${c.border}`,
-            padding:        "14px 0",
-          }}
-        >
-          <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
-            margin: 0, padding: `0 ${SECTION_X}`, listStyle: "none", flexWrap: "wrap",
-          }}>
-            {[
-              { key: "premise",   label: "Premise"   },
-              { key: "research",  label: "Research"  },
-              { key: "decisions", label: "Decisions" },
-              { key: "details",   label: "Details"   },
-            ].map((arc, i) => (
-              <li key={arc.key}>
-                <a
-                  href={`#arc-${arc.key}`}
-                  data-arc-anchor={arc.key}
-                  style={{
-                    fontFamily:     font.sans,
-                    fontSize:       "13px",
-                    fontWeight:     600,
-                    letterSpacing:  "0.06em",
-                    textTransform:  "uppercase",
-                    color:          c.ink2,
-                    textDecoration: "none",
-                    display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
-                  }}
-                >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {arc.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function() {
-            if (typeof window === "undefined") return;
-            function wire() {
-              const anchors = document.querySelectorAll('a[data-arc-anchor]');
-              if (!anchors.length) return false;
-              const targets = ['premise', 'research', 'decisions', 'details']
-                .map(k => document.getElementById('arc-' + k))
-                .filter(Boolean);
-              if (targets.length < 4) return false;
-              const map = {};
-              anchors.forEach(a => { map[a.getAttribute('data-arc-anchor')] = a; });
-              const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                  const key = e.target.id.replace('arc-', '');
-                  const anchor = map[key];
-                  if (!anchor) return;
-                  if (e.isIntersecting) {
-                    anchors.forEach(a => a.removeAttribute('data-active'));
-                    anchor.setAttribute('data-active', 'true');
-                  }
-                });
-              }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(t => obs.observe(t));
-              return true;
-            }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(() => requestAnimationFrame(wire));
-            } else {
-              document.addEventListener('DOMContentLoaded', wire);
-            }
-          })();
-        ` }} />
-        <style>{`
-          .msr2-arc-nav a[data-active] {
-            color: var(--color-brand) !important;
-            border-bottom-color: var(--color-brand) !important;
-          }
-          .msr2-arc-nav a:hover { color: ${c.ink}; }
-          @media (max-width: 760px) {
-            .msr2-arc-nav {
-              position: fixed !important;
-              left: 0 !important;
-              right: 0 !important;
-              top: 72px !important;
-            }
-            .msr2-arc-nav + script + style + div { padding-top: 48px !important; }
-          }
-        `}</style>
-
-        {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F8F2EC", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
-
         {/* ─────────────────────────────────────────────
             Hero image — full homepage capture, cropped
             to top portion so the hero lands first.
@@ -523,7 +339,6 @@ export default function MSRv2() {
         ───────────────────────────────────────────── */}
         <BigThree
           number="01"
-          category="Premise"
           heading="The problem"
           image="/images/work/msr/v2/assessment-intro.jpg"
           imageAlt="Assessment intro page — &ldquo;The Men&rsquo;s Foot Health Assessment.&rdquo; 5-minute self-check with the SEE A DOCTOR IF triage box and three real numbers (77%, 1 in 3, 63–72%)."
@@ -540,14 +355,6 @@ export default function MSRv2() {
           }}
         />
 
-        </div>
-        {/* ─ end PREMISE arc tint */}
-
-        <ArcDivider arc="Research" />
-
-        {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#F1F3F5", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
-
         {/* ─────────────────────────────────────────────
             Research strip — compact bridge between §01
             and §02. Names the three-week arc that landed
@@ -556,14 +363,6 @@ export default function MSRv2() {
         <section style={{ padding: `0 0 80px` }}>
           <ResearchStrip />
         </section>
-
-        </div>
-        {/* ─ end RESEARCH arc tint */}
-
-        <ArcDivider arc="Decisions" />
-
-        {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F4F0E8", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             §02 — The bet (inlined; uses a code-rendered
@@ -606,7 +405,6 @@ export default function MSRv2() {
                 }}>
                   The bet.
                 </h2>
-                <CategoryPill>Decisions</CategoryPill>
               </div>
 
               <div>
@@ -712,7 +510,6 @@ export default function MSRv2() {
                 }}>
                   A brand that&rsquo;s actually for men.
                 </h2>
-                <CategoryPill>Decisions</CategoryPill>
               </div>
               <div>
                 <p style={{
@@ -729,14 +526,6 @@ export default function MSRv2() {
             </div>
           </div>
         </section>
-
-        </div>
-        {/* ─ end DECISIONS arc tint */}
-
-        <ArcDivider arc="Details" />
-
-        {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#F3F1EC", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Design system — replaced the single
@@ -769,7 +558,6 @@ export default function MSRv2() {
                 }}>
                   Built once.<br/>Used everywhere.
                 </h2>
-                <CategoryPill>Details</CategoryPill>
               </div>
               <div>
                 <p style={{
@@ -835,7 +623,6 @@ export default function MSRv2() {
                 }}>
                   Shipped.
                 </h2>
-                <CategoryPill>Details</CategoryPill>
               </div>
               <p style={{
                 fontFamily: font.sans,
@@ -1091,8 +878,6 @@ export default function MSRv2() {
             <MetaCell label="Live"   value={<a href="https://www.menssolerevival.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>menssolerevival.com</a>} />
           </div>
         </section>
-        </div>
-        {/* ─ end DETAILS arc tint */}
 
       </main>
 
@@ -1159,11 +944,10 @@ export default function MSRv2() {
 /* ---------- BigThree section template ---------- */
 
 function BigThree({
-  number, heading, category, image, imageAlt, imageCrop, body, callout,
+  number, heading, image, imageAlt, imageCrop, body, callout,
 }: {
   number: string;
   heading: string;
-  category?: string;
   image: string;
   imageAlt: string;
   imageCrop: string | null;
@@ -1210,11 +994,6 @@ function BigThree({
             }}>
               {heading}.
             </h2>
-            {category && (
-              <div style={{ marginTop: "16px" }}>
-                <CategoryPill>{category}</CategoryPill>
-              </div>
-            )}
           </div>
 
           <div>
