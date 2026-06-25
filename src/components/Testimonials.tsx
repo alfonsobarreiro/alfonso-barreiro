@@ -1,10 +1,11 @@
 import React from "react";
 
 type Testimonial = {
-  pull:   string;          // oversized pull-quote line
-  body:   string;          // full testimonial body
-  name:   string;
-  role:   string;          // role + company on one line
+  pull:     string;          // oversized pull-quote line
+  body:     string;          // full testimonial body
+  name:     string;
+  role:     string;          // role + company on one line
+  linkedin?: string;         // full LinkedIn profile URL — optional
 };
 
 const ITEMS: Testimonial[] = [
@@ -13,14 +14,32 @@ const ITEMS: Testimonial[] = [
     body: "Alfonso Barreiro's expertise is truly remarkable. The Branding and Marketing Plan he designed for my small business was comprehensive, insightful, and creatively inspiring. He offered a perspective on my work that I often miss, exceeding my expectations with both depth and detail. His collaborative approach ensured the final product aligned perfectly with my vision and business needs. I'm deeply grateful for his skill, dedication, and guidance in helping take my business to the next level.",
     name: "Kendra Toth",
     role: "Kendra Toth Consulting",
+    linkedin: "https://www.linkedin.com/in/kendra-toth-1b95a0159/",
   },
   {
     pull: "His ability to listen and translate my ideas into a logo that stands out.",
     body: "Working with Alfonso on my company logo for Sky Valley Comm was a great experience. His keen eye for design and attention to detail helped bring my vision to life in a way that truly represents my brand. The most beneficial part of our collaboration was his ability to listen and translate my ideas into a professional, unique logo that stands out. His expertise made the process seamless, and the final result exceeded my expectations. Thanks to Alfonso's work, my brand now has a strong and memorable identity.",
     name: "Pamela Accetta Smith",
     role: "Founder & CEO, Sky Valley Comm",
+    linkedin: "https://www.linkedin.com/in/pamela-accetta-smith-5278379/",
   },
 ];
+
+const LinkedInIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    style={{ flexShrink: 0 }}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 const SECTION_X = "clamp(24px, 6vw, 80px)";
 const CONTENT_MAX = "1240px";
@@ -121,12 +140,38 @@ export default function Testimonials() {
               </blockquote>
 
               <figcaption style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                <span style={{
-                  fontFamily: font.sans, fontSize: "14px", fontWeight: 600,
-                  color: c.ink, letterSpacing: "0.01em",
-                }}>
-                  {t.name}
-                </span>
+                {t.linkedin ? (
+                  <a
+                    href={t.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="testimonial-name-link"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      fontFamily: font.sans,
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: c.ink,
+                      letterSpacing: "0.01em",
+                      textDecoration: "none",
+                      width: "fit-content",
+                    }}
+                  >
+                    {t.name}
+                    <span style={{ color: c.muted, display: "inline-flex" }}>
+                      <LinkedInIcon />
+                    </span>
+                  </a>
+                ) : (
+                  <span style={{
+                    fontFamily: font.sans, fontSize: "14px", fontWeight: 600,
+                    color: c.ink, letterSpacing: "0.01em",
+                  }}>
+                    {t.name}
+                  </span>
+                )}
                 <span style={{
                   fontFamily: font.sans, fontSize: "12px",
                   color: c.muted, letterSpacing: "0.04em",
@@ -145,6 +190,12 @@ export default function Testimonials() {
             grid-template-columns: 1fr !important;
             gap: clamp(48px, 8vw, 64px) !important;
           }
+        }
+        .testimonial-name-link svg {
+          transition: color 0.2s ease;
+        }
+        .testimonial-name-link:hover svg {
+          color: var(--color-brand) !important;
         }
       `}</style>
     </section>
