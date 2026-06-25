@@ -5,7 +5,6 @@ import Hero from "@/components/legacy/Hero";
 import Work from "@/components/legacy/Work";
 import About from "@/components/legacy/About";
 import Footer from "@/components/legacy/Footer";
-import CookieConsent from "@/components/CookieConsent";
 import BackToTop from "@/components/BackToTop";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
@@ -57,7 +56,6 @@ export default function LegacyHome() {
       <About />
       <Footer />
       <BackToTop />
-      <CookieConsent />
     </main>
   );
 }

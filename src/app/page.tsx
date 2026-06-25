@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import Work from "@/components/Work";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
-import CookieConsent from "@/components/CookieConsent";
 import BackToTop from "@/components/BackToTop";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
@@ -25,7 +24,6 @@ export default function Home() {
       <About />
       <Footer />
       <BackToTop />
-      <CookieConsent />
     </main>
   );
 }
