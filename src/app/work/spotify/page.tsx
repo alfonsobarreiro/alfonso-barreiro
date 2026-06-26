@@ -1210,6 +1210,26 @@ function DecisionLogic() {
             if (el) obs.observe(el);
           });
 
+          /* State diagram opens centered — the interesting nodes (Pinned
+             / arrows) sit in the middle of the canvas, so scrollLeft=0
+             would land on empty whitespace. Other scrollers (sketches,
+             right-click) stay left-aligned because they read L→R. */
+          function centerState() {
+            const el = document.querySelector('.sp2-state-scroll');
+            if (!el) return;
+            if (el.scrollWidth > el.clientWidth) {
+              el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
+            }
+          }
+          function wireStateCenter() {
+            centerState();
+            const img = document.querySelector('.sp2-state-scroll img');
+            if (img && !img.complete) img.addEventListener('load', centerState, { once: true });
+            [200, 600, 1500].forEach(t => setTimeout(centerState, t));
+          }
+          if (document.readyState === 'complete') wireStateCenter();
+          else window.addEventListener('load', wireStateCenter);
+          window.addEventListener('resize', centerState);
         })();
       ` }} />
       <style>{`
