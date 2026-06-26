@@ -537,7 +537,7 @@ export default function SpotifyV2() {
                     src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
                     width={860} height={540}
-                    sizes="(max-width: 760px) 100vw, 56vw"
+                    sizes="(max-width: 760px) 720px, 56vw"
                     quality={95}
                     className="sp2-consistent-img"
                     style={{ width: "100%", height: "auto", display: "block" }}
@@ -828,7 +828,7 @@ function SketchesAndMidfi() {
           }}>
             Five directions on paper.
           </h3>
-          <div className="sp2-sketches-scroll sp2-center-on-load" style={{
+          <div className="sp2-sketches-scroll" style={{
             border: `1px solid ${c.border}`, background: "#FFFFFF",
             overflowX: "auto", WebkitOverflowScrolling: "touch",
           }}>
@@ -836,7 +836,7 @@ function SketchesAndMidfi() {
               src="/images/work/spotify/v2/figma-sketches.png"
               alt="Sketching possible interaction patterns — five rough directions explored on paper before any Figma frame."
               width={1920} height={1080}
-              sizes="(max-width: 1240px) 100vw, 1100px"
+              sizes="(max-width: 760px) 880px, (max-width: 1240px) 100vw, 1100px"
               quality={95}
               className="sp2-sketches-img"
               style={{ width: "100%", height: "auto", display: "block" }}
@@ -1218,29 +1218,6 @@ function DecisionLogic() {
             if (el) obs.observe(el);
           });
 
-          /* Center horizontally-scrolling cards once their images have
-             actually painted. Pure window.load fires before Next/Image
-             swaps in, so scrollWidth equals clientWidth and the center
-             math no-ops. We also listen on each inner <img> load and
-             retry on a short tail of timers to cover late paints. */
-          function centerScroll() {
-            document.querySelectorAll('.sp2-center-on-load').forEach(function (el) {
-              if (el.scrollWidth > el.clientWidth) {
-                el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
-              }
-            });
-          }
-          function wireCenter() {
-            centerScroll();
-            document.querySelectorAll('.sp2-center-on-load img').forEach(function (img) {
-              if (img.complete) return;
-              img.addEventListener('load', centerScroll, { once: true });
-            });
-            [150, 400, 900, 1800].forEach(function (t) { setTimeout(centerScroll, t); });
-          }
-          if (document.readyState === 'complete') wireCenter();
-          else window.addEventListener('load', wireCenter);
-          window.addEventListener('resize', centerScroll);
         })();
       ` }} />
       <style>{`
@@ -1473,7 +1450,7 @@ function ShippedSection() {
           {/* State diagram — wide SVG; on mobile, scroll horizontally
               inside the card and zoom the diagram to its native width
               so each node is readable. */}
-          <div className="sp2-state-scroll sp2-center-on-load" style={{
+          <div className="sp2-state-scroll" style={{
             background: "#FFFFFF", border: `1px solid ${c.border}`,
             padding: "clamp(12px, 3vw, 48px)",
             overflowX: "auto",
@@ -1483,7 +1460,7 @@ function ShippedSection() {
               src="/images/work/spotify/spotify-shelf-state-diagram.svg"
               alt="Pause state diagram — four states (idle, paused, expiring, resumed) with every transition reversible."
               width={1920} height={900}
-              sizes="(max-width: 1240px) 100vw, 1100px"
+              sizes="(max-width: 760px) 720px, (max-width: 1240px) 100vw, 1100px"
               className="sp2-state-img"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
@@ -2165,7 +2142,7 @@ function UserJourney() {
         {/* Journey map — light card on mobile (was a dark mat that made
             the map hard to read at small widths). Horizontal scroll on
             phones lets the map keep its native legibility. */}
-        <div className="sp2-journey-scroll sp2-center-on-load" style={{
+        <div className="sp2-journey-scroll" style={{
           background: "#FFFFFF", border: `1px solid ${c.border}`,
           padding: "clamp(12px, 3vw, 40px)",
           overflowX: "auto",
@@ -2175,7 +2152,7 @@ function UserJourney() {
             src="/images/work/spotify/v2/figma-user-journey.png"
             alt="User journey map — Recently Played shelf with the three opportunity points called out."
             width={1920} height={1080}
-            sizes="(max-width: 1240px) 100vw, 1240px"
+            sizes="(max-width: 760px) 980px, (max-width: 1240px) 100vw, 1240px"
             quality={95}
             className="sp2-journey-img"
             style={{ width: "100%", height: "auto", display: "block" }}
