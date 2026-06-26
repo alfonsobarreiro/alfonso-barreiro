@@ -533,15 +533,24 @@ export default function SpotifyV2() {
                 </ul>
               </div>
 
-              {/* Screenshot — just the right-click menu, no text bake-in */}
-              <figure style={{ margin: 0 }}>
-                <Image
-                  src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
-                  alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-                  width={860} height={540}
-                  sizes="(max-width: 760px) 100vw, 56vw"
-                  style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-                />
+              {/* Screenshot — just the right-click menu, no text bake-in.
+                  On mobile we scroll horizontally so each menu item is
+                  legible instead of compressed into the column width. */}
+              <figure className="sp2-consistent-fig" style={{ margin: "0 auto", textAlign: "center", width: "100%" }}>
+                <div className="sp2-consistent-scroll sp2-center-on-load" style={{
+                  overflowX: "auto", WebkitOverflowScrolling: "touch",
+                  border: `1px solid ${c.border}`,
+                }}>
+                  <Image
+                    src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
+                    alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
+                    width={860} height={540}
+                    sizes="(max-width: 760px) 100vw, 56vw"
+                    quality={95}
+                    className="sp2-consistent-img"
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                  />
+                </div>
                 <figcaption style={{
                   fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
                   letterSpacing: "0.12em", textTransform: "uppercase",
@@ -644,9 +653,8 @@ export default function SpotifyV2() {
           .sp2-loops-row figure > div { width: 100% !important; max-width: 280px !important; }
           /* Prototype tabs — larger tap target on phones; clearer active
              state via stronger background contrast. */
-          .sp2-loops-tab        { padding: 16px 12px !important; flex-direction: column !important; align-items: center !important; gap: 4px !important; }
-          .sp2-loops-tab span:first-child { font-size: 9px !important; }
-          .sp2-loops-tab span:last-child  { font-size: 14px !important; }
+          .sp2-loops-tab        { padding: 14px 12px !important; gap: 0 !important; }
+          .sp2-loops-tab span    { font-size: 14px !important; }
           .sp2-tc-nav           { grid-template-columns: 1fr 1fr 1fr !important; }
           /* Parity section — stack the editorial block above the
              screenshot on phones so neither pane is squished. */
@@ -659,6 +667,13 @@ export default function SpotifyV2() {
              let the reader swipe to see all three opportunity points. */
           .sp2-journey-scroll .sp2-journey-img { width: 980px !important; max-width: 980px !important; }
           .sp2-scroll-hint-journey         { display: block !important; }
+          /* Sketches — native width on phones so each device sketch
+             reads. Same swipe affordance as the journey + state diagram. */
+          .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
+          .sp2-scroll-hint-sketches        { display: block !important; }
+          /* Consistent Behavior screenshot — let it scroll horizontally
+             too so the menu items are legible at full size on phones. */
+          .sp2-consistent-scroll .sp2-consistent-img { width: 720px !important; max-width: 720px !important; }
           /* Competitive audit — already scrolls horizontally; surface the
              hint so the swipe affordance is discoverable. */
           .sp2-scroll-hint-audit           { display: block !important; }
@@ -802,13 +817,29 @@ function SketchesAndMidfi() {
           }}>
             Five directions on paper.
           </h3>
-          <Image
-            src="/images/work/spotify/v2/figma-sketches.png"
-            alt="Sketching possible interaction patterns — five rough directions explored on paper before any Figma frame."
-            width={1920} height={1080}
-            sizes="(max-width: 1240px) 100vw, 1100px"
-            style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-          />
+          <p className="sp2-scroll-hint-sketches" style={{
+            display: "none",
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+            letterSpacing: "0.14em", textTransform: "uppercase",
+            color: c.muted, margin: "0 0 12px",
+          }}>
+            <span style={{ color: c.green }}>&rarr; </span>
+            Swipe to see all five sketches
+          </p>
+          <div className="sp2-sketches-scroll sp2-center-on-load" style={{
+            border: `1px solid ${c.border}`, background: "#FFFFFF",
+            overflowX: "auto", WebkitOverflowScrolling: "touch",
+          }}>
+            <Image
+              src="/images/work/spotify/v2/figma-sketches.png"
+              alt="Sketching possible interaction patterns — five rough directions explored on paper before any Figma frame."
+              width={1920} height={1080}
+              sizes="(max-width: 1240px) 100vw, 1100px"
+              quality={95}
+              className="sp2-sketches-img"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
         </div>
 
         {/* Mid-fi — desktop + mobile, paired. Desktop carries the surface
@@ -1033,18 +1064,20 @@ function DecisionLogic() {
                   data-control-anchor={f.key.toLowerCase()}
                   style={{
                     fontFamily:     font.sans,
-                    fontSize:       "13px",
-                    fontWeight:     600,
+                    fontSize:       "12px",
+                    fontWeight:     700,
                     letterSpacing:  "0.06em",
                     textTransform:  "uppercase",
                     color:          c.ink2,
                     textDecoration: "none",
                     display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
+                    alignItems:     "center",
+                    gap:            "6px",
+                    padding:        "8px 16px",
+                    background:     "#FFFFFF",
+                    border:         `1px solid ${c.border}`,
+                    borderRadius:   "999px",
+                    transition:     "color 0.2s ease, border-color 0.2s ease, background 0.2s ease",
                   }}
                 >
                   <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
@@ -1184,15 +1217,35 @@ function DecisionLogic() {
             const el = document.getElementById('control-' + k);
             if (el) obs.observe(el);
           });
+
+          /* Center horizontally-scrolling cards on mount so wide images
+             (state diagram, journey map, sketches, consistent-behavior
+             screenshot) open at their visual center instead of pinned to
+             the left edge. Only fires if the content actually overflows. */
+          function centerScroll() {
+            document.querySelectorAll('.sp2-center-on-load').forEach(function (el) {
+              if (el.scrollWidth > el.clientWidth) {
+                el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
+              }
+            });
+          }
+          if (document.readyState === 'complete') centerScroll();
+          else window.addEventListener('load', centerScroll);
+          window.addEventListener('resize', centerScroll);
         })();
       ` }} />
       <style>{`
         .sp2-control-nav a[data-active] {
-          color: #1ED760 !important;
-          border-bottom-color: #1ED760 !important;
+          color: #FFFFFF !important;
+          background: #1ED760 !important;
+          border-color: #1ED760 !important;
+        }
+        .sp2-control-nav a[data-active] span:first-child {
+          opacity: 0.85 !important;
         }
         .sp2-control-nav a:hover {
           color: #252B28;
+          border-color: #6E6E6A;
         }
       `}</style>
     </section>
@@ -1287,14 +1340,12 @@ function Prototypes() {
                 className={`sp2-loops-tab sp2-loops-tab-${i + 1}`}
                 style={{
                   padding: "20px 24px", cursor: "pointer",
-                  display: "flex", alignItems: "baseline", gap: "10px",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
                   borderRight: i < loops.length - 1 ? `1px solid ${c.border}` : "none",
                   transition: "background 0.2s, color 0.2s",
                 }}>
-                <span style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  color: c.green, letterSpacing: "0.18em",
-                }}>{String(i + 1).padStart(2, "0")}</span>
+                {/* Numeral removed — Pin / Remove / Pause titles read on
+                    their own and free up horizontal room on mobile. */}
                 <span style={{
                   fontFamily: font.sans, fontSize: "16px", fontWeight: 600,
                   color: c.ink, letterSpacing: "-0.01em",
@@ -1421,7 +1472,7 @@ function ShippedSection() {
           {/* State diagram — wide SVG; on mobile, scroll horizontally
               inside the card and zoom the diagram to its native width
               so each node is readable. */}
-          <div className="sp2-state-scroll" style={{
+          <div className="sp2-state-scroll sp2-center-on-load" style={{
             background: "#FFFFFF", border: `1px solid ${c.border}`,
             padding: "clamp(12px, 3vw, 48px)",
             overflowX: "auto",
@@ -2142,7 +2193,7 @@ function UserJourney() {
         {/* Journey map — light card on mobile (was a dark mat that made
             the map hard to read at small widths). Horizontal scroll on
             phones lets the map keep its native legibility. */}
-        <div className="sp2-journey-scroll" style={{
+        <div className="sp2-journey-scroll sp2-center-on-load" style={{
           background: "#FFFFFF", border: `1px solid ${c.border}`,
           padding: "clamp(12px, 3vw, 40px)",
           overflowX: "auto",
@@ -2153,6 +2204,7 @@ function UserJourney() {
             alt="User journey map — Recently Played shelf with the three opportunity points called out."
             width={1920} height={1080}
             sizes="(max-width: 1240px) 100vw, 1240px"
+            quality={95}
             className="sp2-journey-img"
             style={{ width: "100%", height: "auto", display: "block" }}
           />

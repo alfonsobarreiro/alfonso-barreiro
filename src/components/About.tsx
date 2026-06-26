@@ -399,6 +399,18 @@ export default function About() {
                 >
                   {group.category}
                 </p>
+                <p
+                  style={{
+                    fontFamily:   "var(--font-dm-sans), sans-serif",
+                    fontSize:     "14px",
+                    lineHeight:   1.6,
+                    color:        "#3D4440",
+                    marginTop:    0,
+                    marginBottom: "16px",
+                  }}
+                >
+                  {group.value}
+                </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {group.skills.map((skill) => (
                     <span
