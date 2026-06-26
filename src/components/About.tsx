@@ -377,28 +377,49 @@ export default function About() {
               alignSelf:    "start",
             }}
           >
-            {/* Category labels removed per direction — pills now form one
-                wrapping group without "Research & Discovery / Design / Tools"
-                sub-headers. Read as a single skill cloud. */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-              {skillGroups.flatMap((group) => group.skills).map((skill) => (
-                <span
-                  key={skill}
+            {skillGroups.map((group, i) => (
+              <div
+                key={group.category}
+                style={{
+                  marginBottom:  i < skillGroups.length - 1 ? "32px" : 0,
+                  paddingBottom: i < skillGroups.length - 1 ? "32px" : 0,
+                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #A8A39A" : "none",
+                }}
+              >
+                <p
                   style={{
-                    fontFamily:   "var(--font-dm-sans), sans-serif",
-                    fontSize:     "13px",
-                    padding:      "6px 14px",
-                    borderRadius: 0,
-                    background:   "#F5F5F4",
-                    color:        "#252B28",
-                    fontWeight:   400,
-                    border:       "1px solid #A8A39A",
+                    fontFamily:    "var(--font-dm-sans), sans-serif",
+                    fontSize:      "11px",
+                    fontWeight:    600,
+                    letterSpacing: "0.13em",
+                    textTransform: "uppercase",
+                    color:         "var(--color-accent-hover)",
+                    marginBottom:  "10px",
                   }}
                 >
-                  {skill}
-                </span>
-              ))}
-            </div>
+                  {group.category}
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      style={{
+                        fontFamily:   "var(--font-dm-sans), sans-serif",
+                        fontSize:     "13px",
+                        padding:      "6px 14px",
+                        borderRadius: 0,
+                        background:   "#F5F5F4",
+                        color:        "#252B28",
+                        fontWeight:   400,
+                        border:       "1px solid #A8A39A",
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
 
             {/* About-page discovery CTA — quieter than the home CTAs in the
                 left column, sits at the foot of the skills box for a reader

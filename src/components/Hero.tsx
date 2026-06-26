@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 /* Stagger delays for hero entrance elements */
 const HERO_DELAYS = ["0s", "0.12s", "0.24s", "0.36s", "0.5s"];
@@ -281,61 +281,14 @@ export default function Hero() {
 /* Right column: live MSR site screenshot + 13× count-up overlay                */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
-const COUNT_TARGET   = 13;
-const COUNT_DURATION = 3800; // ms — slow enough to read every tick
-const COUNT_DELAY    = 500;  // ms — let the page settle before the number starts moving
+const COUNT_TARGET = 13;
 
 function HeroResultPanel() {
   const panelRef = useRef<HTMLAnchorElement>(null);
-  const [n, setN] = useState(1);
-  const startedRef = useRef(false);
-
-  useEffect(() => {
-    const el = panelRef.current;
-    if (!el) return;
-
-    /* Respect reduced motion: jump straight to target */
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setN(COUNT_TARGET);
-      startedRef.current = true;
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting && !startedRef.current) {
-            startedRef.current = true;
-            /* The iPad walkthrough is now a video element that autoplays
-               and loops, so no class is needed to drive the animation.
-               Observer is still used to gate the 13× count-up below. */
-            setTimeout(() => {
-              const start = performance.now();
-              const tick = (t: number) => {
-                const p   = Math.min(1, (t - start) / COUNT_DURATION);
-                /* ease-out-cubic — fast at first, settles into the final value */
-                const e1  = 1 - Math.pow(1 - p, 3);
-                const val = 1 + (COUNT_TARGET - 1) * e1;
-                setN(val < COUNT_TARGET - 0.5 ? Math.round(val) : COUNT_TARGET);
-                if (p < 1) requestAnimationFrame(tick);
-                else setN(COUNT_TARGET);
-              };
-              requestAnimationFrame(tick);
-            }, COUNT_DELAY);
-            io.disconnect();
-          }
-        }
-      },
-      /* Low threshold so the animation fires the moment the panel is
-         meaningfully visible — the panel is taller than a phone viewport,
-         so 0.4 was effectively unreachable on mobile and the iPad sequence
-         never started. 0.15 fires as soon as the iPad rectangle is on
-         screen. */
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  /* Count-up animation removed — the number now lands at 13 directly.
+     Was a nice flourish on desktop but read as a distraction on mobile
+     where the panel is below the fold. */
+  const n = COUNT_TARGET;
 
   return (
     <Link
