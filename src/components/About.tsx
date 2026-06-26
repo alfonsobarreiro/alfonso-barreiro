@@ -265,8 +265,8 @@ export default function About() {
                 lineHeight:    1.15,
               }}
             >
-              Different problems, same question:<br />
-              <span style={{ color: "var(--color-brand)" }}>Why doesn&apos;t this work better?</span>
+              Different problems, same question:
+              <span style={{ color: "var(--color-brand)", display: "block", marginTop: "8px" }}>Why doesn&apos;t this work better?</span>
             </h2>
 
             <p

@@ -5,7 +5,6 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
-import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
@@ -580,7 +579,6 @@ export default function SpotifyV2() {
       <ScrollProgress />
       <RelatedCaseStudies current="spotify" />
       <Footer />
-      <BackToTop />
 
       {/* Responsive */}
       <style>{`
@@ -653,6 +651,10 @@ export default function SpotifyV2() {
           /* Parity section — stack the editorial block above the
              screenshot on phones so neither pane is squished. */
           .sp2-parity-grid      { grid-template-columns: 1fr !important; gap: 28px !important; }
+          /* State diagram — let the SVG keep its native width and scroll
+             horizontally inside the card; show the swipe hint. */
+          .sp2-state-scroll .sp2-state-img { width: 720px !important; max-width: 720px !important; }
+          .sp2-state-hint                  { display: block !important; }
 
           /* Mobile hero — drop the two most-internal Tag pills (3rd + 4th)
              and hide the redundant caption to reduce scroll-before-content. */
@@ -768,7 +770,7 @@ function SketchesAndMidfi() {
             fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
             letterSpacing: "0.20em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
-          }}>Slide 20 &middot; sketches</p>
+          }}>Sketches</p>
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
             fontWeight: 600, color: c.ink, margin: "0 0 20px",
@@ -1392,18 +1394,33 @@ function ShippedSection() {
           }}>
             Time-boxed, four states, every transition reversible.
           </h3>
-          <div style={{
+          {/* State diagram — wide SVG; on mobile, scroll horizontally
+              inside the card and zoom the diagram to its native width
+              so each node is readable. */}
+          <div className="sp2-state-scroll" style={{
             background: "#FFFFFF", border: `1px solid ${c.border}`,
             padding: "clamp(12px, 3vw, 48px)",
+            overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
           }}>
             <Image
               src="/images/work/spotify/spotify-shelf-state-diagram.svg"
               alt="Pause state diagram — four states (idle, paused, expiring, resumed) with every transition reversible."
               width={1920} height={900}
               sizes="(max-width: 1240px) 100vw, 1100px"
+              className="sp2-state-img"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
+          <p className="sp2-state-hint" style={{
+            display: "none",
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+            letterSpacing: "0.14em", textTransform: "uppercase",
+            color: c.muted, margin: "10px 0 0",
+          }}>
+            <span style={{ color: c.green }}>&rarr; </span>
+            Swipe to see the full diagram
+          </p>
         </div>
 
         {/* Out of scope — what got named, defended, and skipped */}

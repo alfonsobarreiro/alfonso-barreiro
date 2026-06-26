@@ -55,7 +55,7 @@ export default function Nav() {
           alignItems:     "center",
           justifyContent: "space-between",
           background:     menuOpen
-            ? "#252B28"
+            ? "var(--color-brand)"
             : scrolled
               ? "rgba(255,255,255,0.82)"
               : "#FFFFFF",
@@ -93,7 +93,7 @@ export default function Nav() {
               }}
             >
               <span className="site-logo-first">Alfonso</span>{" "}
-              <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
+              <span style={{ color: menuOpen ? "#F5F5F4" : "var(--color-brand)" }}>Barreiro</span>
             </span>
           </button>
         ) : (
@@ -114,7 +114,7 @@ export default function Nav() {
               }}
             >
               <span className="site-logo-first">Alfonso</span>{" "}
-              <span style={{ color: "var(--color-brand)" }}>Barreiro</span>
+              <span style={{ color: menuOpen ? "#F5F5F4" : "var(--color-brand)" }}>Barreiro</span>
             </span>
           </Link>
         )}
@@ -199,7 +199,7 @@ export default function Nav() {
         >
           {menuOpen ? (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M6 6L18 18M6 18L18 6" stroke={menuOpen ? "#F5F5F4" : "#252B28"} strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M6 6L18 18M6 18L18 6" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           ) : (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -215,7 +215,7 @@ export default function Nav() {
           position:        "fixed",
           inset:           0,
           zIndex:          200,
-          background:      "#252B28",
+          background:      "var(--color-brand)",
           display:         "flex",
           flexDirection:   "column",
           justifyContent:  "center",
@@ -227,14 +227,14 @@ export default function Nav() {
       >
         {/* Eyebrow */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "48px" }}>
-          <span style={{ width: "20px", height: "1px", background: "var(--color-accent)" }} />
+          <span style={{ width: "20px", height: "1px", background: "rgba(255,255,255,0.55)" }} />
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "11px",
             fontWeight:    600,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color:         "var(--color-accent)",
+            color:         "rgba(255,255,255,0.78)",
           }}>
             Navigation
           </span>
@@ -246,25 +246,24 @@ export default function Nav() {
             fontFamily:     "var(--font-dm-sans), sans-serif",
             fontSize:       "clamp(42px, 12vw, 72px)",
             fontWeight:     500,
-            color:          "#F5F3EF",
+            color:          "#FFFFFF",
             letterSpacing:  "-0.025em",
             lineHeight:     1.1,
             background:     "none",
             border:         "none",
-            borderBottom:   "1px solid rgba(245,243,239,0.12)",
+            borderBottom:   "1px solid rgba(255,255,255,0.18)",
             cursor:         "pointer",
             padding:        "12px 0",
             textAlign:      "left",
-            transition:     "color 0.2s",
+            transition:     "opacity 0.2s",
             width:          "100%",
             display:        "block",
             textDecoration: "none",
           };
-          // Crimson on dark reads cleanly; the old accent (deep teal)
-          // got swallowed by the #252B28 backdrop and made the link
-          // look like it had disappeared on hover.
-          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "var(--color-brand)");
-          const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "#F5F3EF");
+          // Crimson backdrop: dim the link slightly on hover instead of
+          // shifting hue. Brand-crimson hover on crimson bg would vanish.
+          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "0.72");
+          const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "1");
 
           // "about" always routes to /about, regardless of current page
           if (link === "about") {
@@ -306,12 +305,14 @@ export default function Nav() {
           );
         })}
 
-        {/* Case studies — quick-jump under Work */}
+        {/* Case studies — quick-jump under Work. No borderTop here;
+            the previous link's borderBottom already provides separation
+            (was a doubled hairline). */}
         <div style={{
-          marginTop: "28px",
-          paddingTop: "20px",
-          borderTop: "1px solid rgba(245,243,239,0.08)",
-          display: "flex", flexDirection: "column", gap: "14px",
+          marginTop:    "28px",
+          display:      "flex",
+          flexDirection:"column",
+          gap:          "14px",
         }}>
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -319,7 +320,7 @@ export default function Nav() {
             fontWeight:    700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color:         "rgba(245,243,239,0.55)",
+            color:         "rgba(255,255,255,0.65)",
             marginBottom:  "2px",
           }}>
             Case studies
@@ -337,32 +338,33 @@ export default function Nav() {
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 fontSize:       "18px",
                 fontWeight:     500,
-                color:          "#F5F3EF",
+                color:          "#FFFFFF",
                 letterSpacing:  "-0.005em",
                 textDecoration: "none",
-                transition:     "color 0.2s",
+                transition:     "opacity 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-brand)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#F5F3EF")}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.72")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
               {cs.label} →
             </Link>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA — inverted on the crimson menu backdrop (white card with
+            crimson text instead of the usual crimson-on-white button). */}
         <Link
           href="/contact"
           onClick={() => setMenuOpen(false)}
           style={{
             marginTop:      "40px",
             padding:        "16px 32px",
-            background:     "var(--color-brand)",
+            background:     "#FFFFFF",
             border:         "none",
             borderRadius:   0,
-            color:          "#FFFFFF",
+            color:          "var(--color-brand)",
             fontSize:       "13px",
-            fontWeight:     600,
+            fontWeight:     700,
             letterSpacing:  "0.07em",
             textTransform:  "uppercase",
             fontFamily:     "var(--font-dm-sans), sans-serif",
@@ -382,7 +384,7 @@ export default function Nav() {
           left:       "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "12px",
-          color:      "rgba(245,243,239,0.5)",
+          color:      "rgba(255,255,255,0.55)",
           margin:     0,
         }}>
           © 2026 Alfonso Barreiro

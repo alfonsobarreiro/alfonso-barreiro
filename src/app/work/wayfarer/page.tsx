@@ -5,7 +5,6 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
-import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
@@ -795,7 +794,6 @@ export default function WayfarerV2() {
       <ScrollProgress />
       <RelatedCaseStudies current="wayfarer" />
       <Footer />
-      <BackToTop />
 
       {/* Responsive */}
       <style>{`
