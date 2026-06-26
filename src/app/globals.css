@@ -122,11 +122,11 @@ body {
   font-family:              var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing:   antialiased;
   -moz-osx-font-smoothing:  grayscale;
-  /* `clip` not `hidden` — `hidden` forces overflow-y to `auto`, which
-     turns body into a scrolling container and breaks `position: sticky`
-     for every descendant. `clip` clips horizontal overflow without
-     creating a scroll context, so sticky stays alive. */
-  overflow-x:               clip;
+  /* Prevent horizontal overscroll without setting overflow — `overflow`
+     on body propagates to the viewport and kills `position: sticky`
+     AND IntersectionObserver in descendants. Wrap any element that
+     could overflow horizontally in its own clip container. */
+  overscroll-behavior-x:    none;
 }
 
 /* Sticky footer — main fills the viewport height, footer pushed to
@@ -286,11 +286,14 @@ button {
     max-width: calc(100vw - 48px) !important;
   }
 
-  /* iOS Safari: prevent horizontal overscroll on the viewport itself.
-     `clip` not `hidden` — `hidden` creates a scrolling context on html
-     and kills `position: sticky` for every descendant on mobile. */
+  /* iOS Safari: prevent horizontal overscroll. The body already has
+     overflow-x:clip (from the base rule), which clips horizontally
+     without creating a scrolling context. Setting overflow on html
+     is harmful — browsers normalize `clip` → `hidden` on the html
+     element specifically, which kills sticky positioning AND
+     IntersectionObserver for every descendant. Just keep the
+     overscroll behavior. */
   html {
-    overflow-x: clip !important;
     overscroll-behavior-x: none !important;
   }
 

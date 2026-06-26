@@ -232,7 +232,7 @@ function BigThree({ number, heading, category, image, imageAlt, body, callout, w
   w?: number; h?: number;
 }) {
   return (
-    <section style={{ padding: `0 0 120px` }}>
+    <section className="sp2-bigthree" style={{ padding: `0 0 120px` }}>
       {image && (
         <div style={{ padding: `0 ${SECTION_X} 64px` }}>
           <HeroImage src={image} alt={imageAlt || ""} w={w} h={h} />
@@ -462,7 +462,7 @@ export default function SpotifyV2() {
             (text + screenshot side-by-side) cropped to just the screenshot;
             the editorial copy is rendered as real HTML so it scales properly
             on phones. */}
-        <section style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
+        <section className="sp2-parity-section" style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Desktop parity</Eyebrow>
             <h2 style={{
@@ -654,6 +654,11 @@ export default function SpotifyV2() {
              phones — desktop's 120px feels generous, but on a small viewport
              it reads as an empty box before "The bet". */
           .sp2-prototypes-section { padding-bottom: 32px !important; }
+          /* Give "02 The bet" room to breathe above the heading on mobile. */
+          .sp2-bigthree { padding-top: 56px !important; padding-bottom: 64px !important; }
+          /* Consistent Behavior (Desktop parity) — trim the generous
+             desktop padding so the screenshot sits closer to its body copy. */
+          .sp2-parity-section { padding: 48px clamp(24px, 6vw, 80px) !important; }
           /* Prototype tabs — larger tap target on phones; clearer active
              state via stronger background contrast. */
           .sp2-loops-tab        { padding: 14px 12px !important; gap: 0 !important; }
@@ -818,7 +823,7 @@ function SketchesAndMidfi() {
             fontWeight: 600, color: c.ink, margin: "0 0 20px",
             letterSpacing: "-0.02em", lineHeight: 1.2,
           }}>
-            Five directions on paper.
+            Three directions on paper.
           </h3>
           <div className="sp2-sketches-scroll" style={{
             border: `1px solid ${c.border}`, background: "#FFFFFF",
@@ -826,15 +831,15 @@ function SketchesAndMidfi() {
           }}>
             <Image
               src="/images/work/spotify/v2/figma-sketches.png"
-              alt="Sketching possible interaction patterns — five rough directions explored on paper before any Figma frame."
-              width={1920} height={1080}
+              alt="Sketching possible interaction patterns — three device sketches explored on paper before any Figma frame."
+              width={1840} height={769}
               sizes="(max-width: 760px) 880px, (max-width: 1240px) 100vw, 1100px"
               quality={95}
               className="sp2-sketches-img"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
-          <p className="sp2-scroll-after">Swipe to see all five sketches &rarr;</p>
+          <p className="sp2-scroll-after">Swipe to see all three sketches &rarr;</p>
         </div>
 
         {/* Mid-fi — desktop + mobile, paired. Desktop carries the surface
@@ -1194,21 +1199,49 @@ function DecisionLogic() {
           if (!anchors.length) return;
           const map = {};
           anchors.forEach(a => { map[a.getAttribute('data-control-anchor')] = a; });
-          const obs = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-              const key = e.target.id.replace('control-', '');
-              const anchor = map[key];
-              if (!anchor) return;
-              if (e.isIntersecting) {
-                anchors.forEach(a => a.removeAttribute('data-active'));
-                anchor.setAttribute('data-active', 'true');
-              }
+          const keys = ['pin', 'remove', 'pause'];
+          const sections = keys.map(k => document.getElementById('control-' + k)).filter(Boolean);
+          if (!sections.length) return;
+
+          /* Active detector: pick the section whose top is closest to
+             (viewport top + 150px) but already crossed above it. This is
+             deterministic regardless of which IO entries fire in which
+             order. We trigger it via BOTH scroll and IntersectionObserver
+             so it works on real devices (scroll) and headless preview
+             (IO fires reliably; scroll events don't fire on programmatic
+             scrollTo). */
+          let rafPending = false;
+          function update() {
+            rafPending = false;
+            const probe = 150;
+            let bestKey = null;
+            let bestDist = Infinity;
+            sections.forEach(s => {
+              const top = s.getBoundingClientRect().top;
+              if (top > probe) return; /* section not yet reached */
+              const dist = Math.abs(probe - top);
+              if (dist < bestDist) { bestDist = dist; bestKey = s.id.replace('control-', ''); }
             });
-          }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-          ['pin', 'remove', 'pause'].forEach(k => {
-            const el = document.getElementById('control-' + k);
-            if (el) obs.observe(el);
-          });
+            anchors.forEach(a => a.removeAttribute('data-active'));
+            if (bestKey && map[bestKey]) map[bestKey].setAttribute('data-active', 'true');
+          }
+          function schedule() {
+            if (rafPending) return;
+            rafPending = true;
+            requestAnimationFrame(update);
+          }
+          window.addEventListener('scroll', schedule, { passive: true });
+          window.addEventListener('resize', schedule);
+          /* Wide-margin IO so any section change in the viewport triggers
+             a fresh update(). We don't use IO's intersection result —
+             update() reads positions directly. */
+          const trigger = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+          sections.forEach(s => trigger.observe(s));
+          /* Safety-net interval: catches edge cases where neither scroll
+             nor IO fires (programmatic jumps in some embeds, in-app
+             webviews that throttle events). Cheap — just reads rects. */
+          setInterval(update, 250);
+          update();
 
           /* State diagram opens centered — the interesting nodes (Pinned
              / arrows) sit in the middle of the canvas, so scrollLeft=0
@@ -1957,9 +1990,22 @@ function CompetitiveAudit() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.75, color: c.ink2, margin: "0 0 16px", maxWidth: PROSE_MAX,
             }}>
               Heuristic audit across seven listening platforms. Apple Music, Amazon Music, and YouTube Music all ship at least one shelf-level control. TikTok and YouTube treat the feed as inline-editable by default. Spotify ships none. The pattern is in the open.
+            </p>
+            <p style={{
+              fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: c.muted, margin: "0 0 8px",
+            }}>
+              The five categories
+            </p>
+            <p style={{
+              fontFamily: font.sans, fontSize: "14px",
+              lineHeight: 1.65, color: c.ink, margin: 0, maxWidth: PROSE_MAX,
+            }}>
+              Clear all · Pause history · Remove single · Inline controls · Reversible.
             </p>
           </div>
         </div>
