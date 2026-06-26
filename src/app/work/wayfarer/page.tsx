@@ -366,11 +366,11 @@ export default function WayfarerV2() {
             Title block — Pentagram-style: meta, title,
             one-liner, tags, live link.
         ───────────────────────────────────────────── */}
-        <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `120px ${SECTION_X} 80px` }}>
+        <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)` }}>
           <Eyebrow>Concept · DesignLab · 2026</Eyebrow>
           <h1 style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(48px, 8vw, 96px)",
+            fontSize:      "clamp(36px, 10vw, 96px)",
             fontWeight:    500,
             color:         c.ink,
             margin:        "0 0 32px",
@@ -529,15 +529,21 @@ export default function WayfarerV2() {
               left: 0 !important;
               right: 0 !important;
               top: 72px !important;
+              padding: 6px 0 !important;
             }
+            .wf2-arc-nav ul { gap: 14px !important; }
+            .wf2-arc-nav a  { font-size: 11px !important; padding: 2px 0 !important; }
+            /* Hide the 01/02/03 numerals on phones to recover horizontal
+               space without losing the chip-nav itself. */
+            .wf2-arc-nav a span:first-child { display: none !important; }
             /* The fixed nav lifts out of flow — push subsequent content
-               down by the nav's height (~48px) so it isn't covered. */
-            .wf2-arc-nav + script + style + div { padding-top: 48px !important; }
+               down by the nav's height (~36px after compaction). */
+            .wf2-arc-nav + script + style + div { padding-top: 36px !important; }
           }
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F8F1ED", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: "#F8F1ED", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Hero — live homepage screenshot.
@@ -605,7 +611,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#F1F2F8", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-research" style={{ background: "#F1F2F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Research strip — three real research surfaces
@@ -628,7 +634,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F4F2EA", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: "#F4F2EA", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Information Architecture — routes + user flow.
@@ -717,7 +723,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#EFF2F0", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-details" style={{ background: "#EFF2F0", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Design System carousel — 3 tabs (Color, Type,
@@ -742,7 +748,7 @@ export default function WayfarerV2() {
         {/* ─────────────────────────────────────────────
             Mobile section
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `120px ${SECTION_X} 120px` }}>
+        <section style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Mobile</Eyebrow>
             <p style={{

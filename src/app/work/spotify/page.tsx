@@ -322,10 +322,10 @@ export default function SpotifyV2() {
         </div>
 
         {/* Title block */}
-        <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `120px ${SECTION_X} 80px` }}>
+        <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)` }}>
           <Eyebrow>Concept · Self-directed</Eyebrow>
           <h1 style={{
-            fontFamily: font.sans, fontSize: "clamp(48px, 8vw, 96px)",
+            fontFamily: font.sans, fontSize: "clamp(36px, 10vw, 96px)",
             fontWeight: 500, color: c.ink, margin: "0 0 20px",
             letterSpacing: "-0.035em", lineHeight: 1.0,
           }}>
@@ -356,7 +356,7 @@ export default function SpotifyV2() {
         </header>
 
         {/* ── PREMISE arc tint ─ */}
-        <div style={{ background: "#FBF7EE", paddingTop: "80px", paddingBottom: "40px" }}>
+        <div style={{ background: "#FBF7EE", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         {/* Action sheet hero — case study opener. One affordance image
             (long-press action sheet open over a track row) + the three
             controls + power-user framing. Replaces the previous dark
@@ -403,7 +403,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div style={{ background: "#F1F4F8", paddingTop: "80px", paddingBottom: "40px" }}>
+        <div style={{ background: "#F1F4F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         {/* User voices — direct quotes from public sources.
             People are reaching for affordances that don't exist yet. */}
         <UserVoices />
@@ -423,7 +423,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div style={{ background: "#F6F1E7", paddingTop: "80px", paddingBottom: "40px" }}>
+        <div style={{ background: "#F6F1E7", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         {/* User journey — where the controls land */}
         <UserJourney />
 
@@ -438,7 +438,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div style={{ background: "#F1F6F2", paddingTop: "80px", paddingBottom: "40px" }}>
+        <div style={{ background: "#F1F6F2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         <DecisionLogic />
 
         {/* Prototypes — moved out of DecisionLogic so the loops have their own breathing room */}
@@ -600,9 +600,10 @@ export default function SpotifyV2() {
 
           /* Mobile sticky chip nav — tighter gap + reduced letter-spacing so
              "01 PIN · 02 REMOVE · 03 PAUSE" doesn't wrap or crowd. */
-          .sp2-control-nav ul   { gap: 12px !important; }
-          .sp2-control-nav a    { font-size: 12px !important; letter-spacing: 0.04em !important; }
-          .sp2-control-nav a span:first-child { font-size: 10px !important; }
+          .sp2-control-nav    { padding: 8px 0 !important; }
+          .sp2-control-nav ul { gap: 14px !important; }
+          .sp2-control-nav a  { font-size: 11px !important; letter-spacing: 0.04em !important; padding: 2px 0 !important; }
+          .sp2-control-nav a span:first-child { display: none !important; }
         }
       `}</style>
     </>
@@ -986,7 +987,7 @@ function DecisionLogic() {
                 textTransform: "uppercase", margin: "0 0 14px",
               }}>{f.key.toUpperCase()} &middot; {f.surface}</p>
               <h3 style={{
-                fontFamily: font.sans, fontSize: "clamp(56px, 8vw, 112px)",
+                fontFamily: font.sans, fontSize: "clamp(40px, 11vw, 112px)",
                 fontWeight: 700, color: c.ink, margin: "0 0 16px",
                 letterSpacing: "-0.04em", lineHeight: 0.9,
               }}>{f.title}.</h3>

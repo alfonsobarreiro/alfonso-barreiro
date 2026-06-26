@@ -321,13 +321,13 @@ export default function MSRv2() {
         <header style={{
           maxWidth: CONTENT_MAX,
           margin:   "0 auto",
-          padding:  `120px ${SECTION_X} 80px`,
+          padding:  `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)`,
         }}>
           <Eyebrow>Project · 2026</Eyebrow>
 
           <h1 style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(48px, 8vw, 96px)",
+            fontSize:      "clamp(36px, 10vw, 96px)",
             fontWeight:    500,
             color:         c.ink,
             margin:        "0 0 32px",
@@ -490,13 +490,18 @@ export default function MSRv2() {
               left: 0 !important;
               right: 0 !important;
               top: 72px !important;
+              padding: 6px 0 !important;
             }
-            .msr2-arc-nav + script + style + div { padding-top: 48px !important; }
+            .msr2-arc-nav ul { gap: 14px !important; }
+            .msr2-arc-nav a  { font-size: 11px !important; padding: 2px 0 !important; }
+            /* Hide 01/02/03 numerals on phones — they crowd the chip text. */
+            .msr2-arc-nav a span:first-child { display: none !important; }
+            .msr2-arc-nav + script + style + div { padding-top: 36px !important; }
           }
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F8F2EC", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: "#F8F2EC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Hero image — full homepage capture, cropped
@@ -561,7 +566,7 @@ export default function MSRv2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#F1F3F5", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-research" style={{ background: "#F1F3F5", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Research strip — compact bridge between §01
@@ -578,7 +583,7 @@ export default function MSRv2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F4F0E8", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: "#F4F0E8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             §02 — The bet (inlined; uses a code-rendered
@@ -669,7 +674,7 @@ export default function MSRv2() {
                 <div>
                   <h3 style={{
                     fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
-                    fontSize:      "clamp(56px, 7vw, 96px)",
+                    fontSize:      "clamp(40px, 9vw, 96px)",
                     fontWeight:    800,
                     color:         "#F5F0E8",
                     margin:        0,
@@ -751,7 +756,7 @@ export default function MSRv2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#F3F1EC", paddingTop: "80px", paddingBottom: "40px", scrollMarginTop: "152px" }}>
+        <div id="arc-details" style={{ background: "#F3F1EC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Design system — replaced the single
@@ -1019,7 +1024,7 @@ export default function MSRv2() {
             Mobile frames as a sidekick — proof of
             responsive thinking without overwhelming
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `120px ${SECTION_X} 120px` }}>
+        <section style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Mobile</Eyebrow>
             <p style={{
@@ -2016,7 +2021,7 @@ function DSPanelType() {
           }}>Display · Barlow Condensed</p>
           <p style={{
             fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
-            fontSize:      "clamp(72px, 9vw, 120px)",
+            fontSize:      "clamp(48px, 12vw, 120px)",
             fontWeight:    800,
             color:         "#13100C",
             margin:        "0 0 18px",
@@ -2054,7 +2059,7 @@ function DSPanelType() {
           }}>Long-form · Lora</p>
           <p style={{
             fontFamily: "var(--font-lora), Lora, Georgia, serif",
-            fontSize:   "clamp(72px, 9vw, 120px)",
+            fontSize:   "clamp(48px, 12vw, 120px)",
             color:      "#13100C",
             margin:     "0 0 18px",
             lineHeight: 0.9,

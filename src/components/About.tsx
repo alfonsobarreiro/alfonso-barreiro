@@ -196,6 +196,7 @@ export default function About() {
                 edges speak for themselves, with a soft box-shadow doing
                 the elevation work the removed border used to do. */}
             <div
+              className="about-portrait"
               style={{
                 width:        "100%",
                 maxWidth:     "240px",
@@ -534,6 +535,12 @@ export default function About() {
           .about-grid .skills-box {
             position: static !important;
             top: auto !important;
+          }
+          /* Portrait fills the column on mobile instead of capping at 240 px.
+             Aspect 4:5 reads stronger at full width than 3:4. */
+          .about-portrait {
+            max-width: 100% !important;
+            aspect-ratio: 4 / 5 !important;
           }
         }
       `}</style>
