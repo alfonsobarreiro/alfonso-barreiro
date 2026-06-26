@@ -683,14 +683,21 @@ export default function SpotifyV2() {
           /* Consistent Behavior screenshot — scroll horizontally for legibility. */
           .sp2-consistent-scroll .sp2-consistent-img { width: 720px !important; max-width: 720px !important; }
           /* Scroll hint shown under every horizontally-scrolling block on
-             phones. Hidden on desktop where the content fits in view. */
+             phones. Hidden on desktop. Uses the Spotify green + heavier
+             weight so the swipe affordance reads as an instruction, not
+             body copy. */
           .sp2-scroll-after {
-            display: block !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
             font-family: var(--font-inter, system-ui), sans-serif;
-            font-size: 11px !important; font-weight: 600 !important;
+            font-size: 11px !important; font-weight: 700 !important;
             letter-spacing: 0.14em !important; text-transform: uppercase !important;
-            color: #8B8B86 !important; margin: 10px 0 0 !important;
-            text-align: left !important;
+            color: #1ED760 !important;
+            background: rgba(30, 215, 96, 0.08) !important;
+            padding: 6px 10px !important;
+            margin: 12px 0 0 !important;
+            border-left: 2px solid #1ED760 !important;
           }
           /* Signal section (user voices) — each quote sticky-stacks so the
              previous card stays visible above the next one as the reader
@@ -1195,32 +1202,28 @@ function DecisionLogic() {
       <script dangerouslySetInnerHTML={{ __html: `
         (function() {
           if (typeof window === "undefined") return;
-          const anchors = document.querySelectorAll('a[data-control-anchor]');
-          if (!anchors.length) return;
-          const map = {};
-          anchors.forEach(a => { map[a.getAttribute('data-control-anchor')] = a; });
-          const keys = ['pin', 'remove', 'pause'];
-          const sections = keys.map(k => document.getElementById('control-' + k)).filter(Boolean);
-          if (!sections.length) return;
+          const KEYS = ['pin', 'remove', 'pause'];
 
-          /* Active detector: pick the section that contains the viewport
-             center. Fallback: section closest above viewport center when
-             we're between two (rare gap). Triggered by scroll, IO, and a
-             setInterval safety-net so it works in every environment. */
+          /* Active detector. Re-queries the DOM each tick to survive
+             React hot-reload + hydration races (cached refs go stale).
+             Picks the section straddling viewport center; falls back to
+             the last section whose top has crossed the chip nav. */
           let rafPending = false;
           let lastKey = null;
           function update() {
             rafPending = false;
+            const anchors = document.querySelectorAll('a[data-control-anchor]');
+            if (!anchors.length) return;
+            const sections = KEYS.map(k => document.getElementById('control-' + k)).filter(Boolean);
+            if (!sections.length) return;
             const probe = window.innerHeight / 2;
             let bestKey = null;
-            /* Primary: section straddles viewport center */
             sections.forEach(s => {
               const r = s.getBoundingClientRect();
               if (r.top <= probe && r.bottom > probe) {
                 bestKey = s.id.replace('control-', '');
               }
             });
-            /* Fallback: last section whose top has crossed the chip nav */
             if (!bestKey) {
               let bestTop = -Infinity;
               const navBottom = 124;
@@ -1231,13 +1234,11 @@ function DecisionLogic() {
                 }
               });
             }
-            /* Idempotent — only mutate the DOM when the active key
-               actually changes. Removing-and-re-setting every tick caused
-               the box-shadow transition to flicker / never settle. */
             if (bestKey === lastKey) return;
             lastKey = bestKey;
             anchors.forEach(a => a.removeAttribute('data-active'));
-            if (bestKey && map[bestKey]) map[bestKey].setAttribute('data-active', 'true');
+            const target = [...anchors].find(a => a.getAttribute('data-control-anchor') === bestKey);
+            if (target) target.setAttribute('data-active', 'true');
           }
           function schedule() {
             if (rafPending) return;
@@ -1247,14 +1248,21 @@ function DecisionLogic() {
           window.addEventListener('scroll', schedule, { passive: true });
           window.addEventListener('resize', schedule);
           /* Wide-margin IO so any section change in the viewport triggers
-             a fresh update(). We don't use IO's intersection result —
-             update() reads positions directly. */
-          const trigger = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-          sections.forEach(s => trigger.observe(s));
+             a fresh update(). Observes the sections we can find right now
+             and re-attaches periodically in case the DOM is replaced. */
+          let trigger = null;
+          function wireObserver() {
+            if (trigger) trigger.disconnect();
+            trigger = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+            KEYS.forEach(k => { const el = document.getElementById('control-' + k); if (el) trigger.observe(el); });
+          }
+          wireObserver();
           /* Safety-net interval: catches edge cases where neither scroll
-             nor IO fires (programmatic jumps in some embeds, in-app
-             webviews that throttle events). Cheap — just reads rects. */
+             nor IO fires (programmatic jumps in webviews, throttled
+             scroll events). Cheap — just reads rects. */
           setInterval(update, 250);
+          /* Re-wire the observer every 2s in case React replaced nodes. */
+          setInterval(wireObserver, 2000);
           update();
 
           /* State diagram opens centered — the interesting nodes (Pinned
