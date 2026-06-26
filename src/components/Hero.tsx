@@ -615,11 +615,11 @@ function HeroResultPanel() {
         .hero-ipad-review       { will-change: transform, opacity; }
         .hero-ipad-tap          { will-change: transform, opacity, box-shadow; }
 
-        /* Infinite loop instead of `1 forwards`. iOS Safari is reliable
+        /* Infinite loop instead of 1-forwards. iOS Safari is reliable
            with continuously-running CSS animations but fragile with the
            single-run + freeze pattern, especially on elements that scroll
-           in and out of viewport. Same 22 s cycle, just always playing —
-           the homepage / review crossover stays the showcase. */
+           in and out of viewport. Same 22 s cycle, just always playing.
+           The homepage / review crossover stays the showcase. */
         .hero-anim-active .hero-ipad-home      { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
         .hero-anim-active .hero-ipad-review    { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
         .hero-anim-active .hero-ipad-blackfade { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
