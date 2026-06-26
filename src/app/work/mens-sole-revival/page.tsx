@@ -500,7 +500,7 @@ export default function MSRv2() {
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F8F2EC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Hero image — full homepage capture, cropped
@@ -582,7 +582,7 @@ export default function MSRv2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F4F0E8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             §02 — The bet (inlined; uses a code-rendered
@@ -755,7 +755,7 @@ export default function MSRv2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#F3F1EC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-details" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Design system — replaced the single

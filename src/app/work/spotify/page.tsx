@@ -355,7 +355,7 @@ export default function SpotifyV2() {
         </header>
 
         {/* ── PREMISE arc tint ─ */}
-        <div style={{ background: "#FBF7EE", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         {/* Action sheet hero — case study opener. One affordance image
             (long-press action sheet open over a track row) + the three
             controls + power-user framing. Replaces the previous dark
@@ -422,7 +422,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div style={{ background: "#F6F1E7", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         {/* User journey — where the controls land */}
         <UserJourney />
 
@@ -655,6 +655,30 @@ export default function SpotifyV2() {
              horizontally inside the card; show the swipe hint. */
           .sp2-state-scroll .sp2-state-img { width: 720px !important; max-width: 720px !important; }
           .sp2-state-hint                  { display: block !important; }
+          /* User journey — same pattern; show the map at native width and
+             let the reader swipe to see all three opportunity points. */
+          .sp2-journey-scroll .sp2-journey-img { width: 980px !important; max-width: 980px !important; }
+          .sp2-scroll-hint-journey         { display: block !important; }
+          /* Competitive audit — already scrolls horizontally; surface the
+             hint so the swipe affordance is discoverable. */
+          .sp2-scroll-hint-audit           { display: block !important; }
+          /* Signal section (user voices) — each quote sticky-stacks so the
+             previous card stays visible above the next one as the reader
+             scrolls, the way the user described. */
+          .sp2-quote-card {
+            position: sticky !important;
+            top: 124px !important;
+            box-shadow: 0 -1px 0 rgba(255,255,255,0.85), 0 12px 28px -16px rgba(0,0,0,0.18) !important;
+          }
+          /* Prototype loops carousel tabs — sticky on scroll so the user
+             can see which loop they're reading even after the panel scrolls
+             past the original tab position. */
+          .sp2-loops-nav {
+            position: sticky !important;
+            top: 124px !important;
+            z-index: 5 !important;
+            background: #FFFFFF !important;
+          }
 
           /* Mobile hero — drop the two most-internal Tag pills (3rd + 4th)
              and hide the redundant caption to reduce scroll-before-content. */
@@ -1708,11 +1732,11 @@ function IconCell({ color, glyph, name, note }: {
       gap: "14px",
     }}>
       <div style={{
-        width: 56, height: 56, borderRadius: "50%",
-        /* Eased — flat tint, thin border, no shadow halo. Matches the
-           "no phone drop shadow" calm we set on the mat. */
-        background: hexA(color, 0.10),
-        border: `1px solid ${hexA(color, 0.28)}`,
+        width: 64, height: 64, borderRadius: "50%",
+        /* Crisper — denser tint and a more visible border so each badge
+           reads as a solid pin / remove / pause shape, not a watercolor. */
+        background: hexA(color, 0.22),
+        border: `1.5px solid ${hexA(color, 0.65)}`,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         <span style={{ color, display: "inline-flex" }}>{glyph}</span>
@@ -1720,11 +1744,11 @@ function IconCell({ color, glyph, name, note }: {
       <div>
         <p style={{
           fontFamily: font.sans, fontSize: "17px", fontWeight: 700,
-          color: "#FAFAF9", margin: "0 0 4px", letterSpacing: "-0.01em",
+          color: "#FFFFFF", margin: "0 0 4px", letterSpacing: "-0.01em",
         }}>{name}</p>
         <p style={{
           fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5,
-          color: "rgba(250, 250, 249, 0.72)", margin: 0,
+          color: "rgba(255, 255, 255, 0.88)", margin: 0,
         }}>{note}</p>
       </div>
     </div>
@@ -1825,7 +1849,7 @@ function UserVoices() {
           gap: "16px",
         }} className="sp2-quotes-grid">
           {quotes.map((q) => (
-            <blockquote key={q.text} style={{
+            <blockquote key={q.text} className="sp2-quote-card" style={{
               margin: 0, padding: "28px 28px 24px",
               background: c.callout, border: `1px solid ${c.border}`,
               borderTop: `3px solid ${c.green}`,
@@ -1938,6 +1962,16 @@ function CompetitiveAudit() {
             </figure>
           ))}
         </div>
+
+        <p className="sp2-scroll-hint-audit" style={{
+          display: "none",
+          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+          letterSpacing: "0.14em", textTransform: "uppercase",
+          color: c.muted, margin: "0 0 12px",
+        }}>
+          <span style={{ color: c.green }}>&rarr; </span>
+          Swipe to scroll the full audit
+        </p>
 
         <div className="sp2-audit-scroll" style={{
           border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "auto",
@@ -2093,14 +2127,33 @@ function UserJourney() {
             </p>
           </div>
         </div>
-        {/* Journey map sits in the same #6E6E6E mat used elsewhere so the
-            dark map and the page surface get a unifying frame. */}
-        <div style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
+        {/* Scroll hint shows on mobile only — desktop sees the full
+            journey at once. */}
+        <p className="sp2-scroll-hint-journey" style={{
+          display: "none",
+          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+          letterSpacing: "0.14em", textTransform: "uppercase",
+          color: c.muted, margin: "0 0 12px",
+        }}>
+          <span style={{ color: c.green }}>&rarr; </span>
+          Swipe to read the full journey map
+        </p>
+
+        {/* Journey map — light card on mobile (was a dark mat that made
+            the map hard to read at small widths). Horizontal scroll on
+            phones lets the map keep its native legibility. */}
+        <div className="sp2-journey-scroll" style={{
+          background: "#FFFFFF", border: `1px solid ${c.border}`,
+          padding: "clamp(12px, 3vw, 40px)",
+          overflowX: "auto",
+          WebkitOverflowScrolling: "touch",
+        }}>
           <Image
             src="/images/work/spotify/v2/figma-user-journey.png"
             alt="User journey map — Recently Played shelf with the three opportunity points called out."
             width={1920} height={1080}
             sizes="(max-width: 1240px) 100vw, 1240px"
+            className="sp2-journey-img"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>

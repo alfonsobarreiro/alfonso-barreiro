@@ -542,7 +542,7 @@ export default function WayfarerV2() {
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F8F1ED", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Hero — live homepage screenshot.
@@ -633,7 +633,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F4F2EA", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Information Architecture — routes + user flow.
