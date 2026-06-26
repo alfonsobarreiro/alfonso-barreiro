@@ -74,7 +74,7 @@ export default function Hero() {
           display:             "grid",
           gridTemplateColumns: "minmax(0, 1fr) clamp(380px, 40vw, 540px)",
           gridTemplateAreas:   `"text ipad" "ctas ipad"`,
-          gap:                 "clamp(48px, 7vw, 96px)",
+          columnGap:           "clamp(48px, 7vw, 96px)",
           rowGap:              "clamp(28px, 3vw, 44px)",
           alignItems:          "start",
         }}
@@ -249,14 +249,27 @@ export default function Hero() {
       {/* Responsive */}
       <style>{`
         @media (max-width: 899px) {
+          .hero-section {
+            padding: 56px clamp(24px, 5vw, 48px) 40px !important;
+            min-height: auto !important;
+          }
           .hero-grid {
             grid-template-columns: 1fr !important;
             grid-template-areas: "text" "ipad" "ctas" !important;
-            gap: 40px !important;
+            column-gap: 0 !important;
+            row-gap: 28px !important;
           }
           .hero-text-col {
             max-width: 100% !important;
           }
+          /* H1 + positioning paragraph margins eat too much vertical room
+             at mobile widths. Tighten without touching the typography
+             scale itself. */
+          .hero-text-col h1 { margin-bottom: 20px !important; }
+          .hero-text-col p  { margin-bottom: 0 !important; }
+          /* Scroll hint overlaps the CTAs on mobile and the gesture is
+             already obvious on a phone. Hide it. */
+          .scroll-hint { display: none !important; }
         }
         @keyframes scrollFadeOut { to { opacity: 0; } }
       `}</style>
@@ -602,10 +615,15 @@ function HeroResultPanel() {
         .hero-ipad-review       { will-change: transform, opacity; }
         .hero-ipad-tap          { will-change: transform, opacity, box-shadow; }
 
-        .hero-anim-active .hero-ipad-home      { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
-        .hero-anim-active .hero-ipad-review    { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
-        .hero-anim-active .hero-ipad-blackfade { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
-        .hero-anim-active .hero-ipad-tap       { animation: hero-ipad-tap       22s linear 1 forwards; }
+        /* Infinite loop instead of `1 forwards`. iOS Safari is reliable
+           with continuously-running CSS animations but fragile with the
+           single-run + freeze pattern, especially on elements that scroll
+           in and out of viewport. Same 22 s cycle, just always playing —
+           the homepage / review crossover stays the showcase. */
+        .hero-anim-active .hero-ipad-home      { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+        .hero-anim-active .hero-ipad-review    { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+        .hero-anim-active .hero-ipad-blackfade { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+        .hero-anim-active .hero-ipad-tap       { animation: hero-ipad-tap       22s linear infinite; }
 
         @keyframes hero-ipad-tap {
           0%, 26%   { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: 0 0 0 0 rgba(140, 26, 26, 0.6); }
