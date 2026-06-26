@@ -213,6 +213,9 @@ export default function Work() {
             order: 1 !important;
             max-width: 100% !important;
           }
+          .work-row .work-tag-pills {
+            display: none !important;
+          }
         }
       `}</style>
     </section>
@@ -440,8 +443,11 @@ function ProjectCard({
       ) : null}
 
       {/* Hover-revealed pills — payoff for closer attention. Reserved
-          space prevents layout shift; opacity + transform animate only. */}
+          space prevents layout shift; opacity + transform animate only.
+          Hidden on mobile (no hover) so the View Case Study link sits
+          right under the deck instead of after dead air. */}
       <div
+        className="work-tag-pills"
         aria-hidden={!hovered}
         style={{
           display:      "flex",
