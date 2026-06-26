@@ -312,14 +312,6 @@ export default function SpotifyV2() {
 
       <main style={{ background: c.surface, paddingTop: "72px" }}>
 
-        {/* Back link */}
-        <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `24px ${SECTION_X} 0` }}>
-          <Link href="/#work" style={{
-            fontFamily: font.sans, fontSize: "13px",
-            color: c.muted, textDecoration: "none",
-          }}>← Back to work</Link>
-        </div>
-
         {/* Title block */}
         <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)` }}>
           <Eyebrow>Concept · Self-directed</Eyebrow>

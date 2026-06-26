@@ -351,16 +351,6 @@ export default function WayfarerV2() {
 
       <main style={{ background: c.surface, paddingTop: "72px" }}>
 
-        {/* Back link */}
-        <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `24px ${SECTION_X} 0` }}>
-          <Link href="/#work" style={{
-            fontFamily: font.sans, fontSize: "13px",
-            color: c.muted, textDecoration: "none",
-          }}>
-            ← Back to work
-          </Link>
-        </div>
-
         {/* ─────────────────────────────────────────────
             Title block — Pentagram-style: meta, title,
             one-liner, tags, live link.
