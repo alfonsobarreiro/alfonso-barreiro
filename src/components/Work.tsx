@@ -282,8 +282,10 @@ function ProjectCard({
   const shellBg = isSpotify
     ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1F1F1F 0%, #121212 60%, #0A0A0A 100%)"
     : isWayfarer
-    /* Wayfarer brand navy #3E3C78 (purple-leaning) anchored gradient. */
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #4E4C90 0%, #3E3C78 60%, #2A2858 100%)"
+    /* Wayfarer: solid dark navy (was a radial gradient that competed
+       with the video's baked-in background, reading as "blue inside
+       blue"). Solid #1E1C3A lets the iPad sit cleanly on one tone. */
+    ? "#1E1C3A"
     : isMSR
     /* MSR brand ink #13100C (warm editorial near-black) anchored gradient. */
     ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2A2218 0%, #13100C 60%, #080604 100%)"
