@@ -669,8 +669,10 @@ export default function SpotifyV2() {
           .sp2-consistent-fig   { min-width: 0 !important; max-width: 100% !important; }
           /* State diagram — keep native width; scroll horizontally inside the card. */
           .sp2-state-scroll .sp2-state-img { width: 720px !important; max-width: 720px !important; }
-          /* User journey — same pattern; map at native width, scroll to read. */
-          .sp2-journey-scroll .sp2-journey-img { width: 980px !important; max-width: 980px !important; }
+          /* User journey — mobile renders the transposed vertical version
+             (one card per stage) instead of the wide horizontal table. */
+          .sp2-journey-desktop { display: none !important; }
+          .sp2-journey-mobile  { display: block !important; }
           /* Sketches — native width on phones so each device sketch reads. */
           .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
           /* Consistent Behavior screenshot — scroll horizontally for legibility. */
@@ -2139,10 +2141,10 @@ function UserJourney() {
             </p>
           </div>
         </div>
-        {/* Journey map — light card on mobile (was a dark mat that made
-            the map hard to read at small widths). Horizontal scroll on
-            phones lets the map keep its native legibility. */}
-        <div className="sp2-journey-scroll" style={{
+        {/* Journey map — desktop renders the wide image; mobile renders
+            the transposed vertical version (JourneyVerticalMobile) so the
+            map reads top-to-bottom instead of horizontal-scroll. */}
+        <div className="sp2-journey-scroll sp2-journey-desktop" style={{
           background: "#FFFFFF", border: `1px solid ${c.border}`,
           padding: "clamp(12px, 3vw, 40px)",
           overflowX: "auto",
@@ -2158,8 +2160,190 @@ function UserJourney() {
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
-        <p className="sp2-scroll-after">Swipe to read the full journey map &rarr;</p>
+        <JourneyVerticalMobile />
       </div>
     </section>
+  );
+}
+
+/* ── User journey, transposed for mobile ────────────────────────────
+   The original Figma export is a wide table that requires horizontal
+   scrolling on phones. On mobile we render the same data as a stack
+   of six "stage" cards, each card listing all rows (Goals / Actions /
+   Thoughts / etc.) for that one stage. Reads top-to-bottom naturally. */
+function JourneyVerticalMobile() {
+  const stages = [
+    {
+      name:        "Launch & Landing",
+      goal:        "Open app and see Home with Recently Played shelf immediately.",
+      actions:     ["Launch Spotify (mobile/desktop)", "Land on Home"],
+      thought:     "Show me my stuff fast.",
+      pains:       [
+        "Home loads slowly; Recents pushed below promos/modules.",
+        "Shelf order feels random vs. last session/context.",
+        "Autoplay or loud preview starts unexpectedly on open.",
+      ],
+      emotion:     "Neutral → hopeful",
+      emoji:       "🙂",
+      touchpoint:  "Home screen; Recents shelf; player mini-card.",
+      opportunity: "Prioritize Recents visibility and performance.",
+    },
+    {
+      name:        "Scan Recents",
+      goal:        "Spot irrelevant / private / low-signal items quickly.",
+      actions:     ["Scroll Recents", "Long-press or open ‘•••’"],
+      thought:     "That kid’s playlist shouldn’t show at work.",
+      pains:       [
+        "No obvious affordance (long-press / ‘•••’ inconsistent by platform).",
+        "Small tap targets; hard to hit the right card menu.",
+        "Can’t multi-select items to clean up quickly.",
+      ],
+      emotion:     "Annoyed; privacy-aware",
+      emoji:       "😣",
+      touchpoint:  "Card long-press; overflow menu; hover states (desktop).",
+      opportunity: "Clear, consistent affordances for management.",
+    },
+    {
+      name:        "Choose Action",
+      goal:        "Pick the right control without harming recs.",
+      actions:     ["Read labels / tooltips", "Compare: Remove vs Don’t Suggest vs Pause History vs Clear All"],
+      thought:     "What exactly will this change?",
+      pains:       [
+        "‘Remove’ vs ‘Don’t suggest similar’ labels are unclear.",
+        "No preview of impact on recommendations / history.",
+        "Fear of doing something irreversible by mistake.",
+      ],
+      emotion:     "Cautious",
+      emoji:       "🤔",
+      touchpoint:  "Microcopy; ‘Why this is here’ explainer; privacy iconography.",
+      opportunity: "Plain language + short ‘What changes?’ link; preview impact on recs.",
+    },
+    {
+      name:        "Apply Control",
+      goal:        "Execute fast without context switching.",
+      actions:     ["Tap chosen control", "Optionally scope (item / artist or time-box Pause)", "Edge: attempt 5th Pin → Replace modal"],
+      thought:     "Please be one tap.",
+      pains:       [
+        "Controls buried behind menus or deep in Settings.",
+        "Requires context switch; loses position on the Home shelf.",
+        "Too many confirmations for simple, reversible action.",
+      ],
+      emotion:     "Focused",
+      emoji:       "😐",
+      touchpoint:  "Action buttons: Remove, Don’t Suggest Similar, Pause History (timed), Clear All; global toggle.",
+      opportunity: "One-tap defaults; scoped choices; sensible confirmations.",
+    },
+    {
+      name:        "Confirm / Undo",
+      goal:        "Reassurance and easy recovery.",
+      actions:     ["See dialog or toast", "Undo available 5–10s", "Replace chosen → toast", "Pinned to top: Undo"],
+      thought:     "Good, if I regret it I can undo.",
+      pains:       [
+        "Missing or tiny Undo window; easy to miss toast.",
+        "Feedback is vague (‘Done’) with no detail on what changed.",
+        "Anxiety about permanence despite ‘non-destructive’ copy.",
+      ],
+      emotion:     "Relief if simple; frustration if not",
+      emoji:       "😌",
+      touchpoint:  "Confirmation dialog; Undo toast; haptic.",
+      opportunity: "Generous Undo; non-destructive-first; undo intent shown from snackbars.",
+    },
+    {
+      name:        "Post-Action Review",
+      goal:        "Validate change; keep listening; protect recommendation quality.",
+      actions:     ["Shelf updates", "Item hides", "History / Trash records reversible changes"],
+      thought:     "Nice, cleaner recents and my recs stay sane.",
+      pains:       [
+        "Shelf doesn’t visibly update right away (stale state).",
+        "No History / Trash view to review or restore changes.",
+        "Recommendations still surface similar items after cleanup.",
+      ],
+      emotion:     "Restored; in control",
+      emoji:       "😌",
+      touchpoint:  "Updated shelf; History Trash (30-day restore); Settings → Privacy & History.",
+      opportunity: "Restore view; lightweight survey; show learning (‘We’ll show fewer kids playlists’).",
+    },
+  ];
+
+  const labelStyle: React.CSSProperties = {
+    fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+    letterSpacing: "0.16em", textTransform: "uppercase",
+    color: c.muted, margin: "0 0 6px",
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+    color: c.ink, margin: 0,
+  };
+
+  return (
+    <div className="sp2-journey-mobile" style={{ display: "none" }}>
+      {stages.map((s, i) => (
+        <article key={s.name} style={{
+          background: "#FFFFFF", border: `1px solid ${c.border}`,
+          padding: "20px 18px", marginTop: i === 0 ? 0 : "12px",
+        }}>
+          {/* Stage header */}
+          <div style={{
+            background: c.green, color: "#FFFFFF",
+            fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
+            letterSpacing: "0.10em", textTransform: "uppercase",
+            padding: "8px 12px", margin: "-20px -18px 16px",
+            display: "flex", justifyContent: "space-between", alignItems: "baseline",
+          }}>
+            <span>{String(i + 1).padStart(2, "0")} · {s.name}</span>
+          </div>
+
+          <section style={{ marginBottom: "16px" }}>
+            <p style={labelStyle}>Goal</p>
+            <p style={bodyStyle}>{s.goal}</p>
+          </section>
+
+          <section style={{ marginBottom: "16px" }}>
+            <p style={labelStyle}>Actions</p>
+            <ul style={{ margin: 0, paddingLeft: "18px", ...bodyStyle }}>
+              {s.actions.map((a) => <li key={a} style={{ marginBottom: "4px" }}>{a}</li>)}
+            </ul>
+          </section>
+
+          <section style={{ marginBottom: "16px" }}>
+            <p style={labelStyle}>Thought</p>
+            <p style={{ ...bodyStyle, fontStyle: "italic", color: c.ink2 }}>
+              &ldquo;{s.thought}&rdquo;
+            </p>
+          </section>
+
+          <section style={{ marginBottom: "16px" }}>
+            <p style={labelStyle}>Pain Points</p>
+            <ul style={{ margin: 0, paddingLeft: "18px", ...bodyStyle }}>
+              {s.pains.map((p) => <li key={p} style={{ marginBottom: "4px" }}>{p}</li>)}
+            </ul>
+          </section>
+
+          <section style={{ marginBottom: "16px" }}>
+            <p style={labelStyle}>Emotion</p>
+            <p style={bodyStyle}>
+              <span style={{ marginRight: "8px" }}>{s.emoji}</span>
+              {s.emotion}
+            </p>
+          </section>
+
+          <section style={{ marginBottom: "16px" }}>
+            <p style={labelStyle}>Touchpoint</p>
+            <p style={bodyStyle}>{s.touchpoint}</p>
+          </section>
+
+          <section style={{
+            background: "rgba(30,215,96,0.10)",
+            border: `1px solid rgba(30,215,96,0.35)`,
+            padding: "12px 14px", margin: "16px -2px 0",
+          }}>
+            <p style={{ ...labelStyle, color: c.greenDark, marginBottom: "4px" }}>
+              Opportunity
+            </p>
+            <p style={{ ...bodyStyle, fontWeight: 600 }}>{s.opportunity}</p>
+          </section>
+        </article>
+      ))}
+    </div>
   );
 }
