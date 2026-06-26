@@ -536,7 +536,7 @@ export default function SpotifyV2() {
                   <Image
                     src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-                    width={860} height={540}
+                    width={652} height={448}
                     sizes="(max-width: 760px) 720px, 56vw"
                     quality={95}
                     className="sp2-consistent-img"
