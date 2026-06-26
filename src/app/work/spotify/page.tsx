@@ -110,7 +110,7 @@ function ArcDivider({ arc }: { arc: string }) {
         alignItems:     "center",
         gap:            "20px",
         maxWidth:       CONTENT_MAX,
-        margin:         "120px auto 80px",
+        margin:         "clamp(48px, 10vw, 120px) auto clamp(32px, 6vw, 80px)",
         padding:        `0 ${SECTION_X}`,
       }}
     >
@@ -466,12 +466,16 @@ export default function SpotifyV2() {
         {/* §03 Shipped */}
         <ShippedSection />
 
-        {/* Mobile/Desktop parity */}
-        <section style={{ padding: `120px ${SECTION_X} 120px` }}>
+        {/* Mobile/Desktop parity — two rows on mobile: editorial text block,
+            then the screenshot underneath. The original composite image
+            (text + screenshot side-by-side) cropped to just the screenshot;
+            the editorial copy is rendered as real HTML so it scales properly
+            on phones. */}
+        <section style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Desktop parity</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
+              fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 48px)",
               fontWeight: 600, color: c.ink, margin: "0 0 24px",
               letterSpacing: "-0.025em", lineHeight: 1.05, maxWidth: "780px",
             }}>
@@ -480,24 +484,74 @@ export default function SpotifyV2() {
             <CategoryPill>Details</CategoryPill>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: "0 0 32px", maxWidth: PROSE_MAX,
+              lineHeight: 1.75, color: c.ink2, margin: "0 0 40px", maxWidth: PROSE_MAX,
             }}>
               Mobile uses long-press to open the action sheet. Desktop uses a right-click context menu. The three controls and their state machines are identical. Only the affordance changes.
             </p>
-            <Image
-              src="/images/work/spotify/spotify-desktop-context-menu.webp"
-              alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-              width={2400} height={1500}
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-            />
-            <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-              letterSpacing: "0.08em", textTransform: "uppercase",
-              color: c.muted, margin: "16px 0 0", textAlign: "center",
+
+            <div className="sp2-parity-grid" style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1.2fr",
+              gap: "clamp(28px, 4vw, 48px)",
+              alignItems: "start",
             }}>
-              Desktop right-click menu &middot; same actions, native pattern
-            </p>
+              {/* Editorial block — was rendered as text inside the composite */}
+              <div>
+                <p style={{
+                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                  letterSpacing: "0.18em", textTransform: "uppercase",
+                  color: c.muted, margin: "0 0 12px",
+                }}>
+                  Maintaining cross-platform consistency
+                </p>
+                <h3 style={{
+                  fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
+                  fontWeight: 700, color: c.ink, margin: "0 0 20px",
+                  letterSpacing: "-0.02em", lineHeight: 1.2,
+                }}>
+                  Consistent behavior on desktop.
+                </h3>
+                <p style={{
+                  fontFamily: font.sans, fontSize: "15px",
+                  lineHeight: 1.65, color: c.ink2, margin: "0 0 20px",
+                }}>
+                  Habitual desktop users access the same set of surfaced controls through a right-click context menu, matching Spotify&rsquo;s existing desktop paradigms.
+                </p>
+                <p style={{
+                  fontFamily: font.sans, fontSize: "13px", fontWeight: 700,
+                  color: c.ink, margin: "0 0 8px", letterSpacing: "-0.005em",
+                }}>
+                  This maintains:
+                </p>
+                <ul style={{
+                  fontFamily: font.sans, fontSize: "14px",
+                  lineHeight: 1.65, color: c.ink2,
+                  margin: 0, paddingLeft: "20px",
+                }}>
+                  <li>Predictable cross-platform behavior</li>
+                  <li>Minimal UI surface changes</li>
+                  <li>A familiar power-user pathway without expanding the primary UI surface.</li>
+                </ul>
+              </div>
+
+              {/* Screenshot — just the right-click menu, no text bake-in */}
+              <figure style={{ margin: 0 }}>
+                <Image
+                  src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
+                  alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
+                  width={860} height={540}
+                  sizes="(max-width: 760px) 100vw, 56vw"
+                  style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
+                />
+                <figcaption style={{
+                  fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+                  letterSpacing: "0.12em", textTransform: "uppercase",
+                  color: c.muted, margin: "12px 0 0", textAlign: "center",
+                }}>
+                  Desktop right-click menu &middot; same actions, native pattern
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </section>
 
@@ -590,7 +644,15 @@ export default function SpotifyV2() {
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; }
           .sp2-loops-row figure > div { width: 100% !important; max-width: 280px !important; }
+          /* Prototype tabs — larger tap target on phones; clearer active
+             state via stronger background contrast. */
+          .sp2-loops-tab        { padding: 16px 12px !important; flex-direction: column !important; align-items: center !important; gap: 4px !important; }
+          .sp2-loops-tab span:first-child { font-size: 9px !important; }
+          .sp2-loops-tab span:last-child  { font-size: 14px !important; }
           .sp2-tc-nav           { grid-template-columns: 1fr 1fr 1fr !important; }
+          /* Parity section — stack the editorial block above the
+             screenshot on phones so neither pane is squished. */
+          .sp2-parity-grid      { grid-template-columns: 1fr !important; gap: 28px !important; }
 
           /* Mobile hero — drop the two most-internal Tag pills (3rd + 4th)
              and hide the redundant caption to reduce scroll-before-content. */
@@ -1178,7 +1240,7 @@ function Prototypes() {
           color: c.muted, margin: "0 0 16px",
         }}>
           <span style={{ color: c.green }}>&rarr; </span>
-          Click 01 &middot; 02 &middot; 03 to switch the loop
+          Tap 01 &middot; 02 &middot; 03 to switch the loop
         </p>
 
         <div className="sp2-loops-carousel" style={{
@@ -1332,7 +1394,7 @@ function ShippedSection() {
           </h3>
           <div style={{
             background: "#FFFFFF", border: `1px solid ${c.border}`,
-            padding: "clamp(24px, 4vw, 48px)",
+            padding: "clamp(12px, 3vw, 48px)",
           }}>
             <Image
               src="/images/work/spotify/spotify-shelf-state-diagram.svg"

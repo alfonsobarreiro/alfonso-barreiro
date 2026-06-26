@@ -123,7 +123,7 @@ function ArcDivider({ arc }: { arc: string }) {
         alignItems:     "center",
         gap:            "20px",
         maxWidth:       CONTENT_MAX,
-        margin:         "120px auto 80px",
+        margin:         "clamp(48px, 10vw, 120px) auto clamp(32px, 6vw, 80px)",
         padding:        `0 ${SECTION_X}`,
       }}
     >

@@ -246,12 +246,12 @@ export default function Nav() {
             fontFamily:     "var(--font-dm-sans), sans-serif",
             fontSize:       "clamp(42px, 12vw, 72px)",
             fontWeight:     500,
-            color:          "rgba(245,243,239,0.85)",
+            color:          "#F5F3EF",
             letterSpacing:  "-0.025em",
             lineHeight:     1.1,
             background:     "none",
             border:         "none",
-            borderBottom:   "1px solid rgba(245,243,239,0.08)",
+            borderBottom:   "1px solid rgba(245,243,239,0.12)",
             cursor:         "pointer",
             padding:        "12px 0",
             textAlign:      "left",
@@ -260,8 +260,11 @@ export default function Nav() {
             display:        "block",
             textDecoration: "none",
           };
-          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "var(--color-accent)");
-          const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "rgba(245,243,239,0.85)");
+          // Crimson on dark reads cleanly; the old accent (deep teal)
+          // got swallowed by the #252B28 backdrop and made the link
+          // look like it had disappeared on hover.
+          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "var(--color-brand)");
+          const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = "#F5F3EF");
 
           // "about" always routes to /about, regardless of current page
           if (link === "about") {
@@ -303,6 +306,50 @@ export default function Nav() {
           );
         })}
 
+        {/* Case studies — quick-jump under Work */}
+        <div style={{
+          marginTop: "28px",
+          paddingTop: "20px",
+          borderTop: "1px solid rgba(245,243,239,0.08)",
+          display: "flex", flexDirection: "column", gap: "14px",
+        }}>
+          <span style={{
+            fontFamily:    "var(--font-dm-sans), sans-serif",
+            fontSize:      "10px",
+            fontWeight:    700,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color:         "rgba(245,243,239,0.55)",
+            marginBottom:  "2px",
+          }}>
+            Case studies
+          </span>
+          {[
+            { href: "/work/spotify",            label: "Spotify"            },
+            { href: "/work/wayfarer",           label: "Wayfarer"           },
+            { href: "/work/mens-sole-revival",  label: "Men's Sole Revival" },
+          ].map((cs) => (
+            <Link
+              key={cs.href}
+              href={cs.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontFamily:     "var(--font-dm-sans), sans-serif",
+                fontSize:       "18px",
+                fontWeight:     500,
+                color:          "#F5F3EF",
+                letterSpacing:  "-0.005em",
+                textDecoration: "none",
+                transition:     "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-brand)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#F5F3EF")}
+            >
+              {cs.label} →
+            </Link>
+          ))}
+        </div>
+
         {/* CTA */}
         <Link
           href="/contact"
@@ -335,7 +382,7 @@ export default function Nav() {
           left:       "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "12px",
-          color:      "rgba(245,243,239,0.25)",
+          color:      "rgba(245,243,239,0.5)",
           margin:     0,
         }}>
           © 2026 Alfonso Barreiro
