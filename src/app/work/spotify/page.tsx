@@ -529,7 +529,7 @@ export default function SpotifyV2() {
                   On mobile we scroll horizontally so each menu item is
                   legible instead of compressed into the column width. */}
               <figure className="sp2-consistent-fig" style={{ margin: "0 auto", textAlign: "center", width: "100%" }}>
-                <div className="sp2-consistent-scroll sp2-center-on-load" style={{
+                <div className="sp2-consistent-scroll" style={{
                   overflowX: "auto", WebkitOverflowScrolling: "touch",
                   border: `1px solid ${c.border}`,
                 }}>
@@ -543,6 +543,7 @@ export default function SpotifyV2() {
                     style={{ width: "100%", height: "auto", display: "block" }}
                   />
                 </div>
+                <p className="sp2-scroll-after">Swipe to see the full menu &rarr;</p>
                 <figcaption style={{
                   fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
                   letterSpacing: "0.12em", textTransform: "uppercase",
@@ -611,6 +612,10 @@ export default function SpotifyV2() {
         }
         .sp2-loops-tab:hover { background: rgba(30,215,96,0.05); }
 
+        /* Scroll hint defaults — hidden on desktop, surfaced on phones
+           (the mobile media query below re-shows + styles them). */
+        .sp2-scroll-after { display: none; }
+
         /* Tablet (≤1024px) — thicken arc dividers so the "RESEARCH" label
            doesn't get visually lost between the rules at narrower widths. */
         @media (max-width: 1024px) {
@@ -670,6 +675,16 @@ export default function SpotifyV2() {
           .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
           /* Consistent Behavior screenshot — scroll horizontally for legibility. */
           .sp2-consistent-scroll .sp2-consistent-img { width: 720px !important; max-width: 720px !important; }
+          /* Scroll hint shown under every horizontally-scrolling block on
+             phones. Hidden on desktop where the content fits in view. */
+          .sp2-scroll-after {
+            display: block !important;
+            font-family: var(--font-inter, system-ui), sans-serif;
+            font-size: 11px !important; font-weight: 600 !important;
+            letter-spacing: 0.14em !important; text-transform: uppercase !important;
+            color: #8B8B86 !important; margin: 10px 0 0 !important;
+            text-align: left !important;
+          }
           /* Signal section (user voices) — each quote sticky-stacks so the
              previous card stays visible above the next one as the reader
              scrolls, the way the user described. */
@@ -832,6 +847,7 @@ function SketchesAndMidfi() {
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
+          <p className="sp2-scroll-after">Swipe to see all five sketches &rarr;</p>
         </div>
 
         {/* Mid-fi — desktop + mobile, paired. Desktop carries the surface
@@ -1479,6 +1495,7 @@ function ShippedSection() {
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
+          <p className="sp2-scroll-after">Swipe to see the full diagram &rarr;</p>
         </div>
 
         {/* Out of scope — what got named, defended, and skipped */}
@@ -2170,6 +2187,7 @@ function UserJourney() {
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
+        <p className="sp2-scroll-after">Swipe to read the full journey map &rarr;</p>
       </div>
     </section>
   );
