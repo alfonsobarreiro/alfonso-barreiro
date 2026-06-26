@@ -695,16 +695,6 @@ export default function SpotifyV2() {
             top: 124px !important;
             box-shadow: 0 -1px 0 rgba(255,255,255,0.85), 0 12px 28px -16px rgba(0,0,0,0.18) !important;
           }
-          /* Prototype loops carousel tabs — sticky on scroll so the user
-             can see which loop they're reading even after the panel scrolls
-             past the original tab position. */
-          .sp2-loops-nav {
-            position: sticky !important;
-            top: 124px !important;
-            z-index: 5 !important;
-            background: #FFFFFF !important;
-          }
-
           /* Mobile hero — drop the two most-internal Tag pills (3rd + 4th)
              and hide the redundant caption to reduce scroll-before-content. */
           .sp2-hero-tags > *:nth-child(3),
