@@ -641,34 +641,35 @@ export default function SpotifyV2() {
           .sp2-as-hero h2       { font-size: 24px !important; }
           .sp2-as-icons         { grid-template-columns: 1fr !important; gap: 18px !important; }
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; }
-          .sp2-loops-row figure > div { width: 100% !important; max-width: 280px !important; }
+          .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
+          .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
+          .sp2-loops-row figure > div { width: 100% !important; max-width: 220px !important; }
+          .sp2-loops-panels     { padding: 20px 16px !important; }
+          /* Trim the dead air at the end of the Prototypes section on
+             phones — desktop's 120px feels generous, but on a small viewport
+             it reads as an empty box before "The bet". */
+          .sp2-prototypes-section { padding-bottom: 32px !important; }
           /* Prototype tabs — larger tap target on phones; clearer active
              state via stronger background contrast. */
           .sp2-loops-tab        { padding: 14px 12px !important; gap: 0 !important; }
           .sp2-loops-tab span    { font-size: 14px !important; }
           .sp2-tc-nav           { grid-template-columns: 1fr 1fr 1fr !important; }
           /* Parity section — stack the editorial block above the
-             screenshot on phones so neither pane is squished. */
-          .sp2-parity-grid      { grid-template-columns: 1fr !important; gap: 28px !important; }
-          /* State diagram — let the SVG keep its native width and scroll
-             horizontally inside the card; show the swipe hint. */
+             screenshot on phones so neither pane is squished. min-width:0
+             prevents grid items from expanding to the intrinsic width of
+             the wide screenshot inside (which would push the figcaption
+             past the viewport edge). */
+          .sp2-parity-grid      { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+          .sp2-parity-grid > *  { min-width: 0 !important; }
+          .sp2-consistent-fig   { min-width: 0 !important; max-width: 100% !important; }
+          /* State diagram — keep native width; scroll horizontally inside the card. */
           .sp2-state-scroll .sp2-state-img { width: 720px !important; max-width: 720px !important; }
-          .sp2-state-hint                  { display: block !important; }
-          /* User journey — same pattern; show the map at native width and
-             let the reader swipe to see all three opportunity points. */
+          /* User journey — same pattern; map at native width, scroll to read. */
           .sp2-journey-scroll .sp2-journey-img { width: 980px !important; max-width: 980px !important; }
-          .sp2-scroll-hint-journey         { display: block !important; }
-          /* Sketches — native width on phones so each device sketch
-             reads. Same swipe affordance as the journey + state diagram. */
+          /* Sketches — native width on phones so each device sketch reads. */
           .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
-          .sp2-scroll-hint-sketches        { display: block !important; }
-          /* Consistent Behavior screenshot — let it scroll horizontally
-             too so the menu items are legible at full size on phones. */
+          /* Consistent Behavior screenshot — scroll horizontally for legibility. */
           .sp2-consistent-scroll .sp2-consistent-img { width: 720px !important; max-width: 720px !important; }
-          /* Competitive audit — already scrolls horizontally; surface the
-             hint so the swipe affordance is discoverable. */
-          .sp2-scroll-hint-audit           { display: block !important; }
           /* Signal section (user voices) — each quote sticky-stacks so the
              previous card stays visible above the next one as the reader
              scrolls, the way the user described. */
@@ -693,11 +694,19 @@ export default function SpotifyV2() {
           .sp2-hero-tags > *:nth-child(4) { display: none !important; }
           .sp2-hero-caption                { display: none !important; }
 
-          /* Mobile sticky chip nav — tighter gap + reduced letter-spacing so
-             "01 PIN · 02 REMOVE · 03 PAUSE" doesn't wrap or crowd. */
-          .sp2-control-nav    { padding: 8px 0 !important; }
-          .sp2-control-nav ul { gap: 14px !important; }
-          .sp2-control-nav a  { font-size: 11px !important; letter-spacing: 0.04em !important; padding: 2px 0 !important; }
+          /* Mobile sticky chip nav — chunky tap targets (~44px high), drop
+             the "01/02/03" numerals so PIN / REMOVE / PAUSE breathe. */
+          .sp2-control-nav    { padding: 10px 12px !important; }
+          .sp2-control-nav ul { gap: 8px !important; justify-content: stretch !important; }
+          .sp2-control-nav li { flex: 1 1 0 !important; }
+          .sp2-control-nav a  {
+            display: flex !important;
+            justify-content: center !important;
+            font-size: 12px !important;
+            letter-spacing: 0.06em !important;
+            padding: 12px 8px !important;
+            width: 100% !important;
+          }
           .sp2-control-nav a span:first-child { display: none !important; }
         }
       `}</style>
@@ -809,15 +818,6 @@ function SketchesAndMidfi() {
           }}>
             Five directions on paper.
           </h3>
-          <p className="sp2-scroll-hint-sketches" style={{
-            display: "none",
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-            letterSpacing: "0.14em", textTransform: "uppercase",
-            color: c.muted, margin: "0 0 12px",
-          }}>
-            <span style={{ color: c.green }}>&rarr; </span>
-            Swipe to see all five sketches
-          </p>
           <div className="sp2-sketches-scroll sp2-center-on-load" style={{
             border: `1px solid ${c.border}`, background: "#FFFFFF",
             overflowX: "auto", WebkitOverflowScrolling: "touch",
@@ -1210,10 +1210,11 @@ function DecisionLogic() {
             if (el) obs.observe(el);
           });
 
-          /* Center horizontally-scrolling cards on mount so wide images
-             (state diagram, journey map, sketches, consistent-behavior
-             screenshot) open at their visual center instead of pinned to
-             the left edge. Only fires if the content actually overflows. */
+          /* Center horizontally-scrolling cards once their images have
+             actually painted. Pure window.load fires before Next/Image
+             swaps in, so scrollWidth equals clientWidth and the center
+             math no-ops. We also listen on each inner <img> load and
+             retry on a short tail of timers to cover late paints. */
           function centerScroll() {
             document.querySelectorAll('.sp2-center-on-load').forEach(function (el) {
               if (el.scrollWidth > el.clientWidth) {
@@ -1221,8 +1222,16 @@ function DecisionLogic() {
               }
             });
           }
-          if (document.readyState === 'complete') centerScroll();
-          else window.addEventListener('load', centerScroll);
+          function wireCenter() {
+            centerScroll();
+            document.querySelectorAll('.sp2-center-on-load img').forEach(function (img) {
+              if (img.complete) return;
+              img.addEventListener('load', centerScroll, { once: true });
+            });
+            [150, 400, 900, 1800].forEach(function (t) { setTimeout(centerScroll, t); });
+          }
+          if (document.readyState === 'complete') wireCenter();
+          else window.addEventListener('load', wireCenter);
           window.addEventListener('resize', centerScroll);
         })();
       ` }} />
@@ -1273,7 +1282,7 @@ function Prototypes() {
   ];
 
   return (
-    <section style={{
+    <section className="sp2-prototypes-section" style={{
       padding: `0 ${SECTION_X} 120px`,
       background: c.callout,
       borderTop: `1px solid ${c.border}`,
@@ -1304,15 +1313,6 @@ function Prototypes() {
             </p>
           </div>
         </div>
-
-        <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-          letterSpacing: "0.18em", textTransform: "uppercase",
-          color: c.muted, margin: "0 0 16px",
-        }}>
-          <span style={{ color: c.green }}>&rarr; </span>
-          Tap 01 &middot; 02 &middot; 03 to switch the loop
-        </p>
 
         <div className="sp2-loops-carousel" style={{
           border: `1px solid ${c.border}`, background: "#FFFFFF",
@@ -1479,15 +1479,6 @@ function ShippedSection() {
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
-          <p className="sp2-state-hint" style={{
-            display: "none",
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-            letterSpacing: "0.14em", textTransform: "uppercase",
-            color: c.muted, margin: "10px 0 0",
-          }}>
-            <span style={{ color: c.green }}>&rarr; </span>
-            Swipe to see the full diagram
-          </p>
         </div>
 
         {/* Out of scope — what got named, defended, and skipped */}
@@ -2006,16 +1997,6 @@ function CompetitiveAudit() {
           ))}
         </div>
 
-        <p className="sp2-scroll-hint-audit" style={{
-          display: "none",
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-          letterSpacing: "0.14em", textTransform: "uppercase",
-          color: c.muted, margin: "0 0 12px",
-        }}>
-          <span style={{ color: c.green }}>&rarr; </span>
-          Swipe to scroll the full audit
-        </p>
-
         <div className="sp2-audit-scroll" style={{
           border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "auto",
         }}>
@@ -2170,18 +2151,6 @@ function UserJourney() {
             </p>
           </div>
         </div>
-        {/* Scroll hint shows on mobile only — desktop sees the full
-            journey at once. */}
-        <p className="sp2-scroll-hint-journey" style={{
-          display: "none",
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-          letterSpacing: "0.14em", textTransform: "uppercase",
-          color: c.muted, margin: "0 0 12px",
-        }}>
-          <span style={{ color: c.green }}>&rarr; </span>
-          Swipe to read the full journey map
-        </p>
-
         {/* Journey map — light card on mobile (was a dark mat that made
             the map hard to read at small widths). Horizontal scroll on
             phones lets the map keep its native legibility. */}
