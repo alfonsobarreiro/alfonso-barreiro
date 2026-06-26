@@ -1203,25 +1203,33 @@ function DecisionLogic() {
           const sections = keys.map(k => document.getElementById('control-' + k)).filter(Boolean);
           if (!sections.length) return;
 
-          /* Active detector: pick the section whose top is closest to
-             (viewport top + 150px) but already crossed above it. This is
-             deterministic regardless of which IO entries fire in which
-             order. We trigger it via BOTH scroll and IntersectionObserver
-             so it works on real devices (scroll) and headless preview
-             (IO fires reliably; scroll events don't fire on programmatic
-             scrollTo). */
+          /* Active detector: pick the section that contains the viewport
+             center. Fallback: section closest above viewport center when
+             we're between two (rare gap). Triggered by scroll, IO, and a
+             setInterval safety-net so it works in every environment. */
           let rafPending = false;
           function update() {
             rafPending = false;
-            const probe = 150;
+            const probe = window.innerHeight / 2;
             let bestKey = null;
-            let bestDist = Infinity;
+            /* Primary: section straddles viewport center */
             sections.forEach(s => {
-              const top = s.getBoundingClientRect().top;
-              if (top > probe) return; /* section not yet reached */
-              const dist = Math.abs(probe - top);
-              if (dist < bestDist) { bestDist = dist; bestKey = s.id.replace('control-', ''); }
+              const r = s.getBoundingClientRect();
+              if (r.top <= probe && r.bottom > probe) {
+                bestKey = s.id.replace('control-', '');
+              }
             });
+            /* Fallback: last section whose top has crossed the chip nav */
+            if (!bestKey) {
+              let bestTop = -Infinity;
+              const navBottom = 124;
+              sections.forEach(s => {
+                const top = s.getBoundingClientRect().top;
+                if (top <= navBottom && top > bestTop) {
+                  bestTop = top; bestKey = s.id.replace('control-', '');
+                }
+              });
+            }
             anchors.forEach(a => a.removeAttribute('data-active'));
             if (bestKey && map[bestKey]) map[bestKey].setAttribute('data-active', 'true');
           }
@@ -1407,7 +1415,7 @@ function Prototypes() {
                         aria-label={l.eyebrow}
                         style={{
                           width: "100%", height: "100%",
-                          objectFit: "cover", objectPosition: "center",
+                          objectFit: "cover", objectPosition: "top center",
                           display: "block",
                         }}
                       />
