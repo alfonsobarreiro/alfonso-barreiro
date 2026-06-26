@@ -192,6 +192,29 @@ export default function Work() {
           ))}
         </div>
       </div>
+
+      {/* Responsive: stack row contents on mobile so the device shell goes
+          first (full width) and the editorial block sits below it. The
+          desktop zigzag alternation collapses cleanly to a single column. */}
+      <style>{`
+        @media (max-width: 899px) {
+          .work-row {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: clamp(24px, 5vw, 36px) !important;
+            justify-content: flex-start !important;
+          }
+          .work-row .work-row-image {
+            order: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .work-row .work-row-content {
+            order: 1 !important;
+            max-width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

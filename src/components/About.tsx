@@ -521,6 +521,22 @@ export default function About() {
         </section>
 
       </div>
+
+      {/* Responsive: stack bio above skills on mobile so the category
+          labels read as proper "blurbs above the pill rows" and the
+          paragraphs aren't competing with the sticky skills sidebar. */}
+      <style>{`
+        @media (max-width: 899px) {
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 56px !important;
+          }
+          .about-grid .skills-box {
+            position: static !important;
+            top: auto !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

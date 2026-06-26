@@ -73,12 +73,14 @@ export default function Hero() {
           width:               "100%",
           display:             "grid",
           gridTemplateColumns: "minmax(0, 1fr) clamp(380px, 40vw, 540px)",
+          gridTemplateAreas:   `"text ipad" "ctas ipad"`,
           gap:                 "clamp(48px, 7vw, 96px)",
-          alignItems:          "center",
+          rowGap:              "clamp(28px, 3vw, 44px)",
+          alignItems:          "start",
         }}
       >
-        {/* ── LEFT: intro copy ─────────────────────────────── */}
-        <div style={{ maxWidth: "560px" }}>
+        {/* ── LEFT TOP: intro copy ─────────────────────────── */}
+        <div className="hero-text-col" style={{ gridArea: "text", maxWidth: "560px" }}>
 
           {/* Eyebrow */}
           <div
@@ -149,9 +151,10 @@ export default function Hero() {
             decisions someone hasn&apos;t made yet: surfaced through
             research, made explicit, shipped to a live product.
           </p>
+        </div>
 
-          {/* CTAs */}
-          <div className="hero-reveal hero-cta-row" style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+        {/* ── LEFT BOTTOM: CTAs (own grid item so mobile can reorder it after the iPad) ── */}
+        <div className="hero-reveal hero-cta-row" style={{ gridArea: "ctas", display: "flex", gap: "14px", flexWrap: "wrap" }}>
             <a
               href="#work"
               style={{
@@ -206,11 +209,10 @@ export default function Hero() {
             >
               Say hello
             </a>
-          </div>
         </div>
 
         {/* ── RIGHT: live MSR site + 13× ─────────────────────── */}
-        <div className="hero-reveal" style={{ width: "100%" }}>
+        <div className="hero-reveal" style={{ gridArea: "ipad", width: "100%" }}>
           <HeroResultPanel />
         </div>
       </div>
@@ -249,7 +251,11 @@ export default function Hero() {
         @media (max-width: 899px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            gap: 56px !important;
+            grid-template-areas: "text" "ipad" "ctas" !important;
+            gap: 40px !important;
+          }
+          .hero-text-col {
+            max-width: 100% !important;
           }
         }
         @keyframes scrollFadeOut { to { opacity: 0; } }
@@ -287,6 +293,11 @@ function HeroResultPanel() {
         for (const e of entries) {
           if (e.isIntersecting && !startedRef.current) {
             startedRef.current = true;
+            /* Start the iPad page-flip animation as soon as the panel enters
+               viewport. On desktop this fires at page load (already visible);
+               on mobile it waits until the user scrolls down to it, so the
+               full home → review → reset cycle is actually seen. */
+            el.classList.add("hero-anim-active");
             setTimeout(() => {
               const start = performance.now();
               const tick = (t: number) => {
@@ -576,10 +587,22 @@ function HeroResultPanel() {
            at top, fully visible). Saves CPU on long sessions and stops the
            movement from dragging the eye back while the user is reading
            further down the page. */
-        .hero-ipad-home         { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; will-change: transform, opacity; }
-        .hero-ipad-review       { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; will-change: transform, opacity; }
-        .hero-ipad-blackfade    { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
-        .hero-ipad-tap          { animation: hero-ipad-tap       22s linear 1 forwards; will-change: transform, opacity, box-shadow; }
+        /* Animations default to paused — the IntersectionObserver in
+           HeroResultPanel toggles them on by adding .hero-anim-active to
+           the anchor when the panel enters the viewport. This is what
+           lets mobile (where the iPad is below the fold) actually see
+           the home → review → reset sequence. */
+        .hero-ipad-home         { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; animation-play-state: paused; will-change: transform, opacity; }
+        .hero-ipad-review       { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; animation-play-state: paused; will-change: transform, opacity; }
+        .hero-ipad-blackfade    { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; animation-play-state: paused; }
+        .hero-ipad-tap          { animation: hero-ipad-tap       22s linear 1 forwards; animation-play-state: paused; will-change: transform, opacity, box-shadow; }
+
+        .hero-anim-active .hero-ipad-home,
+        .hero-anim-active .hero-ipad-review,
+        .hero-anim-active .hero-ipad-blackfade,
+        .hero-anim-active .hero-ipad-tap {
+          animation-play-state: running;
+        }
 
         @keyframes hero-ipad-tap {
           0%, 26%   { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: 0 0 0 0 rgba(140, 26, 26, 0.6); }
