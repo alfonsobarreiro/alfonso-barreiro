@@ -1074,7 +1074,7 @@ function DecisionLogic() {
                     justifyContent: "center",
                     gap:            "6px",
                     padding:        "16px 8px",
-                    transition:     "color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease",
+                    transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
                   <span className="sp2-control-numeral" style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
@@ -1208,6 +1208,7 @@ function DecisionLogic() {
              we're between two (rare gap). Triggered by scroll, IO, and a
              setInterval safety-net so it works in every environment. */
           let rafPending = false;
+          let lastKey = null;
           function update() {
             rafPending = false;
             const probe = window.innerHeight / 2;
@@ -1230,6 +1231,11 @@ function DecisionLogic() {
                 }
               });
             }
+            /* Idempotent — only mutate the DOM when the active key
+               actually changes. Removing-and-re-setting every tick caused
+               the box-shadow transition to flicker / never settle. */
+            if (bestKey === lastKey) return;
+            lastKey = bestKey;
             anchors.forEach(a => a.removeAttribute('data-active'));
             if (bestKey && map[bestKey]) map[bestKey].setAttribute('data-active', 'true');
           }
