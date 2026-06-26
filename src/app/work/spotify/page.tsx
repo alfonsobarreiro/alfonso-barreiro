@@ -709,20 +709,15 @@ export default function SpotifyV2() {
           .sp2-hero-tags > *:nth-child(4) { display: none !important; }
           .sp2-hero-caption                { display: none !important; }
 
-          /* Mobile sticky chip nav — chunky tap targets (~44px high), drop
-             the "01/02/03" numerals so PIN / REMOVE / PAUSE breathe. */
-          .sp2-control-nav    { padding: 10px 12px !important; }
-          .sp2-control-nav ul { gap: 8px !important; justify-content: stretch !important; }
-          .sp2-control-nav li { flex: 1 1 0 !important; }
-          .sp2-control-nav a  {
-            display: flex !important;
-            justify-content: center !important;
-            font-size: 12px !important;
-            letter-spacing: 0.06em !important;
-            padding: 12px 8px !important;
-            width: 100% !important;
+          /* Mobile sticky chip nav — 3-column tab strip (matches the
+             Loops carousel pattern). Drop the "01/02/03" numerals and
+             bleed the strip to the viewport edges with negative margin. */
+          .sp2-control-nav {
+            margin-left: calc(-1 * clamp(24px, 6vw, 80px)) !important;
+            margin-right: calc(-1 * clamp(24px, 6vw, 80px)) !important;
           }
-          .sp2-control-nav a span:first-child { display: none !important; }
+          .sp2-control-nav a { padding: 16px 8px !important; font-size: 12px !important; }
+          .sp2-control-numeral { display: none !important; }
         }
       `}</style>
     </>
@@ -1052,43 +1047,40 @@ function DecisionLogic() {
             position:   "sticky",
             top:        "72px",
             zIndex:     10,
-            background: "rgba(255, 255, 255, 0.92)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
+            background: "#FFFFFF",
             borderTop:    `1px solid ${c.border}`,
             borderBottom: `1px solid ${c.border}`,
             margin:     "0 0 40px",
-            padding:    "14px 0",
           }}
         >
           <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
+            display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
             margin: 0, padding: 0, listStyle: "none",
           }}>
             {flows.map((f, i) => (
-              <li key={f.key}>
+              <li key={f.key} style={{
+                borderRight: i < flows.length - 1 ? `1px solid ${c.border}` : "none",
+              }}>
                 <a
                   href={`#control-${f.key.toLowerCase()}`}
                   data-control-anchor={f.key.toLowerCase()}
                   style={{
                     fontFamily:     font.sans,
-                    fontSize:       "12px",
+                    fontSize:       "13px",
                     fontWeight:     700,
-                    letterSpacing:  "0.06em",
+                    letterSpacing:  "0.08em",
                     textTransform:  "uppercase",
                     color:          c.ink2,
                     textDecoration: "none",
-                    display:        "inline-flex",
+                    display:        "flex",
                     alignItems:     "center",
+                    justifyContent: "center",
                     gap:            "6px",
-                    padding:        "8px 16px",
-                    background:     "#FFFFFF",
-                    border:         `1px solid ${c.border}`,
-                    borderRadius:   "999px",
-                    transition:     "color 0.2s ease, border-color 0.2s ease, background 0.2s ease",
+                    padding:        "16px 8px",
+                    transition:     "color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
+                  <span className="sp2-control-numeral" style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {f.key}
@@ -1253,16 +1245,17 @@ function DecisionLogic() {
       ` }} />
       <style>{`
         .sp2-control-nav a[data-active] {
-          color: #FFFFFF !important;
-          background: #1ED760 !important;
-          border-color: #1ED760 !important;
+          color: #252B28 !important;
+          background: #FAFAF9 !important;
+          box-shadow: inset 0 -3px 0 #1ED760 !important;
         }
         .sp2-control-nav a[data-active] span:first-child {
           opacity: 0.85 !important;
+          color: #1ED760 !important;
         }
         .sp2-control-nav a:hover {
           color: #252B28;
-          border-color: #6E6E6A;
+          background: rgba(30,215,96,0.05);
         }
       `}</style>
     </section>
