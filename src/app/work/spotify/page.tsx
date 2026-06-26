@@ -659,6 +659,19 @@ export default function SpotifyV2() {
           /* Consistent Behavior (Desktop parity) — trim the generous
              desktop padding so the screenshot sits closer to its body copy. */
           .sp2-parity-section { padding: 48px clamp(24px, 6vw, 80px) !important; }
+          /* Bleed the right-click screenshot to the viewport edges so
+             it doesn't read with extra padding around it. */
+          .sp2-consistent-fig {
+            min-width: 0 !important;
+            max-width: none !important;
+            margin-left: calc(-1 * clamp(24px, 6vw, 80px)) !important;
+            margin-right: calc(-1 * clamp(24px, 6vw, 80px)) !important;
+            width: calc(100% + 2 * clamp(24px, 6vw, 80px)) !important;
+          }
+          .sp2-consistent-fig .sp2-consistent-scroll {
+            border-left: none !important;
+            border-right: none !important;
+          }
           /* Prototype tabs — larger tap target on phones; clearer active
              state via stronger background contrast. */
           .sp2-loops-tab        { padding: 14px 12px !important; gap: 0 !important; }
@@ -671,7 +684,8 @@ export default function SpotifyV2() {
              past the viewport edge). */
           .sp2-parity-grid      { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
           .sp2-parity-grid > *  { min-width: 0 !important; }
-          .sp2-consistent-fig   { min-width: 0 !important; max-width: 100% !important; }
+          /* sp2-consistent-fig rule below in the parity-section block
+             handles min-width + bleed-to-edges. */
           /* State diagram — keep native width; scroll horizontally inside the card. */
           .sp2-state-scroll .sp2-state-img { width: 720px !important; max-width: 720px !important; }
           /* User journey — mobile renders the transposed vertical version
@@ -1102,7 +1116,12 @@ function DecisionLogic() {
               marginTop:      i === 0 ? 0 : "120px",
               paddingTop:     i === 0 ? 0 : "80px",
               borderTop:      i === 0 ? "none" : `1px solid ${c.border}`,
-              scrollMarginTop: "152px",
+              /* Subtract the article's own paddingTop so the H3 lands
+                 in the same visual position for Pin, Remove, and Pause
+                 when jumped to from the chip nav. Pin has 0 padding so
+                 lands at 152px below viewport top; without compensation,
+                 Remove + Pause would land 80px lower. */
+              scrollMarginTop: i === 0 ? "152px" : "72px",
             }}
           >
             <header style={{ marginBottom: "40px" }}>
