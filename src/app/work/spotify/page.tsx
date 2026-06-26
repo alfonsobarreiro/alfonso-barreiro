@@ -656,9 +656,11 @@ export default function SpotifyV2() {
           .sp2-prototypes-section { padding-bottom: 32px !important; }
           /* Give "02 The bet" room to breathe above the heading on mobile. */
           .sp2-bigthree { padding-top: 56px !important; padding-bottom: 64px !important; }
-          /* Consistent Behavior (Desktop parity) — trim the generous
-             desktop padding so the screenshot sits closer to its body copy. */
-          .sp2-parity-section { padding: 48px clamp(24px, 6vw, 80px) !important; }
+          /* Consistent Behavior (Desktop parity) — trim padding hard on
+             mobile so the screenshot sits flush against its body copy. */
+          .sp2-parity-section { padding: 32px 0 32px !important; }
+          .sp2-parity-section > div { padding: 0 clamp(24px, 6vw, 80px); }
+          .sp2-parity-grid     { gap: 12px !important; }
           /* Bleed the right-click screenshot to the viewport edges so
              it doesn't read with extra padding around it. */
           .sp2-consistent-fig {
@@ -1224,13 +1226,12 @@ function DecisionLogic() {
           const KEYS = ['pin', 'remove', 'pause'];
 
           /* Active detector. Re-queries the DOM each tick to survive
-             React hot-reload + hydration races (cached refs go stale).
-             Picks the section straddling viewport center; falls back to
-             the last section whose top has crossed the chip nav. */
-          let rafPending = false;
-          let lastKey = null;
+             React hot-reload + hydration races. Picks the section
+             straddling viewport center; falls back to the last section
+             whose top has crossed the chip nav. Always re-applies — no
+             memoization, because stale closure state left the chip
+             stuck on real iPhone Safari. */
           function update() {
-            rafPending = false;
             const anchors = document.querySelectorAll('a[data-control-anchor]');
             if (!anchors.length) return;
             const sections = KEYS.map(k => document.getElementById('control-' + k)).filter(Boolean);
@@ -1253,19 +1254,26 @@ function DecisionLogic() {
                 }
               });
             }
-            if (bestKey === lastKey) return;
-            lastKey = bestKey;
+            const currentActive = document.querySelector('.sp2-control-nav a[data-active]');
+            const currentKey = currentActive ? currentActive.getAttribute('data-control-anchor') : null;
+            if (bestKey === currentKey) return; /* DOM already correct */
             anchors.forEach(a => a.removeAttribute('data-active'));
             const target = [...anchors].find(a => a.getAttribute('data-control-anchor') === bestKey);
             if (target) target.setAttribute('data-active', 'true');
           }
+          /* Throttle to once per animation frame so scroll spam doesn't
+             thrash. rAF-style without a captured "pending" closure so
+             every scroll wakes the next frame fresh on real Safari. */
+          let frameQueued = false;
           function schedule() {
-            if (rafPending) return;
-            rafPending = true;
-            requestAnimationFrame(update);
+            if (frameQueued) return;
+            frameQueued = true;
+            requestAnimationFrame(() => { frameQueued = false; update(); });
           }
           window.addEventListener('scroll', schedule, { passive: true });
           window.addEventListener('resize', schedule);
+          window.addEventListener('touchmove', schedule, { passive: true });
+          window.addEventListener('touchend', schedule, { passive: true });
           /* Wide-margin IO so any section change in the viewport triggers
              a fresh update(). Observes the sections we can find right now
              and re-attaches periodically in case the DOM is replaced. */
