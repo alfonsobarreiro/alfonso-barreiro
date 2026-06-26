@@ -315,7 +315,12 @@ function HeroResultPanel() {
           }
         }
       },
-      { threshold: 0.4 }
+      /* Low threshold so the animation fires the moment the panel is
+         meaningfully visible — the panel is taller than a phone viewport,
+         so 0.4 was effectively unreachable on mobile and the iPad sequence
+         never started. 0.15 fires as soon as the iPad rectangle is on
+         screen. */
+      { threshold: 0.15 }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -587,22 +592,20 @@ function HeroResultPanel() {
            at top, fully visible). Saves CPU on long sessions and stops the
            movement from dragging the eye back while the user is reading
            further down the page. */
-        /* Animations default to paused — the IntersectionObserver in
-           HeroResultPanel toggles them on by adding .hero-anim-active to
-           the anchor when the panel enters the viewport. This is what
-           lets mobile (where the iPad is below the fold) actually see
-           the home → review → reset sequence. */
-        .hero-ipad-home         { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; animation-play-state: paused; will-change: transform, opacity; }
-        .hero-ipad-review       { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; animation-play-state: paused; will-change: transform, opacity; }
-        .hero-ipad-blackfade    { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; animation-play-state: paused; }
-        .hero-ipad-tap          { animation: hero-ipad-tap       22s linear 1 forwards; animation-play-state: paused; will-change: transform, opacity, box-shadow; }
+        /* will-change kept on the base classes so the compositor is ready
+           for the transform/opacity work; the actual animations only kick
+           in once the IntersectionObserver in HeroResultPanel adds
+           .hero-anim-active to the anchor. This is what lets mobile
+           (where the iPad sits below the fold) see the full home →
+           review → reset cycle instead of finding it already finished. */
+        .hero-ipad-home         { will-change: transform, opacity; }
+        .hero-ipad-review       { will-change: transform, opacity; }
+        .hero-ipad-tap          { will-change: transform, opacity, box-shadow; }
 
-        .hero-anim-active .hero-ipad-home,
-        .hero-anim-active .hero-ipad-review,
-        .hero-anim-active .hero-ipad-blackfade,
-        .hero-anim-active .hero-ipad-tap {
-          animation-play-state: running;
-        }
+        .hero-anim-active .hero-ipad-home      { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
+        .hero-anim-active .hero-ipad-review    { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
+        .hero-anim-active .hero-ipad-blackfade { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) 1 forwards; }
+        .hero-anim-active .hero-ipad-tap       { animation: hero-ipad-tap       22s linear 1 forwards; }
 
         @keyframes hero-ipad-tap {
           0%, 26%   { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: 0 0 0 0 rgba(140, 26, 26, 0.6); }
