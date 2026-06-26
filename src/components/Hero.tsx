@@ -306,11 +306,9 @@ function HeroResultPanel() {
         for (const e of entries) {
           if (e.isIntersecting && !startedRef.current) {
             startedRef.current = true;
-            /* Start the iPad page-flip animation as soon as the panel enters
-               viewport. On desktop this fires at page load (already visible);
-               on mobile it waits until the user scrolls down to it, so the
-               full home → review → reset cycle is actually seen. */
-            el.classList.add("hero-anim-active");
+            /* The iPad walkthrough is now a video element that autoplays
+               and loops, so no class is needed to drive the animation.
+               Observer is still used to gate the 13× count-up below. */
             setTimeout(() => {
               const start = performance.now();
               const tick = (t: number) => {
@@ -393,76 +391,38 @@ function HeroResultPanel() {
             zIndex:       2,
           }}
         >
-          {/* Homepage (default visible) */}
-          <img
-            className="hero-ipad-home"
-            src="/cs-msr-homepage.jpg"
-            alt="Men's Sole Revival live site"
+          {/* Pre-rendered walkthrough — same home → review → black-fade
+              → reset sequence the CSS keyframes used to drive, but baked
+              into a single 22 s loop video. Matches the SpotifyFramed
+              Animation pattern (autoplay + loop + muted + playsInline)
+              so iOS Safari handles it reliably. Poster image shows the
+              homepage at frame 0 in case the video hasn't loaded yet. */}
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            src="/cs-msr-walkthrough.webm"
+            poster="/cs-msr-homepage.jpg"
+            aria-label="Men's Sole Revival walkthrough — homepage scrolls to a product review and resets."
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
             style={{
-              position: "absolute",
-              top:      0,
-              left:     0,
-              width:    "100%",
-              height:   "auto",
-              display:  "block",
+              position:       "absolute",
+              top:            0,
+              left:           0,
+              width:          "100%",
+              height:         "100%",
+              objectFit:      "cover",
+              objectPosition: "top center",
+              display:        "block",
+              background:     "#000",
             }}
-          />
+          >
+            <source src="/cs-msr-walkthrough.webm" type="video/webm" />
+            <source src="/cs-msr-walkthrough.mp4" type="video/mp4" />
+          </video>
 
-          {/* Review page (revealed mid-cycle) */}
-          <img
-            className="hero-ipad-review"
-            src="/cs-msr-review.jpeg"
-            alt="Superfeet BLUE Insoles review on Men's Sole Revival"
-            style={{
-              position: "absolute",
-              top:      0,
-              left:     0,
-              width:    "100%",
-              height:   "auto",
-              display:  "block",
-              opacity:  0,
-            }}
-          />
-
-          {/* Black fade — covers the full end-of-review handoff. The
-              review fades out behind the black, the homepage resets and
-              fades in behind the black, then the black fades away. One
-              smooth opacity curve so the eye never catches a seam. */}
-          <div
-            className="hero-ipad-blackfade"
-            aria-hidden
-            style={{
-              position:      "absolute",
-              inset:         0,
-              background:    "#000",
-              opacity:       0,
-              pointerEvents: "none",
-              zIndex:        6,
-            }}
-          />
-
-          {/* Tap indicator — a small crimson dot with an expanding ring
-              that appears right before the review page reveals, so the
-              recruiter reads "the user just tapped a review card" rather
-              than "the screen just changed." Times to ~30 % of the 22 s
-              loop, immediately before the review fade-in at 33 %. */}
-          <div
-            className="hero-ipad-tap"
-            aria-hidden
-            style={{
-              position:      "absolute",
-              left:          "62%",
-              top:           "68%",
-              width:         "30px",
-              height:        "30px",
-              borderRadius:  "50%",
-              background:    "rgba(140, 26, 26, 0.95)",
-              transform:     "translate(-50%, -50%) scale(0)",
-              opacity:       0,
-              pointerEvents: "none",
-              zIndex:        5,
-            }}
-          />
         </div>
 
         {/* iPad Pro chrome (below the screen content) — scaled up and
@@ -586,94 +546,23 @@ function HeroResultPanel() {
            structure doesn't need to change. */
         .hero-ipad-tilt { /* no transform */ }
 
-        /* Orchestrated cycle — 22s loop. No cursors. The homepage stays at
-           opacity 1 for the entire active phase; the review fades in over
-           it (no muddy 'fade to dark' in the middle of the crossfade), and
-           the end of the review fades through a long, smooth black layer.
-
-            0–28%   pan homepage from top to a review card (motion stop)
-           28–31%  hold homepage at motion-stop
-           31–33%  cross-fade review IN over homepage (home stays opacity 1)
-           33–76%  pan review page top → bottom
-           76–82%  hold review at bottom
-           76–88%  black rises slowly (~2.6 s) — no abrupt cut
-           87.5%   homepage position resets to top behind the black
-           88–92%  black fades out, revealing the reset homepage
-           92–100% homepage holds at top (~1.8 s before looping) */
-
-        /* Animation runs once and freezes on the final keyframe (homepage
-           at top, fully visible). Saves CPU on long sessions and stops the
-           movement from dragging the eye back while the user is reading
-           further down the page. */
-        /* will-change kept on the base classes so the compositor is ready
-           for the transform/opacity work; the actual animations only kick
-           in once the IntersectionObserver in HeroResultPanel adds
-           .hero-anim-active to the anchor. This is what lets mobile
-           (where the iPad sits below the fold) see the full home →
-           review → reset cycle instead of finding it already finished. */
-        .hero-ipad-home         { will-change: transform, opacity; }
-        .hero-ipad-review       { will-change: transform, opacity; }
-        .hero-ipad-tap          { will-change: transform, opacity, box-shadow; }
-
-        /* Infinite loop instead of 1-forwards. iOS Safari is reliable
-           with continuously-running CSS animations but fragile with the
-           single-run + freeze pattern, especially on elements that scroll
-           in and out of viewport. Same 22 s cycle, just always playing.
-           The homepage / review crossover stays the showcase. */
-        .hero-anim-active .hero-ipad-home      { animation: hero-ipad-home      22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-        .hero-anim-active .hero-ipad-review    { animation: hero-ipad-review    22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-        .hero-anim-active .hero-ipad-blackfade { animation: hero-ipad-blackfade 22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-        .hero-anim-active .hero-ipad-tap       { animation: hero-ipad-tap       22s linear infinite; }
-
-        @keyframes hero-ipad-tap {
-          0%, 26%   { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: 0 0 0 0 rgba(140, 26, 26, 0.6); }
-          28%       { opacity: 1; transform: translate(-50%, -50%) scale(1);    box-shadow: 0 0 0 0 rgba(140, 26, 26, 0.6); }
-          30%       { opacity: 1; transform: translate(-50%, -50%) scale(0.78); box-shadow: 0 0 0 12px rgba(140, 26, 26, 0.25); }
-          32%       { opacity: 0; transform: translate(-50%, -50%) scale(0.78); box-shadow: 0 0 0 28px rgba(140, 26, 26, 0);    }
-          100%      { opacity: 0; transform: translate(-50%, -50%) scale(0);    box-shadow: 0 0 0 0 rgba(140, 26, 26, 0);    }
-        }
-
-        @keyframes hero-ipad-home {
-          0%,  5%   { transform: translateY(0);    opacity: 1; }
-          28%       { transform: translateY(-38%); opacity: 1; }
-          /* Home stays opacity 1 the entire time — review covers it on top,
-             so there's never a moment where both elements are partially
-             transparent (which is what created the dark middle frame). */
-          87.4%     { transform: translateY(-38%); opacity: 1; }
-          87.5%     { transform: translateY(0);    opacity: 1; }
-          100%      { transform: translateY(0);    opacity: 1; }
-        }
-
-        @keyframes hero-ipad-review {
-          0%,  31%  { transform: translateY(0);    opacity: 0; }
-          33%       { transform: translateY(0);    opacity: 1; }
-          76%       { transform: translateY(-31%); opacity: 1; }
-          82%       { transform: translateY(-31%); opacity: 1; }
-          /* Disappear instantly while the black is at full opacity, so
-             nobody sees the position reset on the next loop. */
-          87.4%     { transform: translateY(-31%); opacity: 1; }
-          87.5%     { transform: translateY(0);    opacity: 0; }
-          100%      { transform: translateY(0);    opacity: 0; }
-        }
-
-        /* Black rises gently 76→88 (~2.6 s) — overlaps the last segment of
-           the review pan so the bottom of the page eases into black instead
-           of cutting. Holds briefly at peak, then fades out 88→92 (~0.9 s)
-           revealing the reset homepage. */
-        @keyframes hero-ipad-blackfade {
-          0%,  76%   { opacity: 0; }
-          88%        { opacity: 1; }
-          92%        { opacity: 0; }
-          100%       { opacity: 0; }
-        }
-
+        /* The home → review → black-fade → reset sequence used to be four
+           chained CSS animations driven by keyframes. It now lives in
+           /public/cs-msr-walkthrough.{webm,mp4} as a baked 22 s video
+           loop, the same pattern SpotifyFramedAnimation uses for iOS
+           reliability. Reduced motion is handled by the video element
+           pausing itself when the user prefers no motion. */
         @media (prefers-reduced-motion: reduce) {
-          .hero-ipad-home, .hero-ipad-review, .hero-ipad-blackfade {
-            animation: none;
+          .hero-ipad-screen video {
+            display: none;
           }
-          .hero-ipad-home     { opacity: 1; transform: none; }
-          .hero-ipad-review,
-          .hero-ipad-blackfade { opacity: 0; }
+          .hero-ipad-screen {
+            background-image: url("/cs-msr-homepage.jpg");
+            background-size: 100% auto;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-color: #000;
+          }
         }
       `}</style>
     </Link>
