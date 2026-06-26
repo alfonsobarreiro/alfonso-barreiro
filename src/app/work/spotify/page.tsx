@@ -2056,6 +2056,7 @@ function CompetitiveAudit() {
             </tbody>
           </table>
         </div>
+        <p className="sp2-scroll-after">Swipe to scroll the full audit &rarr;</p>
         <p style={{
           fontFamily: font.sans, fontSize: "12px",
           color: c.muted, lineHeight: 1.55, margin: "12px 0 0",
