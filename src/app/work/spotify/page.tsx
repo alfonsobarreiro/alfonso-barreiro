@@ -587,7 +587,7 @@ export default function SpotifyV2() {
           .sp2-as-hero          { grid-template-columns: 1fr !important; gap: 28px !important; padding: 24px !important; }
           .sp2-as-hero h2       { font-size: 24px !important; }
           .sp2-as-icons         { grid-template-columns: 1fr !important; gap: 18px !important; }
-          .sp2-dl-frames        { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+          .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; }
           .sp2-loops-row figure > div { width: 100% !important; max-width: 280px !important; }
           .sp2-tc-nav           { grid-template-columns: 1fr 1fr 1fr !important; }
@@ -1030,6 +1030,7 @@ function DecisionLogic() {
                         alt={`Step ${idx + 1} - ${frame.label}`}
                         width={1554} height={1260}
                         sizes="(max-width: 760px) 100vw, 380px"
+                        loading={idx < 2 ? "eager" : "lazy"}
                         style={{
                           width: "100%", height: "100%",
                           objectFit: "contain", objectPosition: "center",

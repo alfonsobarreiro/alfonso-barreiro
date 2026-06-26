@@ -1059,6 +1059,7 @@ export default function MSRv2() {
                       width={390}
                       height={844}
                       sizes="(max-width: 760px) 100vw, 33vw"
+                      loading="eager"
                       style={{ width: "100%", height: "auto", display: "block" }}
                     />
                   </div>

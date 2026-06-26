@@ -865,9 +865,24 @@ export default function WayfarerV2() {
           .wf2-process-wireframes-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .wf2-competitor-row   { grid-template-columns: 1fr !important; }
           .wf2-competitor-row > div:first-child { border-right: none !important; border-bottom: 1px solid var(--color-border) !important; }
-          .wf2-token-scroll, .wf2-brief-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+          .wf2-token-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
           .wf2-token-scroll table { min-width: 640px !important; }
-          .wf2-brief-scroll table { min-width: 560px !important; }
+
+          /* Brief vs Delivered: stack the table on mobile instead of
+             horizontal-scrolling, so each row reads as a card with the
+             brief label above the delivered description. */
+          .wf2-brief-scroll { overflow-x: visible !important; }
+          .wf2-brief-scroll table,
+          .wf2-brief-scroll thead,
+          .wf2-brief-scroll tbody,
+          .wf2-brief-scroll tr,
+          .wf2-brief-scroll td { display: block !important; width: 100% !important; min-width: 0 !important; }
+          .wf2-brief-scroll thead { display: none !important; }
+          .wf2-brief-scroll tr { padding: 16px 18px !important; border-bottom: 1px solid var(--color-border, #DEDCD7) !important; }
+          .wf2-brief-scroll tr:last-child { border-bottom: none !important; }
+          .wf2-brief-scroll td { padding: 0 0 6px 0 !important; border: none !important; }
+          .wf2-brief-scroll td:first-child { font-size: 10px !important; font-weight: 700 !important; letter-spacing: 0.16em !important; text-transform: uppercase !important; opacity: 0.7 !important; margin-bottom: 4px !important; width: auto !important; }
+          .wf2-brief-scroll td:last-child { padding-bottom: 0 !important; }
           .wf2-ia-row           { grid-template-columns: auto 1fr !important; grid-template-rows: auto auto !important; row-gap: 6px !important; column-gap: 12px !important; }
           .wf2-ia-row .wf2-ia-note { grid-column: 1 / -1 !important; text-align: left !important; padding-top: 4px !important; }
           .wf2-ia-flow          { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
