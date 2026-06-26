@@ -661,18 +661,24 @@ export default function SpotifyV2() {
           .sp2-parity-section { padding: 32px 0 32px !important; }
           .sp2-parity-section > div { padding: 0 clamp(24px, 6vw, 80px); }
           .sp2-parity-grid     { gap: 12px !important; }
-          /* Bleed the right-click screenshot to the viewport edges so
-             it doesn't read with extra padding around it. */
+          /* CANONICAL FULL-BLEED — this breaks the figure out of every
+             parent container regardless of their padding. width:100vw +
+             margin trick = always exactly the viewport width. */
           .sp2-consistent-fig {
             min-width: 0 !important;
-            max-width: none !important;
-            margin-left: calc(-1 * clamp(24px, 6vw, 80px)) !important;
-            margin-right: calc(-1 * clamp(24px, 6vw, 80px)) !important;
-            width: calc(100% + 2 * clamp(24px, 6vw, 80px)) !important;
+            max-width: 100vw !important;
+            width: 100vw !important;
+            position: relative !important;
+            left: 50% !important;
+            right: 50% !important;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
           }
           .sp2-consistent-fig .sp2-consistent-scroll {
-            border-left: none !important;
-            border-right: none !important;
+            border: none !important;
+          }
+          .sp2-consistent-fig figcaption {
+            padding: 0 16px !important;
           }
           /* Prototype tabs — larger tap target on phones; clearer active
              state via stronger background contrast. */
