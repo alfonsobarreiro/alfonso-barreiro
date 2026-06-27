@@ -2468,10 +2468,7 @@ function JourneyVerticalMobile() {
 
           <section style={{ marginBottom: "16px" }}>
             <p style={labelStyle}>Emotion</p>
-            <p style={bodyStyle}>
-              <span aria-hidden="true" style={{ marginRight: "8px" }}>{s.emoji}</span>
-              {s.emotion}
-            </p>
+            <p style={bodyStyle}>{s.emotion}</p>
           </section>
 
           <section style={{ marginBottom: "16px" }}>

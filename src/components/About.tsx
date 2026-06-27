@@ -265,8 +265,7 @@ export default function About() {
                 lineHeight:    1.15,
               }}
             >
-              Different problems, same question:
-              <span style={{ color: "var(--color-brand)", display: "block", marginTop: "8px" }}>Why doesn&apos;t this work better?</span>
+              I design from the gaps I actually live in.
             </h2>
 
             <p
@@ -281,8 +280,8 @@ export default function About() {
             >
               I learned BASIC from a magazine, typing it line by line. I built my
               first website as a Rush fan site that probably broke every design
-              rule that existed. I&apos;m still doing the same thing: staring at
-              something on a screen and asking why it doesn&apos;t work better.
+              rule that existed. I&apos;m still doing the same thing: building
+              things I actually want to use.
             </p>
             <p
               style={{
