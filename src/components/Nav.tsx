@@ -138,6 +138,7 @@ export default function Nav() {
           <SearchTrigger />
           <Link
             href="/contact"
+            className="on-crimson"
             style={{
               padding:        "10px 24px",
               background:     "var(--color-brand)",
@@ -221,6 +222,7 @@ export default function Nav() {
 
       {/* Full-screen menu overlay */}
       <div
+        className="menu-overlay-crimson"
         style={{
           position:        "fixed",
           inset:           0,
@@ -419,7 +421,7 @@ function SearchTrigger() {
         gap:           "8px",
         padding:       "6px 10px 6px 8px",
         background:    "transparent",
-        border:        "1px solid #E8E4DE",
+        border:        "1px solid #8A8680",
         borderRadius:  0,
         cursor:        "pointer",
         color:         "#3D4440",
@@ -435,7 +437,7 @@ function SearchTrigger() {
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.color = "#3D4440";
-        e.currentTarget.style.borderColor = "#E8E4DE";
+        e.currentTarget.style.borderColor = "#8A8680";
         e.currentTarget.style.background = "transparent";
       }}
     >
@@ -449,7 +451,7 @@ function SearchTrigger() {
         fontSize:   "10px",
         padding:    "2px 5px",
         background: "#FAFAF9",
-        border:     "1px solid #E8E4DE",
+        border:     "1px solid #8A8680",
         borderRadius: "3px",
         color:      "#5A5752",
         lineHeight: 1,
@@ -534,7 +536,7 @@ function NavLink({
       href={`/#${label}`}
       style={sharedStyle}
       onMouseEnter={(e) => (e.currentTarget.style.color = "#252B28")}
-      onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8680")}
+      onMouseLeave={(e) => (e.currentTarget.style.color = "#3D4440")}
     >
       {label}
     </Link>

@@ -158,9 +158,28 @@ a {
    Bare :focus { outline:none } would strip the keyboard fallback for
    older Safari/iOS WebViews that don't yet emit :focus-visible — leave
    the default outline in place there and let :focus-visible style
-   modern browsers. */
+   modern browsers.
+   Default ring is Deep Teal on light surfaces (11.95:1 on white).
+   For elements on crimson surfaces (primary CTAs, mobile menu overlay)
+   we paint a double-ring via box-shadow: 2px white inner + 2px teal
+   outer so the ring is visible on both light AND crimson backgrounds. */
 a:focus-visible        { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
 button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+
+/* On-crimson focus ring — opt-in via .on-crimson on elements that sit
+   against a var(--color-brand) background. White inner + teal outer
+   keeps the ring visible whether the bg is white or crimson. */
+.on-crimson:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--color-focus-ring);
+}
+/* Any focusable child of the mobile menu overlay (crimson background)
+   gets a white outline. Scoped so it doesn't pollute the rest of the
+   site. */
+.menu-overlay-crimson a:focus-visible,
+.menu-overlay-crimson button:focus-visible {
+  outline-color: #FFFFFF;
+}
 
 /* Skip link — first focusable element on every page. Visually hidden
    off-screen, snaps in-bounds when focused via keyboard. Crimson
@@ -443,7 +462,7 @@ button {
 }
 
 /* ── Case study nav ── */
-.cs-back-link       { color: #8A8680; transition: color 0.2s; }
+.cs-back-link       { color: #5A5752; transition: color 0.2s; }
 .cs-back-link:hover { color: #252B28; }
 
 /* ── Case study — Wayfarer §03 table + Callout sidebar ──

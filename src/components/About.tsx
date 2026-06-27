@@ -384,7 +384,7 @@ export default function About() {
                 style={{
                   marginBottom:  i < skillGroups.length - 1 ? "32px" : 0,
                   paddingBottom: i < skillGroups.length - 1 ? "32px" : 0,
-                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #A8A39A" : "none",
+                  borderBottom:  i < skillGroups.length - 1 ? "1px solid #6E6E6A" : "none",
                 }}
               >
                 <p
@@ -424,7 +424,7 @@ export default function About() {
                         background:   "#F5F5F4",
                         color:        "#252B28",
                         fontWeight:   400,
-                        border:       "1px solid #A8A39A",
+                        border:       "1px solid #6E6E6A",
                       }}
                     >
                       {skill}

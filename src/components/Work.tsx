@@ -467,7 +467,7 @@ function ProjectCard({
             background:   "#F5F5F4",
             color:        "#252B28",
             fontWeight:   400,
-            border:       "1px solid #A8A39A",
+            border:       "1px solid #6E6E6A",
           }}>
             {tag}
           </span>

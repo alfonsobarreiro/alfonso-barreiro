@@ -736,24 +736,87 @@ export default function SpotifyV2() {
         }
 
       `}</style>
-      {/* Reduced-motion handling for the loop videos. CSS can't pause a
-          <video>, so a small script listens to prefers-reduced-motion
-          and pauses each .sp2-loop-video when the OS pref flips on.
-          Pairs with the visible controls bar (manual pause still works). */}
+      {/* Loop video control script. Three jobs:
+          1. Reduced-motion: pause all videos when the OS pref is on,
+             resume them when the pref toggles back off (reversible).
+          2. Single-active: only the visible carousel panel's video
+             plays; non-visible panels' videos pause. Safari iOS plays
+             videos in display:none ancestors otherwise.
+          3. Manual pause/play: clicking the .sp2-loop-toggle button
+             toggles the matching video and updates aria-pressed +
+             icon shape (pause bars ↔ play triangle). */}
       <script dangerouslySetInnerHTML={{ __html: `
         (function() {
           if (typeof window === "undefined" || !window.matchMedia) return;
           var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-          function sync() {
+          var manuallyPaused = {};
+          var PLAY_PATH = '<polygon points="3,2 14,8 3,14" />';
+          var PAUSE_PATH = '<rect x="3" y="2" width="3.5" height="12" /><rect x="9.5" y="2" width="3.5" height="12" />';
+          function setToggleState(btn, isPaused) {
+            btn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+            var title = btn.getAttribute('aria-label') || '';
+            title = title.replace(/^(Pause|Play) /, isPaused ? 'Play ' : 'Pause ');
+            btn.setAttribute('aria-label', title);
+            var icon = btn.querySelector('svg');
+            if (icon) icon.innerHTML = isPaused ? PLAY_PATH : PAUSE_PATH;
+          }
+          function activeKey() {
+            var checked = document.querySelector('.sp2-loops-carousel input[type="radio"]:checked');
+            if (!checked) return null;
+            var idx = parseInt((checked.id || '').replace('sp2-loops-tab-', ''), 10);
+            var labels = ['pin', 'remove', 'pause'];
+            return labels[idx - 1] || null;
+          }
+          function syncAll() {
+            var active = activeKey();
+            var reduced = mq.matches;
             var vids = document.querySelectorAll('.sp2-loop-video');
             vids.forEach(function(v) {
-              if (mq.matches) { try { v.pause(); v.removeAttribute('autoplay'); } catch (e) {} }
+              var key = v.getAttribute('data-loop-key');
+              var manual = !!manuallyPaused[key];
+              var shouldPlay = !reduced && active === key && !manual;
+              try {
+                if (shouldPlay) { if (v.paused) v.play().catch(function(){}); }
+                else v.pause();
+              } catch (e) {}
+              var btn = document.querySelector('[data-loop-toggle="' + key + '"]');
+              if (btn) setToggleState(btn, !shouldPlay);
             });
           }
-          if (mq.addEventListener) mq.addEventListener('change', sync);
-          else if (mq.addListener) mq.addListener(sync);
-          if (document.readyState !== 'loading') sync();
-          else document.addEventListener('DOMContentLoaded', sync);
+          var wired = new WeakSet();
+          function wireToggles() {
+            var btns = document.querySelectorAll('.sp2-loop-toggle');
+            btns.forEach(function(btn) {
+              if (wired.has(btn)) return;
+              wired.add(btn);
+              btn.addEventListener('click', function() {
+                var key = btn.getAttribute('data-loop-toggle');
+                manuallyPaused[key] = !manuallyPaused[key];
+                syncAll();
+              });
+            });
+          }
+          function wireRadios() {
+            var radios = document.querySelectorAll('.sp2-loops-carousel input[type="radio"]');
+            radios.forEach(function(r) {
+              if (wired.has(r)) return;
+              wired.add(r);
+              r.addEventListener('change', function() {
+                Object.keys(manuallyPaused).forEach(function(k) { manuallyPaused[k] = false; });
+                syncAll();
+              });
+            });
+          }
+          function init() { wireToggles(); wireRadios(); syncAll(); }
+          if (mq.addEventListener) mq.addEventListener('change', syncAll);
+          else if (mq.addListener) mq.addListener(syncAll);
+          // Defer init until after React hydrates — otherwise this
+          // script mutates aria-pressed/dataset on elements before
+          // React mounts and triggers a hydration mismatch that
+          // throws away the client tree.
+          function deferredInit() { setTimeout(init, 200); }
+          if (document.readyState === 'complete') deferredInit();
+          else window.addEventListener('load', deferredInit);
         })();
       ` }} />
     </>
@@ -980,12 +1043,12 @@ function DecisionLogic() {
       // and cover-crop so every cell in the grid has identical height.
       aspectRatio: "1554 / 1260",
       frames: [
-        { src: "/images/work/spotify/v2/wf-pin-01.png", label: "Long-press a tile -> Action sheet opens -> Pin artist." },
-        { src: "/images/work/spotify/v2/wf-pin-02.png", label: "Pinned row appears -> toast \"Pinned. Undo.\"" },
+        { src: "/images/work/spotify/v2/wf-pin-01.png", label: "Long-press a tile → Action sheet opens → Pin artist." },
+        { src: "/images/work/spotify/v2/wf-pin-02.png", label: "Pinned row appears → toast \"Pinned. Undo.\"" },
         { src: "/images/work/spotify/v2/wf-pin-03.png", label: "Pin reorders to the first slot." },
-        { src: "/images/work/spotify/v2/wf-pin-04.png", label: "Unpin from menu -> toast." },
-        { src: "/images/work/spotify/v2/wf-pin-05.png", label: "Pin a fifth item -> limit modal." },
-        { src: "/images/work/spotify/v2/wf-pin-06.png", label: "Choose a replacement -> swap -> toast." },
+        { src: "/images/work/spotify/v2/wf-pin-04.png", label: "Unpin from menu → toast." },
+        { src: "/images/work/spotify/v2/wf-pin-05.png", label: "Pin a fifth item → limit modal." },
+        { src: "/images/work/spotify/v2/wf-pin-06.png", label: "Choose a replacement → swap → toast." },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1006,11 +1069,11 @@ function DecisionLogic() {
       // Step titles + acceptance strip stay visible.
       aspectRatio: "1000 / 1092",
       frames: [
-        { src: "/images/work/spotify/v2/wf-remove-01.png", label: "Long-press tile -> Action sheet opens." },
+        { src: "/images/work/spotify/v2/wf-remove-01.png", label: "Long-press tile → Action sheet opens." },
         { src: "/images/work/spotify/v2/wf-remove-02.png", label: "Tap Remove from Recently Played." },
-        { src: "/images/work/spotify/v2/wf-remove-03.png", label: "Item disappears -> toast \"Removed. Undo.\"" },
+        { src: "/images/work/spotify/v2/wf-remove-03.png", label: "Item disappears → toast \"Removed. Undo.\"" },
         { src: "/images/work/spotify/v2/wf-remove-04.png", label: "Tap Undo on the toast." },
-        { src: "/images/work/spotify/v2/wf-remove-05.png", label: "Item reappears in last spot -> \"Restored.\"" },
+        { src: "/images/work/spotify/v2/wf-remove-05.png", label: "Item reappears in last spot → \"Restored.\"" },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1028,11 +1091,11 @@ function DecisionLogic() {
       surface: "Desktop",
       aspectRatio: "1554 / 1260",
       frames: [
-        { src: "/images/work/spotify/v2/wf-pause-01.png", label: "Long-press shelf header -> Action sheet opens." },
+        { src: "/images/work/spotify/v2/wf-pause-01.png", label: "Long-press shelf header → Action sheet opens." },
         { src: "/images/work/spotify/v2/wf-pause-02.png", label: "Tap Pause Listening History." },
         { src: "/images/work/spotify/v2/wf-pause-03.png", label: "Pick a duration: 30 min, 2 hrs, until tomorrow." },
         { src: "/images/work/spotify/v2/wf-pause-04.png", label: "Shelf shows paused state with visible timer." },
-        { src: "/images/work/spotify/v2/wf-pause-05.png", label: "Pause expires -> toast \"Listening history resumed.\"" },
+        { src: "/images/work/spotify/v2/wf-pause-05.png", label: "Pause expires → toast \"Listening history resumed.\"" },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1102,6 +1165,7 @@ function DecisionLogic() {
                 <a
                   href={`#control-${f.key.toLowerCase()}`}
                   data-control-anchor={f.key.toLowerCase()}
+                  {...(i === 0 ? { "data-active": "true", "aria-current": "location" as const } : {})}
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
@@ -1301,7 +1365,15 @@ function DecisionLogic() {
             trigger = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
             KEYS.forEach(k => { const el = document.getElementById('control-' + k); if (el) trigger.observe(el); });
           }
-          wireObserver();
+          /* Defer first wire-up until React hydrates — otherwise
+             setAttribute('aria-current'/'data-active') on the chip
+             nav anchors triggers a hydration mismatch. */
+          function chipInit() {
+            wireObserver();
+            update();
+          }
+          if (document.readyState === 'complete') setTimeout(chipInit, 200);
+          else window.addEventListener('load', function() { setTimeout(chipInit, 200); });
           /* When the document becomes visible again (tab return, scroll
              from another anchor) re-run once to refresh state. */
           document.addEventListener('visibilitychange', () => {
@@ -1317,7 +1389,6 @@ function DecisionLogic() {
               setTimeout(function() { wireObserver(); schedule(); }, 400);
             }
           }, { passive: true });
-          update();
 
           /* State diagram opens centered — the interesting nodes (Pinned
              / arrows) sit in the middle of the canvas, so scrollLeft=0
@@ -1467,6 +1538,7 @@ function Prototypes() {
                       flat web video element. */}
                   <figure style={{ margin: 0 }}>
                     <div style={{
+                      position: "relative",
                       background: c.jet,
                       aspectRatio: "1170 / 2532", overflow: "hidden",
                       width: "320px",
@@ -1479,18 +1551,57 @@ function Prototypes() {
                         muted
                         loop
                         playsInline
-                        controls
-                        controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
-                        disablePictureInPicture
                         preload="metadata"
-                        aria-label={`${l.eyebrow} prototype loop. Click to pause.`}
+                        aria-label={`${l.title} prototype loop`}
                         className="sp2-loop-video"
+                        data-loop-key={l.key}
                         style={{
                           width: "100%", height: "100%",
                           objectFit: "cover", objectPosition: "top center",
                           display: "block",
                         }}
                       />
+                      {/* Pause/play toggle — single 44px button in the
+                          top-right corner. Replaces the full native
+                          <video controls> chrome that was overlaying
+                          the device frame. Keyboard-operable (button
+                          element), state announced via aria-pressed.
+                          Initial state matches the runtime computation:
+                          first (active) loop renders as playing (pause
+                          icon, aria-pressed=false); the other two
+                          render as paused (play triangle, aria-pressed=
+                          true) so React SSR markup hydrates cleanly. */}
+                      <button
+                        type="button"
+                        className="sp2-loop-toggle"
+                        data-loop-toggle={l.key}
+                        aria-label={i === 0 ? `Pause ${l.title} prototype loop` : `Play ${l.title} prototype loop`}
+                        aria-pressed={i === 0 ? "false" : "true"}
+                        style={{
+                          position: "absolute",
+                          top: "8px", right: "8px",
+                          width: "44px", height: "44px",
+                          display: "inline-flex",
+                          alignItems: "center", justifyContent: "center",
+                          background: "rgba(0,0,0,0.55)",
+                          border: "1px solid rgba(255,255,255,0.7)",
+                          color: "#FFFFFF",
+                          cursor: "pointer",
+                          padding: 0,
+                          borderRadius: "999px",
+                        }}
+                      >
+                        <svg className="sp2-loop-toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                          {i === 0 ? (
+                            <>
+                              <rect x="3" y="2" width="3.5" height="12" />
+                              <rect x="9.5" y="2" width="3.5" height="12" />
+                            </>
+                          ) : (
+                            <polygon points="3,2 14,8 3,14" />
+                          )}
+                        </svg>
+                      </button>
                     </div>
                   </figure>
                   {/* Body copy on the right */}
@@ -1839,7 +1950,7 @@ function ActionSheetHero() {
             <CategoryPill>Premise</CategoryPill>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
-              lineHeight: 1.7, color: "rgba(250, 250, 249, 0.82)",
+              lineHeight: 1.7, color: "#FAFAF9",
               margin: "0 0 36px", maxWidth: "560px",
             }}>
               Spotify&rsquo;s Recently Played is one of the best surfaces in

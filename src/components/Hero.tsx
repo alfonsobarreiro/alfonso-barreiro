@@ -157,6 +157,7 @@ export default function Hero() {
         <div className="hero-reveal hero-cta-row" style={{ gridArea: "ctas", display: "flex", gap: "14px", flexWrap: "wrap" }}>
             <a
               href="#work"
+              className="on-crimson"
               style={{
                 padding:       "14px 32px",
                 background:    "var(--color-brand)",
