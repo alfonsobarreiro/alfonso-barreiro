@@ -50,20 +50,23 @@ const c = {
   surface:  "#FFFFFF",
   ink:      "#252B28",
   ink2:     "#3D4440",
-  muted:    "#8A8680",
+  muted:    "#5A5752",                // deepened from #8A8680 for AA on body text
   // Site chrome stays crimson elsewhere (nav, footer). Inside this
   // case study, the brand-themed marker is Spotify green so every
   // callout, eyebrow, and accent reads native to the subject.
-  brand:    "#1ED760",                // Spotify green — case study marker
+  // NOTE: c.brand (green) is for non-text decoration only — borders,
+  // dots, backgrounds. Text uses c.accent (Deep Teal, 11.95:1 on white)
+  // because #1ED760 on white is 1.92:1 and fails WCAG AA.
+  brand:    "#1ED760",                // Spotify green — non-text marker only
   brandSite:"var(--color-brand)",     // site crimson — only used if explicitly needed
-  accent:   "var(--color-accent)",    // deep teal — secondary eyebrow color
+  accent:   "var(--color-accent)",    // deep teal — primary text accent
   accent2:  "var(--color-accent-hover)",
   border:        "#DEDCD7",
   borderStrong:  "#A8A6A0",
   callout:       "#FAFAF9",
   // Spotify-specific palette
-  green:    "#1ED760",
-  greenDark:"#13A046",
+  green:    "#1ED760",                // marker only, never as text
+  greenDark:"#13A046",                // marker only, fails AA on white at body size
   jet:      "#121212",
   jetDeep:  "#000000",
   ash:      "#1A1A1A",
@@ -128,41 +131,13 @@ function ArcDivider({ arc }: { arc: string }) {
   );
 }
 
-/* Academic-category pill — sits UNDER each chapter title to restore the
-   skim-friendly "Premise / Research / Decisions / Details" arc that
-   editorial chapter titles otherwise hide. Filled pill in Spotify green
-   so it reads as a different signal from the bordered Tag pills (which
-   are dimensions of the work). The reader can tell at a glance:
-   "rounded green = arc category, square border = work dimension." */
-function CategoryPill({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ margin: "10px 0 28px" }}>
-      <span style={{
-        display:        "inline-flex",
-        alignItems:     "center",
-        gap:            "6px",
-        fontFamily:     font.sans,
-        fontSize:       "10px",
-        fontWeight:     700,
-        letterSpacing:  "0.18em",
-        textTransform:  "uppercase",
-        color:          c.accent,
-        padding:        "5px 12px 5px 10px",
-        background:     "rgba(30, 215, 96, 0.10)",
-        border:         "none",
-        borderRadius:   "999px",
-      }}>
-        <span aria-hidden style={{
-          display:      "inline-block",
-          width:        "6px",
-          height:       "6px",
-          borderRadius: "50%",
-          background:   c.accent,
-        }} />
-        {children}
-      </span>
-    </div>
-  );
+/* CategoryPill — REMOVED from render. Each section already has an
+   Eyebrow + (sometimes Tag pills) saying where you are; the standalone
+   ArcDivider rule already announces arc transitions explicitly. Three
+   "you are here" labels at every chapter heading was scaffolding the
+   reader doesn't need. Stub left in place so call sites compile. */
+function CategoryPill(_props: { children: React.ReactNode }) {
+  return null;
 }
 
 function Tag({ children }: { children: React.ReactNode }) {
@@ -188,13 +163,13 @@ function Callout({ decision, why, cost }: { decision: string; why: string; cost:
   return (
     <aside style={{
       background: c.callout, border: `1px solid ${c.border}`,
-      borderLeft: `4px solid ${c.brand}`,
+      borderLeft: `4px solid ${c.accent}`,
       padding: "28px 32px", maxWidth: "680px", marginTop: "40px",
     }}>
       <p style={labelStyle}>Decision</p>
       <p style={{
         fontFamily: font.sans, fontSize: "20px", fontWeight: 600,
-        color: c.brand, margin: "0 0 24px", letterSpacing: "-0.01em", lineHeight: 1.3,
+        color: c.accent, margin: "0 0 24px", letterSpacing: "-0.01em", lineHeight: 1.3,
       }}>{decision}</p>
       <p style={labelStyle}>Why</p>
       <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
@@ -310,7 +285,7 @@ export default function SpotifyV2() {
         ]}
       />
 
-      <main style={{ background: c.surface, paddingTop: "72px" }}>
+      <main id="main-content" style={{ background: c.surface, paddingTop: "72px" }}>
 
         {/* Title block */}
         <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)` }}>
@@ -320,11 +295,8 @@ export default function SpotifyV2() {
             fontWeight: 500, color: c.ink, margin: "0 0 20px",
             letterSpacing: "-0.035em", lineHeight: 1.0,
           }}>
-            Pin. Remove. <span style={{ color: c.green }}>Pause.</span>
+            Pin. Remove. Pause.
           </h1>
-          <div style={{ marginBottom: "32px" }}>
-            <CategoryPill>Premise</CategoryPill>
-          </div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
             lineHeight: 1.4, color: c.ink2, margin: "0 0 40px",
@@ -346,22 +318,23 @@ export default function SpotifyV2() {
           </p>
         </header>
 
-        {/* ── PREMISE arc tint ─ */}
-        <div style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        {/* ── PREMISE arc tint ─ cool gray, no warm-neutral defaults */}
+        <div style={{ background: "#EEF2F6", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         {/* Action sheet hero — case study opener. One affordance image
             (long-press action sheet open over a track row) + the three
             controls + power-user framing. Replaces the previous dark
             editorial block which restated this same idea above it. */}
         <ActionSheetHero />
 
-        {/* Pull quote */}
+        {/* Pull quote — leads into the friction list without restating
+            the §01 Problem body verbatim. */}
         <section style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 500, color: c.ink, margin: 0,
             lineHeight: 1.25, letterSpacing: "-0.015em", maxWidth: "900px",
           }}>
-            &ldquo;The shelf records every play and orders by recency. That&rsquo;s the entire interaction model. People are reaching for affordances that don&rsquo;t exist yet.&rdquo;
+            &ldquo;Workarounds documented in community forums are signal. People are reaching for affordances that don&rsquo;t exist yet.&rdquo;
           </p>
         </section>
 
@@ -413,8 +386,8 @@ export default function SpotifyV2() {
 
         <ArcDivider arc="Decisions" />
 
-        {/* ── DECISIONS arc tint ─ */}
-        <div style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        {/* ── DECISIONS arc tint ─ cool lilac instead of warm cream */}
+        <div style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         {/* User journey — where the controls land */}
         <UserJourney />
 
@@ -428,8 +401,8 @@ export default function SpotifyV2() {
 
         <ArcDivider arc="Details" />
 
-        {/* ── DETAILS arc tint ─ */}
-        <div style={{ background: "#F1F6F2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        {/* ── DETAILS arc tint ─ cool slate-green instead of sage tint */}
+        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         <DecisionLogic />
 
         {/* Prototypes — moved out of DecisionLogic so the loops have their own breathing room */}
@@ -544,7 +517,7 @@ export default function SpotifyV2() {
                     style={{ width: "100%", height: "auto", display: "block", margin: 0, padding: 0 }}
                   />
                 </div>
-                <p className="sp2-scroll-after">Swipe to see the full menu &rarr;</p>
+                <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
                 <figcaption style={{
                   fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
                   letterSpacing: "0.12em", textTransform: "uppercase",
@@ -557,21 +530,22 @@ export default function SpotifyV2() {
           </div>
         </section>
 
-        {/* Meta block */}
+        {/* Meta block — 4 columns at desktop so each cell holds its
+            value on one line instead of wrapping to 2-3. Status + Type
+            merged into "Status." */}
         <section style={{
           borderTop: `1px solid ${c.border}`,
           padding: `64px ${SECTION_X}`, background: c.surface,
         }}>
           <div style={{
             maxWidth: CONTENT_MAX, margin: "0 auto",
-            display: "grid", gridTemplateColumns: "repeat(5, 1fr)",
+            display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
             gap: "32px",
           }} className="sp2-meta">
             <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
             <MetaCell label="Year"   value="2025" />
-            <MetaCell label="Type"   value="Self-directed concept" />
             <MetaCell label="Stack"  value="Figma · Principle · After Effects" />
-            <MetaCell label="Status" value="Concept · not shipped" />
+            <MetaCell label="Status" value="Self-directed concept · not shipped" />
           </div>
         </section>
         </div>
@@ -609,9 +583,9 @@ export default function SpotifyV2() {
         #sp2-loops-tab-2:checked ~ .sp2-loops-nav .sp2-loops-tab-2,
         #sp2-loops-tab-3:checked ~ .sp2-loops-nav .sp2-loops-tab-3 {
           background: #FAFAF9;
-          box-shadow: inset 0 -3px 0 #1ED760;
+          box-shadow: inset 0 -3px 0 var(--color-accent);
         }
-        .sp2-loops-tab:hover { background: rgba(30,215,96,0.05); }
+        .sp2-loops-tab:hover { background: rgba(15,61,62,0.04); }
 
         /* Scroll hint defaults — hidden on desktop, surfaced on phones
            (the mobile media query below re-shows + styles them). */
@@ -720,9 +694,9 @@ export default function SpotifyV2() {
           .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
           /* Consistent Behavior screenshot — fits viewport width, no scroll. */
           /* Scroll hint shown under every horizontally-scrolling block on
-             phones. Hidden on desktop. Uses the Spotify green + heavier
-             weight so the swipe affordance reads as an instruction, not
-             body copy. */
+             phones. Hidden on desktop. Uses Deep Teal + heavier weight so
+             the swipe affordance reads as an instruction, not body copy.
+             Green-on-white was 1.92:1 (fails AA); teal is 11.95:1. */
           .sp2-scroll-after {
             display: inline-flex !important;
             align-items: center !important;
@@ -730,11 +704,11 @@ export default function SpotifyV2() {
             font-family: var(--font-inter, system-ui), sans-serif;
             font-size: 11px !important; font-weight: 700 !important;
             letter-spacing: 0.14em !important; text-transform: uppercase !important;
-            color: #1ED760 !important;
-            background: rgba(30, 215, 96, 0.08) !important;
+            color: var(--color-accent) !important;
+            background: rgba(15, 61, 62, 0.06) !important;
             padding: 6px 10px !important;
             margin: 12px 0 0 !important;
-            border-left: 2px solid #1ED760 !important;
+            border-left: 2px solid var(--color-accent) !important;
           }
           /* Signal section (user voices) — each quote sticky-stacks so the
              previous card stays visible above the next one as the reader
@@ -760,7 +734,28 @@ export default function SpotifyV2() {
           .sp2-control-nav a { padding: 16px 8px !important; font-size: 12px !important; }
           .sp2-control-numeral { display: none !important; }
         }
+
       `}</style>
+      {/* Reduced-motion handling for the loop videos. CSS can't pause a
+          <video>, so a small script listens to prefers-reduced-motion
+          and pauses each .sp2-loop-video when the OS pref flips on.
+          Pairs with the visible controls bar (manual pause still works). */}
+      <script dangerouslySetInnerHTML={{ __html: `
+        (function() {
+          if (typeof window === "undefined" || !window.matchMedia) return;
+          var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+          function sync() {
+            var vids = document.querySelectorAll('.sp2-loop-video');
+            vids.forEach(function(v) {
+              if (mq.matches) { try { v.pause(); v.removeAttribute('autoplay'); } catch (e) {} }
+            });
+          }
+          if (mq.addEventListener) mq.addEventListener('change', sync);
+          else if (mq.addListener) mq.addListener(sync);
+          if (document.readyState !== 'loading') sync();
+          else document.addEventListener('DOMContentLoaded', sync);
+        })();
+      ` }} />
     </>
   );
 }
@@ -869,13 +864,15 @@ function SketchesAndMidfi() {
           }}>
             Three directions on paper.
           </h3>
-          <div className="sp2-sketches-scroll" style={{
-            border: `1px solid ${c.border}`, background: "#FFFFFF",
-            overflowX: "auto", WebkitOverflowScrolling: "touch",
-          }}>
+          <div className="sp2-sketches-scroll" tabIndex={0} role="region"
+            aria-label="Paper sketches, scroll horizontally to view all three"
+            style={{
+              border: `1px solid ${c.border}`, background: "#FFFFFF",
+              overflowX: "auto", WebkitOverflowScrolling: "touch",
+            }}>
             <Image
               src="/images/work/spotify/v2/figma-sketches.png"
-              alt="Sketching possible interaction patterns — three device sketches explored on paper before any Figma frame."
+              alt="Sketching possible interaction patterns: three device sketches explored on paper before any Figma frame."
               width={1840} height={769}
               sizes="(max-width: 760px) 880px, (max-width: 1240px) 100vw, 1100px"
               quality={95}
@@ -883,7 +880,7 @@ function SketchesAndMidfi() {
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
-          <p className="sp2-scroll-after">Swipe to see all three sketches &rarr;</p>
+          <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
         </div>
 
         {/* Mid-fi — desktop + mobile, paired. Desktop carries the surface
@@ -992,11 +989,11 @@ function DecisionLogic() {
       ],
       dossier: [
         { lead: "Problem and state coverage.",
-          body: "Recently Played reorders by recency. A song the user wants to keep within reach disappears as new plays push it down. The shelf needs a way to lock a favorite in place. The new Pin state machine covers seven moments\u2014default, hover, press, pinned, disabled (cap reached), loading, error\u2014each with two independent signals so the affordance never reads as ambiguous." },
+          body: "Recently Played reorders by recency. A song the user wants to keep within reach disappears as new plays push it down. The shelf needs a way to lock a favorite in place. The new Pin state machine covers seven moments: default, hover, press, pinned, disabled (cap reached), loading, error. Each has two independent signals so the affordance never reads as ambiguous." },
         { lead: "Feedback and the cap.",
           body: "Move first, confirm second. The tile animates to position one in 250 ms; the Pinned. Undo snackbar follows for five seconds; a persistent Pin chip stays on the tile after the snackbar dismisses. The cap is four pins, with a disabled fifth row rather than a soft limit and a warning toast. Engineering surfaced shelf-performance and ranking-signal degradation past four; four is also the cognitive ceiling for what a user can re-find by sight. Drag-to-reorder among pins, deliberately cut." },
         { lead: "Persona impact.",
-          body: "Ranger Dave on his commute is the primary beneficiary. Pin keeps his focus playlist within one tap regardless of what he plays after. Parent is neutral\u2014Pin on a shared device is rarely worth doing. Explorer is neutral to negative; heavy browsing means the shelf turns over quickly and four pins barely scratch the volume." },
+          body: "Ranger Dave on his commute is the primary beneficiary. Pin keeps his focus playlist within one tap regardless of what he plays after. Parent is neutral. Pin on a shared device is rarely worth doing. Explorer is neutral to negative; heavy browsing means the shelf turns over quickly and four pins barely scratch the volume." },
       ],
     },
     {
@@ -1019,9 +1016,9 @@ function DecisionLogic() {
         { lead: "Problem and state coverage.",
           body: "An accidental tap, a short preview, a one-off experiment lingers on the shelf and misrepresents what the user cares about. They need a way to clean it up before someone sees. The Remove state machine handles default, hover, press, the successful remove, the active toast, sync conflicts, and the restored state after Undo. Single-item rows and multi-item rows handled distinctly." },
         { lead: "Feedback and scope.",
-          body: "Slide first, undo second. The tile slides out in 220 ms; the Removed. Undo snackbar runs for five seconds; on undo, the item returns to its last position rather than the front. Scope is per-device, not per-account. Privacy lives at the device boundary. The cost is friction for multi-device users; the benefit is that the shelf can\u2019t betray a user\u2019s intent on Device A by changing on Device B." },
+          body: "Slide first, undo second. The tile slides out in 220 ms. The Removed. Undo snackbar runs for five seconds. On undo, the item returns to its last position rather than the front. Scope is per-device, not per-account. Privacy lives at the device boundary. The cost is friction for multi-device users. The benefit is that the shelf can\u2019t betray a user\u2019s intent on Device A by changing on Device B." },
         { lead: "Persona impact.",
-          body: "Melodic Melanie, the primary beneficiary, can clear contextual plays before she shares her screen. Ranger Dave is positive on the shared-device case. Explorer is neutral\u2014the shelf already turns over fast for them." },
+          body: "Melodic Melanie, the primary beneficiary, can clear contextual plays before she shares her screen. Ranger Dave is positive on the shared-device case. Explorer is neutral. The shelf already turns over fast for them." },
       ],
     },
     {
@@ -1039,7 +1036,7 @@ function DecisionLogic() {
       ],
       dossier: [
         { lead: "Problem and state coverage.",
-          body: "A borrowed phone, a long drive with a guest, an overnight kid takeover. The user has no way to stop the shelf from logging without leaving the app or signing out. The Pause state machine surfaces the timer in every state\u2014default, hover, press, paused, expiring, resumed, clock-skew error\u2014because the timer is the design\u2019s promise." },
+          body: "A borrowed phone, a long drive with a guest, an overnight kid takeover. The user has no way to stop the shelf from logging without leaving the app or signing out. The Pause state machine surfaces the timer in every state: default, hover, press, paused, expiring, resumed, clock-skew error. The timer is the design\u2019s promise." },
         { lead: "Feedback and the time-box.",
           body: "Three presets, no slider. The duration picker offers 30 minutes, 2 hours, or until tomorrow. The shelf shows the paused state with a countdown; a snackbar confirms when listening history resumes. The control is time-boxed only, not a permanent toggle. Permanent pause was ruled out because the ML signal would degrade. The cost: a user who really wants to opt out has to re-pause periodically, or use Settings \u00B7 Privacy." },
         { lead: "Persona impact.",
@@ -1150,7 +1147,7 @@ function DecisionLogic() {
             <header style={{ marginBottom: "40px" }}>
               <p style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                letterSpacing: "0.20em", color: c.green,
+                letterSpacing: "0.20em", color: c.accent,
                 textTransform: "uppercase", margin: "0 0 14px",
               }}>{f.key.toUpperCase()} &middot; {f.surface}</p>
               <h3 style={{
@@ -1165,12 +1162,13 @@ function DecisionLogic() {
               }}>{f.tagline}</p>
             </header>
 
-            {/* Wireframe frames — wrapped in a #6E6E6E mat (same as the
-                ActionSheetHero) so the flow reads as one curated panel
-                instead of frames floating against the page. Each screen
-                has rounded corners to feel device-native. */}
+            {/* Wireframe frames — wrapped in a dark mat so the flow reads
+                as one curated panel instead of frames floating against
+                the page. Each screen has rounded corners to feel
+                device-native. Mat darkened to #2F2F2F so the Spotify-
+                green caption number meets WCAG AA on its surface. */}
             <div style={{
-              background: "#6E6E6E",
+              background: "#2F2F2F",
               padding: "clamp(20px, 3vw, 40px)",
               marginBottom: "56px",
             }}>
@@ -1183,11 +1181,10 @@ function DecisionLogic() {
                     <div style={{
                       aspectRatio: f.aspectRatio,
                       overflow: "hidden",
-                      /* Mobile: rounded background matches the section
-                         mat (#6E6E6E) so the frame visually merges with
-                         the gray, no black "ground" between phone + mat.
-                         Desktop: thin black behind the screen capture so
-                         the white UI elements pop. */
+                      /* Mobile: medium-gray rounded background contrasts
+                         against the darker outer mat. Desktop: thin
+                         black behind the screen capture so the white UI
+                         elements pop. */
                       background: f.surface === "Mobile" ? "#6E6E6E" : "#000000",
                       borderRadius: f.surface === "Mobile"
                         ? "clamp(14px, 1.6vw, 22px)"
@@ -1278,9 +1275,9 @@ function DecisionLogic() {
             const currentActive = document.querySelector('.sp2-control-nav a[data-active]');
             const currentKey = currentActive ? currentActive.getAttribute('data-control-anchor') : null;
             if (bestKey === currentKey) return; /* DOM already correct */
-            anchors.forEach(a => a.removeAttribute('data-active'));
+            anchors.forEach(a => { a.removeAttribute('data-active'); a.removeAttribute('aria-current'); });
             const target = [...anchors].find(a => a.getAttribute('data-control-anchor') === bestKey);
-            if (target) target.setAttribute('data-active', 'true');
+            if (target) { target.setAttribute('data-active', 'true'); target.setAttribute('aria-current', 'location'); }
           }
           /* Throttle to once per animation frame so scroll spam doesn't
              thrash. rAF-style without a captured "pending" closure so
@@ -1305,12 +1302,21 @@ function DecisionLogic() {
             KEYS.forEach(k => { const el = document.getElementById('control-' + k); if (el) trigger.observe(el); });
           }
           wireObserver();
-          /* Safety-net interval: catches edge cases where neither scroll
-             nor IO fires (programmatic jumps in webviews, throttled
-             scroll events). Cheap — just reads rects. */
-          setInterval(update, 250);
-          /* Re-wire the observer every 2s in case React replaced nodes. */
-          setInterval(wireObserver, 2000);
+          /* When the document becomes visible again (tab return, scroll
+             from another anchor) re-run once to refresh state. */
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') schedule();
+          });
+          /* Re-wire IO when nav anchors are clicked — programmatic
+             smooth-scroll in iOS Safari sometimes lands without firing
+             scroll events. One re-wire-on-click covers it without a
+             forever-running interval. */
+          document.addEventListener('click', function(e) {
+            var t = e.target;
+            if (t && t.closest && t.closest('a[data-control-anchor]')) {
+              setTimeout(function() { wireObserver(); schedule(); }, 400);
+            }
+          }, { passive: true });
           update();
 
           /* State diagram opens centered — the interesting nodes (Pinned
@@ -1339,15 +1345,15 @@ function DecisionLogic() {
         .sp2-control-nav a[data-active] {
           color: #252B28 !important;
           background: #FAFAF9 !important;
-          box-shadow: inset 0 -3px 0 #1ED760 !important;
+          box-shadow: inset 0 -3px 0 var(--color-accent) !important;
         }
         .sp2-control-nav a[data-active] span:first-child {
           opacity: 0.85 !important;
-          color: #1ED760 !important;
+          color: var(--color-accent) !important;
         }
         .sp2-control-nav a:hover {
           color: #252B28;
-          background: rgba(30,215,96,0.05);
+          background: rgba(15,61,62,0.04);
         }
       `}</style>
     </section>
@@ -1368,7 +1374,7 @@ function Prototypes() {
       key:   "remove",
       title: "Remove",
       eyebrow: "Remove + Undo · live interaction",
-      body:  "Tile slides out in 220 ms. The Removed. Undo snackbar runs the five-second window. Tap Undo and the item returns to its last position\u2014not the front. The shelf forgives mistakes; it doesn\u2019t reward them.",
+      body:  "Tile slides out in 220 ms. The Removed. Undo snackbar runs the five-second window. Tap Undo and the item returns to its last position, not the front. The shelf forgives mistakes. It doesn\u2019t reward them.",
       webm:  "/images/work/spotify/undo-happy.webm",
       gif:   "/images/work/spotify/undo-happy.gif",
     },
@@ -1473,8 +1479,12 @@ function Prototypes() {
                         muted
                         loop
                         playsInline
+                        controls
+                        controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+                        disablePictureInPicture
                         preload="metadata"
-                        aria-label={l.eyebrow}
+                        aria-label={`${l.eyebrow} prototype loop. Click to pause.`}
+                        className="sp2-loop-video"
                         style={{
                           width: "100%", height: "100%",
                           objectFit: "cover", objectPosition: "top center",
@@ -1487,7 +1497,7 @@ function Prototypes() {
                   <div>
                     <p style={{
                       fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                      letterSpacing: "0.20em", color: c.green,
+                      letterSpacing: "0.20em", color: c.accent,
                       textTransform: "uppercase", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
                     <h3 style={{
@@ -1513,7 +1523,7 @@ function Prototypes() {
 
 function ShippedSection() {
   return (
-    <section id="shipped" style={{
+    <section id="shipped" aria-label="Shipped, with receipts" style={{
       padding: `40px 0 120px`,
       background: c.callout, borderTop: `1px solid ${c.border}`,
       borderBottom: `1px solid ${c.border}`,
@@ -1565,22 +1575,24 @@ function ShippedSection() {
           {/* State diagram — wide SVG; on mobile, scroll horizontally
               inside the card and zoom the diagram to its native width
               so each node is readable. */}
-          <div className="sp2-state-scroll" style={{
-            background: "#FFFFFF", border: `1px solid ${c.border}`,
-            padding: "clamp(12px, 3vw, 48px)",
-            overflowX: "auto",
-            WebkitOverflowScrolling: "touch",
-          }}>
+          <div className="sp2-state-scroll" tabIndex={0} role="region"
+            aria-label="Pause state diagram, scroll horizontally to view"
+            style={{
+              background: "#FFFFFF", border: `1px solid ${c.border}`,
+              padding: "clamp(12px, 3vw, 48px)",
+              overflowX: "auto",
+              WebkitOverflowScrolling: "touch",
+            }}>
             <Image
               src="/images/work/spotify/spotify-shelf-state-diagram.svg"
-              alt="Pause state diagram — four states (idle, paused, expiring, resumed) with every transition reversible."
+              alt="Pause state diagram: four states (idle, paused, expiring, resumed) with every transition reversible."
               width={1920} height={900}
               sizes="(max-width: 760px) 720px, (max-width: 1240px) 100vw, 1100px"
               className="sp2-state-img"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
-          <p className="sp2-scroll-after">Swipe to see the full diagram &rarr;</p>
+          <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
         </div>
 
         {/* Out of scope — what got named, defended, and skipped */}
@@ -1592,7 +1604,7 @@ function ShippedSection() {
         }} className="sp2-decisions-grid">
           <aside style={{
             background: "#FFFFFF", border: `1px solid ${c.border}`,
-            borderLeft: `4px solid ${c.brand}`, padding: "28px 32px",
+            borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
@@ -1621,7 +1633,7 @@ function ShippedSection() {
 
           <aside style={{
             background: "#FFFFFF", border: `1px solid ${c.border}`,
-            borderLeft: `4px solid ${c.brand}`, padding: "28px 32px",
+            borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
@@ -1659,13 +1671,13 @@ function ShippedSection() {
             naming the riskiest decision before anyone else does. */}
         <aside style={{
           background: "#FFFFFF", border: `1px solid ${c.border}`,
-          borderLeft: `4px solid ${c.brand}`, padding: "28px 32px",
+          borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           marginTop: "32px",
         }}>
           <p style={{
             fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
-            color: c.green, margin: "0 0 14px",
+            color: c.accent, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
           <p style={{
             fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
@@ -1748,7 +1760,7 @@ function FrictionList() {
             }}>
               <span style={{
                 flexShrink: 0, width: "6px", height: "6px", marginTop: "9px",
-                borderRadius: "50%", background: c.brand,
+                borderRadius: "50%", background: c.borderStrong,
               }} />
               <span>{p}</span>
             </li>
@@ -1775,10 +1787,11 @@ function ActionSheetHero() {
           gridTemplateColumns: "minmax(0, 380px) minmax(0, 1fr)",
           gap: "clamp(32px, 5vw, 72px)",
           alignItems: "center",
-          /* Brighter neutral so the black phone screens pop forward like
-             product photography. No drop shadow on the phone — the
-             contrast against the lighter mat does the lift on its own. */
-          background: "#6E6E6E",
+          /* Darker neutral so the black phone screens pop forward like
+             product photography AND the Spotify-green eyebrow meets WCAG
+             AA on the mat surface. No drop shadow on the phone — the
+             contrast against the mat does the lift on its own. */
+          background: "#404040",
           padding:    "clamp(32px, 4vw, 64px)",
         }}>
           {/* Phone with the action sheet open. Rounded corners on the
@@ -1988,7 +2001,7 @@ function UserVoices() {
             <blockquote key={q.text} className="sp2-quote-card" style={{
               margin: 0, padding: "28px 28px 24px",
               background: c.callout, border: `1px solid ${c.border}`,
-              borderTop: `3px solid ${c.green}`,
+              borderTop: `3px solid ${c.accent}`,
               display: "flex", flexDirection: "column", gap: "16px",
               minHeight: "180px",
             }}>
@@ -2035,7 +2048,7 @@ function CompetitiveAudit() {
     borderBottom: `1px solid ${c.border}`,
   };
   const cellColor = (v: string, proposed: boolean) => {
-    if (v === "✓") return proposed ? c.green : c.greenDark;
+    if (v === "✓") return proposed ? c.accent : c.ink;
     if (v === "—") return c.muted;
     return c.ink2;
   };
@@ -2112,9 +2125,11 @@ function CompetitiveAudit() {
           ))}
         </div>
 
-        <div className="sp2-audit-scroll" style={{
-          border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "auto",
-        }}>
+        <div className="sp2-audit-scroll" tabIndex={0} role="region"
+          aria-label="Competitive audit table, scroll horizontally to view all columns"
+          style={{
+            border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "auto",
+          }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr style={{ background: c.callout }}>
@@ -2139,7 +2154,7 @@ function CompetitiveAudit() {
                   <td style={{
                     ...tdBase,
                     fontWeight: r.proposed || r.current ? 700 : 500,
-                    color: r.proposed ? c.greenDark : r.current ? c.brand : c.ink,
+                    color: r.proposed ? c.accent : r.current ? "var(--color-brand)" : c.ink,
                   }}>{r.name}</td>
                   {r.vals.map((v, i) => (
                     <td key={i} style={{
@@ -2154,7 +2169,7 @@ function CompetitiveAudit() {
             </tbody>
           </table>
         </div>
-        <p className="sp2-scroll-after">Swipe to scroll the full audit &rarr;</p>
+        <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
         <p style={{
           fontFamily: font.sans, fontSize: "12px",
           color: c.muted, lineHeight: 1.55, margin: "12px 0 0",
@@ -2270,10 +2285,13 @@ function UserJourney() {
         {/* Journey map — desktop renders the wide image; mobile renders
             the transposed vertical version (JourneyVerticalMobile) so the
             map reads top-to-bottom instead of horizontal-scroll. */}
-        <div className="sp2-journey-scroll sp2-journey-desktop" style={{
-          background: "#FFFFFF", border: `1px solid ${c.border}`,
-          padding: "clamp(12px, 3vw, 40px)",
-          overflowX: "auto",
+        <div className="sp2-journey-scroll sp2-journey-desktop" tabIndex={0}
+          role="region"
+          aria-label="User journey map, scroll horizontally to view all six stages"
+          style={{
+            background: "#FFFFFF", border: `1px solid ${c.border}`,
+            padding: "clamp(12px, 3vw, 40px)",
+            overflowX: "auto",
           WebkitOverflowScrolling: "touch",
         }}>
           <Image
@@ -2408,9 +2426,12 @@ function JourneyVerticalMobile() {
           background: "#FFFFFF", border: `1px solid ${c.border}`,
           padding: "20px 18px", marginTop: i === 0 ? 0 : "12px",
         }}>
-          {/* Stage header */}
+          {/* Stage header — jet background so white text meets AA (white
+              on Spotify green was 1.92:1, fails). Green moves to a thin
+              left bar where contrast doesn't matter. */}
           <div style={{
-            background: c.green, color: "#FFFFFF",
+            background: c.jet, color: "#FFFFFF",
+            borderLeft: `3px solid ${c.green}`,
             fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
             letterSpacing: "0.10em", textTransform: "uppercase",
             padding: "8px 12px", margin: "-20px -18px 16px",
@@ -2448,7 +2469,7 @@ function JourneyVerticalMobile() {
           <section style={{ marginBottom: "16px" }}>
             <p style={labelStyle}>Emotion</p>
             <p style={bodyStyle}>
-              <span style={{ marginRight: "8px" }}>{s.emoji}</span>
+              <span aria-hidden="true" style={{ marginRight: "8px" }}>{s.emoji}</span>
               {s.emotion}
             </p>
           </section>
@@ -2463,7 +2484,7 @@ function JourneyVerticalMobile() {
             border: `1px solid rgba(30,215,96,0.35)`,
             padding: "12px 14px", margin: "16px -2px 0",
           }}>
-            <p style={{ ...labelStyle, color: c.greenDark, marginBottom: "4px" }}>
+            <p style={{ ...labelStyle, color: c.accent, marginBottom: "4px" }}>
               Opportunity
             </p>
             <p style={{ ...bodyStyle, fontWeight: 600 }}>{s.opportunity}</p>

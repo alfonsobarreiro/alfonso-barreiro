@@ -17,15 +17,17 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <>
       <PersonSchema />
       <Nav />
-      <Hero />
-      <Work />
-      <About />
-      <Testimonials />
-      <Footer />
+      <main id="main-content">
+        <Hero />
+        <Work />
+        <About />
+        <Testimonials />
+        <Footer />
+      </main>
       <BackToTop />
-    </main>
+    </>
   );
 }

@@ -223,7 +223,7 @@ export default function About() {
                 alignItems:   "center",
                 gap:          "8px",
                 background:   "#EBEBEA",
-                border:       "1px solid #A8A39A",
+                border:       "1px solid #6E6E6A",
                 padding:      "6px 14px",
                 marginBottom: "24px",
               }}
@@ -350,14 +350,14 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color:          "var(--color-accent-hover)",
+                  color:          "var(--color-accent)",
                   textDecoration: "none",
-                  borderBottom:   "1px solid rgba(122,139,110,0.35)",
+                  borderBottom:   "1px solid var(--color-accent)",
                   paddingBottom:  "1px",
                   transition:     "border-color 0.2s, color 0.2s",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(122,139,110,0.75)"; e.currentTarget.style.color = "#4A5C42"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(122,139,110,0.35)"; e.currentTarget.style.color = "var(--color-accent-hover)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--color-accent-hover)"; e.currentTarget.style.borderBottomColor = "var(--color-accent-hover)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-accent)"; e.currentTarget.style.borderBottomColor = "var(--color-accent)"; }}
               >
                 Book a time
               </a>
@@ -375,6 +375,8 @@ export default function About() {
               position:     "sticky",
               top:          "120px",
               alignSelf:    "start",
+              maxHeight:    "calc(100vh - 140px)",
+              overflowY:    "auto",
             }}
           >
             {skillGroups.map((group, i) => (

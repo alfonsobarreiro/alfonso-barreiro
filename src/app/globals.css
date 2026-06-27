@@ -154,11 +154,43 @@ a {
   text-decoration: none;
 }
 
-/* Replace browser default blue outline with brand-aware focus ring */
-a:focus                { outline: none; }
+/* Replace browser default blue outline with brand-aware focus ring.
+   Bare :focus { outline:none } would strip the keyboard fallback for
+   older Safari/iOS WebViews that don't yet emit :focus-visible — leave
+   the default outline in place there and let :focus-visible style
+   modern browsers. */
 a:focus-visible        { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
-button:focus           { outline: none; }
 button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+
+/* Skip link — first focusable element on every page. Visually hidden
+   off-screen, snaps in-bounds when focused via keyboard. Crimson
+   background + white text for high contrast (9.22:1). */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 1000;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  width: auto;
+  height: auto;
+  padding: 12px 18px;
+  background: var(--color-brand);
+  color: #FFFFFF;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
 
 button {
   font-family: inherit;

@@ -248,6 +248,18 @@ export default function Hero() {
 
       {/* Responsive */}
       <style>{`
+        /* Reduced motion — honor the OS pref on the CTA hover lifts.
+           The inline onMouseEnter still sets transform, but this
+           !important rule overrides it so reduced-motion users don't
+           get the bounce. */
+        @media (prefers-reduced-motion: reduce) {
+          .hero-cta-row > a {
+            transition: none !important;
+          }
+          .hero-cta-row > a:hover {
+            transform: none !important;
+          }
+        }
         @media (max-width: 899px) {
           .hero-section {
             padding: 56px clamp(24px, 5vw, 48px) 40px !important;
@@ -428,7 +440,7 @@ function HeroResultPanel() {
             margin:         "0",
           }}
         >
-          Featured Result · Live Since April
+          Featured Result · Live Since April 2026
         </p>
 
         {/* Title */}
@@ -446,7 +458,10 @@ function HeroResultPanel() {
           Men&apos;s Sole Revival
         </p>
 
-        {/* Stat — the strongest number on the page reads first. */}
+        {/* Stat — the strongest number on the page reads first.
+            Split into stat + descriptor lines so the "13×" doesn't
+            visually dominate to the point where the descriptor reads
+            as a footnote glued to the digit. */}
         <p
           style={{
             fontFamily:         "var(--font-dm-sans), sans-serif",
@@ -455,17 +470,25 @@ function HeroResultPanel() {
             fontWeight:         800,
             letterSpacing:      "-0.02em",
             color:              "var(--color-brand)",
-            margin:             "10px 0 4px",
+            margin:             "10px 0 0",
             fontVariantNumeric: "tabular-nums",
           }}
         >
-          {Math.round(n)}× <span style={{
-            fontSize:     "13px",
-            fontWeight:   500,
-            letterSpacing: "0.02em",
-            color:        "#5A5752",
-            marginLeft:   "8px",
-          }}>CTR lift on affiliate placements</span>
+          {Math.round(n)}×
+        </p>
+        <p
+          style={{
+            fontFamily:     "var(--font-dm-sans), sans-serif",
+            fontSize:       "clamp(14px, 1.2vw, 15px)",
+            fontWeight:     500,
+            lineHeight:     1.4,
+            letterSpacing:  "0.01em",
+            color:          "#3D4440",
+            margin:         "8px 0 0",
+            maxWidth:       "260px",
+          }}
+        >
+          CTR lift on affiliate placements
         </p>
 
         {/* CTA */}

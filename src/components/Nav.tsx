@@ -40,6 +40,11 @@ export default function Nav() {
 
   return (
     <>
+      {/* Skip link — first focusable element on every page. Visually
+          hidden until focused, then snaps to the top-left of the viewport
+          so keyboard users can jump past the nav landmark to <main id=
+          "main-content">. Pairs with the id on each page's <main>. */}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       {/* Main nav bar */}
       <nav
         className="main-nav"
@@ -170,7 +175,9 @@ export default function Nav() {
             background:     "none",
             border:         "none",
             cursor:         "pointer",
-            padding:        "4px 8px 4px 4px",
+            padding:        "11px",
+            minWidth:       "44px",
+            minHeight:      "44px",
             zIndex:         310,
           }}
         >
@@ -189,11 +196,14 @@ export default function Nav() {
             display:        "none", // overridden by media query on mobile
             flexDirection:  "column",
             justifyContent: "center",
+            alignItems:     "center",
             gap:            "5px",
             background:     "none",
             border:         "none",
             cursor:         "pointer",
-            padding:        "4px",
+            padding:        "10px",
+            minWidth:       "44px",
+            minHeight:      "44px",
             zIndex:         310,
           }}
         >
@@ -384,7 +394,7 @@ export default function Nav() {
           left:       "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "12px",
-          color:      "rgba(255,255,255,0.55)",
+          color:      "rgba(255,255,255,0.85)",
           margin:     0,
         }}>
           © 2026 Alfonso Barreiro
@@ -413,6 +423,7 @@ function SearchTrigger() {
         borderRadius:  0,
         cursor:        "pointer",
         color:         "#3D4440",
+        minHeight:     "40px",
         fontFamily:    "var(--font-dm-sans), sans-serif",
         fontSize:      "12px",
         transition:    "color 0.2s, border-color 0.2s, background 0.2s",
@@ -423,7 +434,7 @@ function SearchTrigger() {
         e.currentTarget.style.background = "#FAFAF9";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.color = "#8A8680";
+        e.currentTarget.style.color = "#3D4440";
         e.currentTarget.style.borderColor = "#E8E4DE";
         e.currentTarget.style.background = "transparent";
       }}
@@ -440,7 +451,7 @@ function SearchTrigger() {
         background: "#FAFAF9",
         border:     "1px solid #E8E4DE",
         borderRadius: "3px",
-        color:      "#8A8680",
+        color:      "#5A5752",
         lineHeight: 1,
         marginLeft: "2px",
       }}>
@@ -498,7 +509,7 @@ function NavLink({
         href={routeHref}
         style={sharedStyle}
         onMouseEnter={(e) => (e.currentTarget.style.color = "#252B28")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8680")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#3D4440")}
       >
         {label}
       </Link>
@@ -511,7 +522,7 @@ function NavLink({
         onClick={onScrollClick}
         style={sharedStyle}
         onMouseEnter={(e) => (e.currentTarget.style.color = "#252B28")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8680")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#3D4440")}
       >
         {label}
       </button>

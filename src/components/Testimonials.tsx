@@ -52,7 +52,7 @@ const font = {
 const c = {
   ink:     "#252B28",
   body:    "#3D4440",
-  muted:   "#8A8680",
+  muted:   "#5A5752",
   brand:   "var(--color-brand)",
   accent:  "var(--color-accent)",
   surface: "#FFFFFF",
@@ -91,7 +91,7 @@ export default function Testimonials() {
               color: c.ink, margin: 0, maxWidth: "640px",
             }}
           >
-            Two notes from the work.
+            Two notes from earlier client work.
           </h2>
         </div>
 

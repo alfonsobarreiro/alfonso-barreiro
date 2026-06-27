@@ -477,8 +477,11 @@ function ProjectCard({
       {isLive ? (
         <Link
           href={project.href!}
+          aria-label={`View ${project.title} case study`}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
+          onFocus={() => setHovered(true)}
+          onBlur={() => setHovered(false)}
           style={{
             display:        "inline-flex",
             alignItems:     "center",
