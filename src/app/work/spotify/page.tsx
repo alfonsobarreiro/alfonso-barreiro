@@ -528,19 +528,20 @@ export default function SpotifyV2() {
               {/* Screenshot — just the right-click menu, no text bake-in.
                   On mobile we scroll horizontally so each menu item is
                   legible instead of compressed into the column width. */}
-              <figure className="sp2-consistent-fig" style={{ margin: "0 auto", textAlign: "center", width: "100%" }}>
+              <figure className="sp2-consistent-fig" style={{ margin: "0", padding: 0, textAlign: "center", width: "100%" }}>
                 <div className="sp2-consistent-scroll" style={{
                   overflowX: "auto", WebkitOverflowScrolling: "touch",
                   border: `1px solid ${c.border}`,
+                  margin: 0, padding: 0,
                 }}>
                   <Image
                     src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
                     width={652} height={448}
-                    sizes="(max-width: 760px) 720px, 56vw"
+                    sizes="(max-width: 760px) 100vw, 56vw"
                     quality={95}
                     className="sp2-consistent-img"
-                    style={{ width: "100%", height: "auto", display: "block" }}
+                    style={{ width: "100%", height: "auto", display: "block", margin: 0, padding: 0 }}
                   />
                 </div>
                 <p className="sp2-scroll-after">Swipe to see the full menu &rarr;</p>
@@ -673,9 +674,24 @@ export default function SpotifyV2() {
             right: 50% !important;
             margin-left: -50vw !important;
             margin-right: -50vw !important;
+            padding: 0 !important;
           }
           .sp2-consistent-fig .sp2-consistent-scroll {
             border: none !important;
+            padding: 0 16px !important;
+            margin: 0 !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+          }
+          .sp2-consistent-fig .sp2-consistent-img {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          .sp2-consistent-fig > .sp2-scroll-after {
+            display: none !important;
           }
           .sp2-consistent-fig figcaption {
             padding: 0 16px !important;
@@ -702,8 +718,7 @@ export default function SpotifyV2() {
           .sp2-journey-mobile  { display: block !important; }
           /* Sketches — native width on phones so each device sketch reads. */
           .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
-          /* Consistent Behavior screenshot — scroll horizontally for legibility. */
-          .sp2-consistent-scroll .sp2-consistent-img { width: 720px !important; max-width: 720px !important; }
+          /* Consistent Behavior screenshot — fits viewport width, no scroll. */
           /* Scroll hint shown under every horizontally-scrolling block on
              phones. Hidden on desktop. Uses the Spotify green + heavier
              weight so the swipe affordance reads as an instruction, not
