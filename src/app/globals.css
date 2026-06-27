@@ -7,43 +7,23 @@
 @source "../components/wayfarer-slides";
 
 @theme inline {
-  /* ── Brand (aubergine) ── */
-  --color-brand-50:  #F0EDF2;
-  --color-brand-100: #DCD3DF;
-  --color-brand-200: #7A6580;
-  --color-brand-300: #3D2645; /* primary aubergine — brand */
-  --color-brand-400: #341F3B;
-  --color-brand-500: #2A1830;
-  --color-brand-600: #1F1224;
-  --color-brand-700: #252B28; /* ink */
-  --color-brand-800: #1C211E;
-  --color-brand-900: #181C1A;
-
-  /* ── Accent (sage) ── */
-  --color-accent-50:  #EEF1EB;
-  --color-accent-100: #D5DDCE;
-  --color-accent-200: #B0BFA6;
-  --color-accent-300: #7A8B6E; /* primary sage — accent */
-  --color-accent-400: #5F7556;
-  --color-accent-500: #4A5C42;
-
-  /* ── Neutral scale (deepened for contrast) ── */
+  /* ── Neutral scale ── */
   --color-neutral-50:  #FAFAF9;
-  --color-neutral-100: #E2E0DC;  /* was #EBEBEA */
-  --color-neutral-200: #A8A39A;  /* was #C9C5BD */
-  --color-neutral-800: #2F3531;  /* was #3D4440 */
+  --color-neutral-100: #E2E0DC;
+  --color-neutral-200: #A8A39A;
+  --color-neutral-800: #2F3531;
   --color-neutral-900: #252B28;
 
-  /* ── Semantic tokens (deepened for contrast) ── */
+  /* ── Semantic tokens. Active brand colors live in the :root[data-
+       brand="c"] block below; these are the surface/foreground/border
+       defaults that don't change with brand theming. */
   --color-background:          #FAFAF9;
   --color-surface:             #FFFFFF;
   --color-foreground:          #252B28;
-  --color-foreground-secondary:#2F3531;  /* was #3D4440 */
-  --color-foreground-muted:    #5A5752;  /* was #8A8680 */
-  --color-brand:               #3D2645; /* aubergine — wordmark, work tiles, footer */
-  --color-accent:              #7A8B6E; /* sage — rules, links, ornaments */
-  --color-border:              #BFB9AF;  /* was #E0DCD3 */
-  --color-border-strong:       #8A8680;  /* was #B8B0A2 */
+  --color-foreground-secondary:#2F3531;
+  --color-foreground-muted:    #5A5752;
+  --color-border:              #BFB9AF;
+  --color-border-strong:       #8A8680;
 
   /* ── Typography ── */
   --font-sans:    var(--font-dm-sans);
@@ -89,13 +69,11 @@
 
 html {
   scroll-behavior: smooth;
-  /* Fantasy-style section-to-section snap with a natural feel:
-     'y proximity' lets the browser snap to the closest section when the
-     user is near it, but never traps mid-scroll (mandatory would feel
-     jail-like). Combined with overscroll-behavior: contain, the bounce
-     at top/bottom is preserved on the page itself instead of getting
-     swallowed by the parent scroll. */
-  scroll-snap-type:     y proximity;
+  /* Scroll snap removed — tall sections (Work, About) exceeded 100vh
+     and the snap fought the user's manual scroll momentum, and the
+     Testimonials section (which lacked snap-align) was getting
+     skipped on flick scrolls. Plain scroll wins on a portfolio this
+     dense. */
   overscroll-behavior:  contain;
 }
 
@@ -104,15 +82,12 @@ html, body {
   min-height:               100dvh;
 }
 
-/* Snap targets: the homepage's top-level sections. Padding-top on the
-   snap line gives the nav (~72 px) breathing room above the snapped
-   section. */
+/* Section scroll-margin so anchor jumps (#about, #work) land below
+   the fixed nav instead of underneath it. */
 .hero-section,
 .work-section,
 .about-section,
 main > footer {
-  scroll-snap-align:   start;
-  scroll-snap-stop:    normal;
   scroll-margin-top:   72px;
 }
 
@@ -243,7 +218,8 @@ button {
     transform: none !important;
     transition: none !important;
   }
-  .scroll-hint {
+  .scroll-hint,
+  .availability-dot {
     animation: none !important;
   }
 }

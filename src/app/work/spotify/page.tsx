@@ -131,14 +131,11 @@ function ArcDivider({ arc }: { arc: string }) {
   );
 }
 
-/* CategoryPill — REMOVED from render. Each section already has an
-   Eyebrow + (sometimes Tag pills) saying where you are; the standalone
-   ArcDivider rule already announces arc transitions explicitly. Three
-   "you are here" labels at every chapter heading was scaffolding the
-   reader doesn't need. Stub left in place so call sites compile. */
-function CategoryPill(_props: { children: React.ReactNode }) {
-  return null;
-}
+/* CategoryPill removed. Each section already carries an Eyebrow +
+   (sometimes Tag pills) saying where you are; the standalone ArcDivider
+   rule announces arc transitions explicitly. The component and every
+   call site have been deleted in this pass — what's left is no
+   scaffolding. */
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
@@ -201,8 +198,8 @@ function HeroImage({ src, alt, priority = false, w = 1920, h = 1080 }: {
   );
 }
 
-function BigThree({ number, heading, category, image, imageAlt, body, callout, w, h }: {
-  number: string; heading: string; category?: string; image?: string; imageAlt?: string;
+function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
+  number: string; heading: string; image?: string; imageAlt?: string;
   body: React.ReactNode; callout: { decision: string; why: string; cost: string };
   w?: number; h?: number;
 }) {
@@ -230,11 +227,6 @@ function BigThree({ number, heading, category, image, imageAlt, body, callout, w
               fontWeight: 600, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>{heading}.</h2>
-            {category && (
-              <div style={{ marginTop: "16px" }}>
-                <CategoryPill>{category}</CategoryPill>
-              </div>
-            )}
           </div>
           <div>
             <p style={{
@@ -347,7 +339,6 @@ export default function SpotifyV2() {
             FrictionList above; one image of text isn't an image). */}
         <BigThree
           number="01"
-          category="Premise"
           heading="The problem"
           body={
             <>
@@ -413,7 +404,6 @@ export default function SpotifyV2() {
             body + callout below). */}
         <BigThree
           number="02"
-          category="Details"
           heading="The bet"
           body={
             <>
@@ -444,9 +434,7 @@ export default function SpotifyV2() {
               letterSpacing: "-0.025em", lineHeight: 1.05, maxWidth: "780px",
             }}>
               Same logic, native shell.
-            </h2>
-            <CategoryPill>Details</CategoryPill>
-            <p style={{
+            </h2><p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: "0 0 40px", maxWidth: PROSE_MAX,
             }}>
@@ -559,21 +547,15 @@ export default function SpotifyV2() {
 
       {/* Responsive */}
       <style>{`
-        /* Three-controls carousel — CSS-only tabs (same pattern as Wayfarer DS) */
-        .sp2-tc-carousel > input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
-        .sp2-tc-panel { display: none; }
-        #sp2-tc-tab-1:checked ~ .sp2-tc-panels > [data-panel="1"],
-        #sp2-tc-tab-2:checked ~ .sp2-tc-panels > [data-panel="2"],
-        #sp2-tc-tab-3:checked ~ .sp2-tc-panels > [data-panel="3"] { display: block; }
-        #sp2-tc-tab-1:checked ~ .sp2-tc-nav .sp2-tc-tab-1,
-        #sp2-tc-tab-2:checked ~ .sp2-tc-nav .sp2-tc-tab-2,
-        #sp2-tc-tab-3:checked ~ .sp2-tc-nav .sp2-tc-tab-3 {
-          background: #FFFFFF;
-          box-shadow: inset 0 -3px 0 var(--color-brand);
+        /* Loop pause/play button focus ring — site-default teal would
+           sit at ~1.6:1 on the dark pill background. White outline on
+           the dark button passes 1.4.11. */
+        .sp2-loop-toggle:focus-visible {
+          outline: 2px solid #FFFFFF !important;
+          outline-offset: 2px !important;
+          box-shadow: 0 0 0 4px rgba(15,61,62,0.7);
         }
-        .sp2-tc-tab:hover { background: rgba(255,255,255,0.5); }
-
-        /* Prototypes loops — 3-tab carousel, same pattern */
+        /* Prototypes loops — 3-tab carousel */
         .sp2-loops-carousel > input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
         .sp2-loops-panel { display: none; }
         #sp2-loops-tab-1:checked ~ .sp2-loops-panels > [data-panel="1"],
@@ -674,7 +656,6 @@ export default function SpotifyV2() {
              state via stronger background contrast. */
           .sp2-loops-tab        { padding: 14px 12px !important; gap: 0 !important; }
           .sp2-loops-tab span    { font-size: 14px !important; }
-          .sp2-tc-nav           { grid-template-columns: 1fr 1fr 1fr !important; }
           /* Parity section — stack the editorial block above the
              screenshot on phones so neither pane is squished. min-width:0
              prevents grid items from expanding to the intrinsic width of
@@ -701,7 +682,7 @@ export default function SpotifyV2() {
             display: inline-flex !important;
             align-items: center !important;
             gap: 6px !important;
-            font-family: var(--font-inter, system-ui), sans-serif;
+            font-family: var(--font-dm-sans), system-ui, sans-serif;
             font-size: 11px !important; font-weight: 700 !important;
             letter-spacing: 0.14em !important; text-transform: uppercase !important;
             color: var(--color-accent) !important;
@@ -900,9 +881,7 @@ function SketchesAndMidfi() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               From paper to pixels.
-            </h2>
-            <CategoryPill>Decisions</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1123,9 +1102,7 @@ function DecisionLogic() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Pin. Remove. Pause.
-            </h2>
-            <CategoryPill>Details</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1200,12 +1177,10 @@ function DecisionLogic() {
               marginTop:      i === 0 ? 0 : "120px",
               paddingTop:     i === 0 ? 0 : "80px",
               borderTop:      i === 0 ? "none" : `1px solid ${c.border}`,
-              /* Subtract the article's own paddingTop so the H3 lands
-                 in the same visual position for Pin, Remove, and Pause
-                 when jumped to from the chip nav. Pin has 0 padding so
-                 lands at 152px below viewport top; without compensation,
-                 Remove + Pause would land 80px lower. */
-              scrollMarginTop: i === 0 ? "152px" : "72px",
+              /* Chip nav is sticky at 72px (global nav) + ~52px (chip
+                 strip) = 124px. Add ~16px buffer so jumped-to headings
+                 don't land directly under the chip strip. */
+              scrollMarginTop: "140px",
             }}
           >
             <header style={{ marginBottom: "40px" }}>
@@ -1214,10 +1189,14 @@ function DecisionLogic() {
                 letterSpacing: "0.20em", color: c.accent,
                 textTransform: "uppercase", margin: "0 0 14px",
               }}>{f.key.toUpperCase()} &middot; {f.surface}</p>
+              {/* H3 sized to sit visually below the parent H2 "Pin.
+                 Remove. Pause." (clamp 32-48px) instead of dominating
+                 it. Previous clamp(40,11vw,112px) made Pin. render 2x
+                 the chapter title. */}
               <h3 style={{
-                fontFamily: font.sans, fontSize: "clamp(40px, 11vw, 112px)",
+                fontFamily: font.sans, fontSize: "clamp(32px, 6vw, 64px)",
                 fontWeight: 700, color: c.ink, margin: "0 0 16px",
-                letterSpacing: "-0.04em", lineHeight: 0.9,
+                letterSpacing: "-0.03em", lineHeight: 1.0,
               }}>{f.title}.</h3>
               <p style={{
                 fontFamily: font.sans, fontSize: "clamp(18px, 2vw, 24px)",
@@ -1479,9 +1458,7 @@ function Prototypes() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               The loops.
-            </h2>
-            <CategoryPill>Details</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1583,12 +1560,17 @@ function Prototypes() {
                           width: "44px", height: "44px",
                           display: "inline-flex",
                           alignItems: "center", justifyContent: "center",
-                          background: "rgba(0,0,0,0.55)",
-                          border: "1px solid rgba(255,255,255,0.7)",
+                          background: "rgba(0,0,0,0.65)",
+                          border: "1px solid rgba(255,255,255,0.95)",
                           color: "#FFFFFF",
                           cursor: "pointer",
                           padding: 0,
-                          borderRadius: "999px",
+                          /* Square (4px) instead of pill (999px) so the
+                             control reads as native iOS pause chrome
+                             rather than a balloon on the device frame.
+                             Honors the "no large rounded rectangles"
+                             house rule. */
+                          borderRadius: "4px",
                         }}
                       >
                         <svg className="sp2-loop-toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -1656,9 +1638,7 @@ function ShippedSection() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Shipped, with receipts.
-            </h2>
-            <CategoryPill>Details</CategoryPill>
-          </div>
+            </h2></div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
             lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
@@ -1848,9 +1828,7 @@ function FrictionList() {
           maxWidth: "780px",
         }}>
           Where the shelf gets in the way.
-        </h2>
-        <CategoryPill>Premise</CategoryPill>
-        <p style={{
+        </h2><p style={{
           fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
           lineHeight: 1.75, color: c.ink2, margin: "0 0 28px",
           maxWidth: PROSE_MAX,
@@ -1946,9 +1924,7 @@ function ActionSheetHero() {
               maxWidth: "560px",
             }}>
               Three controls for the shelf people use every day.
-            </h2>
-            <CategoryPill>Premise</CategoryPill>
-            <p style={{
+            </h2><p style={{
               fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
               lineHeight: 1.7, color: "#FAFAF9",
               margin: "0 0 36px", maxWidth: "560px",
@@ -2091,9 +2067,7 @@ function UserVoices() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               The signal was in the open.
-            </h2>
-            <CategoryPill>Research</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -2178,9 +2152,7 @@ function CompetitiveAudit() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Five categories.<br />One open slot.
-            </h2>
-            <CategoryPill>Research</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -2256,16 +2228,21 @@ function CompetitiveAudit() {
             <tbody>
               {rows.map((r) => (
                 <tr key={r.name} style={{
+                  /* Proposed row keeps the green tint (Spotify-native
+                     marker). Current "Spotify (today)" row uses a
+                     cool gray instead of crimson tint — site brand
+                     (crimson) shouldn't bleed into the case study
+                     palette. */
                   background: r.proposed
                     ? "rgba(30,215,96,0.10)"
                     : r.current
-                    ? "#FFF4F4"
+                    ? "#F4F4F2"
                     : "#FFFFFF",
                 }}>
                   <td style={{
                     ...tdBase,
                     fontWeight: r.proposed || r.current ? 700 : 500,
-                    color: r.proposed ? c.accent : r.current ? "var(--color-brand)" : c.ink,
+                    color: r.proposed ? c.accent : r.current ? c.ink2 : c.ink,
                   }}>{r.name}</td>
                   {r.vals.map((v, i) => (
                     <td key={i} style={{
@@ -2381,9 +2358,7 @@ function UserJourney() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Where the controls land.
-            </h2>
-            <CategoryPill>Decisions</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -2439,7 +2414,6 @@ function JourneyVerticalMobile() {
         "Autoplay or loud preview starts unexpectedly on open.",
       ],
       emotion:     "Neutral → hopeful",
-      emoji:       "🙂",
       touchpoint:  "Home screen; Recents shelf; player mini-card.",
       opportunity: "Prioritize Recents visibility and performance.",
     },
@@ -2454,7 +2428,6 @@ function JourneyVerticalMobile() {
         "Can’t multi-select items to clean up quickly.",
       ],
       emotion:     "Annoyed; privacy-aware",
-      emoji:       "😣",
       touchpoint:  "Card long-press; overflow menu; hover states (desktop).",
       opportunity: "Clear, consistent affordances for management.",
     },
@@ -2469,7 +2442,6 @@ function JourneyVerticalMobile() {
         "Fear of doing something irreversible by mistake.",
       ],
       emotion:     "Cautious",
-      emoji:       "🤔",
       touchpoint:  "Microcopy; ‘Why this is here’ explainer; privacy iconography.",
       opportunity: "Plain language + short ‘What changes?’ link; preview impact on recs.",
     },
@@ -2484,7 +2456,6 @@ function JourneyVerticalMobile() {
         "Too many confirmations for simple, reversible action.",
       ],
       emotion:     "Focused",
-      emoji:       "😐",
       touchpoint:  "Action buttons: Remove, Don’t Suggest Similar, Pause History (timed), Clear All; global toggle.",
       opportunity: "One-tap defaults; scoped choices; sensible confirmations.",
     },
@@ -2499,7 +2470,6 @@ function JourneyVerticalMobile() {
         "Anxiety about permanence despite ‘non-destructive’ copy.",
       ],
       emotion:     "Relief if simple; frustration if not",
-      emoji:       "😌",
       touchpoint:  "Confirmation dialog; Undo toast; haptic.",
       opportunity: "Generous Undo; non-destructive-first; undo intent shown from snackbars.",
     },
@@ -2514,7 +2484,6 @@ function JourneyVerticalMobile() {
         "Recommendations still surface similar items after cleanup.",
       ],
       emotion:     "Restored; in control",
-      emoji:       "😌",
       touchpoint:  "Updated shelf; History Trash (30-day restore); Settings → Privacy & History.",
       opportunity: "Restore view; lightweight survey; show learning (‘We’ll show fewer kids playlists’).",
     },

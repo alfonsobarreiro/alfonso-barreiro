@@ -85,7 +85,7 @@ export default function BackToTop() {
           transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .back-to-top-btn:focus-visible {
-          outline: 2px solid var(--color-accent);
+          outline: 2px solid var(--color-focus-ring);
           outline-offset: 3px;
         }
       `}</style>

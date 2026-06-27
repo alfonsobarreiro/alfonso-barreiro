@@ -2,13 +2,13 @@ import Link from "next/link";
 import LogoMark from "./LogoMark";
 
 /* ─────────────────────────────────────────────
-   Tokens — cream footer, aubergine ink
+   Tokens
 ───────────────────────────────────────────── */
 const font = "var(--font-dm-sans), -apple-system, sans-serif";
 
-const bg     = "#FAFAF9";  // cream surface
-const brand  = "var(--color-brand)";  // aubergine — wordmark + primary CTA
-const accent = "var(--color-accent)";  // sage — eyebrow rule + accent span
+const bg     = "#FAFAF9";  // cool off-white surface
+const brand  = "var(--color-brand)";  // crimson — wordmark + primary CTA
+const accent = "var(--color-accent)";  // deep teal — eyebrow rule + accent
 const ink    = "#252B28";
 const ink2   = "#2F3531";
 const muted  = "#5A5752";

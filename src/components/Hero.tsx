@@ -298,10 +298,38 @@ const COUNT_TARGET = 13;
 
 function HeroResultPanel() {
   const panelRef = useRef<HTMLAnchorElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   /* Count-up animation removed — the number now lands at 13 directly.
      Was a nice flourish on desktop but read as a distraction on mobile
      where the panel is below the fold. */
   const n = COUNT_TARGET;
+
+  /* WCAG 2.2.2 Pause, Stop, Hide. The walkthrough video autoplays for
+     ~22s per loop. Cap it at 2 loops so motion stops after ~44s
+     instead of running forever. Pause when scrolled out of viewport
+     so the motion doesn't burn battery off-screen either. */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    let loops = 0;
+    const onEnded = () => {
+      loops += 1;
+      if (loops >= 2) {
+        v.pause();
+        v.removeAttribute("loop");
+      }
+    };
+    v.addEventListener("ended", onEnded);
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) v.pause();
+      else if (loops < 2) v.play().catch(() => { /* ignored */ });
+    }, { threshold: 0.1 });
+    io.observe(v);
+    return () => {
+      v.removeEventListener("ended", onEnded);
+      io.disconnect();
+    };
+  }, []);
 
   return (
     <Link
@@ -365,14 +393,16 @@ function HeroResultPanel() {
               homepage at frame 0 in case the video hasn't loaded yet. */}
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
+            ref={videoRef}
             src="/cs-msr-walkthrough.webm"
             poster="/cs-msr-homepage.jpg"
-            aria-label="Men's Sole Revival walkthrough — homepage scrolls to a product review and resets."
+            aria-label="Men's Sole Revival walkthrough. Homepage scrolls to a product review and resets."
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
+            className="hero-ipad-video"
             style={{
               position:       "absolute",
               top:            0,
@@ -444,8 +474,9 @@ function HeroResultPanel() {
           Featured Result · Live Since April 2026
         </p>
 
-        {/* Title */}
-        <p
+        {/* Title — h2 so the featured case study is announced as a
+            heading landmark to screen-reader users. */}
+        <h2
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "clamp(22px, 2.2vw, 28px)",
@@ -457,7 +488,7 @@ function HeroResultPanel() {
           }}
         >
           Men&apos;s Sole Revival
-        </p>
+        </h2>
 
         {/* Stat — the strongest number on the page reads first.
             Split into stat + descriptor lines so the "13×" doesn't

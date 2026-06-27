@@ -229,6 +229,8 @@ export default function About() {
               }}
             >
               <span
+                className="availability-dot"
+                aria-hidden="true"
                 style={{
                   display:      "inline-block",
                   width:        "7px",
@@ -236,7 +238,8 @@ export default function About() {
                   borderRadius: "50%",
                   background:   "var(--color-accent)",
                   flexShrink:   0,
-                  // CSS pulse animation via style tag below
+                  // CSS pulse animation; honors prefers-reduced-motion
+                  // via globals.css .availability-dot rule.
                   animation:    "pulse 2.2s ease-in-out infinite",
                 }}
               />

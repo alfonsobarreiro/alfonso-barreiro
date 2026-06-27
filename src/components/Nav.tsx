@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
@@ -17,6 +17,8 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const pathname  = usePathname();
   const isHome    = pathname === "/";
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const overlayRef   = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -24,6 +26,31 @@ export default function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Menu open/close a11y wiring: Esc closes; focus moves to first link
+  // on open; focus returns to hamburger on close; body scroll locks.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    // Move focus into the menu so keyboard + screen reader users land
+    // inside the modal on open. requestAnimationFrame waits for the
+    // overlay's inert state to clear.
+    requestAnimationFrame(() => {
+      const firstLink = overlayRef.current?.querySelector<HTMLElement>("a, button");
+      firstLink?.focus();
+    });
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+      // Return focus to the hamburger on close so the user knows where
+      // they are in the document.
+      hamburgerRef.current?.focus();
+    };
+  }, [menuOpen]);
 
   function handleNavClick(id: string) {
     setMenuOpen(false);
@@ -190,9 +217,12 @@ export default function Nav() {
 
         {/* Hamburger / Close button — mobile only */}
         <button
+          ref={hamburgerRef}
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu-overlay"
           style={{
             display:        "none", // overridden by media query on mobile
             flexDirection:  "column",
@@ -220,8 +250,17 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* Full-screen menu overlay */}
+      {/* Full-screen menu overlay. `inert` + aria-hidden when closed
+          keeps the focus order out of the hidden links. role=dialog +
+          aria-modal pairs with the focus management in useEffect. */}
       <div
+        ref={overlayRef}
+        id="mobile-menu-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+        inert={!menuOpen}
+        aria-hidden={!menuOpen}
         className="menu-overlay-crimson"
         style={{
           position:        "fixed",
@@ -498,10 +537,13 @@ function NavLink({
     fontWeight:    500,
     letterSpacing: "0.08em",
     textTransform: "uppercase",
-    padding:       "4px 0",
+    /* Padded to clear WCAG 2.5.8 Target Size (Minimum) — 24x24 floor.
+       13px line-height + 12px vertical padding = ~37px hit target. */
+    padding:       "12px 4px",
     transition:    "color 0.2s",
     textDecoration: "none",
-    display:       "inline-block",
+    display:       "inline-flex",
+    alignItems:    "center",
   };
 
   // If a routeHref is provided, always navigate to that route (regardless of current page)
