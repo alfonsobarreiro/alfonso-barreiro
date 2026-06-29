@@ -204,7 +204,7 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
   w?: number; h?: number;
 }) {
   return (
-    <section className="sp2-bigthree" style={{ padding: `0 0 120px` }}>
+    <section aria-label={heading} className="sp2-bigthree" style={{ padding: `0 0 120px` }}>
       {image && (
         <div style={{ padding: `0 ${SECTION_X} 64px` }}>
           <HeroImage src={image} alt={imageAlt || ""} w={w} h={h} />
@@ -319,8 +319,10 @@ export default function SpotifyV2() {
         <ActionSheetHero />
 
         {/* Pull quote — leads into the friction list without restating
-            the §01 Problem body verbatim. */}
-        <section style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
+            the §01 Problem body verbatim. Rendered as <div> since the
+            section has no heading and converting it to a named landmark
+            would clutter the landmark menu. */}
+        <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 500, color: c.ink, margin: 0,
@@ -328,7 +330,7 @@ export default function SpotifyV2() {
           }}>
             &ldquo;Workarounds documented in community forums are signal. People are reaching for affordances that don&rsquo;t exist yet.&rdquo;
           </p>
-        </section>
+        </div>
 
         {/* Friction list — was a figma slide ("Where the Current Experience
             Falls Short"); the slide was just text on a white background, so
@@ -363,10 +365,11 @@ export default function SpotifyV2() {
             People are reaching for affordances that don't exist yet. */}
         <UserVoices />
 
-        {/* Research Strip — 3 personas */}
-        <section style={{ padding: `0 0 80px` }}>
+        {/* Research Strip — 3 personas. Plain div since ResearchStrip
+            renders its own <section> with the persona group. */}
+        <div style={{ padding: `0 0 80px` }}>
           <ResearchStrip />
-        </section>
+        </div>
 
         {/* Competitive audit — code-rendered table.
             Pulled from Figma slide 16 (Competitive Patterns at a Glance). */}
@@ -425,7 +428,7 @@ export default function SpotifyV2() {
             (text + screenshot side-by-side) cropped to just the screenshot;
             the editorial copy is rendered as real HTML so it scales properly
             on phones. */}
-        <section className="sp2-parity-section" style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
+        <section aria-label="Consistent behavior across mobile and desktop" className="sp2-parity-section" style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Desktop parity</Eyebrow>
             <h2 style={{
@@ -521,7 +524,7 @@ export default function SpotifyV2() {
         {/* Meta block — 4 columns at desktop so each cell holds its
             value on one line instead of wrapping to 2-3. Status + Type
             merged into "Status." */}
-        <section style={{
+        <section aria-label="Case study metadata" style={{
           borderTop: `1px solid ${c.border}`,
           padding: `64px ${SECTION_X}`, background: c.surface,
         }}>
@@ -867,7 +870,7 @@ function ResearchStrip() {
 
 function SketchesAndMidfi() {
   return (
-    <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+    <section aria-label="Sketches and mid-fidelity exploration" style={{ padding: `0 ${SECTION_X} 120px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",
@@ -1088,7 +1091,7 @@ function DecisionLogic() {
   ];
 
   return (
-    <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+    <section aria-label="Three controls decoded" style={{ padding: `0 ${SECTION_X} 120px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",
@@ -1189,14 +1192,14 @@ function DecisionLogic() {
                 letterSpacing: "0.20em", color: c.accent,
                 textTransform: "uppercase", margin: "0 0 14px",
               }}>{f.key.toUpperCase()} &middot; {f.surface}</p>
-              {/* H3 sized to sit visually below the parent H2 "Pin.
-                 Remove. Pause." (clamp 32-48px) instead of dominating
-                 it. Previous clamp(40,11vw,112px) made Pin. render 2x
-                 the chapter title. */}
+              {/* H3 caps at 44px so it stays one step below the parent
+                 H2 "Pin. Remove. Pause." (clamp 32-48px) at every
+                 viewport, not just mobile. Previous max 64px still
+                 dominated above 533px width. */}
               <h3 style={{
-                fontFamily: font.sans, fontSize: "clamp(32px, 6vw, 64px)",
+                fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
                 fontWeight: 700, color: c.ink, margin: "0 0 16px",
-                letterSpacing: "-0.03em", lineHeight: 1.0,
+                letterSpacing: "-0.03em", lineHeight: 1.05,
               }}>{f.title}.</h3>
               <p style={{
                 fontFamily: font.sans, fontSize: "clamp(18px, 2vw, 24px)",
@@ -1235,7 +1238,7 @@ function DecisionLogic() {
                     }}>
                       <Image
                         src={frame.src}
-                        alt={`Step ${idx + 1} - ${frame.label}`}
+                        alt={`Step ${idx + 1}, ${frame.label.replace(/→/g, "then")}`}
                         width={1554} height={1260}
                         sizes="(max-width: 760px) 100vw, 380px"
                         loading={idx < 2 ? "eager" : "lazy"}
@@ -1439,7 +1442,7 @@ function Prototypes() {
   ];
 
   return (
-    <section className="sp2-prototypes-section" style={{
+    <section aria-label="Prototypes" className="sp2-prototypes-section" style={{
       padding: `0 ${SECTION_X} 120px`,
       background: c.callout,
       borderTop: `1px solid ${c.border}`,
@@ -1594,9 +1597,9 @@ function Prototypes() {
                       textTransform: "uppercase", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
                     <h3 style={{
-                      fontFamily: font.sans, fontSize: "clamp(40px, 5vw, 64px)",
+                      fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
                       fontWeight: 700, color: c.ink, margin: "0 0 24px",
-                      letterSpacing: "-0.03em", lineHeight: 1.0,
+                      letterSpacing: "-0.03em", lineHeight: 1.05,
                     }}>{l.title}.</h3>
                     <p style={{
                       fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1812,7 +1815,7 @@ function FrictionList() {
     "No lightweight way to pause or snooze activity during shifting contexts (shared home, guests, family visits, borrowed devices, etc.).",
   ];
   return (
-    <section style={{ padding: `0 ${SECTION_X} 80px` }}>
+    <section aria-label="Where the shelf gets in the way" style={{ padding: `0 ${SECTION_X} 80px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <p style={{
           fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
@@ -1869,7 +1872,7 @@ function FrictionList() {
    Dark mat (#484848) matches the treatment used on slides elsewhere. */
 function ActionSheetHero() {
   return (
-    <section style={{ padding: `clamp(48px, 6vw, 80px) ${SECTION_X} 0` }}>
+    <section aria-label="Three controls for the shelf" style={{ padding: `clamp(48px, 6vw, 80px) ${SECTION_X} 0` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div className="sp2-as-hero" style={{
           display: "grid",
@@ -2053,7 +2056,7 @@ function UserVoices() {
     { text: "Why hasn't Spotify added a clear history option yet?",                      source: "Spotify Community, Jun 2020" },
   ];
   return (
-    <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+    <section aria-label="What users said" style={{ padding: `0 ${SECTION_X} 120px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",
@@ -2138,7 +2141,7 @@ function CompetitiveAudit() {
     return c.ink2;
   };
   return (
-    <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+    <section aria-label="Competitive audit" style={{ padding: `0 ${SECTION_X} 120px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",
@@ -2344,7 +2347,7 @@ function OutOfScope() {
    restructure since it carried the bridge from research to design. */
 function UserJourney() {
   return (
-    <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+    <section aria-label="User journey map" style={{ padding: `0 ${SECTION_X} 120px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",

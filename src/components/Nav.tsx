@@ -27,12 +27,28 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Menu open/close a11y wiring: Esc closes; focus moves to first link
-  // on open; focus returns to hamburger on close; body scroll locks.
+  // Menu open/close a11y wiring: Esc closes; Tab cycles within the
+  // dialog; focus moves to first link on open; focus returns to
+  // hamburger on close; body scroll locks.
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== "Tab" || !overlayRef.current) return;
+      const focusables = overlayRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last  = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      // Trap forward + backward Tab so focus can't leak back to the
+      // hamburger underneath the modal.
+      if (e.shiftKey && active === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && active === last) { e.preventDefault(); first.focus(); }
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";

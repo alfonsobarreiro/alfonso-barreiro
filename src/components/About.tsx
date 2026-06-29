@@ -59,13 +59,6 @@ const pillDefault: React.CSSProperties = {
   background: "#FFFFFF",
   color:      "#2F3531",
 };
-const pillAccent: React.CSSProperties = {
-  ...pillBase,
-  border:     "1px solid rgba(61,38,69,0.45)",
-  background: "rgba(61,38,69,0.06)",
-  color:      "var(--color-brand)",
-};
-
 const skillGroups = [
   {
     category: "Research & Discovery",

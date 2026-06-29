@@ -298,7 +298,7 @@ function ProjectCard({
     display:      "block",
     background:   shellBg,
     padding:      shellPadding,
-    borderRadius: "4px",
+    borderRadius: 0,
     order:        imageOnRight ? 2 : 0,
     textDecoration: "none",
     color:        "inherit",
