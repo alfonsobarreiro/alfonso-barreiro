@@ -277,14 +277,15 @@ export default function Page() {
    Helpers
 ------------------------------------------------- */
 function Section({ id, label, title, children }: { id?: string; label: string; title: string; children: React.ReactNode }) {
-  // Title may contain the literal "&" character; render as plain
-  // text and let React handle escaping. Previous version used
-  // dangerouslySetInnerHTML with no need.
+  // Section is named by its <h2> via aria-labelledby; aria-label would
+  // duplicate the announcement. Each H2 gets a derived id from the
+  // section id so the relationship is explicit.
+  const headingId = id ? `${id}-h2` : undefined;
   return (
-    <section id={id} aria-label={title} style={{ paddingBottom: "16px", borderTop: `1px solid ${c.border}`, marginTop: "48px", scrollMarginTop: "96px" }}>
+    <section id={id} aria-labelledby={headingId} style={{ paddingBottom: "16px", borderTop: `1px solid ${c.border}`, marginTop: "48px", scrollMarginTop: "96px" }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", margin: "32px 0" }}>
         <span style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent }}>{label}</span>
-        <h2 style={{ fontFamily: font.display, fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 500, color: c.ink, margin: 0, letterSpacing: "-0.025em" }}>
+        <h2 id={headingId} style={{ fontFamily: font.display, fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 500, color: c.ink, margin: 0, letterSpacing: "-0.025em" }}>
           {title}
         </h2>
       </div>

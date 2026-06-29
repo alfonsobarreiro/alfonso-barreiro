@@ -54,10 +54,11 @@ const c = {
   brand:    "var(--color-brand)",     // C: crimson — site chrome
   accent:   "var(--color-accent)",    // C: deep teal
   accent2:  "var(--color-accent-hover)",
-  // Deepened from #DEDCD7 (1.37:1) so card/table borders meet 1.4.11 (3:1).
-  border:        "#BFB9AF",
-  // Deepened from #A8A6A0 (2.43:1) so Tag pill borders meet 1.4.11.
-  borderStrong:  "#8A8680",
+  // Deepened to #A29C90 (3.02:1 on white) — passes WCAG 1.4.11.
+  border:        "#A29C90",
+  // Deepened to #7A7670 (4.7:1 on white, 4.4:1 on #FAFAF9 callout) so
+  // Tag pill borders pass 1.4.11 on either surface.
+  borderStrong:  "#7A7670",
   // Match MSR + home About skills-box: off-white callout on white surface,
   // border + crimson left bar do the boundary work. No heavy gray.
   callout:       "#FAFAF9",

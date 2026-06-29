@@ -469,7 +469,7 @@ export default function MSRv2() {
             Hero image — full homepage capture, cropped
             to top portion so the hero lands first.
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+        <section aria-label="Hero" style={{ padding: `0 ${SECTION_X} 120px` }}>
           <HeroImage
             src="/images/work/msr/v2/homepage-live.jpg"
             alt="Men’s Sole Revival homepage. diagnostic-first hero with assessment CTA and editorial article grid."
@@ -481,7 +481,7 @@ export default function MSRv2() {
         {/* ─────────────────────────────────────────────
             Pull quote — full-width, generous breathing
         ───────────────────────────────────────────── */}
-        <section style={{
+        <section aria-label="Premise quote" style={{
           maxWidth: CONTENT_MAX,
           margin:   "0 auto",
           padding:  `40px ${SECTION_X} 120px`,
@@ -534,7 +534,7 @@ export default function MSRv2() {
             and §02. Names the three-week arc that landed
             on the pivot. Visible at-a-glance.
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 0 80px` }}>
+        <section aria-label="Research strip" style={{ padding: `0 0 80px` }}>
           <ResearchStrip />
         </section>
 
@@ -552,7 +552,7 @@ export default function MSRv2() {
             arrow — so the visual and the body actually
             agree on the *decision* not the geometry)
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 0 120px` }}>
+        <section aria-label="The bet" style={{ padding: `0 0 120px` }}>
           <div style={{ padding: `0 ${SECTION_X} 64px` }}>
             <PivotInfographic />
           </div>
@@ -614,7 +614,7 @@ export default function MSRv2() {
             color swatches) so the brand reads on the page
             without a separate exported visual.
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 0 120px` }}>
+        <section aria-label="Brand identity" style={{ padding: `0 0 120px` }}>
           <div style={{ padding: `0 ${SECTION_X} 64px` }}>
             <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
               <div style={{
@@ -631,7 +631,11 @@ export default function MSRv2() {
                     Typographic-only card now — Barlow Condensed carries
                     the identity without any feet imagery. */}
                 <div>
-                  <h3 style={{
+                  {/* Decorative wordmark, not a document heading.
+                      Rendered as styled <p> so the document outline
+                      stays h1 -> h2 -> h2 without an h3 breaking the
+                      hierarchy mid-section. */}
+                  <p style={{
                     fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
                     fontSize:      "clamp(40px, 9vw, 96px)",
                     fontWeight:    800,
@@ -642,7 +646,7 @@ export default function MSRv2() {
                     textTransform: "uppercase",
                   }}>
                     Men&rsquo;s<br/>Sole<br/>Revival
-                  </h3>
+                  </p>
                   <p style={{
                     fontFamily:    "var(--font-lora), Lora, Georgia, serif",
                     fontSize:      "clamp(15px, 1.6vw, 18px)",
@@ -723,7 +727,7 @@ export default function MSRv2() {
             Type ramp, Components. Each tab is legibly
             scaled and contains the actual data.
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 0 120px` }}>
+        <section aria-label="Design system" style={{ padding: `0 0 120px` }}>
           <div style={{ padding: `0 ${SECTION_X} 48px` }}>
             <div style={{
               maxWidth:            CONTENT_MAX,
@@ -784,7 +788,7 @@ export default function MSRv2() {
         {/* ─────────────────────────────────────────────
             §03 — Shipped (image stack — multiple shots)
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 ${SECTION_X} 40px` }}>
+        <section aria-label="Shipped" style={{ padding: `0 ${SECTION_X} 40px` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
 
             {/* Heading + body */}
@@ -977,7 +981,7 @@ export default function MSRv2() {
             Mobile frames as a sidekick — proof of
             responsive thinking without overwhelming
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
+        <section aria-label="Mobile" style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Mobile</Eyebrow>
             <p style={{
@@ -1046,7 +1050,7 @@ export default function MSRv2() {
         {/* ─────────────────────────────────────────────
             Meta block — Pentagram-style bottom strip
         ───────────────────────────────────────────── */}
-        <section style={{
+        <section aria-label="Case study metadata" style={{
           borderTop:    `1px solid ${c.border}`,
           padding:      `64px ${SECTION_X}`,
           background:   c.surface,
@@ -1325,7 +1329,7 @@ function PivotInfographic() {
             alignItems:     "center",
             paddingTop:     "32px",
           }} className="msr2-pivot-arrow">
-            <svg width="64" height="32" viewBox="0 0 64 32" fill="none" aria-hidden>
+            <svg width="64" height="32" viewBox="0 0 64 32" fill="none" aria-hidden="true">
               <path d="M2 16H58M46 4L60 16L46 28" stroke={cognac} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <p style={{
@@ -1756,7 +1760,7 @@ function AnnotatedAssessment() {
                 border:         "2px solid #FFFFFF",
                 boxShadow:      "0 2px 8px rgba(0,0,0,0.25)",
               }}
-              aria-hidden
+              aria-hidden="true"
             >
               {a.num}
             </span>
@@ -1873,7 +1877,7 @@ function AssessmentFunnelFlow() {
                 justifyContent: "center",
                 color:          c.accent,
                 fontSize:       "16px",
-              }} aria-hidden>&rarr;</div>
+              }} aria-hidden="true">&rarr;</div>
             )}
           </React.Fragment>
         ))}
