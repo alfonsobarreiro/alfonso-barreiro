@@ -161,8 +161,12 @@ button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-off
 }
 
 /* Skip link — first focusable element on every page. Visually hidden
-   off-screen, snaps in-bounds when focused via keyboard. Crimson
-   background + white text for high contrast (9.22:1). */
+   off-screen, snaps in-bounds when KEYBOARD-focused. Crimson
+   background + white text for high contrast (9.22:1).
+   Uses :focus-visible (not :focus) so mouse-driven client-side
+   navigation — which can programmatically move focus to the first
+   focusable element on the new page — doesn't reveal the link to
+   mouse users. Keyboard users still see it on Tab. */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -172,7 +176,7 @@ button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-off
   overflow: hidden;
   z-index: 1000;
 }
-.skip-link:focus {
+.skip-link:focus-visible {
   position: fixed;
   top: 12px;
   left: 12px;
@@ -186,7 +190,7 @@ button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-off
   font-weight: 600;
   letter-spacing: 0.04em;
   text-decoration: none;
-  outline: 2px solid var(--color-focus-ring);
+  outline: 2px solid #FFFFFF;
   outline-offset: 2px;
 }
 
