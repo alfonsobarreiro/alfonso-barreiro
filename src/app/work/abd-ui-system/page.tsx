@@ -40,8 +40,8 @@ const c = {
   bg:       "#FFFFFF",
   bgSection:"#F4F6F7", // cool slate; was #FAFAF9 warm cream
   surface:  "#FFFFFF",
-  // Deepened from #E3E0DA (1.2:1) — passes 1.4.11 (3:1) for non-text UI.
-  border:   "#A29C90",
+  // #8A8680 hits 3.4:1 on white — safe floor for 1.4.11 boundaries.
+  border:   "#8A8680",
   heroBg:   "#14181A",
   onDark:   "#F5F5F4",
   onDarkMut:"#C5C8C7",

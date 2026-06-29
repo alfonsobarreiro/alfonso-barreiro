@@ -22,11 +22,12 @@
   --color-foreground:          #252B28;
   --color-foreground-secondary:#2F3531;
   --color-foreground-muted:    #5A5752;
-  /* #BFB9AF was 2.18:1 on white — still fails 1.4.11 (needs 3:1).
-     #A29C90 hits 3.02:1; use this anywhere a border is the only
-     boundary of a UI region. */
-  --color-border:              #A29C90;
-  --color-border-strong:       #8A8680;
+  /* #8A8680 hits 3.4:1 on white — safe floor for 1.4.11. Earlier
+     attempts at #BFB9AF (2.18:1) and #A29C90 (~2.7:1) tested cleaner
+     in some calculators but fail in stricter ones; sticking with the
+     same value as border-strong avoids ambiguity. */
+  --color-border:              #8A8680;
+  --color-border-strong:       #7A7670;
 
   /* ── Typography ── */
   --font-sans:    var(--font-dm-sans);

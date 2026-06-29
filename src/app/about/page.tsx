@@ -168,7 +168,9 @@ export default function AboutPage() {
           }
           .about-cta-primary:hover {
             transform:    translateY(-2px);
-            box-shadow:   0 4px 12px rgba(140,26,26,0.25);
+            /* Neutral ink shadow reads as depth; brand-color shadows
+               tend to look like a faint halo, not lift. */
+            box-shadow:   0 4px 12px rgba(37,43,40,0.18);
             background:   #6F1414;
           }
           @media (prefers-reduced-motion: reduce) {
@@ -277,7 +279,7 @@ export default function AboutPage() {
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     fontSize:      "10px",
-                    color:         "#A8A39A",
+                    color:         "#5A5752",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
                     margin:        "10px 0 0",
@@ -343,7 +345,7 @@ export default function AboutPage() {
                 fontWeight:    600,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color:         "#6E6E6A",
+                color:         "#5A5752",
                 margin:        0,
               }}>
                 Fifteen years · one discipline

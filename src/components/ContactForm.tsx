@@ -130,12 +130,15 @@ export default function ContactForm() {
             suppressHydrationWarning
           />
         </div>
+        {/* Live region for submit errors. Only takes space when there
+            IS an error — empty paragraph used to reserve a 20px dead
+            zone between the textarea and the submit button. */}
         <p role="status" aria-live="polite" style={{
           fontFamily: font,
           fontSize: "13px",
           color: "#B91C1C",
           margin: 0,
-          minHeight: "20px",
+          minHeight: formState === "error" ? "20px" : 0,
         }}>
           {formState === "error" && "Something went wrong. Try emailing me directly at alfonso@barreiro.com"}
         </p>

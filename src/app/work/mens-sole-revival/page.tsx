@@ -56,9 +56,10 @@ const c = {
   brand:    "var(--color-brand)",   // C: crimson — runtime-swappable
   accent:   "var(--color-accent)",  // C: deep teal
   accent2:  "var(--color-accent-hover)",
-  // Border tokens deepened so card / table / figure boundaries pass
-  // WCAG 1.4.11 (3:1) against the white and callout surfaces.
-  border:        "#A29C90",
+  // Borders at #8A8680 (3.4:1 on white) for the default boundary;
+  // #7A7670 (4.7:1) for Tag pill borders that also sit on the
+  // #FAFAF9 callout. Both pass WCAG 1.4.11.
+  border:        "#8A8680",
   borderStrong:  "#7A7670",
   // Off-white box on white surface — identical to the home About skills box.
   callout:       "#FAFAF9",
@@ -1229,7 +1230,9 @@ function PivotInfographic() {
   const ink    = "#13100C";   // MSR editorial near-black
   const paper  = "#F5F0E8";   // MSR cream
   const cognac = "#C4703A";   // MSR brand
-  const muted  = "#8A8680";
+  // #8A8680 was 3.9:1 on the near-black ink panel — fails 4.5:1 for
+  // small body text. Lifted to #B8B2A8 (~5.5:1) for AA legibility.
+  const muted  = "#B8B2A8";
 
   const originalPlan = [
     "Shopify storefront",
