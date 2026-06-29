@@ -34,12 +34,14 @@ export const metadata: Metadata = {
 const c = {
   ink:      "#252B28",
   body:     "#3D4440",
-  muted:    "#8A8680",
+  // Deepened from #8A8680 (3.4:1) — passes 4.5:1 on white.
+  muted:    "#5A5752",
   accent:   "#06B6D4", // ABD cyan
   bg:       "#FFFFFF",
-  bgSection:"#FAFAF9",
+  bgSection:"#F4F6F7", // cool slate; was #FAFAF9 warm cream
   surface:  "#FFFFFF",
-  border:   "#E3E0DA",
+  // Deepened from #E3E0DA (1.2:1) — passes 1.4.11 (3:1) for non-text UI.
+  border:   "#A29C90",
   heroBg:   "#14181A",
   onDark:   "#F5F5F4",
   onDarkMut:"#C5C8C7",
@@ -50,21 +52,25 @@ const font = {
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
+// Four meta rows so each cell holds its value cleanly. Methods +
+// Timeline folded into Role + Status; Outcome lives in the hero
+// paragraph already.
 const META = [
-  { label: "Role",     value: "Design Systems · UI" },
+  { label: "Role",     value: "Design Systems · UI · Ongoing" },
   { label: "Type",     value: "Alpha Beta Design · Production" },
-  { label: "Timeline", value: "Ongoing" },
   { label: "Status",   value: "Live · powers ABD client sites" },
-  { label: "Methods",  value: "Design Tokens · Component API · Variants-by-States · Accessibility Automation · Figma + Code" },
-  { label: "Outcome",  value: "One source of truth across CSS, JSON, and Figma." },
+  { label: "Methods",  value: "Tokens · Variants-by-States · Figma + Code" },
 ];
 
+// Arrow glyphs in labels are decorative — they cue "jump down" /
+// "external" visually. The DOWNSTREAM render wraps the glyph in an
+// aria-hidden span so screen readers don't say "down arrow".
 const DOWNSTREAM = [
-  { label: "↓ System overview", src: "/images/work/abd-ui-system/abd-overview.png", href: "#overview" },
-  { label: "↓ Color tokens",    src: "/images/work/abd-ui-system/abd-color.png",    href: "#tokens" },
-  { label: "↓ Components",      src: "/images/work/abd-ui-system/abd-buttons.png",  href: "#components" },
-  { label: "↓ Forms & states",  src: "/images/work/abd-ui-system/abd-forms.png",    href: "#components" },
-  { label: "↑ Live system",     src: "/images/work/abd-ui-system/abd-money.png",    href: "https://www.alphabeta.design/", external: true },
+  { glyph: "↓", label: "System overview", src: "/images/work/abd-ui-system/abd-overview.png", href: "#overview" },
+  { glyph: "↓", label: "Color tokens",    src: "/images/work/abd-ui-system/abd-color.png",    href: "#tokens" },
+  { glyph: "↓", label: "Components",      src: "/images/work/abd-ui-system/abd-buttons.png",  href: "#components" },
+  { glyph: "↓", label: "Forms & states",  src: "/images/work/abd-ui-system/abd-forms.png",    href: "#components" },
+  { glyph: "↗", label: "Live system",     src: "/images/work/abd-ui-system/abd-money.png",    href: "https://www.alphabeta.design/", external: true },
 ];
 
 export default function Page() {
@@ -85,11 +91,11 @@ export default function Page() {
         ]}
       />
 
-      <main style={{ background: c.bg }}>
+      <main id="main-content" style={{ background: c.bg }}>
         {/* Back link */}
         <div style={{ padding: "20px clamp(24px, 5vw, 80px) 0" }}>
           <Link href="/#work" style={{ fontFamily: font.sans, fontSize: "13px", color: c.muted, textDecoration: "none" }}>
-            &larr; Back to work
+            <span aria-hidden="true">&larr;</span> Back to work
           </Link>
         </div>
 
@@ -133,18 +139,21 @@ export default function Page() {
                 </p>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px" }}>
-                {DOWNSTREAM.map(({ label, src, href, external }) => (
+                {DOWNSTREAM.map(({ glyph, label, src, href, external }) => (
                   <Link
                     key={label}
                     href={href}
+                    aria-label={external ? `${label} (opens in new tab)` : label}
                     target={external ? "_blank" : undefined}
                     rel={external ? "noopener noreferrer" : undefined}
                     style={{ display: "block", textDecoration: "none" }}
                   >
-                    <div style={{ position: "relative", aspectRatio: "16 / 11", overflow: "hidden", background: "#0F161D", border: "1px solid rgba(245,243,239,0.12)" }}>
-                      <Image src={src} alt={label} fill sizes="(max-width: 767px) 50vw, 220px" style={{ objectFit: "cover", objectPosition: "center top" }} />
+                    <div style={{ position: "relative", aspectRatio: "16 / 11", overflow: "hidden", background: "#0F161D", border: "1px solid rgba(245,243,239,0.22)" }}>
+                      <Image src={src} alt="" fill sizes="(max-width: 767px) 50vw, 220px" style={{ objectFit: "cover", objectPosition: "center top" }} />
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: c.onDarkMut, margin: "8px 0 0" }}>{label}</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: c.onDarkMut, margin: "8px 0 0" }}>
+                      <span aria-hidden="true" style={{ marginRight: "6px" }}>{glyph}</span>{label}
+                    </p>
                   </Link>
                 ))}
               </div>
@@ -268,12 +277,16 @@ export default function Page() {
    Helpers
 ------------------------------------------------- */
 function Section({ id, label, title, children }: { id?: string; label: string; title: string; children: React.ReactNode }) {
+  // Title may contain the literal "&" character; render as plain
+  // text and let React handle escaping. Previous version used
+  // dangerouslySetInnerHTML with no need.
   return (
-    <section id={id} style={{ paddingBottom: "16px", borderTop: `1px solid ${c.border}`, marginTop: "48px", scrollMarginTop: "96px" }}>
+    <section id={id} aria-label={title} style={{ paddingBottom: "16px", borderTop: `1px solid ${c.border}`, marginTop: "48px", scrollMarginTop: "96px" }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", margin: "32px 0" }}>
         <span style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent }}>{label}</span>
-        <h2 style={{ fontFamily: font.display, fontSize: "clamp(22px, 3.5vw, 36px)", fontWeight: 500, color: c.ink, margin: 0, letterSpacing: "-0.025em" }}
-          dangerouslySetInnerHTML={{ __html: title }} />
+        <h2 style={{ fontFamily: font.display, fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 500, color: c.ink, margin: 0, letterSpacing: "-0.025em" }}>
+          {title}
+        </h2>
       </div>
       {children}
     </section>
@@ -318,7 +331,9 @@ const bodyText: React.CSSProperties = {
   fontFamily: font.sans, fontSize: "16px", lineHeight: 1.75, color: c.body, margin: "0 0 20px", maxWidth: "780px",
 };
 const subheading: React.CSSProperties = {
-  fontFamily: font.sans, fontSize: "20px", fontWeight: 600, color: c.ink, margin: "40px 0 16px", letterSpacing: "-0.015em",
+  // Dropped from 20px to 18px so the H3 sits clearly below the
+  // parent H2 (clamp 26-36px) at every viewport.
+  fontFamily: font.sans, fontSize: "18px", fontWeight: 600, color: c.ink, margin: "40px 0 16px", letterSpacing: "-0.015em",
 };
 const listStyle: React.CSSProperties = { margin: "0 0 20px", paddingLeft: "20px", maxWidth: "780px" };
 const liStyle: React.CSSProperties = { fontFamily: font.sans, fontSize: "16px", lineHeight: 1.7, color: c.body, marginBottom: "10px" };

@@ -51,14 +51,15 @@ const c = {
   surface:  "#FFFFFF",
   ink:      "#252B28",
   ink2:     "#3D4440",
-  muted:    "#8A8680",
+  // Deepened from #8A8680 (3.4:1) → 7.0:1 on white. Passes WCAG AA body.
+  muted:    "#5A5752",
   brand:    "var(--color-brand)",   // C: crimson — runtime-swappable
   accent:   "var(--color-accent)",  // C: deep teal
   accent2:  "var(--color-accent-hover)",
-  // Gray borders (kept from previous pass) — read cleaner against the cool
-  // crimson/teal brand than warm-tan borders did.
-  border:        "#DEDCD7",
-  borderStrong:  "#A8A6A0",
+  // Border tokens deepened so card / table / figure boundaries pass
+  // WCAG 1.4.11 (3:1) against the white and callout surfaces.
+  border:        "#A29C90",
+  borderStrong:  "#7A7670",
   // Off-white box on white surface — identical to the home About skills box.
   callout:       "#FAFAF9",
 };
@@ -146,36 +147,10 @@ function ArcDivider({ arc }: { arc: string }) {
    dimensions). Square border = work dimension; rounded crimson = arc
    category. Per case-study brand parity: Spotify=green, Wayfarer=navy,
    MSR=crimson. */
-function CategoryPill({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ margin: "10px 0 28px" }}>
-      <span style={{
-        display:        "inline-flex",
-        alignItems:     "center",
-        gap:            "6px",
-        fontFamily:     font.sans,
-        fontSize:       "10px",
-        fontWeight:     700,
-        letterSpacing:  "0.18em",
-        textTransform:  "uppercase",
-        color:          c.brand,
-        padding:        "5px 12px 5px 10px",
-        background:     "rgba(140, 26, 26, 0.10)",
-        border:         "none",
-        borderRadius:   "999px",
-      }}>
-        <span aria-hidden style={{
-          display:      "inline-block",
-          width:        "6px",
-          height:       "6px",
-          borderRadius: "50%",
-          background:   c.brand,
-        }} />
-        {children}
-      </span>
-    </div>
-  );
-}
+/* CategoryPill removed. The sticky arc nav + ArcDivider already
+   announce which act the reader is in; Eyebrow + Tag pills label the
+   section. Three "you are here" badges per section was scaffolding the
+   reader didn't need. Same call we made on Spotify + Wayfarer. */
 
 function Callout({
   decision, why, cost,
@@ -299,7 +274,7 @@ export default function MSRv2() {
         ]}
       />
 
-      <main style={{ background: c.surface, paddingTop: "72px" }}>
+      <main id="main-content" style={{ background: c.surface, paddingTop: "72px" }}>
 
         {/* ─────────────────────────────────────────────
             Title block — Pentagram-style: meta, title,
@@ -488,7 +463,7 @@ export default function MSRv2() {
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: "#EEF2F6", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Hero image — full homepage capture, cropped
@@ -497,7 +472,7 @@ export default function MSRv2() {
         <section style={{ padding: `0 ${SECTION_X} 120px` }}>
           <HeroImage
             src="/images/work/msr/v2/homepage-live.jpg"
-            alt="Men’s Sole Revival homepage — diagnostic-first hero with assessment CTA and editorial article grid."
+            alt="Men’s Sole Revival homepage. diagnostic-first hero with assessment CTA and editorial article grid."
             cropAspect="16 / 10"
             priority
           />
@@ -530,7 +505,6 @@ export default function MSRv2() {
         ───────────────────────────────────────────── */}
         <BigThree
           number="01"
-          category="Premise"
           heading="The problem"
           image="/images/work/msr/v2/assessment-intro.jpg"
           imageAlt="Assessment intro page — &ldquo;The Men&rsquo;s Foot Health Assessment.&rdquo; 5-minute self-check with the SEE A DOCTOR IF triage box and three real numbers (77%, 1 in 3, 63–72%)."
@@ -553,7 +527,7 @@ export default function MSRv2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#F1F3F5", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-research" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Research strip — compact bridge between §01
@@ -570,7 +544,7 @@ export default function MSRv2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             §02 — The bet (inlined; uses a code-rendered
@@ -612,9 +586,7 @@ export default function MSRv2() {
                   lineHeight:    1.05,
                 }}>
                   The bet.
-                </h2>
-                <CategoryPill>Decisions</CategoryPill>
-              </div>
+                </h2></div>
 
               <div>
                 <p style={{
@@ -718,9 +690,7 @@ export default function MSRv2() {
                   lineHeight:    1.05,
                 }}>
                   A brand that&rsquo;s actually for men.
-                </h2>
-                <CategoryPill>Decisions</CategoryPill>
-              </div>
+                </h2></div>
               <div>
                 <p style={{
                   fontFamily: font.sans,
@@ -743,7 +713,7 @@ export default function MSRv2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-details" style={{ background: "#ECEFF3", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Design system — replaced the single
@@ -775,9 +745,7 @@ export default function MSRv2() {
                   lineHeight:    1.05,
                 }}>
                   Built once.<br/>Used everywhere.
-                </h2>
-                <CategoryPill>Details</CategoryPill>
-              </div>
+                </h2></div>
               <div>
                 <p style={{
                   fontFamily: font.sans,
@@ -806,7 +774,7 @@ export default function MSRv2() {
               maxWidth:      CONTENT_MAX,
               marginInline:  "auto",
             }}>
-              <span style={{ color: c.accent }}>→ </span>
+              <span aria-hidden="true" style={{ color: c.accent }}>→ </span>
               Click 01 · 02 · 03 to switch panels
             </p>
             <DesignSystemCarousel />
@@ -841,9 +809,7 @@ export default function MSRv2() {
                   lineHeight:    1.05,
                 }}>
                   Shipped.
-                </h2>
-                <CategoryPill>Details</CategoryPill>
-              </div>
+                </h2></div>
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "clamp(16px, 1.6vw, 18px)",
@@ -865,7 +831,7 @@ export default function MSRv2() {
               <div style={{ width: "100%", aspectRatio: "16 / 10", position: "relative", overflow: "hidden", border: `1px solid ${c.border}` }}>
                 <Image
                   src="/images/work/msr/v2/reviews-page.jpg"
-                  alt="Product reviews index on the live site — &lsquo;PRODUCT REVIEWS&rsquo; editorial grid with disclosure-first article cards organized by category."
+                  alt="Product reviews index on the live site. ‘PRODUCT REVIEWS’ editorial grid with disclosure-first article cards organized by category."
                   fill
                   sizes="(max-width: 1240px) 100vw, 1240px"
                   style={{ objectFit: "cover", objectPosition: "top center" }}
@@ -890,7 +856,7 @@ export default function MSRv2() {
                     <div style={{ border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "hidden", position: "relative" }}>
                       <Image
                         src="/images/work/msr/v2/assessment-triage.jpg"
-                        alt="Symptom triage — &lsquo;Where&rsquo;s the trouble?&rsquo; Select-all-that-apply across pain, nails, skin, alignment, footwear fit."
+                        alt="Symptom triage. ‘Where’s the trouble?’ Select-all-that-apply across pain, nails, skin, alignment, footwear fit."
                         width={1440}
                         height={900}
                         sizes="(max-width: 760px) 100vw, 50vw"
@@ -923,7 +889,7 @@ export default function MSRv2() {
                     <div style={{ border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "hidden", position: "relative" }}>
                       <Image
                         src="/images/work/msr/v2/assessment-section.jpg"
-                        alt="Section 01 (Nail Health) — symptom checklist with prevalence stat, peer-reviewed citation, and copy that explains what 3+ checks means."
+                        alt="Section 01 (Nail Health). symptom checklist with prevalence stat, peer-reviewed citation, and copy that explains what 3+ checks means."
                         width={1440}
                         height={1821}
                         sizes="(max-width: 760px) 100vw, 50vw"
@@ -1089,14 +1055,16 @@ export default function MSRv2() {
             maxWidth:            CONTENT_MAX,
             margin:              "0 auto",
             display:             "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
+            /* 4 cells instead of 5 so each value holds on one line.
+               Sector folded into Role since the case study itself
+               makes the sector obvious. */
+            gridTemplateColumns: "repeat(4, 1fr)",
             gap:                 "32px",
           }} className="msr2-meta">
-            <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
+            <MetaCell label="Role"   value="UX/UI Designer · End-to-end · Health editorial" />
             <MetaCell label="Year"   value="2026" />
-            <MetaCell label="Sector" value="Health · Editorial" />
             <MetaCell label="Stack"  value="Figma · Next.js · Vercel" />
-            <MetaCell label="Live"   value={<a href="https://www.menssolerevival.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>menssolerevival.com</a>} />
+            <MetaCell label="Live"   value={<a href="https://www.menssolerevival.com/" target="_blank" rel="noopener noreferrer" aria-label="menssolerevival.com (opens in new tab)" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>menssolerevival.com</a>} />
           </div>
         </section>
         </div>
@@ -1110,8 +1078,18 @@ export default function MSRv2() {
 
       {/* Responsive */}
       <style>{`
-        /* Design system carousel — CSS-only tabs (hidden radios + ~ sibling) */
-        .msr2-ds-carousel > input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+        /* Design system carousel — CSS-only tabs (hidden radios + ~ sibling).
+           Radios use clip-path to stay focusable so keyboard users can
+           Tab + arrow through the three tabs. pointer-events:none would
+           remove them from the focus chain. */
+        .msr2-ds-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+        /* Project focus ring onto the visible label via :has() */
+        .msr2-ds-carousel:has(#msr2-ds-tab-1:focus-visible) .msr2-ds-tab-1,
+        .msr2-ds-carousel:has(#msr2-ds-tab-2:focus-visible) .msr2-ds-tab-2,
+        .msr2-ds-carousel:has(#msr2-ds-tab-3:focus-visible) .msr2-ds-tab-3 {
+          outline: 2px solid var(--color-focus-ring);
+          outline-offset: -2px;
+        }
         .msr2-ds-panel { display: none; }
         #msr2-ds-tab-1:checked ~ .msr2-ds-panels > [data-panel="1"] { display: block; }
         #msr2-ds-tab-2:checked ~ .msr2-ds-panels > [data-panel="2"] { display: block; }
@@ -1166,11 +1144,10 @@ export default function MSRv2() {
 /* ---------- BigThree section template ---------- */
 
 function BigThree({
-  number, heading, category, image, imageAlt, imageCrop, body, callout,
+  number, heading, image, imageAlt, imageCrop, body, callout,
 }: {
   number: string;
   heading: string;
-  category?: string;
   image: string;
   imageAlt: string;
   imageCrop: string | null;
@@ -1178,7 +1155,7 @@ function BigThree({
   callout: { decision: string; why: string; cost: string };
 }) {
   return (
-    <section style={{ padding: `0 0 120px` }}>
+    <section aria-label={heading} style={{ padding: `0 0 120px` }}>
       {/* Image first — full-bleed within content max */}
       <div style={{ padding: `0 ${SECTION_X} 64px` }}>
         <HeroImage src={image} alt={imageAlt} cropAspect={imageCrop} />
@@ -1217,11 +1194,6 @@ function BigThree({
             }}>
               {heading}.
             </h2>
-            {category && (
-              <div style={{ marginTop: "16px" }}>
-                <CategoryPill>{category}</CategoryPill>
-              </div>
-            )}
           </div>
 
           <div>

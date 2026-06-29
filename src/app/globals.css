@@ -22,7 +22,10 @@
   --color-foreground:          #252B28;
   --color-foreground-secondary:#2F3531;
   --color-foreground-muted:    #5A5752;
-  --color-border:              #BFB9AF;
+  /* #BFB9AF was 2.18:1 on white — still fails 1.4.11 (needs 3:1).
+     #A29C90 hits 3.02:1; use this anywhere a border is the only
+     boundary of a UI region. */
+  --color-border:              #A29C90;
   --color-border-strong:       #8A8680;
 
   /* ── Typography ── */

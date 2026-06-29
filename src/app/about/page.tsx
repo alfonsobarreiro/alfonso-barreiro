@@ -144,7 +144,7 @@ export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main style={{ background: "#FFFFFF" }}>
+      <main id="main-content" style={{ background: "#FFFFFF" }}>
         <style>{`
           .about-cta-primary,
           .about-cta-secondary {
@@ -168,8 +168,18 @@ export default function AboutPage() {
           }
           .about-cta-primary:hover {
             transform:    translateY(-2px);
-            box-shadow:   0 4px 12px rgba(61,38,69,0.25);
-            background:   #2A1830;
+            box-shadow:   0 4px 12px rgba(140,26,26,0.25);
+            background:   #6F1414;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .about-cta-primary,
+            .about-cta-secondary {
+              transition: none !important;
+            }
+            .about-cta-primary:hover,
+            .about-cta-secondary:hover {
+              transform: none !important;
+            }
           }
           .about-cta-secondary {
             background:   #FFFFFF;
@@ -178,7 +188,7 @@ export default function AboutPage() {
           }
           .about-cta-secondary:hover {
             transform:    translateY(-1px);
-            border-color: #8A8680;
+            border-color: #5A5752;
             color:        #252B28;
           }
           .about-studio-link {
@@ -213,7 +223,7 @@ export default function AboutPage() {
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <div style={eyebrowRow}>
                   <span style={eyebrowDash} />
-                  <p style={{ ...eyebrowLabel, color: "#8A8680" }}>About</p>
+                  <p style={{ ...eyebrowLabel, color: "#5A5752" }}>About</p>
                 </div>
                 <h1
                   style={{
@@ -351,7 +361,7 @@ export default function AboutPage() {
             >
               <StatCell n="15"   unit="years"  caption="In design. Across editorial, e-commerce, hospitality, foot health, travel, and music." />
               <StatCell n="4+"   unit=""       caption="Years remote, across two chapters since 2019. Solo, end to end, against deadlines that didn't move." />
-              <StatCell n="3"    unit=""       caption="Case studies — MSR, Spotify, Wayfarer. Same operating model. Different industries." />
+              <StatCell n="3"    unit=""       caption="Case studies. MSR, Spotify, Wayfarer. Same operating model. Different industries." />
             </div>
           </div>
           <style>{`
@@ -541,7 +551,7 @@ export default function AboutPage() {
 
             <p style={beliefClaim}>Translation cost between disciplines is real.</p>
             <p style={{ ...beliefBody, marginBottom: 0 }}>
-              Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them moves faster, ships cleaner, and survives the messy projects. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
+              Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
             </p>
           </div>
         </section>
@@ -722,7 +732,7 @@ function RemoteTimeline() {
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "11px",
                 fontWeight:    600,
-                color:         "#8A8680",
+                color:         "#5A5752",
                 letterSpacing: "0.06em",
               }}>{y}</span>
             );
@@ -734,7 +744,7 @@ function RemoteTimeline() {
           position: "relative",
           height: "44px",
           background: "#F5F3EE",
-          border: "1px solid #DEDCD7",
+          border: "1px solid #A29C90",
         }}>
           {chapters.map((ch) => {
             const leftPct  = ((ch.start - TIMELINE_START) / YEARS) * 100;
@@ -789,7 +799,7 @@ function RemoteTimeline() {
             color:         "var(--color-brand)",
             whiteSpace:    "nowrap",
           }}>
-            ↑ First remote chapter · 2019
+            <span aria-hidden="true">↑</span> First remote chapter · 2019
           </span>
         </div>
       </div>
@@ -819,12 +829,12 @@ function RemoteTimeline() {
       }}>
         {chapters.map((ch) => {
           const yearLabel = ch.end >= 2025.4
-            ? `${Math.floor(ch.start)} → now`
-            : `${Math.floor(ch.start)} → ${Math.floor(ch.end)}`;
+            ? `${Math.floor(ch.start)} to now`
+            : `${Math.floor(ch.start)} to ${Math.floor(ch.end)}`;
           return (
             <article key={ch.name + ch.start} style={{
               background:  "#FFFFFF",
-              border:      "1px solid #DEDCD7",
+              border:      "1px solid #A29C90",
               borderTop:   `3px solid ${ch.remote ? "var(--color-brand)" : "#252B28"}`,
               padding:     "20px 22px",
             }}>
@@ -834,7 +844,7 @@ function RemoteTimeline() {
                 fontWeight:    700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color:         ch.remote ? "var(--color-brand)" : "#8A8680",
+                color:         ch.remote ? "var(--color-brand)" : "#5A5752",
                 margin:        "0 0 6px",
               }}>{yearLabel}{ch.remote ? " · Remote" : ""}</p>
               <p style={{
@@ -856,7 +866,7 @@ function RemoteTimeline() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 fontSize:   "12px",
                 lineHeight: 1.55,
-                color:      "#8A8680",
+                color:      "#5A5752",
                 margin:     0,
               }}>{ch.note}</p>
             </article>

@@ -1044,7 +1044,7 @@ function DesignSystemSection() {
           color: c.muted, margin: "0 0 16px",
           maxWidth: CONTENT_MAX, marginInline: "auto",
         }}>
-          <span style={{ color: c.accent }}>→ </span>
+          <span aria-hidden="true" style={{ color: c.accent }}>→ </span>
           Click 01 · 02 · 03 to switch panels
         </p>
         <DesignSystemCarousel />
@@ -1982,7 +1982,7 @@ function ProcessGallery() {
           letterSpacing: "0.18em", textTransform: "uppercase",
           color: c.muted, margin: "0 0 16px",
         }}>
-          <span style={{ color: c.accent }}>&rarr; </span>
+          <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
           Click 01 &middot; 02 &middot; 03 to switch phases
         </p>
 
@@ -2283,7 +2283,7 @@ function SignupFunnelFlow() {
         letterSpacing: "0.06em", textTransform: "uppercase",
         color: c.muted, margin: "0 0 24px",
       }}>
-        <span style={{ color: c.accent }}>&rarr; </span>
+        <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
         Click a step to view it full size.
       </p>
 
@@ -2429,7 +2429,7 @@ function BriefVsDelivered() {
       </p>
 
       <div className="wf2-brief-scroll" tabIndex={0} role="region"
-        aria-label="Brief versus delivered comparison table, scroll horizontally"
+        aria-label="Brief versus delivered comparison"
         style={{
           border: `1px solid ${c.border}`, overflow: "auto",
           background: "#FFFFFF",

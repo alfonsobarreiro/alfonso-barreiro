@@ -28,7 +28,8 @@ export const metadata: Metadata = {
 const c = {
   ink:    "#252B28",
   body:   "#3D4440",
-  muted:  "#8A8680",
+  // Deepened from #8A8680 (3.4:1) for WCAG AA on body text.
+  muted:  "#5A5752",
   brand:  "var(--color-brand)",
   accent: "var(--color-accent)",
 };
@@ -39,9 +40,10 @@ export default function ContactPage() {
   return (
     <>
       <Nav />
-      <main style={{ background: "#FFFFFF", paddingTop: "72px" }}>
+      <main id="main-content" style={{ background: "#FFFFFF", paddingTop: "72px" }}>
 
         <section
+          aria-labelledby="contact-heading"
           className="contact-page-section"
           style={{ padding: "120px clamp(32px, 6vw, 80px)" }}
         >
@@ -70,7 +72,7 @@ export default function ContactPage() {
                   Contact
                 </p>
               </div>
-              <h1 style={{
+              <h1 id="contact-heading" style={{
                 fontFamily:    font,
                 fontSize:      "clamp(32px, 5vw, 64px)",
                 fontWeight:    600,
@@ -79,8 +81,7 @@ export default function ContactPage() {
                 letterSpacing: "-0.025em",
                 lineHeight:    1.05,
               }}>
-                Let&apos;s make<br />
-                <span style={{ color: c.accent }}>something good.</span>
+                Say hello.
               </h1>
               <p style={{
                 fontFamily: font,
