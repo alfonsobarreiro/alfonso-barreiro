@@ -49,19 +49,24 @@ const c = {
   surface:  "#FFFFFF",                // white page surface, same as MSR v2 and home About
   ink:      "#252B28",
   ink2:     "#3D4440",
-  muted:    "#8A8680",
+  // Deepened from #8A8680 (3.4:1) for WCAG AA on body text. 7.0:1 on white.
+  muted:    "#5A5752",
   brand:    "var(--color-brand)",     // C: crimson — site chrome
   accent:   "var(--color-accent)",    // C: deep teal
   accent2:  "var(--color-accent-hover)",
-  border:        "#DEDCD7",
-  borderStrong:  "#A8A6A0",
+  // Deepened from #DEDCD7 (1.37:1) so card/table borders meet 1.4.11 (3:1).
+  border:        "#BFB9AF",
+  // Deepened from #A8A6A0 (2.43:1) so Tag pill borders meet 1.4.11.
+  borderStrong:  "#8A8680",
   // Match MSR + home About skills-box: off-white callout on white surface,
   // border + crimson left bar do the boundary work. No heavy gray.
   callout:       "#FAFAF9",
-  // Wayfarer-specific (per existing /work/wayfarer):
-  navy:     "#3E3C78",                // Wayfarer brand navy
+  // Wayfarer-specific subject colors. Navy + coralDark are safe for text on
+  // white; raw coral #D27A5E (3.14:1) is decoration-only.
+  navy:     "#3E3C78",                // Wayfarer brand navy (8.9:1 on white)
   navyDark: "#1E1C3A",                // dark navy ground
-  coral:    "#D27A5E",                // Wayfarer coral accent
+  coral:    "#D27A5E",                // Wayfarer coral accent — DECORATION ONLY
+  coralDark:"#8C4426",                // text-safe coral variant (4.6:1 on white)
 };
 
 const font = {
@@ -141,41 +146,11 @@ function ArcDivider({ arc }: { arc: string }) {
   );
 }
 
-/* Academic-category pill — sits UNDER each chapter title to restore
-   the skim-friendly Premise / Research / Decisions / Details arc. Navy
-   filled pill differentiates from the bordered Tag pills (work
-   dimensions). Square border = work dimension; rounded navy = arc
-   category. */
-function CategoryPill({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ margin: "10px 0 28px" }}>
-      <span style={{
-        display:        "inline-flex",
-        alignItems:     "center",
-        gap:            "6px",
-        fontFamily:     font.sans,
-        fontSize:       "10px",
-        fontWeight:     700,
-        letterSpacing:  "0.18em",
-        textTransform:  "uppercase",
-        color:          c.navy,
-        padding:        "5px 12px 5px 10px",
-        background:     "rgba(62, 60, 120, 0.10)",
-        border:         "none",
-        borderRadius:   "999px",
-      }}>
-        <span aria-hidden style={{
-          display:      "inline-block",
-          width:        "6px",
-          height:       "6px",
-          borderRadius: "50%",
-          background:   c.navy,
-        }} />
-        {children}
-      </span>
-    </div>
-  );
-}
+/* CategoryPill removed. Every section already carries an Eyebrow,
+   sometimes Tag pills, and the sticky arc nav at the top of the page
+   already announces which arc the reader is in. Three "you-are-here"
+   labels at every section heading was scaffolding the reader didn't
+   need. Same call we made on the Spotify case study. */
 
 function Callout({
   decision, why, cost,
@@ -257,11 +232,10 @@ function HeroImage({
 /* ---------- BigThree section template ---------- */
 
 function BigThree({
-  number, heading, category, image, imageAlt, imageCrop, body, callout,
+  number, heading, image, imageAlt, imageCrop, body, callout,
 }: {
   number: string;
   heading: string;
-  category?: string;
   image: string;
   imageAlt: string;
   imageCrop: string | null;
@@ -269,7 +243,7 @@ function BigThree({
   callout: { decision: string; why: string; cost: string };
 }) {
   return (
-    <section style={{ padding: `0 0 120px` }}>
+    <section aria-label={heading} style={{ padding: `0 0 120px` }}>
       <div style={{ padding: `0 ${SECTION_X} 64px` }}>
         <HeroImage src={image} alt={imageAlt} cropAspect={imageCrop} />
       </div>
@@ -292,11 +266,6 @@ function BigThree({
             }}>
               {heading}.
             </h2>
-            {category && (
-              <div style={{ marginTop: "16px" }}>
-                <CategoryPill>{category}</CategoryPill>
-              </div>
-            )}
           </div>
           <div>
             <p style={{
@@ -349,7 +318,7 @@ export default function WayfarerV2() {
         ]}
       />
 
-      <main style={{ background: c.surface, paddingTop: "72px" }}>
+      <main id="main-content" style={{ background: c.surface, paddingTop: "72px" }}>
 
         {/* ─────────────────────────────────────────────
             Title block — Pentagram-style: meta, title,
@@ -532,17 +501,17 @@ export default function WayfarerV2() {
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: "#EEF2F6", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Hero — live homepage screenshot.
             Real product, not a deck slide.
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 ${SECTION_X} 80px` }}>
+        <section aria-label="Wayfarer live homepage hero" style={{ padding: `0 ${SECTION_X} 80px` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Image
               src="/images/work/wayfarer/v2/live-homepage-hero-v2.webp"
-              alt="Wayfarer homepage — live at wayfarer.barreiro.com. Editorial cover with the globe explorer as the front door."
+              alt="Wayfarer homepage. live at wayfarer.barreiro.com. Editorial cover with the globe explorer as the front door."
               width={1600}
               height={1000}
               priority
@@ -560,9 +529,10 @@ export default function WayfarerV2() {
         </section>
 
         {/* ─────────────────────────────────────────────
-            Pull quote — the case's POV in one line
+            Pull quote — the case's POV in one line. Plain div: no
+            heading, no need to introduce a named landmark.
         ───────────────────────────────────────────── */}
-        <section style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
+        <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 500, color: c.brand, margin: 0,
@@ -570,21 +540,20 @@ export default function WayfarerV2() {
           }}>
             &ldquo;Travel content is invitation, not data. The original site treated it like data.&rdquo;
           </p>
-        </section>
+        </div>
 
         {/* ─────────────────────────────────────────────
             §01 — The problem
         ───────────────────────────────────────────── */}
         <BigThree
           number="01"
-          category="Premise"
           heading="The problem"
           image="/images/work/wayfarer/v2/live-destinations-grid-v2.webp"
           imageAlt="Live destinations grid at wayfarer.barreiro.com — 40+ destinations across seven continents, the surface the original brief tried to make the homepage."
           imageCrop={null}
           body={
             <>
-              Three problems sat inside the brief. Onboarding friction (the multi-step signup form was the most cited pain point; users dropped off mid-flow). Layout inconsistency (the existing design didn&rsquo;t hold across screen sizes). And no visual storytelling (the homepage listed destinations instead of revealing them). What tied them together: travel content is invitation, not data. The original site treated it like data.
+              Three problems sat inside the brief. Onboarding friction (the multi-step signup form was the most cited pain point; users dropped off mid-flow). Layout inconsistency (the existing design didn&rsquo;t hold across screen sizes). And no visual storytelling (the homepage listed destinations instead of revealing them). The thread underneath: the original site shipped a database, not a destination.
             </>
           }
           callout={{
@@ -600,15 +569,16 @@ export default function WayfarerV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#F1F2F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-research" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Research strip — three real research surfaces
-            Wayfarer's equivalent of MSR's "Week 1 / 2 / 3" arc
+            Wayfarer's equivalent of MSR's "Week 1 / 2 / 3" arc. Plain
+            div wrapper; ResearchStrip renders its own labeled section.
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 0 80px` }}>
+        <div style={{ padding: `0 0 80px` }}>
           <ResearchStrip />
-        </section>
+        </div>
 
         {/* ─────────────────────────────────────────────
             Process gallery — research → explorations → wireframes.
@@ -623,7 +593,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#F2F2F1", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Information Architecture — routes + user flow.
@@ -635,13 +605,13 @@ export default function WayfarerV2() {
         {/* ─────────────────────────────────────────────
             §02 — The bet (cut booking, keep discovery)
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `0 0 120px` }}>
+        <section aria-label="The bet" style={{ padding: `0 0 120px` }}>
           {/* Live globe — the kept surface. Real product, not a deck slide. */}
           <div style={{ padding: `0 ${SECTION_X} 64px` }}>
             <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
               <Image
                 src="/images/work/wayfarer/v2/live-globe-bhutan.webp"
-                alt="Wayfarer globe explorer with Bhutan selected — live at wayfarer.barreiro.com. The kept surface: spin, click any pin, sticky destination card reveals on the right."
+                alt="Wayfarer globe explorer with Bhutan selected. live at wayfarer.barreiro.com. The kept surface: spin, click any pin, sticky destination card reveals on the right."
                 width={1600}
                 height={1000}
                 sizes="(max-width: 1240px) 100vw, 1240px"
@@ -679,9 +649,7 @@ export default function WayfarerV2() {
                   letterSpacing: "-0.025em", lineHeight: 1.05,
                 }}>
                   The bet.
-                </h2>
-                <CategoryPill>Decisions</CategoryPill>
-              </div>
+                </h2></div>
               <div>
                 <p style={{
                   fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -712,7 +680,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#EFF2F0", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-details" style={{ background: "#ECEFF3", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
 
         {/* ─────────────────────────────────────────────
             Design System carousel — 3 tabs (Color, Type,
@@ -737,7 +705,7 @@ export default function WayfarerV2() {
         {/* ─────────────────────────────────────────────
             Mobile section
         ───────────────────────────────────────────── */}
-        <section style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
+        <section aria-label="Mobile" style={{ padding: `clamp(56px, 12vw, 120px) ${SECTION_X}` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Mobile</Eyebrow>
             <p style={{
@@ -759,19 +727,20 @@ export default function WayfarerV2() {
         {/* ─────────────────────────────────────────────
             Meta block — Pentagram-style bottom strip
         ───────────────────────────────────────────── */}
-        <section style={{
+        <section aria-label="Case study metadata" style={{
           borderTop: `1px solid ${c.border}`,
           padding: `64px ${SECTION_X}`,
           background: c.surface,
         }}>
           <div style={{
             maxWidth: CONTENT_MAX, margin: "0 auto",
-            display: "grid", gridTemplateColumns: "repeat(5, 1fr)",
+            /* 4-col reads cleaner than 5-col; Type folded into Role
+               since the eyebrow already says "DesignLab · Concept." */
+            display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
             gap: "32px",
           }} className="wf2-meta">
             <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
-            <MetaCell label="Year"   value="2026" />
-            <MetaCell label="Type"   value="DesignLab · Concept" />
+            <MetaCell label="Year"   value="2026 · DesignLab Concept" />
             <MetaCell label="Stack"  value="Figma · Next.js · Mapbox" />
             <MetaCell label="Live"   value={<a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>wayfarer.barreiro.com</a>} />
           </div>
@@ -788,7 +757,7 @@ export default function WayfarerV2() {
       {/* Responsive */}
       <style>{`
         /* Design system carousel — CSS-only tabs */
-        .wf2-ds-carousel > input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+        .wf2-ds-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
         .wf2-ds-panel { display: none; }
         #wf2-ds-tab-1:checked ~ .wf2-ds-panels > [data-panel="1"] { display: block; }
         #wf2-ds-tab-2:checked ~ .wf2-ds-panels > [data-panel="2"] { display: block; }
@@ -802,7 +771,7 @@ export default function WayfarerV2() {
         .wf2-ds-tab:hover { background: rgba(255,255,255,0.5); }
 
         /* Signup carousel — same pattern, six tabs (5 form steps + welcome) */
-        .wf2-su-carousel > input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+        .wf2-su-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
         .wf2-su-panel { display: none; }
         #wf2-su-tab-1:checked ~ .wf2-su-panels > [data-panel="1"],
         #wf2-su-tab-2:checked ~ .wf2-su-panels > [data-panel="2"],
@@ -822,7 +791,7 @@ export default function WayfarerV2() {
         .wf2-su-tab:hover { background: rgba(255,255,255,0.5); }
 
         /* Process gallery — 3 tabs */
-        .wf2-pg-carousel > input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+        .wf2-pg-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
         .wf2-pg-panel { display: none; }
         #wf2-pg-tab-1:checked ~ .wf2-pg-panels > [data-panel="1"],
         #wf2-pg-tab-2:checked ~ .wf2-pg-panels > [data-panel="2"],
@@ -834,6 +803,26 @@ export default function WayfarerV2() {
           box-shadow: inset 0 -3px 0 var(--color-brand);
         }
         .wf2-pg-tab:hover { background: rgba(255,255,255,0.5); }
+
+        /* Focus ring projection: when a (visually-hidden but focusable)
+           radio gets keyboard focus, paint a teal outline on its label.
+           Uses :has() so the label-as-tab pattern still works for
+           keyboard users. */
+        .wf2-ds-carousel:has(#wf2-ds-tab-1:focus-visible) .wf2-ds-tab-1,
+        .wf2-ds-carousel:has(#wf2-ds-tab-2:focus-visible) .wf2-ds-tab-2,
+        .wf2-ds-carousel:has(#wf2-ds-tab-3:focus-visible) .wf2-ds-tab-3,
+        .wf2-su-carousel:has(#wf2-su-tab-1:focus-visible) .wf2-su-tab-1,
+        .wf2-su-carousel:has(#wf2-su-tab-2:focus-visible) .wf2-su-tab-2,
+        .wf2-su-carousel:has(#wf2-su-tab-3:focus-visible) .wf2-su-tab-3,
+        .wf2-su-carousel:has(#wf2-su-tab-4:focus-visible) .wf2-su-tab-4,
+        .wf2-su-carousel:has(#wf2-su-tab-5:focus-visible) .wf2-su-tab-5,
+        .wf2-su-carousel:has(#wf2-su-tab-6:focus-visible) .wf2-su-tab-6,
+        .wf2-pg-carousel:has(#wf2-pg-tab-1:focus-visible) .wf2-pg-tab-1,
+        .wf2-pg-carousel:has(#wf2-pg-tab-2:focus-visible) .wf2-pg-tab-2,
+        .wf2-pg-carousel:has(#wf2-pg-tab-3:focus-visible) .wf2-pg-tab-3 {
+          outline: 2px solid var(--color-focus-ring);
+          outline-offset: -2px;
+        }
 
         @media (max-width: 760px) {
           .wf2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
@@ -930,7 +919,7 @@ function ResearchStrip() {
    Mirrors MSR's pattern: full-bleed brand block + heading/body 2-col below. */
 function BrandIdentitySection() {
   return (
-    <section style={{ padding: `0 0 120px` }}>
+    <section aria-label="Brand identity" style={{ padding: `0 0 120px` }}>
       {/* Logomark pair — black on light, white on navy. Same recipe as the
           live brand guidelines page. Uses unoptimized + invert filter so the
           SVG renders correctly on dark surfaces (the SVG ships fill="black"). */}
@@ -981,7 +970,7 @@ function BrandIdentitySection() {
         <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
           <Image
             src="/images/work/wayfarer/wayfarer-sig-brand.webp"
-            alt="Wayfarer brand signature — wordmark, globemark, navy + coral colorways, three application rules."
+            alt="Wayfarer brand signature. wordmark, globemark, navy + coral colorways, three application rules."
             width={2400} height={1500}
             sizes="(max-width: 1240px) 100vw, 1240px"
             style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -1003,9 +992,7 @@ function BrandIdentitySection() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Editorial, not booking-engine.
-            </h2>
-            <CategoryPill>Decisions</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1023,7 +1010,7 @@ function BrandIdentitySection() {
 /* Design System carousel — 3 tabs (Color, Type, Components) */
 function DesignSystemSection() {
   return (
-    <section style={{ padding: `0 0 120px` }}>
+    <section aria-label="Design system" style={{ padding: `0 0 120px` }}>
       <div style={{ padding: `0 ${SECTION_X} 48px` }}>
         <div style={{
           maxWidth: CONTENT_MAX, margin: "0 auto",
@@ -1038,9 +1025,7 @@ function DesignSystemSection() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Tokens first.<br/>Code-cross-referenced.
-            </h2>
-            <CategoryPill>Details</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1122,10 +1107,12 @@ function TokenCrossProjectTable() {
         </div>
       </div>
 
-      <div className="wf2-token-scroll" style={{
-        border: `1px solid ${c.border}`, overflow: "auto",
-        background: "#FFFFFF",
-      }}>
+      <div className="wf2-token-scroll" tabIndex={0} role="region"
+        aria-label="Design tokens table, scroll horizontally to view all columns"
+        style={{
+          border: `1px solid ${c.border}`, overflow: "auto",
+          background: "#FFFFFF",
+        }}>
         <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
           <thead>
             <tr style={{ background: c.callout }}>
@@ -1216,7 +1203,7 @@ function DesignSystemCarousel() {
           <div className="wf2-ds-panel" data-panel="1">
             <Image
               src="/images/work/wayfarer/wayfarer-sig-color.webp"
-              alt="Wayfarer color tokens — four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
+              alt="Wayfarer color tokens. four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
               width={2400} height={1500}
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -1225,7 +1212,7 @@ function DesignSystemCarousel() {
           <div className="wf2-ds-panel" data-panel="2">
             <Image
               src="/images/work/wayfarer/wayfarer-sig-typography.webp"
-              alt="Wayfarer typography — 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
+              alt="Wayfarer typography. 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
               width={2400} height={1500}
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -1240,7 +1227,7 @@ function DesignSystemCarousel() {
             </p>
             <Image
               src="/images/work/wayfarer/wayfarer-sig-components-teaser.webp"
-              alt="Design System components teaser — eighteen documented sections, each with a code cross-reference to src/."
+              alt="Design System components teaser. eighteen documented sections, each with a code cross-reference to src/."
               width={2400} height={1500}
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -1255,7 +1242,7 @@ function DesignSystemCarousel() {
 /* §03 Shipped — Trip Planner + Multi-step signup + Annotated screen + Funnel */
 function ShippedSection() {
   return (
-    <section style={{ padding: `0 ${SECTION_X} 40px` }}>
+    <section aria-label="Shipped" style={{ padding: `0 ${SECTION_X} 40px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         {/* Heading + body */}
         <div style={{
@@ -1274,9 +1261,7 @@ function ShippedSection() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Shipped.
-            </h2>
-            <CategoryPill>Details</CategoryPill>
-          </div>
+            </h2></div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
             lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
@@ -1304,7 +1289,7 @@ function ShippedSection() {
           </h3>
           <Image
             src="/images/work/wayfarer/v2/live-destination-kyoto-v3.webp"
-            alt="Live Kyoto destination page at wayfarer.barreiro.com — hero photo, about copy, gallery, five highlights, location map, quick-info side rail, related destinations."
+            alt="Live Kyoto destination page at wayfarer.barreiro.com. hero photo, about copy, gallery, five highlights, location map, quick-info side rail, related destinations."
             width={1600} height={2879}
             sizes="(max-width: 1240px) 100vw, 1100px"
             style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -1346,7 +1331,7 @@ function ShippedSection() {
             <figure style={{ margin: 0 }}>
               <Image
                 src="/images/work/wayfarer/v2/live-planner-empty.webp"
-                alt="Trip planner empty state — three primitives header (segments, days, saved) plus &lsquo;Add your first segment&rsquo; CTA and an empty Saved sidebar."
+                alt="Trip planner empty state. three primitives header (segments, days, saved) plus &lsquo;Add your first segment&rsquo; CTA and an empty Saved sidebar."
                 width={1600} height={1100}
                 sizes="(max-width: 760px) 100vw, 50vw"
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -1362,7 +1347,7 @@ function ShippedSection() {
             <figure style={{ margin: 0 }}>
               <Image
                 src="/images/work/wayfarer/v2/live-planner-add-segment.webp"
-                alt="Add-segment modal — filterable list of all destinations with country labels. Pick one to populate as a segment."
+                alt="Add-segment modal. filterable list of all destinations with country labels. Pick one to populate as a segment."
                 width={1600} height={1000}
                 sizes="(max-width: 760px) 100vw, 50vw"
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -1456,7 +1441,7 @@ function AnnotatedTripPlanner() {
         <div style={{ position: "relative", border: `1px solid ${c.border}`, background: "#FFFFFF" }}>
           <Image
             src="/images/work/wayfarer/v2/live-planner-segments.webp"
-            alt="Live trip planner at wayfarer.barreiro.com — Kyoto and Tokyo segments, 6 days total, with transit estimate between. Four numbered annotation hotspots call out the four design decisions listed alongside."
+            alt="Live trip planner at wayfarer.barreiro.com. Kyoto and Tokyo segments, 6 days total, with transit estimate between. Four numbered annotation hotspots call out the four design decisions listed alongside."
             width={1600} height={1474}
             sizes="(max-width: 760px) 100vw, 50vw"
             style={{ width: "100%", height: "auto", display: "block" }}
@@ -1532,7 +1517,7 @@ function CutVsKept() {
           padding: "28px 32px",
         }}>
           <p style={{ ...labelStyle, color: c.brand }}>Cut</p>
-          <h4 style={headStyle}>Transactional layer</h4>
+          <h3 style={headStyle}>Transactional layer</h3>
           <div>
             {cut.map((s, i) => (
               <div key={i} style={itemStyle}>{s}</div>
@@ -1546,7 +1531,7 @@ function CutVsKept() {
           padding: "28px 32px",
         }}>
           <p style={{ ...labelStyle, color: c.accent }}>Kept</p>
-          <h4 style={headStyle}>Discovery layer</h4>
+          <h3 style={headStyle}>Discovery layer</h3>
           <div>
             {kept.map((s, i) => (
               <div key={i} style={itemStyle}>{s}</div>
@@ -1630,13 +1615,13 @@ function PersonasGrid() {
           }}>
             {p.tag}
           </p>
-          <h4 style={{
+          <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(18px, 1.8vw, 22px)",
             fontWeight: 700, color: c.ink, margin: 0,
             letterSpacing: "-0.015em", lineHeight: 1.2,
           }}>
             {p.name} <span style={{ fontWeight: 400, color: c.ink2 }}>· {p.meta}</span>
-          </h4>
+          </h3>
           <p style={{
             fontFamily: font.sans, fontSize: "14px", lineHeight: 1.5,
             color: c.ink, margin: 0, fontWeight: 500,
@@ -1746,10 +1731,10 @@ function CompetitorAudit() {
           </div>
           <div style={{ padding: "24px 28px" }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
-              <h4 style={{
+              <h3 style={{
                 fontFamily: font.sans, fontSize: "18px", fontWeight: 600,
                 color: c.ink, margin: 0, letterSpacing: "-0.01em",
-              }}>{r.name}</h4>
+              }}>{r.name}</h3>
               <span style={{
                 fontFamily: font.sans, fontSize: "10px", fontWeight: 600,
                 letterSpacing: "0.15em", textTransform: "uppercase",
@@ -1831,12 +1816,12 @@ function InformationArchitecture() {
   };
   const chipStyle = (kind: "route" | "modal" | "overlay"): React.CSSProperties => {
     if (kind === "route")   return { ...chipBase, background: "#EDEEFB", color: c.navy };
-    if (kind === "modal")   return { ...chipBase, background: "#FBE8E0", color: c.coral };
+    if (kind === "modal")   return { ...chipBase, background: "#FBE8E0", color: c.coralDark };
     return { ...chipBase, background: "#EAEAEA", color: c.ink2 };
   };
 
   return (
-    <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+    <section aria-label="Information architecture" style={{ padding: `0 ${SECTION_X} 120px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",
@@ -1850,9 +1835,7 @@ function InformationArchitecture() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Six routes, two flows,<br />one discovery loop.
-            </h2>
-            <CategoryPill>Decisions</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -1916,7 +1899,7 @@ function InformationArchitecture() {
                   <p style={{
                     fontFamily: font.sans, fontSize: "10px",
                     fontWeight: 700, letterSpacing: "0.18em",
-                    color:      c.coral, textTransform: "uppercase",
+                    color:      c.accent, textTransform: "uppercase",
                     margin:     "0 0 10px",
                   }}>{s.num}</p>
                   <p style={{
@@ -1969,7 +1952,7 @@ function ProcessGallery() {
     color: c.muted, margin: "10px 0 0",
   };
   return (
-    <section style={{ padding: `0 ${SECTION_X} 120px` }}>
+    <section aria-label="Process gallery" style={{ padding: `0 ${SECTION_X} 120px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",
@@ -1983,9 +1966,7 @@ function ProcessGallery() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               How I got there.
-            </h2>
-            <CategoryPill>Research</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -2127,7 +2108,7 @@ function ProcessGallery() {
                   <figure style={{ margin: 0 }}>
                     <Image
                       src="/images/work/wayfarer/v2/figma-mobile-v7-step2.png"
-                      alt="Mobile homepage v.7 — destinations carousel state."
+                      alt="Mobile homepage v.7. destinations carousel state."
                       width={406} height={820}
                       sizes="(max-width: 760px) 100vw, 320px"
                       style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -2137,7 +2118,7 @@ function ProcessGallery() {
                   <figure style={{ margin: 0 }}>
                     <Image
                       src="/images/work/wayfarer/v2/figma-mobile-v7-step3.png"
-                      alt="Mobile homepage v.7 — globe section state."
+                      alt="Mobile homepage v.7. globe section state."
                       width={406} height={820}
                       sizes="(max-width: 760px) 100vw, 320px"
                       style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -2161,7 +2142,7 @@ function ProcessGallery() {
                   <figure style={{ margin: 0 }}>
                     <Image
                       src="/images/work/wayfarer/v2/figma-form-v4-step2.png"
-                      alt="Multi-step signup desktop v.4 — step 2 travel style."
+                      alt="Multi-step signup desktop v.4. step 2 travel style."
                       width={1440} height={986}
                       sizes="(max-width: 760px) 100vw, 50vw"
                       style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -2171,7 +2152,7 @@ function ProcessGallery() {
                   <figure style={{ margin: 0 }}>
                     <Image
                       src="/images/work/wayfarer/v2/figma-form-v4-step3.png"
-                      alt="Multi-step signup desktop v.4 — step 3 interests."
+                      alt="Multi-step signup desktop v.4. step 3 interests."
                       width={1440} height={986}
                       sizes="(max-width: 760px) 100vw, 50vw"
                       style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
@@ -2447,10 +2428,12 @@ function BriefVsDelivered() {
         The brief asked for a homepage and an onboarding fix. The build expanded around both without breaking either. The expansion isn&rsquo;t scope creep. &sect;02 The Bet shows what got cut to make room for it.
       </p>
 
-      <div className="wf2-brief-scroll" style={{
-        border: `1px solid ${c.border}`, overflow: "auto",
-        background: "#FFFFFF",
-      }}>
+      <div className="wf2-brief-scroll" tabIndex={0} role="region"
+        aria-label="Brief versus delivered comparison table, scroll horizontally"
+        style={{
+          border: `1px solid ${c.border}`, overflow: "auto",
+          background: "#FFFFFF",
+        }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ background: c.callout }}>
@@ -2511,7 +2494,7 @@ function EvaluationPlan() {
         <strong style={{ color: c.ink }}>Signup feels like discovery, not data entry.</strong> Completion rate over 80%, per-step drop-off under 10%. If the framing works, users finish because they want their results.
       </p>
       <p style={bodyStyle}>
-        <strong style={{ color: c.ink }}>Trip planner is intuitive without an onboarding tutorial.</strong> Build a 3-day trip in under 4 minutes. Drag-to-reorder is discoverable, or it isn&rsquo;t.
+        <strong style={{ color: c.ink }}>Trip planner works without a tutorial.</strong> Build a 3-day trip in under 4 minutes. Drag-to-reorder is discoverable, or it isn&rsquo;t.
       </p>
       <p style={{ ...bodyStyle, margin: 0 }}>
         <strong style={{ color: c.ink }}>The honest scope:</strong> no live users have tested this. The hypotheses are reasoned from the brief, the style guide, and competitive analysis. They&rsquo;re what I&rsquo;d test when traffic exists.
@@ -2589,7 +2572,7 @@ function ResearchEvidence() {
 /* Accessibility — Wayfarer-only senior signal */
 function AccessibilitySection() {
   return (
-    <section style={{ padding: `120px 0`, background: c.callout }}>
+    <section aria-label="Accessibility audit" style={{ padding: `120px 0`, background: c.callout }}>
       <div style={{ padding: `0 ${SECTION_X} 64px` }}>
         <div style={{
           maxWidth: CONTENT_MAX, margin: "0 auto",
@@ -2604,9 +2587,7 @@ function AccessibilitySection() {
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Audited, not assumed.
-            </h2>
-            <CategoryPill>Details</CategoryPill>
-          </div>
+            </h2></div>
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
@@ -2626,7 +2607,7 @@ function AccessibilitySection() {
           <div style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
             <Image
               src="/images/work/wayfarer/v2/a11y-audit.png"
-              alt="Wayfarer Accessibility · System Audit — contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
+              alt="Wayfarer Accessibility · System Audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
               width={1920} height={2652}
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block" }}
