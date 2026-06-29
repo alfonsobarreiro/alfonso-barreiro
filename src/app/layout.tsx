@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { DM_Serif_Display, DM_Sans, Barlow_Condensed, Lora, Space_Grotesk, Inter } from "next/font/google";
 import BrandSwitch from "@/components/BrandSwitch";
+import KeyboardModality from "@/components/KeyboardModality";
 import "./globals.css";
 
 // Pre-hydration brand setter: runs before first paint so ?brand=c / ?brand=e
@@ -151,6 +152,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <BrandSwitch />
         </Suspense>
+        <KeyboardModality />
         {children}
       </body>
     </html>

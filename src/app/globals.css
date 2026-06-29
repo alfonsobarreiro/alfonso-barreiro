@@ -160,13 +160,15 @@ button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-off
   outline-color: #FFFFFF;
 }
 
-/* Skip link — first focusable element on every page. Visually hidden
-   off-screen, snaps in-bounds when KEYBOARD-focused. Crimson
-   background + white text for high contrast (9.22:1).
-   Uses :focus-visible (not :focus) so mouse-driven client-side
-   navigation — which can programmatically move focus to the first
-   focusable element on the new page — doesn't reveal the link to
-   mouse users. Keyboard users still see it on Tab. */
+/* Skip link — first focusable element on every page. Visually
+   hidden off-screen at all times, only snaps in-bounds when BOTH:
+   (1) the user is in keyboard-nav mode (body[data-keyboard-nav])
+   (2) the link itself has focus.
+   :focus-visible alone wasn't reliable — Next.js route changes
+   could trigger it on mouse-driven navigation, showing a red box
+   in the top-left after every link click. The body attribute is
+   set by KeyboardModality (loaded in layout) on Tab and cleared
+   on mousedown/touchstart. */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -176,7 +178,7 @@ button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-off
   overflow: hidden;
   z-index: 1000;
 }
-.skip-link:focus-visible {
+body[data-keyboard-nav] .skip-link:focus {
   position: fixed;
   top: 12px;
   left: 12px;
