@@ -8,6 +8,7 @@ import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
+import RecentlyPlayedDemo from "./_demo/RecentlyPlayedDemo";
 
 /* ---------------------------------------------------------------------------
    /work/spotify
@@ -429,6 +430,17 @@ export default function SpotifyV2() {
         {/* ── DETAILS arc tint ─ cool slate-green instead of sage tint */}
         <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
         <DecisionLogic />
+
+        {/* Interactive demo — the spec lives above (DecisionLogic), the
+            real interaction sits here so the reader operates the model
+            instead of just reading about it. Reduced-motion-aware,
+            keyboard-operable, with snackbar undo. The only piece of the
+            case study you click instead of read. */}
+        <div style={{ padding: `0 clamp(24px, 6vw, 80px) 80px` }}>
+          <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
+            <RecentlyPlayedDemo />
+          </div>
+        </div>
 
         {/* Prototypes — moved out of DecisionLogic so the loops have their own breathing room */}
         <Prototypes />

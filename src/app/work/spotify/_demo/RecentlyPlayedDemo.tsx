@@ -1,0 +1,574 @@
+"use client";
+
+/**
+ * RecentlyPlayedDemo
+ * ─────────────────────────────────────────────────────────────────────────
+ * Inline interactive proof that the three controls (Pin, Remove, Pause)
+ * are what the case study claims they are: native to the shelf, reversible,
+ * complete in one or two taps.
+ *
+ * This is the only piece of the case study you operate instead of read.
+ * It sits between DecisionLogic and Prototypes — after the spec, before
+ * the looping videos — so the reader has the model in their head and now
+ * tries it.
+ *
+ * Scope guard: simulates the shelf and the action sheet's three options.
+ * Does NOT try to reproduce the full state-machine spec (loading, error,
+ * sync conflicts). The dossier already documents those; the demo proves
+ * the happy path is what we say it is.
+ *
+ * a11y:
+ * - All interactions keyboard-operable (Tab, Space/Enter, Esc dismisses snackbar)
+ * - Reduced motion: instant state change, no slide animations
+ * - Snackbar is a live region
+ * - Action buttons announce their state via aria-pressed / aria-disabled
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+type TileId = "hollow-coves" | "max-richter" | "the-roses" | "luca-fogale" | "intense-chess" | "this-is-madonna";
+
+interface Tile {
+  id: TileId;
+  title: string;
+  subtitle: string;
+  gradient: string;
+}
+
+const INITIAL_TILES: Tile[] = [
+  { id: "hollow-coves",    title: "Hollow Coves",   subtitle: "Artist",   gradient: "linear-gradient(135deg, #2E5C50 0%, #1A3A30 100%)" },
+  { id: "max-richter",     title: "Max Richter",    subtitle: "Artist",   gradient: "linear-gradient(135deg, #3A3F4E 0%, #1F2330 100%)" },
+  { id: "the-roses",       title: "The Roses",      subtitle: "Movie",    gradient: "linear-gradient(135deg, #9C2B22 0%, #5C1A14 100%)" },
+  { id: "luca-fogale",     title: "Luca Fogale",    subtitle: "Artist",   gradient: "linear-gradient(135deg, #2A6178 0%, #163A48 100%)" },
+  { id: "intense-chess",   title: "Intense Chess",  subtitle: "Playlist", gradient: "linear-gradient(135deg, #5D2E78 0%, #321B45 100%)" },
+  { id: "this-is-madonna", title: "This is Madonna",subtitle: "Playlist", gradient: "linear-gradient(135deg, #B5A02E 0%, #6B5E1A 100%)" },
+];
+
+const PIN_CAP    = 4;
+const PAUSE_SECS = 30;
+const SNACK_MS   = 5000;
+const SPOTIFY_GREEN = "#1ED760";
+const SPOTIFY_JET   = "#121212";
+
+type UndoAction =
+  | { kind: "pin";    tileId: TileId; prevOrder: TileId[] }
+  | { kind: "remove"; tileId: TileId; prevOrder: TileId[]; tile: Tile };
+
+export default function RecentlyPlayedDemo() {
+  const [tiles, setTiles] = useState<Tile[]>(INITIAL_TILES);
+  const [pinnedIds, setPinnedIds] = useState<Set<TileId>>(new Set());
+  const [selectedId, setSelectedId] = useState<TileId | null>(null);
+  const [snackMessage, setSnackMessage] = useState<string>("");
+  const [undoAction, setUndoAction] = useState<UndoAction | null>(null);
+  const [paused, setPaused] = useState<boolean>(false);
+  const [pausedAt, setPausedAt] = useState<number>(0);
+  const [reducedMotion, setReducedMotion] = useState<boolean>(false);
+
+  const snackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const undoButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Reduced-motion preference detection
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    if (mq.addEventListener) mq.addEventListener("change", handler);
+    else if (mq.addListener) mq.addListener(handler);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", handler);
+      else if (mq.removeListener) mq.removeListener(handler);
+    };
+  }, []);
+
+  // Snackbar auto-dismiss with timer reset on new messages
+  useEffect(() => {
+    if (!snackMessage) return;
+    if (snackTimerRef.current) clearTimeout(snackTimerRef.current);
+    snackTimerRef.current = setTimeout(() => {
+      setSnackMessage("");
+      setUndoAction(null);
+    }, SNACK_MS);
+    return () => {
+      if (snackTimerRef.current) clearTimeout(snackTimerRef.current);
+    };
+  }, [snackMessage]);
+
+  // Pause countdown timer
+  useEffect(() => {
+    if (!paused) {
+      setPausedAt(0);
+      return;
+    }
+    setPausedAt(PAUSE_SECS);
+    const interval = setInterval(() => {
+      setPausedAt(prev => {
+        if (prev <= 1) {
+          setPaused(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [paused]);
+
+  // Escape dismisses snackbar
+  useEffect(() => {
+    if (!snackMessage) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSnackMessage("");
+        setUndoAction(null);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [snackMessage]);
+
+  const selectedTile = useMemo(
+    () => (selectedId ? tiles.find(t => t.id === selectedId) ?? null : null),
+    [selectedId, tiles]
+  );
+
+  const orderIds = useMemo(() => tiles.map(t => t.id), [tiles]);
+
+  const handlePin = useCallback(() => {
+    if (!selectedId || paused) return;
+    if (pinnedIds.has(selectedId)) {
+      // Already pinned — unpin in place
+      setPinnedIds(prev => {
+        const next = new Set(prev);
+        next.delete(selectedId);
+        return next;
+      });
+      setSnackMessage("Unpinned.");
+      return;
+    }
+    if (pinnedIds.size >= PIN_CAP) {
+      setSnackMessage(`Pin cap reached. Unpin one of the ${PIN_CAP} first.`);
+      return;
+    }
+    const tile = tiles.find(t => t.id === selectedId);
+    if (!tile) return;
+    const prevOrder = orderIds.slice();
+    setPinnedIds(prev => new Set(prev).add(selectedId));
+    setTiles(prev => [tile, ...prev.filter(t => t.id !== selectedId)]);
+    setUndoAction({ kind: "pin", tileId: selectedId, prevOrder });
+    setSnackMessage("Pinned to the top.");
+  }, [selectedId, paused, pinnedIds, tiles, orderIds]);
+
+  const handleRemove = useCallback(() => {
+    if (!selectedId || paused) return;
+    const tile = tiles.find(t => t.id === selectedId);
+    if (!tile) return;
+    const prevOrder = orderIds.slice();
+    setTiles(prev => prev.filter(t => t.id !== selectedId));
+    setPinnedIds(prev => {
+      const next = new Set(prev);
+      next.delete(selectedId);
+      return next;
+    });
+    setSelectedId(null);
+    setUndoAction({ kind: "remove", tileId: tile.id, prevOrder, tile });
+    setSnackMessage("Removed from Recently Played.");
+  }, [selectedId, paused, tiles, orderIds]);
+
+  const handlePauseToggle = useCallback(() => {
+    setPaused(prev => !prev);
+    setSelectedId(null);
+  }, []);
+
+  const handleUndo = useCallback(() => {
+    if (!undoAction) return;
+    const ordered = undoAction.prevOrder
+      .map(id => INITIAL_TILES.find(t => t.id === id))
+      .filter((t): t is Tile => Boolean(t));
+    setTiles(ordered);
+    if (undoAction.kind === "pin") {
+      setPinnedIds(prev => {
+        const next = new Set(prev);
+        next.delete(undoAction.tileId);
+        return next;
+      });
+    }
+    setSnackMessage("");
+    setUndoAction(null);
+  }, [undoAction]);
+
+  const handleReset = useCallback(() => {
+    setTiles(INITIAL_TILES);
+    setPinnedIds(new Set());
+    setSelectedId(null);
+    setSnackMessage("");
+    setUndoAction(null);
+    setPaused(false);
+  }, []);
+
+  const transition = reducedMotion ? "none" : "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)";
+
+  const shelfEmpty = tiles.length === 0;
+
+  return (
+    <section
+      aria-label="Interactive demo of Pin, Remove, and Pause on the Recently Played shelf"
+      style={{
+        background: SPOTIFY_JET,
+        padding: "clamp(28px, 4vw, 48px)",
+        borderRadius: 0,
+        color: "#FAFAF9",
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Eyebrow + lead */}
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
+        <span style={{ width: "24px", height: "1px", background: SPOTIFY_GREEN }} />
+        <span style={{
+          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontSize: "11px", fontWeight: 700,
+          letterSpacing: "0.2em", textTransform: "uppercase",
+          color: SPOTIFY_GREEN,
+        }}>
+          Try it
+        </span>
+      </div>
+      <h3 style={{
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        fontSize: "clamp(22px, 2.4vw, 28px)",
+        fontWeight: 600, color: "#FFFFFF", margin: "0 0 8px",
+        letterSpacing: "-0.015em", lineHeight: 1.2,
+      }}>
+        Pick a tile, then choose an action.
+      </h3>
+      <p style={{
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        fontSize: "14px", lineHeight: 1.55,
+        color: "rgba(255,255,255,0.72)", margin: "0 0 28px",
+        maxWidth: "600px",
+      }}>
+        Pin slides to the front. Remove deletes with a 5-second undo. Pause stops the shelf from logging. Reduced-motion users get the same logic with no animation.
+      </p>
+
+      {/* Action chips */}
+      <div role="toolbar" aria-label="Recently Played actions" style={{
+        display: "flex", flexWrap: "wrap", gap: "10px",
+        marginBottom: "20px",
+      }}>
+        <ActionChip
+          label="Pin"
+          icon={<PinIcon />}
+          disabled={!selectedId || paused}
+          pressed={selectedId ? pinnedIds.has(selectedId) : false}
+          tooltip={paused ? "History paused" : !selectedId ? "Pick a tile first" : pinnedIds.has(selectedId) ? "Click to unpin" : `Pin to top (${pinnedIds.size}/${PIN_CAP})`}
+          onClick={handlePin}
+        />
+        <ActionChip
+          label="Remove"
+          icon={<RemoveIcon />}
+          disabled={!selectedId || paused}
+          tooltip={paused ? "History paused" : !selectedId ? "Pick a tile first" : "Remove from shelf"}
+          onClick={handleRemove}
+        />
+        <ActionChip
+          label={paused ? "Resume" : "Pause"}
+          icon={paused ? <ResumeIcon /> : <PauseIcon />}
+          pressed={paused}
+          tooltip={paused ? `Resumes automatically in ${pausedAt}s` : "Stop the shelf from logging"}
+          onClick={handlePauseToggle}
+        />
+        <button
+          type="button"
+          onClick={handleReset}
+          style={{
+            marginLeft: "auto",
+            background: "transparent",
+            border: "1px solid rgba(255,255,255,0.28)",
+            color: "rgba(255,255,255,0.78)",
+            padding: "8px 14px", minHeight: "44px",
+            fontFamily: "var(--font-dm-sans), sans-serif",
+            fontSize: "11px", fontWeight: 600,
+            letterSpacing: "0.12em", textTransform: "uppercase",
+            cursor: "pointer",
+            transition: "color 0.15s, border-color 0.15s",
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.55)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.78)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.28)"; }}
+        >
+          Reset
+        </button>
+      </div>
+
+      {/* Paused banner */}
+      {paused && (
+        <div role="status" aria-live="polite" style={{
+          display: "flex", alignItems: "center", gap: "12px",
+          padding: "12px 16px",
+          background: "rgba(30, 215, 96, 0.10)",
+          borderLeft: `3px solid ${SPOTIFY_GREEN}`,
+          marginBottom: "16px",
+          color: "#FFFFFF",
+          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontSize: "13px",
+        }}>
+          <PauseIcon />
+          <span>Listening history paused. Resumes in <strong style={{ color: SPOTIFY_GREEN, fontVariantNumeric: "tabular-nums" }}>{pausedAt}s</strong>.</span>
+        </div>
+      )}
+
+      {/* Shelf */}
+      <div
+        role="list"
+        aria-label="Recently Played shelf"
+        className="sp2-demo-shelf"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(6, minmax(0, 1fr))",
+          gap: "12px",
+          minHeight: "120px",
+        }}
+      >
+        {shelfEmpty ? (
+          <div style={{
+            gridColumn: "1 / -1",
+            padding: "32px",
+            textAlign: "center",
+            color: "rgba(255,255,255,0.55)",
+            fontSize: "14px",
+            border: "1px dashed rgba(255,255,255,0.18)",
+          }}>
+            Shelf empty. Click Reset to restore all tiles.
+          </div>
+        ) : (
+          tiles.map((tile) => {
+            const isSelected = selectedId === tile.id;
+            const isPinned   = pinnedIds.has(tile.id);
+            return (
+              <button
+                key={tile.id}
+                role="listitem"
+                type="button"
+                aria-label={`${tile.title}, ${tile.subtitle}${isPinned ? ', pinned' : ''}${isSelected ? ', selected' : ''}`}
+                aria-pressed={isSelected}
+                onClick={() => setSelectedId(tile.id === selectedId ? null : tile.id)}
+                disabled={paused}
+                style={{
+                  position: "relative",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                  textAlign: "left",
+                  background: tile.gradient,
+                  padding: "12px",
+                  minHeight: "100px",
+                  border: isSelected ? `2px solid ${SPOTIFY_GREEN}` : "2px solid transparent",
+                  borderRadius: 0,
+                  cursor: paused ? "not-allowed" : "pointer",
+                  color: "#FFFFFF",
+                  fontFamily: "var(--font-dm-sans), sans-serif",
+                  opacity: paused ? 0.5 : 1,
+                  transition,
+                  outline: "none",
+                }}
+                onFocus={(e) => {
+                  if (!isSelected) e.currentTarget.style.boxShadow = `inset 0 0 0 2px ${SPOTIFY_GREEN}`;
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                {/* Pin badge */}
+                {isPinned && (
+                  <span aria-hidden="true" style={{
+                    position: "absolute", top: "8px", right: "8px",
+                    background: SPOTIFY_GREEN,
+                    borderRadius: "50%",
+                    width: "20px", height: "20px",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: SPOTIFY_JET,
+                  }}>
+                    <PinGlyph />
+                  </span>
+                )}
+                <span style={{
+                  fontSize: "13px", fontWeight: 600,
+                  lineHeight: 1.25, marginBottom: "2px",
+                  textShadow: "0 1px 2px rgba(0,0,0,0.4)",
+                }}>{tile.title}</span>
+                <span style={{
+                  fontSize: "11px", fontWeight: 500,
+                  letterSpacing: "0.04em",
+                  color: "rgba(255,255,255,0.78)",
+                  textShadow: "0 1px 2px rgba(0,0,0,0.4)",
+                }}>{tile.subtitle}</span>
+              </button>
+            );
+          })
+        )}
+      </div>
+
+      {/* Snackbar — slides up from bottom on small screens, anchored top-right on desktop */}
+      {snackMessage && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="sp2-demo-snack"
+          style={{
+            position: "absolute",
+            left: "clamp(24px, 4vw, 48px)",
+            right: "clamp(24px, 4vw, 48px)",
+            bottom: "16px",
+            maxWidth: "520px",
+            margin: "0 auto",
+            background: "#FFFFFF",
+            color: SPOTIFY_JET,
+            padding: "12px 16px",
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            boxShadow: "0 10px 28px rgba(0,0,0,0.45)",
+            fontFamily: "var(--font-dm-sans), sans-serif",
+            fontSize: "13px",
+            transform: reducedMotion ? "none" : "translateY(0)",
+            transition: reducedMotion ? "none" : "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
+        >
+          <span style={{ flex: 1 }}>{snackMessage}</span>
+          {undoAction && (
+            <button
+              ref={undoButtonRef}
+              type="button"
+              onClick={handleUndo}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: SPOTIFY_JET,
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontSize: "12px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                padding: "8px 4px",
+                minHeight: "44px",
+                textDecoration: "underline",
+              }}
+            >
+              Undo
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Responsive: collapse to 3 columns on tablet, 2 on phone */}
+      <style>{`
+        @media (max-width: 960px) {
+          .sp2-demo-shelf { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+        }
+        @media (max-width: 520px) {
+          .sp2-demo-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        }
+        .sp2-demo-chip:focus-visible {
+          outline: 2px solid #FFFFFF !important;
+          outline-offset: 2px !important;
+        }
+      `}</style>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────── */
+/* Sub-components + icons                                                   */
+/* ─────────────────────────────────────────────────────────────────────── */
+
+function ActionChip({
+  label, icon, onClick, disabled, pressed, tooltip,
+}: {
+  label: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+  disabled?: boolean;
+  pressed?: boolean;
+  tooltip?: string;
+}) {
+  return (
+    <button
+      type="button"
+      className="sp2-demo-chip"
+      onClick={onClick}
+      disabled={disabled}
+      aria-pressed={pressed ?? undefined}
+      title={tooltip}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "8px",
+        padding: "10px 16px",
+        minHeight: "44px",
+        background: pressed ? "rgba(30, 215, 96, 0.15)" : "rgba(255,255,255,0.04)",
+        border: pressed ? `1px solid ${SPOTIFY_GREEN}` : "1px solid rgba(255,255,255,0.28)",
+        color: disabled ? "rgba(255,255,255,0.36)" : pressed ? SPOTIFY_GREEN : "#FFFFFF",
+        fontFamily: "var(--font-dm-sans), sans-serif",
+        fontSize: "12px",
+        fontWeight: 600,
+        letterSpacing: "0.12em",
+        textTransform: "uppercase",
+        cursor: disabled ? "not-allowed" : "pointer",
+        transition: "background 0.15s, border-color 0.15s, color 0.15s",
+      }}
+      onMouseEnter={(e) => {
+        if (disabled) return;
+        if (!pressed) e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+      }}
+      onMouseLeave={(e) => {
+        if (disabled) return;
+        if (!pressed) e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+      }}
+    >
+      <span aria-hidden="true">{icon}</span>
+      {label}
+    </button>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M9 1.5L14.5 7L11 7L11 11L8 14L5 11L5 7L1.5 7L9 1.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PinGlyph() {
+  return (
+    <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M9 1.5L14.5 7L11 7L11 11L8 14L5 11L5 7L1.5 7L9 1.5Z" />
+    </svg>
+  );
+}
+
+function RemoveIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function PauseIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <rect x="4" y="3" width="3" height="10" />
+      <rect x="9" y="3" width="3" height="10" />
+    </svg>
+  );
+}
+
+function ResumeIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <polygon points="4,3 13,8 4,13" />
+    </svg>
+  );
+}
