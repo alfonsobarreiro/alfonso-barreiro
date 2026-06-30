@@ -148,30 +148,61 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
+/* Decision callout — signature element across every case study.
+   Three-stack left bar (subject brand / Deep Teal / ink) is the
+   visual wordmark; the Decision/Why/Cost structure is the editorial
+   pattern. Why and Cost sit side-by-side on desktop so the trade-off
+   reads as one thought, not two paragraphs. */
 function Callout({ decision, why, cost }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
     letterSpacing: "0.18em", textTransform: "uppercase",
-    color: c.accent, margin: "0 0 8px",
+    color: c.accent, margin: "0 0 10px",
   };
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7, color: c.ink2, margin: 0,
   };
   return (
-    <aside style={{
-      background: c.callout, border: `1px solid ${c.border}`,
-      borderLeft: `4px solid ${c.accent}`,
-      padding: "28px 32px", maxWidth: "680px", marginTop: "40px",
+    <aside className="sp2-callout" style={{
+      background: "#FFFFFF",
+      border: `1px solid ${c.border}`,
+      padding: "32px 36px 32px 44px",
+      maxWidth: "760px",
+      marginTop: "40px",
+      position: "relative",
     }}>
+      {/* Signature stack: subject brand (Spotify green) → Deep Teal → ink.
+          One visual element you can quote from a screenshot. */}
+      <span aria-hidden="true" style={{
+        position: "absolute", left: 0, top: 28, bottom: 28,
+        width: "5px",
+        display: "grid",
+        gridTemplateRows: "1fr 1fr 1fr",
+      }}>
+        <span style={{ background: c.brand }} />
+        <span style={{ background: c.accent }} />
+        <span style={{ background: c.ink }} />
+      </span>
       <p style={labelStyle}>Decision</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "20px", fontWeight: 600,
-        color: c.accent, margin: "0 0 24px", letterSpacing: "-0.01em", lineHeight: 1.3,
+        fontFamily: font.sans, fontSize: "clamp(22px, 2.2vw, 26px)",
+        fontWeight: 600, color: c.ink, margin: "0 0 28px",
+        letterSpacing: "-0.015em", lineHeight: 1.25,
       }}>{decision}</p>
-      <p style={labelStyle}>Why</p>
-      <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
-      <p style={labelStyle}>Cost</p>
-      <p style={bodyStyle}>{cost}</p>
+      <div className="sp2-callout-grid" style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "32px",
+      }}>
+        <div>
+          <p style={labelStyle}>Why</p>
+          <p style={bodyStyle}>{why}</p>
+        </div>
+        <div>
+          <p style={labelStyle}>Cost</p>
+          <p style={bodyStyle}>{cost}</p>
+        </div>
+      </div>
     </aside>
   );
 }
@@ -587,6 +618,7 @@ export default function SpotifyV2() {
 
         @media (max-width: 760px) {
           .sp2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .sp2-callout-grid     { grid-template-columns: 1fr !important; gap: 22px !important; }
           .sp2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           .sp2-persona-strip    { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-control-row      { grid-template-columns: 1fr !important; gap: 16px !important; }

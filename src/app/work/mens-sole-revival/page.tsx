@@ -153,6 +153,11 @@ function ArcDivider({ arc }: { arc: string }) {
    section. Three "you are here" badges per section was scaffolding the
    reader didn't need. Same call we made on Spotify + Wayfarer. */
 
+/* Decision callout — signature element across every case study.
+   Three-stack left bar (crimson / Deep Teal / ink) is the visual
+   wordmark; the Decision/Why/Cost structure is the editorial
+   pattern. Why and Cost sit side-by-side on desktop so the trade-off
+   reads as one thought. */
 function Callout({
   decision, why, cost,
 }: { decision: string; why: string; cost: string }) {
@@ -163,7 +168,7 @@ function Callout({
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
-    margin:        "0 0 8px",
+    margin:        "0 0 10px",
   };
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
@@ -173,31 +178,50 @@ function Callout({
     margin:     0,
   };
   return (
-    <aside style={{
-      background:   c.callout,
-      borderLeft:   `4px solid ${c.brand}`,
-      padding:      "28px 32px",
-      maxWidth:     "680px",
+    <aside className="msr2-callout" style={{
+      background:   "#FFFFFF",
+      border:       `1px solid ${c.border}`,
+      padding:      "32px 36px 32px 44px",
+      maxWidth:     "760px",
       marginTop:    "40px",
+      position:     "relative",
     }}>
+      <span aria-hidden="true" style={{
+        position: "absolute", left: 0, top: 28, bottom: 28,
+        width: "5px",
+        display: "grid",
+        gridTemplateRows: "1fr 1fr 1fr",
+      }}>
+        <span style={{ background: c.brand }} />
+        <span style={{ background: c.accent }} />
+        <span style={{ background: c.ink }} />
+      </span>
       <p style={labelStyle}>Decision</p>
       <p style={{
         fontFamily:    font.sans,
-        fontSize:      "20px",
+        fontSize:      "clamp(22px, 2.2vw, 26px)",
         fontWeight:    600,
-        color:         c.brand,
-        margin:        "0 0 24px",
-        letterSpacing: "-0.01em",
-        lineHeight:    1.3,
+        color:         c.ink,
+        margin:        "0 0 28px",
+        letterSpacing: "-0.015em",
+        lineHeight:    1.25,
       }}>
         {decision}
       </p>
-
-      <p style={labelStyle}>Why</p>
-      <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
-
-      <p style={labelStyle}>Cost</p>
-      <p style={bodyStyle}>{cost}</p>
+      <div className="msr2-callout-grid" style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "32px",
+      }}>
+        <div>
+          <p style={labelStyle}>Why</p>
+          <p style={bodyStyle}>{why}</p>
+        </div>
+        <div>
+          <p style={labelStyle}>Cost</p>
+          <p style={bodyStyle}>{cost}</p>
+        </div>
+      </div>
     </aside>
   );
 }
@@ -1110,6 +1134,7 @@ export default function MSRv2() {
 
         @media (max-width: 760px) {
           .msr2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .msr2-callout-grid     { grid-template-columns: 1fr !important; gap: 22px !important; }
           .msr2-pair             { grid-template-columns: 1fr !important; }
           .msr2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           .msr2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
