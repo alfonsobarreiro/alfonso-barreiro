@@ -2385,7 +2385,7 @@ function UserJourney() {
         }}>
           <Image
             src="/images/work/spotify/v2/figma-user-journey.png"
-            alt="User journey map — Recently Played shelf with the three opportunity points called out."
+            alt="User journey map. Recently Played shelf with the three opportunity points called out."
             width={1920} height={1080}
             sizes="(max-width: 760px) 980px, (max-width: 1240px) 100vw, 1240px"
             quality={95}

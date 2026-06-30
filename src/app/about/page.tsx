@@ -185,24 +185,24 @@ export default function AboutPage() {
           }
           .about-cta-secondary {
             background:   #FFFFFF;
-            border:       1px solid #B8B0A2;
+            border:       1px solid var(--color-border-strong);
             color:        #3D4440;
           }
           .about-cta-secondary:hover {
             transform:    translateY(-1px);
-            border-color: #5A5752;
+            border-color: #252B28;
             color:        #252B28;
           }
           .about-studio-link {
-            color:           var(--color-accent-hover);
+            color:           var(--color-accent);
             text-decoration: none;
             font-weight:     500;
-            border-bottom:   1px solid rgba(122,139,110,0.35);
+            border-bottom:   1px solid var(--color-accent);
             transition:      border-color 0.2s, color 0.2s;
           }
           .about-studio-link:hover {
-            border-bottom-color: var(--color-accent);
-            color:               #4A5C42;
+            border-bottom-color: var(--color-accent-hover);
+            color:               var(--color-accent-hover);
           }
         `}</style>
 
@@ -321,8 +321,8 @@ export default function AboutPage() {
           background: "#F4F6F7",
           color:      "#252B28",
           padding:    "clamp(60px, 7vw, 100px) clamp(24px, 5vw, 80px)",
-          borderTop:    "1px solid #E6E3DE",
-          borderBottom: "1px solid #E6E3DE",
+          borderTop:    "1px solid var(--color-border)",
+          borderBottom: "1px solid var(--color-border)",
         }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div
@@ -340,7 +340,10 @@ export default function AboutPage() {
                 background: "var(--color-accent)",
                 flexShrink: 0,
               }} />
-              <p style={{
+              {/* Eyebrow promoted to an h2 so the marquee stats block
+                  has a real heading landmark for screen-reader rotor
+                  navigation. Visual weight stays small/uppercase. */}
+              <h2 style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "12px",
                 fontWeight:    600,
@@ -350,7 +353,7 @@ export default function AboutPage() {
                 margin:        0,
               }}>
                 Fifteen years · one discipline
-              </p>
+              </h2>
             </div>
 
             <div
@@ -746,8 +749,8 @@ function RemoteTimeline() {
         <div style={{
           position: "relative",
           height: "44px",
-          background: "#F5F3EE",
-          border: "1px solid #A29C90",
+          background: "#ECEFF3",
+          border: "1px solid var(--color-border)",
         }}>
           {chapters.map((ch) => {
             const leftPct  = ((ch.start - TIMELINE_START) / YEARS) * 100;
@@ -837,7 +840,7 @@ function RemoteTimeline() {
           return (
             <article key={ch.name + ch.start} style={{
               background:  "#FFFFFF",
-              border:      "1px solid #A29C90",
+              border:      "1px solid var(--color-border)",
               borderTop:   `3px solid ${ch.remote ? "var(--color-brand)" : "#252B28"}`,
               padding:     "20px 22px",
             }}>

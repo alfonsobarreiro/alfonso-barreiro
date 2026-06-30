@@ -3,53 +3,79 @@
 import { useState, useEffect, useRef, FormEvent } from "react";
 
 type FormState = "idle" | "submitting" | "success" | "error";
+type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/myknjbpa";
 
 const font = "var(--font-dm-sans), -apple-system, sans-serif";
 
+// Lightweight inline validation. Keeps the form's "calm correspondence"
+// feel — no toasts, no on-keystroke errors, just one line under the
+// field after blur if the value is invalid.
+function validateField(name: string, value: string): string | undefined {
+  const v = value.trim();
+  if (!v) return "Required.";
+  if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return "Enter a valid email address.";
+  if (name === "message" && v.length < 10) return "A few more words about the role or project would help.";
+  return undefined;
+}
+
 export default function ContactForm() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
   const successRef = useRef<HTMLDivElement>(null);
+  const isSubmitting = formState === "submitting";
 
-  // When the form submits successfully, move focus to the success
-  // heading so screen-reader users hear the confirmation and the
-  // sighted keyboard user knows their action landed.
   useEffect(() => {
-    if (formState === "success") {
-      successRef.current?.focus();
-    }
+    if (formState === "success") successRef.current?.focus();
   }, [formState]);
+
+  function onBlurValidate(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setFocusedField(null);
+    const err = validateField(e.currentTarget.name, e.currentTarget.value);
+    setErrors((prev) => ({ ...prev, [e.currentTarget.name]: err }));
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setFormState("submitting");
     const form = e.currentTarget;
+    // Run validators on submit so a user who tabbed past the fields
+    // still sees inline errors instead of a generic submit failure.
     const data = new FormData(form);
+    const next: FieldErrors = {};
+    (["name", "email", "message"] as const).forEach((k) => {
+      const err = validateField(k, String(data.get(k) ?? ""));
+      if (err) next[k] = err;
+    });
+    if (Object.keys(next).length) {
+      setErrors(next);
+      const firstInvalid = form.querySelector<HTMLElement>(`[name="${Object.keys(next)[0]}"]`);
+      firstInvalid?.focus();
+      return;
+    }
+    setFormState("submitting");
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method:  "POST",
         body:    data,
         headers: { Accept: "application/json" },
       });
-      if (res.ok) { setFormState("success"); form.reset(); }
+      if (res.ok) { setFormState("success"); form.reset(); setErrors({}); }
       else        { setFormState("error"); }
     } catch      { setFormState("error"); }
   }
 
-  const inputStyle = (field: string): React.CSSProperties => ({
+  const inputStyle = (field: string, hasError: boolean): React.CSSProperties => ({
     width:        "100%",
     background:   "transparent",
     border:       "none",
-    // Active focus uses accent teal; idle uses #8A8680 which passes
-    // 1.4.11 non-text contrast (3.32:1 on white). Underline-only fields
-    // need the idle stroke to be reliably visible.
-    borderBottom: focusedField === field
+    borderBottom: hasError
+      ? "1px solid #B91C1C"
+      : focusedField === field
       ? "1px solid var(--color-accent)"
       : "1px solid #8A8680",
     borderRadius: 0,
-    // 14px vertical padding + 15px line-height = ~43-44px hit target.
     padding:      "14px 0",
     color:        "#252B28",
     fontSize:     "15px",
@@ -71,8 +97,13 @@ export default function ContactForm() {
     marginBottom:  "6px",
   };
 
-  // Visible "required" asterisk so sighted users know which fields
-  // are required before submitting.
+  const errorTextStyle: React.CSSProperties = {
+    fontFamily: font,
+    fontSize:   "12px",
+    color:      "#B91C1C",
+    margin:     "6px 0 0",
+  };
+
   const reqAsterisk = (
     <span aria-hidden="true" style={{ color: "var(--color-brand)", marginLeft: "4px" }}>*</span>
   );
@@ -96,70 +127,105 @@ export default function ContactForm() {
     );
   }
 
+  // Single live region carries every status update — submit error,
+  // submission-in-flight, validation failures. One announcement
+  // channel avoids stale messages competing across two regions.
+  const liveMessage =
+    formState === "error" ? "Something went wrong sending your message. Try emailing me directly at alfonso@barreiro.com." :
+    isSubmitting          ? "Sending your message." :
+    "";
+
   return (
-    <form onSubmit={handleSubmit} noValidate aria-label="Contact form">
-      {/* Formspree helper — sets the email subject line */}
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      aria-label="Contact form"
+      aria-busy={isSubmitting}
+    >
       <input type="hidden" name="_subject" value="New message from barreiro.com" />
 
       <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
-        <div>
-          <label htmlFor="name" style={labelStyle}>Name{reqAsterisk}</label>
-          <input id="name" name="name" type="text" required aria-required="true" placeholder="Your name"
-            style={inputStyle("name")}
-            onFocus={() => setFocusedField("name")}
-            onBlur={() => setFocusedField(null)}
-            suppressHydrationWarning
-          />
-        </div>
-        <div>
-          <label htmlFor="email" style={labelStyle}>Email{reqAsterisk}</label>
-          <input id="email" name="email" type="email" required aria-required="true" placeholder="your@email.com"
-            style={inputStyle("email")}
-            onFocus={() => setFocusedField("email")}
-            onBlur={() => setFocusedField(null)}
-            suppressHydrationWarning
-          />
-        </div>
-        <div>
-          <label htmlFor="message" style={labelStyle}>Message{reqAsterisk}</label>
-          <textarea id="message" name="message" required aria-required="true" rows={5}
-            placeholder="Tell me about the role or project…"
-            style={{ ...inputStyle("message"), resize: "vertical", lineHeight: 1.65 }}
-            onFocus={() => setFocusedField("message")}
-            onBlur={() => setFocusedField(null)}
-            suppressHydrationWarning
-          />
-        </div>
-        {/* Live region for submit errors. Only takes space when there
-            IS an error — empty paragraph used to reserve a 20px dead
-            zone between the textarea and the submit button. */}
-        <p role="status" aria-live="polite" style={{
-          fontFamily: font,
-          fontSize: "13px",
-          color: "#B91C1C",
-          margin: 0,
-          minHeight: formState === "error" ? "20px" : 0,
-        }}>
-          {formState === "error" && "Something went wrong. Try emailing me directly at alfonso@barreiro.com"}
+        {(["name", "email", "message"] as const).map((field) => {
+          const isMessage = field === "message";
+          const label = field === "name" ? "Name" : field === "email" ? "Email" : "Message";
+          const placeholder = field === "name"
+            ? "Your name"
+            : field === "email"
+            ? "your@email.com"
+            : "Tell me about the role or project…";
+          const err = errors[field];
+          const errId = err ? `${field}-error` : undefined;
+          const commonProps = {
+            id: field,
+            name: field,
+            required: true,
+            "aria-required": true,
+            "aria-invalid": !!err,
+            "aria-describedby": errId,
+            placeholder,
+            onFocus: () => setFocusedField(field),
+            onBlur: onBlurValidate,
+            suppressHydrationWarning: true,
+          };
+          return (
+            <div key={field}>
+              <label htmlFor={field} style={labelStyle}>{label}{reqAsterisk}</label>
+              {isMessage ? (
+                <textarea
+                  {...commonProps}
+                  rows={5}
+                  style={{ ...inputStyle(field, !!err), resize: "vertical", lineHeight: 1.65 }}
+                />
+              ) : (
+                <input
+                  {...commonProps}
+                  type={field === "email" ? "email" : "text"}
+                  style={inputStyle(field, !!err)}
+                />
+              )}
+              {err && (
+                <p id={errId} style={errorTextStyle}>
+                  {err}
+                </p>
+              )}
+            </div>
+          );
+        })}
+
+        {/* Single dynamic live region — handles error + submit-in-flight
+            states without competing announcements. */}
+        <p
+          role="status"
+          aria-live="polite"
+          style={{
+            fontFamily: font,
+            fontSize: "13px",
+            color: formState === "error" ? "#B91C1C" : "#5A5752",
+            margin: 0,
+            minHeight: liveMessage ? "20px" : 0,
+          }}
+        >
+          {liveMessage}
         </p>
+
         <button
           type="submit"
-          disabled={formState === "submitting"}
+          disabled={isSubmitting}
           className="on-crimson"
           style={{
             padding: "15px 36px",
-            background: formState === "submitting" ? "rgba(140,26,26,0.6)" : "var(--color-brand)",
+            background: isSubmitting ? "rgba(140,26,26,0.6)" : "var(--color-brand)",
             color: "#FFFFFF", border: "none", borderRadius: 0,
             fontSize: "13px", fontWeight: 600, fontFamily: font,
             letterSpacing: "0.07em", textTransform: "uppercase",
-            cursor: formState === "submitting" ? "not-allowed" : "pointer",
+            cursor: isSubmitting ? "not-allowed" : "pointer",
             alignSelf: "flex-start", transition: "opacity 0.2s",
             minHeight: "44px",
           }}
-          onMouseEnter={(e) => { if (formState !== "submitting") e.currentTarget.style.opacity = "0.85"; }}
+          onMouseEnter={(e) => { if (!isSubmitting) e.currentTarget.style.opacity = "0.85"; }}
           onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
         >
-          {formState === "submitting" ? "Sending…" : "Send message"}
+          {isSubmitting ? "Sending…" : "Send message"}
         </button>
       </div>
     </form>
