@@ -25,11 +25,13 @@ interface Project {
   image?:      string;
 }
 
-/* Order: Spotify → Wayfarer → MSR.
+/* Order: Spotify → Wayfarer → MSR → ABD UI.
    MSR is already the hero (13× over the live site), so leading with it again
    would repeat the same evidence twice. Spotify opens the work section with
    interaction craft, Wayfarer carries the shipped-product range, MSR closes
-   with the measurable-result case the hero set up. */
+   the project triad with the measurable-result case the hero set up. ABD UI
+   sits last as the operating system behind every client project, the proof
+   that the work scales because the system underneath it does. */
 const projects: Project[] = [
   {
     title:       "Spotify",
@@ -72,6 +74,20 @@ const projects: Project[] = [
     status:      "live",
     href:        "/work/mens-sole-revival",
     image:       "/cs-msr-preview.jpg",
+  },
+  {
+    title:       "ABD UI",
+    subtitle:    "Production Design System",
+    description:
+      "A token-driven design system that powers every Alpha Beta Design client site. One source of truth published to CSS, JSON, and Figma. 120 components, 15 color tokens, one accessibility floor. The hard part was choosing role-based tokens over a literal palette so a brand swap takes minutes, not days.",
+    thesis:      "The button has to get designed once.",
+    deck:        "Token-driven. Published to CSS, JSON, and Figma from one source. Refuses one-off values.",
+    meta:        "DESIGN SYSTEMS · LIVE · ONGOING",
+    tags:        ["Design Tokens", "Component API", "Accessibility"],
+    year:        "2026",
+    status:      "live",
+    href:        "/work/abd-ui-system",
+    image:       "/cs-abdui-preview.png",
   },
 ];
 
@@ -242,6 +258,7 @@ function ProjectCard({
   const isMSR      = project.title === "Men's Sole Revival";
   const isWayfarer = project.title === "Wayfarer";
   const isSpotify  = project.title === "Spotify";
+  const isABD      = project.title === "ABD UI";
 
   // Editorial row — flex layout, device and thesis sit close together.
   // The row alignment alternates left/right via imageOnRight (passed in
@@ -265,6 +282,7 @@ function ProjectCard({
   const imgAspect = isMSR     ? "4 / 3"
                   : isWayfarer ? "4 / 5"
                   : isSpotify  ? "2 / 3"
+                  : isABD      ? "16 / 10"
                   : "16 / 10";
 
   /* MSR gets ~10% more vertical padding so the MBP has extra breathing room
@@ -292,6 +310,11 @@ function ProjectCard({
     : isMSR
     /* MSR brand ink #13100C (warm editorial near-black) anchored gradient. */
     ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2A2218 0%, #13100C 60%, #080604 100%)"
+    : isABD
+    /* ABD UI: dark slate ground with cyan-ink center so the system
+       screenshot reads as software-on-display, not a fourth case-
+       study template instance. */
+    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1B2228 0%, #14181A 60%, #0F1316 100%)"
     : "#F5F5F4";
 
   const shellStyle: React.CSSProperties = {
@@ -312,6 +335,7 @@ function ProjectCard({
     ...(isSpotify  && { width: "460px", maxWidth: "100%" }),
     ...(isWayfarer && { width: "540px", maxWidth: "100%" }),
     ...(isMSR      && { width: "540px", maxWidth: "100%" }),
+    ...(isABD      && { width: "540px", maxWidth: "100%" }),
   };
 
   const imgBox: React.CSSProperties = {

@@ -6,7 +6,7 @@ import LogoMark from "./LogoMark";
 ───────────────────────────────────────────── */
 const font = "var(--font-dm-sans), -apple-system, sans-serif";
 
-const bg     = "#FAFAF9";  // cool off-white surface
+const bg     = "#F4F6F7";  // cool off-white surface
 const brand  = "var(--color-brand)";  // crimson — wordmark + primary CTA
 const accent = "var(--color-accent)";  // deep teal — eyebrow rule + accent
 const ink    = "#252B28";

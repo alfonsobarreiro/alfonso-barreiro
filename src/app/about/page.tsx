@@ -96,7 +96,7 @@ const innerWrapper: React.CSSProperties = {
 
 /* StatCell — one cell in the "by the numbers" memory anchor.
    Big editorial number + optional unit + caption. Colors are tuned
-   for the light surface (#FAFAF9). */
+   for the light surface (#F4F6F7). */
 function StatCell({ n, unit, caption }: { n: string; unit: string; caption: string }) {
   return (
     <div>
@@ -214,6 +214,7 @@ export default function AboutPage() {
             notebook via objectPosition. Reinforces the "thinking before
             screens" thesis. */}
         <section
+          aria-label="About Alfonso Barreiro"
           style={{
             padding:    "140px clamp(32px, 6vw, 80px) 96px",
             background: "#FFFFFF",
@@ -316,8 +317,8 @@ export default function AboutPage() {
               Same rhythm as the MSR funnel stats + the home 13× hook.
               Light surface (matches the rest of the page) — the numbers
               carry the weight without needing a dark slab to punch. */}
-        <section style={{
-          background: "#FAFAF9",
+        <section aria-label="By the numbers" style={{
+          background: "#F4F6F7",
           color:      "#252B28",
           padding:    "clamp(60px, 7vw, 100px) clamp(24px, 5vw, 80px)",
           borderTop:    "1px solid #E6E3DE",
@@ -394,7 +395,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── What pulled me into design ─────────────────────────────── */}
-        <section style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="What pulled me into design" style={sectionWrapper("#FFFFFF")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>What pulled me into design</h2>
             <p style={body}>
@@ -430,7 +431,7 @@ export default function AboutPage() {
              Prose first (three chapters: in-office, going remote, the
              current remote chapter). Visual timeline below locks the
              career arc in one frame. */}
-        <section style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="How I work" style={sectionWrapper("#FFFFFF")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>How I work</h2>
             <p style={body}>
@@ -453,7 +454,7 @@ export default function AboutPage() {
         {/* ── Where I add value — the business-benefit beats lifted from
              the resume. Converts the craft signal into a hire signal so a
              skimming hiring manager sees what they get if they bring me on. */}
-        <section style={sectionWrapper("#FAFAF9")}>
+        <section aria-label="Where I add value" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Where I add value</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
@@ -487,7 +488,7 @@ export default function AboutPage() {
              quote ties "value" (business outcomes) to "thinking" (design as
              decision-making) so it bridges the two sections without
              duplicating a line from either. */}
-        <section style={{ padding: "clamp(60px, 7vw, 96px) clamp(32px, 6vw, 80px)", background: "#FAFAF9" }}>
+        <section aria-label="Bridge note" style={{ padding: "clamp(60px, 7vw, 96px) clamp(32px, 6vw, 80px)", background: "#F4F6F7" }}>
           <div style={innerWrapper}>
             <figure
               className="scroll-reveal"
@@ -516,7 +517,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── How I think about the work ─────────────────────────────── */}
-        <section style={sectionWrapper("#FAFAF9")}>
+        <section aria-label="How I think about the work" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>How I think about the work</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
@@ -559,7 +560,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Alpha Beta Design ──────────────────────────────────────── */}
-        <section style={sectionWrapper("#FAFAF9")}>
+        <section aria-label="Alpha Beta Design" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Alpha Beta Design</h2>
             <p style={{ ...body, margin: 0 }}>
@@ -580,7 +581,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── On the shelf ───────────────────────────────────────────── */}
-        <section style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="On the shelf" style={sectionWrapper("#FFFFFF")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>On the shelf</h2>
             <p style={body}>
@@ -602,7 +603,7 @@ export default function AboutPage() {
              (two paragraphs, not three). The Hiragana/walks/birds material
              reads more honestly here, alongside the "On the shelf" reading
              section, than as a closer on the homepage. ────────────────── */}
-        <section style={sectionWrapper("#FAFAF9")}>
+        <section aria-label="Off-screen" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Off-screen</h2>
             <p style={{ ...body, margin: 0 }}>
@@ -617,7 +618,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Find me in Portland ────────────────────────────────────── */}
-        <section style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="Find me in Portland" style={sectionWrapper("#FFFFFF")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Find me in Portland</h2>
             <p style={{ ...body, marginBottom: "36px" }}>
