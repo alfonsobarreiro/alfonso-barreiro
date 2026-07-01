@@ -374,21 +374,18 @@ export default function RecentlyPlayedDemo() {
                 key={tile.id}
                 role="listitem"
                 type="button"
+                className="sp2-demo-tile"
                 aria-label={`${tile.title}, ${tile.subtitle}${isPinned ? ', pinned' : ''}${isSelected ? ', selected' : ''}`}
                 aria-pressed={isSelected}
                 onClick={() => setSelectedId(tile.id === selectedId ? null : tile.id)}
                 disabled={paused}
                 style={{
                   position: "relative",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
+                  display: "block",
                   textAlign: "left",
-                  background: tile.gradient,
-                  padding: "12px",
-                  minHeight: "100px",
-                  border: isSelected ? `2px solid ${SPOTIFY_GREEN}` : "2px solid transparent",
-                  borderRadius: 0,
+                  background: "transparent",
+                  padding: 0,
+                  border: "none",
                   cursor: paused ? "not-allowed" : "pointer",
                   color: "#FFFFFF",
                   fontFamily: "var(--font-dm-sans), sans-serif",
@@ -396,37 +393,73 @@ export default function RecentlyPlayedDemo() {
                   transition,
                   outline: "none",
                 }}
-                onFocus={(e) => {
-                  if (!isSelected) e.currentTarget.style.boxShadow = `inset 0 0 0 2px ${SPOTIFY_GREEN}`;
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                }}
               >
-                {/* Pin badge */}
-                {isPinned && (
-                  <span aria-hidden="true" style={{
-                    position: "absolute", top: "8px", right: "8px",
+                {/* Square artwork — matches Spotify's Recently Played tile
+                    proportion. Title / subtitle sit below the artwork,
+                    not overlaid, so the shelf reads as an actual Spotify
+                    shelf rather than a generic card grid. */}
+                <div style={{
+                  position: "relative",
+                  aspectRatio: "1 / 1",
+                  background: tile.gradient,
+                  border: isSelected ? `2px solid ${SPOTIFY_GREEN}` : `2px solid transparent`,
+                  boxShadow: isSelected ? `0 8px 20px rgba(0,0,0,0.4)` : "0 4px 10px rgba(0,0,0,0.25)",
+                  transition,
+                }}>
+                  {/* Pin badge */}
+                  {isPinned && (
+                    <span aria-hidden="true" style={{
+                      position: "absolute", top: "8px", right: "8px",
+                      background: SPOTIFY_GREEN,
+                      borderRadius: "50%",
+                      width: "20px", height: "20px",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: SPOTIFY_JET,
+                    }}>
+                      <PinGlyph />
+                    </span>
+                  )}
+                  {/* Play button — appears on hover / selected state. */}
+                  <span aria-hidden="true" className="sp2-demo-play" style={{
+                    position: "absolute",
+                    right: "8px",
+                    bottom: "8px",
+                    width: "32px",
+                    height: "32px",
                     background: SPOTIFY_GREEN,
                     borderRadius: "50%",
-                    width: "20px", height: "20px",
-                    display: "flex", alignItems: "center", justifyContent: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     color: SPOTIFY_JET,
+                    opacity: isSelected ? 1 : 0,
+                    transform: isSelected ? "translateY(0)" : "translateY(4px)",
+                    transition: reducedMotion ? "none" : "opacity 0.2s ease, transform 0.2s ease",
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.35)",
                   }}>
-                    <PinGlyph />
+                    <PlayGlyph />
                   </span>
-                )}
-                <span style={{
-                  fontSize: "13px", fontWeight: 600,
-                  lineHeight: 1.25, marginBottom: "2px",
-                  textShadow: "0 1px 2px rgba(0,0,0,0.4)",
-                }}>{tile.title}</span>
-                <span style={{
-                  fontSize: "11px", fontWeight: 500,
-                  letterSpacing: "0.04em",
-                  color: "rgba(255,255,255,0.78)",
-                  textShadow: "0 1px 2px rgba(0,0,0,0.4)",
-                }}>{tile.subtitle}</span>
+                </div>
+                {/* Text row — Spotify puts title + subtitle below the
+                    artwork, not overlaid on it. */}
+                <div style={{ padding: "10px 2px 0" }}>
+                  <span style={{
+                    display: "block",
+                    fontSize: "13px", fontWeight: 600,
+                    lineHeight: 1.25,
+                    color: "#FFFFFF",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}>{tile.title}</span>
+                  <span style={{
+                    display: "block",
+                    fontSize: "11px", fontWeight: 500,
+                    letterSpacing: "0.02em",
+                    color: "rgba(255,255,255,0.62)",
+                    marginTop: "2px",
+                  }}>{tile.subtitle}</span>
+                </div>
               </button>
             );
           })
@@ -497,6 +530,28 @@ export default function RecentlyPlayedDemo() {
         .sp2-demo-chip:focus-visible {
           outline: 2px solid #FFFFFF !important;
           outline-offset: 2px !important;
+        }
+        /* Tile hover — matches Spotify's Recently Played interaction:
+           artwork lifts subtly and the play button fades in. Reduced
+           motion users get the fade without transform. */
+        .sp2-demo-tile:not(:disabled):hover > div:first-child {
+          transform: translateY(-2px);
+        }
+        .sp2-demo-tile:not(:disabled):hover .sp2-demo-play {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+        .sp2-demo-tile:focus-visible > div:first-child {
+          outline: 2px solid ${SPOTIFY_GREEN};
+          outline-offset: 2px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .sp2-demo-tile:not(:disabled):hover > div:first-child {
+            transform: none !important;
+          }
+          .sp2-demo-tile > div:first-child {
+            transition: none !important;
+          }
         }
       `}</style>
     </section>
@@ -569,6 +624,14 @@ function PinGlyph() {
   return (
     <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
       <path d="M9 1.5L14.5 7L11 7L11 11L8 14L5 11L5 7L1.5 7L9 1.5Z" />
+    </svg>
+  );
+}
+
+function PlayGlyph() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M3 2L14 8L3 14L3 2Z" />
     </svg>
   );
 }
