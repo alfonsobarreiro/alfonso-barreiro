@@ -525,6 +525,16 @@ export default function WayfarerV2() {
                  as links without interaction. */
               border-bottom-color: ${c.border} !important;
             }
+            /* Active-section indicator on mobile. Without this, the
+               "at rest" underline above overrides the desktop-only
+               [data-active] rule and the visitor can't tell which
+               phase they're currently reading. */
+            .wf2-arc-nav a[data-active] {
+              color: ${c.navy} !important;
+              border-bottom-color: ${c.navy} !important;
+              border-bottom-width: 2px !important;
+              font-weight: 700 !important;
+            }
             /* Hide the 01/02/03 numerals on phones to recover horizontal
                space without losing the chip-nav itself. */
             .wf2-arc-nav a span:first-child { display: none !important; }
@@ -901,6 +911,10 @@ export default function WayfarerV2() {
         }
         .wf2-su-tab:hover { background: rgba(255,255,255,0.5); }
 
+        /* A11y audit — desktop shows the full image; mobile card list
+           stays hidden by default and switches on at the mobile break. */
+        .wf2-a11y-mobile { display: none; }
+
         /* Process gallery — accordion (details/summary) */
         .wf2-pg-item + .wf2-pg-item { border-top: 1px solid ${c.border}; }
         .wf2-pg-summary {
@@ -986,6 +1000,10 @@ export default function WayfarerV2() {
           .wf2-signup-grid      { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .wf2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           .wf2-sketches         { grid-template-columns: 1fr !important; gap: 20px !important; }
+          /* A11y audit: on mobile the image text is illegible, so hide
+             the image and reveal the native card list of findings. */
+          .wf2-a11y-image  { display: none !important; }
+          .wf2-a11y-mobile { display: block !important; }
           .wf2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
           .wf2-swatch-grid      { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .wf2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
@@ -2743,10 +2761,11 @@ function AccessibilitySection() {
 
       <div style={{ padding: `0 ${SECTION_X}` }}>
         <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-          {/* Mat treatment matching the Spotify case study — gives this
-              long audit page a presentation backdrop instead of floating
-              against the page surface. */}
-          <div style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
+          {/* Desktop: full audit image on a presentation mat.
+              Mobile: this whole block is hidden because the image text
+              is illegible at phone widths; the native card list below
+              takes over. */}
+          <div className="wf2-a11y-image" style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
             <Image
               src="/images/work/wayfarer/v2/a11y-audit.png"
               alt="Wayfarer accessibility system audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
@@ -2755,8 +2774,112 @@ function AccessibilitySection() {
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
+
+          {/* Mobile-only native card version. Hidden on desktop where the
+              image renders at full fidelity. */}
+          <A11yFindingsMobile />
         </div>
       </div>
     </section>
+  );
+}
+
+/* Native card list of the eight ranked audit findings — mobile-only.
+   The desktop reader sees the full audit image (with the scorecard and
+   cross-surface patterns); the mobile reader gets the findings that
+   would otherwise be unreadable on the image. */
+function A11yFindingsMobile() {
+  const findings: {
+    n: string; severity: "Blocking" | "Partial";
+    surface: string; wcag: string; issue: string; patch: string;
+  }[] = [
+    { n: "01", severity: "Blocking", surface: "Signup Modal", wcag: "WCAG 2.4.3, 2.4.7", issue: "Focus stays on the trigger button when the modal opens.", patch: "onOpen focus a heading, ref.current.focus() on the first input." },
+    { n: "02", severity: "Blocking", surface: "Signup Modal", wcag: "WCAG 4.1.2", issue: "No role=\"dialog\" or focus trap.", patch: "Wrap in role=\"dialog\" aria-modal=\"true\" and add focus trap. The Search Overlay does this already; copy the pattern." },
+    { n: "03", severity: "Blocking", surface: "Sign In Modal", wcag: "WCAG 2.4.3", issue: "No focus trap.", patch: "Same fix as #02. Wrap with focus trap. The role=\"dialog\" attribute already exists." },
+    { n: "04", severity: "Partial",  surface: "Signup · Step 2", wcag: "WCAG 4.1.3", issue: "Continue → Confirm & Join label change is silent.", patch: "Move focus to the Review heading on step 5 entry so screen readers re-read the new button label naturally." },
+    { n: "05", severity: "Partial",  surface: "Signup · all steps", wcag: "WCAG 4.1.3", issue: "Step transitions not announced.", patch: "Wrap step heading in <h2 ref={h2Ref}> and h2Ref.current.focus() on step change. Polite aria-live region is the alternative." },
+    { n: "06", severity: "Blocking", surface: "/planner", wcag: "WCAG 2.1.1", issue: "Drag-reorder has no keyboard path.", patch: "Add up/down arrow handlers to each focused segment that call onReorder programmatically. Optionally expose ↑ / ↓ buttons in the action row." },
+    { n: "07", severity: "Partial",  surface: "/discover, /destinations", wcag: "WCAG 1.3.3", issue: "Map markers under-announce.", patch: "Expand pin aria-label to include country + tagline: aria-label=\"View Bhutan, Bhutan, The Last Shangri-La\"." },
+    { n: "08", severity: "Partial",  surface: "Input fields, all forms", wcag: "WCAG 3.3.1, 3.3.3", issue: "Error messages not programmatically tied.", patch: "Add aria-invalid={!!error} to each input and aria-describedby={`${id}-error`} pointing at the error span." },
+  ];
+  return (
+    <div className="wf2-a11y-mobile" aria-labelledby="wf2-a11y-mobile-h">
+      <div style={{
+        fontFamily:    font.sans,
+        fontSize:      "11px",
+        fontWeight:    700,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         c.muted,
+        margin:        "0 0 12px",
+      }}>
+        Scorecard
+      </div>
+      <h3 id="wf2-a11y-mobile-h" style={{
+        fontFamily: font.sans, fontSize: "22px", fontWeight: 600,
+        color: c.ink, margin: "0 0 8px", letterSpacing: "-0.02em", lineHeight: 1.2,
+      }}>
+        Eight blocking, six partial. Eight ranked below.
+      </h3>
+      <p style={{
+        fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+        color: c.ink2, margin: "0 0 24px",
+      }}>
+        Six surfaces audited, three cross-surface patterns identified. Each row below links the finding to the route where it lives, the WCAG criterion it touches, and a one-line patch. Ordered by patch effort, quickest fixes first.
+      </p>
+
+      <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: "12px" }}>
+        {findings.map((f) => (
+          <li key={f.n}>
+            <article style={{
+              background: "#FFFFFF",
+              border: `1px solid ${c.border}`,
+              padding: "16px 18px",
+            }}>
+              <div style={{
+                display: "flex", alignItems: "baseline", justifyContent: "space-between",
+                gap: "10px", marginBottom: "10px",
+              }}>
+                <span style={{
+                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                  color: c.accent, letterSpacing: "0.14em",
+                }}>{f.n}</span>
+                <span style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "10px",
+                  fontWeight:    700,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  padding:       "3px 8px",
+                  border:        `1px solid ${f.severity === "Blocking" ? c.brand : c.border}`,
+                  color:         f.severity === "Blocking" ? c.brand : c.ink2,
+                  background:    f.severity === "Blocking" ? "rgba(140,26,26,0.06)" : "transparent",
+                }}>{f.severity}</span>
+              </div>
+              <p style={{
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 600,
+                letterSpacing: "0.06em", textTransform: "uppercase",
+                color: c.muted, margin: "0 0 6px",
+              }}>
+                {f.surface} · {f.wcag}
+              </p>
+              <p style={{
+                fontFamily: font.sans, fontSize: "14px", fontWeight: 600,
+                color: c.ink, margin: "0 0 6px", lineHeight: 1.4,
+                letterSpacing: "-0.005em",
+              }}>
+                {f.issue}
+              </p>
+              <p style={{
+                fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+                color: c.ink2, margin: 0,
+              }}>
+                {f.patch}
+              </p>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }

@@ -98,8 +98,12 @@ const innerWrapper: React.CSSProperties = {
    Big editorial number + optional unit + caption. Colors are tuned
    for the light surface (#F4F6F7). */
 function StatCell({ n, unit, caption }: { n: string; unit: string; caption: string }) {
+  /* Three-row grid so all cells align regardless of whether they carry
+     a unit label. The unit row always reserves its own height (via a
+     non-breaking space fallback) so cells without units don't pull
+     their caption up higher than cells with units. */
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
         fontSize:      "clamp(80px, 11vw, 156px)",
@@ -107,22 +111,23 @@ function StatCell({ n, unit, caption }: { n: string; unit: string; caption: stri
         lineHeight:    0.85,
         letterSpacing: "-0.05em",
         color:         "#252B28",
-        margin:        "0 0 16px",
+        margin:        0,
         fontVariantNumeric: "tabular-nums",
       }}>
         {n}
-        {unit && (
-          <span style={{
-            fontSize:      "clamp(18px, 1.6vw, 22px)",
-            fontWeight:    600,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color:         "var(--color-brand)",
-            marginLeft:    "16px",
-            display:       "inline-block",
-            verticalAlign: "middle",
-          }}>{unit}</span>
-        )}
+      </p>
+      <p aria-hidden={!unit || undefined} style={{
+        fontFamily:    "var(--font-dm-sans), sans-serif",
+        fontSize:      "clamp(14px, 1.4vw, 18px)",
+        fontWeight:    600,
+        letterSpacing: "0.16em",
+        textTransform: "uppercase",
+        color:         "var(--color-brand)",
+        margin:        "10px 0 20px",
+        minHeight:     "clamp(18px, 1.7vw, 22px)",
+        lineHeight:    1,
+      }}>
+        {unit || " "}
       </p>
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
