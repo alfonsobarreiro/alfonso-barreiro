@@ -442,8 +442,10 @@ export default function SpotifyV2() {
           </div>
         </div>
 
-        {/* Prototypes — moved out of DecisionLogic so the loops have their own breathing room */}
-        <Prototypes />
+        {/* Prototypes section retired 2026-07-01. RecentlyPlayedDemo above
+            is now the single interactive proof; the three principle-exported
+            video loops became redundant. Function definition + CSS + pause
+            script left in place for now, will prune in a follow-up. */}
 
         {/* §02 The Bet — image dropped (figma-slide-reversible-set.png was a
             text slide: title + 3 icons + 3 bullets, all already said by the

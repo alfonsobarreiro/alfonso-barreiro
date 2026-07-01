@@ -469,10 +469,20 @@ export default function DiagnosticFlowDemo() {
             fontSize:   "14px",
             lineHeight: 1.6,
             color:      c.ink2,
-            margin:     "0 0 24px",
+            margin:     "0 0 12px",
             maxWidth:   "56ch",
           }}>
             The full assessment runs twelve frames. It captures onset, severity, footwear history, and routine. The output is a personalized starter set, not a results page.
+          </p>
+          <p style={{
+            fontFamily: font.sans,
+            fontSize:   "13px",
+            lineHeight: 1.55,
+            color:      c.muted,
+            margin:     "0 0 24px",
+            maxWidth:   "56ch",
+          }}>
+            Six users started the flow. Five reached results. Three downloaded the takeaway. That funnel is graphed right below.
           </p>
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>

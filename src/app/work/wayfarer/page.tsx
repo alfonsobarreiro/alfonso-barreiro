@@ -825,12 +825,6 @@ export default function WayfarerV2() {
               </div>
             </div>
 
-            <p style={{
-              fontFamily: font.sans, fontSize: "12px", color: c.muted,
-              lineHeight: 1.55, margin: 0, letterSpacing: "0.01em",
-            }}>
-              Live-site mobile captures at <a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>wayfarer.barreiro.com</a> pending. Wireframe source in the Figma file (Responsive · Mobile Breakpoints page).
-            </p>
           </div>
         </section>
 

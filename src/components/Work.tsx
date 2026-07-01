@@ -180,13 +180,25 @@ export default function Work() {
                 fontSize:      "clamp(28px, 4vw, 48px)",
                 fontWeight:    600,
                 color:         "#252B28",
-                margin:        0,
+                margin:        "0 0 12px",
                 letterSpacing: "-0.025em",
                 lineHeight:    1.1,
               }}
             >
               Selected Work
             </h2>
+            <p
+              style={{
+                fontFamily:   "var(--font-dm-sans), sans-serif",
+                fontSize:     "clamp(15px, 1.4vw, 17px)",
+                lineHeight:   1.55,
+                color:        "#5A5752",
+                margin:       0,
+                maxWidth:     "620px",
+              }}
+            >
+              Four case studies at three scales of proof. One live product with metrics coming in. One live product built as concept. One concept scoped like a hire. One design-system tour of the ground the others stand on.
+            </p>
           </div>
         </div>
 

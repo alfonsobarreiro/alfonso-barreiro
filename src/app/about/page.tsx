@@ -552,7 +552,7 @@ export default function AboutPage() {
 
             <p style={beliefClaim}>The best design decisions are also the cleanest business calls.</p>
             <p style={beliefBody}>
-              Revenue, retention, ship dates, ML-signal integrity. When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
+              When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
             </p>
 
             <p style={beliefClaim}>Translation cost between disciplines is real.</p>

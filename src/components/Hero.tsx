@@ -151,6 +151,20 @@ export default function Hero() {
             decisions someone hasn&apos;t made yet: surfaced through
             research, made explicit, shipped to a live product.
           </p>
+          <p
+            className="hero-reveal"
+            style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "13px",
+              fontWeight:    500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color:         "var(--color-accent)",
+              margin:        "0 0 44px",
+            }}
+          >
+            Available for senior UX/UI roles at product teams · Remote from Portland
+          </p>
         </div>
 
         {/* ── LEFT BOTTOM: CTAs (own grid item so mobile can reorder it after the iPad) ── */}
