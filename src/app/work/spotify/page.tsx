@@ -1397,13 +1397,43 @@ function DecisionLogic() {
             trigger = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
             KEYS.forEach(k => { const el = document.getElementById('control-' + k); if (el) trigger.observe(el); });
           }
-          /* Defer first wire-up until React hydrates — otherwise
+          /* Sync the chip to the URL hash immediately. Without this,
+             deep-linking to #control-remove (or #control-pause) leaves
+             the SSR-default "pin active" chip lying about the current
+             section until the observer's next tick. */
+          function syncChipToHash() {
+            var m = /^#control-(pin|remove|pause)$/.exec(window.location.hash || '');
+            if (!m) return;
+            var key = m[1];
+            document.querySelectorAll('.sp2-control-nav a[data-control-anchor]').forEach(function (a) {
+              if (a.getAttribute('data-control-anchor') === key) {
+                a.setAttribute('data-active', 'true');
+                a.setAttribute('aria-current', 'location');
+              } else {
+                a.removeAttribute('data-active');
+                a.removeAttribute('aria-current');
+              }
+            });
+          }
+          /* Defer observer wire-up until React hydrates — otherwise
              setAttribute('aria-current'/'data-active') on the chip
-             nav anchors triggers a hydration mismatch. */
+             nav anchors triggers a hydration mismatch. Sync the chip
+             to hash FIRST so any deep-link lands with the right chip. */
           function chipInit() {
+            syncChipToHash();
             wireObserver();
             update();
           }
+          /* Also react to fragment navigation while the page is open
+             (back/forward, chip-clicks that update hash). Delay the
+             observer's next tick so the browser's smooth-scroll has
+             time to reach the new section before the viewport probe
+             runs — otherwise the observer sees the OLD scroll position
+             and immediately overrides the chip we just set. */
+          window.addEventListener('hashchange', function () {
+            syncChipToHash();
+            setTimeout(schedule, 900);
+          });
           if (document.readyState === 'complete') setTimeout(chipInit, 200);
           else window.addEventListener('load', function() { setTimeout(chipInit, 200); });
           /* When the document becomes visible again (tab return, scroll
