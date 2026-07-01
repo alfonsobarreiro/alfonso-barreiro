@@ -8,6 +8,7 @@ import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
+import GlobeIframeDemo from "./_demo/GlobeIframeDemo";
 
 /* ---------------------------------------------------------------------------
    /work/wayfarer
@@ -652,6 +653,13 @@ export default function WayfarerV2() {
               </p>
             </div>
           </div>
+          {/* Try the live globe yourself — embedded iframe of the
+              production site. The kept surface, working in place. */}
+          <div style={{ padding: `0 ${SECTION_X} 64px` }}>
+            <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+              <GlobeIframeDemo />
+            </div>
+          </div>
           {/* Code-rendered Cut vs Kept — neutrals only, no pastel pink/green. */}
           <div style={{ padding: `0 ${SECTION_X} 64px` }}>
             <CutVsKept />
@@ -741,11 +749,87 @@ export default function WayfarerV2() {
             }}>
               Discovery has to survive the phone. Hierarchy holds, the globe reduces to a continent grid, and the signup keeps its progress meter.
             </p>
+
+            {/* Process artifacts — Kindle Scribe sketches of the mobile
+                homepage. Three pages, one sitting. The paper-to-pixel
+                receipt for the mobile IA. */}
+            <div style={{ marginBottom: "48px" }}>
+              <h3 style={{
+                fontFamily:    font.sans,
+                fontSize:      "clamp(18px, 1.8vw, 22px)",
+                fontWeight:    600,
+                color:         c.ink,
+                margin:        "0 0 8px",
+                letterSpacing: "-0.015em",
+              }}>
+                Sketched before pixels.
+              </h3>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "15px",
+                lineHeight: 1.6,
+                color:      c.ink2,
+                margin:     "0 0 24px",
+                maxWidth:   PROSE_MAX,
+              }}>
+                Mobile IA on paper before Figma opened. Kindle Scribe, three pages of the same phone-width canvas, sketched in one sitting.
+              </p>
+              <div className="wf2-sketches" style={{
+                display:             "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap:                 "24px",
+              }}>
+                {[
+                  {
+                    src:     "/images/work/wayfarer/sketches/mobile-part-1.jpg",
+                    caption: "Part 1 · Hero, sign-up prompt, first three destinations. The globe as the front door survives here as a pin-selected card list.",
+                    alt:     "Hand sketch on a Kindle Scribe. Wayfarer mobile homepage part 1 of 3. Logo, search icon, hamburger menu across the top. Hero copy reading Discover Unforgettable New Destinations. Sign Up button. Destinations header with three stacked cards labeled Bhutan, Greenland, and Tokyo.",
+                  },
+                  {
+                    src:     "/images/work/wayfarer/sketches/mobile-part-2.jpg",
+                    caption: "Part 2 · Product benefits stack. Four icon-plus-header rows, each a one-line pitch, terminating in the See-for-yourself CTA.",
+                    alt:     "Hand sketch on a Kindle Scribe. Wayfarer mobile homepage part 2 of 3. Product Benefits section header, four stacked cards each with an icon and a headline, See-for-yourself CTA at the bottom.",
+                  },
+                  {
+                    src:     "/images/work/wayfarer/sketches/mobile-part-3.jpg",
+                    caption: "Part 3 · Explore More, Wayfarer Hub, Stay Connected, Follow the Journey, footer. The connective tissue below the fold.",
+                    alt:     "Hand sketch on a Kindle Scribe. Wayfarer mobile homepage part 3 of 3. Logo block, Explore More section, Your Wayfarer Hub, Stay Connected, Follow the Journey with four social circles, footer with copyright.",
+                  },
+                ].map((s, i) => (
+                  <figure key={i} style={{ margin: 0 }}>
+                    <Image
+                      src={s.src}
+                      alt={s.alt}
+                      width={1600}
+                      height={1200}
+                      sizes="(max-width: 760px) 100vw, (max-width: 1240px) 33vw, 400px"
+                      style={{
+                        width:   "100%",
+                        height:  "auto",
+                        display: "block",
+                        border:  `1px solid ${c.border}`,
+                      }}
+                    />
+                    <figcaption style={{
+                      fontFamily: font.sans,
+                      fontSize:   "12px",
+                      lineHeight: 1.55,
+                      color:      c.muted,
+                      margin:     "12px 0 0",
+                      letterSpacing: "0.01em",
+                    }}>
+                      {s.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+
             <p style={{
               fontFamily: font.sans, fontSize: "12px", color: c.muted,
               lineHeight: 1.55, margin: 0, letterSpacing: "0.01em",
             }}>
-              Mobile screen captures from the live site at wayfarer.barreiro.com pending. Wireframe source in the Figma file (Responsive · Mobile Breakpoints page).
+              Live-site mobile captures at <a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>wayfarer.barreiro.com</a> pending. Wireframe source in the Figma file (Responsive · Mobile Breakpoints page).
             </p>
           </div>
         </section>
@@ -857,6 +941,7 @@ export default function WayfarerV2() {
           .wf2-logo-pair        { grid-template-columns: 1fr !important; gap: 12px !important; }
           .wf2-signup-grid      { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .wf2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+          .wf2-sketches         { grid-template-columns: 1fr !important; gap: 20px !important; }
           .wf2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
           .wf2-swatch-grid      { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .wf2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }

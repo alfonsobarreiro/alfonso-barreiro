@@ -8,6 +8,7 @@ import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
+import DiagnosticFlowDemo from "./_demo/DiagnosticFlowDemo";
 
 /* ---------------------------------------------------------------------------
    /work/mens-sole-revival-v2
@@ -988,6 +989,13 @@ export default function MSRv2() {
                 with EarlyOutcomes (which showed what's working) to surface
                 what's unproven. Decision-transparency move. */}
             <HonestRisks />
+
+            {/* Interactive diagnostic-flow demo — three-step routing
+                that mirrors the entry path of the live assessment. The
+                static funnel visual lives below to show the actual data. */}
+            <div style={{ marginTop: "64px", marginBottom: "64px" }}>
+              <DiagnosticFlowDemo />
+            </div>
 
             {/* Assessment funnel visual — pairs with the Voice-of-the-User
                 callout below. Five-node horizontal flow visualizing the

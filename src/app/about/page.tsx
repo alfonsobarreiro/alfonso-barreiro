@@ -562,6 +562,49 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* ── The file behind this site — one artifact from the Barreiro.com
+             Figma file. Case-study test at production scale, two candidate
+             brand systems side by side, locked decision. Ties the
+             "design is decision-making" claim above to a signed artifact. */}
+        <section aria-label="The file behind this site" style={sectionWrapper("#FFFFFF")}>
+          <div style={innerWrapper}>
+            <h2 style={sectionH2}>The file behind this site.</h2>
+            <p style={{ ...body, marginBottom: "16px" }}>
+              Design is decision-making. Everything you&apos;re looking at on barreiro.com is a downstream consequence of choices someone signed off on. Below is one of them, the palette decision, as it looked the day it locked.
+            </p>
+            <p style={{ ...body, marginBottom: "40px" }}>
+              Two candidate brand systems rendered as the same MSR homepage, side by side, at production scale. C won on 2026-06-11. The color you&apos;re reading this in is the left column of that comparison.
+            </p>
+
+            <figure style={{ margin: 0 }}>
+              <Image
+                src="/images/about/design-source-decision.jpg"
+                alt="Case-study test frame from the Barreiro.com Figma file. Top banner reads DECISION LOCKED · C · LIGHT WITH CONVICTION with hex tokens Paper #FCFAF9, Crimson #8C1A1A, Deep Teal #0F3D3E, Soft Ink #1A1A1A, signed by Alfon on 2026-06-11, replacing aubergine plus sage. Below the banner, the Men's Sole Revival homepage renders twice at production scale: on the left in Theme C (Crimson + Deep Teal) and on the right in Theme E (Petrol Blue + Burnt Ochre). Both columns show identical layout and content with a labeled token strip at the bottom."
+                width={1024}
+                height={945}
+                sizes="(max-width: 760px) 100vw, 920px"
+                style={{
+                  width:   "100%",
+                  height:  "auto",
+                  display: "block",
+                  border:  "1px solid var(--color-border)",
+                }}
+              />
+              <figcaption style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "13px",
+                lineHeight:    1.6,
+                color:         "#5A5752",
+                margin:        "16px 0 0",
+                letterSpacing: "0.01em",
+                maxWidth:      "760px",
+              }}>
+                Case-study test frame from the Barreiro.com working file. Same layout, same content, two brand systems. C on the left is what shipped. E on the right was the last runner-up. Full token strip on each column.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
         {/* ── Alpha Beta Design ──────────────────────────────────────── */}
         <section aria-label="Alpha Beta Design" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
