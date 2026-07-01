@@ -222,7 +222,9 @@ export default function RecentlyPlayedDemo() {
         overflow: "hidden",
       }}
     >
-      {/* Eyebrow + lead */}
+      {/* Eyebrow + lead. Restructured 2026-07-01 so the demo reads as a
+          Spotify shelf: primary heading is "Recently Played" (the shelf
+          label), instruction sits in the eyebrow row and subtitle. */}
       <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
         <span style={{ width: "24px", height: "1px", background: SPOTIFY_GREEN }} />
         <span style={{
@@ -231,16 +233,16 @@ export default function RecentlyPlayedDemo() {
           letterSpacing: "0.2em", textTransform: "uppercase",
           color: SPOTIFY_GREEN,
         }}>
-          Try it
+          Try it · Made for you
         </span>
       </div>
       <h3 style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize: "clamp(22px, 2.4vw, 28px)",
-        fontWeight: 600, color: "#FFFFFF", margin: "0 0 8px",
-        letterSpacing: "-0.015em", lineHeight: 1.2,
+        fontSize: "clamp(26px, 3vw, 36px)",
+        fontWeight: 800, color: "#FFFFFF", margin: "0 0 6px",
+        letterSpacing: "-0.02em", lineHeight: 1.1,
       }}>
-        Pick a tile, then choose an action.
+        Recently Played
       </h3>
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
@@ -248,7 +250,7 @@ export default function RecentlyPlayedDemo() {
         color: "rgba(255,255,255,0.72)", margin: "0 0 28px",
         maxWidth: "600px",
       }}>
-        Pin slides to the front. Remove deletes with a 5-second undo. Pause stops the shelf from logging. Reduced-motion users get the same logic with no animation.
+        Pick a tile, then use one of the three controls. Pin slides to the front. Remove deletes with a 5-second undo. Pause stops the shelf from logging. Reduced-motion users get the same logic with no animation.
       </p>
 
       {/* Action chips */}
@@ -317,29 +319,17 @@ export default function RecentlyPlayedDemo() {
         </div>
       )}
 
-      {/* Spotify shelf header — Recently Played label with faux "Show all"
-          treatment. Signals to the reader that what follows IS the shelf,
-          not a generic grid of cards. Mirrors Spotify's shelf label at
-          scale for portfolio-demo purposes. */}
+      {/* Show-all row above the tile grid — Spotify's shelves always
+          include a "Show all" affordance on the right. Kept the label
+          only (no duplicate H4) since the section H3 above already
+          says "Recently Played." */}
       <div style={{
         display: "flex",
         alignItems: "baseline",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         gap: "12px",
-        margin: "8px 0 14px",
-        paddingBottom: "10px",
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        margin: "0 0 12px",
       }}>
-        <h4 style={{
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize: "clamp(18px, 2vw, 22px)",
-          fontWeight: 700,
-          color: "#FFFFFF",
-          margin: 0,
-          letterSpacing: "-0.015em",
-        }}>
-          Recently Played
-        </h4>
         <span aria-hidden="true" style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize: "11px",

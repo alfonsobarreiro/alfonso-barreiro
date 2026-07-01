@@ -1474,12 +1474,13 @@ function DecisionLogic() {
       ` }} />
       <style>{`
         .sp2-control-nav a[data-active] {
-          color: #252B28 !important;
-          background: #FAFAF9 !important;
-          box-shadow: inset 0 -3px 0 var(--color-accent) !important;
+          color: var(--color-accent) !important;
+          background: rgba(15,61,62,0.06) !important;
+          box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+          font-weight: 700 !important;
         }
         .sp2-control-nav a[data-active] span:first-child {
-          opacity: 0.85 !important;
+          opacity: 1 !important;
           color: var(--color-accent) !important;
         }
         .sp2-control-nav a:hover {

@@ -78,7 +78,7 @@ export default function GlobeIframeDemo() {
         </p>
       </header>
 
-      <div style={{ position: "relative", width: "100%", aspectRatio: "640 / 420", border: `1px solid ${c.border}`, background: "#000" }}>
+      <div className="wf-globe-iframe-frame" style={{ position: "relative", width: "100%", aspectRatio: "640 / 420", border: `1px solid ${c.border}`, background: "#000" }}>
         {!failed && (
           <iframe
             ref={iframeRef}
@@ -222,6 +222,14 @@ export default function GlobeIframeDemo() {
           Open the full site ↗
         </a>
       </footer>
+      <style>{`
+        /* On phones, the 640×420 landscape frame renders at ~247px tall,
+           which is too small to actually explore the globe. Switch to a
+           taller portrait aspect ratio so the globe reads at usable size. */
+        @media (max-width: 760px) {
+          .wf-globe-iframe-frame { aspect-ratio: 4 / 5 !important; }
+        }
+      `}</style>
     </section>
   );
 }

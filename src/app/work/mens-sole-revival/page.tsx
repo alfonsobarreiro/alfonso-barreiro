@@ -436,31 +436,52 @@ export default function MSRv2() {
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
             if (typeof window === "undefined") return;
+            var NAV_STACK_HEIGHT = 140;
             function wire() {
-              const anchors = document.querySelectorAll('a[data-arc-anchor]');
+              var anchors = document.querySelectorAll('a[data-arc-anchor]');
               if (!anchors.length) return false;
-              const targets = ['premise', 'research', 'decisions', 'details']
-                .map(k => document.getElementById('arc-' + k))
+              var targets = ['premise', 'research', 'decisions', 'details']
+                .map(function (k) { return document.getElementById('arc-' + k); })
                 .filter(Boolean);
               if (targets.length < 4) return false;
-              const map = {};
-              anchors.forEach(a => { map[a.getAttribute('data-arc-anchor')] = a; });
-              const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                  const key = e.target.id.replace('arc-', '');
-                  const anchor = map[key];
+              var map = {};
+              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
+              var obs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                  var key = e.target.id.replace('arc-', '');
+                  var anchor = map[key];
                   if (!anchor) return;
                   if (e.isIntersecting) {
-                    anchors.forEach(a => a.removeAttribute('data-active'));
+                    anchors.forEach(function (a) { a.removeAttribute('data-active'); });
                     anchor.setAttribute('data-active', 'true');
                   }
                 });
               }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(t => obs.observe(t));
+              targets.forEach(function (t) { obs.observe(t); });
+
+              /* Programmatic click handler — computes exact scroll
+                 position so all four arcs land at the same distance
+                 below the sticky arc-nav. Without this, clicking 01
+                 Premise from the top of the page landed lower than
+                 clicking 02/03/04 because the arc-nav hadn't yet
+                 crossed its sticky threshold. */
+              anchors.forEach(function (a) {
+                a.addEventListener('click', function (ev) {
+                  var key = a.getAttribute('data-arc-anchor');
+                  var target = document.getElementById('arc-' + key);
+                  if (!target) return;
+                  ev.preventDefault();
+                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                  a.setAttribute('data-active', 'true');
+                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
+                });
+              });
               return true;
             }
             if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(() => requestAnimationFrame(wire));
+              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
             } else {
               document.addEventListener('DOMContentLoaded', wire);
             }
@@ -470,6 +491,12 @@ export default function MSRv2() {
           .msr2-arc-nav a[data-active] {
             color: var(--color-brand) !important;
             border-bottom-color: var(--color-brand) !important;
+            border-bottom-width: 3px !important;
+            font-weight: 700 !important;
+          }
+          .msr2-arc-nav a[data-active] span:first-child {
+            opacity: 1 !important;
+            color: var(--color-brand) !important;
           }
           .msr2-arc-nav a:hover { color: ${c.ink}; }
           @media (max-width: 760px) {

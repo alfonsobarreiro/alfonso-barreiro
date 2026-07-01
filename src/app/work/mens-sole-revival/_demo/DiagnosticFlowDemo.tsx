@@ -472,7 +472,7 @@ export default function DiagnosticFlowDemo() {
             margin:     "0 0 12px",
             maxWidth:   "56ch",
           }}>
-            The full assessment runs twelve frames. It captures onset, severity, footwear history, and routine. The output is a personalized starter set, not a results page.
+            The full assessment runs twelve frames. It captures onset, severity, footwear history, and routine. The output is a personalized starter set you can email to yourself or save as a PDF.
           </p>
           <p style={{
             fontFamily: font.sans,

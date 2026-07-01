@@ -463,34 +463,62 @@ export default function WayfarerV2() {
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
             if (typeof window === "undefined") return;
+            /* Top-nav (72px) + arc-nav height (~54px) = 126. Add a small
+               breathing room (14px) so section content doesn't sit flush
+               against the sticky strip. */
+            var NAV_STACK_HEIGHT = 140;
+
             /* Defer setup until the arc divs exist further down the page —
                this script runs as soon as the browser parses it, which is
                before the rest of the body. */
             function wire() {
-              const anchors = document.querySelectorAll('a[data-arc-anchor]');
+              var anchors = document.querySelectorAll('a[data-arc-anchor]');
               if (!anchors.length) return false;
-              const targets = ['premise', 'research', 'decisions', 'details']
-                .map(k => document.getElementById('arc-' + k))
+              var targets = ['premise', 'research', 'decisions', 'details']
+                .map(function (k) { return document.getElementById('arc-' + k); })
                 .filter(Boolean);
               if (targets.length < 4) return false;
-              const map = {};
-              anchors.forEach(a => { map[a.getAttribute('data-arc-anchor')] = a; });
-              const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                  const key = e.target.id.replace('arc-', '');
-                  const anchor = map[key];
+              var map = {};
+              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
+              var obs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                  var key = e.target.id.replace('arc-', '');
+                  var anchor = map[key];
                   if (!anchor) return;
                   if (e.isIntersecting) {
-                    anchors.forEach(a => a.removeAttribute('data-active'));
+                    anchors.forEach(function (a) { a.removeAttribute('data-active'); });
                     anchor.setAttribute('data-active', 'true');
                   }
                 });
               }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(t => obs.observe(t));
+              targets.forEach(function (t) { obs.observe(t); });
+
+              /* Programmatic click handler — computes the exact scroll
+                 position so all four arcs land at the same distance
+                 below the sticky arc-nav. Without this, clicking 01
+                 Premise from the top of the page landed lower than
+                 clicking 02/03/04 because the arc-nav hadn't yet
+                 crossed its sticky threshold. */
+              anchors.forEach(function (a) {
+                a.addEventListener('click', function (ev) {
+                  var key = a.getAttribute('data-arc-anchor');
+                  var target = document.getElementById('arc-' + key);
+                  if (!target) return;
+                  ev.preventDefault();
+                  /* Immediately paint the active chip so the visitor
+                     sees state change even before scroll settles. */
+                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                  a.setAttribute('data-active', 'true');
+                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                  /* Update the URL hash without triggering a jump. */
+                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
+                });
+              });
               return true;
             }
             if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(() => requestAnimationFrame(wire));
+              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
             } else {
               document.addEventListener('DOMContentLoaded', wire);
             }
@@ -500,6 +528,12 @@ export default function WayfarerV2() {
           .wf2-arc-nav a[data-active] {
             color: ${c.navy} !important;
             border-bottom-color: ${c.navy} !important;
+            border-bottom-width: 3px !important;
+            font-weight: 700 !important;
+          }
+          .wf2-arc-nav a[data-active] span:first-child {
+            opacity: 1 !important;
+            color: ${c.navy} !important;
           }
           .wf2-arc-nav a:hover { color: ${c.ink}; }
 
@@ -974,6 +1008,10 @@ export default function WayfarerV2() {
           .wf2-pg-chevron { transition: none !important; }
           .wf2-pg-summary { transition: none !important; }
         }
+
+        /* Accordion exclusivity — opening one phase closes the others.
+           Handled by a small inline script below since <details> is
+           natively independent (checkbox-like) rather than radio-like. */
 
         /* Focus ring projection: when a (visually-hidden but focusable)
            radio gets keyboard focus, paint a teal outline on its label.
@@ -2369,6 +2407,35 @@ function ProcessGallery() {
             </div>
           </details>
         </div>
+
+        {/* Accordion exclusivity: only one <details> open at a time inside
+            the process gallery. Native <details> is checkbox-style by
+            default; this listener enforces radio-style behavior. */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            if (typeof window === "undefined" || typeof document === "undefined") return;
+            function wire() {
+              var acc = document.querySelector('.wf2-pg-accordion');
+              if (!acc) return false;
+              var items = acc.querySelectorAll('.wf2-pg-item');
+              if (!items.length) return false;
+              items.forEach(function (item) {
+                item.addEventListener('toggle', function () {
+                  if (!item.open) return;
+                  items.forEach(function (other) {
+                    if (other !== item && other.open) other.open = false;
+                  });
+                });
+              });
+              return true;
+            }
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
+            } else {
+              document.addEventListener('DOMContentLoaded', wire);
+            }
+          })();
+        ` }} />
       </div>
     </section>
   );
