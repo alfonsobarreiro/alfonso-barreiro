@@ -1226,10 +1226,14 @@ function DecisionLogic() {
               marginTop:      i === 0 ? 0 : "120px",
               paddingTop:     i === 0 ? 0 : "80px",
               borderTop:      i === 0 ? "none" : `1px solid ${c.border}`,
-              /* Chip nav is sticky at 72px (global nav) + ~52px (chip
-                 strip) = 124px. Add ~16px buffer so jumped-to headings
-                 don't land directly under the chip strip. */
-              scrollMarginTop: "140px",
+              /* Sticky chip nav is 72px + ~52px = 124px. All three
+                 sections should land their header at the same distance
+                 below the chip strip. The first article has no padding
+                 above its header, so 140px works. Sections 2–3 have
+                 80px paddingTop before the header, so we shave 80 off
+                 the scrollMarginTop to compensate — otherwise the
+                 header lands 80px lower than the first section's did. */
+              scrollMarginTop: i === 0 ? "140px" : "60px",
             }}
           >
             <header style={{ marginBottom: "40px" }}>
@@ -1407,13 +1411,22 @@ function DecisionLogic() {
           document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible') schedule();
           });
-          /* Re-wire IO when nav anchors are clicked — programmatic
-             smooth-scroll in iOS Safari sometimes lands without firing
-             scroll events. One re-wire-on-click covers it without a
-             forever-running interval. */
+          /* On click of a chip, immediately paint the active state on
+             the tapped chip so there's no stale-active gap while the
+             smooth-scroll runs. Then re-wire the observer once the
+             scroll settles — iOS Safari sometimes lands programmatic
+             scroll without firing scroll events. */
           document.addEventListener('click', function(e) {
             var t = e.target;
-            if (t && t.closest && t.closest('a[data-control-anchor]')) {
+            var link = t && t.closest && t.closest('a[data-control-anchor]');
+            if (link) {
+              var key = link.getAttribute('data-control-anchor');
+              document.querySelectorAll('.sp2-control-nav a[data-control-anchor]').forEach(function(a) {
+                a.removeAttribute('data-active');
+                a.removeAttribute('aria-current');
+              });
+              link.setAttribute('data-active', 'true');
+              link.setAttribute('aria-current', 'location');
               setTimeout(function() { wireObserver(); schedule(); }, 400);
             }
           }, { passive: true });
@@ -1421,7 +1434,11 @@ function DecisionLogic() {
           /* State diagram opens centered — the interesting nodes (Pinned
              / arrows) sit in the middle of the canvas, so scrollLeft=0
              would land on empty whitespace. Other scrollers (sketches,
-             right-click) stay left-aligned because they read L→R. */
+             right-click) stay left-aligned because they read L→R.
+             Aggressive re-centering strategy because Next.js Image swaps
+             the src after initial paint, mobile Safari fires a viewport
+             resize as the URL bar collapses, and layout can shift as
+             fonts finish loading. */
           function centerState() {
             const el = document.querySelector('.sp2-state-scroll');
             if (!el) return;
@@ -1431,13 +1448,28 @@ function DecisionLogic() {
           }
           function wireStateCenter() {
             centerState();
-            const img = document.querySelector('.sp2-state-scroll img');
-            if (img && !img.complete) img.addEventListener('load', centerState, { once: true });
-            [200, 600, 1500].forEach(t => setTimeout(centerState, t));
+            const el = document.querySelector('.sp2-state-scroll');
+            const img = el && el.querySelector('img');
+            if (img) {
+              if (!img.complete) img.addEventListener('load', centerState, { once: true });
+              // Next.js Image swaps src after low-quality placeholder — watch for it.
+              try {
+                const mo = new MutationObserver(centerState);
+                mo.observe(img, { attributes: true, attributeFilter: ['src', 'srcset'] });
+              } catch (_) {}
+            }
+            if (el && typeof ResizeObserver === 'function') {
+              try {
+                const ro = new ResizeObserver(centerState);
+                ro.observe(el);
+              } catch (_) {}
+            }
+            [50, 150, 400, 800, 1500, 2500].forEach(t => setTimeout(centerState, t));
           }
           if (document.readyState === 'complete') wireStateCenter();
           else window.addEventListener('load', wireStateCenter);
           window.addEventListener('resize', centerState);
+          document.addEventListener('visibilitychange', () => { if (!document.hidden) centerState(); });
         })();
       ` }} />
       <style>{`

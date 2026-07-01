@@ -396,7 +396,7 @@ export default function Nav() {
             { href: "/work/spotify",            label: "Spotify"            },
             { href: "/work/wayfarer",           label: "Wayfarer"           },
             { href: "/work/mens-sole-revival",  label: "Men's Sole Revival" },
-            { href: "/work/abd-ui-system",      label: "ABD UI System"      },
+            // { href: "/work/abd-ui-system",      label: "ABD UI System"      }, // hidden 2026-07-01 — rework pending
           ].map((cs) => (
             <Link
               key={cs.href}

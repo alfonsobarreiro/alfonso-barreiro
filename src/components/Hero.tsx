@@ -152,7 +152,7 @@ export default function Hero() {
             research, made explicit, shipped to a live product.
           </p>
           <p
-            className="hero-reveal"
+            className="hero-reveal hero-availability"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "13px",
@@ -294,6 +294,11 @@ export default function Hero() {
              scale itself. */
           .hero-text-col h1 { margin-bottom: 20px !important; }
           .hero-text-col p  { margin-bottom: 0 !important; }
+          /* The AVAILABLE line was landing right against the philosophy
+             paragraph on mobile because the rule above zeros its neighbor's
+             margin-bottom. Give the availability line its own breathing
+             room via margin-top (unaffected by the sibling rule). */
+          .hero-text-col p.hero-availability { margin-top: 24px !important; }
           /* Scroll hint overlaps the CTAs on mobile and the gesture is
              already obvious on a phone. Hide it. */
           .scroll-hint { display: none !important; }

@@ -517,7 +517,14 @@ export default function WayfarerV2() {
               padding: 6px 0 !important;
             }
             .wf2-arc-nav ul { gap: 14px !important; }
-            .wf2-arc-nav a  { font-size: 11px !important; padding: 2px 0 !important; }
+            .wf2-arc-nav a  {
+              font-size: 11px !important;
+              padding: 2px 0 !important;
+              /* Signal tappability at rest on mobile — desktop hover
+                 states aren't reachable, so the labels need to read
+                 as links without interaction. */
+              border-bottom-color: ${c.border} !important;
+            }
             /* Hide the 01/02/03 numerals on phones to recover horizontal
                space without losing the chip-nav itself. */
             .wf2-arc-nav a span:first-child { display: none !important; }
@@ -894,19 +901,65 @@ export default function WayfarerV2() {
         }
         .wf2-su-tab:hover { background: rgba(255,255,255,0.5); }
 
-        /* Process gallery — 3 tabs */
-        .wf2-pg-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
-        .wf2-pg-panel { display: none; }
-        #wf2-pg-tab-1:checked ~ .wf2-pg-panels > [data-panel="1"],
-        #wf2-pg-tab-2:checked ~ .wf2-pg-panels > [data-panel="2"],
-        #wf2-pg-tab-3:checked ~ .wf2-pg-panels > [data-panel="3"] { display: block; }
-        #wf2-pg-tab-1:checked ~ .wf2-pg-nav .wf2-pg-tab-1,
-        #wf2-pg-tab-2:checked ~ .wf2-pg-nav .wf2-pg-tab-2,
-        #wf2-pg-tab-3:checked ~ .wf2-pg-nav .wf2-pg-tab-3 {
+        /* Process gallery — accordion (details/summary) */
+        .wf2-pg-item + .wf2-pg-item { border-top: 1px solid ${c.border}; }
+        .wf2-pg-summary {
+          list-style: none;
+          cursor: pointer;
+          padding: 20px 24px;
+          display: flex;
+          align-items: baseline;
+          gap: 14px;
+          background: #FAFAF9;
+          transition: background 0.15s ease;
+        }
+        .wf2-pg-summary::-webkit-details-marker { display: none; }
+        .wf2-pg-summary:hover { background: #F4F6F7; }
+        .wf2-pg-item[open] > .wf2-pg-summary {
           background: #FFFFFF;
           box-shadow: inset 0 -3px 0 var(--color-brand);
         }
-        .wf2-pg-tab:hover { background: rgba(255,255,255,0.5); }
+        .wf2-pg-num {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          color: ${c.accent};
+          text-transform: uppercase;
+        }
+        .wf2-pg-label {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: -0.005em;
+          color: ${c.ink};
+          flex: 1;
+        }
+        .wf2-pg-chevron {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 18px;
+          font-weight: 400;
+          color: ${c.muted};
+          transition: transform 0.2s ease;
+          width: 20px;
+          text-align: center;
+          line-height: 1;
+        }
+        .wf2-pg-item[open] > .wf2-pg-summary .wf2-pg-chevron {
+          transform: rotate(45deg);
+        }
+        .wf2-pg-content {
+          padding: clamp(28px, 4vw, 48px);
+          background: #FFFFFF;
+        }
+        .wf2-pg-summary:focus-visible {
+          outline: 2px solid var(--color-focus-ring);
+          outline-offset: -2px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .wf2-pg-chevron { transition: none !important; }
+          .wf2-pg-summary { transition: none !important; }
+        }
 
         /* Focus ring projection: when a (visually-hidden but focusable)
            radio gets keyboard focus, paint a teal outline on its label.
@@ -920,10 +973,7 @@ export default function WayfarerV2() {
         .wf2-su-carousel:has(#wf2-su-tab-3:focus-visible) .wf2-su-tab-3,
         .wf2-su-carousel:has(#wf2-su-tab-4:focus-visible) .wf2-su-tab-4,
         .wf2-su-carousel:has(#wf2-su-tab-5:focus-visible) .wf2-su-tab-5,
-        .wf2-su-carousel:has(#wf2-su-tab-6:focus-visible) .wf2-su-tab-6,
-        .wf2-pg-carousel:has(#wf2-pg-tab-1:focus-visible) .wf2-pg-tab-1,
-        .wf2-pg-carousel:has(#wf2-pg-tab-2:focus-visible) .wf2-pg-tab-2,
-        .wf2-pg-carousel:has(#wf2-pg-tab-3:focus-visible) .wf2-pg-tab-3 {
+        .wf2-su-carousel:has(#wf2-su-tab-6:focus-visible) .wf2-su-tab-6 {
           outline: 2px solid var(--color-focus-ring);
           outline-offset: -2px;
         }
@@ -2089,48 +2139,20 @@ function ProcessGallery() {
           color: c.muted, margin: "0 0 16px",
         }}>
           <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
-          Click 01 &middot; 02 &middot; 03 to switch phases
+          Three phases below. Expand any of them.
         </p>
 
-        <div className="wf2-pg-carousel" style={{
-          border: `1px solid ${c.border}`, background: "#FAFAF9",
+        <div className="wf2-pg-accordion" style={{
+          border: `1px solid ${c.border}`, background: "#FFFFFF",
         }}>
-          <input type="radio" name="wf2-pg-tabs" id="wf2-pg-tab-1" defaultChecked aria-label="Research phase" />
-          <input type="radio" name="wf2-pg-tabs" id="wf2-pg-tab-2" aria-label="Explorations phase" />
-          <input type="radio" name="wf2-pg-tabs" id="wf2-pg-tab-3" aria-label="Wireframes phase" />
-
-          <div className="wf2-pg-nav" style={{ display: "flex", borderBottom: `1px solid ${c.border}` }}>
-            {[
-              { id: "wf2-pg-tab-1", num: "01", label: "Research" },
-              { id: "wf2-pg-tab-2", num: "02", label: "Explorations" },
-              { id: "wf2-pg-tab-3", num: "03", label: "Wireframes" },
-            ].map((tab, i, arr) => (
-              <label key={tab.id} htmlFor={tab.id}
-                className={`wf2-pg-tab wf2-pg-tab-${i + 1}`}
-                style={{
-                  flex: 1, padding: "20px 24px", cursor: "pointer",
-                  display: "flex", alignItems: "baseline", gap: "10px",
-                  borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                  transition: "background 0.2s, color 0.2s",
-                }}
-              >
-                <span style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  color: c.accent, letterSpacing: "0.18em",
-                }}>{tab.num}</span>
-                <span style={{
-                  fontFamily: font.sans, fontSize: "14px", fontWeight: 500,
-                  color: c.ink, letterSpacing: "-0.005em",
-                }}>{tab.label}</span>
-              </label>
-            ))}
-          </div>
-
-          <div className="wf2-pg-panels" style={{
-            padding: "clamp(28px, 4vw, 48px)", background: "#FFFFFF",
-          }}>
-            {/* 01 Research */}
-            <div className="wf2-pg-panel" data-panel="1">
+          {/* 01 Research */}
+          <details className="wf2-pg-item" open>
+            <summary className="wf2-pg-summary">
+              <span className="wf2-pg-num">01</span>
+              <span className="wf2-pg-label">Research</span>
+              <span className="wf2-pg-chevron" aria-hidden="true">+</span>
+            </summary>
+            <div className="wf2-pg-content">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2157,9 +2179,16 @@ function ProcessGallery() {
                 <p style={{ ...wireframeCardLabel, marginTop: "10px" }}>Competitor audit &middot; three lifts, three skips</p>
               </div>
             </div>
+          </details>
 
-            {/* 02 Explorations */}
-            <div className="wf2-pg-panel" data-panel="2">
+          {/* 02 Explorations */}
+          <details className="wf2-pg-item">
+            <summary className="wf2-pg-summary">
+              <span className="wf2-pg-num">02</span>
+              <span className="wf2-pg-label">Explorations</span>
+              <span className="wf2-pg-chevron" aria-hidden="true">+</span>
+            </summary>
+            <div className="wf2-pg-content">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2268,9 +2297,16 @@ function ProcessGallery() {
                 </div>
               </div>
             </div>
+          </details>
 
-            {/* 03 Wireframes */}
-            <div className="wf2-pg-panel" data-panel="3">
+          {/* 03 Wireframes */}
+          <details className="wf2-pg-item">
+            <summary className="wf2-pg-summary">
+              <span className="wf2-pg-num">03</span>
+              <span className="wf2-pg-label">Wireframes</span>
+              <span className="wf2-pg-chevron" aria-hidden="true">+</span>
+            </summary>
+            <div className="wf2-pg-content">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2313,7 +2349,7 @@ function ProcessGallery() {
                 ))}
               </div>
             </div>
-          </div>
+          </details>
         </div>
       </div>
     </section>

@@ -317,6 +317,41 @@ export default function RecentlyPlayedDemo() {
         </div>
       )}
 
+      {/* Spotify shelf header — Recently Played label with faux "Show all"
+          treatment. Signals to the reader that what follows IS the shelf,
+          not a generic grid of cards. Mirrors Spotify's shelf label at
+          scale for portfolio-demo purposes. */}
+      <div style={{
+        display: "flex",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: "12px",
+        margin: "8px 0 14px",
+        paddingBottom: "10px",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }}>
+        <h4 style={{
+          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontSize: "clamp(18px, 2vw, 22px)",
+          fontWeight: 700,
+          color: "#FFFFFF",
+          margin: 0,
+          letterSpacing: "-0.015em",
+        }}>
+          Recently Played
+        </h4>
+        <span aria-hidden="true" style={{
+          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontSize: "11px",
+          fontWeight: 700,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.55)",
+        }}>
+          Show all
+        </span>
+      </div>
+
       {/* Shelf */}
       <div
         role="list"

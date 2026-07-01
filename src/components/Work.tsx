@@ -75,20 +75,23 @@ const projects: Project[] = [
     href:        "/work/mens-sole-revival",
     image:       "/cs-msr-preview.jpg",
   },
-  {
-    title:       "ABD UI",
-    subtitle:    "Production Design System",
-    description:
-      "A token-driven design system that powers every Alpha Beta Design client site. One source of truth published to CSS, JSON, and Figma. 120 components, 15 color tokens, one accessibility floor. The hard part was choosing role-based tokens over a literal palette so a brand swap takes minutes, not days.",
-    thesis:      "The button has to get designed once.",
-    deck:        "Token-driven. Published to CSS, JSON, and Figma from one source. Refuses one-off values.",
-    meta:        "DESIGN SYSTEM · LIVE · ONGOING",
-    tags:        ["Design Tokens", "Component API", "Accessibility"],
-    year:        "2026",
-    status:      "live",
-    href:        "/work/abd-ui-system",
-    image:       "/cs-abdui-preview.png",
-  },
+  // ABD UI hidden 2026-07-01 pending case-study rework to match the
+  // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
+  // rework ships.
+  // {
+  //   title:       "ABD UI",
+  //   subtitle:    "Production Design System",
+  //   description:
+  //     "A token-driven design system that powers every Alpha Beta Design client site. One source of truth published to CSS, JSON, and Figma. 120 components, 15 color tokens, one accessibility floor. The hard part was choosing role-based tokens over a literal palette so a brand swap takes minutes, not days.",
+  //   thesis:      "The button has to get designed once.",
+  //   deck:        "Token-driven. Published to CSS, JSON, and Figma from one source. Refuses one-off values.",
+  //   meta:        "DESIGN SYSTEM · LIVE · ONGOING",
+  //   tags:        ["Design Tokens", "Component API", "Accessibility"],
+  //   year:        "2026",
+  //   status:      "live",
+  //   href:        "/work/abd-ui-system",
+  //   image:       "/cs-abdui-preview.png",
+  // },
 ];
 
 /* Stagger delays per card index */
