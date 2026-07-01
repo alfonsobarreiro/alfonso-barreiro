@@ -26,23 +26,24 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-type TileId = "hollow-coves" | "max-richter" | "the-roses" | "luca-fogale" | "intense-chess" | "this-is-madonna";
+type TileId = "daylist" | "surf-rock" | "alt-indie" | "happy-indie" | "quiet-mix" | "soft-indie";
 
 interface Tile {
   id: TileId;
   title: string;
   subtitle: string;
-  gradient: string;
+  image: string;
 }
 
 const INITIAL_TILES: Tile[] = [
-  { id: "hollow-coves",    title: "Hollow Coves",   subtitle: "Artist",   gradient: "linear-gradient(135deg, #2E5C50 0%, #1A3A30 100%)" },
-  { id: "max-richter",     title: "Max Richter",    subtitle: "Artist",   gradient: "linear-gradient(135deg, #3A3F4E 0%, #1F2330 100%)" },
-  { id: "the-roses",       title: "The Roses",      subtitle: "Movie",    gradient: "linear-gradient(135deg, #9C2B22 0%, #5C1A14 100%)" },
-  { id: "luca-fogale",     title: "Luca Fogale",    subtitle: "Artist",   gradient: "linear-gradient(135deg, #2A6178 0%, #163A48 100%)" },
-  { id: "intense-chess",   title: "Intense Chess",  subtitle: "Playlist", gradient: "linear-gradient(135deg, #5D2E78 0%, #321B45 100%)" },
-  { id: "this-is-madonna", title: "This is Madonna",subtitle: "Playlist", gradient: "linear-gradient(135deg, #B5A02E 0%, #6B5E1A 100%)" },
+  { id: "daylist",     title: "daylist",              subtitle: "Alternative indie playlist",       image: "/images/work/spotify/tiles/tile-1.png" },
+  { id: "surf-rock",   title: "Surf Rock Mix",        subtitle: "Dinner party music, picked for you", image: "/images/work/spotify/tiles/tile-2.png" },
+  { id: "alt-indie",   title: "Alternative Indie Mix", subtitle: "Indie rock, picked for you",       image: "/images/work/spotify/tiles/tile-3.png" },
+  { id: "happy-indie", title: "Happy Indie Mix",      subtitle: "Cooking music, picked for you",     image: "/images/work/spotify/tiles/tile-4.png" },
+  { id: "quiet-mix",   title: "Quiet Mix",            subtitle: "Alternative, picked for you",       image: "/images/work/spotify/tiles/tile-5.png" },
+  { id: "soft-indie",  title: "Soft Indie Mix",       subtitle: "Soft indie, picked for you",        image: "/images/work/spotify/tiles/tile-6.png" },
 ];
+
 
 const PIN_CAP    = 4;
 const PAUSE_SECS = 30;
@@ -394,18 +395,36 @@ export default function RecentlyPlayedDemo() {
                   outline: "none",
                 }}
               >
-                {/* Square artwork — matches Spotify's Recently Played tile
-                    proportion. Title / subtitle sit below the artwork,
-                    not overlaid, so the shelf reads as an actual Spotify
-                    shelf rather than a generic card grid. */}
+                {/* Real Spotify shelf tile — Figma-sourced "Made For You"
+                    playlist artwork. Aspect matches Alfonso's Figma tile
+                    (190:238 portrait). Text is baked into the image, so
+                    the below-tile title row is gone. Interactive states
+                    (pin badge, play button, selected border) overlay on
+                    top. */}
                 <div style={{
                   position: "relative",
-                  aspectRatio: "1 / 1",
-                  background: tile.gradient,
+                  aspectRatio: "190 / 238",
                   border: isSelected ? `2px solid ${SPOTIFY_GREEN}` : `2px solid transparent`,
                   boxShadow: isSelected ? `0 8px 20px rgba(0,0,0,0.4)` : "0 4px 10px rgba(0,0,0,0.25)",
                   transition,
+                  overflow: "hidden",
                 }}>
+                  <img
+                    src={tile.image}
+                    alt=""
+                    aria-hidden="true"
+                    draggable={false}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      pointerEvents: "none",
+                      display: "block",
+                    }}
+                  />
                   {/* Pin badge */}
                   {isPinned && (
                     <span aria-hidden="true" style={{
@@ -439,26 +458,6 @@ export default function RecentlyPlayedDemo() {
                   }}>
                     <PlayGlyph />
                   </span>
-                </div>
-                {/* Text row — Spotify puts title + subtitle below the
-                    artwork, not overlaid on it. */}
-                <div style={{ padding: "10px 2px 0" }}>
-                  <span style={{
-                    display: "block",
-                    fontSize: "13px", fontWeight: 600,
-                    lineHeight: 1.25,
-                    color: "#FFFFFF",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}>{tile.title}</span>
-                  <span style={{
-                    display: "block",
-                    fontSize: "11px", fontWeight: 500,
-                    letterSpacing: "0.02em",
-                    color: "rgba(255,255,255,0.62)",
-                    marginTop: "2px",
-                  }}>{tile.subtitle}</span>
                 </div>
               </button>
             );
