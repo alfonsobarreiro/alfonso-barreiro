@@ -2410,10 +2410,14 @@ function ProcessGallery() {
 
         {/* Accordion exclusivity: only one <details> open at a time inside
             the process gallery. Native <details> is checkbox-style by
-            default; this listener enforces radio-style behavior. */}
+            default; this listener enforces radio-style behavior AND
+            scrolls the newly-opened summary back into view so a click
+            that closes taller siblings doesn't leave the reader stranded
+            in the next section (Decisions arc). */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
             if (typeof window === "undefined" || typeof document === "undefined") return;
+            var NAV_STACK_HEIGHT = 140;
             function wire() {
               var acc = document.querySelector('.wf2-pg-accordion');
               if (!acc) return false;
@@ -2422,8 +2426,27 @@ function ProcessGallery() {
               items.forEach(function (item) {
                 item.addEventListener('toggle', function () {
                   if (!item.open) return;
+                  // Capture the summary's position BEFORE closing siblings
+                  // so we can measure the layout shift.
+                  var summary = item.querySelector('summary');
+                  var beforeTop = summary ? summary.getBoundingClientRect().top : null;
                   items.forEach(function (other) {
                     if (other !== item && other.open) other.open = false;
+                  });
+                  // After closing, re-pin the summary to a sensible position
+                  // just below the sticky arc-nav. Runs on the next frame so
+                  // the layout has settled after the sibling close.
+                  requestAnimationFrame(function () {
+                    if (!summary) return;
+                    var afterTop = summary.getBoundingClientRect().top;
+                    // If the shift moved the summary off-screen or way above
+                    // the sticky nav, scroll it back into view. Threshold
+                    // keeps small no-op cases from re-scrolling.
+                    if (Math.abs(afterTop - beforeTop) < 8 && afterTop > NAV_STACK_HEIGHT - 20 && afterTop < window.innerHeight * 0.7) {
+                      return; // No meaningful shift, leave the scroll alone.
+                    }
+                    var y = summary.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                   });
                 });
               });
