@@ -30,7 +30,7 @@ const ALL: Card[] = [
     title:   "Spotify",
     tagline: "Three controls Spotify should have built already.",
     meta:    "Recently Played Controls · 2026",
-    image:   "/cs-spotify-preview.png",
+    image:   "/images/work/spotify/spotify-hero-cover.webp",
     href:    "/work/spotify",
   },
   {
@@ -44,7 +44,7 @@ const ALL: Card[] = [
   {
     slug:    "mens-sole-revival",
     title:   "Men's Sole Revival",
-    tagline: "13× CTR lift after pivoting from e-commerce to editorial.",
+    tagline: "13× return-visits after pivoting from e-commerce to editorial.",
     meta:    "Foot Health Content Platform · 2026",
     image:   "/cs-msr-preview.jpg",
     href:    "/work/mens-sole-revival",

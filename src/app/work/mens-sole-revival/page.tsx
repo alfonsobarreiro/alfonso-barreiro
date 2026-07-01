@@ -542,7 +542,7 @@ export default function MSRv2() {
           }
           callout={{
             decision: "Pivot from e-commerce to editorial in week 3.",
-            why:      "Three weeks of margin modeling kept pointing to the same answer. The friction wasn’t execution. It was the starting point. These men aren’t hiring a product. They’re hiring a reason to start paying attention.",
+            why:      "Three weeks of margin modeling kept pointing to the same answer. The friction wasn’t execution. It was the starting point. These men don’t need a product. They need a reason to start paying attention.",
             cost:     "Threw out the Shopify spec. Restarted the IA from scratch.",
           }}
         />

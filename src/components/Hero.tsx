@@ -534,7 +534,7 @@ function HeroResultPanel() {
             maxWidth:       "260px",
           }}
         >
-          CTR lift on affiliate placements
+          Return-visits on the results page
         </p>
 
         {/* CTA */}

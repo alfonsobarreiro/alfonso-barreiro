@@ -67,7 +67,7 @@ const projects: Project[] = [
     description:
       "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
     thesis:      "Pivoted from e-commerce to editorial in week 3.",
-    deck:        "Diagnostic-first resource for men over 40. Live since April. 13× CTR lift on affiliate placements.",
+    deck:        "Diagnostic-first resource for men over 40. Live since April. 13× return-visits on the results page.",
     meta:        "DESIGNER · 2026 · LIVE SINCE APRIL",
     tags:        ["Brand Identity", "Content UX", "Editorial"],
     year:        "2026",
@@ -82,7 +82,7 @@ const projects: Project[] = [
       "A token-driven design system that powers every Alpha Beta Design client site. One source of truth published to CSS, JSON, and Figma. 120 components, 15 color tokens, one accessibility floor. The hard part was choosing role-based tokens over a literal palette so a brand swap takes minutes, not days.",
     thesis:      "The button has to get designed once.",
     deck:        "Token-driven. Published to CSS, JSON, and Figma from one source. Refuses one-off values.",
-    meta:        "DESIGN SYSTEMS · LIVE · ONGOING",
+    meta:        "DESIGN SYSTEM · LIVE · ONGOING",
     tags:        ["Design Tokens", "Component API", "Accessibility"],
     year:        "2026",
     status:      "live",

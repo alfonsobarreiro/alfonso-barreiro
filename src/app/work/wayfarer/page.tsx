@@ -2531,7 +2531,7 @@ function BriefVsDelivered() {
         fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
         color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
       }}>
-        The brief asked for a homepage and an onboarding fix. The build expanded around both without breaking either. The expansion isn&rsquo;t scope creep. &sect;02 The Bet shows what got cut to make room for it.
+        The brief asked for a homepage and an onboarding fix. The build expanded around both without breaking either. The expansion isn&rsquo;t scope creep. The Bet section above shows what got cut to make room for it.
       </p>
 
       <div className="wf2-brief-scroll" tabIndex={0} role="region"
@@ -2669,7 +2669,7 @@ function ResearchEvidence() {
         <strong style={{ color: c.ink }}>Personas shaped the signup framing.</strong> The adventurous-traveler persona (21-30, researching before booking) treats discovery as a habit. The signup asks &lsquo;what kind of traveler are you&rsquo; first because that&rsquo;s the question they want to answer about themselves.
       </p>
       <p style={{ ...bodyStyle, margin: 0 }}>
-        <strong style={{ color: c.ink }}>The honest scale:</strong> small participant pool, self-directed research, no usability testing yet. The next pass tests the hypotheses in &sect;Evaluation Plan with 5-6 moderated sessions.
+        <strong style={{ color: c.ink }}>The honest scale:</strong> small participant pool, self-directed research, no usability testing yet. The next pass tests the hypotheses in the Evaluation Plan section with 5-6 moderated sessions.
       </p>
     </aside>
   );
@@ -2699,7 +2699,7 @@ function AccessibilitySection() {
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
-              Dedicated A11y system audit page in the Figma source. Contrast ratios for every color pairing (the warm off-white over navy pair clears 15:1; the muted variant clears 10.5:1). Focus orders documented per page. Keyboard nav patterns for the globe (continent-grid fallback). Screen-reader labels on every icon button. The artifact is the receipt.
+              Dedicated accessibility audit page in the Figma source. Contrast ratios for every color pairing (the warm off-white over navy pair clears 15:1; the muted variant clears 10.5:1). Focus orders documented per page. Keyboard nav patterns for the globe (continent-grid fallback). Screen-reader labels on every icon button. The artifact is the receipt.
             </p>
           </div>
         </div>
@@ -2713,7 +2713,7 @@ function AccessibilitySection() {
           <div style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
             <Image
               src="/images/work/wayfarer/v2/a11y-audit.png"
-              alt="Wayfarer Accessibility · System Audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
+              alt="Wayfarer accessibility system audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
               width={1920} height={2652}
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block" }}

@@ -936,7 +936,7 @@ function SketchesAndMidfi() {
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
-              Five interaction directions sketched on paper before any Figma frame. The winning direction survived three tests: does it preserve discovery, is it reversible, does it sit native to the shelf. Mid-fi mocked the answer on both surfaces (mobile + desktop) before any hi-fi work.
+              Three interaction directions sketched on paper before any Figma frame. The winning direction survived three tests: does it preserve discovery, is it reversible, does it sit native to the shelf. Mid-fi mocked the answer on both surfaces (mobile + desktop) before any hi-fi work.
             </p>
           </div>
         </div>
