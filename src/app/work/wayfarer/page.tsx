@@ -550,23 +550,21 @@ export default function WayfarerV2() {
               top: 72px !important;
               padding: 6px 0 !important;
             }
-            .wf2-arc-nav ul { gap: 14px !important; }
+            .wf2-arc-nav ul { gap: 8px !important; }
+            /* Mobile: kill underlines entirely and indicate current
+               section with a filled chip. Underlines on a compact strip
+               read as busy; a solid pill reads instantly. */
             .wf2-arc-nav a  {
               font-size: 11px !important;
-              padding: 2px 0 !important;
-              /* Signal tappability at rest on mobile — desktop hover
-                 states aren't reachable, so the labels need to read
-                 as links without interaction. */
-              border-bottom-color: ${c.border} !important;
+              padding: 6px 10px !important;
+              border-bottom: none !important;
+              color: ${c.muted} !important;
+              transition: background 0.15s ease, color 0.15s ease !important;
             }
-            /* Active-section indicator on mobile. Without this, the
-               "at rest" underline above overrides the desktop-only
-               [data-active] rule and the visitor can't tell which
-               phase they're currently reading. */
             .wf2-arc-nav a[data-active] {
-              color: ${c.navy} !important;
-              border-bottom-color: ${c.navy} !important;
-              border-bottom-width: 2px !important;
+              background: ${c.navy} !important;
+              color: #FFFFFF !important;
+              border-bottom: none !important;
               font-weight: 700 !important;
             }
             /* Hide the 01/02/03 numerals on phones to recover horizontal

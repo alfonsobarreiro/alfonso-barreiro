@@ -507,8 +507,23 @@ export default function MSRv2() {
               top: 72px !important;
               padding: 6px 0 !important;
             }
-            .msr2-arc-nav ul { gap: 14px !important; }
-            .msr2-arc-nav a  { font-size: 11px !important; padding: 2px 0 !important; }
+            .msr2-arc-nav ul { gap: 8px !important; }
+            /* Mobile: kill underlines and use a filled chip for the
+               current section. Underlines on a compact strip read as
+               busy; a solid pill reads instantly. */
+            .msr2-arc-nav a  {
+              font-size: 11px !important;
+              padding: 6px 10px !important;
+              border-bottom: none !important;
+              color: ${c.muted} !important;
+              transition: background 0.15s ease, color 0.15s ease !important;
+            }
+            .msr2-arc-nav a[data-active] {
+              background: var(--color-brand) !important;
+              color: #FFFFFF !important;
+              border-bottom: none !important;
+              font-weight: 700 !important;
+            }
             /* Hide 01/02/03 numerals on phones — they crowd the chip text. */
             .msr2-arc-nav a span:first-child { display: none !important; }
             .msr2-arc-nav + script + style + div { padding-top: 36px !important; }
