@@ -1194,25 +1194,22 @@ export default function MSRv2() {
 
       {/* Responsive */}
       <style>{`
-        /* Design system panels — cards stacked on scroll. Each card is
-           position: sticky at a slightly different top offset so cards
-           fan out with a hint of the previous card visible above. */
+        /* Design system panels — three cards in normal vertical flow.
+           Was a sticky-stack (position: sticky with staggered top
+           offsets) but Alfonso called it: the stack fought the case
+           study's editorial pacing on desktop. Plain flow reads
+           better, and killing the 30vh trailing padding closes the
+           dead space above 03 Shipped. */
         .msr2-ds-stack {
-          padding-bottom: 30vh;
           display: flex;
           flex-direction: column;
+          gap: 32px;
         }
         .msr2-ds-card {
-          position: sticky;
           background: #FFFFFF;
           border: 1px solid ${c.border};
           box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
-          margin-bottom: 80vh;
         }
-        .msr2-ds-card:last-child { margin-bottom: 0; }
-        .msr2-ds-card:nth-child(1) { top: 148px; z-index: 1; }
-        .msr2-ds-card:nth-child(2) { top: 164px; z-index: 2; }
-        .msr2-ds-card:nth-child(3) { top: 180px; z-index: 3; }
         .msr2-ds-card-header {
           padding: 20px 24px;
           display: flex;
@@ -1239,8 +1236,6 @@ export default function MSRv2() {
         }
         .msr2-ds-card-body {
           padding: clamp(28px, 4vw, 48px);
-          max-height: calc(100vh - 260px);
-          overflow-y: auto;
         }
 
         @media (max-width: 760px) {
@@ -1264,10 +1259,9 @@ export default function MSRv2() {
           /* Funnel — collapse to 2 rows on phones (steps wrap) */
           .msr2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .msr2-funnel-row > div[aria-hidden] { display: none !important; }
-          /* Design-system stack cards on mobile — flatten to normal
-             flow so the sticky stack doesn't crowd a small viewport. */
-          .msr2-ds-card { position: static !important; margin-bottom: 24px !important; }
-          .msr2-ds-card-body { max-height: none !important; overflow: visible !important; }
+          /* Design-system cards on mobile — already in normal flow on
+             desktop; just tighten the gap for phone widths. */
+          .msr2-ds-stack { gap: 20px !important; }
           /* Carousel color grid — 2-col on phones */
           .msr2-ds-color-grid    { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .msr2-ds-type-grid     { grid-template-columns: 1fr !important; gap: 24px !important; }
