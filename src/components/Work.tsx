@@ -173,7 +173,7 @@ export default function Work() {
             display:        "flex",
             justifyContent: "space-between",
             alignItems:     "flex-end",
-            marginBottom:   "28px",
+            marginBottom:   "clamp(48px, 6vw, 80px)",
           }}
         >
           <div>
@@ -183,25 +183,13 @@ export default function Work() {
                 fontSize:      "clamp(28px, 4vw, 48px)",
                 fontWeight:    600,
                 color:         "#252B28",
-                margin:        "0 0 12px",
+                margin:        0,
                 letterSpacing: "-0.025em",
                 lineHeight:    1.1,
               }}
             >
-              Selected Work
+              Work
             </h2>
-            <p
-              style={{
-                fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "clamp(15px, 1.4vw, 17px)",
-                lineHeight:   1.55,
-                color:        "#5A5752",
-                margin:       0,
-                maxWidth:     "620px",
-              }}
-            >
-              Three projects, three different problems. A concept scoped like a hire, a live product built like a concept, and a live product with the receipts.
-            </p>
           </div>
         </div>
 
