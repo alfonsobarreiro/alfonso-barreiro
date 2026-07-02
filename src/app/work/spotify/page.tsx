@@ -869,6 +869,19 @@ export default function SpotifyV2() {
             margin-left: 0 !important;
             margin-right: 0 !important;
           }
+          /* ActionSheetHero (Three controls for the shelf) — the
+             phone-mat section Alfonso saw bleeding past the right
+             viewport edge on iPhone 12. Clip anything that computes
+             wider than the section. overflow-x: clip is safer than
+             hidden because it does not create a scroll container,
+             so it does not break sticky positioning on ancestors. */
+          section[aria-label="Three controls for the shelf"] {
+            overflow-x: clip !important;
+            max-width: 100% !important;
+          }
+          section[aria-label="Three controls for the shelf"] > div {
+            max-width: 100% !important;
+          }
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
           .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
