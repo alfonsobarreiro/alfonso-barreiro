@@ -116,8 +116,14 @@ export default function DiagnosticFlowDemo() {
       role="region"
       aria-label="Interactive diagnostic flow demo"
       style={{
-        background:    c.paper,
+        background:    "#FAFAF9",
         border:        `1px solid ${c.border}`,
+        /* 4px crimson left rail — matches the signature aside recipe
+           shared by WhatICut / EarlyOutcomes / HonestRisks / the
+           AssessmentFunnelFlow aside. Without this, the demo read as a
+           foreign element next to the crimson-rail asides it sits
+           between. This declares it a native member of the aside family. */
+        borderLeft:    `4px solid ${c.brand}`,
         padding:       "clamp(24px, 4vw, 48px)",
         fontFamily:    font.sans,
         color:         c.ink,

@@ -515,6 +515,25 @@ export default function WayfarerV2() {
                   if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
                 });
               });
+
+              /* Deep-link + back/forward hashchange sync — matches the
+                 pattern the Spotify chip nav uses so external
+                 #arc-decisions links (from resume PDFs, Slack forwards,
+                 SEO snippets) land with the right chip painted and
+                 scroll to the target through our custom nav-stack math. */
+              function syncFromHash() {
+                var m = /^#arc-(premise|research|decisions|details)$/.exec(window.location.hash || '');
+                if (!m) return;
+                var key = m[1];
+                var target = document.getElementById('arc-' + key);
+                if (!target) return;
+                anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                if (map[key]) map[key].setAttribute('data-active', 'true');
+                var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+              window.addEventListener('hashchange', syncFromHash);
+              if (window.location.hash) setTimeout(syncFromHash, 200);
               return true;
             }
             if (document.readyState === 'complete' || document.readyState === 'interactive') {
@@ -703,8 +722,19 @@ export default function WayfarerV2() {
             </div>
           </div>
           {/* Try the live globe yourself — embedded iframe of the
-              production site. The kept surface, working in place. */}
-          <div style={{ padding: `0 ${SECTION_X} 64px` }}>
+              production site. Lifted OUT of the DECISIONS arc tint via
+              a full-viewport white bleed so it visually separates from
+              the static globe hero above and CutVsKept below, reading
+              as its own "try it" moment. Matches Spotify's
+              RecentlyPlayedDemo pattern. */}
+          <div style={{
+            marginTop: "16px",
+            marginBottom: "80px",
+            marginLeft: "calc(50% - 50vw)",
+            marginRight: "calc(50% - 50vw)",
+            background: "#FFFFFF",
+            padding: `clamp(56px, 8vw, 96px) ${SECTION_X}`,
+          }}>
             <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
               <GlobeIframeDemo />
             </div>

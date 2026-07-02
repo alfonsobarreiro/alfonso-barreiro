@@ -36,11 +36,23 @@ export default function GlobeIframeDemo() {
     <section
       aria-label="Try the live globe"
       style={{
-        background: c.paper,
-        border:     `1px solid ${c.border}`,
-        padding:    "clamp(24px, 4vw, 48px)",
-        fontFamily: font.sans,
-        color:      c.ink,
+        background:    c.paper,
+        border:        `1px solid ${c.border}`,
+        borderLeft:    "none",
+        /* Signature three-stack left bar (navy / Deep Teal / ink) —
+           the visual wordmark reused across every Decision Callout on
+           this case study. Declares the demo as a native member of the
+           decision family rather than a supporting artifact. */
+        backgroundImage: `linear-gradient(to bottom, ${c.navy} 0%, ${c.navy} 33.33%, ${c.accent} 33.33%, ${c.accent} 66.66%, ${c.ink} 66.66%, ${c.ink} 100%)`,
+        backgroundSize:     "6px 100%",
+        backgroundRepeat:   "no-repeat",
+        backgroundPosition: "left top",
+        paddingTop:    "clamp(24px, 4vw, 48px)",
+        paddingRight:  "clamp(24px, 4vw, 48px)",
+        paddingBottom: "clamp(24px, 4vw, 48px)",
+        paddingLeft:   "calc(clamp(24px, 4vw, 48px) + 6px)",
+        fontFamily:    font.sans,
+        color:         c.ink,
       }}
     >
       <header style={{ marginBottom: "20px" }}>
