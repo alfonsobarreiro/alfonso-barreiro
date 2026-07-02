@@ -384,6 +384,12 @@ export default function AboutPage() {
               .about-stats-grid {
                 grid-template-columns: 1fr 1fr 1fr !important;
                 gap: 12px !important;
+                /* Top-align on mobile so the three numerals sit on the
+                   same baseline. The desktop "end" alignment made the
+                   3 cell drift lower than 15 / 4+ because its shorter
+                   caption produced a shorter cell, and end-alignment
+                   pushed the number up from below. */
+                align-items: start !important;
               }
               .about-stats-grid p:first-child {
                 font-size: clamp(40px, 14vw, 64px) !important;
