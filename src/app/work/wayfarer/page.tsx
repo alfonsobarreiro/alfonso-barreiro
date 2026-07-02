@@ -643,30 +643,34 @@ export default function WayfarerV2() {
               left: 0 !important;
               right: 0 !important;
               top: 72px !important;
-              padding: 6px 0 !important;
+              padding: 0 !important;
             }
-            .wf2-arc-nav ul { gap: 8px !important; }
-            /* Mobile: kill underlines entirely and indicate current
-               section with a filled chip. Underlines on a compact strip
-               read as busy; a solid pill reads instantly. */
+            .wf2-arc-nav ul { gap: 0 !important; }
+            /* Anchor sized to fit four cells at 390 px viewport. */
             .wf2-arc-nav a  {
               font-size: 11px !important;
-              padding: 6px 10px !important;
-              border-bottom: none !important;
-              color: ${c.muted} !important;
+              padding: 12px 4px !important;
+              letter-spacing: 0.06em !important;
+              gap: 4px !important;
+              color: ${c.ink2} !important;
               transition: background 0.15s ease, color 0.15s ease !important;
             }
+            /* Active state — same Deep Teal inset underline the desktop
+               nav uses. Replaces the old navy filled pill so the visual
+               language is consistent across breakpoints. */
             .wf2-arc-nav a[data-active] {
-              background: ${c.navy} !important;
-              color: #FFFFFF !important;
-              border-bottom: none !important;
+              color: var(--color-accent) !important;
+              background: rgba(15,61,62,0.06) !important;
+              box-shadow: inset 0 -4px 0 var(--color-accent) !important;
               font-weight: 700 !important;
+              border-bottom: none !important;
             }
-            /* Hide the 01/02/03 numerals on phones to recover horizontal
-               space without losing the chip-nav itself. */
-            .wf2-arc-nav a span:first-child { display: none !important; }
+            .wf2-arc-nav a[data-active] span:first-child {
+              opacity: 1 !important;
+              color: var(--color-accent) !important;
+            }
             /* The fixed nav lifts out of flow — push subsequent content
-               down by the nav's height (~36px after compaction). */
+               down by the nav's height. */
             .wf2-arc-nav + script + style + div { padding-top: 36px !important; }
           }
         `}</style>
