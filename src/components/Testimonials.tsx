@@ -116,13 +116,13 @@ export default function Testimonials() {
               <blockquote style={{ margin: 0 }}>
                 {/* Pull-quote */}
                 <p style={{
-                  fontFamily: font.serif,
-                  fontStyle:  "italic",
-                  fontSize:   "clamp(22px, 2.4vw, 30px)",
-                  lineHeight: 1.25,
-                  letterSpacing: "-0.01em",
-                  color: c.ink,
-                  margin: "0 0 24px",
+                  fontFamily:    font.sans,
+                  fontSize:      "clamp(22px, 2.4vw, 30px)",
+                  fontWeight:    400,
+                  lineHeight:    1.25,
+                  letterSpacing: "-0.02em",
+                  color:         c.ink,
+                  margin:        "0 0 24px",
                 }}>
                   &ldquo;{t.pull}&rdquo;
                 </p>

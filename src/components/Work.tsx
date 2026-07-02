@@ -200,7 +200,7 @@ export default function Work() {
                 maxWidth:     "620px",
               }}
             >
-              Four case studies at three scales of proof. One live product with metrics coming in. One live product built as concept. One concept scoped like a hire. One design-system tour of the ground the others stand on.
+              Three projects, three different problems. A concept scoped like a hire, a live product built like a concept, and a live product with the receipts.
             </p>
           </div>
         </div>
@@ -322,16 +322,26 @@ function ProjectCard({
   /* Per-project brand-anchored backdrop. Each row gets its own
      atmosphere so the section reads as three editorial spreads instead
      of three template instances. */
+  /* All three case-study rows share the same radial rhythm now:
+     ellipse anchored slightly-high-center, ~30 units of lightness
+     spread from center to edge. Prior Spotify gradient was too tight
+     to read as radial; prior Wayfarer was solid. Palettes stay
+     brand-anchored (Spotify Jet, Wayfarer navy, MSR neutral gray). */
   const shellBg = isSpotify
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1F1F1F 0%, #121212 60%, #0A0A0A 100%)"
+    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2E2E2E 0%, #181818 60%, #0A0A0A 100%)"
     : isWayfarer
-    /* Wayfarer: solid dark navy (was a radial gradient that competed
-       with the video's baked-in background, reading as "blue inside
-       blue"). Solid #1E1C3A lets the iPad sit cleanly on one tone. */
-    ? "#1E1C3A"
+    /* Wayfarer row: SOLID #1F1C3B — the exact hex the video's baked
+       backdrop uses in every sampled edge pixel (ffmpeg + PIL).
+       Any radial with a lifted center reads as purple-inside-navy;
+       matching the video exactly makes shell + video read as one
+       continuous field. */
+    ? "#1F1C3B"
     : isMSR
-    /* MSR brand ink #13100C (warm editorial near-black) anchored gradient. */
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2A2218 0%, #13100C 60%, #080604 100%)"
+    /* MSR row: dark neutral gray gradient. The MacBook Pro's Space
+       Black chassis was disappearing against warm ink #13100C; a
+       medium-dark gray backdrop lets the device silhouette read
+       cleanly. Keeps the radial rhythm the Spotify row uses. */
+    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #4A4A4A 0%, #333333 60%, #262626 100%)"
     : isABD
     /* ABD UI: dark slate ground with cyan-ink center so the system
        screenshot reads as software-on-display, not a fourth case-
@@ -460,12 +470,12 @@ function ProjectCard({
 
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(36px, 5vw, 68px)",
-        fontWeight:    600,
+        fontSize:      "clamp(28px, 3.4vw, 44px)",
+        fontWeight:    500,
         color:         "#252B28",
         margin:        "0 0 18px",
         letterSpacing: "-0.03em",
-        lineHeight:    1.05,
+        lineHeight:    1.1,
       }}>
         {project.thesis}
       </p>

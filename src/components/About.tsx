@@ -61,19 +61,19 @@ const pillDefault: React.CSSProperties = {
 };
 const skillGroups = [
   {
-    category: "Research & Discovery",
-    value:    "Sharpens the problem before the team commits. Cuts the false-start weeks where a beautiful answer gets built for the wrong brief.",
-    skills:   ["User Interviews", "Competitive Analysis", "Heuristic Evaluation", "AI-Assisted Research"],
+    category: "Research",
+    value:    "I ask the question that makes the roadmap shorter, not longer.",
+    skills:   ["User Interviews", "Job Stories", "Competitive Teardown"],
   },
   {
-    category: "Design & Systems",
-    value:    "Tokenized systems halve handoff time and let multiple products share one vocabulary. Accessibility shipped from day one, not patched in QA.",
-    skills:   ["Interaction Design", "Design Systems", "Accessibility (WCAG)", "Responsive UI"],
+    category: "Systems",
+    value:    "I build the system first because the button has to get designed once.",
+    skills:   ["Figma", "Design Tokens", "Component API"],
   },
   {
-    category: "Delivery & Craft",
-    value:    "Prototypes that earn their keep. Usability findings that move the next sprint, not the next slide. Dev handoff that engineers actually use.",
-    skills:   ["Figma", "Prototyping", "Dev Handoff", "Usability Testing"],
+    category: "Delivery",
+    value:    "I ship it in the browser because Figma stops being the source of truth the day a dev opens it.",
+    skills:   ["Next.js", "Tailwind", "Accessibility"],
   },
 ];
 

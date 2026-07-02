@@ -255,9 +255,9 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
               display: "block", marginBottom: "12px",
             }}>{number}</span>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              fontFamily: font.sans, fontSize: "clamp(48px, 7vw, 84px)",
+              fontWeight: 500, color: c.ink, margin: 0,
+              letterSpacing: "-0.035em", lineHeight: 1.0,
             }}>{heading}.</h2>
           </div>
           <div>
@@ -436,16 +436,120 @@ export default function SpotifyV2() {
 
         {/* Interactive demo — the spec lives above (DecisionLogic), the
             real interaction sits here so the reader operates the model
-            instead of just reading about it. Reduced-motion-aware,
-            keyboard-operable, with snackbar undo. Lifted OUT of the
-            DETAILS arc tint so it visually separates from Pause and
-            reads as its own "try it" moment. */}
+            instead of just reading about it. Framed as the crown-jewel
+            proof: editorial arrival, a monospace constants line that
+            names the spec numbers the demo enforces, then a dark c.jet
+            presentation mat so the interaction reads as a shipped
+            object, not a component-library sample. */}
         <section
           aria-label="Try the three controls"
-          style={{ background: "#FFFFFF", padding: `clamp(56px, 8vw, 96px) clamp(24px, 6vw, 80px)` }}
+          style={{
+            background:  c.jet,
+            color:       "#FAFAF9",
+            padding:     `clamp(80px, 10vw, 128px) clamp(24px, 6vw, 80px)`,
+            marginLeft:  "calc(50% - 50vw)",
+            marginRight: "calc(50% - 50vw)",
+          }}
         >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
-            <RecentlyPlayedDemo />
+            <div style={{ maxWidth: "780px", marginBottom: "clamp(56px, 7vw, 88px)" }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    700,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color:         c.green,
+                margin:        "0 0 20px",
+              }}>Proof &nbsp;·&nbsp; try the three controls</p>
+              <h2 style={{
+                fontFamily:    font.sans,
+                fontSize:      "clamp(40px, 6vw, 72px)",
+                fontWeight:    500,
+                color:         "#FAFAF9",
+                margin:        "0 0 20px",
+                letterSpacing: "-0.035em",
+                lineHeight:    1,
+              }}>
+                Read the spec. Then try it.
+              </h2>
+              <p style={{
+                fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
+                lineHeight: 1.65, color: "rgba(250,250,249,0.72)",
+                margin: "0 0 28px", maxWidth: "60ch",
+              }}>
+                The state machine and the constants are documented above. The demo below runs against those constants. Pin caps at four. Undo lasts five seconds. Pause presets are thirty minutes, two hours, or until tomorrow.
+              </p>
+              <p style={{
+                fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
+                fontSize:      "12px",
+                letterSpacing: "0.02em",
+                color:         c.green,
+                background:    "rgba(30,215,96,0.08)",
+                border:        `1px solid rgba(30,215,96,0.35)`,
+                padding:       "10px 14px",
+                display:       "inline-block",
+                margin:        0,
+              }}>
+                PIN_CAP = 4 &nbsp;·&nbsp; UNDO_WINDOW = 5s &nbsp;·&nbsp; PAUSE_PRESETS = [30m, 2h, tomorrow]
+              </p>
+            </div>
+
+            {/* Demo sits directly on the c.jet ground now. The prior
+                white wrapper cut a jarring bright band between the
+                constants line and the widget; the widget carries its
+                own dark chrome, so the outer container is redundant. */}
+            <div style={{ color: c.ink }}>
+              <RecentlyPlayedDemo />
+            </div>
+
+            <div style={{
+              display:     "flex",
+              flexWrap:    "wrap",
+              gap:         "12px",
+              marginTop:   "clamp(32px, 4vw, 48px)",
+              alignItems:  "center",
+            }}>
+              <span style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    700,
+                letterSpacing: "0.20em",
+                textTransform: "uppercase",
+                color:         "rgba(250,250,249,0.55)",
+                marginRight:   "8px",
+              }}>Keyboard</span>
+              {[
+                { key: "P",     label: "Pin selected tile" },
+                { key: "R",     label: "Remove selected tile" },
+                { key: "Space", label: "Pause and resume" },
+                { key: "⌘Z",    label: "Undo the last change" },
+              ].map((k) => (
+                <span
+                  key={k.key}
+                  style={{
+                    display:        "inline-flex",
+                    alignItems:     "center",
+                    gap:            "8px",
+                    padding:        "8px 4px",
+                    fontFamily:     font.sans,
+                    fontSize:       "12px",
+                    color:          "rgba(250,250,249,0.82)",
+                    letterSpacing:  "0.02em",
+                  }}
+                >
+                  <kbd style={{
+                    fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontSize:      "11px",
+                    fontWeight:    700,
+                    padding:       "3px 8px",
+                    background:    "rgba(30,215,96,0.15)",
+                    color:         c.green,
+                  }}>{k.key}</kbd>
+                  {k.label}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -577,22 +681,104 @@ export default function SpotifyV2() {
           </div>
         </section>
 
-        {/* Meta block — 4 columns at desktop so each cell holds its
-            value on one line instead of wrapping to 2-3. Status + Type
-            merged into "Status." */}
-        <section aria-label="Case study metadata" style={{
-          borderTop: `1px solid ${c.border}`,
-          padding: `64px ${SECTION_X}`, background: c.surface,
+        {/* Design log closer — dated working-process entries in place
+            of the four-cell resume-slug meta strip. Six real notes
+            from the Figma file, in order of when they happened.
+            MetaCells drop to a fine-print colophon row above. */}
+        <section aria-label="Design log and colophon" style={{
+          borderTop:  `1px solid ${c.border}`,
+          padding:    `clamp(72px, 10vw, 128px) ${SECTION_X} clamp(48px, 6vw, 80px)`,
+          background: c.surface,
         }}>
-          <div style={{
-            maxWidth: CONTENT_MAX, margin: "0 auto",
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "32px",
-          }} className="sp2-meta">
-            <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
-            <MetaCell label="Year"   value="2025" />
-            <MetaCell label="Stack"  value="Figma · Principle · After Effects" />
-            <MetaCell label="Status" value="Self-directed concept · not shipped" />
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+
+            {/* Demoted MetaCells row — fine-print colophon. */}
+            <div style={{
+              display:             "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap:                 "24px",
+              paddingBottom:       "clamp(48px, 6vw, 80px)",
+              marginBottom:        "clamp(48px, 6vw, 80px)",
+              borderBottom:        `1px solid ${c.border}`,
+            }} className="sp2-meta-caption">
+              {[
+                { label: "Role",   value: "UX/UI Designer · End-to-end" },
+                { label: "Year",   value: "2025" },
+                { label: "Stack",  value: "Figma · Principle · After Effects" },
+                { label: "Status", value: "Self-directed concept · not shipped" },
+              ].map((m) => (
+                <div key={m.label}>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "9px", fontWeight: 700,
+                    letterSpacing: "0.20em", textTransform: "uppercase",
+                    color: c.muted, margin: "0 0 4px",
+                  }}>{m.label}</p>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "12px",
+                    color: c.ink2, margin: 0, lineHeight: 1.5,
+                  }}>{m.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.muted, margin: "0 0 20px",
+            }}>
+              Design log &nbsp;·&nbsp; the receipts
+            </p>
+            <h2 style={{
+              fontFamily: font.sans, fontSize: "clamp(28px, 3.6vw, 44px)",
+              fontWeight: 500, color: c.ink, margin: "0 0 48px",
+              letterSpacing: "-0.02em", lineHeight: 1.15, maxWidth: "24ch",
+            }}>
+              What actually happened, in order.
+            </h2>
+
+            <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: 0 }}>
+              {[
+                { date: "Feb 04, 2025", note: "First stakeholder read of the brief. Framed the problem as agency without signal loss, not history editing." },
+                { date: "Feb 12, 2025", note: "Ruled out permanent pause. Time-boxing survived the ML-signal-integrity review." },
+                { date: "Mar 03, 2025", note: "Cap set at four pins after engineering flagged shelf-perf degradation and ranking-signal noise past four." },
+                { date: "Mar 21, 2025", note: "Undo window locked at five seconds. Matches the existing snackbar pattern; nothing new for the user to learn." },
+                { date: "Apr 08, 2025", note: "Mobile long-press vs desktop right-click parity confirmed. Affordance changes, state machine does not." },
+                { date: "May 02, 2025", note: "Reduced-motion path documented. Every animated state has a static fallback that carries the same information." },
+              ].map((r, idx, arr) => (
+                <li key={r.date} style={{
+                  display:             "grid",
+                  gridTemplateColumns: "clamp(120px, 14vw, 180px) 1fr",
+                  gap:                 "clamp(20px, 3vw, 40px)",
+                  alignItems:          "baseline",
+                  paddingBlock:        "clamp(18px, 2.5vw, 26px)",
+                  borderTop:           `1px solid ${c.border}`,
+                  borderBottom:        idx === arr.length - 1 ? `1px solid ${c.border}` : "none",
+                }}>
+                  <span style={{
+                    fontFamily:         "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontSize:           "12px",
+                    fontWeight:         600,
+                    letterSpacing:      "0.02em",
+                    color:              c.accent,
+                    fontVariantNumeric: "tabular-nums",
+                    textTransform:      "uppercase",
+                  }}>{r.date}</span>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "clamp(15px, 1.6vw, 17px)",
+                    color: c.ink, margin: 0, lineHeight: 1.6,
+                  }}>{r.note}</p>
+                </li>
+              ))}
+            </ol>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.brand, margin: "clamp(48px, 6vw, 80px) 0 0",
+              textAlign: "right",
+            }}>
+              Signed &nbsp;·&nbsp; Alfonso Barreiro
+            </p>
           </div>
         </section>
         </div>
@@ -1082,12 +1268,12 @@ function DecisionLogic() {
       // and cover-crop so every cell in the grid has identical height.
       aspectRatio: "1554 / 1260",
       frames: [
-        { src: "/images/work/spotify/v2/wf-pin-01.png", label: "Long-press a tile → Action sheet opens → Pin artist." },
-        { src: "/images/work/spotify/v2/wf-pin-02.png", label: "Pinned row appears → toast \"Pinned. Undo.\"" },
-        { src: "/images/work/spotify/v2/wf-pin-03.png", label: "Pin reorders to the first slot." },
-        { src: "/images/work/spotify/v2/wf-pin-04.png", label: "Unpin from menu → toast." },
-        { src: "/images/work/spotify/v2/wf-pin-05.png", label: "Pin a fifth item → limit modal." },
-        { src: "/images/work/spotify/v2/wf-pin-06.png", label: "Choose a replacement → swap → toast." },
+        { src: "/images/work/spotify/v2/wf-pin-01.png", beat: "Long-press.",       body: "The action sheet opens with Pin sitting at the top of the list." },
+        { src: "/images/work/spotify/v2/wf-pin-02.png", beat: "The tile locks in.",  body: "A Pinned snackbar with Undo runs for five seconds so the choice stays reversible." },
+        { src: "/images/work/spotify/v2/wf-pin-03.png", beat: "Order settles.",    body: "The pin takes the first slot and holds it, regardless of what plays next." },
+        { src: "/images/work/spotify/v2/wf-pin-04.png", beat: "Long-press again.", body: "The same menu opens with Unpin as the primary option so undo stays cheap." },
+        { src: "/images/work/spotify/v2/wf-pin-05.png", beat: "Cap hits at four.", body: "A limit modal names the ceiling and offers to swap rather than a soft warning toast." },
+        { src: "/images/work/spotify/v2/wf-pin-06.png", beat: "Pick a swap.",      body: "The new tile takes the freed slot and a confirmation toast closes the loop." },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1108,11 +1294,11 @@ function DecisionLogic() {
       // Step titles + acceptance strip stay visible.
       aspectRatio: "1000 / 1092",
       frames: [
-        { src: "/images/work/spotify/v2/wf-remove-01.png", label: "Long-press tile → Action sheet opens." },
-        { src: "/images/work/spotify/v2/wf-remove-02.png", label: "Tap Remove from Recently Played." },
-        { src: "/images/work/spotify/v2/wf-remove-03.png", label: "Item disappears → toast \"Removed. Undo.\"" },
-        { src: "/images/work/spotify/v2/wf-remove-04.png", label: "Tap Undo on the toast." },
-        { src: "/images/work/spotify/v2/wf-remove-05.png", label: "Item reappears in last spot → \"Restored.\"" },
+        { src: "/images/work/spotify/v2/wf-remove-01.png", beat: "Long-press.",     body: "The action sheet opens with Remove from Recently Played on the surface." },
+        { src: "/images/work/spotify/v2/wf-remove-02.png", beat: "Tap Remove.",     body: "The tile begins its 220 ms slide-out so the change reads as movement, not deletion." },
+        { src: "/images/work/spotify/v2/wf-remove-03.png", beat: "The row clears.", body: "A Removed snackbar with Undo runs for five seconds and holds the reversal open." },
+        { src: "/images/work/spotify/v2/wf-remove-04.png", beat: "Tap Undo.",       body: "The snackbar acknowledges the restore before the tile animates back in." },
+        { src: "/images/work/spotify/v2/wf-remove-05.png", beat: "The tile returns.", body: "It lands in its last position and a Restored toast confirms the reversal completed." },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1130,11 +1316,11 @@ function DecisionLogic() {
       surface: "Desktop",
       aspectRatio: "1554 / 1260",
       frames: [
-        { src: "/images/work/spotify/v2/wf-pause-01.png", label: "Long-press shelf header → Action sheet opens." },
-        { src: "/images/work/spotify/v2/wf-pause-02.png", label: "Tap Pause Listening History." },
-        { src: "/images/work/spotify/v2/wf-pause-03.png", label: "Pick a duration: 30 min, 2 hrs, until tomorrow." },
-        { src: "/images/work/spotify/v2/wf-pause-04.png", label: "Shelf shows paused state with visible timer." },
-        { src: "/images/work/spotify/v2/wf-pause-05.png", label: "Pause expires → toast \"Listening history resumed.\"" },
+        { src: "/images/work/spotify/v2/wf-pause-01.png", beat: "Long-press the header.",  body: "The action sheet treats the whole shelf as the target, not any single tile." },
+        { src: "/images/work/spotify/v2/wf-pause-02.png", beat: "Tap Pause.",             body: "A duration picker replaces the sheet so the next tap picks a time-box, not a toggle." },
+        { src: "/images/work/spotify/v2/wf-pause-03.png", beat: "Pick a preset.",         body: "Thirty minutes, two hours, or until tomorrow. Three answers cover every real use case." },
+        { src: "/images/work/spotify/v2/wf-pause-04.png", beat: "Paused state visible.",  body: "The shelf carries a countdown so the pause is a promise, not a hidden mode." },
+        { src: "/images/work/spotify/v2/wf-pause-05.png", beat: "Timer expires.",         body: "A toast confirms that listening history is running again before the shelf refills." },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1299,7 +1485,7 @@ function DecisionLogic() {
                     }}>
                       <Image
                         src={frame.src}
-                        alt={`Step ${idx + 1}, ${frame.label.replace(/→/g, "then")}`}
+                        alt={`Step ${idx + 1}. ${frame.beat} ${frame.body}`}
                         width={1554} height={1260}
                         sizes="(max-width: 760px) 100vw, 380px"
                         loading={idx < 2 ? "eager" : "lazy"}
@@ -1318,7 +1504,9 @@ function DecisionLogic() {
                       <span style={{ fontWeight: 700, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>{frame.label}</span>
+                      <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>
+                        <strong style={{ fontWeight: 700, color: "#FFFFFF" }}>{frame.beat}</strong>{" "}{frame.body}
+                      </span>
                     </figcaption>
                   </figure>
                 ))}
@@ -1756,9 +1944,9 @@ function ShippedSection() {
               display: "block", marginBottom: "12px",
             }}>03</span>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              fontFamily: font.sans, fontSize: "clamp(48px, 7vw, 84px)",
+              fontWeight: 500, color: c.ink, margin: 0,
+              letterSpacing: "-0.035em", lineHeight: 1.0,
             }}>
               Shipped, with receipts.
             </h2></div>
@@ -2494,23 +2682,33 @@ function UserJourney() {
         {/* Journey map — desktop renders the wide image; mobile renders
             the transposed vertical version (JourneyVerticalMobile) so the
             map reads top-to-bottom instead of horizontal-scroll. */}
-        <div className="sp2-journey-scroll sp2-journey-desktop" tabIndex={0}
+        {/* Journey map sits directly on the DECISIONS arc tint. The
+            prior white inner box + border framed the map like a
+            gallery print, which fought the dark-on-lavender rhythm
+            the rest of the arc uses. */}
+        {/* Journey map — no aspect-ratio container, no max-height,
+            no object-fit. Plain <Image> at natural width, height
+            auto. Full map always visible, bottom never clipped. */}
+        <div className="sp2-journey-scroll sp2-journey-desktop"
           role="region"
-          aria-label="User journey map, scroll horizontally to view all six stages"
+          aria-label="User journey map"
           style={{
-            background: "#FFFFFF", border: `1px solid ${c.border}`,
-            padding: "clamp(12px, 3vw, 40px)",
-            overflowX: "auto",
-          WebkitOverflowScrolling: "touch",
+            display:        "flex",
+            justifyContent: "center",
         }}>
           <Image
-            src="/images/work/spotify/v2/figma-user-journey.png"
+            src="/images/work/spotify/v2/figma-user-journey-final.png"
             alt="User journey map. Recently Played shelf with the three opportunity points called out."
-            width={1920} height={1080}
-            sizes="(max-width: 760px) 980px, (max-width: 1240px) 100vw, 1240px"
+            width={1920} height={1160}
+            sizes="(min-width: 1400px) 1400px, 100vw"
             quality={95}
             className="sp2-journey-img"
-            style={{ width: "100%", height: "auto", display: "block" }}
+            style={{
+              display:  "block",
+              width:    "100%",
+              height:   "auto",
+              maxWidth: "1400px",
+            }}
           />
         </div>
         <JourneyVerticalMobile />
@@ -2657,7 +2855,7 @@ function JourneyVerticalMobile() {
 
           <section style={{ marginBottom: "16px" }}>
             <p style={labelStyle}>Thought</p>
-            <p style={{ ...bodyStyle, fontStyle: "italic", color: c.ink2 }}>
+            <p style={{ ...bodyStyle, color: c.ink2 }}>
               &ldquo;{s.thought}&rdquo;
             </p>
           </section>

@@ -205,7 +205,6 @@ export default function RelatedCaseStudies({ current }: Props) {
                   fontSize:   "15px",
                   lineHeight: 1.55,
                   color:      "var(--color-accent)",
-                  fontStyle:  "italic",
                   margin:     "0 0 20px",
                 }}
               >

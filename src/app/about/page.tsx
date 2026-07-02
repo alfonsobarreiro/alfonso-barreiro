@@ -209,6 +209,117 @@ export default function AboutPage() {
             border-bottom-color: var(--color-accent-hover);
             color:               var(--color-accent-hover);
           }
+
+          /* Numbered claim rails for the two long belief stacks.
+             Hanging numeral on desktop; small eyebrow-numeral on
+             mobile so the claim never collides with the counter. */
+          .value-list  { counter-reset: value; }
+          .philo-list  { counter-reset: philo; }
+          .value-claim,
+          .philo-claim {
+            position:     relative;
+            padding-left: clamp(56px, 7vw, 88px);
+          }
+          .value-claim { counter-increment: value; }
+          .philo-claim { counter-increment: philo; }
+          .value-claim::before {
+            content:         counter(value, decimal-leading-zero);
+            position:        absolute;
+            left:            0;
+            top:             0.05em;
+            font-family:     var(--font-dm-sans), sans-serif;
+            font-size:       clamp(20px, 2.4vw, 28px);
+            font-weight:     500;
+            letter-spacing:  0.02em;
+            color:           var(--color-brand);
+            font-variant-numeric: tabular-nums;
+            line-height:     1;
+          }
+          .philo-claim::before {
+            content:         counter(philo, decimal-leading-zero);
+            position:        absolute;
+            left:            0;
+            top:             0.05em;
+            font-family:     var(--font-dm-sans), sans-serif;
+            font-size:       clamp(20px, 2.4vw, 28px);
+            font-weight:     500;
+            letter-spacing:  0.02em;
+            color:           #252B28;
+            font-variant-numeric: tabular-nums;
+            line-height:     1;
+          }
+          @media (max-width: 640px) {
+            .value-claim,
+            .philo-claim {
+              padding-left: 0;
+              padding-top:  32px;
+            }
+            .value-claim::before,
+            .philo-claim::before {
+              font-size:      12px;
+              font-weight:    700;
+              letter-spacing: 0.22em;
+              top:            0;
+            }
+          }
+
+          /* RemoteTimeline: bars are hover/focus reveals for their
+             matching chapter card. No jump, no outline. Base colors
+             are set via CSS (not inline) so :has() can override the
+             card background without an !important fight. On hover
+             or keyboard focus the bar shifts to a fuller color and
+             the corresponding card underneath fills with light gray. */
+          .rt-bar {
+            display:    block;
+            position:   absolute;
+            border:     0;
+            padding:    0;
+            cursor:     pointer;
+            transition: background 0.18s ease;
+          }
+          .rt-bar[data-tier="office"] { background: #7A7773; }
+          .rt-bar[data-tier="remote"] { background: var(--color-brand); }
+          .rt-bar[data-tier="office"]:hover,
+          .rt-bar[data-tier="office"]:focus-visible { background: #252B28; outline: none; }
+          .rt-bar[data-tier="remote"]:hover,
+          .rt-bar[data-tier="remote"]:focus-visible { background: #B72222; outline: none; }
+          .rt-bar[data-last="false"] { border-right: 1px solid rgba(255,255,255,0.7); }
+
+          .rt-chapter-card {
+            background: #FFFFFF;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+          }
+          .rt-outer:has(.rt-bar[data-idx="0"]:hover)         .rt-chapter-card[data-idx="0"],
+          .rt-outer:has(.rt-bar[data-idx="0"]:focus-visible) .rt-chapter-card[data-idx="0"],
+          .rt-outer:has(.rt-bar[data-idx="1"]:hover)         .rt-chapter-card[data-idx="1"],
+          .rt-outer:has(.rt-bar[data-idx="1"]:focus-visible) .rt-chapter-card[data-idx="1"],
+          .rt-outer:has(.rt-bar[data-idx="2"]:hover)         .rt-chapter-card[data-idx="2"],
+          .rt-outer:has(.rt-bar[data-idx="2"]:focus-visible) .rt-chapter-card[data-idx="2"],
+          .rt-outer:has(.rt-bar[data-idx="3"]:hover)         .rt-chapter-card[data-idx="3"],
+          .rt-outer:has(.rt-bar[data-idx="3"]:focus-visible) .rt-chapter-card[data-idx="3"],
+          .rt-outer:has(.rt-bar[data-idx="4"]:hover)         .rt-chapter-card[data-idx="4"],
+          .rt-outer:has(.rt-bar[data-idx="4"]:focus-visible) .rt-chapter-card[data-idx="4"],
+          .rt-outer:has(.rt-bar[data-idx="5"]:hover)         .rt-chapter-card[data-idx="5"],
+          .rt-outer:has(.rt-bar[data-idx="5"]:focus-visible) .rt-chapter-card[data-idx="5"] {
+            background: #EDEFF2;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .rt-bar,
+            .rt-chapter-card { transition: none; }
+          }
+          .rt-now-marker {
+            position:        absolute;
+            transform:       translateX(-50%);
+            top:             -22px;
+            font-family:     var(--font-dm-sans), sans-serif;
+            font-size:       10px;
+            font-weight:     700;
+            letter-spacing:  0.22em;
+            text-transform:  uppercase;
+            color:           var(--color-brand);
+            pointer-events:  none;
+          }
         `}</style>
 
         {/* ── Hero ───────────────────────────────────────────────────── */}
@@ -468,29 +579,29 @@ export default function AboutPage() {
         {/* ── Where I add value — the business-benefit beats lifted from
              the resume. Converts the craft signal into a hire signal so a
              skimming hiring manager sees what they get if they bring me on. */}
-        <section aria-label="Where I add value" style={sectionWrapper("#F4F6F7")}>
+        <section aria-label="Where I add value" className="value-list" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Where I add value</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
               The shorter version of how the work pays back.
             </p>
 
-            <p style={beliefClaim}>I frame the problem before Figma opens.</p>
+            <p style={beliefClaim} className="value-claim">I frame the problem before Figma opens.</p>
             <p style={beliefBody}>
               Most design hours go to the wrong question. I push for a sharp problem statement at the start so the team doesn&apos;t spend three weeks building a beautiful answer to the wrong brief. The case studies show the artifact; the savings happen earlier.
             </p>
 
-            <p style={beliefClaim}>I tie design decisions to business outcomes.</p>
+            <p style={beliefClaim} className="value-claim">I tie design decisions to business outcomes.</p>
             <p style={beliefBody}>
               Revenue, retention, ship dates, ML-signal integrity. Every callout you see in the case studies names a trade-off in those terms. Stakeholders stop arguing about taste when the cost is named in the language they already track.
             </p>
 
-            <p style={beliefClaim}>I talk fluently with PMs, engineers, and stakeholders.</p>
+            <p style={beliefClaim} className="value-claim">I talk fluently with PMs, engineers, and stakeholders.</p>
             <p style={beliefBody}>
               Eighteen years across marketing, operations, and product mean I can hold a technical review, a stakeholder briefing, and a research synthesis without translation cost. Less translation, fewer meetings, fewer surprises.
             </p>
 
-            <p style={beliefClaim}>I run AI-augmented research and synthesis.</p>
+            <p style={beliefClaim} className="value-claim">I run AI-augmented research and synthesis.</p>
             <p style={{ ...beliefBody, marginBottom: 0 }}>
               Claude for clustering 200-plus community posts. AI-assisted competitive audits. AI-augmented production workflows that cut a creative team&apos;s timelines twenty percent at VARA without dropping quality. The model is the second pair of hands, not the designer.
             </p>
@@ -531,14 +642,14 @@ export default function AboutPage() {
         </section>
 
         {/* ── How I think about the work ─────────────────────────────── */}
-        <section aria-label="How I think about the work" style={sectionWrapper("#F4F6F7")}>
+        <section aria-label="How I think about the work" className="philo-list" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>How I think about the work</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
               A few things I&apos;ve come to believe.
             </p>
 
-            <p style={beliefClaim}>Design is decision-making.</p>
+            <p style={beliefClaim} className="philo-claim">Design is decision-making.</p>
             <p style={beliefBody}>
               Everything visible on a screen is a record of choices someone made, and
               could have made differently. If you can&apos;t explain what you
@@ -546,7 +657,7 @@ export default function AboutPage() {
               shipped it.
             </p>
 
-            <p style={beliefClaim}>Problem framing comes before pixels.</p>
+            <p style={beliefClaim} className="philo-claim">Problem framing comes before pixels.</p>
             <p style={beliefBody}>
               Most designs fail at the question, not the execution. What problem,
               for whom, under what constraints, and what would success actually mean.
@@ -554,19 +665,19 @@ export default function AboutPage() {
               world won&apos;t save the work.
             </p>
 
-            <p style={beliefClaim}>Prototypes are probes, not proof.</p>
+            <p style={beliefClaim} className="philo-claim">Prototypes are probes, not proof.</p>
             <p style={beliefBody}>
               You build them to find out, not to convince. If you can&apos;t name in
               one sentence what the prototype is trying to teach you, you&apos;re
               producing, not prototyping.
             </p>
 
-            <p style={beliefClaim}>The best design decisions are also the cleanest business calls.</p>
+            <p style={beliefClaim} className="philo-claim">The best design decisions are also the cleanest business calls.</p>
             <p style={beliefBody}>
               When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
             </p>
 
-            <p style={beliefClaim}>Translation cost between disciplines is real.</p>
+            <p style={beliefClaim} className="philo-claim">Translation cost between disciplines is real.</p>
             <p style={{ ...beliefBody, marginBottom: 0 }}>
               Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
             </p>
@@ -748,7 +859,7 @@ function RemoteTimeline() {
   const yearTicks = [2010, 2014, 2018, 2020, 2024];
 
   return (
-    <div style={{ width: "100%" }}>
+    <div className="rt-outer" style={{ width: "100%" }}>
       {/* Top eyebrow */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -799,34 +910,49 @@ function RemoteTimeline() {
           })}
         </div>
 
-        {/* Bars row */}
+        {/* Bars row. Each bar is an anchor link to its chapter card
+            below the strip. Keyboard-focusable, screen-reader-labeled,
+            and honors prefers-reduced-motion via the .rt-bar rules. */}
         <div style={{
           position: "relative",
           height: "44px",
           background: "#ECEFF3",
           border: "1px solid var(--color-border)",
         }}>
-          {chapters.map((ch) => {
+          {chapters.map((ch, idx) => {
             const leftPct  = ((ch.start - TIMELINE_START) / YEARS) * 100;
             const widthPct = ((ch.end - ch.start) / YEARS) * 100;
+            const endLabel = ch.end >= 2025.4 ? "now" : String(Math.floor(ch.end));
+            /* Background, hover color, and right border all live in
+               CSS so the :has() card highlight below can win over
+               inline styles without an !important fight. */
             return (
-              <div
+              <button
                 key={ch.name + ch.start}
-                title={`${ch.role} · ${ch.name} · ${Math.floor(ch.start)}–${ch.end >= 2025.4 ? "now" : Math.floor(ch.end)}`}
+                type="button"
+                data-idx={idx}
+                data-tier={ch.remote ? "remote" : "office"}
+                data-last={ch.end >= 2025.4 ? "true" : "false"}
+                className="rt-bar"
+                aria-label={`${ch.role} at ${ch.name}, ${Math.floor(ch.start)} to ${endLabel}${ch.remote ? ", remote" : ""}. Highlights the matching chapter card below.`}
                 style={{
-                  position:   "absolute",
-                  top:        "4px",
-                  bottom:     "4px",
-                  left:       `${leftPct}%`,
-                  width:      `${widthPct}%`,
-                  background: ch.remote ? "var(--color-brand)" : "#252B28",
-                  opacity:    0.92,
-                  borderRight: ch.end < 2025.4 ? "1px solid rgba(255,255,255,0.7)" : "none",
-                  cursor:     "default",
+                  top:   "4px",
+                  bottom:"4px",
+                  left:  `${leftPct}%`,
+                  width: `${widthPct}%`,
                 }}
               />
             );
           })}
+
+          {/* NOW marker over the current chapter, right-edge aligned. */}
+          <span
+            aria-hidden="true"
+            className="rt-now-marker"
+            style={{ left: "100%" }}
+          >
+            Now
+          </span>
 
           {/* 2020 dashed marker */}
           <span style={{
@@ -887,17 +1013,21 @@ function RemoteTimeline() {
         gridTemplateColumns: "repeat(3, 1fr)",
         gap:                 "16px",
       }}>
-        {chapters.map((ch) => {
+        {chapters.map((ch, idx) => {
           const yearLabel = ch.end >= 2025.4
             ? `${Math.floor(ch.start)} to now`
             : `${Math.floor(ch.start)} to ${Math.floor(ch.end)}`;
           return (
-            <article key={ch.name + ch.start} style={{
-              background:  "#FFFFFF",
-              border:      "1px solid var(--color-border)",
-              borderTop:   `3px solid ${ch.remote ? "var(--color-brand)" : "#252B28"}`,
-              padding:     "20px 22px",
-            }}>
+            <article
+              key={ch.name + ch.start}
+              data-idx={idx}
+              className="rt-chapter-card"
+              style={{
+                border:    "1px solid var(--color-border)",
+                borderTop: `3px solid ${ch.remote ? "var(--color-brand)" : "#252B28"}`,
+                padding:   "20px 22px",
+              }}
+            >
               <p style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "10px",

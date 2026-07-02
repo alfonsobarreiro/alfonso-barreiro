@@ -154,6 +154,42 @@ function ArcDivider({ arc }: { arc: string }) {
    section. Three "you are here" badges per section was scaffolding the
    reader didn't need. Same call we made on Spotify + Wayfarer. */
 
+/* Beat header — three named breakpoints inside the Details arc.
+   Breaks the seven-adjacent-aside monotony flagged in the SLUR
+   ceiling analysis and gives the arc a Pentagram-style act structure
+   (Evidence / Interaction / Trade-offs). Numeral leads, label
+   follows, hairline seats it on the page. */
+function BeatHeader({ n, label }: { n: string; label: string }) {
+  return (
+    <div style={{
+      display:      "flex",
+      alignItems:   "baseline",
+      gap:          "clamp(20px, 3vw, 40px)",
+      margin:       "clamp(96px, 12vw, 160px) 0 clamp(40px, 5vw, 64px)",
+      paddingBottom: "20px",
+      borderBottom: `1px solid ${c.borderStrong}`,
+    }}>
+      <span style={{
+        fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+        fontSize:           "clamp(48px, 7vw, 88px)",
+        fontWeight:         800,
+        letterSpacing:      "-0.005em",
+        color:              c.brand,
+        lineHeight:         0.95,
+        fontVariantNumeric: "tabular-nums",
+      }}>{n}</span>
+      <span style={{
+        fontFamily:    font.sans,
+        fontSize:      "clamp(16px, 1.6vw, 20px)",
+        fontWeight:    600,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         c.ink,
+      }}>Beat &nbsp;·&nbsp; {label}</span>
+    </div>
+  );
+}
+
 /* Decision callout — signature element across every case study.
    Three-stack left bar (crimson / Deep Teal / ink) is the visual
    wordmark; the Decision/Why/Cost structure is the editorial
@@ -375,55 +411,62 @@ export default function MSRv2() {
             at mobile (see media query in style block) because global
             `main { display: flex }` makes sticky unreliable at small
             viewports. */}
+        {/* Arc nav rebuilt to match Spotify's sp2-control-nav exactly:
+            solid white, grid of equal columns with divider lines,
+            13px 700 uppercase labels, and an inset bottom-underline
+            active state tinted with the site accent. */}
         <nav
           aria-label="Case study arcs"
           className="msr2-arc-nav"
           style={{
-            position:       "sticky",
-            top:            "72px",
-            zIndex:         10,
-            alignSelf:      "stretch",
-            flexShrink:     0,
-            width:          "100%",
-            background:     "rgba(255, 255, 255, 0.94)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            borderTop:      `1px solid ${c.border}`,
-            borderBottom:   `1px solid ${c.border}`,
-            padding:        "14px 0",
+            position:     "sticky",
+            top:          "72px",
+            zIndex:       10,
+            alignSelf:    "stretch",
+            flexShrink:   0,
+            width:        "100%",
+            background:   "#FFFFFF",
+            borderTop:    `1px solid ${c.border}`,
+            borderBottom: `1px solid ${c.border}`,
+            margin:       "0 0 40px",
           }}
         >
           <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
-            margin: 0, padding: `0 ${SECTION_X}`, listStyle: "none", flexWrap: "wrap",
+            display:             "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            margin:              0,
+            padding:             0,
+            listStyle:           "none",
           }}>
             {[
               { key: "premise",   label: "Premise"   },
               { key: "research",  label: "Research"  },
               { key: "decisions", label: "Decisions" },
               { key: "details",   label: "Details"   },
-            ].map((arc, i) => (
-              <li key={arc.key}>
+            ].map((arc, i, arr) => (
+              <li key={arc.key} style={{
+                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+              }}>
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
-                    fontWeight:     600,
-                    letterSpacing:  "0.06em",
+                    fontWeight:     700,
+                    letterSpacing:  "0.08em",
                     textTransform:  "uppercase",
                     color:          c.ink2,
                     textDecoration: "none",
-                    display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
+                    display:        "flex",
+                    alignItems:     "center",
+                    justifyContent: "center",
+                    gap:            "6px",
+                    padding:        "16px 8px",
+                    transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {arc.label}
@@ -446,18 +489,53 @@ export default function MSRv2() {
               if (targets.length < 4) return false;
               var map = {};
               anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
-              var obs = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) {
-                  var key = e.target.id.replace('arc-', '');
-                  var anchor = map[key];
-                  if (!anchor) return;
-                  if (e.isIntersecting) {
-                    anchors.forEach(function (a) { a.removeAttribute('data-active'); });
-                    anchor.setAttribute('data-active', 'true');
+              /* Active-state as pure function of scroll position.
+                 Retired the IntersectionObserver: with two moving
+                 pieces (IO + scroll listener) the clear-zone kept
+                 racing the activate-zone. This runs on every scroll
+                 (throttled via rAF), computes an "active line" 1/3
+                 down the viewport, and picks whichever arc contains
+                 that line. Above the first arc: no active. */
+              var activeKey = null;
+              var rafScheduled = false;
+              function computeActive() {
+                rafScheduled = false;
+                var scrollY = window.scrollY;
+                var activeLine = scrollY + window.innerHeight * 0.33;
+                var arcs = [];
+                for (var i = 0; i < targets.length; i++) {
+                  var el = targets[i];
+                  var top = el.getBoundingClientRect().top + scrollY;
+                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
+                }
+                var nextKey = null;
+                if (activeLine >= arcs[0].top) {
+                  for (var j = 0; j < arcs.length; j++) {
+                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
+                    if (activeLine >= arcs[j].top && activeLine < next) {
+                      nextKey = arcs[j].key;
+                      break;
+                    }
+                  }
+                }
+                if (nextKey === activeKey) return;
+                activeKey = nextKey;
+                anchors.forEach(function (a) {
+                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
+                    a.setAttribute('data-active', 'true');
+                  } else {
+                    a.removeAttribute('data-active');
                   }
                 });
-              }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(function (t) { obs.observe(t); });
+              }
+              function onScroll() {
+                if (rafScheduled) return;
+                rafScheduled = true;
+                requestAnimationFrame(computeActive);
+              }
+              window.addEventListener('scroll', onScroll, { passive: true });
+              window.addEventListener('resize', onScroll, { passive: true });
+              computeActive();
 
               /* Programmatic click handler — computes exact scroll
                  position so all four arcs land at the same distance
@@ -508,16 +586,19 @@ export default function MSRv2() {
         ` }} />
         <style>{`
           .msr2-arc-nav a[data-active] {
-            color: var(--color-brand) !important;
-            border-bottom-color: var(--color-brand) !important;
-            border-bottom-width: 3px !important;
+            color: var(--color-accent) !important;
+            background: rgba(15,61,62,0.06) !important;
+            box-shadow: inset 0 -4px 0 var(--color-accent) !important;
             font-weight: 700 !important;
           }
           .msr2-arc-nav a[data-active] span:first-child {
             opacity: 1 !important;
-            color: var(--color-brand) !important;
+            color: var(--color-accent) !important;
           }
-          .msr2-arc-nav a:hover { color: ${c.ink}; }
+          .msr2-arc-nav a:hover {
+            color: ${c.ink};
+            background: rgba(15,61,62,0.04);
+          }
           @media (max-width: 760px) {
             .msr2-arc-nav {
               position: fixed !important;
@@ -575,15 +656,26 @@ export default function MSRv2() {
         }}>
           <p style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(28px, 4vw, 44px)",
-            fontWeight:    500,
-            color:         c.brand,
+            fontSize:      "clamp(28px, 3.8vw, 48px)",
+            fontWeight:    400,
+            color:         c.ink,
             margin:        0,
-            lineHeight:    1.25,
-            letterSpacing: "-0.015em",
-            maxWidth:      "900px",
+            lineHeight:    1.18,
+            letterSpacing: "-0.03em",
+            maxWidth:      "22ch",
           }}>
-            &ldquo;The middle, where someone could teach men what&rsquo;s happening to their feet and what to do about it, didn&rsquo;t exist.&rdquo;
+            &ldquo;Three weeks in, the spreadsheet stopped disagreeing with the interviews. The men weren&rsquo;t shopping. They were reading.&rdquo;
+          </p>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "11px",
+            fontWeight:    700,
+            letterSpacing: "0.22em",
+            color:         c.accent,
+            textTransform: "uppercase",
+            margin:        "28px 0 0",
+          }}>
+            From the margin memo, week 3
           </p>
         </section>
 
@@ -598,7 +690,7 @@ export default function MSRv2() {
           imageCrop={null}
           body={
             <>
-              Men over 40 quietly Google their foot problems. Clinical sites scare them. Commerce sites push to them. The middle, where someone could teach them what&rsquo;s happening and what to do about it, didn&rsquo;t exist. The articles that ranked were written for women, repackaged with a stock photo of a guy.
+              Men over 40 quietly Google their foot problems. Clinical sites scare them. Commerce sites push to them. The articles that ranked were written for women, repackaged with a stock photo of a guy.
             </>
           }
           callout={{
@@ -664,13 +756,14 @@ export default function MSRv2() {
                   marginBottom:  "12px",
                 }}>02</span>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   The bet.
                 </h2></div>
@@ -772,13 +865,14 @@ export default function MSRv2() {
               <div>
                 <Eyebrow>Brand identity</Eyebrow>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   A brand that&rsquo;s actually for men.
                 </h2></div>
@@ -827,13 +921,14 @@ export default function MSRv2() {
               <div>
                 <Eyebrow>Design system</Eyebrow>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   Built once.<br/>Used everywhere.
                 </h2></div>
@@ -891,13 +986,14 @@ export default function MSRv2() {
                   marginBottom:  "12px",
                 }}>03</span>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   Shipped.
                 </h2></div>
@@ -1023,43 +1119,112 @@ export default function MSRv2() {
               </div>
             </div>
 
-            {/* Annotated assessment — Pentagram-pattern decision callouts on
-                top of the Nail Health section capture. Single visual that
-                signals "I can articulate why every component is shaped the
-                way it is." Lives between the assessment 2-up and the
-                affiliate Decision callout. */}
-            <div style={{ marginTop: "80px", marginBottom: "40px" }}>
+            {/* The Details arc runs as three named beats: EVIDENCE
+                (what the data shows), INTERACTION (try the routing
+                for yourself), TRADE-OFFS (what got cut and what could
+                still fail). The mid-arc pause is a full-bleed dark
+                block on the ten-week GA4 numbers — the page's single
+                highest hiring signal, given room to breathe. */}
+
+            <BeatHeader n="01" label="Evidence" />
+
+            <div style={{ marginTop: "40px", marginBottom: "40px" }}>
               <AnnotatedAssessment />
             </div>
 
-            <Callout
-              decision="Affiliate CTAs, not product listings."
-              why="Revenue comes from referrals, not transactions. The trust model requires editorial independence from the products reviewed."
-              cost="Lower per-conversion revenue. Slower monetization ramp."
-            />
+            <AssessmentFunnelFlow />
 
-            {/* What I cut — decision-transparency callout. Surfaces what
-                got dropped from the original scope, not just what shipped. */}
-            <WhatICut />
+            <UserResearch />
 
-            {/* Early outcomes — real GA4 data from the live site. Single
-                highest hiring signal on the page. */}
-            <EarlyOutcomes />
+            {/* Early outcomes — promoted from a crimson-rail aside to
+                a full-bleed dark editorial break so the ten-week GA4
+                numbers carry the weight they've earned. Same copy,
+                composed as a Barlow-numeral proof band. */}
+            <div style={{
+              marginTop:     "80px",
+              marginBottom:  "80px",
+              marginLeft:    "calc(50% - 50vw)",
+              marginRight:   "calc(50% - 50vw)",
+              background:    "#13100C",
+              color:         "#F5F0E8",
+              paddingTop:    "clamp(72px, 10vw, 128px)",
+              paddingBottom: "clamp(72px, 10vw, 128px)",
+              paddingLeft:   SECTION_X,
+              paddingRight:  SECTION_X,
+            }}>
+              <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "11px",
+                  fontWeight:    700,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color:         "#D2C7B4",
+                  margin:        "0 0 32px",
+                }}>
+                  Early outcomes &nbsp;·&nbsp; first 10 weeks live &nbsp;·&nbsp; GA4, Apr&ndash;Jun 2026
+                </p>
+                <div style={{
+                  display:             "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap:                 "clamp(40px, 5vw, 80px)",
+                  alignItems:          "start",
+                }} className="msr-outcomes-grid">
+                  <div>
+                    <p style={{
+                      fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                      fontSize:           "clamp(96px, 12vw, 160px)",
+                      fontWeight:         800,
+                      lineHeight:         0.9,
+                      letterSpacing:      "-0.01em",
+                      color:              "#F5F0E8",
+                      margin:             0,
+                      fontVariantNumeric: "tabular-nums",
+                    }}>4:53</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
+                      Average engaged time per session. High for a content site, and the exact signal MSR was built to produce.
+                    </p>
+                  </div>
+                  <div>
+                    <p style={{
+                      fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                      fontSize:           "clamp(96px, 12vw, 160px)",
+                      fontWeight:         800,
+                      lineHeight:         0.9,
+                      letterSpacing:      "-0.01em",
+                      color:              "#F5F0E8",
+                      margin:             0,
+                      fontVariantNumeric: "tabular-nums",
+                    }}>3.2</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
+                      Sessions per user across 41 early visitors in 6 countries with zero paid promotion. Early readers come back.
+                    </p>
+                  </div>
+                  <div>
+                    <p style={{
+                      fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                      fontSize:           "clamp(96px, 12vw, 160px)",
+                      fontWeight:         800,
+                      lineHeight:         0.9,
+                      letterSpacing:      "-0.01em",
+                      color:              "var(--color-brand)",
+                      margin:             0,
+                      fontVariantNumeric: "tabular-nums",
+                    }}>0</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
+                      Organic search clicks so far, on 4 impressions. Discovery is direct or referral. SEO is the clear next lever.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            {/* What could still go wrong — honest risks callout. Pairs
-                with EarlyOutcomes (which showed what's working) to surface
-                what's unproven. Decision-transparency move. */}
-            <HonestRisks />
+            <BeatHeader n="02" label="Interaction" />
 
             {/* Interactive diagnostic-flow demo — three-step routing
                 that mirrors the entry path of the live assessment.
                 Lifted OUT of the DETAILS arc tint via a full-viewport
-                white bleed so it visually separates from the crimson-
-                rail asides above and reads as its own "try it" moment,
-                matching Spotify's RecentlyPlayedDemo pattern. Padding
-                matches the arc-tint rhythm (40-80 top, 24-40 bottom)
-                so vertical spacing stays consistent with the
-                surrounding editorial. */}
+                white bleed so it reads as its own "try it" moment. */}
             <div style={{
               marginTop: "40px",
               marginBottom: "40px",
@@ -1076,16 +1241,22 @@ export default function MSRv2() {
               </div>
             </div>
 
-            {/* Assessment funnel visual — pairs with the Voice-of-the-User
-                callout below. Five-node horizontal flow visualizing the
-                6 → 6 → 6 → 5 → 3 funnel + the 13× return-views annotation. */}
-            <AssessmentFunnelFlow />
+            <BeatHeader n="03" label="Trade-offs" />
 
-            {/* Voice of the user — real GA4 behavioral data pulled
-                June 2026, ~10 weeks live. Three paragraphs covering the
-                editorial bet (pillar engagement), affiliate bet (review
-                read-time), and the honest scale. */}
-            <UserResearch />
+            <Callout
+              decision="Affiliate CTAs, not product listings."
+              why="Revenue comes from referrals, not transactions. The trust model requires editorial independence from the products reviewed."
+              cost="Lower per-conversion revenue. Slower monetization ramp."
+            />
+
+            {/* What I cut — decision-transparency callout. Surfaces what
+                got dropped from the original scope, not just what shipped. */}
+            <WhatICut />
+
+            {/* What could still go wrong — honest risks callout. Pairs
+                with the Early Outcomes numbers (what's working) to
+                surface what's unproven. */}
+            <HonestRisks />
           </div>
         </section>
 
@@ -1320,13 +1491,14 @@ function BigThree({
               {number}
             </span>
             <h2 style={{
-              fontFamily:    font.sans,
-              fontSize:      "clamp(32px, 4vw, 48px)",
-              fontWeight:    600,
-              color:         c.ink,
-              margin:        0,
-              letterSpacing: "-0.025em",
-              lineHeight:    1.05,
+              fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+              fontSize:       "clamp(48px, 6.5vw, 96px)",
+              fontWeight:     800,
+              textTransform:  "uppercase",
+              color:          c.ink,
+              margin:         0,
+              letterSpacing:  "-0.005em",
+              lineHeight:     0.95,
             }}>
               {heading}.
             </h2>

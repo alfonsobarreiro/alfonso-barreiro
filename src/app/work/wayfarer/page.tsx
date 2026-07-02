@@ -119,31 +119,67 @@ function Tag({ children }: { children: React.ReactNode }) {
 /* Arc divider — marks the transition between major case-study acts
    (Premise → Research → Decisions → Details). Same pattern as the
    Spotify case study; uses Wayfarer's navy as the label color. */
+/* ArcDivider rebuilt from a 1px hairline into a giant-numeral masthead.
+   Each arc opens with an oversized Roman-position numeral in Deep Teal
+   and a single-sentence thesis so the four-act structure carries
+   itself without decorative pastel washes on the sections beneath. */
+const ARC_THESES: Record<string, { n: string; thesis: string }> = {
+  Premise:   { n: "01", thesis: "The original site shipped a database. The brief needed a destination." },
+  Research:  { n: "02", thesis: "Onboarding, layout, and storytelling all pointed at the same fix." },
+  Decisions: { n: "03", thesis: "Cut booking. Keep discovery. Let the globe do the front-door work." },
+  Details:   { n: "04", thesis: "The system, the shipped screens, and the audit that runs against them." },
+};
+
 function ArcDivider({ arc }: { arc: string }) {
+  const meta = ARC_THESES[arc];
   return (
     <div
       role="separator"
       aria-label={`${arc} arc begins`}
       style={{
-        display:        "flex",
-        alignItems:     "center",
-        gap:            "20px",
-        maxWidth:       CONTENT_MAX,
-        margin:         "clamp(48px, 10vw, 120px) auto clamp(32px, 6vw, 80px)",
-        padding:        `0 ${SECTION_X}`,
+        maxWidth: CONTENT_MAX,
+        margin:   "clamp(96px, 14vw, 200px) auto clamp(48px, 8vw, 96px)",
+        padding:  `0 ${SECTION_X}`,
       }}
     >
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-      <span style={{
-        fontFamily:     font.sans,
-        fontSize:       "11px",
-        fontWeight:     700,
-        letterSpacing:  "0.30em",
-        textTransform:  "uppercase",
-        color:          c.navy,
-        whiteSpace:     "nowrap",
-      }}>{arc}</span>
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
+      <div style={{
+        display:        "grid",
+        gridTemplateColumns: "auto 1fr",
+        gap:            "clamp(32px, 5vw, 72px)",
+        alignItems:     "start",
+      }} className="wf2-arc-masthead">
+        <span style={{
+          fontFamily:         font.sans,
+          fontSize:           "clamp(120px, 20vw, 320px)",
+          fontWeight:         700,
+          letterSpacing:      "-0.045em",
+          lineHeight:         0.82,
+          color:              c.accent,
+          margin:             0,
+          fontVariantNumeric: "tabular-nums",
+        }}>{meta?.n ?? ""}</span>
+        <div style={{ paddingTop: "clamp(18px, 3vw, 40px)" }}>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "11px",
+            fontWeight:    700,
+            letterSpacing: "0.30em",
+            textTransform: "uppercase",
+            color:         c.accent,
+            margin:        "0 0 20px",
+          }}>{arc}</p>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "clamp(22px, 3vw, 34px)",
+            fontWeight:    500,
+            color:         c.ink,
+            margin:        0,
+            lineHeight:    1.2,
+            letterSpacing: "-0.02em",
+            maxWidth:      "34ch",
+          }}>{meta?.thesis ?? ""}</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -355,22 +391,22 @@ export default function WayfarerV2() {
           <Eyebrow>Concept · DesignLab · 2026</Eyebrow>
           <h1 style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(36px, 10vw, 96px)",
+            fontSize:      "clamp(44px, 11vw, 128px)",
             fontWeight:    500,
             color:         c.ink,
-            margin:        "0 0 32px",
-            letterSpacing: "-0.03em",
-            lineHeight:    1,
-            maxWidth:      "13ch",
+            margin:        "0 0 40px",
+            letterSpacing: "-0.045em",
+            lineHeight:    0.94,
+            maxWidth:      "16ch",
           }}>
-            Discover new <span style={{ color: c.brand }}>destinations</span>.
+            Invitation,<br/><span style={{ color: c.accent }}>not data.</span>
           </h1>
           <p style={{
-            fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 26px)",
-            lineHeight: 1.45, fontWeight: 400, color: c.ink2,
-            maxWidth: "640px", margin: "0 0 40px", letterSpacing: "-0.005em",
+            fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
+            lineHeight: 1.4, fontWeight: 400, color: c.ink2,
+            maxWidth: "720px", margin: "0 0 40px", letterSpacing: "-0.008em",
           }}>
-            A discovery-first travel platform with an interactive globe and a 40-destination library. Four-week DesignLab brief expanded into a working product with a documented design system.
+            Wayfarer treats travel content as a front door, not a spreadsheet. Interactive globe, forty destinations across seven continents, one editorial cover in place of the catalog the original brief asked for.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "40px" }}>
             <Tag>Information Architecture</Tag>
@@ -397,60 +433,62 @@ export default function WayfarerV2() {
             scrolls into the content arcs. Lets a recruiter jump between
             Premise / Research / Decisions / Details without a full
             scroll. Active state set by IntersectionObserver below. */}
+        {/* Arc nav rebuilt to match Spotify's sp2-control-nav exactly:
+            solid white, grid of equal columns with divider lines,
+            13px 700 uppercase labels, and an inset bottom-underline
+            active state tinted with the site accent. */}
         <nav
           aria-label="Case study arcs"
           className="wf2-arc-nav"
           style={{
-            position:       "sticky",
-            top:            "72px",
-            zIndex:         10,
-            /* Global `main { display: flex; flex-direction: column }` (set in
-               globals.css for the sticky-footer pattern) makes sticky
-               children unreliable. align-self + flex-shrink lock the nav so
-               it doesn't get stretched or squeezed by the flex layout, and
-               width: 100% ensures it spans the row. */
-            alignSelf:      "stretch",
-            flexShrink:     0,
-            width:          "100%",
-            background:     "rgba(255, 255, 255, 0.94)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            borderTop:      `1px solid ${c.border}`,
-            borderBottom:   `1px solid ${c.border}`,
-            padding:        "14px 0",
+            position:     "sticky",
+            top:          "72px",
+            zIndex:       10,
+            alignSelf:    "stretch",
+            flexShrink:   0,
+            width:        "100%",
+            background:   "#FFFFFF",
+            borderTop:    `1px solid ${c.border}`,
+            borderBottom: `1px solid ${c.border}`,
+            margin:       "0 0 40px",
           }}
         >
           <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
-            margin: 0, padding: `0 ${SECTION_X}`, listStyle: "none", flexWrap: "wrap",
+            display:             "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            margin:              0,
+            padding:             0,
+            listStyle:           "none",
           }}>
             {[
               { key: "premise",   label: "Premise"   },
               { key: "research",  label: "Research"  },
               { key: "decisions", label: "Decisions" },
               { key: "details",   label: "Details"   },
-            ].map((arc, i) => (
-              <li key={arc.key}>
+            ].map((arc, i, arr) => (
+              <li key={arc.key} style={{
+                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+              }}>
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
-                    fontWeight:     600,
-                    letterSpacing:  "0.06em",
+                    fontWeight:     700,
+                    letterSpacing:  "0.08em",
                     textTransform:  "uppercase",
                     color:          c.ink2,
                     textDecoration: "none",
-                    display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
+                    display:        "flex",
+                    alignItems:     "center",
+                    justifyContent: "center",
+                    gap:            "6px",
+                    padding:        "16px 8px",
+                    transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {arc.label}
@@ -480,18 +518,53 @@ export default function WayfarerV2() {
               if (targets.length < 4) return false;
               var map = {};
               anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
-              var obs = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) {
-                  var key = e.target.id.replace('arc-', '');
-                  var anchor = map[key];
-                  if (!anchor) return;
-                  if (e.isIntersecting) {
-                    anchors.forEach(function (a) { a.removeAttribute('data-active'); });
-                    anchor.setAttribute('data-active', 'true');
+              /* Active-state as pure function of scroll position.
+                 Retired the IntersectionObserver: with two moving
+                 pieces (IO + scroll listener) the clear-zone kept
+                 racing the activate-zone. This runs on every scroll
+                 (throttled via rAF), computes an "active line" 1/3
+                 down the viewport, and picks whichever arc contains
+                 that line. Above the first arc: no active. */
+              var activeKey = null;
+              var rafScheduled = false;
+              function computeActive() {
+                rafScheduled = false;
+                var scrollY = window.scrollY;
+                var activeLine = scrollY + window.innerHeight * 0.33;
+                var arcs = [];
+                for (var i = 0; i < targets.length; i++) {
+                  var el = targets[i];
+                  var top = el.getBoundingClientRect().top + scrollY;
+                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
+                }
+                var nextKey = null;
+                if (activeLine >= arcs[0].top) {
+                  for (var j = 0; j < arcs.length; j++) {
+                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
+                    if (activeLine >= arcs[j].top && activeLine < next) {
+                      nextKey = arcs[j].key;
+                      break;
+                    }
+                  }
+                }
+                if (nextKey === activeKey) return;
+                activeKey = nextKey;
+                anchors.forEach(function (a) {
+                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
+                    a.setAttribute('data-active', 'true');
+                  } else {
+                    a.removeAttribute('data-active');
                   }
                 });
-              }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(function (t) { obs.observe(t); });
+              }
+              function onScroll() {
+                if (rafScheduled) return;
+                rafScheduled = true;
+                requestAnimationFrame(computeActive);
+              }
+              window.addEventListener('scroll', onScroll, { passive: true });
+              window.addEventListener('resize', onScroll, { passive: true });
+              computeActive();
 
               /* Programmatic click handler — computes the exact scroll
                  position so all four arcs land at the same distance
@@ -545,16 +618,19 @@ export default function WayfarerV2() {
         ` }} />
         <style>{`
           .wf2-arc-nav a[data-active] {
-            color: ${c.navy} !important;
-            border-bottom-color: ${c.navy} !important;
-            border-bottom-width: 3px !important;
+            color: var(--color-accent) !important;
+            background: rgba(15,61,62,0.06) !important;
+            box-shadow: inset 0 -4px 0 var(--color-accent) !important;
             font-weight: 700 !important;
           }
           .wf2-arc-nav a[data-active] span:first-child {
             opacity: 1 !important;
-            color: ${c.navy} !important;
+            color: var(--color-accent) !important;
           }
-          .wf2-arc-nav a:hover { color: ${c.ink}; }
+          .wf2-arc-nav a:hover {
+            color: ${c.ink};
+            background: rgba(15,61,62,0.04);
+          }
 
           /* Fallback for narrow viewports — global "main { display: flex }"
              (set in globals.css for the sticky-footer pattern) makes
@@ -595,47 +671,14 @@ export default function WayfarerV2() {
           }
         `}</style>
 
+        <ArcDivider arc="Premise" />
+
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#EEF2F6", marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+        <div id="arc-premise" style={{ background: c.surface, marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
-        {/* ─────────────────────────────────────────────
-            Hero — live homepage screenshot.
-            Real product, not a deck slide.
-        ───────────────────────────────────────────── */}
-        <section aria-label="Wayfarer live homepage hero" style={{ padding: `0 ${SECTION_X} 80px` }}>
-          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-            <Image
-              src="/images/work/wayfarer/v2/live-homepage-hero-v2.webp"
-              alt="Wayfarer homepage. live at wayfarer.barreiro.com. Editorial cover with the globe explorer as the front door."
-              width={1600}
-              height={1000}
-              priority
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-            />
-            <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-              letterSpacing: "0.08em", textTransform: "uppercase",
-              color: c.muted, margin: "16px 0 0", textAlign: "center",
-            }}>
-              wayfarer.barreiro.com &middot; live
-            </p>
-          </div>
-        </section>
-
-        {/* ─────────────────────────────────────────────
-            Pull quote — the case's POV in one line. Plain div: no
-            heading, no need to introduce a named landmark.
-        ───────────────────────────────────────────── */}
-        <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
-          <p style={{
-            fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
-            fontWeight: 500, color: c.brand, margin: 0,
-            lineHeight: 1.25, letterSpacing: "-0.015em", maxWidth: "900px",
-          }}>
-            &ldquo;Travel content is invitation, not data. The original site treated it like data.&rdquo;
-          </p>
-        </div>
+        {/* Duplicate live-homepage hero + separate pull quote both
+            retired per the ceiling SLUR: the POV now lives in the H1,
+            and §01 below opens on the destinations grid directly. */}
 
         {/* ─────────────────────────────────────────────
             §01 — The problem
@@ -664,7 +707,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+        <div id="arc-research" style={{ background: c.surface, paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Research strip — three real research surfaces
@@ -688,7 +731,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+        <div id="arc-decisions" style={{ background: c.surface, paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Information Architecture — routes + user flow.
@@ -798,7 +841,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#ECEFF3", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+        <div id="arc-details" style={{ background: c.surface, paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Design System carousel — 3 tabs (Color, Type,
@@ -913,24 +956,123 @@ export default function WayfarerV2() {
         </section>
 
         {/* ─────────────────────────────────────────────
-            Meta block — Pentagram-style bottom strip
+            Colophon — Next chapter · v0.2. The ceiling SLUR asked
+            for a signed exit that names what happens next, not a
+            metadata footer that treats the ending as a form. Three
+            tabular-nums line items carry the roadmap; MetaCells drop
+            to a 12px caption row above so the resume-slug fields are
+            still visible but no longer the last thing the reader
+            reads.
         ───────────────────────────────────────────── */}
-        <section aria-label="Case study metadata" style={{
-          borderTop: `1px solid ${c.border}`,
-          padding: `64px ${SECTION_X}`,
+        <section aria-label="Colophon and next chapter" style={{
+          borderTop:  `1px solid ${c.border}`,
+          padding:    `clamp(72px, 10vw, 128px) ${SECTION_X} clamp(48px, 6vw, 80px)`,
           background: c.surface,
         }}>
-          <div style={{
-            maxWidth: CONTENT_MAX, margin: "0 auto",
-            /* 4-col reads cleaner than 5-col; Type folded into Role
-               since the eyebrow already says "DesignLab · Concept." */
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "32px",
-          }} className="wf2-meta">
-            <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
-            <MetaCell label="Year"   value="2026 · DesignLab Concept" />
-            <MetaCell label="Stack"  value="Figma · Next.js · Mapbox" />
-            <MetaCell label="Live"   value={<a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>wayfarer.barreiro.com</a>} />
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+
+            {/* Demoted MetaCells row — Pentagram-style caption strip. */}
+            <div style={{
+              display:             "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap:                 "24px",
+              paddingBottom:       "clamp(48px, 6vw, 80px)",
+              marginBottom:        "clamp(48px, 6vw, 80px)",
+              borderBottom:        `1px solid ${c.border}`,
+            }} className="wf2-meta-caption">
+              {[
+                { label: "Role",  value: "UX/UI Designer · End-to-end" },
+                { label: "Year",  value: "2026 · DesignLab Concept" },
+                { label: "Stack", value: "Figma · Next.js · Mapbox" },
+                { label: "Live",  value: "wayfarer.barreiro.com" },
+              ].map((m) => (
+                <div key={m.label}>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "9px", fontWeight: 700,
+                    letterSpacing: "0.20em", textTransform: "uppercase",
+                    color: c.muted, margin: "0 0 4px",
+                  }}>{m.label}</p>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "12px",
+                    color: c.ink2, margin: 0, lineHeight: 1.5,
+                  }}>{m.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.muted, margin: "0 0 20px",
+            }}>
+              Next chapter &nbsp;·&nbsp; v0.2
+            </p>
+            <h2 style={{
+              fontFamily: font.sans, fontSize: "clamp(28px, 3.6vw, 44px)",
+              fontWeight: 500, color: c.accent, margin: "0 0 48px",
+              letterSpacing: "-0.02em", lineHeight: 1.15, maxWidth: "22ch",
+            }}>
+              What ships next, and how I&rsquo;ll know it worked.
+            </h2>
+
+            <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: "clamp(20px, 3vw, 32px)" }}>
+              {[
+                {
+                  n:      "01",
+                  spec:   "Trip Planner state persistence and share links.",
+                  signal: "Return visits to a saved plan cross 25 percent of authored plans within 30 days of the change.",
+                },
+                {
+                  n:      "02",
+                  spec:   "Live audit dashboard: keyboard traps, contrast, and reduced-motion coverage on every route.",
+                  signal: "Two consecutive weeks with zero unresolved WCAG AA violations across the destinations, planner, and signup routes.",
+                },
+                {
+                  n:      "03",
+                  spec:   "Onboarding v2: personalization outputs a real feed at Welcome instead of a static list.",
+                  signal: "Signup completion holds above baseline while first-session bounce drops at least 10 points.",
+                },
+              ].map((r) => (
+                <li key={r.n} style={{
+                  display:             "grid",
+                  gridTemplateColumns: "clamp(52px, 6vw, 84px) 1fr",
+                  gap:                 "clamp(20px, 3vw, 40px)",
+                  alignItems:          "baseline",
+                  paddingBlock:        "20px",
+                  borderTop:           `1px solid ${c.border}`,
+                }}>
+                  <span style={{
+                    fontFamily:         font.sans,
+                    fontSize:           "clamp(28px, 3vw, 40px)",
+                    fontWeight:         500,
+                    letterSpacing:      "-0.02em",
+                    color:              c.accent,
+                    lineHeight:         1,
+                    fontVariantNumeric: "tabular-nums",
+                  }}>{r.n}</span>
+                  <div>
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "clamp(16px, 1.8vw, 20px)",
+                      fontWeight: 600, color: c.ink, margin: "0 0 8px",
+                      lineHeight: 1.35, letterSpacing: "-0.01em",
+                    }}>{r.spec}</p>
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "14px",
+                      color: c.ink2, margin: 0, lineHeight: 1.6,
+                    }}>{r.signal}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.brand, margin: "clamp(48px, 6vw, 80px) 0 0",
+              textAlign: "right",
+            }}>
+              Signed &nbsp;·&nbsp; Alfonso Barreiro
+            </p>
           </div>
         </section>
         </div>
@@ -2503,55 +2645,54 @@ function SignupFunnelFlow() {
         Five steps, then welcome.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "13px", fontWeight: 500,
-        letterSpacing: "0.06em", textTransform: "uppercase",
-        color: c.muted, margin: "0 0 24px",
+        fontFamily: font.sans, fontSize: "13px",
+        color: c.muted, lineHeight: 1.6,
+        margin: "0 0 40px", maxWidth: "780px",
       }}>
-        <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
-        Click a step to view it full size.
+        All six steps below, stacked in order. Each step independently validated. The review screen lets the user jump back into any step without losing input. Preference data drives the post-signup home feed.
       </p>
 
-      <div className="wf2-su-carousel" style={{
-        border: `1px solid ${c.border}`, background: "#FAFAF9",
-      }}>
-        {steps.map((s, i) => (
-          <input key={s.num} type="radio" name="wf2-su-tabs"
-            id={`wf2-su-tab-${i + 1}`} defaultChecked={i === 0}
-            aria-label={`Signup step ${s.num} ${s.label}`} />
-        ))}
-
-        <div className="wf2-su-nav" style={{
-          display: "grid", gridTemplateColumns: "repeat(6, 1fr)",
-          borderBottom: `1px solid ${c.border}`,
-        }}>
-          {steps.map((s, i, arr) => (
-            <label key={s.num} htmlFor={`wf2-su-tab-${i + 1}`}
-              className={`wf2-su-tab wf2-su-tab-${i + 1}`}
-              style={{
-                padding: "16px 12px", cursor: "pointer",
-                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                transition: "background 0.2s",
-                textAlign: "center",
-              }}
-            >
+      {/* Flattened from a CSS-only radio carousel to a static
+          vertical stack per the ceiling SLUR. Every step visible on
+          first paint. Left-rail numeral + label anchors the read;
+          right column carries the screen and its note. Accessible by
+          default, no hidden radio inputs. */}
+      <ol style={{ margin: 0, padding: 0, listStyle: "none" }}>
+        {steps.map((s) => (
+          <li
+            key={s.num}
+            style={{
+              display:             "grid",
+              gridTemplateColumns: "clamp(72px, 8vw, 120px) 1fr",
+              gap:                 "clamp(24px, 3vw, 48px)",
+              alignItems:          "start",
+              paddingBlock:        "clamp(40px, 5vw, 72px)",
+              borderTop:           `1px solid ${c.border}`,
+            }}
+            className="wf2-su-step"
+          >
+            <div>
               <p style={{
-                fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-                color: c.accent, letterSpacing: "0.18em", margin: "0 0 4px",
+                fontFamily:         font.sans,
+                fontSize:           "clamp(40px, 5vw, 68px)",
+                fontWeight:         500,
+                letterSpacing:      "-0.03em",
+                lineHeight:         1,
+                color:              c.accent,
+                margin:             0,
+                fontVariantNumeric: "tabular-nums",
               }}>{s.num}</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-                color: c.ink, margin: 0, letterSpacing: "-0.005em",
-                lineHeight: 1.25,
+                fontFamily:    font.sans,
+                fontSize:      "12px",
+                fontWeight:    600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         c.ink,
+                margin:        "16px 0 0",
               }}>{s.label}</p>
-            </label>
-          ))}
-        </div>
-
-        <div className="wf2-su-panels" style={{
-          padding: "clamp(28px, 4vw, 48px)", background: "#FFFFFF",
-        }}>
-          {steps.map((s, i) => (
-            <div key={s.num} className="wf2-su-panel" data-panel={i + 1}>
+            </div>
+            <div>
               <div style={{
                 aspectRatio: "4 / 3",
                 overflow:    "hidden",
@@ -2560,10 +2701,10 @@ function SignupFunnelFlow() {
               }}>
                 <Image
                   src={s.src}
-                  alt={`Wayfarer signup step ${s.num} — ${s.label}. Live at wayfarer.barreiro.com.`}
+                  alt={`Wayfarer signup step ${s.num}. ${s.label}. Live at wayfarer.barreiro.com.`}
                   width={2400}
                   height={1500}
-                  sizes="(max-width: 1240px) 100vw, 1100px"
+                  sizes="(max-width: 1240px) 100vw, 900px"
                   style={{
                     width:          "100%",
                     height:         "100%",
@@ -2574,23 +2715,15 @@ function SignupFunnelFlow() {
                 />
               </div>
               <p style={{
-                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
                 color: c.ink2, margin: "20px 0 0", maxWidth: "780px",
               }}>
-                <span style={{ fontWeight: 600, color: c.ink }}>Step {s.num} &middot; {s.label}.</span> {s.note}
+                {s.note}
               </p>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <p style={{
-        fontFamily: font.sans, fontSize: "13px",
-        color: c.muted, lineHeight: 1.6,
-        margin: "20px 0 0", maxWidth: "780px",
-      }}>
-        Each step independently validated. The review screen lets the user jump back into any step without losing input. Preference data drives the post-signup home feed.
-      </p>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }

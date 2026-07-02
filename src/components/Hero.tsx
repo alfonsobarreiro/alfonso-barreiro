@@ -116,25 +116,31 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Name */}
+          {/* Thesis-as-H1. The nav wordmark already carries the
+              name; the hero H1 now carries the POV so the fold sells
+              a viewpoint instead of restating the byline. Second
+              sentence lifts the crimson accent that was on the name. */}
           <h1
             className="hero-reveal"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(48px, 7.5vw, 96px)",
-              fontWeight:    300,
-              lineHeight:    0.95,
+              fontSize:      "clamp(30px, 4vw, 56px)",
+              fontWeight:    400,
+              lineHeight:    1.1,
               letterSpacing: "-0.025em",
               color:         "#252B28",
-              margin:        "0 0 36px",
+              margin:        "0 0 32px",
+              maxWidth:      "18ch",
             }}
           >
-            Alfonso
+            Most design problems aren&rsquo;t visual problems.
             <br />
-            <span style={{ color: "var(--color-brand)", fontWeight: 500 }}>Barreiro</span>
+            <span style={{ color: "var(--color-brand)", fontWeight: 500, display: "inline-block", marginTop: "0.4em" }}>
+              They&rsquo;re decisions someone hasn&rsquo;t made yet.
+            </span>
           </h1>
 
-          {/* Positioning */}
+          {/* Method deck — the "how" underneath the "what" of the H1. */}
           <p
             className="hero-reveal"
             style={{
@@ -147,9 +153,7 @@ export default function Hero() {
               fontWeight:   400,
             }}
           >
-            Most design problems aren&apos;t visual problems. They&apos;re
-            decisions someone hasn&apos;t made yet: surfaced through
-            research, made explicit, shipped to a live product.
+            Surfaced through research, made explicit, shipped to a live product.
           </p>
           <p
             className="hero-reveal hero-availability"
@@ -518,9 +522,9 @@ function HeroResultPanel() {
             fontFamily:         "var(--font-dm-sans), sans-serif",
             fontSize:           "clamp(40px, 4.5vw, 56px)",
             lineHeight:         1,
-            fontWeight:         800,
+            fontWeight:         700,
             letterSpacing:      "-0.02em",
-            color:              "var(--color-brand)",
+            color:              "var(--color-accent)",
             margin:             "10px 0 0",
             fontVariantNumeric: "tabular-nums",
           }}

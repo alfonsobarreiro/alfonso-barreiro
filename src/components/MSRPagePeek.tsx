@@ -30,14 +30,20 @@ export default function MSRPagePeek({ paused: _paused = false }: { paused?: bool
       {/* Display (above the device PNG) — looping video of the MSR
           homepage scrolling top to bottom and snapping back. Same
           autoplay-loop-muted-playsInline pattern as the Spotify
-          and Hero peeks for cross-device reliability. */}
+          and Hero peeks for cross-device reliability.
+
+          Screen coords derived from the PNG bbox: with the device
+          PNG at width 139.4% and top -37.5% inside a 4:3 container,
+          the actual laptop screen sits at ~top 23% / height 54%.
+          Prior values (top 18% / height 60%) let the video spill
+          out the top of the bezel. */}
       <div
         style={{
           position:     "absolute",
-          left:         "18%",
-          top:          "18%",
-          width:        "64%",
-          height:       "60%",
+          left:         "18.7%",
+          top:          "23%",
+          width:        "62.5%",
+          height:       "54%",
           overflow:     "hidden",
           background:   "#13100C",
           borderRadius: "3px",
