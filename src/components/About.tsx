@@ -359,7 +359,12 @@ export default function About() {
             </p>
           </div>
 
-          {/* Right — Skills */}
+          {/* Right — Skills.
+              Sticky within the row so the skills track the bio column,
+              but no inner scroll — the earlier maxHeight + overflowY
+              trapped mouse-wheel scroll inside this sidebar on 13"
+              MacBooks. If the sidebar ever gets taller than the
+              viewport it just stops sticking, which is fine. */}
           <div
             className="skills-box scroll-reveal"
             style={{
@@ -370,8 +375,6 @@ export default function About() {
               position:     "sticky",
               top:          "120px",
               alignSelf:    "start",
-              maxHeight:    "calc(100vh - 140px)",
-              overflowY:    "auto",
             }}
           >
             {skillGroups.map((group, i) => (

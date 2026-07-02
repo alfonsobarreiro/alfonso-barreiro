@@ -244,8 +244,15 @@ export default function Work() {
             order: 1 !important;
             max-width: 100% !important;
           }
+          /* Tag pills stay visible on mobile so the capability taxonomy
+             is scannable at first paint — desktop hides them behind a
+             hover reveal, but touch has no hover. */
           .work-row .work-tag-pills {
-            display: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            transform: none !important;
+            margin-top: 12px !important;
           }
         }
       `}</style>

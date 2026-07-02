@@ -234,7 +234,7 @@ export default function RecentlyPlayedDemo() {
           letterSpacing: "0.2em", textTransform: "uppercase",
           color: SPOTIFY_GREEN,
         }}>
-          Try it · Made for you
+          Try it · Recently Played
         </span>
       </div>
       <h3 style={{

@@ -17,7 +17,12 @@ const font = {
   sans: '"DM Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
 };
 
-const LIVE_URL = "https://wayfarer.barreiro.com/";
+/* The globe explorer lives at /discover, not the marketing homepage.
+   Before this change the iframe loaded / and readers just saw the
+   editorial cover; they never reached the Mapbox globe the caption
+   promises. */
+const LIVE_URL       = "https://wayfarer.barreiro.com/discover";
+const LIVE_ROOT_URL  = "https://wayfarer.barreiro.com/";
 
 export default function GlobeIframeDemo() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -170,7 +175,7 @@ export default function GlobeIframeDemo() {
               Some browsers block cross-site iframes on slower connections. Open the live site to spin the globe.
             </p>
             <a
-              href={LIVE_URL}
+              href={LIVE_ROOT_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -217,7 +222,7 @@ export default function GlobeIframeDemo() {
           Click any pin · sticky card opens on the right
         </p>
         <a
-          href={LIVE_URL}
+          href={LIVE_ROOT_URL}
           target="_blank"
           rel="noopener noreferrer"
           style={{

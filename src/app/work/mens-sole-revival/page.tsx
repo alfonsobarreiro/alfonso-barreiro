@@ -866,7 +866,7 @@ export default function MSRv2() {
               marginInline:  "auto",
             }}>
               <span aria-hidden="true" style={{ color: c.accent }}>→ </span>
-              Click 01 · 02 · 03 to switch panels
+              Three panels: color tokens, type ramp, components.
             </p>
             <DesignSystemCarousel />
           </div>
