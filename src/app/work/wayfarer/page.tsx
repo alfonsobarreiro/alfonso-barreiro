@@ -947,23 +947,37 @@ export default function WayfarerV2() {
            stays hidden by default and switches on at the mobile break. */
         .wf2-a11y-mobile { display: none; }
 
-        /* Process gallery — accordion (details/summary) */
-        .wf2-pg-item + .wf2-pg-item { border-top: 1px solid ${c.border}; }
-        .wf2-pg-summary {
-          list-style: none;
-          cursor: pointer;
+        /* Process gallery — cards stacked on scroll. Each card is
+           position: sticky at a slightly different top offset so that
+           when card 2 arrives it stacks 16px below card 1's top,
+           showing a hint of card 1 above it. Fan-out stack effect. */
+        .wf2-pg-stack {
+          padding-bottom: 30vh;
+          display: flex;
+          flex-direction: column;
+        }
+        .wf2-pg-card {
+          position: sticky;
+          background: #FFFFFF;
+          border: 1px solid ${c.border};
+          box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+          margin-bottom: 80vh;
+        }
+        .wf2-pg-card:last-child {
+          margin-bottom: 0;
+        }
+        /* Sticky top offsets — 148 (nav+8) then step by 16 so each card
+           slides in below the previous one's header. */
+        .wf2-pg-card:nth-child(1) { top: 148px; z-index: 1; }
+        .wf2-pg-card:nth-child(2) { top: 164px; z-index: 2; }
+        .wf2-pg-card:nth-child(3) { top: 180px; z-index: 3; }
+        .wf2-pg-card-header {
           padding: 20px 24px;
           display: flex;
           align-items: baseline;
           gap: 14px;
           background: #FAFAF9;
-          transition: background 0.15s ease;
-        }
-        .wf2-pg-summary::-webkit-details-marker { display: none; }
-        .wf2-pg-summary:hover { background: #F4F6F7; }
-        .wf2-pg-item[open] > .wf2-pg-summary {
-          background: #FFFFFF;
-          box-shadow: inset 0 -3px 0 var(--color-brand);
+          border-bottom: 1px solid ${c.border};
         }
         .wf2-pg-num {
           font-family: var(--font-dm-sans), sans-serif;
@@ -981,35 +995,12 @@ export default function WayfarerV2() {
           color: ${c.ink};
           flex: 1;
         }
-        .wf2-pg-chevron {
-          font-family: var(--font-dm-sans), sans-serif;
-          font-size: 18px;
-          font-weight: 400;
-          color: ${c.muted};
-          transition: transform 0.2s ease;
-          width: 20px;
-          text-align: center;
-          line-height: 1;
-        }
-        .wf2-pg-item[open] > .wf2-pg-summary .wf2-pg-chevron {
-          transform: rotate(45deg);
-        }
-        .wf2-pg-content {
+        .wf2-pg-card-body {
           padding: clamp(28px, 4vw, 48px);
           background: #FFFFFF;
+          max-height: calc(100vh - 260px);
+          overflow-y: auto;
         }
-        .wf2-pg-summary:focus-visible {
-          outline: 2px solid var(--color-focus-ring);
-          outline-offset: -2px;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .wf2-pg-chevron { transition: none !important; }
-          .wf2-pg-summary { transition: none !important; }
-        }
-
-        /* Accordion exclusivity — opening one phase closes the others.
-           Handled by a small inline script below since <details> is
-           natively independent (checkbox-like) rather than radio-like. */
 
         /* Focus ring projection: when a (visually-hidden but focusable)
            radio gets keyboard focus, paint a teal outline on its label.
@@ -1036,6 +1027,13 @@ export default function WayfarerV2() {
           .wf2-signup-grid      { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .wf2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           .wf2-sketches         { grid-template-columns: 1fr !important; gap: 20px !important; }
+          /* Process gallery stack cards — flatten to normal flow on
+             mobile so the sticky stack doesn't crowd a small viewport. */
+          .wf2-pg-card { position: static !important; margin-bottom: 24px !important; }
+          .wf2-pg-card-body { max-height: none !important; overflow: visible !important; }
+          /* Token table swipe hint — visible only on mobile where the
+             table overflows the viewport horizontally. */
+          .wf2-token-swipe-hint { display: block !important; }
           /* A11y audit: on mobile the image text is illegible, so hide
              the image and reveal the native card list of findings. */
           .wf2-a11y-image  { display: none !important; }
@@ -1322,8 +1320,9 @@ function TokenCrossProjectTable() {
         style={{
           border: `1px solid ${c.border}`, overflow: "auto",
           background: "#FFFFFF",
+          WebkitOverflowScrolling: "touch",
         }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+        <table style={{ minWidth: 640, width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
           <thead>
             <tr style={{ background: c.callout }}>
               <th style={{ ...thStyle, width: "22%", color: c.muted }}>Token</th>
@@ -1361,6 +1360,15 @@ function TokenCrossProjectTable() {
           </tbody>
         </table>
       </div>
+      {/* Mobile-only swipe hint — appears when the table overflows and
+          the reader needs to know they can scroll horizontally. */}
+      <p className="wf2-token-swipe-hint" style={{
+        fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+        letterSpacing: "0.14em", textTransform: "uppercase",
+        color: c.muted, margin: "10px 0 0", display: "none",
+      }}>
+        Swipe to see more &rarr;
+      </p>
       <p style={{
         fontFamily: font.sans, fontSize: "12px",
         color: c.muted, lineHeight: 1.55, margin: "12px 0 0",
@@ -2193,20 +2201,17 @@ function ProcessGallery() {
           color: c.muted, margin: "0 0 16px",
         }}>
           <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
-          Three phases below. Expand any of them.
+          Three phases, stacking as you scroll.
         </p>
 
-        <div className="wf2-pg-accordion" style={{
-          border: `1px solid ${c.border}`, background: "#FFFFFF",
-        }}>
+        <div className="wf2-pg-stack">
           {/* 01 Research */}
-          <details className="wf2-pg-item" open>
-            <summary className="wf2-pg-summary">
+          <article className="wf2-pg-card">
+            <header className="wf2-pg-card-header">
               <span className="wf2-pg-num">01</span>
               <span className="wf2-pg-label">Research</span>
-              <span className="wf2-pg-chevron" aria-hidden="true">+</span>
-            </summary>
-            <div className="wf2-pg-content">
+            </header>
+            <div className="wf2-pg-card-body">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2233,16 +2238,15 @@ function ProcessGallery() {
                 <p style={{ ...wireframeCardLabel, marginTop: "10px" }}>Competitor audit &middot; three lifts, three skips</p>
               </div>
             </div>
-          </details>
+          </article>
 
           {/* 02 Explorations */}
-          <details className="wf2-pg-item">
-            <summary className="wf2-pg-summary">
+          <article className="wf2-pg-card">
+            <header className="wf2-pg-card-header">
               <span className="wf2-pg-num">02</span>
               <span className="wf2-pg-label">Explorations</span>
-              <span className="wf2-pg-chevron" aria-hidden="true">+</span>
-            </summary>
-            <div className="wf2-pg-content">
+            </header>
+            <div className="wf2-pg-card-body">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2351,16 +2355,15 @@ function ProcessGallery() {
                 </div>
               </div>
             </div>
-          </details>
+          </article>
 
           {/* 03 Wireframes */}
-          <details className="wf2-pg-item">
-            <summary className="wf2-pg-summary">
+          <article className="wf2-pg-card">
+            <header className="wf2-pg-card-header">
               <span className="wf2-pg-num">03</span>
               <span className="wf2-pg-label">Wireframes</span>
-              <span className="wf2-pg-chevron" aria-hidden="true">+</span>
-            </summary>
-            <div className="wf2-pg-content">
+            </header>
+            <div className="wf2-pg-card-body">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2403,60 +2406,8 @@ function ProcessGallery() {
                 ))}
               </div>
             </div>
-          </details>
+          </article>
         </div>
-
-        {/* Accordion exclusivity: only one <details> open at a time inside
-            the process gallery. Native <details> is checkbox-style by
-            default; this listener enforces radio-style behavior AND
-            scrolls the newly-opened summary back into view so a click
-            that closes taller siblings doesn't leave the reader stranded
-            in the next section (Decisions arc). */}
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function() {
-            if (typeof window === "undefined" || typeof document === "undefined") return;
-            var NAV_STACK_HEIGHT = 140;
-            function wire() {
-              var acc = document.querySelector('.wf2-pg-accordion');
-              if (!acc) return false;
-              var items = acc.querySelectorAll('.wf2-pg-item');
-              if (!items.length) return false;
-              items.forEach(function (item) {
-                item.addEventListener('toggle', function () {
-                  if (!item.open) return;
-                  // Capture the summary's position BEFORE closing siblings
-                  // so we can measure the layout shift.
-                  var summary = item.querySelector('summary');
-                  var beforeTop = summary ? summary.getBoundingClientRect().top : null;
-                  items.forEach(function (other) {
-                    if (other !== item && other.open) other.open = false;
-                  });
-                  // After closing, re-pin the summary to a sensible position
-                  // just below the sticky arc-nav. Runs on the next frame so
-                  // the layout has settled after the sibling close.
-                  requestAnimationFrame(function () {
-                    if (!summary) return;
-                    var afterTop = summary.getBoundingClientRect().top;
-                    // If the shift moved the summary off-screen or way above
-                    // the sticky nav, scroll it back into view. Threshold
-                    // keeps small no-op cases from re-scrolling.
-                    if (Math.abs(afterTop - beforeTop) < 8 && afterTop > NAV_STACK_HEIGHT - 20 && afterTop < window.innerHeight * 0.7) {
-                      return; // No meaningful shift, leave the scroll alone.
-                    }
-                    var y = summary.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
-                    window.scrollTo({ top: y, behavior: 'smooth' });
-                  });
-                });
-              });
-              return true;
-            }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
-            } else {
-              document.addEventListener('DOMContentLoaded', wire);
-            }
-          })();
-        ` }} />
       </div>
     </section>
   );

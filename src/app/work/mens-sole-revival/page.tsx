@@ -1157,30 +1157,54 @@ export default function MSRv2() {
 
       {/* Responsive */}
       <style>{`
-        /* Design system carousel — CSS-only tabs (hidden radios + ~ sibling).
-           Radios use clip-path to stay focusable so keyboard users can
-           Tab + arrow through the three tabs. pointer-events:none would
-           remove them from the focus chain. */
-        .msr2-ds-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
-        /* Project focus ring onto the visible label via :has() */
-        .msr2-ds-carousel:has(#msr2-ds-tab-1:focus-visible) .msr2-ds-tab-1,
-        .msr2-ds-carousel:has(#msr2-ds-tab-2:focus-visible) .msr2-ds-tab-2,
-        .msr2-ds-carousel:has(#msr2-ds-tab-3:focus-visible) .msr2-ds-tab-3 {
-          outline: 2px solid var(--color-focus-ring);
-          outline-offset: -2px;
+        /* Design system panels — cards stacked on scroll. Each card is
+           position: sticky at a slightly different top offset so cards
+           fan out with a hint of the previous card visible above. */
+        .msr2-ds-stack {
+          padding-bottom: 30vh;
+          display: flex;
+          flex-direction: column;
         }
-        .msr2-ds-panel { display: none; }
-        #msr2-ds-tab-1:checked ~ .msr2-ds-panels > [data-panel="1"] { display: block; }
-        #msr2-ds-tab-2:checked ~ .msr2-ds-panels > [data-panel="2"] { display: block; }
-        #msr2-ds-tab-3:checked ~ .msr2-ds-panels > [data-panel="3"] { display: block; }
-        /* Tab active states — read which radio is checked, highlight the matching tab label */
-        #msr2-ds-tab-1:checked ~ .msr2-ds-nav .msr2-ds-tab-1,
-        #msr2-ds-tab-2:checked ~ .msr2-ds-nav .msr2-ds-tab-2,
-        #msr2-ds-tab-3:checked ~ .msr2-ds-nav .msr2-ds-tab-3 {
+        .msr2-ds-card {
+          position: sticky;
           background: #FFFFFF;
-          box-shadow: inset 0 -3px 0 var(--color-brand);
+          border: 1px solid ${c.border};
+          box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+          margin-bottom: 80vh;
         }
-        .msr2-ds-tab:hover { background: rgba(255,255,255,0.5); }
+        .msr2-ds-card:last-child { margin-bottom: 0; }
+        .msr2-ds-card:nth-child(1) { top: 148px; z-index: 1; }
+        .msr2-ds-card:nth-child(2) { top: 164px; z-index: 2; }
+        .msr2-ds-card:nth-child(3) { top: 180px; z-index: 3; }
+        .msr2-ds-card-header {
+          padding: 20px 24px;
+          display: flex;
+          align-items: baseline;
+          gap: 14px;
+          background: #FAFAF9;
+          border-bottom: 1px solid ${c.border};
+        }
+        .msr2-ds-num {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          color: ${c.accent};
+          text-transform: uppercase;
+        }
+        .msr2-ds-label {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: -0.005em;
+          color: ${c.ink};
+          flex: 1;
+        }
+        .msr2-ds-card-body {
+          padding: clamp(28px, 4vw, 48px);
+          max-height: calc(100vh - 260px);
+          overflow-y: auto;
+        }
 
         @media (max-width: 760px) {
           .msr2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
@@ -1203,9 +1227,10 @@ export default function MSRv2() {
           /* Funnel — collapse to 2 rows on phones (steps wrap) */
           .msr2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .msr2-funnel-row > div[aria-hidden] { display: none !important; }
-          /* Carousel tabs — stack vertically on phones */
-          .msr2-ds-nav           { flex-direction: column !important; }
-          .msr2-ds-nav .msr2-ds-tab { border-right: none !important; border-bottom: 1px solid var(--color-border) !important; }
+          /* Design-system stack cards on mobile — flatten to normal
+             flow so the sticky stack doesn't crowd a small viewport. */
+          .msr2-ds-card { position: static !important; margin-bottom: 24px !important; }
+          .msr2-ds-card-body { max-height: none !important; overflow: visible !important; }
           /* Carousel color grid — 2-col on phones */
           .msr2-ds-color-grid    { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .msr2-ds-type-grid     { grid-template-columns: 1fr !important; gap: 24px !important; }
@@ -2206,66 +2231,33 @@ function DSPanelComponents() {
 }
 
 function DesignSystemCarousel() {
+  const panels = [
+    { num: "01", label: "Color tokens", body: <DSPanelColor /> },
+    { num: "02", label: "Type ramp",    body: <DSPanelType /> },
+    { num: "03", label: "Components",   body: <DSPanelComponents /> },
+  ];
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-      <div className="msr2-ds-carousel" style={{
-        border:     `1px solid ${c.border}`,
-        background: "#FAFAF9",
+      <p style={{
+        fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+        letterSpacing: "0.18em", textTransform: "uppercase",
+        color: c.muted, margin: "0 0 16px",
       }}>
-        {/* Hidden radios drive the tabs (CSS sibling selector). */}
-        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-1" defaultChecked aria-label="Color tokens panel" />
-        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-2" aria-label="Type ramp panel" />
-        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-3" aria-label="Components panel" />
-
-        {/* Tab nav */}
-        <div className="msr2-ds-nav" style={{
-          display:      "flex",
-          borderBottom: `1px solid ${c.border}`,
-        }}>
-          {[
-            { id: "msr2-ds-tab-1", num: "01", label: "Color tokens" },
-            { id: "msr2-ds-tab-2", num: "02", label: "Type ramp" },
-            { id: "msr2-ds-tab-3", num: "03", label: "Components" },
-          ].map((tab, i, arr) => (
-            <label
-              key={tab.id}
-              htmlFor={tab.id}
-              className={`msr2-ds-tab msr2-ds-tab-${i + 1}`}
-              style={{
-                flex:           1,
-                padding:        "20px 24px",
-                cursor:         "pointer",
-                display:        "flex",
-                alignItems:     "baseline",
-                gap:            "10px",
-                borderRight:    i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                transition:     "background 0.2s, color 0.2s",
-              }}
-            >
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    700,
-                color:         c.accent,
-                letterSpacing: "0.18em",
-              }}>{tab.num}</span>
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "14px",
-                fontWeight:    500,
-                color:         c.ink,
-                letterSpacing: "-0.005em",
-              }}>{tab.label}</span>
-            </label>
-          ))}
-        </div>
-
-        {/* Panels */}
-        <div className="msr2-ds-panels" style={{ padding: "clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px)" }}>
-          <div className="msr2-ds-panel" data-panel="1"><DSPanelColor /></div>
-          <div className="msr2-ds-panel" data-panel="2"><DSPanelType /></div>
-          <div className="msr2-ds-panel" data-panel="3"><DSPanelComponents /></div>
-        </div>
+        <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
+        Three panels, stacking as you scroll.
+      </p>
+      <div className="msr2-ds-stack">
+        {panels.map((p) => (
+          <article key={p.num} className="msr2-ds-card">
+            <header className="msr2-ds-card-header">
+              <span className="msr2-ds-num">{p.num}</span>
+              <span className="msr2-ds-label">{p.label}</span>
+            </header>
+            <div className="msr2-ds-card-body">
+              {p.body}
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   );
