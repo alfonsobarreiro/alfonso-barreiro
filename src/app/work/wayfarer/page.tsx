@@ -726,14 +726,19 @@ export default function WayfarerV2() {
               a full-viewport white bleed so it visually separates from
               the static globe hero above and CutVsKept below, reading
               as its own "try it" moment. Matches Spotify's
-              RecentlyPlayedDemo pattern. */}
+              RecentlyPlayedDemo pattern. Padding matches the arc-tint
+              rhythm (40-80 top, 24-40 bottom) so the vertical spacing
+              stays consistent with the surrounding editorial. */}
           <div style={{
             marginTop: "16px",
-            marginBottom: "80px",
+            marginBottom: "40px",
             marginLeft: "calc(50% - 50vw)",
             marginRight: "calc(50% - 50vw)",
             background: "#FFFFFF",
-            padding: `clamp(56px, 8vw, 96px) ${SECTION_X}`,
+            paddingTop: "clamp(40px, 8vw, 80px)",
+            paddingBottom: "clamp(24px, 4vw, 40px)",
+            paddingLeft: SECTION_X,
+            paddingRight: SECTION_X,
           }}>
             <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
               <GlobeIframeDemo />

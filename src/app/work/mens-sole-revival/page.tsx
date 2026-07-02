@@ -1056,14 +1056,20 @@ export default function MSRv2() {
                 Lifted OUT of the DETAILS arc tint via a full-viewport
                 white bleed so it visually separates from the crimson-
                 rail asides above and reads as its own "try it" moment,
-                matching Spotify's RecentlyPlayedDemo pattern. */}
+                matching Spotify's RecentlyPlayedDemo pattern. Padding
+                matches the arc-tint rhythm (40-80 top, 24-40 bottom)
+                so vertical spacing stays consistent with the
+                surrounding editorial. */}
             <div style={{
-              marginTop: "80px",
-              marginBottom: "80px",
+              marginTop: "40px",
+              marginBottom: "40px",
               marginLeft: "calc(50% - 50vw)",
               marginRight: "calc(50% - 50vw)",
               background: "#FFFFFF",
-              padding: `clamp(56px, 8vw, 96px) ${SECTION_X}`,
+              paddingTop: "clamp(40px, 8vw, 80px)",
+              paddingBottom: "clamp(24px, 4vw, 40px)",
+              paddingLeft: SECTION_X,
+              paddingRight: SECTION_X,
             }}>
               <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
                 <DiagnosticFlowDemo />
