@@ -977,30 +977,20 @@ export default function WayfarerV2() {
            stays hidden by default and switches on at the mobile break. */
         .wf2-a11y-mobile { display: none; }
 
-        /* Process gallery — cards stacked on scroll. Each card is
-           position: sticky at a slightly different top offset so that
-           when card 2 arrives it stacks 16px below card 1's top,
-           showing a hint of card 1 above it. Fan-out stack effect. */
+        /* Process gallery — three cards in normal vertical flow. Was a
+           sticky-stack (position: sticky with staggered top offsets)
+           but Alfonso called it — the stack effect fought the case
+           study's editorial pacing. Plain flow reads better. */
         .wf2-pg-stack {
-          padding-bottom: 30vh;
           display: flex;
           flex-direction: column;
+          gap: 32px;
         }
         .wf2-pg-card {
-          position: sticky;
           background: #FFFFFF;
           border: 1px solid ${c.border};
           box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
-          margin-bottom: 80vh;
         }
-        .wf2-pg-card:last-child {
-          margin-bottom: 0;
-        }
-        /* Sticky top offsets — 148 (nav+8) then step by 16 so each card
-           slides in below the previous one's header. */
-        .wf2-pg-card:nth-child(1) { top: 148px; z-index: 1; }
-        .wf2-pg-card:nth-child(2) { top: 164px; z-index: 2; }
-        .wf2-pg-card:nth-child(3) { top: 180px; z-index: 3; }
         .wf2-pg-card-header {
           padding: 20px 24px;
           display: flex;
@@ -1057,9 +1047,9 @@ export default function WayfarerV2() {
           .wf2-signup-grid      { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .wf2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           .wf2-sketches         { grid-template-columns: 1fr !important; gap: 20px !important; }
-          /* Process gallery stack cards — flatten to normal flow on
-             mobile so the sticky stack doesn't crowd a small viewport. */
-          .wf2-pg-card { position: static !important; margin-bottom: 24px !important; }
+          /* Process gallery cards — already in normal flow on desktop
+             per Alfonso; on mobile just clamp body height/overflow so
+             long cards don't run away. */
           .wf2-pg-card-body { max-height: none !important; overflow: visible !important; }
           /* Token table swipe hint — visible only on mobile where the
              table overflows the viewport horizontally. */

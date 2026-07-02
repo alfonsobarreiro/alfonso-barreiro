@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const c = {
   ink:     "#1A2236",
@@ -22,15 +22,14 @@ const LIVE_URL = "https://wayfarer.barreiro.com/";
 export default function GlobeIframeDemo() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [loaded, setLoaded] = useState(false);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const timer = window.setTimeout(() => {
-      if (!loaded) setFailed(true);
-    }, 6000);
-    return () => window.clearTimeout(timer);
-  }, [loaded]);
+  /* The prior 6-second timeout-based failure fallback fired too
+     aggressively — on any slow connection the fallback panel replaced
+     the iframe before wayfarer.barreiro.com finished loading, and
+     because the fallback removes the iframe from the DOM, the demo
+     could never recover. Removed the timer entirely. The always-visible
+     "Open the full site ↗" link below the frame is the escape hatch
+     for any browser that actually blocks the embed. */
+  const failed = false;
 
   return (
     <section
