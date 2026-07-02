@@ -845,9 +845,11 @@ export default function SpotifyV2() {
           .sp2-midfi-pair       { grid-template-columns: 1fr !important; gap: 32px !important; }
           .sp2-midfi-pair figure:last-child img { max-width: 320px !important; margin: 0 auto; }
           .sp2-friction-grid    { grid-template-columns: 1fr !important; gap: 16px !important; }
-          .sp2-as-hero          { grid-template-columns: 1fr !important; gap: 28px !important; padding: 24px !important; }
+          .sp2-as-hero          { grid-template-columns: 1fr !important; gap: 28px !important; padding: 24px !important; overflow: hidden !important; max-width: 100% !important; }
+          .sp2-as-hero > *      { min-width: 0 !important; max-width: 100% !important; }
           .sp2-as-hero h2       { font-size: 24px !important; }
           .sp2-as-icons         { grid-template-columns: 1fr !important; gap: 18px !important; }
+          .sp2-as-icons > *     { min-width: 0 !important; }
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
           .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
