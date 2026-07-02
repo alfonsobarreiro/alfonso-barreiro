@@ -309,7 +309,7 @@ export default function SpotifyV2() {
         ]}
       />
 
-      <main id="main-content" style={{ background: c.surface, paddingTop: "72px" }}>
+      <main id="main-content" style={{ background: c.surface, paddingTop: "72px", overflowX: "clip" }}>
 
         {/* Title block */}
         <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)` }}>
