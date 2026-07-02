@@ -427,25 +427,36 @@ export default function SpotifyV2() {
 
         <ArcDivider arc="Details" />
 
-        {/* ── DETAILS arc tint ─ cool slate-green instead of sage tint */}
-        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        {/* ── DETAILS arc tint ─ cool slate-green.
+            Closes after DecisionLogic so the interactive demo below
+            reads as its own moment, not as a Pause-section footer. */}
+        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(40px, 6vw, 64px)" }}>
         <DecisionLogic />
+        </div>
 
         {/* Interactive demo — the spec lives above (DecisionLogic), the
             real interaction sits here so the reader operates the model
             instead of just reading about it. Reduced-motion-aware,
-            keyboard-operable, with snackbar undo. The only piece of the
-            case study you click instead of read. */}
-        <div style={{ padding: `0 clamp(24px, 6vw, 80px) 80px` }}>
+            keyboard-operable, with snackbar undo. Lifted OUT of the
+            DETAILS arc tint so it visually separates from Pause and
+            reads as its own "try it" moment. */}
+        <section
+          aria-label="Try the three controls"
+          style={{ background: "#FFFFFF", padding: `clamp(56px, 8vw, 96px) clamp(24px, 6vw, 80px)` }}
+        >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
             <RecentlyPlayedDemo />
           </div>
-        </div>
+        </section>
 
         {/* Prototypes section retired 2026-07-01. RecentlyPlayedDemo above
             is now the single interactive proof; the three principle-exported
             video loops became redundant. Function definition + CSS + pause
             script left in place for now, will prune in a follow-up. */}
+
+        {/* ── DETAILS arc tint resumes for §02 The bet and everything
+            below (Shipped, Parity, meta). */}
+        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
 
         {/* §02 The Bet — image dropped (figma-slide-reversible-set.png was a
             text slide: title + 3 icons + 3 bullets, all already said by the

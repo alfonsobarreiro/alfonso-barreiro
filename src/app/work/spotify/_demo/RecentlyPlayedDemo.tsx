@@ -611,18 +611,27 @@ function ActionChip({
   );
 }
 
+/* Thumbtack pin — matches the PinGlyph used in the case-study body
+   (page.tsx PinGlyph). Sharing the shape keeps the demo visually
+   consistent with the rest of the Spotify write-up. */
 function PinIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M9 1.5L14.5 7L11 7L11 11L8 14L5 11L5 7L1.5 7L9 1.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <svg width="14" height="14" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path
+        d="M18.5 2.5l7 7-3.6 1.2L17 16l1.2 5-2.4 2.4L10 17.8 3 24.8v-2L10 16 5 11l2.4-2.4 5 1.2 5-5 1.1-2.3z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
 
 function PinGlyph() {
   return (
-    <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-      <path d="M9 1.5L14.5 7L11 7L11 11L8 14L5 11L5 7L1.5 7L9 1.5Z" />
+    <svg width="10" height="10" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path
+        d="M18.5 2.5l7 7-3.6 1.2L17 16l1.2 5-2.4 2.4L10 17.8 3 24.8v-2L10 16 5 11l2.4-2.4 5 1.2 5-5 1.1-2.3z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
@@ -635,19 +644,25 @@ function PlayGlyph() {
   );
 }
 
+/* Strikethrough circle — matches the RemoveGlyph in the case-study body. */
 function RemoveIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <svg width="14" height="14" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <circle cx="14" cy="14" r="11" fill="currentColor" fillOpacity="0.18" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="7" y="12.6" width="14" height="2.8" rx="1.4" fill="currentColor" />
     </svg>
   );
 }
 
+/* Clock with running timer arc — matches the PauseGlyph in the case-
+   study body. Pause was designed as a time-boxed session, so a clock
+   reads truer than pause-bars. */
 function PauseIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-      <rect x="4" y="3" width="3" height="10" />
-      <rect x="9" y="3" width="3" height="10" />
+    <svg width="14" height="14" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <circle cx="14" cy="14" r="10.5" stroke="currentColor" strokeWidth="1.6" fill="currentColor" fillOpacity="0.10" />
+      <path d="M14 8v6l3.5 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M22 14a8 8 0 1 0-5 7.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none" />
     </svg>
   );
 }
