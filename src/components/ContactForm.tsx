@@ -32,9 +32,16 @@ export default function ContactForm() {
   }, [formState]);
 
   function onBlurValidate(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    // Capture name + value BEFORE the state updates. React nulls
+    // e.currentTarget after the handler returns, and setErrors runs
+    // its updater later — reading e.currentTarget.name inside the
+    // updater throws in the production build (dev keeps the ref
+    // alive longer, which is why this only surfaced on staging).
+    const fieldName  = e.currentTarget.name;
+    const fieldValue = e.currentTarget.value;
     setFocusedField(null);
-    const err = validateField(e.currentTarget.name, e.currentTarget.value);
-    setErrors((prev) => ({ ...prev, [e.currentTarget.name]: err }));
+    const err = validateField(fieldName, fieldValue);
+    setErrors((prev) => ({ ...prev, [fieldName]: err }));
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
