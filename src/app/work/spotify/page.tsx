@@ -850,6 +850,25 @@ export default function SpotifyV2() {
           .sp2-as-hero h2       { font-size: 24px !important; }
           .sp2-as-icons         { grid-template-columns: 1fr !important; gap: 18px !important; }
           .sp2-as-icons > *     { min-width: 0 !important; }
+
+          /* iOS-Safari fix: 100vw includes vertical-scrollbar space,
+             so calc(50% - 50vw) full-bleed pushes elements a few px
+             wider than the actual layout viewport. Zero those margins
+             on mobile — the section's parent (arc-details div) is
+             already full width there, so no bleed math is needed. */
+          section[aria-label="Try the three controls"] {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+          }
+          /* Same fix for the parity figure's canonical full-bleed. */
+          .sp2-consistent-fig {
+            width: 100% !important;
+            max-width: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+          }
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
           .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
