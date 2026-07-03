@@ -848,7 +848,7 @@ export default function SpotifyV2() {
                       position: "relative",
                       width: "100%",
                       minWidth: "760px",  // mobile scroll floor — below this, menu items become unreadable
-                      aspectRatio: "2582 / 1766",  // trimmed 2644x1824 → 2582x1766 to strip Figma-baked white padding
+                      aspectRatio: "2564 / 1744",  // trimmed 2644x1824 → 2582x1766 to strip Figma-baked white padding
                       border: "none",
                       outline: "none",
                       background: "transparent",
@@ -856,8 +856,8 @@ export default function SpotifyV2() {
                   <Image
                     src="/images/work/spotify/spotify-desktop-context-menu-hires.png"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-                    width={2582}
-                    height={1766}
+                    width={2564}
+                    height={1744}
                     sizes="(max-width: 760px) 200vw, 1240px"
                     quality={95}
                     className="sp2-consistent-img"
