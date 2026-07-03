@@ -837,7 +837,13 @@ export default function SpotifyV2() {
             <figure className="sp2-consistent-fig" style={{ margin: 0, padding: 0, width: "100%" }}>
                   <div className="sp2-consistent-scroll" style={{
                     overflowX: "auto", WebkitOverflowScrolling: "touch",
-                    margin: 0, padding: 0,
+                    /* Full-bleed to viewport edges so there's no mint
+                       (or any color) showing on the sides of the mockup
+                       (Alfonso 2026-07-03: "Do not leave the white
+                       around the desktop image!"). */
+                    marginLeft:  "calc(50% - 50vw)",
+                    marginRight: "calc(50% - 50vw)",
+                    padding: 0,
                   }}>
                     <div className="sp2-parity-canvas" style={{
                       position: "relative",
@@ -974,7 +980,7 @@ export default function SpotifyV2() {
             }} className="sp2-meta-caption">
               {[
                 { label: "Role",   value: "UX/UI Designer · End-to-end" },
-                { label: "Year",   value: "2025" },
+                { label: "Year",   value: "2026" },
                 { label: "Stack",  value: "Figma · Principle · After Effects" },
                 { label: "Status", value: "Self-directed concept · not shipped" },
               ].map((m) => (
@@ -1009,12 +1015,12 @@ export default function SpotifyV2() {
 
             <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: 0 }}>
               {[
-                { date: "Feb 04, 2025", note: "First stakeholder read of the brief. Framed the problem as agency without signal loss, not history editing." },
-                { date: "Feb 12, 2025", note: "Ruled out permanent pause. Time-boxing survived the ML-signal-integrity review." },
-                { date: "Mar 03, 2025", note: "Cap set at four pins after engineering flagged shelf-perf degradation and ranking-signal noise past four." },
-                { date: "Mar 21, 2025", note: "Undo window locked at five seconds. Matches the existing snackbar pattern; nothing new for the user to learn." },
-                { date: "Apr 08, 2025", note: "Mobile long-press vs desktop right-click parity confirmed. Affordance changes, state machine does not." },
-                { date: "May 02, 2025", note: "Reduced-motion path documented. Every animated state has a static fallback that carries the same information." },
+                { date: "Feb 04, 2026", note: "First stakeholder read of the brief. Framed the problem as agency without signal loss, not history editing." },
+                { date: "Feb 12, 2026", note: "Ruled out permanent pause. Time-boxing survived the ML-signal-integrity review." },
+                { date: "Mar 03, 2026", note: "Cap set at four pins after engineering flagged shelf-perf degradation and ranking-signal noise past four." },
+                { date: "Mar 21, 2026", note: "Undo window locked at five seconds. Matches the existing snackbar pattern; nothing new for the user to learn." },
+                { date: "Apr 08, 2026", note: "Mobile long-press vs desktop right-click parity confirmed. Affordance changes, state machine does not." },
+                { date: "May 02, 2026", note: "Reduced-motion path documented. Every animated state has a static fallback that carries the same information." },
               ].map((r, idx, arr) => (
                 <li key={r.date} style={{
                   display:             "grid",
