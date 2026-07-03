@@ -620,7 +620,7 @@ export default function RecentlyPlayedDemo() {
       <style>{`
         @keyframes sp2RpBreathe {
           0%   { transform: scale(1); }
-          50%  { transform: scale(1.006); }
+          50%  { transform: scale(1.015); }
           100% { transform: scale(1); }
         }
         @media (prefers-reduced-motion: reduce) {

@@ -854,12 +854,13 @@ export default function SpotifyV2() {
                       background: "transparent",
                     }}>
                   <Image
-                    src="/images/work/spotify/spotify-desktop-context-menu-hires.png"
+                    src="/images/work/spotify/desktop-parity-clean.png"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
                     width={2564}
                     height={1744}
                     sizes="(max-width: 760px) 200vw, 1240px"
-                    quality={95}
+                    quality={100}
+                    unoptimized
                     className="sp2-consistent-img"
                     style={{ width: "100%", height: "auto", display: "block", border: "none", outline: "none" }}
                   />
