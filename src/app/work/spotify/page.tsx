@@ -848,16 +848,16 @@ export default function SpotifyV2() {
                       position: "relative",
                       width: "100%",
                       minWidth: "760px",  // mobile scroll floor — below this, menu items become unreadable
-                      aspectRatio: "2564 / 1744",  // trimmed 2644x1824 → 2582x1766 to strip Figma-baked white padding
+                      aspectRatio: "2374 / 1759",  // 3x export of composite slide, cropped to mockup + 220px Figma canvas on all sides
                       border: "none",
                       outline: "none",
                       background: "transparent",
                     }}>
                   <Image
-                    src="/images/work/spotify/desktop-parity-clean.png"
+                    src="/images/work/spotify/desktop-parity-framed.png"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-                    width={2564}
-                    height={1744}
+                    width={2374}
+                    height={1759}
                     sizes="(max-width: 760px) 200vw, 1240px"
                     quality={100}
                     unoptimized
@@ -870,9 +870,9 @@ export default function SpotifyV2() {
                       Positions re-measured against the 2644×1824 hi-res
                       Figma export on 2026-07-03. */}
                   {[
-                    { n: "01", left: "54.0%", top: "25.5%", label: "Pin on top" },
-                    { n: "02", left: "58.0%", top: "30.4%", label: "Remove" },
-                    { n: "03", left: "90.0%", top: "12.6%", label: "Pause listening history" },
+                    { n: "01", left: "53.3%", top: "31.6%", label: "Pin on top" },
+                    { n: "02", left: "56.5%", top: "35.3%", label: "Remove" },
+                    { n: "03", left: "82.6%", top: "22.0%", label: "Pause listening history" },
                   ].map((a) => (
                     <span
                       key={a.n}
