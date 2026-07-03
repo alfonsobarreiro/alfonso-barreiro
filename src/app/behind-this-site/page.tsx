@@ -273,17 +273,17 @@ export default function BehindThisSitePage() {
               <ArtifactStep
                 label="05 · The Aubergine detour"
                 caption="Applied to a full homepage before the direction pivoted. The runner-up that got the shipping palette its confidence: I ruled Aubergine out only after seeing it at production scale."
-                src="/images/behind-this-site/aubergine-locked.png"
+                src="/images/behind-this-site/aubergine-locked-v2.png"
                 width={1440}
-                height={3400}
+                height={2874}
               />
 
               <ArtifactStep
                 label="06 · The direction that shipped"
-                caption="Homepage · C · Light with Conviction. The design of the site you're reading, locked 2026-06-16. Same layout as page 05, different palette, different weight — same site, different soul."
-                src="/images/behind-this-site/homepage-c-shipped.png"
+                caption="Homepage · C · Light with Conviction. The wireframe of the site you're reading right now, locked 2026-06-16. Crimson on paper. Deep Teal as the second voice. Same DM Sans running text as the Aubergine detour above."
+                src="/images/behind-this-site/homepage-c-shipped-v3.png"
                 width={1440}
-                height={3500}
+                height={3400}
               />
 
             </div>
