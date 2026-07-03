@@ -1294,29 +1294,14 @@ export default function WayfarerV2() {
              the reader can still see the shipped Figma slide;
              (2) render a native mobile summary below with the essential
              signal (brand + accent colors, primary typefaces). */
-          .wf2-ds-scroll {
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch;
-          }
-          .wf2-ds-scroll img {
-            width: 900px !important;
-            min-width: 900px !important;
-            max-width: none !important;
-          }
+          /* Mobile primary view swapped 2026-07-03: the Figma DS slide
+             is hidden and the native HTML card stack becomes the
+             primary artifact. SLUX audit flagged the horizontal-scroll
+             image + swipe hint as a fallback pattern that hurt the
+             mobile read; the native stack is fully authored for phone. */
+          .wf2-ds-scroll,
+          .wf2-ds-swipe-hint { display: none !important; }
           .wf2-ds-native { display: block !important; }
-          .wf2-ds-swipe-hint {
-            display: inline-flex !important;
-            align-items: center;
-            gap: 6px;
-            font-family: var(--font-dm-sans), sans-serif;
-            font-size: 11px !important; font-weight: 700 !important;
-            letter-spacing: 0.14em !important; text-transform: uppercase !important;
-            color: ${c.accent} !important;
-            background: rgba(210, 122, 94, 0.08) !important;
-            padding: 6px 10px !important;
-            margin: 12px 0 0 !important;
-            border-left: 2px solid ${c.accent} !important;
-          }
           /* Multi-step signup step — reflow on mobile so the image gets
              its own full-width row and the numeral drops to a compact
              inline eyebrow above the note text (Alfonso 2026-07-03:

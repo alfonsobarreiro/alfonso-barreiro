@@ -93,7 +93,7 @@ function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
   eyebrow: string; heading: string; caption?: string; src: string; width: number; height: number;
 }) {
   return (
-    <figure style={{ margin: 0 }}>
+    <figure className="bts-artifact" style={{ margin: 0 }}>
       <div style={{ marginBottom: "clamp(20px, 3vw, 28px)", maxWidth: "780px" }}>
         <p style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -320,6 +320,26 @@ export default function BehindThisSitePage() {
               .bts-size-scale {
                 justify-content: flex-start !important;
                 gap: 16px !important;
+              }
+            }
+
+            /* Scroll-reveal on each of the six artifact figures. Uses
+               animation-timeline: view() so the whole thing is a single
+               CSS rule that costs no JavaScript — the artifact glides
+               from below and fades in as it enters the viewport, then
+               settles. Graceful degradation: browsers without support
+               ignore the timeline and just render at final state. */
+            @supports (animation-timeline: view()) {
+              @media (prefers-reduced-motion: no-preference) {
+                .bts-artifact {
+                  animation: bts-artifact-in linear both;
+                  animation-timeline: view();
+                  animation-range: entry 0% cover 22%;
+                }
+                @keyframes bts-artifact-in {
+                  from { opacity: 0; transform: translateY(28px); }
+                  to   { opacity: 1; transform: translateY(0);    }
+                }
               }
             }
           `}</style>

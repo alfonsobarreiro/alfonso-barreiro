@@ -824,6 +824,28 @@ function RemoteTimeline() {
       <style>{`
         @media (max-width: 760px) {
           .rt-cards { grid-template-columns: 1fr !important; gap: 12px !important; }
+          /* Mobile authored view (audit 2026-07-03): the 15-year
+             proportional strip compressed unreadable at 390px, so the
+             strip + legend are hidden and the chapter cards become
+             the whole timeline. Each card already carries a colored
+             top rail (crimson for remote, ink for office) which now
+             serves as the chapter marker in place of the bars. */
+          .rt-strip-wrap,
+          .rt-outer > div:nth-of-type(3) { display: none !important; }
+          .rt-outer .rt-chapter-card {
+            border-left-width: 3px !important;
+            border-left-style: solid !important;
+          }
+          .rt-outer .rt-chapter-card[data-idx="0"],
+          .rt-outer .rt-chapter-card[data-idx="1"],
+          .rt-outer .rt-chapter-card[data-idx="2"],
+          .rt-outer .rt-chapter-card[data-idx="4"] {
+            border-left-color: #252B28 !important;
+          }
+          .rt-outer .rt-chapter-card[data-idx="3"],
+          .rt-outer .rt-chapter-card[data-idx="5"] {
+            border-left-color: var(--color-brand) !important;
+          }
         }
       `}</style>
     </div>

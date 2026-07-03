@@ -450,6 +450,7 @@ export default function MSRv2() {
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
+                  aria-label={`${String(i + 1).padStart(2, "0")} · ${arc.label}`}
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
@@ -466,10 +467,10 @@ export default function MSRv2() {
                     transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }} aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  {arc.label}
+                  <span className="msr2-arc-label" aria-hidden="true">{arc.label}</span>
                 </a>
               </li>
             ))}
@@ -632,6 +633,24 @@ export default function MSRv2() {
               color: var(--color-accent) !important;
             }
             .msr2-arc-nav + script + style + div { padding-top: 36px !important; }
+          }
+          /* Under 480px, drop the arc labels ("Premise" / "Research" …)
+             and show only the numerals. Recovers about 13% of the
+             viewport height the nav was eating (audit 2026-07-03).
+             Aria-labels on the anchors already carry the full name for
+             screen readers, so hiding the label text is safe. */
+          @media (max-width: 480px) {
+            .msr2-arc-label { display: none !important; }
+            .msr2-arc-nav a {
+              padding: 8px 4px !important;
+              font-size: 12px !important;
+              letter-spacing: 0.10em !important;
+              min-height: 34px !important;
+            }
+            .msr2-arc-nav a span:first-child {
+              opacity: 1 !important;
+              font-size: 12px !important;
+            }
           }
         `}</style>
 
@@ -1803,6 +1822,13 @@ function WhatICut() {
     color:      c.ink2,
     margin:     0,
   };
+  const cut = [
+    "Shopify spec",
+    "Product-comparison cards",
+    "Five-star rating system",
+    "Newsletter popup",
+    "Subscription tier",
+  ];
   return (
     <aside style={{
       background: c.callout,
@@ -1813,13 +1839,48 @@ function WhatICut() {
       marginTop:  "40px",
     }}>
       <p style={labelStyle}>What I cut</p>
-      <p style={{ ...bodyStyle, margin: "0 0 22px" }}>
-        Shopify spec. Product-comparison cards. Five-star rating system. Newsletter popup. Subscription tier.
-      </p>
+      <ul className="msr-cut-list" style={{
+        listStyle: "none", padding: 0, margin: "0 0 22px",
+        display:   "flex", flexWrap: "wrap", gap: "6px 14px",
+      }}>
+        {cut.map((item) => (
+          <li key={item} className="msr-cut-item" style={{ ...bodyStyle, position: "relative" }}>
+            {item}
+          </li>
+        ))}
+      </ul>
       <p style={labelStyle}>Replaced with</p>
       <p style={bodyStyle}>
         Editorial pillars. Symptom-branching assessment. Affiliate context, not product listings. Routine prompts under every article. No popups.
       </p>
+      <style>{`
+        /* Each cut item strikes through as the callout scrolls into
+           view. CSS-only — animation-timeline: view() gives a real
+           scroll-linked reveal in modern browsers; unsupported
+           browsers just show the plain list. Stagger via :nth-child. */
+        @supports (animation-timeline: view()) {
+          @media (prefers-reduced-motion: no-preference) {
+            .msr-cut-item::after {
+              content: "";
+              position: absolute;
+              left: 0; right: 0;
+              top: 55%;
+              height: 1.5px;
+              background: ${c.brand};
+              transform-origin: left center;
+              transform: scaleX(0);
+              animation: msr-cut-strike linear both;
+              animation-timeline: view();
+              animation-range: entry 40% cover 30%;
+            }
+            .msr-cut-item:nth-child(2)::after { animation-range: entry 42% cover 32%; }
+            .msr-cut-item:nth-child(3)::after { animation-range: entry 44% cover 34%; }
+            .msr-cut-item:nth-child(4)::after { animation-range: entry 46% cover 36%; }
+            .msr-cut-item:nth-child(5)::after { animation-range: entry 48% cover 38%; }
+            @keyframes msr-cut-strike { to { transform: scaleX(1); } }
+          }
+        }
+      `}</style>
     </aside>
   );
 }

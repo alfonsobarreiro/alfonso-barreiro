@@ -381,6 +381,7 @@ export default function SpotifyV2() {
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
+                  aria-label={`${String(i + 1).padStart(2, "0")} · ${arc.label}`}
                   suppressHydrationWarning
                   style={{
                     fontFamily:     font.sans,
@@ -398,10 +399,10 @@ export default function SpotifyV2() {
                     transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }} aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  {arc.label}
+                  <span className="sp2-arc-label" aria-hidden="true">{arc.label}</span>
                 </a>
               </li>
             ))}
@@ -542,6 +543,23 @@ export default function SpotifyV2() {
               color: var(--color-accent) !important;
             }
             .sp2-arc-nav + script + style + div { padding-top: 36px !important; }
+          }
+          /* Under 480px, drop the arc labels ("Premise" / "Research" …)
+             and show only the numerals. Recovers ~13% viewport height
+             (audit 2026-07-03). Anchors carry aria-label with the full
+             name so screen readers are unaffected. */
+          @media (max-width: 480px) {
+            .sp2-arc-label { display: none !important; }
+            .sp2-arc-nav a {
+              padding: 8px 4px !important;
+              font-size: 12px !important;
+              letter-spacing: 0.10em !important;
+              min-height: 34px !important;
+            }
+            .sp2-arc-nav a span:first-child {
+              opacity: 1 !important;
+              font-size: 12px !important;
+            }
           }
         `}</style>
 
