@@ -1798,7 +1798,11 @@ function DecisionLogic() {
               }}>{f.tagline}</p>
             </header>
 
-            {(f.video || f.screen) ? (
+            {/* All three flows now have video or screen; the wireframe-
+                grid fallback that used to live in the else branch was
+                dead code and made TS narrow `f` to `never` on Vercel
+                builds. Deleted. */}
+            {(
               /* Animation walkthrough — iPhone chrome + autoplay muted loop
                  (for pin/pause webms) OR the CSS-animated Remove prototype
                  injected via f.screen. Two-column on desktop: iPhone left
@@ -1936,64 +1940,6 @@ function DecisionLogic() {
                     </li>
                   ))}
                 </ol>
-              </div>
-            ) : (
-              /* Wireframe frames — wrapped in a dark mat so the flow reads
-                  as one curated panel instead of frames floating against
-                  the page. Each screen has rounded corners to feel
-                  device-native. Mat darkened to #2F2F2F so the Spotify-
-                  green caption number meets WCAG AA on its surface. */
-              <div style={{
-                background: "#2F2F2F",
-                padding: "clamp(20px, 3vw, 40px)",
-                marginBottom: "56px",
-              }}>
-                <div style={{
-                  display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "clamp(16px, 2vw, 24px)",
-                }} className="sp2-dl-frames">
-                  {f.frames.map((frame, idx) => (
-                    <figure key={frame.src} style={{ margin: 0 }}>
-                      <div style={{
-                        aspectRatio: f.aspectRatio,
-                        overflow: "hidden",
-                        /* Mobile: medium-gray rounded background contrasts
-                           against the darker outer mat. Desktop: thin
-                           black behind the screen capture so the white UI
-                           elements pop. */
-                        background: f.surface === "Mobile" ? "#6E6E6E" : "#000000",
-                        borderRadius: f.surface === "Mobile"
-                          ? "clamp(14px, 1.6vw, 22px)"
-                          : "clamp(2px, 0.3vw, 4px)",
-                      }}>
-                        <Image
-                          src={frame.src}
-                          alt={`Step ${idx + 1}. ${frame.beat} ${frame.body}`}
-                          width={1554} height={1260}
-                          sizes="(max-width: 760px) 100vw, 380px"
-                          loading={idx < 2 ? "eager" : "lazy"}
-                          style={{
-                            width: "100%", height: "100%",
-                            objectFit: "contain", objectPosition: "center",
-                            display: "block",
-                          }}
-                        />
-                      </div>
-                      <figcaption style={{
-                        fontFamily: font.sans, fontSize: "12px",
-                        margin: "12px 0 0", display: "flex", gap: "10px", alignItems: "baseline",
-                        lineHeight: 1.5,
-                      }}>
-                        <span style={{ fontWeight: 700, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>
-                          <strong style={{ fontWeight: 700, color: "#FFFFFF" }}>{frame.beat}</strong>{" "}{frame.body}
-                        </span>
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
               </div>
             )}
 

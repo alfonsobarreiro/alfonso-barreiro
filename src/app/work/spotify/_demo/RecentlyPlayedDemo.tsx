@@ -86,6 +86,11 @@ export default function RecentlyPlayedDemo() {
   const [pausedAt, setPausedAt]       = useState<number>(0);
   const [reducedMotion, setReducedMotion] = useState<boolean>(false);
   const [onScreen, setOnScreen]       = useState<boolean>(false);
+  /* One-shot "breathe" hint: pulses the widget scale twice the first
+     time it scrolls into view so the reader clocks it as interactive
+     (Alfonso 2026-07-03, option B). Honors prefers-reduced-motion. */
+  const [breathe, setBreathe]         = useState<boolean>(false);
+  const breathedRef                    = useRef<boolean>(false);
 
   const snackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRef    = useRef<HTMLElement | null>(null);
@@ -142,6 +147,28 @@ export default function RecentlyPlayedDemo() {
      a concern. IntersectionObserver was gating P/R silently before
      it flipped to true, which read as "P and R don't work". */
   useEffect(() => { setOnScreen(true); }, []);
+
+  /* Trigger the breathe pulse once, the first time the widget enters
+     view. Reduced-motion users get nothing. */
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || breathedRef.current) return;
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting && !breathedRef.current) {
+          breathedRef.current = true;
+          setBreathe(true);
+          window.setTimeout(() => setBreathe(false), 3000);
+          io.disconnect();
+          break;
+        }
+      }
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const orderIds = useMemo(() => artists.map(a => a.id), [artists]);
 
@@ -295,6 +322,8 @@ export default function RecentlyPlayedDemo() {
         width:        "100%",
         maxWidth:     "820px",
         marginInline: "0",
+        animation:    breathe ? "sp2RpBreathe 1.2s ease-in-out 2" : "none",
+        transformOrigin: "center center",
       }}
     >
       {/* Eyebrow + title + description moved OUT to the section wrapper
@@ -589,6 +618,16 @@ export default function RecentlyPlayedDemo() {
 
       {/* Responsive rules */}
       <style>{`
+        @keyframes sp2RpBreathe {
+          0%   { transform: scale(1); }
+          50%  { transform: scale(1.006); }
+          100% { transform: scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          @keyframes sp2RpBreathe {
+            0%, 100% { transform: none; }
+          }
+        }
         @media (max-width: 520px) {
           .sp2-demo-shelf { grid-template-columns: 1fr !important; }
         }
