@@ -1138,6 +1138,80 @@ export default function WayfarerV2() {
           background: #FFFFFF;
         }
 
+        /* Design system native mobile summary — hidden on desktop.
+           Mobile CSS turns .wf2-ds-native to display: block. */
+        .wf2-ds-native { display: none; margin-top: 24px; }
+        .wf2-ds-swipe-hint { display: none; }
+        .wf2-ds-native-label {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+          text-transform: uppercase; color: ${c.accent};
+          margin: 0 0 14px;
+        }
+        .wf2-ds-native-note {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 13px; line-height: 1.6; color: ${c.ink2};
+          margin: 20px 0 0;
+        }
+        .wf2-ds-color-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .wf2-ds-color-chip {
+          display: flex; align-items: center; gap: 10px;
+          padding: 10px 12px;
+          border: 1px solid ${c.border};
+          background: #FFFFFF;
+        }
+        .wf2-ds-color-swatch {
+          width: 28px; height: 28px; display: inline-block; flex-shrink: 0;
+          border: 1px solid rgba(0, 0, 0, 0.10);
+        }
+        .wf2-ds-color-meta { display: flex; flex-direction: column; min-width: 0; }
+        .wf2-ds-color-name {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 12px; font-weight: 600; color: ${c.ink}; letter-spacing: -0.005em;
+        }
+        .wf2-ds-color-hex {
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          font-size: 11px; color: ${c.muted}; margin-top: 2px;
+        }
+        .wf2-ds-typo-stack { display: flex; flex-direction: column; gap: 20px; }
+        .wf2-ds-typo-row {
+          padding: 16px 18px;
+          border: 1px solid ${c.border};
+          background: #FFFFFF;
+        }
+        .wf2-ds-typo-meta {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+          text-transform: uppercase; color: ${c.muted};
+          margin: 0 0 8px;
+        }
+        .wf2-ds-typo-sample-display {
+          font-family: "Space Grotesk", var(--font-dm-sans), sans-serif;
+          font-size: 22px; font-weight: 600; color: ${c.ink};
+          letter-spacing: -0.02em; line-height: 1.15;
+          margin: 0 0 8px;
+        }
+        .wf2-ds-typo-sample-h2 {
+          font-family: "Space Grotesk", var(--font-dm-sans), sans-serif;
+          font-size: 17px; font-weight: 600; color: ${c.ink};
+          letter-spacing: -0.015em; line-height: 1.2;
+          margin: 0;
+        }
+        .wf2-ds-typo-sample-body {
+          font-family: "Inter", var(--font-dm-sans), sans-serif;
+          font-size: 14px; line-height: 1.55; color: ${c.ink2};
+          margin: 0 0 8px;
+        }
+        .wf2-ds-typo-sample-label {
+          font-family: "Inter", var(--font-dm-sans), sans-serif;
+          font-size: 12px; font-weight: 500; color: ${c.ink};
+          margin: 0;
+        }
+
         /* Focus ring projection: when a (visually-hidden but focusable)
            radio gets keyboard focus, paint a teal outline on its label.
            Uses :has() so the label-as-tab pattern still works for
@@ -1174,6 +1248,62 @@ export default function WayfarerV2() {
              the image and reveal the native card list of findings. */
           .wf2-a11y-image  { display: none !important; }
           .wf2-a11y-mobile { display: block !important; }
+          /* Design system tokens on mobile: same problem as a11y audit.
+             The Figma slides are readable on desktop but shrink to
+             illegible text at phone width. Do both per Alfonso 2026-07-03:
+             (1) keep the artifact behind a horizontal side-scroll at
+             native width with a "swipe / full view on desktop" hint, so
+             the reader can still see the shipped Figma slide;
+             (2) render a native mobile summary below with the essential
+             signal (brand + accent colors, primary typefaces). */
+          .wf2-ds-scroll {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+          }
+          .wf2-ds-scroll img {
+            width: 900px !important;
+            min-width: 900px !important;
+            max-width: none !important;
+          }
+          .wf2-ds-native { display: block !important; }
+          .wf2-ds-swipe-hint {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-dm-sans), sans-serif;
+            font-size: 11px !important; font-weight: 700 !important;
+            letter-spacing: 0.14em !important; text-transform: uppercase !important;
+            color: ${c.accent} !important;
+            background: rgba(210, 122, 94, 0.08) !important;
+            padding: 6px 10px !important;
+            margin: 12px 0 0 !important;
+            border-left: 2px solid ${c.accent} !important;
+          }
+          /* Multi-step signup step — reflow on mobile so the image gets
+             its own full-width row and the numeral drops to a compact
+             inline eyebrow above the note text (Alfonso 2026-07-03:
+             "01 Account beside text so the image can be one column"). */
+          .wf2-su-step {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 20px !important;
+          }
+          .wf2-su-step > .wf2-su-media { order: 1; }
+          .wf2-su-step > .wf2-su-num   { order: 2; display: flex !important; align-items: baseline !important; gap: 10px !important; }
+          .wf2-su-step > .wf2-su-note-standalone { order: 3; display: block !important; }
+          /* Desktop-render note lives inside the image column — hide on mobile
+             so it doesn't double up with the standalone note below. */
+          .wf2-su-step .wf2-su-note-desktop { display: none !important; }
+          .wf2-su-step .wf2-su-num-numeral {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.14em !important;
+            line-height: 1.2 !important;
+            color: ${c.accent} !important;
+          }
+          .wf2-su-step .wf2-su-num-label {
+            margin: 0 !important;
+          }
           .wf2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
           .wf2-swatch-grid      { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .wf2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
@@ -1517,34 +1647,92 @@ function DesignSystemCarousel() {
       <div style={{
         display: "flex", flexDirection: "column", gap: "clamp(48px, 6vw, 72px)",
       }}>
+
+        {/* ── 01 · Color tokens ── */}
         <figure style={{ margin: 0 }}>
           <p style={{
             fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 14px",
           }}>01 · Color tokens</p>
-          <Image
-            src="/images/work/wayfarer/wayfarer-sig-color.webp"
-            alt="Wayfarer color tokens. four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
-            width={2400} height={1500}
-            sizes="(max-width: 1240px) 100vw, 1240px"
-            style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-          />
+          {/* Figma slide — full-fidelity on desktop; horizontally
+              scrollable at native width on mobile via .wf2-ds-scroll. */}
+          <div className="wf2-ds-scroll">
+            <Image
+              src="/images/work/wayfarer/wayfarer-sig-color.webp"
+              alt="Wayfarer color tokens. four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
+              width={2400} height={1500}
+              sizes="(max-width: 1240px) 100vw, 1240px"
+              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
+            />
+          </div>
+          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe to explore &middot; full view on desktop &rarr;</p>
+          {/* Native mobile summary — the essential signal (brand + accent
+              + neutrals) rendered as HTML so mobile readers get a
+              legible version even without swiping the artifact. */}
+          <div className="wf2-ds-native wf2-ds-color-native">
+            <p className="wf2-ds-native-label">Brand + Accent + Neutrals</p>
+            <div className="wf2-ds-color-grid">
+              {[
+                { name: "Brand · Navy",       hex: "#3E3C78", role: "Identity" },
+                { name: "Accent · Terra Cotta", hex: "#D27A5E", role: "Interaction" },
+                { name: "Paper",              hex: "#F8F9FB", role: "Surface" },
+                { name: "Ink",                hex: "#191824", role: "Text" },
+              ].map(s => (
+                <div key={s.name} className="wf2-ds-color-chip">
+                  <span className="wf2-ds-color-swatch" style={{ background: s.hex }} />
+                  <span className="wf2-ds-color-meta">
+                    <span className="wf2-ds-color-name">{s.name}</span>
+                    <span className="wf2-ds-color-hex">{s.hex} &middot; {s.role}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="wf2-ds-native-note">
+              One palette. Three roles. Two modes. Ten-step primitive ramps live in the desktop artifact above; semantic aliases swap between Light and Dark.
+            </p>
+          </div>
         </figure>
+
+        {/* ── 02 · Typography ── */}
         <figure style={{ margin: 0 }}>
           <p style={{
             fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 14px",
           }}>02 · Typography</p>
-          <Image
-            src="/images/work/wayfarer/wayfarer-sig-typography.webp"
-            alt="Wayfarer typography. 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
-            width={2400} height={1500}
-            sizes="(max-width: 1240px) 100vw, 1240px"
-            style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-          />
+          <div className="wf2-ds-scroll">
+            <Image
+              src="/images/work/wayfarer/wayfarer-sig-typography.webp"
+              alt="Wayfarer typography. 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
+              width={2400} height={1500}
+              sizes="(max-width: 1240px) 100vw, 1240px"
+              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
+            />
+          </div>
+          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe to explore &middot; full view on desktop &rarr;</p>
+          <div className="wf2-ds-native wf2-ds-typo-native">
+            <p className="wf2-ds-native-label">Two typefaces, each with a job</p>
+            <div className="wf2-ds-typo-stack">
+              <div className="wf2-ds-typo-row">
+                <p className="wf2-ds-typo-meta">Space Grotesk &middot; Display + headings</p>
+                <p className="wf2-ds-typo-sample-display">Unforgettable new destinations.</p>
+                <p className="wf2-ds-typo-sample-h2">Discovery by design.</p>
+              </div>
+              <div className="wf2-ds-typo-row">
+                <p className="wf2-ds-typo-meta">Inter &middot; Body + UI</p>
+                <p className="wf2-ds-typo-sample-body">
+                  Wayfarer is a discovery tool, not a booking platform. Everything had to survive that filter.
+                </p>
+                <p className="wf2-ds-typo-sample-label">Email address</p>
+              </div>
+            </div>
+            <p className="wf2-ds-native-note">
+              Display and heading rendering goes to Space Grotesk. Body, UI, and small type go to Inter. The roles are structural and they don&rsquo;t overlap.
+            </p>
+          </div>
         </figure>
+
       </div>
     </div>
   );
@@ -2583,8 +2771,12 @@ function SignupFunnelFlow() {
             }}
             className="wf2-su-step"
           >
-            <div>
-              <p style={{
+            {/* Numeral + label — sits in the left rail on desktop.
+                On mobile it drops to an inline eyebrow above the note
+                text (see .wf2-su-step mobile CSS: image row spans full
+                width, then num+label eyebrow, then note). */}
+            <div className="wf2-su-num">
+              <p className="wf2-su-num-numeral" style={{
                 fontFamily:         font.sans,
                 fontSize:           "clamp(40px, 5vw, 68px)",
                 fontWeight:         500,
@@ -2594,7 +2786,7 @@ function SignupFunnelFlow() {
                 margin:             0,
                 fontVariantNumeric: "tabular-nums",
               }}>{s.num}</p>
-              <p style={{
+              <p className="wf2-su-num-label" style={{
                 fontFamily:    font.sans,
                 fontSize:      "12px",
                 fontWeight:    600,
@@ -2604,8 +2796,11 @@ function SignupFunnelFlow() {
                 margin:        "16px 0 0",
               }}>{s.label}</p>
             </div>
-            <div>
-              <div style={{
+            {/* Image gets its own wrapper — note text is a separate
+                sibling below so mobile flex-reorder can render:
+                image → num+label eyebrow → note text. */}
+            <div className="wf2-su-media">
+              <div className="wf2-su-image" style={{
                 aspectRatio: "4 / 3",
                 overflow:    "hidden",
                 border:      `1px solid ${c.border}`,
@@ -2626,13 +2821,24 @@ function SignupFunnelFlow() {
                   }}
                 />
               </div>
-              <p style={{
+              {/* Desktop-only render of note text (sits directly below
+                  image in the right column). Hidden on mobile so the
+                  separate wf2-su-note-standalone below takes over. */}
+              <p className="wf2-su-note-desktop" style={{
                 fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
                 color: c.ink2, margin: "20px 0 0", maxWidth: "780px",
               }}>
                 {s.note}
               </p>
             </div>
+            {/* Mobile-only standalone note — renders below the eyebrow
+                after the reorder. Hidden on desktop. */}
+            <p className="wf2-su-note-standalone" style={{
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              color: c.ink2, margin: 0, display: "none",
+            }}>
+              {s.note}
+            </p>
           </li>
         ))}
       </ol>
