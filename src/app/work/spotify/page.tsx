@@ -2758,8 +2758,10 @@ function ActionSheetHero() {
         }}>
           {/* Phone with the action sheet open. Rounded corners on the
              container mimic the real iPhone screen radius so it reads as a
-             device in hand rather than a flat rectangular grab. */}
-          <div style={{
+             device in hand rather than a flat rectangular grab. A small
+             long-press pulse indicator sits over the shelf-row area (top
+             third) so the reader sees the gesture, not just the result. */}
+          <div className="sp2-as-phone" style={{
             aspectRatio:  "780 / 1711",
             overflow:     "hidden",
             background:   "#000",
@@ -2767,6 +2769,7 @@ function ActionSheetHero() {
             width:        "100%",
             maxWidth:     "320px",
             borderRadius: "clamp(18px, 2vw, 28px)",
+            position:     "relative",
           }}>
             <Image
               src="/images/work/spotify/spotify-action-sheet.webp"
@@ -2779,6 +2782,51 @@ function ActionSheetHero() {
                 display: "block",
               }}
             />
+            <span aria-hidden="true" className="sp2-as-press">
+              <span className="sp2-as-press-ring" />
+              <span className="sp2-as-press-dot"  />
+            </span>
+            <style>{`
+              /* Long-press indicator over the phone: a small dot with
+                 expanding ring rides the top-third row area. Reads as
+                 "finger held here" — cues the gesture that opens the
+                 action sheet shown in the same frame. */
+              .sp2-as-press {
+                position: absolute;
+                top:      18%;
+                left:     78%;
+                width:    64px; height: 64px;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+              }
+              .sp2-as-press-ring,
+              .sp2-as-press-dot {
+                position: absolute;
+                top: 50%; left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+              }
+              .sp2-as-press-dot {
+                width: 18px; height: 18px;
+                background: #FFFFFF;
+                opacity: 0.85;
+                box-shadow: 0 0 0 2px rgba(255,255,255,0.35);
+              }
+              .sp2-as-press-ring {
+                width: 18px; height: 18px;
+                border: 2px solid #1ED760;
+                opacity: 0;
+                animation: sp2-press-pulse 2400ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+              }
+              @keyframes sp2-press-pulse {
+                0%   { width: 18px; height: 18px; opacity: 0.9; }
+                80%  { width: 72px; height: 72px; opacity: 0; }
+                100% { width: 72px; height: 72px; opacity: 0; }
+              }
+              @media (prefers-reduced-motion: reduce) {
+                .sp2-as-press-ring { animation: none; opacity: 0.5; }
+              }
+            `}</style>
           </div>
 
           {/* Caption + icon cells */}

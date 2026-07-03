@@ -4,6 +4,7 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import StatCell from "./_components/StatCell";
+import WalkTrace from "./_components/WalkTrace";
 
 export const metadata: Metadata = {
   title: "About",
@@ -539,6 +540,7 @@ export default function AboutPage() {
               right. But the curiosity is the same muscle I use in research. I
               just don&apos;t turn it off.
             </p>
+            <WalkTrace />
           </div>
         </section>
 
