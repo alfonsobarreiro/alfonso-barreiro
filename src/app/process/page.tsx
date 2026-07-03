@@ -3,6 +3,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import LogoMark from "@/components/LogoMark";
+import HoursRibbon from "./_components/HoursRibbon";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -212,6 +213,40 @@ export default function ProcessPage() {
             }}>
               Two frames on this page. Where I add value, in the language teams already track. And how I think about the work, in the language I actually use.
             </p>
+          </div>
+        </section>
+
+        {/* ── Where the hours go — interactive ribbon diagram ──────────
+             Visual proof of the "Figma comes last" claim. Five proportional
+             segments with mini-scenes inside; on desktop the traveler dot
+             is mouse-controlled and words update per segment. Mobile stacks
+             vertically with per-row words baked in. */}
+        <section aria-label="Where the hours go" style={{
+          padding:    "clamp(72px, 9vw, 112px) clamp(32px, 6vw, 80px)",
+          background: "#FFFFFF",
+        }}>
+          <div style={innerWrapper}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
+              <LogoMark size={22} variant="dark" opacity={0.8} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+            </div>
+            <p style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "11px",
+              fontWeight:    600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color:         "var(--color-accent)",
+              margin:        "0 0 12px",
+            }}>
+              Where the hours go
+            </p>
+            <h2 style={sectionH2}>One project. Five moves.</h2>
+            <p style={{ ...body, marginBottom: 0 }}>
+              Rough proportions across a real engagement. Figma is the shortest of them.
+            </p>
+
+            <HoursRibbon />
           </div>
         </section>
 
