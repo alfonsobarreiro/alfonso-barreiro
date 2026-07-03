@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type MoveKind = "framing" | "research" | "decisions" | "ship" | "figma";
 
@@ -25,7 +25,7 @@ const START_MS  = 500;
 const REVEAL_MS = 620;
 const FIGMA_IDX = MOVES.length - 1;
 
-// Cumulative starting %s
+/* Desktop: cumulative hours %s for label + traveler positioning */
 const CUM: number[] = [];
 {
   let acc = 0;
@@ -42,19 +42,73 @@ function idxFromPct(pct: number): number {
   return MOVES.length - 1;
 }
 
+/* Mobile card heights (px). Proportional-to-hours feel, tuned for readability. */
+const MOBILE_HEIGHTS = [220, 172, 158, 140, 96];
+const MOBILE_GAP     = 2;
+const MOBILE_FINAL_Y: number[] = [];
+{
+  let acc = 0;
+  for (let i = 0; i < MOBILE_HEIGHTS.length; i++) {
+    MOBILE_FINAL_Y.push(acc);
+    acc += MOBILE_HEIGHTS[i] + MOBILE_GAP;
+  }
+}
+const MOBILE_STACK_HEIGHT = MOBILE_FINAL_Y[FIGMA_IDX] + MOBILE_HEIGHTS[FIGMA_IDX];
+
+/* Each card's reveal window inside 0-1 scroll progress. Card 01 is always
+   present; Cards 02-05 each get a ~22% slice. */
+const REVEAL_STARTS = [0, 0, 0.22, 0.44, 0.66];
+const REVEAL_END    = 0.88;      /* Card 05 finishes at 88%, 12% breathing room */
+
+/** Recursively compute mobile Y for each card so that late cards emerge from
+ *  the current position of the previous card ("come out of each other"). */
+function computeMobileYs(progress: number): number[] {
+  const ys = [0];
+  let prevY = 0;
+  for (let i = 1; i < MOVES.length; i++) {
+    const start    = REVEAL_STARTS[i];
+    const duration = (i === MOVES.length - 1 ? REVEAL_END : REVEAL_STARTS[i + 1]) - start;
+    const finalY   = MOBILE_FINAL_Y[i];
+    let y: number;
+    if (progress < start) {
+      y = prevY;
+    } else {
+      const localP = Math.min(1, (progress - start) / duration);
+      const eased  = 1 - Math.pow(1 - localP, 2);
+      y = prevY + (finalY - prevY) * eased;
+    }
+    ys.push(y);
+    prevY = y;
+  }
+  return ys;
+}
+
 export default function HoursRibbon() {
-  const ref      = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const ref         = useRef<HTMLDivElement>(null);
+  const trackRef    = useRef<HTMLDivElement>(null);
+  const mobileAreaRef = useRef<HTMLDivElement>(null);
 
   const [reveal,      setReveal]      = useState(-1);
   const [callout,     setCallout]     = useState(false);
   const [closing,     setClosing]     = useState(false);
   const [interactive, setInteractive] = useState(false);
 
-  // Interactive state (desktop only, after reveal)
   const [activeIdx, setActiveIdx] = useState(-1);
   const [dotPct,    setDotPct]    = useState(0);
 
+  const [isMobile,       setIsMobile]       = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  /* ── Detect mobile viewport ───────────────────────────────── */
+  useEffect(() => {
+    const mq   = window.matchMedia("(max-width: 640px)");
+    const upd  = () => setIsMobile(mq.matches);
+    upd();
+    mq.addEventListener("change", upd);
+    return () => mq.removeEventListener("change", upd);
+  }, []);
+
+  /* ── Desktop reveal + interaction timeline ────────────────── */
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -71,7 +125,6 @@ export default function HoursRibbon() {
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return;
       io.disconnect();
-
       MOVES.forEach((_, i) => {
         timers.push(window.setTimeout(() => setReveal(i), START_MS + i * STEP_MS));
       });
@@ -88,8 +141,47 @@ export default function HoursRibbon() {
     return () => { io.disconnect(); timers.forEach((t) => window.clearTimeout(t)); };
   }, []);
 
+  /* ── Mobile: scroll-driven reveal ─────────────────────────── */
+  useEffect(() => {
+    if (!isMobile) return;
+    const area = mobileAreaRef.current;
+    if (!area) return;
+
+    let rafId: number | null = null;
+    const tick = () => {
+      rafId = null;
+      const rect     = area.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const total    = area.offsetHeight - window.innerHeight;
+      const p        = total > 0 ? Math.max(0, Math.min(1, scrolled / total)) : 0;
+      setScrollProgress(p);
+    };
+    const onScroll = () => {
+      if (rafId === null) rafId = window.requestAnimationFrame(tick);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", tick);
+    tick();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", tick);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
+  }, [isMobile]);
+
+  const mobileYs = useMemo(
+    () => (isMobile ? computeMobileYs(scrollProgress) : []),
+    [isMobile, scrollProgress]
+  );
+
+  /* Mobile: consider a card "on" (scenes visible) once its reveal has started */
+  const isSegOn = (i: number): boolean => {
+    if (isMobile) return i === 0 || scrollProgress >= REVEAL_STARTS[i];
+    return i <= reveal;
+  };
+
   const onMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    if (!interactive || !trackRef.current) return;
+    if (!interactive || !trackRef.current || isMobile) return;
     const rect = trackRef.current.getBoundingClientRect();
     const pct  = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
     setDotPct(pct);
@@ -97,7 +189,7 @@ export default function HoursRibbon() {
   };
 
   const onMouseLeave: React.MouseEventHandler<HTMLDivElement> = () => {
-    if (!interactive) return;
+    if (!interactive || isMobile) return;
     setActiveIdx(FIGMA_IDX);
     setDotPct(FIGMA_CENTER);
   };
@@ -176,7 +268,11 @@ export default function HoursRibbon() {
         .hours-rib-seg-words { display: none; }
         .hours-rib-seg-scene { position: absolute; inset: 0; }
 
-        /* ── The strip ── */
+        /* ── Mobile scroll area + sticky wrapper (invisible on desktop) ── */
+        .hours-rib-mscroll  { display: contents; }
+        .hours-rib-msticky  { display: contents; }
+
+        /* ── The strip (DESKTOP) ── */
         .hours-rib-track {
           position: relative;
           display:  flex;
@@ -454,7 +550,7 @@ export default function HoursRibbon() {
         }
         .hours-rib-close.is-on { opacity: 1; }
 
-        /* ═══════════════════ MOBILE — vertical stack ═══════════════════ */
+        /* ═══════════════════ MOBILE — scroll-driven stacked reveal ═══════ */
         @media (max-width: 640px) {
           .hours-rib-call,
           .hours-rib-labels,
@@ -463,37 +559,47 @@ export default function HoursRibbon() {
           .hours-rib-words,
           .hours-rib-hint { display: none; }
 
+          .hours-rib-mscroll {
+            display:   block;
+            position:  relative;
+            height:    1500px;
+            margin:    0 calc(-1 * clamp(16px, 4vw, 32px));
+          }
+          .hours-rib-msticky {
+            display:  block;
+            position: sticky;
+            top:      72px;
+            height:   ${MOBILE_STACK_HEIGHT}px;
+          }
+
           .hours-rib-track {
-            flex-direction: column;
-            height:         auto;
-            background:     transparent;
-            gap:            2px;
+            position:   relative;
+            display:    block;
+            height:     100%;
+            background: transparent;
           }
           .hours-rib-seg {
-            flex-basis:       auto !important;
-            width:            100%;
-            transform-origin: center top !important;
-            transform:        scaleY(0);
-            transition:       transform ${REVEAL_MS}ms cubic-bezier(0.22, 1, 0.36, 1);
-            display:          flex;
-            flex-direction:   column;
-            padding:          16px clamp(16px, 4vw, 24px) 16px;
+            position:  absolute;
+            top:       0; left: 0; right: 0;
+            width:     100%;
+            transform: none;
+            transition: none;
+            display:   flex;
+            flex-direction: column;
+            padding:   16px clamp(16px, 4vw, 24px);
+            will-change: transform;
           }
-          .hours-rib-seg.is-on { transform: scaleY(1); }
+          .hours-rib-seg[data-kind="framing"]   { height: ${MOBILE_HEIGHTS[0]}px; z-index: 5; }
+          .hours-rib-seg[data-kind="research"]  { height: ${MOBILE_HEIGHTS[1]}px; z-index: 4; }
+          .hours-rib-seg[data-kind="decisions"] { height: ${MOBILE_HEIGHTS[2]}px; z-index: 3; }
+          .hours-rib-seg[data-kind="ship"]      { height: ${MOBILE_HEIGHTS[3]}px; z-index: 2; }
+          .hours-rib-seg[data-kind="figma"]     { height: ${MOBILE_HEIGHTS[4]}px; z-index: 1; }
 
-          /* Mobile: proportional heights (Framing tallest, Figma shortest) */
-          .hours-rib-seg[data-kind="framing"]   { height: 220px; }
-          .hours-rib-seg[data-kind="research"]  { height: 172px; }
-          .hours-rib-seg[data-kind="decisions"] { height: 158px; }
-          .hours-rib-seg[data-kind="ship"]      { height: 140px; }
-          .hours-rib-seg[data-kind="figma"]     { height: 96px;  }
-
-          /* Row header — visible on mobile */
           .hours-rib-seg-head {
-            display:        flex;
+            display:         flex;
             justify-content: space-between;
-            align-items:    baseline;
-            color:          #FFFFFF;
+            align-items:     baseline;
+            color:           #FFFFFF;
           }
           .hours-rib-seg-num {
             font-family:    var(--font-dm-sans), sans-serif;
@@ -516,15 +622,11 @@ export default function HoursRibbon() {
             font-weight:    600;
             font-variant-numeric: tabular-nums;
           }
-
-          /* Scene area on mobile: sits between header and words */
           .hours-rib-seg-scene {
             position: relative;
             inset:    auto;
             flex:     1;
           }
-
-          /* Words inside each row (italic serif subtitle) */
           .hours-rib-seg-words {
             display:     block;
             font-family: var(--font-dm-serif-display), Georgia, serif;
@@ -535,7 +637,6 @@ export default function HoursRibbon() {
             line-height: 1.4;
           }
 
-          /* Rescale scene marks for smaller rows */
           .fr-q      { font-size: 18px; }
           .fr-bang   { font-size: 30px; }
           .de-mark   { font-size: 17px; }
@@ -546,7 +647,10 @@ export default function HoursRibbon() {
           .sh-dot    { width: 8px; height: 8px; }
           .sh-target { width: 10px; height: 10px; }
 
-          .hours-rib-close { font-size: 15px; }
+          .hours-rib-close {
+            margin-top: 24px;
+            font-size:  15px;
+          }
         }
       `}</style>
 
@@ -573,74 +677,84 @@ export default function HoursRibbon() {
         ))}
       </div>
 
-      {/* Ribbon strip */}
-      <div
-        ref={trackRef}
-        className="hours-rib-track"
-        onMouseMove={onMouseMove}
-        onMouseLeave={onMouseLeave}
-      >
-        {MOVES.map((m, i) => (
+      {/* Mobile scroll area + sticky wrapper. On desktop these use display:contents. */}
+      <div ref={mobileAreaRef} className="hours-rib-mscroll">
+        <div className="hours-rib-msticky">
           <div
-            key={m.label}
-            data-kind={m.kind}
-            className={`hours-rib-seg ${i <= reveal ? "is-on" : ""} ${activeIdx === i ? "is-active" : ""}`}
-            style={{
-              flexBasis:  `${m.hours}%`,
-              background: m.color,
-              transitionDelay: `${i * 40}ms`,
-            }}
+            ref={trackRef}
+            className="hours-rib-track"
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
           >
-            {/* Mobile-only row header */}
-            <div className="hours-rib-seg-head">
-              <span className="hours-rib-seg-num">0{i + 1}</span>
-              <span className="hours-rib-seg-name">{m.label}</span>
-              <span className="hours-rib-seg-hrs">{m.hours}h</span>
-            </div>
+            {MOVES.map((m, i) => {
+              const on = isSegOn(i);
+              const mobileStyle = isMobile
+                ? { transform: `translateY(${mobileYs[i] ?? 0}px)` }
+                : { transitionDelay: `${i * 40}ms` };
+              return (
+                <div
+                  key={m.label}
+                  data-kind={m.kind}
+                  className={`hours-rib-seg ${on ? "is-on" : ""} ${activeIdx === i ? "is-active" : ""}`}
+                  style={{
+                    ...(!isMobile ? { flexBasis: `${m.hours}%` } : null),
+                    background: m.color,
+                    ...mobileStyle,
+                  }}
+                >
+                  {/* Mobile-only row header */}
+                  <div className="hours-rib-seg-head">
+                    <span className="hours-rib-seg-num">0{i + 1}</span>
+                    <span className="hours-rib-seg-name">{m.label}</span>
+                    <span className="hours-rib-seg-hrs">{m.hours}h</span>
+                  </div>
 
-            {/* Scene */}
-            <div className="hours-rib-seg-scene">
-              {m.kind === "framing" && (
-                <>
-                  <span className="fr-q" style={{ top: "32%", left: "28%" }}>?</span>
-                  <span className="fr-q" style={{ top: "32%", left: "72%" }}>?</span>
-                  <span className="fr-q" style={{ top: "72%", left: "50%" }}>?</span>
-                  <span className="fr-bang">!</span>
-                </>
-              )}
-              {m.kind === "research" && (
-                <>
-                  <span className="re-dot" style={{ left: "26%", transitionDelay: "500ms" }} />
-                  <span className="re-dot" style={{ left: "50%", transitionDelay: "620ms" }} />
-                  <span className="re-dot" style={{ left: "74%", transitionDelay: "740ms" }} />
-                  <span className="re-line" />
-                </>
-              )}
-              {m.kind === "decisions" && (
-                <>
-                  <span className="de-mark de-x">✕</span>
-                  <span className="de-mark de-check">✓</span>
-                </>
-              )}
-              {m.kind === "ship" && (
-                <>
-                  <span className="sh-line" />
-                  <span className="sh-target" />
-                  <span className="sh-dot" />
-                </>
-              )}
-              {m.kind === "figma" && (
-                <div className="fi-frame">
-                  <span className="fi-cursor" />
-                  <span className="fi-letter">F</span>
+                  {/* Scene */}
+                  <div className="hours-rib-seg-scene">
+                    {m.kind === "framing" && (
+                      <>
+                        <span className="fr-q" style={{ top: "32%", left: "28%" }}>?</span>
+                        <span className="fr-q" style={{ top: "32%", left: "72%" }}>?</span>
+                        <span className="fr-q" style={{ top: "72%", left: "50%" }}>?</span>
+                        <span className="fr-bang">!</span>
+                      </>
+                    )}
+                    {m.kind === "research" && (
+                      <>
+                        <span className="re-dot" style={{ left: "26%", transitionDelay: "500ms" }} />
+                        <span className="re-dot" style={{ left: "50%", transitionDelay: "620ms" }} />
+                        <span className="re-dot" style={{ left: "74%", transitionDelay: "740ms" }} />
+                        <span className="re-line" />
+                      </>
+                    )}
+                    {m.kind === "decisions" && (
+                      <>
+                        <span className="de-mark de-x">✕</span>
+                        <span className="de-mark de-check">✓</span>
+                      </>
+                    )}
+                    {m.kind === "ship" && (
+                      <>
+                        <span className="sh-line" />
+                        <span className="sh-target" />
+                        <span className="sh-dot" />
+                      </>
+                    )}
+                    {m.kind === "figma" && (
+                      <div className="fi-frame">
+                        <span className="fi-cursor" />
+                        <span className="fi-letter">F</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Mobile words inside each row */}
+                  <p className="hours-rib-seg-words">{m.words}</p>
                 </div>
-              )}
-            </div>
-
-            {/* Mobile words inside each row */}
-            <p className="hours-rib-seg-words">{m.words}</p>
+              );
+            })}
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Hours below — desktop only */}
