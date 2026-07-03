@@ -90,7 +90,7 @@ const swatch: React.CSSProperties = {
    ABOVE the image so the reader knows what they're about to see
    before they see it — reads as an editorial decision log. */
 function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
-  eyebrow: string; heading: string; caption: string; src: string; width: number; height: number;
+  eyebrow: string; heading: string; caption?: string; src: string; width: number; height: number;
 }) {
   return (
     <figure style={{ margin: 0 }}>
@@ -117,19 +117,21 @@ function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
         }}>
           {heading}
         </h3>
-        <p style={{
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "15px",
-          lineHeight: 1.65,
-          color:      "#3D4440",
-          margin:     0,
-        }}>
-          {caption}
-        </p>
+        {caption && (
+          <p style={{
+            fontFamily: "var(--font-dm-sans), sans-serif",
+            fontSize:   "15px",
+            lineHeight: 1.65,
+            color:      "#3D4440",
+            margin:     0,
+          }}>
+            {caption}
+          </p>
+        )}
       </div>
       <Image
         src={src}
-        alt={caption}
+        alt={caption || heading}
         width={width}
         height={height}
         sizes="(max-width: 760px) 100vw, 920px"
@@ -253,7 +255,6 @@ export default function BehindThisSitePage() {
               <ArtifactStep
                 eyebrow="01 · The mark"
                 heading="Infinity, an A, and a closed system in one glyph."
-                caption="Infinity ∞ + A-arrow integrated into a single continuous form. Reads as a loop, an A, and a closed system — the dual identity of designer + studio in one glyph."
                 src="/images/behind-this-site/mark-hero.png"
                 width={1536}
                 height={500}

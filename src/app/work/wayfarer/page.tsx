@@ -294,9 +294,8 @@ function HeroImage({
 /* ---------- BigThree section template ---------- */
 
 function BigThree({
-  number, heading, image, imageAlt, imageCrop, body, callout,
+  heading, image, imageAlt, imageCrop, body, callout,
 }: {
-  number: string;
   heading: string;
   image: string;
   imageAlt: string;
@@ -316,11 +315,6 @@ function BigThree({
           gap: "64px", alignItems: "start",
         }} className="wf2-row">
           <div>
-            <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.20em", color: c.accent,
-              display: "block", marginBottom: "12px",
-            }}>{number}</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 600, color: c.ink, margin: 0,
@@ -687,7 +681,6 @@ export default function WayfarerV2() {
             §01 — The problem
         ───────────────────────────────────────────── */}
         <BigThree
-          number="01"
           heading="The problem"
           image="/images/work/wayfarer/v2/live-destinations-grid-v2.webp"
           imageAlt="Live destinations grid at wayfarer.barreiro.com — 40+ destinations across seven continents, the surface the original brief tried to make the homepage."
@@ -782,11 +775,6 @@ export default function WayfarerV2() {
               gap: "64px", alignItems: "start",
             }} className="wf2-row">
               <div>
-                <span style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  letterSpacing: "0.20em", color: c.accent,
-                  display: "block", marginBottom: "12px",
-                }}>02</span>
                 <h2 style={{
                   fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
                   fontWeight: 600, color: c.ink, margin: 0,
@@ -1527,8 +1515,6 @@ function DesignSystemCarousel() {
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
       <div style={{
-        border: `1px solid ${c.border}`, background: "#FFFFFF",
-        padding: "clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px)",
         display: "flex", flexDirection: "column", gap: "clamp(48px, 6vw, 72px)",
       }}>
         <figure style={{ margin: 0 }}>
@@ -1575,11 +1561,6 @@ function ShippedSection() {
           gap: "64px", alignItems: "start", marginBottom: "64px",
         }} className="wf2-row">
           <div>
-            <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.20em", color: c.accent,
-              display: "block", marginBottom: "12px",
-            }}>03</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 600, color: c.ink, margin: 0,
@@ -2560,7 +2541,7 @@ function SignupFunnelFlow() {
   ];
 
   return (
-    <div style={{ marginTop: "32px" }}>
+    <div style={{ marginTop: "clamp(80px, 10vw, 128px)" }}>
       <p style={{
         fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
         letterSpacing: "0.20em", textTransform: "uppercase",
@@ -2893,7 +2874,7 @@ function AccessibilitySection() {
               Mobile: this whole block is hidden because the image text
               is illegible at phone widths; the native card list below
               takes over. */}
-          <div className="wf2-a11y-image" style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
+          <div className="wf2-a11y-image">
             <Image
               src="/images/work/wayfarer/v2/a11y-audit.png"
               alt="Wayfarer accessibility system audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
