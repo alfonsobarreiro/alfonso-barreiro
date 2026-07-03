@@ -1270,8 +1270,12 @@ export default function SpotifyV2() {
           .sp2-journey-desktop { display: flex !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
           .sp2-journey-desktop .sp2-journey-img { width: 1200px !important; min-width: 1200px !important; max-width: none !important; }
           .sp2-journey-mobile  { display: none !important; }
-          /* Sketches — native width on phones so each device sketch reads. */
-          .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
+          /* Three directions on paper — stack the 3-column grid to a
+             vertical stack on mobile. Each direction reads as its own
+             card. Landscape wireframes get the 1000:618 aspect frame;
+             portrait Remove image sits inside via object-fit contain
+             (Alfonso 2026-07-03). */
+          .sp2-sketches-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
           /* Consistent Behavior screenshot — fits viewport width, no scroll. */
           /* Scroll hint shown under every horizontally-scrolling block on
              phones. Hidden on desktop. Uses Deep Teal + heavier weight so
@@ -1491,7 +1495,11 @@ function SketchesAndMidfi() {
           </div>
         </div>
 
-        {/* Paper sketches — landscape Figma slide */}
+        {/* Three directions on paper — replaces the flat figma-sketches.png
+            with three separated cards (title + wireframe + body). Grid on
+            desktop, stack on mobile. Assets pulled from the Figma file
+            "Wireframes" frame (JrM6jElfVB1XXXVNWN980v · nodes 344:244,
+            344:246, 344:248) on 2026-07-03. */}
         <div style={{ marginBottom: "48px" }}>
           <p style={{
             fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
@@ -1500,28 +1508,89 @@ function SketchesAndMidfi() {
           }}>Sketches</p>
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 20px",
+            fontWeight: 600, color: c.ink, margin: "0 0 8px",
             letterSpacing: "-0.02em", lineHeight: 1.2,
           }}>
             Three directions on paper.
           </h3>
-          <div className="sp2-sketches-scroll" tabIndex={0} role="region"
-            aria-label="Paper sketches, scroll horizontally to view all three"
-            style={{
-              border: `1px solid ${c.border}`, background: "#FFFFFF",
-              overflowX: "auto", WebkitOverflowScrolling: "touch",
-            }}>
-            <Image
-              src="/images/work/spotify/v2/figma-sketches.png"
-              alt="Sketching possible interaction patterns: three device sketches explored on paper before any Figma frame."
-              width={1840} height={769}
-              sizes="(max-width: 760px) 880px, (max-width: 1240px) 100vw, 1100px"
-              quality={95}
-              className="sp2-sketches-img"
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
+          <p style={{
+            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.55,
+            color: c.muted, margin: "0 0 32px", maxWidth: "780px",
+          }}>
+            Each direction tests a different affordance for the same shelf. Lightweight, reversible, native to the surface the control lives on.
+          </p>
+
+          <div className="sp2-sketches-grid" style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "clamp(20px, 3vw, 40px)",
+            alignItems: "start",
+          }}>
+            {[
+              {
+                key:   "pin",
+                title: "Pin item to top.",
+                src:   "/images/work/spotify/v2/sketches/sketch-pin.png",
+                w:     1000,
+                h:     618,
+                alt:   "Desktop wireframe: right-click menu on a Recently Played tile with 'Pin on top' at the top of the list.",
+                body:  "Right-click a tile. Pin on top sits at the top of the menu, with the four-pin cap named inline as a header.",
+              },
+              {
+                key:   "pause",
+                title: "Pause listening history.",
+                src:   "/images/work/spotify/v2/sketches/sketch-pause.png",
+                w:     1000,
+                h:     618,
+                alt:   "Desktop wireframe: a shelf-scoped 'Pause listening history' pill sits above Recently Played.",
+                body:  "A shelf-scoped pill above Recently Played. One click freezes the whole shelf, and the state stays visible.",
+              },
+              {
+                key:   "remove",
+                title: "Remove from Recently Played.",
+                src:   "/images/work/spotify/v2/sketches/sketch-remove.png",
+                w:     330,
+                h:     716,
+                alt:   "Mobile wireframe: long-press opens an action sheet with Remove from Recently Played on the surface.",
+                body:  "Long-press opens the action sheet with Remove on the surface. Don't suggest similar sits below for the softer signal.",
+              },
+            ].map(s => (
+              <figure key={s.key} style={{ margin: 0 }}>
+                <p style={{
+                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                  letterSpacing: "0.16em", textTransform: "uppercase",
+                  color: c.accent, margin: "0 0 12px",
+                }}>{s.key}</p>
+                <h4 style={{
+                  fontFamily: font.sans, fontSize: "clamp(18px, 1.6vw, 20px)",
+                  fontWeight: 600, color: c.ink, margin: "0 0 16px",
+                  letterSpacing: "-0.015em", lineHeight: 1.25,
+                }}>{s.title}</h4>
+                <div style={{
+                  background: "#FFFFFF", border: `1px solid ${c.border}`,
+                  padding: "16px", display: "flex",
+                  justifyContent: "center", alignItems: "center",
+                  marginBottom: "16px", aspectRatio: "1000 / 618",
+                }}>
+                  <Image
+                    src={s.src}
+                    alt={s.alt}
+                    width={s.w} height={s.h}
+                    sizes="(max-width: 760px) 90vw, 360px"
+                    quality={95}
+                    style={{
+                      width: "100%", height: "100%",
+                      objectFit: "contain", display: "block",
+                    }}
+                  />
+                </div>
+                <p style={{
+                  fontFamily: font.sans, fontSize: "14px", lineHeight: 1.55,
+                  color: c.ink2, margin: 0,
+                }}>{s.body}</p>
+              </figure>
+            ))}
           </div>
-          <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
         </div>
 
         {/* Mid-fi — desktop + mobile, paired. Desktop carries the surface
