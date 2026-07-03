@@ -89,8 +89,8 @@ const swatch: React.CSSProperties = {
    caption above; Figma-exported artifact below. The caption sits
    ABOVE the image so the reader knows what they're about to see
    before they see it — reads as an editorial decision log. */
-function ArtifactStep({ label, caption, src, width, height }: {
-  label: string; caption: string; src: string; width: number; height: number;
+function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
+  eyebrow: string; heading: string; caption: string; src: string; width: number; height: number;
 }) {
   return (
     <figure style={{ margin: 0 }}>
@@ -104,8 +104,19 @@ function ArtifactStep({ label, caption, src, width, height }: {
           color:         "var(--color-brand)",
           margin:        "0 0 14px",
         }}>
-          {label}
+          {eyebrow}
         </p>
+        <h3 style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "clamp(28px, 3.6vw, 44px)",
+          fontWeight:    600,
+          color:         "#252B28",
+          margin:        "0 0 16px",
+          letterSpacing: "-0.02em",
+          lineHeight:    1.15,
+        }}>
+          {heading}
+        </h3>
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "15px",
@@ -210,18 +221,19 @@ export default function BehindThisSitePage() {
               Foundation artifact &nbsp;·&nbsp; Brand
             </p>
 
-            {/* ── H2 (serif display italic — matches Figma frame) ── */}
+            {/* ── H2 — brand font only (Alfonso 2026-07-03). Serif italic
+                was fighting the brand. */}
             <h2 style={{
-              fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
-              fontSize:      "clamp(40px, 6vw, 72px)",
-              fontWeight:    400,
-              fontStyle:     "italic",
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "clamp(36px, 5.4vw, 60px)",
+              fontWeight:    600,
               color:         "#252B28",
               margin:        "0 0 24px",
-              letterSpacing: "-0.02em",
-              lineHeight:    1.05,
+              letterSpacing: "-0.025em",
+              lineHeight:    1.08,
+              maxWidth:      "820px",
             }}>
-              The mark
+              An infinity-A into B monogram, Alfonso Barreiro, and alpha beta design.
             </h2>
 
             <p style={{ ...body, maxWidth: "620px", margin: "0 0 clamp(64px, 8vw, 96px)" }}>
@@ -239,7 +251,8 @@ export default function BehindThisSitePage() {
             <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px, 7vw, 96px)" }}>
 
               <ArtifactStep
-                label="01 · The mark"
+                eyebrow="01 · The mark"
+                heading="Infinity, an A, and a closed system in one glyph."
                 caption="Infinity ∞ + A-arrow integrated into a single continuous form. Reads as a loop, an A, and a closed system — the dual identity of designer + studio in one glyph."
                 src="/images/behind-this-site/mark-hero.png"
                 width={1536}
@@ -247,7 +260,8 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                label="02 · Where the brand went warm"
+                eyebrow="02 · Color exploration"
+                heading="Where the brand went warm."
                 caption="Cognac, Burnt Sienna, and other warm-editorial candidates the mark tried on before Crimson locked. The register was always warm; the specific hue took iterations."
                 src="/images/behind-this-site/color-exploration.png"
                 width={1680}
@@ -255,7 +269,8 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                label="03 · How Alfonso Barreiro reads"
+                eyebrow="03 · Typography"
+                heading="How Alfonso Barreiro reads."
                 caption="Three type pairings tested against the wordmark: DM Serif Display + DM Sans, Fraunces + DM Sans, Newsreader + Inter. The specimen block underneath shows editorial + running text together — the two registers the site needs to hold."
                 src="/images/behind-this-site/typography-exploration.png"
                 width={1680}
@@ -263,7 +278,8 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                label="04 · Brand systems tested"
+                eyebrow="04 · Token systems"
+                heading="Tokens graded against real UI, not swatches."
                 caption="Surface / Brand / Accent / Ink token quartets across the shortlist. Each row also carries a live preview so the tokens are graded against real UI, not swatches in isolation."
                 src="/images/behind-this-site/brand-systems.png"
                 width={1768}
@@ -271,7 +287,8 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                label="05 · The Aubergine detour"
+                eyebrow="05 · The runner-up"
+                heading="The Aubergine detour."
                 caption="Applied to a full homepage before the direction pivoted. The runner-up that got the shipping palette its confidence: I ruled Aubergine out only after seeing it at production scale."
                 src="/images/behind-this-site/aubergine-locked-v2.png"
                 width={1440}
@@ -279,8 +296,9 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                label="06 · The direction that shipped"
-                caption="Homepage · C · Light with Conviction. The wireframe of the site you're reading right now, locked 2026-06-16. Crimson on paper. Deep Teal as the second voice. Same DM Sans running text as the Aubergine detour above."
+                eyebrow="06 · The direction that shipped"
+                heading="Homepage C · Light with Conviction."
+                caption="The wireframe of the site you're reading right now, locked 2026-06-16. Crimson on paper. Deep Teal as the second voice. Same DM Sans running text as the Aubergine detour above."
                 src="/images/behind-this-site/homepage-c-shipped-v3.png"
                 width={1440}
                 height={3400}
