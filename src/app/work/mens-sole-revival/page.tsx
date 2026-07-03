@@ -185,7 +185,7 @@ function BeatHeader({ n, label }: { n: string; label: string }) {
         letterSpacing: "0.18em",
         textTransform: "uppercase",
         color:         c.ink,
-      }}>Beat &nbsp;·&nbsp; {label}</span>
+      }}>{label}</span>
     </div>
   );
 }
@@ -1244,24 +1244,13 @@ export default function MSRv2() {
             }}>
               <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
 
-                {/* Editorial arrival — replaces the numeric BeatHeader.
-                    Bigger eyebrow in Deep Teal, display headline, deck.
-                    Announces "you are about to interact" instead of
-                    "here is section 2." */}
+                {/* §02 arrival — matches the 01 · Evidence + 03 ·
+                    Trade-offs BeatHeader pattern (Alfonso 2026-07-03:
+                    "01 and 03 exist as Beat but 02 was different, and
+                    Try it · Diagnostic routing reads junior"). Same
+                    numeric+label header, then display H2 + deck. */}
+                <BeatHeader n="02" label="Interaction" />
                 <div style={{ maxWidth: "780px", marginBottom: "clamp(48px, 6vw, 72px)" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-                    <span style={{ display: "inline-block", width: "32px", height: "1px", background: c.accent }} />
-                    <span style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "12px",
-                      fontWeight:    700,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      color:         c.accent,
-                    }}>
-                      Try it &nbsp;·&nbsp; Diagnostic routing
-                    </span>
-                  </div>
                   <h2 style={{
                     fontFamily:    font.sans,
                     fontSize:      "clamp(36px, 5vw, 60px)",
@@ -1751,6 +1740,13 @@ function ResearchStrip() {
     margin:        0,
     letterSpacing: "-0.005em",
   };
+  const stepNote: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "13px",
+    lineHeight: 1.55,
+    color:      c.ink2,
+    margin:     "10px 0 0",
+  };
 
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `0 ${SECTION_X}` }}>
@@ -1765,14 +1761,23 @@ function ResearchStrip() {
         <div>
           <p style={stepLabel}>Week 1</p>
           <p style={stepBody}>Margin modeling</p>
+          <p style={stepNote}>
+            Sourced sample lots from six manufacturers. Modeled margins across three price tiers. Every product path leaked to competitors with better selection.
+          </p>
         </div>
         <div>
           <p style={stepLabel}>Week 2</p>
           <p style={stepBody}>Customer interviews</p>
+          <p style={stepNote}>
+            Eight conversations with men 35 to 55 who had bought dress shoes in the last year. Almost all had a foot pain story. None had shopped for shoes with a diagnostic question in mind.
+          </p>
         </div>
         <div>
           <p style={stepLabel}>Week 3</p>
           <p style={stepBody}>The pivot</p>
+          <p style={stepNote}>
+            Traffic and search data pointed at information, not products. Recategorized the site around foot conditions before the catalog was ever built.
+          </p>
         </div>
       </div>
     </div>
