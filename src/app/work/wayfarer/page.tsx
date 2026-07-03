@@ -8,7 +8,6 @@ import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
-import GlobeIframeDemo from "./_demo/GlobeIframeDemo";
 
 /* ---------------------------------------------------------------------------
    /work/wayfarer
@@ -768,29 +767,9 @@ export default function WayfarerV2() {
               </p>
             </div>
           </div>
-          {/* Try the live globe yourself — embedded iframe of the
-              production site. Lifted OUT of the DECISIONS arc tint via
-              a full-viewport white bleed so it visually separates from
-              the static globe hero above and CutVsKept below, reading
-              as its own "try it" moment. Matches Spotify's
-              RecentlyPlayedDemo pattern. Padding matches the arc-tint
-              rhythm (40-80 top, 24-40 bottom) so the vertical spacing
-              stays consistent with the surrounding editorial. */}
-          <div style={{
-            marginTop: "16px",
-            marginBottom: "40px",
-            marginLeft: "calc(50% - 50vw)",
-            marginRight: "calc(50% - 50vw)",
-            background: "#FFFFFF",
-            paddingTop: "clamp(40px, 8vw, 80px)",
-            paddingBottom: "clamp(24px, 4vw, 40px)",
-            paddingLeft: SECTION_X,
-            paddingRight: SECTION_X,
-          }}>
-            <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-              <GlobeIframeDemo />
-            </div>
-          </div>
+          {/* Try-it-yourself GlobeIframeDemo removed per Alfonso 2026-07-03
+              ("Let's remove Try it yourself for now"). Reader still sees
+              the static globe hero above; the live surface is barreiro.com. */}
           {/* Code-rendered Cut vs Kept — neutrals only, no pastel pink/green. */}
           <div style={{ padding: `0 ${SECTION_X} 64px` }}>
             <CutVsKept />
@@ -1169,8 +1148,6 @@ export default function WayfarerV2() {
         .wf2-pg-card-body {
           padding: clamp(28px, 4vw, 48px);
           background: #FFFFFF;
-          max-height: calc(100vh - 260px);
-          overflow-y: auto;
         }
 
         /* Focus ring projection: when a (visually-hidden but focusable)
@@ -1417,15 +1394,6 @@ function DesignSystemSection() {
       </div>
 
       <div style={{ padding: `0 ${SECTION_X}` }}>
-        <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-          letterSpacing: "0.18em", textTransform: "uppercase",
-          color: c.muted, margin: "0 0 16px",
-          maxWidth: CONTENT_MAX, marginInline: "auto",
-        }}>
-          <span aria-hidden="true" style={{ color: c.accent }}>→ </span>
-          Click 01 · 02 · 03 to switch panels
-        </p>
         <DesignSystemCarousel />
       </div>
 
@@ -1551,78 +1519,46 @@ function TokenCrossProjectTable() {
   );
 }
 
+/* Was a 3-tab CSS-only carousel with 01 Color / 02 Typography / 03 Components.
+   Alfonso 2026-07-03: kill the tabs, kill the 03 Components panel. Now a
+   plain stacked pair — Color tokens above, Typography below. Two panels
+   read faster than three when Components was just a teaser image anyway. */
 function DesignSystemCarousel() {
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-      <div className="wf2-ds-carousel" style={{
-        border: `1px solid ${c.border}`, background: "#FAFAF9",
+      <div style={{
+        border: `1px solid ${c.border}`, background: "#FFFFFF",
+        padding: "clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px)",
+        display: "flex", flexDirection: "column", gap: "clamp(48px, 6vw, 72px)",
       }}>
-        <input type="radio" name="wf2-ds-tabs" id="wf2-ds-tab-1" defaultChecked aria-label="Color tokens panel" />
-        <input type="radio" name="wf2-ds-tabs" id="wf2-ds-tab-2" aria-label="Typography panel" />
-        <input type="radio" name="wf2-ds-tabs" id="wf2-ds-tab-3" aria-label="Components panel" />
-
-        <div className="wf2-ds-nav" style={{ display: "flex", borderBottom: `1px solid ${c.border}` }}>
-          {[
-            { id: "wf2-ds-tab-1", num: "01", label: "Color tokens" },
-            { id: "wf2-ds-tab-2", num: "02", label: "Typography" },
-            { id: "wf2-ds-tab-3", num: "03", label: "Components" },
-          ].map((tab, i, arr) => (
-            <label key={tab.id} htmlFor={tab.id}
-              className={`wf2-ds-tab wf2-ds-tab-${i + 1}`}
-              style={{
-                flex: 1, padding: "20px 24px", cursor: "pointer",
-                display: "flex", alignItems: "baseline", gap: "10px",
-                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                transition: "background 0.2s, color 0.2s",
-              }}
-            >
-              <span style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                color: c.accent, letterSpacing: "0.18em",
-              }}>{tab.num}</span>
-              <span style={{
-                fontFamily: font.sans, fontSize: "14px", fontWeight: 500,
-                color: c.ink, letterSpacing: "-0.005em",
-              }}>{tab.label}</span>
-            </label>
-          ))}
-        </div>
-
-        <div className="wf2-ds-panels" style={{ padding: "clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px)", background: "#FFFFFF" }}>
-          <div className="wf2-ds-panel" data-panel="1">
-            <Image
-              src="/images/work/wayfarer/wayfarer-sig-color.webp"
-              alt="Wayfarer color tokens. four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
-              width={2400} height={1500}
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-            />
-          </div>
-          <div className="wf2-ds-panel" data-panel="2">
-            <Image
-              src="/images/work/wayfarer/wayfarer-sig-typography.webp"
-              alt="Wayfarer typography. 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
-              width={2400} height={1500}
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-            />
-          </div>
-          <div className="wf2-ds-panel" data-panel="3">
-            <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
-              color: c.ink2, margin: "0 0 24px", maxWidth: PROSE_MAX,
-            }}>
-              Eighteen documented sections in the Figma source: Color, Typography, Button, Icon Button, Link, Search Pill, Kbd, Eyebrow Label, Badge, Text Input, Destination Card, Section Header, Navbar, Footer, Map, Mobile Nav, Sign In Modal, Destination Image. Each one carries a code cross-reference. The Destination Card (Section 11) is shown.
-            </p>
-            <Image
-              src="/images/work/wayfarer/wayfarer-sig-components-teaser.webp"
-              alt="Design System components teaser. eighteen documented sections, each with a code cross-reference to src/."
-              width={2400} height={1500}
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-            />
-          </div>
-        </div>
+        <figure style={{ margin: 0 }}>
+          <p style={{
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase",
+            color: c.accent, margin: "0 0 14px",
+          }}>01 · Color tokens</p>
+          <Image
+            src="/images/work/wayfarer/wayfarer-sig-color.webp"
+            alt="Wayfarer color tokens. four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
+            width={2400} height={1500}
+            sizes="(max-width: 1240px) 100vw, 1240px"
+            style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
+          />
+        </figure>
+        <figure style={{ margin: 0 }}>
+          <p style={{
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase",
+            color: c.accent, margin: "0 0 14px",
+          }}>02 · Typography</p>
+          <Image
+            src="/images/work/wayfarer/wayfarer-sig-typography.webp"
+            alt="Wayfarer typography. 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
+            width={2400} height={1500}
+            sizes="(max-width: 1240px) 100vw, 1240px"
+            style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
+          />
+        </figure>
       </div>
     </div>
   );
@@ -2365,15 +2301,6 @@ function ProcessGallery() {
             </p>
           </div>
         </div>
-
-        <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-          letterSpacing: "0.18em", textTransform: "uppercase",
-          color: c.muted, margin: "0 0 16px",
-        }}>
-          <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
-          Three phases, stacking as you scroll.
-        </p>
 
         <div className="wf2-pg-stack">
           {/* 01 Research */}
