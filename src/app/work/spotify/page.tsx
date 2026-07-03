@@ -343,8 +343,209 @@ export default function SpotifyV2() {
           </p>
         </header>
 
+        {/* Sticky arc nav — same treatment as MSR + Wayfarer (Alfonso
+            2026-07-03). Jumps between the four arc anchors that already
+            wrap the tinted content blocks below. */}
+        <nav
+          aria-label="Case study arcs"
+          className="sp2-arc-nav"
+          style={{
+            position:     "sticky",
+            top:          "72px",
+            zIndex:       10,
+            alignSelf:    "stretch",
+            flexShrink:   0,
+            width:        "100%",
+            background:   "#FFFFFF",
+            borderTop:    `1px solid ${c.border}`,
+            borderBottom: `1px solid ${c.border}`,
+            margin:       "0 0 40px",
+          }}
+        >
+          <ul style={{
+            display:             "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            margin:              0,
+            padding:             0,
+            listStyle:           "none",
+          }}>
+            {[
+              { key: "premise",   label: "Premise"   },
+              { key: "research",  label: "Research"  },
+              { key: "decisions", label: "Decisions" },
+              { key: "details",   label: "Details"   },
+            ].map((arc, i, arr) => (
+              <li key={arc.key} style={{
+                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+              }}>
+                <a
+                  href={`#arc-${arc.key}`}
+                  data-arc-anchor={arc.key}
+                  style={{
+                    fontFamily:     font.sans,
+                    fontSize:       "13px",
+                    fontWeight:     700,
+                    letterSpacing:  "0.08em",
+                    textTransform:  "uppercase",
+                    color:          c.ink2,
+                    textDecoration: "none",
+                    display:        "flex",
+                    alignItems:     "center",
+                    justifyContent: "center",
+                    gap:            "6px",
+                    padding:        "16px 8px",
+                    transition:     "color 0.15s ease, background 0.15s ease",
+                  }}
+                >
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {arc.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            if (typeof window === "undefined") return;
+            var NAV_STACK_HEIGHT = 140;
+            function wire() {
+              var anchors = document.querySelectorAll('a[data-arc-anchor]');
+              if (!anchors.length) return false;
+              var targets = ['premise', 'research', 'decisions', 'details']
+                .map(function (k) { return document.getElementById('arc-' + k); })
+                .filter(Boolean);
+              if (targets.length < 4) return false;
+              var map = {};
+              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
+              var activeKey = null;
+              var rafScheduled = false;
+              function computeActive() {
+                rafScheduled = false;
+                var scrollY = window.scrollY;
+                var activeLine = scrollY + window.innerHeight * 0.33;
+                var arcs = [];
+                for (var i = 0; i < targets.length; i++) {
+                  var el = targets[i];
+                  var top = el.getBoundingClientRect().top + scrollY;
+                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
+                }
+                var nextKey = null;
+                if (activeLine >= arcs[0].top) {
+                  for (var j = 0; j < arcs.length; j++) {
+                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
+                    if (activeLine >= arcs[j].top && activeLine < next) {
+                      nextKey = arcs[j].key;
+                      break;
+                    }
+                  }
+                }
+                if (nextKey === activeKey) return;
+                activeKey = nextKey;
+                anchors.forEach(function (a) {
+                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
+                    a.setAttribute('data-active', 'true');
+                  } else {
+                    a.removeAttribute('data-active');
+                  }
+                });
+              }
+              function onScroll() {
+                if (rafScheduled) return;
+                rafScheduled = true;
+                requestAnimationFrame(computeActive);
+              }
+              window.addEventListener('scroll', onScroll, { passive: true });
+              window.addEventListener('resize', onScroll, { passive: true });
+              computeActive();
+
+              anchors.forEach(function (a) {
+                a.addEventListener('click', function (ev) {
+                  var key = a.getAttribute('data-arc-anchor');
+                  var target = document.getElementById('arc-' + key);
+                  if (!target) return;
+                  ev.preventDefault();
+                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                  a.setAttribute('data-active', 'true');
+                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
+                });
+              });
+
+              function syncFromHash() {
+                var m = /^#arc-(premise|research|decisions|details)$/.exec(window.location.hash || '');
+                if (!m) return;
+                var key = m[1];
+                var target = document.getElementById('arc-' + key);
+                if (!target) return;
+                anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                if (map[key]) map[key].setAttribute('data-active', 'true');
+                var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+              window.addEventListener('hashchange', syncFromHash);
+              if (window.location.hash) setTimeout(syncFromHash, 200);
+              return true;
+            }
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
+            } else {
+              document.addEventListener('DOMContentLoaded', wire);
+            }
+          })();
+        ` }} />
+        <style>{`
+          .sp2-arc-nav a[data-active] {
+            color: var(--color-accent) !important;
+            background: rgba(15,61,62,0.06) !important;
+            box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+            font-weight: 700 !important;
+          }
+          .sp2-arc-nav a[data-active] span:first-child {
+            opacity: 1 !important;
+            color: var(--color-accent) !important;
+          }
+          .sp2-arc-nav a:hover {
+            color: ${c.ink};
+            background: rgba(15,61,62,0.04);
+          }
+          @media (max-width: 760px) {
+            .sp2-arc-nav {
+              position: fixed !important;
+              left: 0 !important;
+              right: 0 !important;
+              top: 72px !important;
+              padding: 0 !important;
+            }
+            .sp2-arc-nav ul { gap: 0 !important; }
+            .sp2-arc-nav a  {
+              font-size: 11px !important;
+              padding: 12px 4px !important;
+              letter-spacing: 0.06em !important;
+              gap: 4px !important;
+              color: ${c.ink2} !important;
+              transition: background 0.15s ease, color 0.15s ease !important;
+            }
+            .sp2-arc-nav a[data-active] {
+              color: var(--color-accent) !important;
+              background: rgba(15,61,62,0.06) !important;
+              box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+              font-weight: 700 !important;
+              border-bottom: none !important;
+            }
+            .sp2-arc-nav a[data-active] span:first-child {
+              opacity: 1 !important;
+              color: var(--color-accent) !important;
+            }
+            .sp2-arc-nav + script + style + div { padding-top: 36px !important; }
+          }
+        `}</style>
+
         {/* ── PREMISE arc tint ─ cool gray, no warm-neutral defaults */}
-        <div style={{ background: "#EEF2F6", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div id="arc-premise" style={{ background: "#EEF2F6", marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* Action sheet hero — case study opener. One affordance image
             (long-press action sheet open over a track row) + the three
             controls + power-user framing. Replaces the previous dark
@@ -393,7 +594,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div style={{ background: "#F1F4F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div id="arc-research" style={{ background: "#F1F4F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* User voices — direct quotes from public sources.
             People are reaching for affordances that don't exist yet. */}
         <UserVoices />
@@ -414,7 +615,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ cool lilac instead of warm cream */}
-        <div style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div id="arc-decisions" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* User journey — where the controls land */}
         <UserJourney />
 
@@ -431,7 +632,7 @@ export default function SpotifyV2() {
         {/* ── DETAILS arc tint ─ cool slate-green.
             Closes after DecisionLogic so the interactive demo below
             reads as its own moment, not as a Pause-section footer. */}
-        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(40px, 6vw, 64px)" }}>
+        <div id="arc-details" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(40px, 6vw, 64px)", scrollMarginTop: "140px" }}>
         <DecisionLogic />
         </div>
 
@@ -1544,11 +1745,13 @@ function DecisionLogic() {
           </div>
         </div>
 
-        {/* Sticky chapter nav — appears as the reader enters the
-            three-controls section and stays pinned through Pin / Remove /
-            Pause so the recall load (NN/g H6) of "which control am I
-            reading?" is always one glance away. Active state via
-            IntersectionObserver below. */}
+        {/* Sticky chip nav (PIN / REMOVE / PAUSE) removed 2026-07-03 (Alfonso).
+            The site-level PREMISE/RESEARCH/DECISIONS/DETAILS arc nav at the
+            top of the page carries the wayfinding load now, matching MSR and
+            Wayfarer. Nav script + hash-sync below are dead code and can be
+            pruned in a follow-up. */}
+        {/* Removed sp2-control-nav */}
+        {false && (
         <nav
           aria-label="Three controls"
           className="sp2-control-nav"
@@ -1599,6 +1802,7 @@ function DecisionLogic() {
             ))}
           </ul>
         </nav>
+        )}
 
         {flows.map((f, i) => (
           <article
