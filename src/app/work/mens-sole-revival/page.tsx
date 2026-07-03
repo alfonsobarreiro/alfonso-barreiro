@@ -1224,24 +1224,67 @@ export default function MSRv2() {
               </div>
             </div>
 
-            <BeatHeader n="02" label="Interaction" />
-
-            {/* Interactive diagnostic-flow demo — three-step routing
-                that mirrors the entry path of the live assessment.
-                Lifted OUT of the DETAILS arc tint via a full-viewport
-                white bleed so it reads as its own "try it" moment. */}
+            {/* ── §02 Interaction — try-it moment. Ryan flagged that the
+                demo was disappearing into the Callout family (same
+                crimson-rail card on paper). Fix: swap the quiet BeatHeader
+                for a real editorial arrival (Deep Teal eyebrow + display
+                headline + deck), and give DiagnosticFlowDemo its own
+                "instrument" chrome (white bg, elevation shadow, no left
+                rail). See DiagnosticFlowDemo.tsx for the widget change. */}
             <div style={{
-              marginTop: "40px",
-              marginBottom: "40px",
+              marginTop: "clamp(96px, 12vw, 160px)",
+              marginBottom: "clamp(56px, 8vw, 96px)",
               marginLeft: "calc(50% - 50vw)",
               marginRight: "calc(50% - 50vw)",
               background: "#FFFFFF",
-              paddingTop: "clamp(40px, 8vw, 80px)",
-              paddingBottom: "clamp(24px, 4vw, 40px)",
+              paddingTop: "clamp(72px, 10vw, 112px)",
+              paddingBottom: "clamp(56px, 8vw, 96px)",
               paddingLeft: SECTION_X,
               paddingRight: SECTION_X,
             }}>
               <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+
+                {/* Editorial arrival — replaces the numeric BeatHeader.
+                    Bigger eyebrow in Deep Teal, display headline, deck.
+                    Announces "you are about to interact" instead of
+                    "here is section 2." */}
+                <div style={{ maxWidth: "780px", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                    <span style={{ display: "inline-block", width: "32px", height: "1px", background: c.accent }} />
+                    <span style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "12px",
+                      fontWeight:    700,
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color:         c.accent,
+                    }}>
+                      Try it &nbsp;·&nbsp; Diagnostic routing
+                    </span>
+                  </div>
+                  <h2 style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "clamp(36px, 5vw, 60px)",
+                    fontWeight:    600,
+                    color:         c.ink,
+                    margin:        "0 0 20px",
+                    letterSpacing: "-0.03em",
+                    lineHeight:    1.05,
+                  }}>
+                    The routing logic is the whole case.
+                  </h2>
+                  <p style={{
+                    fontFamily: font.sans,
+                    fontSize:   "clamp(16px, 1.6vw, 19px)",
+                    lineHeight: 1.6,
+                    color:      c.ink2,
+                    margin:     0,
+                    maxWidth:   "62ch",
+                  }}>
+                    The same three-step routing that runs behind the assessment on the live site. Pick what&rsquo;s bothering you, then follow it through select, route, and hand-off.
+                  </p>
+                </div>
+
                 <DiagnosticFlowDemo />
               </div>
             </div>

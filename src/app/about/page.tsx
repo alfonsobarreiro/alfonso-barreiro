@@ -7,21 +7,21 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Most design problems aren't visual problems. They're decisions someone hasn't made yet. UX/UI Designer in Portland, OR.",
+    "Fifteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Most design problems aren't visual problems. They're decisions someone hasn't made yet. UX/UI Designer in Portland, OR.",
+      "Fifteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Most design problems aren't visual problems. They're decisions someone hasn't made yet. UX/UI Designer in Portland, OR.",
+      "Fifteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
     images: ["/about/opengraph-image"],
   },
 };
@@ -69,18 +69,6 @@ const body: React.CSSProperties = {
   color:        "#3D4440",
   margin:       "0 0 20px",
   maxWidth:     "680px",
-};
-
-const beliefClaim: React.CSSProperties = {
-  ...body,
-  color:        "#252B28",
-  fontWeight:   600,
-  marginBottom: "8px",
-};
-
-const beliefBody: React.CSSProperties = {
-  ...body,
-  marginBottom: "40px",
 };
 
 const sectionWrapper = (background: string): React.CSSProperties => ({
@@ -210,59 +198,6 @@ export default function AboutPage() {
             color:               var(--color-accent-hover);
           }
 
-          /* Numbered claim rails for the two long belief stacks.
-             Hanging numeral on desktop; small eyebrow-numeral on
-             mobile so the claim never collides with the counter. */
-          .value-list  { counter-reset: value; }
-          .philo-list  { counter-reset: philo; }
-          .value-claim,
-          .philo-claim {
-            position:     relative;
-            padding-left: clamp(56px, 7vw, 88px);
-          }
-          .value-claim { counter-increment: value; }
-          .philo-claim { counter-increment: philo; }
-          .value-claim::before {
-            content:         counter(value, decimal-leading-zero);
-            position:        absolute;
-            left:            0;
-            top:             0.05em;
-            font-family:     var(--font-dm-sans), sans-serif;
-            font-size:       clamp(20px, 2.4vw, 28px);
-            font-weight:     500;
-            letter-spacing:  0.02em;
-            color:           var(--color-brand);
-            font-variant-numeric: tabular-nums;
-            line-height:     1;
-          }
-          .philo-claim::before {
-            content:         counter(philo, decimal-leading-zero);
-            position:        absolute;
-            left:            0;
-            top:             0.05em;
-            font-family:     var(--font-dm-sans), sans-serif;
-            font-size:       clamp(20px, 2.4vw, 28px);
-            font-weight:     500;
-            letter-spacing:  0.02em;
-            color:           #252B28;
-            font-variant-numeric: tabular-nums;
-            line-height:     1;
-          }
-          @media (max-width: 640px) {
-            .value-claim,
-            .philo-claim {
-              padding-left: 0;
-              padding-top:  32px;
-            }
-            .value-claim::before,
-            .philo-claim::before {
-              font-size:      12px;
-              font-weight:    700;
-              letter-spacing: 0.22em;
-              top:            0;
-            }
-          }
-
           /* RemoteTimeline: bars are hover/focus reveals for their
              matching chapter card. No jump, no outline. Base colors
              are set via CSS (not inline) so :has() can override the
@@ -355,7 +290,7 @@ export default function AboutPage() {
                     lineHeight:    1.1,
                   }}
                 >
-                  Most design problems aren&apos;t visual problems.
+                  Fifteen years in design.
                 </h1>
                 <p
                   style={{
@@ -368,7 +303,7 @@ export default function AboutPage() {
                     lineHeight:    1.2,
                   }}
                 >
-                  They&apos;re decisions someone hasn&apos;t made yet.
+                  What pulled me in wasn&apos;t the visual part.
                 </p>
               </div>
 
@@ -392,18 +327,6 @@ export default function AboutPage() {
                     style={{ objectFit: "cover", objectPosition: "35% center" }}
                   />
                 </div>
-                <p
-                  style={{
-                    fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "10px",
-                    color:         "#5A5752",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                    margin:        "10px 0 0",
-                  }}
-                >
-                  Photo · Brad Neathery · Unsplash
-                </p>
               </div>
             </div>
           </div>
@@ -468,7 +391,7 @@ export default function AboutPage() {
                 color:         "#5A5752",
                 margin:        0,
               }}>
-                Fifteen years · one discipline
+                By the day · by the week
               </h2>
             </div>
 
@@ -476,30 +399,26 @@ export default function AboutPage() {
               className="about-stats-grid"
               style={{
                 display:             "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gap:                 "clamp(32px, 5vw, 80px)",
-                alignItems:          "end",
+                gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                gap:                 "clamp(24px, 4vw, 56px)",
+                alignItems:          "start",
               }}
             >
-              <StatCell n="15"   unit="years"  caption="In design. Across editorial, e-commerce, hospitality, foot health, travel, and music." />
-              <StatCell n="4+"   unit=""       caption="Years remote, across two chapters since 2019. Solo, end to end, against deadlines that didn't move." />
-              <StatCell n="3"    unit=""       caption="Case studies. MSR, Spotify, Wayfarer. Same operating model. Different industries." />
+              <StatCell n="7"   unit="books"        caption="Read this year. Fiction, design theory, poetry. What I read shapes what I make." />
+              <StatCell n="5+"  unit="hours a day"  caption="Music while designing. Ambient and ECM keep the room quiet enough to hear the work." />
+              <StatCell n="3"   unit="miles a day"  caption="Walked around Portland. Solves what the desk can't." />
+              <StatCell n="1"   unit="hour a week"  caption="Poetry. Mary Oliver and Dylan Thomas mostly." />
             </div>
           </div>
           <style>{`
-            /* Keep the trio 3-up on mobile — stacking it vertically lost
-               the "by the numbers" gestalt. Smaller numerals + tighter gap
-               make the row fit at 375-500px while preserving the visual
-               comparison among the three stats. */
+            /* 4-up on desktop drops to 2x2 at ≤760px so the numerals stay
+               readable at phone widths. The stacked-column pattern lost
+               the "by the numbers" gestalt on the prior 3-up trio; a 2x2
+               grid keeps the comparison legible without the trio's cramp. */
             @media (max-width: 760px) {
               .about-stats-grid {
-                grid-template-columns: 1fr 1fr 1fr !important;
-                gap: 12px !important;
-                /* Top-align on mobile so the three numerals sit on the
-                   same baseline. The desktop "end" alignment made the
-                   3 cell drift lower than 15 / 4+ because its shorter
-                   caption produced a shorter cell, and end-alignment
-                   pushed the number up from below. */
+                grid-template-columns: 1fr 1fr !important;
+                gap: 24px 16px !important;
                 align-items: start !important;
               }
               .about-stats-grid p:first-child {
@@ -576,156 +495,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Where I add value — the business-benefit beats lifted from
-             the resume. Converts the craft signal into a hire signal so a
-             skimming hiring manager sees what they get if they bring me on. */}
-        <section aria-label="Where I add value" className="value-list" style={sectionWrapper("#F4F6F7")}>
-          <div style={innerWrapper}>
-            <h2 style={sectionH2}>Where I add value</h2>
-            <p style={{ ...body, marginBottom: "40px" }}>
-              The shorter version of how the work pays back.
-            </p>
-
-            <p style={beliefClaim} className="value-claim">I frame the problem before Figma opens.</p>
-            <p style={beliefBody}>
-              Most design hours go to the wrong question. I push for a sharp problem statement at the start so the team doesn&apos;t spend three weeks building a beautiful answer to the wrong brief. The case studies show the artifact; the savings happen earlier.
-            </p>
-
-            <p style={beliefClaim} className="value-claim">I tie design decisions to business outcomes.</p>
-            <p style={beliefBody}>
-              Revenue, retention, ship dates, ML-signal integrity. Every callout you see in the case studies names a trade-off in those terms. Stakeholders stop arguing about taste when the cost is named in the language they already track.
-            </p>
-
-            <p style={beliefClaim} className="value-claim">I talk fluently with PMs, engineers, and stakeholders.</p>
-            <p style={beliefBody}>
-              Eighteen years across marketing, operations, and product mean I can hold a technical review, a stakeholder briefing, and a research synthesis without translation cost. Less translation, fewer meetings, fewer surprises.
-            </p>
-
-            <p style={beliefClaim} className="value-claim">I run AI-augmented research and synthesis.</p>
-            <p style={{ ...beliefBody, marginBottom: 0 }}>
-              Claude for clustering 200-plus community posts. AI-assisted competitive audits. AI-augmented production workflows that cut a creative team&apos;s timelines twenty percent at VARA without dropping quality. The model is the second pair of hands, not the designer.
-            </p>
-          </div>
-        </section>
-
-        {/* ── Pull quote between the two long claim/body sections.
-             Breaks up the 9-claim stack with one editorial breath. The
-             quote ties "value" (business outcomes) to "thinking" (design as
-             decision-making) so it bridges the two sections without
-             duplicating a line from either. */}
-        <section aria-label="Bridge note" style={{ padding: "clamp(60px, 7vw, 96px) clamp(32px, 6vw, 80px)", background: "#F4F6F7" }}>
-          <div style={innerWrapper}>
-            <figure
-              className="scroll-reveal"
-              style={{
-                margin:       0,
-                borderLeft:   "3px solid var(--color-brand)",
-                paddingLeft:  "32px",
-                maxWidth:     "780px",
-              }}
-            >
-              <blockquote
-                style={{
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "clamp(24px, 3.2vw, 38px)",
-                  fontWeight:    500,
-                  lineHeight:    1.25,
-                  color:         "#252B28",
-                  margin:        0,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                The work that ships is the work after the decisions are clear.
-              </blockquote>
-            </figure>
-          </div>
-        </section>
-
-        {/* ── How I think about the work ─────────────────────────────── */}
-        <section aria-label="How I think about the work" className="philo-list" style={sectionWrapper("#F4F6F7")}>
-          <div style={innerWrapper}>
-            <h2 style={sectionH2}>How I think about the work</h2>
-            <p style={{ ...body, marginBottom: "40px" }}>
-              A few things I&apos;ve come to believe.
-            </p>
-
-            <p style={beliefClaim} className="philo-claim">Design is decision-making.</p>
-            <p style={beliefBody}>
-              Everything visible on a screen is a record of choices someone made, and
-              could have made differently. If you can&apos;t explain what you
-              didn&apos;t build and why, you didn&apos;t really design it. You just
-              shipped it.
-            </p>
-
-            <p style={beliefClaim} className="philo-claim">Problem framing comes before pixels.</p>
-            <p style={beliefBody}>
-              Most designs fail at the question, not the execution. What problem,
-              for whom, under what constraints, and what would success actually mean.
-              If those four answers aren&apos;t clear, the prettiest interface in the
-              world won&apos;t save the work.
-            </p>
-
-            <p style={beliefClaim} className="philo-claim">Prototypes are probes, not proof.</p>
-            <p style={beliefBody}>
-              You build them to find out, not to convince. If you can&apos;t name in
-              one sentence what the prototype is trying to teach you, you&apos;re
-              producing, not prototyping.
-            </p>
-
-            <p style={beliefClaim} className="philo-claim">The best design decisions are also the cleanest business calls.</p>
-            <p style={beliefBody}>
-              When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
-            </p>
-
-            <p style={beliefClaim} className="philo-claim">Translation cost between disciplines is real.</p>
-            <p style={{ ...beliefBody, marginBottom: 0 }}>
-              Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
-            </p>
-          </div>
-        </section>
-
-        {/* ── The file behind this site — one artifact from the Barreiro.com
-             Figma file. Case-study test at production scale, two candidate
-             brand systems side by side, locked decision. Ties the
-             "design is decision-making" claim above to a signed artifact. */}
-        <section aria-label="The file behind this site" style={sectionWrapper("#FFFFFF")}>
-          <div style={innerWrapper}>
-            <h2 style={sectionH2}>The file behind this site.</h2>
-            <p style={{ ...body, marginBottom: "16px" }}>
-              Design is decision-making. Everything you&apos;re looking at on barreiro.com is a downstream consequence of choices someone signed off on. Below is one of them, the palette decision, as it looked the day it locked.
-            </p>
-            <p style={{ ...body, marginBottom: "40px" }}>
-              Two candidate brand systems rendered as the same MSR homepage, side by side, at production scale. C won on 2026-06-11. The color you&apos;re reading this in is the left column of that comparison.
-            </p>
-
-            <figure style={{ margin: 0 }}>
-              <Image
-                src="/images/about/design-source-decision.jpg"
-                alt="Case-study test frame from the Barreiro.com Figma file. Top banner reads DECISION LOCKED · C · LIGHT WITH CONVICTION with hex tokens Paper #FCFAF9, Crimson #8C1A1A, Deep Teal #0F3D3E, Soft Ink #1A1A1A, signed by Alfon on 2026-06-11, replacing aubergine plus sage. Below the banner, the Men's Sole Revival homepage renders twice at production scale: on the left in Theme C (Crimson + Deep Teal) and on the right in Theme E (Petrol Blue + Burnt Ochre). Both columns show identical layout and content with a labeled token strip at the bottom."
-                width={1024}
-                height={945}
-                sizes="(max-width: 760px) 100vw, 920px"
-                style={{
-                  width:   "100%",
-                  height:  "auto",
-                  display: "block",
-                  border:  "1px solid var(--color-border)",
-                }}
-              />
-              <figcaption style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
-                lineHeight:    1.6,
-                color:         "#5A5752",
-                margin:        "16px 0 0",
-                letterSpacing: "0.01em",
-                maxWidth:      "760px",
-              }}>
-                Case-study test frame from the Barreiro.com working file. Same layout, same content, two brand systems. C on the left is what shipped. E on the right was the last runner-up. Full token strip on each column.
-              </figcaption>
-            </figure>
-          </div>
-        </section>
+        {/* Value + philosophy sections moved to /process page on 2026-07-02.
+            "The file behind this site" section moved to /behind-this-site (footer link) on 2026-07-02. */}
 
         {/* ── Alpha Beta Design ──────────────────────────────────────── */}
         <section aria-label="Alpha Beta Design" style={sectionWrapper("#F4F6F7")}>

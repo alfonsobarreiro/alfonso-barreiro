@@ -116,53 +116,50 @@ export default function DiagnosticFlowDemo() {
       role="region"
       aria-label="Interactive diagnostic flow demo"
       style={{
-        background:    "#FAFAF9",
+        background:    "#FFFFFF",
         border:        `1px solid ${c.border}`,
-        /* 4px crimson left rail — matches the signature aside recipe
-           shared by WhatICut / EarlyOutcomes / HonestRisks / the
-           AssessmentFunnelFlow aside. Without this, the demo read as a
-           foreign element next to the crimson-rail asides it sits
-           between. This declares it a native member of the aside family. */
-        borderLeft:    `4px solid ${c.brand}`,
+        /* Instrument chrome. Replaced the 4px crimson left rail (which
+           was making the demo blend into the WhatICut / HonestRisks /
+           Callout family per Ryan 2026-07-02) with a pure white ground
+           and elevation shadow — reads as an object placed on the page,
+           not a section of it. Top status strip signals "live routing"
+           without duplicating the outer arrival copy. */
+        boxShadow:     "0 24px 60px rgba(37,43,40,0.10), 0 4px 12px rgba(37,43,40,0.06)",
         padding:       "clamp(24px, 4vw, 48px)",
         fontFamily:    font.sans,
         color:         c.ink,
+        position:      "relative",
       }}
     >
-      <header style={{ marginBottom: "28px" }}>
+      {/* Top status strip — thin band signaling "this is an instrument,
+          not an aside." Green dot + LIVE label reads as a running interface. */}
+      <div style={{
+        display:       "flex",
+        alignItems:    "center",
+        gap:           "10px",
+        marginBottom:  "24px",
+        paddingBottom: "16px",
+        borderBottom:  `1px solid ${c.border}33`,
+      }}>
+        <span aria-hidden="true" style={{
+          display:       "inline-block",
+          width:         "8px",
+          height:        "8px",
+          borderRadius:  "50%",
+          background:    c.accent,
+          boxShadow:     `0 0 0 3px ${c.accent}22`,
+        }} />
         <span style={{
-          fontFamily:    font.sans,
+          fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
           fontSize:      "11px",
-          fontWeight:    700,
-          letterSpacing: "0.2em",
-          color:         c.brand,
-          textTransform: "uppercase",
-          display:       "block",
-          marginBottom:  "10px",
-        }}>
-          Live demo · Diagnostic routing
-        </span>
-        <h3 style={{
-          fontFamily:    font.sans,
-          fontSize:      "clamp(20px, 2.4vw, 26px)",
           fontWeight:    600,
-          color:         c.ink,
-          margin:        "0 0 8px",
-          letterSpacing: "-0.015em",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color:         c.muted,
         }}>
-          Try the routing logic.
-        </h3>
-        <p style={{
-          fontFamily: font.sans,
-          fontSize:   "15px",
-          lineHeight: 1.55,
-          color:      c.ink2,
-          margin:     0,
-          maxWidth:   "60ch",
-        }}>
-          Select what's bothering you. The same routing logic lives behind the assessment on the live site.
-        </p>
-      </header>
+          Live · Diagnostic routing
+        </span>
+      </div>
 
       {/* Stepper */}
       <ol

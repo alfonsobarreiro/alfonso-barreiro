@@ -38,33 +38,37 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type ArtistId =
-  | "the-national"
-  | "hollow-coves"
   | "the-roses"
+  | "hollow-coves"
+  | "this-is-madonna"
+  | "luca-fogale"
   | "max-richter"
-  | "bon-iver"
-  | "fleet-foxes";
+  | "your-episodes";
 
 interface Artist {
   id:       ArtistId;
   name:     string;
   meta:     string;
-  initials: string;
-  color:    string;
+  /** Tile artwork exported 2026-07-03 from the Recently Played Figma file. */
+  image:    string;
 }
 
 const INITIAL_ARTISTS: Artist[] = [
-  { id: "the-national", name: "The National", meta: "3.2M monthly listeners",  initials: "TN", color: "#8C1A1A" },
-  { id: "hollow-coves", name: "Hollow Coves", meta: "1.8M monthly listeners",  initials: "HC", color: "#0F3D3E" },
-  { id: "the-roses",    name: "The Roses",    meta: "New release · album",     initials: "TR", color: "#B72222" },
-  { id: "max-richter",  name: "Max Richter",  meta: "Modern classical",        initials: "MR", color: "#3D4440" },
-  { id: "bon-iver",     name: "Bon Iver",     meta: "For Emma, Forever Ago",   initials: "BI", color: "#4A4A4A" },
-  { id: "fleet-foxes",  name: "Fleet Foxes",  meta: "Helplessness Blues",      initials: "FF", color: "#5A5752" },
+  { id: "the-roses",       name: "The Roses",       meta: "New release · album",      image: "/images/work/spotify/artists/the-roses.png" },
+  { id: "hollow-coves",    name: "Hollow Coves",    meta: "1.8M monthly listeners",   image: "/images/work/spotify/artists/hollow-coves.png" },
+  { id: "this-is-madonna", name: "This Is Madonna", meta: "Playlist · Spotify",       image: "/images/work/spotify/artists/madonna.png" },
+  { id: "luca-fogale",     name: "Luca Fogale",     meta: "Indie folk",               image: "/images/work/spotify/artists/luca-fogale.png" },
+  { id: "max-richter",     name: "Max Richter",     meta: "Modern classical",         image: "/images/work/spotify/artists/max-richter.png" },
+  { id: "your-episodes",   name: "Your Episodes",   meta: "Podcasts · Your library",  image: "/images/work/spotify/artists/your-episodes.png" },
 ];
 
 const PIN_CAP        = 4;
 const PAUSE_SECS     = 30;
-const SNACK_MS       = 5000;
+/* Demo ergonomics — snackbar dismisses in 3s so a user exploring the
+   three controls can chain actions without waiting. The shipped spec is
+   5s (see PIN_CAP / UNDO_WINDOW / PAUSE_PRESETS constants line above the
+   widget); the demo intentionally runs shorter for interaction pace. */
+const SNACK_MS       = 3000;
 const SPOTIFY_GREEN  = "#1ED760";
 const SPOTIFY_JET    = "#121212";
 
@@ -277,43 +281,26 @@ export default function RecentlyPlayedDemo() {
       ref={sectionRef}
       aria-label="Interactive demo of Pin, Remove, and Pause on the Recently Played shelf"
       style={{
-        background:  SPOTIFY_JET,
-        padding:     "clamp(28px, 4vw, 48px)",
-        borderRadius: 0,
-        color:       "#FAFAF9",
-        fontFamily:  "var(--font-dm-sans), sans-serif",
-        position:    "relative",
-        overflow:    "hidden",
+        /* Widget chrome. #181818 on the section's white marks the object
+           via contrast alone — no shadow, matching the flat rest of the
+           site (Alfonso 2026-07-03). Width capped to ~820px so the widget
+           hugs its content; left-aligned to the section's inner column. */
+        background:   "#181818",
+        padding:      "clamp(28px, 4vw, 48px)",
+        borderRadius: "10px",
+        color:        "#FAFAF9",
+        fontFamily:   "var(--font-dm-sans), sans-serif",
+        position:     "relative",
+        overflow:     "hidden",
+        width:        "100%",
+        maxWidth:     "820px",
+        marginInline: "0",
       }}
     >
-      {/* Eyebrow + title */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-        <span style={{ width: "24px", height: "1px", background: SPOTIFY_GREEN }} />
-        <span style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px", fontWeight: 700,
-          letterSpacing: "0.2em", textTransform: "uppercase",
-          color:         SPOTIFY_GREEN,
-        }}>
-          Try it · Recently Played
-        </span>
-      </div>
-      <h3 style={{
-        fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(26px, 3vw, 36px)",
-        fontWeight:    800, color: "#FFFFFF", margin: "0 0 6px",
-        letterSpacing: "-0.02em", lineHeight: 1.1,
-      }}>
-        Recently Played
-      </h3>
-      <p style={{
-        fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "14px", lineHeight: 1.55,
-        color:      "rgba(255,255,255,0.72)", margin: "0 0 20px",
-        maxWidth:   "600px",
-      }}>
-        Six artists in the shelf shape you already know. Pick a row, then use one of the three controls under it. Pin slides to the front. Remove deletes with a 5-second undo. Pause stops the shelf from logging.
-      </p>
+      {/* Eyebrow + title + description moved OUT to the section wrapper
+          in work/spotify/page.tsx on 2026-07-03. The widget is now
+          just the shelf + controls + snackbar — a clean dark instrument
+          on the section's light surface. */}
 
       {/* Shelf — 2-column grid of horizontal artist rows.
           Constrained to a max-width so the rows don't stretch across
@@ -363,7 +350,7 @@ export default function RecentlyPlayedDemo() {
                   gap:            "14px",
                   padding:        "10px 12px",
                   textAlign:      "left",
-                  background:     isSelected ? "rgba(30,215,96,0.10)" : "rgba(255,255,255,0.04)",
+                  background:     isSelected ? "rgba(30,215,96,0.14)" : "rgba(255,255,255,0.14)",
                   border:         isSelected ? `1px solid ${SPOTIFY_GREEN}` : "1px solid transparent",
                   color:          "#FFFFFF",
                   fontFamily:     "var(--font-dm-sans), sans-serif",
@@ -373,28 +360,27 @@ export default function RecentlyPlayedDemo() {
                   outline:        "none",
                 }}
               >
-                {/* Rectangular initials thumbnail — matches Spotify's
-                    Recently Played shelf, which shows squares/rects
-                    for artists, playlists, and albums alike. Colored
-                    by artist so the row silhouettes stay distinct
-                    without an image dependency. */}
-                <span aria-hidden="true" style={{
-                  width:          "48px",
-                  height:         "48px",
-                  borderRadius:   "4px",
-                  background:     artist.color,
-                  color:          "#FFFFFF",
-                  display:        "inline-flex",
-                  alignItems:     "center",
-                  justifyContent: "center",
-                  fontWeight:     700,
-                  fontSize:       "15px",
-                  letterSpacing:  "0.05em",
-                  flexShrink:     0,
-                  boxShadow:      "inset 0 0 0 1px rgba(255,255,255,0.08)",
-                }}>
-                  {artist.initials}
-                </span>
+                {/* Real artwork exported from the Recently Played Figma
+                    file (2026-07-03). Rectangular 48×48 to match Spotify's
+                    actual shelf, which shows squares for artists,
+                    playlists, and podcast library shortcuts alike. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={artist.image}
+                  alt=""
+                  aria-hidden="true"
+                  width={48}
+                  height={48}
+                  style={{
+                    width:          "48px",
+                    height:         "48px",
+                    borderRadius:   "4px",
+                    objectFit:      "cover",
+                    flexShrink:     0,
+                    display:        "block",
+                    boxShadow:      "inset 0 0 0 1px rgba(255,255,255,0.08)",
+                  }}
+                />
                 <span style={{
                   display:        "flex",
                   flexDirection:  "column",
@@ -548,9 +534,8 @@ export default function RecentlyPlayedDemo() {
         </div>
       )}
 
-      {/* Snackbar — anchored to the shelf's left edge and capped at
-          the shelf's 720px max-width so it always sits inside the
-          same column as the artist rows above it. */}
+      {/* Snackbar — center-anchored at the bottom of the widget, capped
+          at 480px, slightly rounded so it reads as a toast, not a bar. */}
       {snackMessage && (
         <div
           role="status"
@@ -558,21 +543,21 @@ export default function RecentlyPlayedDemo() {
           className="sp2-demo-snack"
           style={{
             position:     "absolute",
-            left:         "clamp(28px, 4vw, 48px)",
-            right:        "auto",
+            left:         "50%",
             bottom:       "16px",
+            transform:    reducedMotion ? "translateX(-50%)" : "translate(-50%, 0)",
             width:        "calc(100% - 2 * clamp(28px, 4vw, 48px))",
-            maxWidth:     "720px",
+            maxWidth:     "480px",
             background:   "#FFFFFF",
             color:        SPOTIFY_JET,
             padding:      "12px 16px",
             display:      "flex",
             alignItems:   "center",
             gap:          "16px",
+            borderRadius: "6px",
             boxShadow:    "0 10px 28px rgba(0,0,0,0.45)",
             fontFamily:   "var(--font-dm-sans), sans-serif",
             fontSize:     "13px",
-            transform:    reducedMotion ? "none" : "translateY(0)",
             transition:   reducedMotion ? "none" : "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >

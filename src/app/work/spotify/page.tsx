@@ -9,6 +9,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 import RecentlyPlayedDemo from "./_demo/RecentlyPlayedDemo";
+import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 
 /* ---------------------------------------------------------------------------
    /work/spotify
@@ -444,29 +445,38 @@ export default function SpotifyV2() {
         <section
           aria-label="Try the three controls"
           style={{
-            background:  c.jet,
-            color:       "#FAFAF9",
-            padding:     `clamp(80px, 10vw, 128px) clamp(24px, 6vw, 80px)`,
-            marginLeft:  "calc(50% - 50vw)",
-            marginRight: "calc(50% - 50vw)",
+            /* Section is now light per Alfonso 2026-07-03: intro sits on
+               the case-study white surface, widget below is the sole
+               dark island (its own #181818 card + elevation). The prior
+               all-dark ground merged the intro copy into the widget's
+               own dark chrome; splitting them separates the editorial
+               setup from the interactive object. */
+            background:   c.surface,
+            color:        c.ink,
+            paddingTop:   "clamp(80px, 10vw, 128px)",
+            paddingBottom:"clamp(56px, 7vw, 88px)",
+            paddingLeft:  "clamp(24px, 6vw, 80px)",
+            paddingRight: "clamp(24px, 6vw, 80px)",
+            marginLeft:   "calc(50% - 50vw)",
+            marginRight:  "calc(50% - 50vw)",
           }}
         >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
-            <div style={{ maxWidth: "780px", marginBottom: "clamp(56px, 7vw, 88px)" }}>
+            <div style={{ maxWidth: "780px", marginBottom: "clamp(48px, 6vw, 72px)" }}>
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    700,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color:         c.green,
+                color:         c.accent,
                 margin:        "0 0 20px",
               }}>Proof &nbsp;·&nbsp; try the three controls</p>
               <h2 style={{
                 fontFamily:    font.sans,
                 fontSize:      "clamp(40px, 6vw, 72px)",
                 fontWeight:    500,
-                color:         "#FAFAF9",
+                color:         c.ink,
                 margin:        "0 0 20px",
                 letterSpacing: "-0.035em",
                 lineHeight:    1,
@@ -475,34 +485,40 @@ export default function SpotifyV2() {
               </h2>
               <p style={{
                 fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
-                lineHeight: 1.65, color: "rgba(250,250,249,0.72)",
+                lineHeight: 1.65, color: c.ink2,
                 margin: "0 0 28px", maxWidth: "60ch",
               }}>
-                The state machine and the constants are documented above. The demo below runs against those constants. Pin caps at four. Undo lasts five seconds. Pause presets are thirty minutes, two hours, or until tomorrow.
+                Pick a row in the shelf below, then use one of the three controls under it. The demo runs against the constants above.
               </p>
+              {/* Constants monospace chip — darker Spotify green for AA
+                 contrast on the white surface (bright #1ED760 fails). */}
               <p style={{
                 fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
                 fontSize:      "12px",
                 letterSpacing: "0.02em",
-                color:         c.green,
-                background:    "rgba(30,215,96,0.08)",
-                border:        `1px solid rgba(30,215,96,0.35)`,
+                color:         "#0F6E32",
+                background:    "rgba(30,215,96,0.10)",
+                border:        `1px solid rgba(30,215,96,0.55)`,
                 padding:       "10px 14px",
                 display:       "inline-block",
                 margin:        0,
               }}>
-                PIN_CAP = 4 &nbsp;·&nbsp; UNDO_WINDOW = 5s &nbsp;·&nbsp; PAUSE_PRESETS = [30m, 2h, tomorrow]
+                PIN_CAP = 4 &nbsp;·&nbsp; UNDO_WINDOW = 3s &nbsp;·&nbsp; PAUSE_PRESETS = [30m, 2h, tomorrow]
               </p>
             </div>
 
-            {/* Demo sits directly on the c.jet ground now. The prior
-                white wrapper cut a jarring bright band between the
-                constants line and the widget; the widget carries its
-                own dark chrome, so the outer container is redundant. */}
+            {/* Widget-level intro removed 2026-07-03 (Alfonso). It duplicated
+                the outer eyebrow ("try the three controls"), the outer h2
+                ("Read the spec. Then try it."), and repeated what each
+                control does — all of which are already handled above and
+                by the labeled buttons on the widget itself. */}
+
+            {/* The widget is the sole dark object in this section. */}
             <div style={{ color: c.ink }}>
               <RecentlyPlayedDemo />
             </div>
 
+            {/* Keyboard shortcuts — dark text on light section. */}
             <div style={{
               display:     "flex",
               flexWrap:    "wrap",
@@ -516,7 +532,7 @@ export default function SpotifyV2() {
                 fontWeight:    700,
                 letterSpacing: "0.20em",
                 textTransform: "uppercase",
-                color:         "rgba(250,250,249,0.55)",
+                color:         c.muted,
                 marginRight:   "8px",
               }}>Keyboard</span>
               {[
@@ -534,7 +550,7 @@ export default function SpotifyV2() {
                     padding:        "8px 4px",
                     fontFamily:     font.sans,
                     fontSize:       "12px",
-                    color:          "rgba(250,250,249,0.82)",
+                    color:          c.ink2,
                     letterSpacing:  "0.02em",
                   }}
                 >
@@ -543,8 +559,9 @@ export default function SpotifyV2() {
                     fontSize:      "11px",
                     fontWeight:    700,
                     padding:       "3px 8px",
-                    background:    "rgba(30,215,96,0.15)",
-                    color:         c.green,
+                    background:    "rgba(30,215,96,0.12)",
+                    color:         "#0F6E32",
+                    border:        "1px solid rgba(30,215,96,0.4)",
                   }}>{k.key}</kbd>
                   {k.label}
                 </span>
@@ -604,80 +621,187 @@ export default function SpotifyV2() {
               Mobile uses long-press to open the action sheet. Desktop uses a right-click context menu. The three controls and their state machines are identical. Only the affordance changes.
             </p>
 
-            <div className="sp2-parity-grid" style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1.2fr",
-              gap: "clamp(28px, 4vw, 48px)",
-              alignItems: "start",
-            }}>
-              {/* Editorial block — was rendered as text inside the composite */}
-              <div>
-                <p style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: c.muted, margin: "0 0 12px",
-                }}>
-                  Maintaining cross-platform consistency
-                </p>
-                <h3 style={{
-                  fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
-                  fontWeight: 700, color: c.ink, margin: "0 0 20px",
-                  letterSpacing: "-0.02em", lineHeight: 1.2,
-                }}>
-                  Consistent behavior on desktop.
-                </h3>
-                <p style={{
-                  fontFamily: font.sans, fontSize: "15px",
-                  lineHeight: 1.65, color: c.ink2, margin: "0 0 20px",
-                }}>
-                  Habitual desktop users access the same set of surfaced controls through a right-click context menu, matching Spotify&rsquo;s existing desktop paradigms.
-                </p>
-                <p style={{
-                  fontFamily: font.sans, fontSize: "13px", fontWeight: 700,
-                  color: c.ink, margin: "0 0 8px", letterSpacing: "-0.005em",
-                }}>
-                  This maintains:
-                </p>
-                <ul style={{
-                  fontFamily: font.sans, fontSize: "14px",
-                  lineHeight: 1.65, color: c.ink2,
-                  margin: 0, paddingLeft: "20px",
-                }}>
-                  <li>Predictable cross-platform behavior</li>
-                  <li>Minimal UI surface changes</li>
-                  <li>A familiar power-user pathway without expanding the primary UI surface.</li>
-                </ul>
-              </div>
+            {/* Editorial block — stacked above the image so the desktop
+                mockup can take the full content column (per Alfonso
+                2026-07-03: previous 1fr:1.2fr grid squeezed the shot
+                into ~56vw and the menu items lost legibility). */}
+            <div style={{ maxWidth: PROSE_MAX, marginBottom: "clamp(40px, 5vw, 64px)" }}>
+              <p style={{
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                letterSpacing: "0.18em", textTransform: "uppercase",
+                color: c.muted, margin: "0 0 12px",
+              }}>
+                Maintaining cross-platform consistency
+              </p>
+              <h3 style={{
+                fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
+                fontWeight: 700, color: c.ink, margin: "0 0 20px",
+                letterSpacing: "-0.02em", lineHeight: 1.2,
+              }}>
+                Consistent behavior on desktop.
+              </h3>
+              <p style={{
+                fontFamily: font.sans, fontSize: "15px",
+                lineHeight: 1.65, color: c.ink2, margin: "0 0 20px",
+              }}>
+                Habitual desktop users access the same set of surfaced controls through a right-click context menu, matching Spotify&rsquo;s existing desktop paradigms.
+              </p>
+              <p style={{
+                fontFamily: font.sans, fontSize: "13px", fontWeight: 700,
+                color: c.ink, margin: "0 0 8px", letterSpacing: "-0.005em",
+              }}>
+                This maintains:
+              </p>
+              <ul style={{
+                fontFamily: font.sans, fontSize: "14px",
+                lineHeight: 1.65, color: c.ink2,
+                margin: 0, paddingLeft: "20px",
+              }}>
+                <li>Predictable cross-platform behavior</li>
+                <li>Minimal UI surface changes</li>
+                <li>A familiar power-user pathway without expanding the primary UI surface.</li>
+              </ul>
+            </div>
 
-              {/* Screenshot — just the right-click menu, no text bake-in.
-                  On mobile we scroll horizontally so each menu item is
-                  legible instead of compressed into the column width. */}
-              <figure className="sp2-consistent-fig" style={{ margin: "0", padding: 0, textAlign: "center", width: "100%" }}>
-                <div className="sp2-consistent-scroll" style={{
-                  overflowX: "auto", WebkitOverflowScrolling: "touch",
-                  border: `1px solid ${c.border}`,
-                  margin: 0, padding: 0,
-                }}>
+            {/* Screenshot — full content-column width with numbered
+                annotations overlaid on the three surfaced controls
+                (Pin on top / Remove from Recently Played / Pause
+                listening history). On phones the container scrolls
+                horizontally so each menu item stays legible; the
+                annotations scroll with the image because they're
+                positioned inside the same scrolling container. */}
+            <figure className="sp2-consistent-fig" style={{ margin: 0, padding: 0, width: "100%" }}>
+              {/* Full-bleed dark stripe wraps the scroll container so
+                  the section's light background never shows around the
+                  dark mockup (Alfonso 2026-07-03). Same pattern as
+                  MSR EarlyOutcomes: full-viewport-width dark ground,
+                  content padded from the viewport edges inside. */}
+              <div style={{
+                marginLeft:    "calc(50% - 50vw)",
+                marginRight:   "calc(50% - 50vw)",
+                background:    c.jet,
+                paddingTop:    "clamp(40px, 5vw, 72px)",
+                paddingBottom: "clamp(40px, 5vw, 72px)",
+                paddingLeft:   SECTION_X,
+                paddingRight:  SECTION_X,
+              }}>
+                <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+                  <div className="sp2-consistent-scroll" style={{
+                    overflowX: "auto", WebkitOverflowScrolling: "touch",
+                    margin: 0, padding: 0,
+                  }}>
+                    <div className="sp2-parity-canvas" style={{
+                      position: "relative",
+                      width: "100%",
+                      minWidth: "760px",  // mobile scroll floor — below this, menu items become unreadable
+                      aspectRatio: "2644 / 1824",
+                    }}>
                   <Image
-                    src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
+                    src="/images/work/spotify/spotify-desktop-context-menu-hires.png"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-                    width={652} height={448}
-                    sizes="(max-width: 760px) 100vw, 56vw"
+                    width={2644}
+                    height={1824}
+                    sizes="(max-width: 760px) 200vw, 1240px"
                     quality={95}
                     className="sp2-consistent-img"
-                    style={{ width: "100%", height: "auto", display: "block", margin: 0, padding: 0 }}
+                    style={{ width: "100%", height: "auto", display: "block" }}
                   />
+
+                  {/* Three numbered callouts, positioned as % of the image
+                      so they hold their target across viewport widths.
+                      Positions re-measured against the 2644×1824 hi-res
+                      Figma export on 2026-07-03. */}
+                  {[
+                    { n: "01", left: "54.0%", top: "25.5%", label: "Pin on top" },
+                    { n: "02", left: "58.0%", top: "30.4%", label: "Remove" },
+                    { n: "03", left: "90.0%", top: "12.6%", label: "Pause listening history" },
+                  ].map((a) => (
+                    <span
+                      key={a.n}
+                      aria-hidden="true"
+                      style={{
+                        position:      "absolute",
+                        left:          a.left,
+                        top:           a.top,
+                        transform:     "translate(-50%, -50%)",
+                        width:         "28px",
+                        height:        "28px",
+                        borderRadius:  "50%",
+                        background:    c.accent,
+                        color:         "#FFFFFF",
+                        display:       "inline-flex",
+                        alignItems:    "center",
+                        justifyContent:"center",
+                        fontFamily:    font.sans,
+                        fontSize:      "11px",
+                        fontWeight:    700,
+                        letterSpacing: "0.02em",
+                        border:        "2px solid #FFFFFF",
+                        boxShadow:     "0 2px 6px rgba(0,0,0,0.35)",
+                        fontVariantNumeric: "tabular-nums",
+                      }}
+                    >
+                      {a.n}
+                    </span>
+                  ))}
                 </div>
-                <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
-                <figcaption style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-                  letterSpacing: "0.12em", textTransform: "uppercase",
-                  color: c.muted, margin: "12px 0 0", textAlign: "center",
-                }}>
-                  Desktop right-click menu &middot; same actions, native pattern
-                </figcaption>
-              </figure>
-            </div>
+              </div>
+                </div>
+              </div>
+              <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
+
+              {/* Legend — pairs each number with the control it names.
+                  Sits below the image so mobile readers can see all three
+                  in order without scrolling the image. */}
+              <ol className="sp2-parity-legend" style={{
+                display: "flex", flexWrap: "wrap",
+                gap: "clamp(16px, 3vw, 32px)",
+                listStyle: "none",
+                padding: 0,
+                margin: "clamp(20px, 2.5vw, 32px) 0 0",
+              }}>
+                {[
+                  { n: "01", label: "Pin on top",                   sub: "Right-click menu" },
+                  { n: "02", label: "Remove from Recently Played",  sub: "Right-click menu" },
+                  { n: "03", label: "Pause listening history",      sub: "Shelf header pill" },
+                ].map((a) => (
+                  <li key={a.n} style={{
+                    display: "flex", gap: "10px", alignItems: "flex-start",
+                    fontFamily: font.sans, fontSize: "13px",
+                    lineHeight: 1.4, color: c.ink,
+                  }}>
+                    <span aria-hidden="true" style={{
+                      display:       "inline-flex",
+                      alignItems:    "center",
+                      justifyContent:"center",
+                      width:         "24px",
+                      height:        "24px",
+                      borderRadius:  "50%",
+                      background:    c.accent,
+                      color:         "#FFFFFF",
+                      fontSize:      "10px",
+                      fontWeight:    700,
+                      flexShrink:    0,
+                      marginTop:     "1px",
+                      fontVariantNumeric: "tabular-nums",
+                    }}>{a.n}</span>
+                    <span>
+                      <strong style={{ fontWeight: 700, letterSpacing: "-0.005em" }}>{a.label}</strong>
+                      <br />
+                      <span style={{ fontSize: "12px", color: c.muted, letterSpacing: "0.01em" }}>{a.sub}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+
+              <figcaption style={{
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+                letterSpacing: "0.12em", textTransform: "uppercase",
+                color: c.muted, margin: "clamp(20px, 2.5vw, 32px) 0 0",
+              }}>
+                Desktop right-click menu &middot; same actions, native pattern
+              </figcaption>
+            </figure>
           </div>
         </section>
 
@@ -883,6 +1007,8 @@ export default function SpotifyV2() {
             max-width: 100% !important;
           }
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .sp2-dl-beats         { grid-template-columns: 1fr !important; gap: 14px !important; }
+          .sp2-dl-video-row     { grid-template-columns: 1fr !important; gap: 32px !important; }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
           .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
           .sp2-loops-row figure > div { width: 100% !important; max-width: 220px !important; }
@@ -1297,10 +1423,20 @@ function DecisionLogic() {
       key:   "pin",
       title: "Pin",
       tagline: "Max four pins. Long-press, choose, swap. The cap teaches itself.",
-      surface: "Desktop",
-      // Desktop frames are ~1554x1260 (one is 1554x1082). Lock to 1554/1260
-      // and cover-crop so every cell in the grid has identical height.
+      surface: "Mobile",
+      // Legacy aspectRatio kept for fallback; the video block below
+      // uses the iPhone chrome's own ratio, not this value.
       aspectRatio: "1554 / 1260",
+      // Video walkthrough — the animation already shipping on the home
+      // page's Spotify tile, in iPhone chrome. Replaces the 6-frame
+      // wireframe grid so the reader watches the pin flow instead of
+      // reconstructing it from static beats. The frames array below
+      // becomes the caption timeline that names what to look for.
+      video: {
+        src:    "/images/work/spotify/pin-happy.webm",
+        poster: "/images/work/spotify/spotify-action-sheet.webp",
+        alt:    "Long-press an item on the Spotify Recently Played shelf opens an action sheet; tapping Pin moves it to the top.",
+      },
       frames: [
         { src: "/images/work/spotify/v2/wf-pin-01.png", beat: "Long-press.",       body: "The action sheet opens with Pin sitting at the top of the list." },
         { src: "/images/work/spotify/v2/wf-pin-02.png", beat: "The tile locks in.",  body: "A Pinned snackbar with Undo runs for five seconds so the choice stays reversible." },
@@ -1327,6 +1463,13 @@ function DecisionLogic() {
       // object-fit cover renders the full frame with no horizontal crop.
       // Step titles + acceptance strip stay visible.
       aspectRatio: "1000 / 1092",
+      // Remove animation is not a webm — it's a CSS-animated composite
+      // of PNG layers (SpotifyRemoveAnimation, 18s loop). Rendered inside
+      // the same iPhone chrome overlay as pin-happy / pause-happy via
+      // the "screen-only" variant so the reader sees the same device
+      // treatment across all three controls.
+      screen: <SpotifyRemoveAnimation variant="screen-only" />,
+      screenAlt: "Animated prototype: long-press an item on the Spotify Recently Played shelf, tap Remove from Recently Played, the tile slides out, a white Undo toast appears for a few seconds.",
       frames: [
         { src: "/images/work/spotify/v2/wf-remove-01.png", beat: "Long-press.",     body: "The action sheet opens with Remove from Recently Played on the surface." },
         { src: "/images/work/spotify/v2/wf-remove-02.png", beat: "Tap Remove.",     body: "The tile begins its 220 ms slide-out so the change reads as movement, not deletion." },
@@ -1347,8 +1490,16 @@ function DecisionLogic() {
       key:   "pause",
       title: "Pause",
       tagline: "Time-boxed. 30 minutes, 2 hours, until tomorrow. Resume is automatic.",
-      surface: "Desktop",
+      surface: "Mobile",
       aspectRatio: "1554 / 1260",
+      // Video walkthrough — the pause-happy webm already ships alongside
+      // pin-happy. Long-press the header opens the shelf-scoped sheet,
+      // Pause → duration picker → paused state → timer expires.
+      video: {
+        src:    "/images/work/spotify/pause-happy.webm",
+        poster: "/images/work/spotify/spotify-pause-01-long-press.webp",
+        alt:    "Long-press the Recently Played header opens the shelf-scoped action sheet; tapping Pause opens a duration picker with 30 minutes, 2 hours, or until tomorrow.",
+      },
       frames: [
         { src: "/images/work/spotify/v2/wf-pause-01.png", beat: "Long-press the header.",  body: "The action sheet treats the whole shelf as the target, not any single tile." },
         { src: "/images/work/spotify/v2/wf-pause-02.png", beat: "Tap Pause.",             body: "A duration picker replaces the sheet so the next tap picks a time-box, not a toggle." },
@@ -1388,7 +1539,7 @@ function DecisionLogic() {
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
-              Each control gets the same editorial treatment: title, the annotated wireframe broken into individual frames so each step reads, then three paragraphs naming the problem, the trade-off, and who wins. The looping prototypes live in their own tabbed section below.
+              Each control gets the same editorial treatment: title, the annotated walkthrough, then three paragraphs naming the problem, the trade-off, and who wins. The looping prototypes live in their own tabbed section below.
             </p>
           </div>
         </div>
@@ -1489,63 +1640,204 @@ function DecisionLogic() {
               }}>{f.tagline}</p>
             </header>
 
-            {/* Wireframe frames — wrapped in a dark mat so the flow reads
-                as one curated panel instead of frames floating against
-                the page. Each screen has rounded corners to feel
-                device-native. Mat darkened to #2F2F2F so the Spotify-
-                green caption number meets WCAG AA on its surface. */}
-            <div style={{
-              background: "#2F2F2F",
-              padding: "clamp(20px, 3vw, 40px)",
-              marginBottom: "56px",
-            }}>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "clamp(16px, 2vw, 24px)",
-              }} className="sp2-dl-frames">
-                {f.frames.map((frame, idx) => (
-                  <figure key={frame.src} style={{ margin: 0 }}>
-                    <div style={{
-                      aspectRatio: f.aspectRatio,
-                      overflow: "hidden",
-                      /* Mobile: medium-gray rounded background contrasts
-                         against the darker outer mat. Desktop: thin
-                         black behind the screen capture so the white UI
-                         elements pop. */
-                      background: f.surface === "Mobile" ? "#6E6E6E" : "#000000",
-                      borderRadius: f.surface === "Mobile"
-                        ? "clamp(14px, 1.6vw, 22px)"
-                        : "clamp(2px, 0.3vw, 4px)",
-                    }}>
-                      <Image
-                        src={frame.src}
-                        alt={`Step ${idx + 1}. ${frame.beat} ${frame.body}`}
-                        width={1554} height={1260}
-                        sizes="(max-width: 760px) 100vw, 380px"
-                        loading={idx < 2 ? "eager" : "lazy"}
+            {(f.video || f.screen) ? (
+              /* Animation walkthrough — iPhone chrome + autoplay muted loop
+                 (for pin/pause webms) OR the CSS-animated Remove prototype
+                 injected via f.screen. Two-column on desktop: iPhone left
+                 (larger, no dark mat), beat timeline right. Stacks to single
+                 column on mobile via .sp2-dl-video-row. */
+              <div
+                className="sp2-dl-video-row"
+                style={{
+                  display:             "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap:                 "clamp(40px, 5vw, 80px)",
+                  alignItems:          "center",
+                  marginBottom:        "56px",
+                }}
+              >
+                {/* iPhone-framed animation hero. Overlay geometry matches
+                   SpotifyFramedAnimation on the home page so the device
+                   reads the same across the site. Larger footprint now
+                   that it owns its own column. */}
+                <div
+                  role="img"
+                  aria-label={f.video?.alt ?? f.screenAlt ?? ""}
+                  style={{
+                    /* Aspect + overflow copied VERBATIM from SpotifyFramedAnimation
+                       on the home page — the screen-div percentages inside were
+                       designed for a 2/3 outer, not the 1/1.35 (iPhone image
+                       aspect) I used originally, which pushed the screen div past
+                       the iPhone body and leaked mini-player content below the
+                       phone (Alfonso 2026-07-03). overflow:hidden matches the
+                       home shell so any residual leak is clipped. */
+                    position:    "relative",
+                    width:       "100%",
+                    maxWidth:    "460px",
+                    aspectRatio: "2 / 3",
+                    overflow:    "hidden",
+                    justifySelf: "center",
+                  }}
+                >
+                  {/* Screen (below the iPhone PNG) — video or React-node
+                      animation fills the visible screen rect inside the
+                      iPhone body. */}
+                  <div style={{
+                    position:     "absolute",
+                    left:         "24.46%",
+                    top:          "13.02%",
+                    width:        "51.01%",
+                    height:       "72.10%",
+                    overflow:     "hidden",
+                    borderRadius: "5.5%",
+                    background:   "#0F0F0F",
+                    zIndex:       2,
+                  }}>
+                    {f.video ? (
+                      /* eslint-disable-next-line jsx-a11y/media-has-caption */
+                      <video
+                        src={f.video.src}
+                        poster={f.video.poster}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        aria-label={f.video.alt}
                         style={{
-                          width: "100%", height: "100%",
-                          objectFit: "contain", objectPosition: "center",
-                          display: "block",
+                          position:       "absolute",
+                          inset:          0,
+                          width:          "100%",
+                          height:         "100%",
+                          objectFit:      "cover",
+                          objectPosition: "top center",
+                          display:        "block",
                         }}
                       />
-                    </div>
-                    <figcaption style={{
-                      fontFamily: font.sans, fontSize: "12px",
-                      margin: "12px 0 0", display: "flex", gap: "10px", alignItems: "baseline",
-                      lineHeight: 1.5,
+                    ) : (
+                      f.screen
+                    )}
+                  </div>
+                  {/* iPhone chrome (above the screen). */}
+                  <Image
+                    src="/images/devices/iphone-cropped.webp"
+                    alt=""
+                    aria-hidden
+                    width={720}
+                    height={972}
+                    sizes="(max-width: 760px) 100vw, 520px"
+                    style={{
+                      position:      "absolute",
+                      left:          "21.96%",
+                      top:           "11.74%",
+                      width:         "56.09%",
+                      height:        "auto",
+                      maxWidth:      "none",
+                      pointerEvents: "none",
+                      zIndex:        1,
+                    }}
+                  />
+                </div>
+
+                {/* Beat timeline — right column, single stack. Deep Teal
+                   numerals (SPOTIFY_GREEN doesn't meet contrast on the
+                   light DETAILS arc tint). */}
+                <ol
+                  className="sp2-dl-beats"
+                  style={{
+                    display:       "grid",
+                    gridTemplateColumns: "1fr",
+                    gap:           "clamp(18px, 2vw, 26px)",
+                    listStyle:     "none",
+                    padding:       0,
+                    margin:        0,
+                    maxWidth:      "520px",
+                  }}
+                >
+                  {f.frames.map((frame, idx) => (
+                    <li key={frame.src} style={{
+                      display:    "flex",
+                      gap:        "16px",
+                      alignItems: "baseline",
+                      fontFamily: font.sans,
+                      fontSize:   "14px",
+                      lineHeight: 1.55,
                     }}>
-                      <span style={{ fontWeight: 700, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
+                      <span style={{
+                        fontWeight:    700,
+                        letterSpacing: "0.14em",
+                        color:         c.accent,
+                        flexShrink:    0,
+                        fontVariantNumeric: "tabular-nums",
+                        minWidth:      "26px",
+                      }}>
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>
-                        <strong style={{ fontWeight: 700, color: "#FFFFFF" }}>{frame.beat}</strong>{" "}{frame.body}
+                      <span style={{ color: c.ink2, letterSpacing: "-0.005em" }}>
+                        <strong style={{ fontWeight: 700, color: c.ink }}>{frame.beat}</strong>{" "}{frame.body}
                       </span>
-                    </figcaption>
-                  </figure>
-                ))}
+                    </li>
+                  ))}
+                </ol>
               </div>
-            </div>
+            ) : (
+              /* Wireframe frames — wrapped in a dark mat so the flow reads
+                  as one curated panel instead of frames floating against
+                  the page. Each screen has rounded corners to feel
+                  device-native. Mat darkened to #2F2F2F so the Spotify-
+                  green caption number meets WCAG AA on its surface. */
+              <div style={{
+                background: "#2F2F2F",
+                padding: "clamp(20px, 3vw, 40px)",
+                marginBottom: "56px",
+              }}>
+                <div style={{
+                  display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "clamp(16px, 2vw, 24px)",
+                }} className="sp2-dl-frames">
+                  {f.frames.map((frame, idx) => (
+                    <figure key={frame.src} style={{ margin: 0 }}>
+                      <div style={{
+                        aspectRatio: f.aspectRatio,
+                        overflow: "hidden",
+                        /* Mobile: medium-gray rounded background contrasts
+                           against the darker outer mat. Desktop: thin
+                           black behind the screen capture so the white UI
+                           elements pop. */
+                        background: f.surface === "Mobile" ? "#6E6E6E" : "#000000",
+                        borderRadius: f.surface === "Mobile"
+                          ? "clamp(14px, 1.6vw, 22px)"
+                          : "clamp(2px, 0.3vw, 4px)",
+                      }}>
+                        <Image
+                          src={frame.src}
+                          alt={`Step ${idx + 1}. ${frame.beat} ${frame.body}`}
+                          width={1554} height={1260}
+                          sizes="(max-width: 760px) 100vw, 380px"
+                          loading={idx < 2 ? "eager" : "lazy"}
+                          style={{
+                            width: "100%", height: "100%",
+                            objectFit: "contain", objectPosition: "center",
+                            display: "block",
+                          }}
+                        />
+                      </div>
+                      <figcaption style={{
+                        fontFamily: font.sans, fontSize: "12px",
+                        margin: "12px 0 0", display: "flex", gap: "10px", alignItems: "baseline",
+                        lineHeight: 1.5,
+                      }}>
+                        <span style={{ fontWeight: 700, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>
+                          <strong style={{ fontWeight: 700, color: "#FFFFFF" }}>{frame.beat}</strong>{" "}{frame.body}
+                        </span>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div style={{ maxWidth: "880px" }}>
               {f.dossier.map((d) => (

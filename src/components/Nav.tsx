@@ -6,7 +6,7 @@ import Link from "next/link";
 import LogoMark from "./LogoMark";
 import CommandPalette, { openCommandPalette } from "./CommandPalette";
 
-const navLinks = ["work", "about"] as const;
+const navLinks = ["work", "process", "about"] as const;
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -174,7 +174,7 @@ export default function Nav() {
               key={link}
               label={link}
               isHome={isHome}
-              routeHref={link === "about" ? "/about" : undefined}
+              routeHref={link === "about" ? "/about" : link === "process" ? "/process" : undefined}
               onScrollClick={() => scrollTo(link)}
             />
           ))}
@@ -332,18 +332,20 @@ export default function Nav() {
           const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "0.72");
           const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "1");
 
-          // "about" always routes to /about, regardless of current page
-          if (link === "about") {
+          // "about" and "process" always route to their pages, regardless of current page
+          if (link === "about" || link === "process") {
+            const href = link === "about" ? "/about" : "/process";
+            const label = link === "about" ? "About" : "Process";
             return (
               <Link
                 key={link}
-                href="/about"
+                href={href}
                 onClick={() => setMenuOpen(false)}
                 style={overlayLinkStyle}
                 onMouseEnter={onEnter}
                 onMouseLeave={onLeave}
               >
-                About
+                {label}
               </Link>
             );
           }
