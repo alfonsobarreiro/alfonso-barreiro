@@ -33,6 +33,165 @@ const SYMPTOMS: Symptom[] = [
   { id: "fit",       label: "Footwear fit",  hint: "Width, length, drop, lacing" },
 ];
 
+/* Small diagnostic marks per symptom. Stroke-only, 24x24 viewBox, use
+   currentColor so they invert cleanly on the selected (crimson) state. */
+function SymptomMark({ id }: { id: SymptomId }) {
+  const common = {
+    width: 22, height: 22, viewBox: "0 0 24 24",
+    fill: "none", stroke: "currentColor", strokeWidth: 1.5,
+    strokeLinecap: "round" as const, strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  switch (id) {
+    case "pain":
+      return (
+        <svg {...common}>
+          <path d="M12 3 C 8 8, 5 12, 5 16 A 7 7 0 0 0 19 16 C 19 12, 16 8, 12 3 Z" />
+          <circle cx="12" cy="15" r="1.5" fill="currentColor" stroke="none" />
+        </svg>
+      );
+    case "nails":
+      return (
+        <svg {...common}>
+          <path d="M7 9 Q 7 4, 12 4 T 17 9 L 17 19 L 7 19 Z" />
+          <path d="M7 9 L 17 9" />
+        </svg>
+      );
+    case "skin":
+      return (
+        <svg {...common}>
+          <path d="M4 8 Q 8 6, 12 8 T 20 8" />
+          <path d="M4 12 Q 8 10, 12 12 T 20 12" />
+          <path d="M4 16 Q 8 14, 12 16 T 20 16" />
+        </svg>
+      );
+    case "alignment":
+      return (
+        <svg {...common}>
+          <path d="M12 4 L 12 20" />
+          <circle cx="12" cy="6" r="1.6" fill="currentColor" stroke="none" />
+          <path d="M8 20 L 16 20" />
+          <path d="M6 12 L 18 12" strokeDasharray="1.5 2.5" opacity="0.55" />
+        </svg>
+      );
+    case "fit":
+      return (
+        <svg {...common}>
+          <path d="M4 17 L 4 11 Q 4 9, 6 9 L 13 9 Q 15 9, 15 11 L 17 13 L 20 17 L 20 19 L 4 19 Z" />
+        </svg>
+      );
+  }
+}
+
+/* Routing diagram — small horizontal three-node path shown above the
+   demo body. Nodes fill as steps complete; filaments extend from the
+   Select node as categories are picked, converging into the Route node.
+   Argues the case-study thesis ("the routing is the whole case") in
+   the visual language, not just the copy. */
+function RoutingPath({
+  step, selectedCount,
+}: {
+  step: 1 | 2 | 3; selectedCount: number;
+}) {
+  const stepDone = (n: 1 | 2 | 3) => step >= n;
+  const active   = (n: 1 | 2 | 3) => step === n;
+  const brand    = c.brand;
+  const border   = c.border;
+  const muted    = c.muted;
+  const ink      = c.ink;
+
+  return (
+    <div style={{ marginBottom: "28px" }}>
+      <svg
+        viewBox="0 0 400 80"
+        role="img"
+        aria-label={`Routing path. Currently on step ${step} of 3.`}
+        style={{ width: "100%", height: "auto", display: "block", maxHeight: "88px" }}
+      >
+        {/* Baseline path connecting the three nodes */}
+        <line
+          x1="60"  y1="34" x2="200" y2="34"
+          stroke={stepDone(2) ? brand : border}
+          strokeWidth="1.5"
+          strokeDasharray={stepDone(2) ? "0" : "3 3"}
+          style={{ transition: "stroke 300ms ease" }}
+        />
+        <line
+          x1="200" y1="34" x2="340" y2="34"
+          stroke={stepDone(3) ? brand : border}
+          strokeWidth="1.5"
+          strokeDasharray={stepDone(3) ? "0" : "3 3"}
+          style={{ transition: "stroke 300ms ease" }}
+        />
+
+        {/* Filaments — small crimson lines rise from below the Select
+            node when categories are picked, then bend into the Route
+            node. Reads as "input signal → routing decision." */}
+        {selectedCount > 0 && step === 1 && (
+          <g stroke={brand} strokeWidth="1" strokeLinecap="round" opacity="0.65">
+            {Array.from({ length: Math.min(selectedCount, 5) }).map((_, i) => {
+              const x = 30 + i * 12;
+              return (
+                <path
+                  key={i}
+                  d={`M ${x} 72 Q ${x + 4} 50, 60 34`}
+                  fill="none"
+                />
+              );
+            })}
+          </g>
+        )}
+
+        {/* Node · Select */}
+        <circle
+          cx="60" cy="34" r="10"
+          fill={stepDone(1) ? brand : "#FFFFFF"}
+          stroke={stepDone(1) ? brand : border}
+          strokeWidth="1.5"
+          style={{ transition: "fill 300ms ease, stroke 300ms ease" }}
+        />
+        {active(1) && (
+          <circle cx="60" cy="34" r="14" fill="none" stroke={brand} strokeWidth="1" opacity="0.4" />
+        )}
+
+        {/* Node · Route */}
+        <circle
+          cx="200" cy="34" r="10"
+          fill={stepDone(2) ? brand : "#FFFFFF"}
+          stroke={stepDone(2) ? brand : border}
+          strokeWidth="1.5"
+          style={{ transition: "fill 300ms ease, stroke 300ms ease" }}
+        />
+        {active(2) && (
+          <circle cx="200" cy="34" r="14" fill="none" stroke={brand} strokeWidth="1" opacity="0.4" />
+        )}
+
+        {/* Node · Hand off */}
+        <circle
+          cx="340" cy="34" r="10"
+          fill={stepDone(3) ? brand : "#FFFFFF"}
+          stroke={stepDone(3) ? brand : border}
+          strokeWidth="1.5"
+          style={{ transition: "fill 300ms ease, stroke 300ms ease" }}
+        />
+        {active(3) && (
+          <circle cx="340" cy="34" r="14" fill="none" stroke={brand} strokeWidth="1" opacity="0.4" />
+        )}
+
+        {/* Node numerals */}
+        <text x="60"  y="38.5" textAnchor="middle" fontSize="10" fontWeight="700" fill={stepDone(1) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">1</text>
+        <text x="200" y="38.5" textAnchor="middle" fontSize="10" fontWeight="700" fill={stepDone(2) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">2</text>
+        <text x="340" y="38.5" textAnchor="middle" fontSize="10" fontWeight="700" fill={stepDone(3) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">3</text>
+
+        {/* Labels below the nodes */}
+        <text x="60"  y="66" textAnchor="middle" fontSize="10" letterSpacing="1.4" fill={active(1) ? ink : muted} fontWeight={active(1) ? 700 : 600} fontFamily="var(--font-dm-sans), sans-serif">SELECT</text>
+        <text x="200" y="66" textAnchor="middle" fontSize="10" letterSpacing="1.4" fill={active(2) ? ink : muted} fontWeight={active(2) ? 700 : 600} fontFamily="var(--font-dm-sans), sans-serif">ROUTE</text>
+        <text x="340" y="66" textAnchor="middle" fontSize="10" letterSpacing="1.4" fill={active(3) ? ink : muted} fontWeight={active(3) ? 700 : 600} fontFamily="var(--font-dm-sans), sans-serif">HAND OFF</text>
+      </svg>
+    </div>
+  );
+}
+
 interface ResultCard {
   id: string;
   category: string;
@@ -161,42 +320,10 @@ export default function DiagnosticFlowDemo() {
         </span>
       </div>
 
-      {/* Stepper */}
-      <ol
-        aria-label="Demo progress"
-        style={{
-          display:      "flex",
-          gap:          "8px",
-          padding:      0,
-          margin:       "0 0 28px",
-          listStyle:    "none",
-          fontFamily:   font.sans,
-          fontSize:     "12px",
-          fontWeight:   600,
-          letterSpacing:"0.08em",
-          textTransform:"uppercase",
-        }}
-      >
-        {[
-          { n: 1, label: "Select" },
-          { n: 2, label: "Route"  },
-          { n: 3, label: "Hand off" },
-        ].map((s) => (
-          <li
-            key={s.n}
-            aria-current={step === s.n ? "step" : undefined}
-            style={{
-              padding:      "6px 12px",
-              border:       `1px solid ${step >= s.n ? c.brand : c.border}`,
-              color:        step >= s.n ? c.brand : c.muted,
-              background:   step === s.n ? "rgba(140,26,26,0.06)" : "transparent",
-              transition,
-            }}
-          >
-            {s.n} · {s.label}
-          </li>
-        ))}
-      </ol>
+      {/* Routing path — visualizes the case-study thesis. Three nodes
+          connected by a hairline; filaments extend from Select when
+          categories are picked, then converge into Route. */}
+      <RoutingPath step={step} selectedCount={selected.size} />
 
       {/* STEP 1 — symptom selection */}
       {step === 1 && (
@@ -224,7 +351,7 @@ export default function DiagnosticFlowDemo() {
               marginBottom:        "24px",
             }}
           >
-            {SYMPTOMS.map((s) => {
+            {SYMPTOMS.map((s, i) => {
               const isOn = selected.has(s.id);
               return (
                 <button
@@ -238,29 +365,74 @@ export default function DiagnosticFlowDemo() {
                     background:    isOn ? c.brand : c.cardBg,
                     color:         isOn ? "#FFFFFF" : c.ink,
                     border:        `1px solid ${isOn ? c.brand : c.border}`,
-                    padding:       "16px 18px",
+                    padding:       "18px 20px 20px",
                     textAlign:     "left",
                     fontFamily:    font.sans,
                     fontSize:      "15px",
                     fontWeight:    600,
                     cursor:        "pointer",
-                    minHeight:     "64px",
+                    minHeight:     "108px",
                     transition,
                     letterSpacing: "-0.01em",
+                    position:      "relative",
+                    display:       "flex",
+                    flexDirection: "column",
+                    gap:           "12px",
+                    animationDelay: `${i * 70}ms`,
                   }}
                   className="msr-diag-chip"
                 >
-                  <span style={{ display: "block", marginBottom: "4px" }}>{s.label}</span>
-                  <span style={{
-                    display:       "block",
-                    fontSize:      "12px",
-                    fontWeight:    500,
-                    color:         isOn ? "rgba(255,255,255,0.85)" : c.muted,
-                    lineHeight:    1.35,
-                    letterSpacing: 0,
-                  }}>
-                    {s.hint}
+                  {/* Diagnostic mark, upper-left */}
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display:    "inline-flex",
+                      alignItems: "center",
+                      color:      isOn ? "rgba(255,255,255,0.9)" : c.accent,
+                      transition,
+                    }}
+                  >
+                    <SymptomMark id={s.id} />
                   </span>
+
+                  <span style={{ display: "block" }}>
+                    <span style={{ display: "block", marginBottom: "4px" }}>{s.label}</span>
+                    <span style={{
+                      display:       "block",
+                      fontSize:      "12px",
+                      fontWeight:    500,
+                      color:         isOn ? "rgba(255,255,255,0.85)" : c.muted,
+                      lineHeight:    1.35,
+                      letterSpacing: 0,
+                    }}>
+                      {s.hint}
+                    </span>
+                  </span>
+
+                  {/* Selected checkmark chip, upper-right */}
+                  {isOn && (
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        position:      "absolute",
+                        top:           "12px",
+                        right:         "12px",
+                        width:         "20px",
+                        height:        "20px",
+                        borderRadius:  "50%",
+                        background:    "#FFFFFF",
+                        color:         c.brand,
+                        display:       "inline-flex",
+                        alignItems:    "center",
+                        justifyContent:"center",
+                        fontSize:      "12px",
+                        fontWeight:    700,
+                        lineHeight:    1,
+                      }}
+                    >
+                      ✓
+                    </span>
+                  )}
                 </button>
               );
             })}
@@ -540,12 +712,30 @@ export default function DiagnosticFlowDemo() {
       )}
 
       <style>{`
+        .msr-diag-chip {
+          opacity:   0;
+          transform: translateY(6px);
+          animation: msr-diag-chip-in 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes msr-diag-chip-in {
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .msr-diag-chip:hover {
+          transform:  translateY(-2px);
+          box-shadow: 0 6px 18px rgba(37,43,40,0.10);
+        }
         .msr-diag-chip:focus-visible {
           outline: 2px solid ${c.accent};
           outline-offset: 2px;
         }
         @media (prefers-reduced-motion: reduce) {
-          .msr-diag-chip { transition: none !important; }
+          .msr-diag-chip {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+          }
+          .msr-diag-chip:hover { transform: none !important; box-shadow: none !important; }
         }
       `}</style>
     </div>

@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
+import CenterScrollX from "@/components/CenterScrollX";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
@@ -1657,7 +1658,7 @@ function DesignSystemCarousel() {
           }}>01 · Color tokens</p>
           {/* Figma slide — full-fidelity on desktop; horizontally
               scrollable at native width on mobile via .wf2-ds-scroll. */}
-          <div className="wf2-ds-scroll">
+          <CenterScrollX className="wf2-ds-scroll">
             <Image
               src="/images/work/wayfarer/wayfarer-sig-color.webp"
               alt="Wayfarer color tokens. four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
@@ -1665,8 +1666,8 @@ function DesignSystemCarousel() {
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
             />
-          </div>
-          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe to explore &middot; full view on desktop &rarr;</p>
+          </CenterScrollX>
+          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe &larr; &rarr; to explore &middot; full view on desktop</p>
           {/* Native mobile summary — the essential signal (brand + accent
               + neutrals) rendered as HTML so mobile readers get a
               legible version even without swiping the artifact. */}
@@ -1701,7 +1702,7 @@ function DesignSystemCarousel() {
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 14px",
           }}>02 · Typography</p>
-          <div className="wf2-ds-scroll">
+          <CenterScrollX className="wf2-ds-scroll">
             <Image
               src="/images/work/wayfarer/wayfarer-sig-typography.webp"
               alt="Wayfarer typography. 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
@@ -1709,8 +1710,8 @@ function DesignSystemCarousel() {
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
             />
-          </div>
-          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe to explore &middot; full view on desktop &rarr;</p>
+          </CenterScrollX>
+          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe &larr; &rarr; to explore &middot; full view on desktop</p>
           <div className="wf2-ds-native wf2-ds-typo-native">
             <p className="wf2-ds-native-label">Two typefaces, each with a job</p>
             <div className="wf2-ds-typo-stack">
