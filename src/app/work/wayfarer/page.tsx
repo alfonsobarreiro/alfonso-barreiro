@@ -2880,7 +2880,7 @@ function AccessibilitySection() {
               alt="Wayfarer accessibility system audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
               width={1920} height={2652}
               sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
             />
           </div>
 
