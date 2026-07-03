@@ -25,11 +25,13 @@ interface Project {
   image?:      string;
 }
 
-/* Order: Spotify → Wayfarer → MSR.
+/* Order: Spotify → Wayfarer → MSR → ABD UI.
    MSR is already the hero (13× over the live site), so leading with it again
    would repeat the same evidence twice. Spotify opens the work section with
    interaction craft, Wayfarer carries the shipped-product range, MSR closes
-   with the measurable-result case the hero set up. */
+   the project triad with the measurable-result case the hero set up. ABD UI
+   sits last as the operating system behind every client project, the proof
+   that the work scales because the system underneath it does. */
 const projects: Project[] = [
   {
     title:       "Spotify",
@@ -65,7 +67,7 @@ const projects: Project[] = [
     description:
       "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
     thesis:      "Pivoted from e-commerce to editorial in week 3.",
-    deck:        "Diagnostic-first resource for men over 40. Live since April. 13× CTR lift on affiliate placements.",
+    deck:        "Diagnostic-first resource for men over 40. Live since April. 13× return-visits on the results page.",
     meta:        "DESIGNER · 2026 · LIVE SINCE APRIL",
     tags:        ["Brand Identity", "Content UX", "Editorial"],
     year:        "2026",
@@ -73,6 +75,23 @@ const projects: Project[] = [
     href:        "/work/mens-sole-revival",
     image:       "/cs-msr-preview.jpg",
   },
+  // ABD UI hidden 2026-07-01 pending case-study rework to match the
+  // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
+  // rework ships.
+  // {
+  //   title:       "ABD UI",
+  //   subtitle:    "Production Design System",
+  //   description:
+  //     "A token-driven design system that powers every Alpha Beta Design client site. One source of truth published to CSS, JSON, and Figma. 120 components, 15 color tokens, one accessibility floor. The hard part was choosing role-based tokens over a literal palette so a brand swap takes minutes, not days.",
+  //   thesis:      "The button has to get designed once.",
+  //   deck:        "Token-driven. Published to CSS, JSON, and Figma from one source. Refuses one-off values.",
+  //   meta:        "DESIGN SYSTEM · LIVE · ONGOING",
+  //   tags:        ["Design Tokens", "Component API", "Accessibility"],
+  //   year:        "2026",
+  //   status:      "live",
+  //   href:        "/work/abd-ui-system",
+  //   image:       "/cs-abdui-preview.png",
+  // },
 ];
 
 /* Stagger delays per card index */
@@ -154,7 +173,7 @@ export default function Work() {
             display:        "flex",
             justifyContent: "space-between",
             alignItems:     "flex-end",
-            marginBottom:   "28px",
+            marginBottom:   "clamp(48px, 6vw, 80px)",
           }}
         >
           <div>
@@ -169,7 +188,7 @@ export default function Work() {
                 lineHeight:    1.1,
               }}
             >
-              Selected Work
+              Work
             </h2>
           </div>
         </div>
@@ -213,9 +232,6 @@ export default function Work() {
             order: 1 !important;
             max-width: 100% !important;
           }
-          .work-row .work-tag-pills {
-            display: none !important;
-          }
         }
       `}</style>
     </section>
@@ -242,6 +258,7 @@ function ProjectCard({
   const isMSR      = project.title === "Men's Sole Revival";
   const isWayfarer = project.title === "Wayfarer";
   const isSpotify  = project.title === "Spotify";
+  const isABD      = project.title === "ABD UI";
 
   // Editorial row — flex layout, device and thesis sit close together.
   // The row alignment alternates left/right via imageOnRight (passed in
@@ -265,6 +282,7 @@ function ProjectCard({
   const imgAspect = isMSR     ? "4 / 3"
                   : isWayfarer ? "4 / 5"
                   : isSpotify  ? "2 / 3"
+                  : isABD      ? "16 / 10"
                   : "16 / 10";
 
   /* MSR gets ~10% more vertical padding so the MBP has extra breathing room
@@ -282,16 +300,31 @@ function ProjectCard({
   /* Per-project brand-anchored backdrop. Each row gets its own
      atmosphere so the section reads as three editorial spreads instead
      of three template instances. */
+  /* All three case-study rows share the same radial rhythm now:
+     ellipse anchored slightly-high-center, ~30 units of lightness
+     spread from center to edge. Prior Spotify gradient was too tight
+     to read as radial; prior Wayfarer was solid. Palettes stay
+     brand-anchored (Spotify Jet, Wayfarer navy, MSR neutral gray). */
   const shellBg = isSpotify
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1F1F1F 0%, #121212 60%, #0A0A0A 100%)"
+    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2E2E2E 0%, #181818 60%, #0A0A0A 100%)"
     : isWayfarer
-    /* Wayfarer: solid dark navy (was a radial gradient that competed
-       with the video's baked-in background, reading as "blue inside
-       blue"). Solid #1E1C3A lets the iPad sit cleanly on one tone. */
-    ? "#1E1C3A"
+    /* Wayfarer row: SOLID #1F1C3B — the exact hex the video's baked
+       backdrop uses in every sampled edge pixel (ffmpeg + PIL).
+       Any radial with a lifted center reads as purple-inside-navy;
+       matching the video exactly makes shell + video read as one
+       continuous field. */
+    ? "#1F1C3B"
     : isMSR
-    /* MSR brand ink #13100C (warm editorial near-black) anchored gradient. */
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2A2218 0%, #13100C 60%, #080604 100%)"
+    /* MSR row: dark neutral gray gradient. The MacBook Pro's Space
+       Black chassis was disappearing against warm ink #13100C; a
+       medium-dark gray backdrop lets the device silhouette read
+       cleanly. Keeps the radial rhythm the Spotify row uses. */
+    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #4A4A4A 0%, #333333 60%, #262626 100%)"
+    : isABD
+    /* ABD UI: dark slate ground with cyan-ink center so the system
+       screenshot reads as software-on-display, not a fourth case-
+       study template instance. */
+    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1B2228 0%, #14181A 60%, #0F1316 100%)"
     : "#F5F5F4";
 
   const shellStyle: React.CSSProperties = {
@@ -312,6 +345,7 @@ function ProjectCard({
     ...(isSpotify  && { width: "460px", maxWidth: "100%" }),
     ...(isWayfarer && { width: "540px", maxWidth: "100%" }),
     ...(isMSR      && { width: "540px", maxWidth: "100%" }),
+    ...(isABD      && { width: "540px", maxWidth: "100%" }),
   };
 
   const imgBox: React.CSSProperties = {
@@ -414,12 +448,12 @@ function ProjectCard({
 
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(36px, 5vw, 68px)",
-        fontWeight:    600,
+        fontSize:      "clamp(28px, 3.4vw, 44px)",
+        fontWeight:    500,
         color:         "#252B28",
         margin:        "0 0 18px",
         letterSpacing: "-0.03em",
-        lineHeight:    1.05,
+        lineHeight:    1.1,
       }}>
         {project.thesis}
       </p>
@@ -441,38 +475,6 @@ function ProjectCard({
           {project.deck}
         </p>
       ) : null}
-
-      {/* Hover-revealed pills — payoff for closer attention. Reserved
-          space prevents layout shift; opacity + transform animate only.
-          Hidden on mobile (no hover) so the View Case Study link sits
-          right under the deck instead of after dead air. */}
-      <div
-        className="work-tag-pills"
-        aria-hidden={!hovered}
-        style={{
-          display:      "flex",
-          gap:          "8px",
-          flexWrap:     "wrap",
-          marginBottom: "28px",
-          opacity:      hovered ? 1 : 0,
-          transform:    hovered ? "translateY(0)" : "translateY(6px)",
-          transition:   "opacity 0.35s ease, transform 0.35s ease",
-        }}
-      >
-        {project.tags.map((tag) => (
-          <span key={tag} style={{
-            fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "13px",
-            padding:      "6px 14px",
-            background:   "#F5F5F4",
-            color:        "#252B28",
-            fontWeight:   400,
-            border:       "1px solid #6E6E6A",
-          }}>
-            {tag}
-          </span>
-        ))}
-      </div>
 
       {isLive ? (
         <Link

@@ -152,12 +152,21 @@ button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-off
   outline: none;
   box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--color-focus-ring);
 }
-/* Any focusable child of the mobile menu overlay (crimson background)
-   gets a white outline. Scoped so it doesn't pollute the rest of the
-   site. */
+/* Mobile menu overlay focus outline — only paint it when the user is
+   in keyboard-nav mode. When the menu opens on tap, JS programmatically
+   focuses the first item so screen readers announce it; without this
+   gate, Chrome/Safari paint :focus-visible on the programmatic focus
+   and touch users see a box around "Work" that shouldn't be there.
+   The body[data-keyboard-nav] flag is set by KeyboardModality only on
+   Tab / arrow keys and cleared on mousedown/touchstart. */
 .menu-overlay-crimson a:focus-visible,
 .menu-overlay-crimson button:focus-visible {
-  outline-color: #FFFFFF;
+  outline: none;
+}
+body[data-keyboard-nav] .menu-overlay-crimson a:focus-visible,
+body[data-keyboard-nav] .menu-overlay-crimson button:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
 }
 
 /* Skip link — first focusable element on every page. Visually

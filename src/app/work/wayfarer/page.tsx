@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
+import CenterScrollX from "@/components/CenterScrollX";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
@@ -118,31 +119,67 @@ function Tag({ children }: { children: React.ReactNode }) {
 /* Arc divider — marks the transition between major case-study acts
    (Premise → Research → Decisions → Details). Same pattern as the
    Spotify case study; uses Wayfarer's navy as the label color. */
+/* ArcDivider rebuilt from a 1px hairline into a giant-numeral masthead.
+   Each arc opens with an oversized Roman-position numeral in Deep Teal
+   and a single-sentence thesis so the four-act structure carries
+   itself without decorative pastel washes on the sections beneath. */
+const ARC_THESES: Record<string, { n: string; thesis: string }> = {
+  Premise:   { n: "01", thesis: "The original site shipped a database. The brief needed a destination." },
+  Research:  { n: "02", thesis: "Onboarding, layout, and storytelling all pointed at the same fix." },
+  Decisions: { n: "03", thesis: "Cut booking. Keep discovery. Let the globe do the front-door work." },
+  Details:   { n: "04", thesis: "The system, the shipped screens, and the audit that runs against them." },
+};
+
 function ArcDivider({ arc }: { arc: string }) {
+  const meta = ARC_THESES[arc];
   return (
     <div
       role="separator"
       aria-label={`${arc} arc begins`}
       style={{
-        display:        "flex",
-        alignItems:     "center",
-        gap:            "20px",
-        maxWidth:       CONTENT_MAX,
-        margin:         "clamp(48px, 10vw, 120px) auto clamp(32px, 6vw, 80px)",
-        padding:        `0 ${SECTION_X}`,
+        maxWidth: CONTENT_MAX,
+        margin:   "clamp(96px, 14vw, 200px) auto clamp(48px, 8vw, 96px)",
+        padding:  `0 ${SECTION_X}`,
       }}
     >
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-      <span style={{
-        fontFamily:     font.sans,
-        fontSize:       "11px",
-        fontWeight:     700,
-        letterSpacing:  "0.30em",
-        textTransform:  "uppercase",
-        color:          c.navy,
-        whiteSpace:     "nowrap",
-      }}>{arc}</span>
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
+      <div style={{
+        display:        "grid",
+        gridTemplateColumns: "auto 1fr",
+        gap:            "clamp(32px, 5vw, 72px)",
+        alignItems:     "start",
+      }} className="wf2-arc-masthead">
+        <span style={{
+          fontFamily:         font.sans,
+          fontSize:           "clamp(120px, 20vw, 320px)",
+          fontWeight:         700,
+          letterSpacing:      "-0.045em",
+          lineHeight:         0.82,
+          color:              c.accent,
+          margin:             0,
+          fontVariantNumeric: "tabular-nums",
+        }}>{meta?.n ?? ""}</span>
+        <div style={{ paddingTop: "clamp(18px, 3vw, 40px)" }}>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "11px",
+            fontWeight:    700,
+            letterSpacing: "0.30em",
+            textTransform: "uppercase",
+            color:         c.accent,
+            margin:        "0 0 20px",
+          }}>{arc}</p>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "clamp(22px, 3vw, 34px)",
+            fontWeight:    500,
+            color:         c.ink,
+            margin:        0,
+            lineHeight:    1.2,
+            letterSpacing: "-0.02em",
+            maxWidth:      "34ch",
+          }}>{meta?.thesis ?? ""}</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -153,6 +190,11 @@ function ArcDivider({ arc }: { arc: string }) {
    labels at every section heading was scaffolding the reader didn't
    need. Same call we made on the Spotify case study. */
 
+/* Decision callout — signature element across every case study.
+   Three-stack left bar (navy / Deep Teal / ink for Wayfarer) is the
+   visual wordmark; the Decision/Why/Cost structure is the editorial
+   pattern. Why and Cost sit side-by-side on desktop so the trade-off
+   reads as one thought. */
 function Callout({
   decision, why, cost,
 }: { decision: string; why: string; cost: string }) {
@@ -163,7 +205,7 @@ function Callout({
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
-    margin:        "0 0 8px",
+    margin:        "0 0 10px",
   };
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
@@ -173,30 +215,50 @@ function Callout({
     margin:     0,
   };
   return (
-    <aside style={{
-      background:   c.callout,
+    <aside className="wf2-callout" style={{
+      background:   "#FFFFFF",
       border:       `1px solid ${c.border}`,
-      borderLeft:   `4px solid ${c.brand}`,
-      padding:      "28px 32px",
-      maxWidth:     "680px",
+      padding:      "32px 36px 32px 44px",
+      maxWidth:     "760px",
       marginTop:    "40px",
+      position:     "relative",
     }}>
+      <span aria-hidden="true" style={{
+        position: "absolute", left: 0, top: 28, bottom: 28,
+        width: "5px",
+        display: "grid",
+        gridTemplateRows: "1fr 1fr 1fr",
+      }}>
+        <span style={{ background: c.navy }} />
+        <span style={{ background: c.accent }} />
+        <span style={{ background: c.ink }} />
+      </span>
       <p style={labelStyle}>Decision</p>
       <p style={{
         fontFamily:    font.sans,
-        fontSize:      "20px",
+        fontSize:      "clamp(22px, 2.2vw, 26px)",
         fontWeight:    600,
-        color:         c.brand,
-        margin:        "0 0 24px",
-        letterSpacing: "-0.01em",
-        lineHeight:    1.3,
+        color:         c.ink,
+        margin:        "0 0 28px",
+        letterSpacing: "-0.015em",
+        lineHeight:    1.25,
       }}>
         {decision}
       </p>
-      <p style={labelStyle}>Why</p>
-      <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
-      <p style={labelStyle}>Cost</p>
-      <p style={bodyStyle}>{cost}</p>
+      <div className="wf2-callout-grid" style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "32px",
+      }}>
+        <div>
+          <p style={labelStyle}>Why</p>
+          <p style={bodyStyle}>{why}</p>
+        </div>
+        <div>
+          <p style={labelStyle}>Cost</p>
+          <p style={bodyStyle}>{cost}</p>
+        </div>
+      </div>
     </aside>
   );
 }
@@ -233,9 +295,8 @@ function HeroImage({
 /* ---------- BigThree section template ---------- */
 
 function BigThree({
-  number, heading, image, imageAlt, imageCrop, body, callout,
+  heading, image, imageAlt, imageCrop, body, callout,
 }: {
-  number: string;
   heading: string;
   image: string;
   imageAlt: string;
@@ -255,11 +316,6 @@ function BigThree({
           gap: "64px", alignItems: "start",
         }} className="wf2-row">
           <div>
-            <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.20em", color: c.accent,
-              display: "block", marginBottom: "12px",
-            }}>{number}</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 600, color: c.ink, margin: 0,
@@ -329,22 +385,22 @@ export default function WayfarerV2() {
           <Eyebrow>Concept · DesignLab · 2026</Eyebrow>
           <h1 style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(36px, 10vw, 96px)",
+            fontSize:      "clamp(44px, 11vw, 128px)",
             fontWeight:    500,
             color:         c.ink,
-            margin:        "0 0 32px",
-            letterSpacing: "-0.03em",
-            lineHeight:    1,
-            maxWidth:      "13ch",
+            margin:        "0 0 40px",
+            letterSpacing: "-0.045em",
+            lineHeight:    0.94,
+            maxWidth:      "16ch",
           }}>
-            Discover new <span style={{ color: c.brand }}>destinations</span>.
+            Invitation,<br/><span style={{ color: c.accent }}>not data.</span>
           </h1>
           <p style={{
-            fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 26px)",
-            lineHeight: 1.45, fontWeight: 400, color: c.ink2,
-            maxWidth: "640px", margin: "0 0 40px", letterSpacing: "-0.005em",
+            fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
+            lineHeight: 1.4, fontWeight: 400, color: c.ink2,
+            maxWidth: "720px", margin: "0 0 40px", letterSpacing: "-0.008em",
           }}>
-            A discovery-first travel platform with an interactive globe and a 40-destination library. Four-week DesignLab brief expanded into a working product with a documented design system.
+            Wayfarer treats travel content as a front door, not a spreadsheet. Interactive globe, forty destinations across seven continents, one editorial cover in place of the catalog the original brief asked for.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "40px" }}>
             <Tag>Information Architecture</Tag>
@@ -371,60 +427,83 @@ export default function WayfarerV2() {
             scrolls into the content arcs. Lets a recruiter jump between
             Premise / Research / Decisions / Details without a full
             scroll. Active state set by IntersectionObserver below. */}
+        {/* Arc nav rebuilt to match Spotify's sp2-control-nav exactly:
+            solid white, grid of equal columns with divider lines,
+            13px 700 uppercase labels, and an inset bottom-underline
+            active state tinted with the site accent. */}
         <nav
           aria-label="Case study arcs"
           className="wf2-arc-nav"
           style={{
-            position:       "sticky",
-            top:            "72px",
-            zIndex:         10,
-            /* Global `main { display: flex; flex-direction: column }` (set in
-               globals.css for the sticky-footer pattern) makes sticky
-               children unreliable. align-self + flex-shrink lock the nav so
-               it doesn't get stretched or squeezed by the flex layout, and
-               width: 100% ensures it spans the row. */
-            alignSelf:      "stretch",
-            flexShrink:     0,
-            width:          "100%",
-            background:     "rgba(255, 255, 255, 0.94)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            borderTop:      `1px solid ${c.border}`,
-            borderBottom:   `1px solid ${c.border}`,
-            padding:        "14px 0",
+            position:     "sticky",
+            top:          "72px",
+            zIndex:       10,
+            alignSelf:    "stretch",
+            flexShrink:   0,
+            width:        "100%",
+            background:   "#FFFFFF",
+            borderTop:    `1px solid ${c.border}`,
+            borderBottom: `1px solid ${c.border}`,
+            margin:       "0 0 40px",
           }}
         >
           <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
-            margin: 0, padding: `0 ${SECTION_X}`, listStyle: "none", flexWrap: "wrap",
+            display:             "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            margin:              0,
+            padding:             0,
+            listStyle:           "none",
+            position:            "relative",
           }}>
+            {/* Sliding underline — a single 4px accent bar that
+                translates across the 4 cells as active state changes.
+                Reads as one continuous element travelling, not four
+                separate underlines fading in and out. */}
+            <span
+              className="wf2-arc-slider"
+              aria-hidden="true"
+              style={{
+                position:  "absolute",
+                left:      0,
+                bottom:    0,
+                width:     "25%",
+                height:    "4px",
+                background: c.accent,
+                transform: "translateX(0)",
+                transition: "transform 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease",
+                opacity:   0,
+                pointerEvents: "none",
+              }}
+            />
             {[
               { key: "premise",   label: "Premise"   },
               { key: "research",  label: "Research"  },
               { key: "decisions", label: "Decisions" },
               { key: "details",   label: "Details"   },
-            ].map((arc, i) => (
-              <li key={arc.key}>
+            ].map((arc, i, arr) => (
+              <li key={arc.key} style={{
+                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+              }}>
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
-                    fontWeight:     600,
-                    letterSpacing:  "0.06em",
+                    fontWeight:     700,
+                    letterSpacing:  "0.08em",
                     textTransform:  "uppercase",
                     color:          c.ink2,
                     textDecoration: "none",
-                    display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
+                    display:        "flex",
+                    alignItems:     "center",
+                    justifyContent: "center",
+                    gap:            "6px",
+                    padding:        "16px 8px",
+                    transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {arc.label}
@@ -437,34 +516,129 @@ export default function WayfarerV2() {
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
             if (typeof window === "undefined") return;
+            /* Top-nav (72px) + arc-nav height (~54px) = 126. Add a small
+               breathing room (14px) so section content doesn't sit flush
+               against the sticky strip. */
+            var NAV_STACK_HEIGHT = 140;
+
             /* Defer setup until the arc divs exist further down the page —
                this script runs as soon as the browser parses it, which is
                before the rest of the body. */
             function wire() {
-              const anchors = document.querySelectorAll('a[data-arc-anchor]');
+              var anchors = document.querySelectorAll('a[data-arc-anchor]');
               if (!anchors.length) return false;
-              const targets = ['premise', 'research', 'decisions', 'details']
-                .map(k => document.getElementById('arc-' + k))
+              var targets = ['premise', 'research', 'decisions', 'details']
+                .map(function (k) { return document.getElementById('arc-' + k); })
                 .filter(Boolean);
               if (targets.length < 4) return false;
-              const map = {};
-              anchors.forEach(a => { map[a.getAttribute('data-arc-anchor')] = a; });
-              const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                  const key = e.target.id.replace('arc-', '');
-                  const anchor = map[key];
-                  if (!anchor) return;
-                  if (e.isIntersecting) {
-                    anchors.forEach(a => a.removeAttribute('data-active'));
-                    anchor.setAttribute('data-active', 'true');
+              var map = {};
+              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
+              /* Active-state as pure function of scroll position.
+                 Retired the IntersectionObserver: with two moving
+                 pieces (IO + scroll listener) the clear-zone kept
+                 racing the activate-zone. This runs on every scroll
+                 (throttled via rAF), computes an "active line" 1/3
+                 down the viewport, and picks whichever arc contains
+                 that line. Above the first arc: no active. */
+              var activeKey = null;
+              var rafScheduled = false;
+              function computeActive() {
+                rafScheduled = false;
+                var scrollY = window.scrollY;
+                var activeLine = scrollY + window.innerHeight * 0.33;
+                var arcs = [];
+                for (var i = 0; i < targets.length; i++) {
+                  var el = targets[i];
+                  var top = el.getBoundingClientRect().top + scrollY;
+                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
+                }
+                var nextKey = null;
+                if (activeLine >= arcs[0].top) {
+                  for (var j = 0; j < arcs.length; j++) {
+                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
+                    if (activeLine >= arcs[j].top && activeLine < next) {
+                      nextKey = arcs[j].key;
+                      break;
+                    }
+                  }
+                }
+                if (nextKey === activeKey) return;
+                activeKey = nextKey;
+                var activeIdx = -1;
+                anchors.forEach(function (a, aidx) {
+                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
+                    a.setAttribute('data-active', 'true');
+                    activeIdx = aidx;
+                  } else {
+                    a.removeAttribute('data-active');
                   }
                 });
-              }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(t => obs.observe(t));
+                /* Move the sliding underline. One shared bar, transforms
+                   horizontally so it reads as a single traveling element. */
+                var slider = document.querySelector('.wf2-arc-slider');
+                if (slider) {
+                  if (activeIdx >= 0) {
+                    slider.style.transform = 'translateX(' + (activeIdx * 100) + '%)';
+                    slider.style.opacity = '1';
+                  } else {
+                    slider.style.opacity = '0';
+                  }
+                }
+              }
+              function onScroll() {
+                if (rafScheduled) return;
+                rafScheduled = true;
+                requestAnimationFrame(computeActive);
+              }
+              window.addEventListener('scroll', onScroll, { passive: true });
+              window.addEventListener('resize', onScroll, { passive: true });
+              computeActive();
+
+              /* Programmatic click handler — computes the exact scroll
+                 position so all four arcs land at the same distance
+                 below the sticky arc-nav. Without this, clicking 01
+                 Premise from the top of the page landed lower than
+                 clicking 02/03/04 because the arc-nav hadn't yet
+                 crossed its sticky threshold. */
+              anchors.forEach(function (a) {
+                a.addEventListener('click', function (ev) {
+                  var key = a.getAttribute('data-arc-anchor');
+                  var target = document.getElementById('arc-' + key);
+                  if (!target) return;
+                  ev.preventDefault();
+                  /* Immediately paint the active chip so the visitor
+                     sees state change even before scroll settles. */
+                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                  a.setAttribute('data-active', 'true');
+                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                  /* Update the URL hash without triggering a jump. */
+                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
+                });
+              });
+
+              /* Deep-link + back/forward hashchange sync — matches the
+                 pattern the Spotify chip nav uses so external
+                 #arc-decisions links (from resume PDFs, Slack forwards,
+                 SEO snippets) land with the right chip painted and
+                 scroll to the target through our custom nav-stack math. */
+              function syncFromHash() {
+                var m = /^#arc-(premise|research|decisions|details)$/.exec(window.location.hash || '');
+                if (!m) return;
+                var key = m[1];
+                var target = document.getElementById('arc-' + key);
+                if (!target) return;
+                anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                if (map[key]) map[key].setAttribute('data-active', 'true');
+                var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+              window.addEventListener('hashchange', syncFromHash);
+              if (window.location.hash) setTimeout(syncFromHash, 200);
               return true;
             }
             if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(() => requestAnimationFrame(wire));
+              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
             } else {
               document.addEventListener('DOMContentLoaded', wire);
             }
@@ -472,10 +646,22 @@ export default function WayfarerV2() {
         ` }} />
         <style>{`
           .wf2-arc-nav a[data-active] {
-            color: ${c.navy} !important;
-            border-bottom-color: ${c.navy} !important;
+            color: var(--color-accent) !important;
+            background: rgba(15,61,62,0.06) !important;
+            font-weight: 700 !important;
           }
-          .wf2-arc-nav a:hover { color: ${c.ink}; }
+          /* Sliding underline handles the active underline visual. Kept
+             separate from the anchor's box-shadow so it can travel across
+             cells as one shared element (a single bar transitioning left,
+             not four bars fading in and out). */
+          .wf2-arc-nav a[data-active] span:first-child {
+            opacity: 1 !important;
+            color: var(--color-accent) !important;
+          }
+          .wf2-arc-nav a:hover {
+            color: ${c.ink};
+            background: rgba(15,61,62,0.04);
+          }
 
           /* Fallback for narrow viewports — global "main { display: flex }"
              (set in globals.css for the sticky-footer pattern) makes
@@ -488,66 +674,51 @@ export default function WayfarerV2() {
               left: 0 !important;
               right: 0 !important;
               top: 72px !important;
-              padding: 6px 0 !important;
+              padding: 0 !important;
             }
-            .wf2-arc-nav ul { gap: 14px !important; }
-            .wf2-arc-nav a  { font-size: 11px !important; padding: 2px 0 !important; }
-            /* Hide the 01/02/03 numerals on phones to recover horizontal
-               space without losing the chip-nav itself. */
-            .wf2-arc-nav a span:first-child { display: none !important; }
+            .wf2-arc-nav ul { gap: 0 !important; }
+            /* Anchor sized to fit four cells at 390 px viewport. */
+            .wf2-arc-nav a  {
+              font-size: 11px !important;
+              padding: 12px 4px !important;
+              letter-spacing: 0.06em !important;
+              gap: 4px !important;
+              color: ${c.ink2} !important;
+              transition: background 0.15s ease, color 0.15s ease !important;
+            }
+            /* Active state — same Deep Teal inset underline the desktop
+               nav uses. Replaces the old navy filled pill so the visual
+               language is consistent across breakpoints. */
+            .wf2-arc-nav a[data-active] {
+              color: var(--color-accent) !important;
+              background: rgba(15,61,62,0.06) !important;
+              box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+              font-weight: 700 !important;
+              border-bottom: none !important;
+            }
+            .wf2-arc-nav a[data-active] span:first-child {
+              opacity: 1 !important;
+              color: var(--color-accent) !important;
+            }
             /* The fixed nav lifts out of flow — push subsequent content
-               down by the nav's height (~36px after compaction). */
+               down by the nav's height. */
             .wf2-arc-nav + script + style + div { padding-top: 36px !important; }
           }
         `}</style>
 
+        <ArcDivider arc="Premise" />
+
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#EEF2F6", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: c.surface, marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
-        {/* ─────────────────────────────────────────────
-            Hero — live homepage screenshot.
-            Real product, not a deck slide.
-        ───────────────────────────────────────────── */}
-        <section aria-label="Wayfarer live homepage hero" style={{ padding: `0 ${SECTION_X} 80px` }}>
-          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-            <Image
-              src="/images/work/wayfarer/v2/live-homepage-hero-v2.webp"
-              alt="Wayfarer homepage. live at wayfarer.barreiro.com. Editorial cover with the globe explorer as the front door."
-              width={1600}
-              height={1000}
-              priority
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-            />
-            <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-              letterSpacing: "0.08em", textTransform: "uppercase",
-              color: c.muted, margin: "16px 0 0", textAlign: "center",
-            }}>
-              wayfarer.barreiro.com &middot; live
-            </p>
-          </div>
-        </section>
-
-        {/* ─────────────────────────────────────────────
-            Pull quote — the case's POV in one line. Plain div: no
-            heading, no need to introduce a named landmark.
-        ───────────────────────────────────────────── */}
-        <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
-          <p style={{
-            fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
-            fontWeight: 500, color: c.brand, margin: 0,
-            lineHeight: 1.25, letterSpacing: "-0.015em", maxWidth: "900px",
-          }}>
-            &ldquo;Travel content is invitation, not data. The original site treated it like data.&rdquo;
-          </p>
-        </div>
+        {/* Duplicate live-homepage hero + separate pull quote both
+            retired per the ceiling SLUR: the POV now lives in the H1,
+            and §01 below opens on the destinations grid directly. */}
 
         {/* ─────────────────────────────────────────────
             §01 — The problem
         ───────────────────────────────────────────── */}
         <BigThree
-          number="01"
           heading="The problem"
           image="/images/work/wayfarer/v2/live-destinations-grid-v2.webp"
           imageAlt="Live destinations grid at wayfarer.barreiro.com — 40+ destinations across seven continents, the surface the original brief tried to make the homepage."
@@ -570,7 +741,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-research" style={{ background: c.surface, paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Research strip — three real research surfaces
@@ -594,7 +765,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: c.surface, paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Information Architecture — routes + user flow.
@@ -627,6 +798,9 @@ export default function WayfarerV2() {
               </p>
             </div>
           </div>
+          {/* Try-it-yourself GlobeIframeDemo removed per Alfonso 2026-07-03
+              ("Let's remove Try it yourself for now"). Reader still sees
+              the static globe hero above; the live surface is barreiro.com. */}
           {/* Code-rendered Cut vs Kept — neutrals only, no pastel pink/green. */}
           <div style={{ padding: `0 ${SECTION_X} 64px` }}>
             <CutVsKept />
@@ -639,11 +813,6 @@ export default function WayfarerV2() {
               gap: "64px", alignItems: "start",
             }} className="wf2-row">
               <div>
-                <span style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  letterSpacing: "0.20em", color: c.accent,
-                  display: "block", marginBottom: "12px",
-                }}>02</span>
                 <h2 style={{
                   fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
                   fontWeight: 600, color: c.ink, margin: 0,
@@ -681,7 +850,7 @@ export default function WayfarerV2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#ECEFF3", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-details" style={{ background: c.surface, paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Design System carousel — 3 tabs (Color, Type,
@@ -716,34 +885,203 @@ export default function WayfarerV2() {
             }}>
               Discovery has to survive the phone. Hierarchy holds, the globe reduces to a continent grid, and the signup keeps its progress meter.
             </p>
-            <p style={{
-              fontFamily: font.sans, fontSize: "12px", color: c.muted,
-              lineHeight: 1.55, margin: 0, letterSpacing: "0.01em",
-            }}>
-              Mobile screen captures from the live site at wayfarer.barreiro.com pending. Wireframe source in the Figma file (Responsive · Mobile Breakpoints page).
-            </p>
+
+            {/* Process artifacts — Kindle Scribe sketches of the mobile
+                homepage. Three pages, one sitting. The paper-to-pixel
+                receipt for the mobile IA. */}
+            <div style={{ marginBottom: "48px" }}>
+              <h3 style={{
+                fontFamily:    font.sans,
+                fontSize:      "clamp(18px, 1.8vw, 22px)",
+                fontWeight:    600,
+                color:         c.ink,
+                margin:        "0 0 8px",
+                letterSpacing: "-0.015em",
+              }}>
+                Sketched before pixels.
+              </h3>
+              <p style={{
+                fontFamily: font.sans,
+                fontSize:   "15px",
+                lineHeight: 1.6,
+                color:      c.ink2,
+                margin:     "0 0 24px",
+                maxWidth:   PROSE_MAX,
+              }}>
+                Mobile IA on paper before Figma opened. Kindle Scribe, three pages of the same phone-width canvas, sketched in one sitting.
+              </p>
+              <div className="wf2-sketches" style={{
+                display:             "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap:                 "24px",
+              }}>
+                {[
+                  {
+                    src:     "/images/work/wayfarer/sketches/mobile-part-1.jpg",
+                    caption: "Part 1 · Hero, sign-up prompt, first three destinations. The globe as the front door survives here as a pin-selected card list.",
+                    alt:     "Hand sketch on a Kindle Scribe. Wayfarer mobile homepage part 1 of 3. Logo, search icon, hamburger menu across the top. Hero copy reading Discover Unforgettable New Destinations. Sign Up button. Destinations header with three stacked cards labeled Bhutan, Greenland, and Tokyo.",
+                  },
+                  {
+                    src:     "/images/work/wayfarer/sketches/mobile-part-2.jpg",
+                    caption: "Part 2 · Product benefits stack. Four icon-plus-header rows, each a one-line pitch, terminating in the See-for-yourself CTA.",
+                    alt:     "Hand sketch on a Kindle Scribe. Wayfarer mobile homepage part 2 of 3. Product Benefits section header, four stacked cards each with an icon and a headline, See-for-yourself CTA at the bottom.",
+                  },
+                  {
+                    src:     "/images/work/wayfarer/sketches/mobile-part-3.jpg",
+                    caption: "Part 3 · Explore More, Wayfarer Hub, Stay Connected, Follow the Journey, footer. The connective tissue below the fold.",
+                    alt:     "Hand sketch on a Kindle Scribe. Wayfarer mobile homepage part 3 of 3. Logo block, Explore More section, Your Wayfarer Hub, Stay Connected, Follow the Journey with four social circles, footer with copyright.",
+                  },
+                ].map((s, i) => (
+                  <figure key={i} style={{ margin: 0 }}>
+                    <Image
+                      src={s.src}
+                      alt={s.alt}
+                      width={1600}
+                      height={1200}
+                      sizes="(max-width: 760px) 100vw, (max-width: 1240px) 33vw, 400px"
+                      style={{
+                        width:   "100%",
+                        height:  "auto",
+                        display: "block",
+                        border:  `1px solid ${c.border}`,
+                      }}
+                    />
+                    <figcaption style={{
+                      fontFamily: font.sans,
+                      fontSize:   "12px",
+                      lineHeight: 1.55,
+                      color:      c.muted,
+                      margin:     "12px 0 0",
+                      letterSpacing: "0.01em",
+                    }}>
+                      {s.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+
           </div>
         </section>
 
         {/* ─────────────────────────────────────────────
-            Meta block — Pentagram-style bottom strip
+            Colophon — Next chapter · v0.2. The ceiling SLUR asked
+            for a signed exit that names what happens next, not a
+            metadata footer that treats the ending as a form. Three
+            tabular-nums line items carry the roadmap; MetaCells drop
+            to a 12px caption row above so the resume-slug fields are
+            still visible but no longer the last thing the reader
+            reads.
         ───────────────────────────────────────────── */}
-        <section aria-label="Case study metadata" style={{
-          borderTop: `1px solid ${c.border}`,
-          padding: `64px ${SECTION_X}`,
+        <section aria-label="Colophon and next chapter" style={{
+          borderTop:  `1px solid ${c.border}`,
+          padding:    `clamp(72px, 10vw, 128px) ${SECTION_X} clamp(48px, 6vw, 80px)`,
           background: c.surface,
         }}>
-          <div style={{
-            maxWidth: CONTENT_MAX, margin: "0 auto",
-            /* 4-col reads cleaner than 5-col; Type folded into Role
-               since the eyebrow already says "DesignLab · Concept." */
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "32px",
-          }} className="wf2-meta">
-            <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
-            <MetaCell label="Year"   value="2026 · DesignLab Concept" />
-            <MetaCell label="Stack"  value="Figma · Next.js · Mapbox" />
-            <MetaCell label="Live"   value={<a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>wayfarer.barreiro.com</a>} />
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+
+            {/* Demoted MetaCells row — Pentagram-style caption strip. */}
+            <div style={{
+              display:             "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap:                 "24px",
+              paddingBottom:       "clamp(48px, 6vw, 80px)",
+              marginBottom:        "clamp(48px, 6vw, 80px)",
+              borderBottom:        `1px solid ${c.border}`,
+            }} className="wf2-meta-caption">
+              {[
+                { label: "Role",  value: "UX/UI Designer · End-to-end" },
+                { label: "Year",  value: "2026 · DesignLab Concept" },
+                { label: "Stack", value: "Figma · Next.js · Mapbox" },
+                { label: "Live",  value: "wayfarer.barreiro.com" },
+              ].map((m) => (
+                <div key={m.label}>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "9px", fontWeight: 700,
+                    letterSpacing: "0.20em", textTransform: "uppercase",
+                    color: c.muted, margin: "0 0 4px",
+                  }}>{m.label}</p>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "12px",
+                    color: c.ink2, margin: 0, lineHeight: 1.5,
+                  }}>{m.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.muted, margin: "0 0 20px",
+            }}>
+              Next chapter &nbsp;·&nbsp; v0.2
+            </p>
+            <h2 style={{
+              fontFamily: font.sans, fontSize: "clamp(28px, 3.6vw, 44px)",
+              fontWeight: 500, color: c.accent, margin: "0 0 48px",
+              letterSpacing: "-0.02em", lineHeight: 1.15, maxWidth: "22ch",
+            }}>
+              What ships next, and how I&rsquo;ll know it worked.
+            </h2>
+
+            <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: "clamp(20px, 3vw, 32px)" }}>
+              {[
+                {
+                  n:      "01",
+                  spec:   "Trip Planner state persistence and share links.",
+                  signal: "Return visits to a saved plan cross 25 percent of authored plans within 30 days of the change.",
+                },
+                {
+                  n:      "02",
+                  spec:   "Live audit dashboard: keyboard traps, contrast, and reduced-motion coverage on every route.",
+                  signal: "Two consecutive weeks with zero unresolved WCAG AA violations across the destinations, planner, and signup routes.",
+                },
+                {
+                  n:      "03",
+                  spec:   "Onboarding v2: personalization outputs a real feed at Welcome instead of a static list.",
+                  signal: "Signup completion holds above baseline while first-session bounce drops at least 10 points.",
+                },
+              ].map((r) => (
+                <li key={r.n} style={{
+                  display:             "grid",
+                  gridTemplateColumns: "clamp(52px, 6vw, 84px) 1fr",
+                  gap:                 "clamp(20px, 3vw, 40px)",
+                  alignItems:          "baseline",
+                  paddingBlock:        "20px",
+                  borderTop:           `1px solid ${c.border}`,
+                }}>
+                  <span style={{
+                    fontFamily:         font.sans,
+                    fontSize:           "clamp(28px, 3vw, 40px)",
+                    fontWeight:         500,
+                    letterSpacing:      "-0.02em",
+                    color:              c.accent,
+                    lineHeight:         1,
+                    fontVariantNumeric: "tabular-nums",
+                  }}>{r.n}</span>
+                  <div>
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "clamp(16px, 1.8vw, 20px)",
+                      fontWeight: 600, color: c.ink, margin: "0 0 8px",
+                      lineHeight: 1.35, letterSpacing: "-0.01em",
+                    }}>{r.spec}</p>
+                    <p style={{
+                      fontFamily: font.sans, fontSize: "14px",
+                      color: c.ink2, margin: 0, lineHeight: 1.6,
+                    }}>{r.signal}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.brand, margin: "clamp(48px, 6vw, 80px) 0 0",
+              textAlign: "right",
+            }}>
+              Signed &nbsp;·&nbsp; Alfonso Barreiro
+            </p>
           </div>
         </section>
         </div>
@@ -791,19 +1129,126 @@ export default function WayfarerV2() {
         }
         .wf2-su-tab:hover { background: rgba(255,255,255,0.5); }
 
-        /* Process gallery — 3 tabs */
-        .wf2-pg-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
-        .wf2-pg-panel { display: none; }
-        #wf2-pg-tab-1:checked ~ .wf2-pg-panels > [data-panel="1"],
-        #wf2-pg-tab-2:checked ~ .wf2-pg-panels > [data-panel="2"],
-        #wf2-pg-tab-3:checked ~ .wf2-pg-panels > [data-panel="3"] { display: block; }
-        #wf2-pg-tab-1:checked ~ .wf2-pg-nav .wf2-pg-tab-1,
-        #wf2-pg-tab-2:checked ~ .wf2-pg-nav .wf2-pg-tab-2,
-        #wf2-pg-tab-3:checked ~ .wf2-pg-nav .wf2-pg-tab-3 {
-          background: #FFFFFF;
-          box-shadow: inset 0 -3px 0 var(--color-brand);
+        /* A11y audit — desktop shows the full image; mobile card list
+           stays hidden by default and switches on at the mobile break. */
+        .wf2-a11y-mobile { display: none; }
+
+        /* Process gallery — three cards in normal vertical flow. Was a
+           sticky-stack (position: sticky with staggered top offsets)
+           but Alfonso called it — the stack effect fought the case
+           study's editorial pacing. Plain flow reads better. */
+        .wf2-pg-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
         }
-        .wf2-pg-tab:hover { background: rgba(255,255,255,0.5); }
+        .wf2-pg-card {
+          background: #FFFFFF;
+          border: 1px solid ${c.border};
+          box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+        }
+        .wf2-pg-card-header {
+          padding: 20px 24px;
+          display: flex;
+          align-items: baseline;
+          gap: 14px;
+          background: #FAFAF9;
+          border-bottom: 1px solid ${c.border};
+        }
+        .wf2-pg-num {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          color: ${c.accent};
+          text-transform: uppercase;
+        }
+        .wf2-pg-label {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: -0.005em;
+          color: ${c.ink};
+          flex: 1;
+        }
+        .wf2-pg-card-body {
+          padding: clamp(28px, 4vw, 48px);
+          background: #FFFFFF;
+        }
+
+        /* Design system native mobile summary — hidden on desktop.
+           Mobile CSS turns .wf2-ds-native to display: block. */
+        .wf2-ds-native { display: none; margin-top: 24px; }
+        .wf2-ds-swipe-hint { display: none; }
+        .wf2-ds-native-label {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+          text-transform: uppercase; color: ${c.accent};
+          margin: 0 0 14px;
+        }
+        .wf2-ds-native-note {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 13px; line-height: 1.6; color: ${c.ink2};
+          margin: 20px 0 0;
+        }
+        .wf2-ds-color-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .wf2-ds-color-chip {
+          display: flex; align-items: center; gap: 10px;
+          padding: 10px 12px;
+          border: 1px solid ${c.border};
+          background: #FFFFFF;
+        }
+        .wf2-ds-color-swatch {
+          width: 28px; height: 28px; display: inline-block; flex-shrink: 0;
+          border: 1px solid rgba(0, 0, 0, 0.10);
+        }
+        .wf2-ds-color-meta { display: flex; flex-direction: column; min-width: 0; }
+        .wf2-ds-color-name {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 12px; font-weight: 600; color: ${c.ink}; letter-spacing: -0.005em;
+        }
+        .wf2-ds-color-hex {
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          font-size: 11px; color: ${c.muted}; margin-top: 2px;
+        }
+        .wf2-ds-typo-stack { display: flex; flex-direction: column; gap: 20px; }
+        .wf2-ds-typo-row {
+          padding: 16px 18px;
+          border: 1px solid ${c.border};
+          background: #FFFFFF;
+        }
+        .wf2-ds-typo-meta {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+          text-transform: uppercase; color: ${c.muted};
+          margin: 0 0 8px;
+        }
+        .wf2-ds-typo-sample-display {
+          font-family: "Space Grotesk", var(--font-dm-sans), sans-serif;
+          font-size: 22px; font-weight: 600; color: ${c.ink};
+          letter-spacing: -0.02em; line-height: 1.15;
+          margin: 0 0 8px;
+        }
+        .wf2-ds-typo-sample-h2 {
+          font-family: "Space Grotesk", var(--font-dm-sans), sans-serif;
+          font-size: 17px; font-weight: 600; color: ${c.ink};
+          letter-spacing: -0.015em; line-height: 1.2;
+          margin: 0;
+        }
+        .wf2-ds-typo-sample-body {
+          font-family: "Inter", var(--font-dm-sans), sans-serif;
+          font-size: 14px; line-height: 1.55; color: ${c.ink2};
+          margin: 0 0 8px;
+        }
+        .wf2-ds-typo-sample-label {
+          font-family: "Inter", var(--font-dm-sans), sans-serif;
+          font-size: 12px; font-weight: 500; color: ${c.ink};
+          margin: 0;
+        }
 
         /* Focus ring projection: when a (visually-hidden but focusable)
            radio gets keyboard focus, paint a teal outline on its label.
@@ -817,20 +1262,71 @@ export default function WayfarerV2() {
         .wf2-su-carousel:has(#wf2-su-tab-3:focus-visible) .wf2-su-tab-3,
         .wf2-su-carousel:has(#wf2-su-tab-4:focus-visible) .wf2-su-tab-4,
         .wf2-su-carousel:has(#wf2-su-tab-5:focus-visible) .wf2-su-tab-5,
-        .wf2-su-carousel:has(#wf2-su-tab-6:focus-visible) .wf2-su-tab-6,
-        .wf2-pg-carousel:has(#wf2-pg-tab-1:focus-visible) .wf2-pg-tab-1,
-        .wf2-pg-carousel:has(#wf2-pg-tab-2:focus-visible) .wf2-pg-tab-2,
-        .wf2-pg-carousel:has(#wf2-pg-tab-3:focus-visible) .wf2-pg-tab-3 {
+        .wf2-su-carousel:has(#wf2-su-tab-6:focus-visible) .wf2-su-tab-6 {
           outline: 2px solid var(--color-focus-ring);
           outline-offset: -2px;
         }
 
         @media (max-width: 760px) {
           .wf2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .wf2-callout-grid     { grid-template-columns: 1fr !important; gap: 22px !important; }
           .wf2-cutkept          { grid-template-columns: 1fr !important; gap: 16px !important; }
           .wf2-logo-pair        { grid-template-columns: 1fr !important; gap: 12px !important; }
           .wf2-signup-grid      { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .wf2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+          .wf2-sketches         { grid-template-columns: 1fr !important; gap: 20px !important; }
+          /* Process gallery cards — already in normal flow on desktop
+             per Alfonso; on mobile just clamp body height/overflow so
+             long cards don't run away. */
+          .wf2-pg-card-body { max-height: none !important; overflow: visible !important; }
+          /* Token table swipe hint — visible only on mobile where the
+             table overflows the viewport horizontally. */
+          .wf2-token-swipe-hint { display: block !important; }
+          /* A11y audit: on mobile the image text is illegible, so hide
+             the image and reveal the native card list of findings. */
+          .wf2-a11y-image  { display: none !important; }
+          .wf2-a11y-mobile { display: block !important; }
+          /* Design system tokens on mobile: same problem as a11y audit.
+             The Figma slides are readable on desktop but shrink to
+             illegible text at phone width. Do both per Alfonso 2026-07-03:
+             (1) keep the artifact behind a horizontal side-scroll at
+             native width with a "swipe / full view on desktop" hint, so
+             the reader can still see the shipped Figma slide;
+             (2) render a native mobile summary below with the essential
+             signal (brand + accent colors, primary typefaces). */
+          /* Mobile primary view swapped 2026-07-03: the Figma DS slide
+             is hidden and the native HTML card stack becomes the
+             primary artifact. SLUX audit flagged the horizontal-scroll
+             image + swipe hint as a fallback pattern that hurt the
+             mobile read; the native stack is fully authored for phone. */
+          .wf2-ds-scroll,
+          .wf2-ds-swipe-hint { display: none !important; }
+          .wf2-ds-native { display: block !important; }
+          /* Multi-step signup step — reflow on mobile so the image gets
+             its own full-width row and the numeral drops to a compact
+             inline eyebrow above the note text (Alfonso 2026-07-03:
+             "01 Account beside text so the image can be one column"). */
+          .wf2-su-step {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 20px !important;
+          }
+          .wf2-su-step > .wf2-su-media { order: 1; }
+          .wf2-su-step > .wf2-su-num   { order: 2; display: flex !important; align-items: baseline !important; gap: 10px !important; }
+          .wf2-su-step > .wf2-su-note-standalone { order: 3; display: block !important; }
+          /* Desktop-render note lives inside the image column — hide on mobile
+             so it doesn't double up with the standalone note below. */
+          .wf2-su-step .wf2-su-note-desktop { display: none !important; }
+          .wf2-su-step .wf2-su-num-numeral {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.14em !important;
+            line-height: 1.2 !important;
+            color: ${c.accent} !important;
+          }
+          .wf2-su-step .wf2-su-num-label {
+            margin: 0 !important;
+          }
           .wf2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
           .wf2-swatch-grid      { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .wf2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
@@ -1039,15 +1535,6 @@ function DesignSystemSection() {
       </div>
 
       <div style={{ padding: `0 ${SECTION_X}` }}>
-        <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-          letterSpacing: "0.18em", textTransform: "uppercase",
-          color: c.muted, margin: "0 0 16px",
-          maxWidth: CONTENT_MAX, marginInline: "auto",
-        }}>
-          <span aria-hidden="true" style={{ color: c.accent }}>→ </span>
-          Click 01 · 02 · 03 to switch panels
-        </p>
         <DesignSystemCarousel />
       </div>
 
@@ -1113,8 +1600,9 @@ function TokenCrossProjectTable() {
         style={{
           border: `1px solid ${c.border}`, overflow: "auto",
           background: "#FFFFFF",
+          WebkitOverflowScrolling: "touch",
         }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+        <table style={{ minWidth: 640, width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
           <thead>
             <tr style={{ background: c.callout }}>
               <th style={{ ...thStyle, width: "22%", color: c.muted }}>Token</th>
@@ -1152,6 +1640,15 @@ function TokenCrossProjectTable() {
           </tbody>
         </table>
       </div>
+      {/* Mobile-only swipe hint — appears when the table overflows and
+          the reader needs to know they can scroll horizontally. */}
+      <p className="wf2-token-swipe-hint" style={{
+        fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+        letterSpacing: "0.14em", textTransform: "uppercase",
+        color: c.muted, margin: "10px 0 0", display: "none",
+      }}>
+        Swipe to see more &rarr;
+      </p>
       <p style={{
         fontFamily: font.sans, fontSize: "12px",
         color: c.muted, lineHeight: 1.55, margin: "12px 0 0",
@@ -1163,45 +1660,27 @@ function TokenCrossProjectTable() {
   );
 }
 
+/* Was a 3-tab CSS-only carousel with 01 Color / 02 Typography / 03 Components.
+   Alfonso 2026-07-03: kill the tabs, kill the 03 Components panel. Now a
+   plain stacked pair — Color tokens above, Typography below. Two panels
+   read faster than three when Components was just a teaser image anyway. */
 function DesignSystemCarousel() {
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-      <div className="wf2-ds-carousel" style={{
-        border: `1px solid ${c.border}`, background: "#FAFAF9",
+      <div style={{
+        display: "flex", flexDirection: "column", gap: "clamp(48px, 6vw, 72px)",
       }}>
-        <input type="radio" name="wf2-ds-tabs" id="wf2-ds-tab-1" defaultChecked aria-label="Color tokens panel" />
-        <input type="radio" name="wf2-ds-tabs" id="wf2-ds-tab-2" aria-label="Typography panel" />
-        <input type="radio" name="wf2-ds-tabs" id="wf2-ds-tab-3" aria-label="Components panel" />
 
-        <div className="wf2-ds-nav" style={{ display: "flex", borderBottom: `1px solid ${c.border}` }}>
-          {[
-            { id: "wf2-ds-tab-1", num: "01", label: "Color tokens" },
-            { id: "wf2-ds-tab-2", num: "02", label: "Typography" },
-            { id: "wf2-ds-tab-3", num: "03", label: "Components" },
-          ].map((tab, i, arr) => (
-            <label key={tab.id} htmlFor={tab.id}
-              className={`wf2-ds-tab wf2-ds-tab-${i + 1}`}
-              style={{
-                flex: 1, padding: "20px 24px", cursor: "pointer",
-                display: "flex", alignItems: "baseline", gap: "10px",
-                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                transition: "background 0.2s, color 0.2s",
-              }}
-            >
-              <span style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                color: c.accent, letterSpacing: "0.18em",
-              }}>{tab.num}</span>
-              <span style={{
-                fontFamily: font.sans, fontSize: "14px", fontWeight: 500,
-                color: c.ink, letterSpacing: "-0.005em",
-              }}>{tab.label}</span>
-            </label>
-          ))}
-        </div>
-
-        <div className="wf2-ds-panels" style={{ padding: "clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px)", background: "#FFFFFF" }}>
-          <div className="wf2-ds-panel" data-panel="1">
+        {/* ── 01 · Color tokens ── */}
+        <figure style={{ margin: 0 }}>
+          <p style={{
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase",
+            color: c.accent, margin: "0 0 14px",
+          }}>01 · Color tokens</p>
+          {/* Figma slide — full-fidelity on desktop; horizontally
+              scrollable at native width on mobile via .wf2-ds-scroll. */}
+          <CenterScrollX className="wf2-ds-scroll">
             <Image
               src="/images/work/wayfarer/wayfarer-sig-color.webp"
               alt="Wayfarer color tokens. four ramps (Brand Navy, Coral, Paper, Ink) with per-step hex values matching src/app/globals.css."
@@ -1209,8 +1688,43 @@ function DesignSystemCarousel() {
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
             />
+          </CenterScrollX>
+          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe &larr; &rarr; to explore &middot; full view on desktop</p>
+          {/* Native mobile summary — the essential signal (brand + accent
+              + neutrals) rendered as HTML so mobile readers get a
+              legible version even without swiping the artifact. */}
+          <div className="wf2-ds-native wf2-ds-color-native">
+            <p className="wf2-ds-native-label">Brand + Accent + Neutrals</p>
+            <div className="wf2-ds-color-grid">
+              {[
+                { name: "Brand · Navy",       hex: "#3E3C78", role: "Identity" },
+                { name: "Accent · Terra Cotta", hex: "#D27A5E", role: "Interaction" },
+                { name: "Paper",              hex: "#F8F9FB", role: "Surface" },
+                { name: "Ink",                hex: "#191824", role: "Text" },
+              ].map(s => (
+                <div key={s.name} className="wf2-ds-color-chip">
+                  <span className="wf2-ds-color-swatch" style={{ background: s.hex }} />
+                  <span className="wf2-ds-color-meta">
+                    <span className="wf2-ds-color-name">{s.name}</span>
+                    <span className="wf2-ds-color-hex">{s.hex} &middot; {s.role}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="wf2-ds-native-note">
+              One palette. Three roles. Two modes. Ten-step primitive ramps live in the desktop artifact above; semantic aliases swap between Light and Dark.
+            </p>
           </div>
-          <div className="wf2-ds-panel" data-panel="2">
+        </figure>
+
+        {/* ── 02 · Typography ── */}
+        <figure style={{ margin: 0 }}>
+          <p style={{
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase",
+            color: c.accent, margin: "0 0 14px",
+          }}>02 · Typography</p>
+          <CenterScrollX className="wf2-ds-scroll">
             <Image
               src="/images/work/wayfarer/wayfarer-sig-typography.webp"
               alt="Wayfarer typography. 9 styles: Display, Heading 1-3, Body, Label, Caption. Type ramp with usage notes per style."
@@ -1218,23 +1732,30 @@ function DesignSystemCarousel() {
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
             />
-          </div>
-          <div className="wf2-ds-panel" data-panel="3">
-            <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
-              color: c.ink2, margin: "0 0 24px", maxWidth: PROSE_MAX,
-            }}>
-              Eighteen documented sections in the Figma source: Color, Typography, Button, Icon Button, Link, Search Pill, Kbd, Eyebrow Label, Badge, Text Input, Destination Card, Section Header, Navbar, Footer, Map, Mobile Nav, Sign In Modal, Destination Image. Each one carries a code cross-reference. The Destination Card (Section 11) is shown.
+          </CenterScrollX>
+          <p className="sp2-scroll-after wf2-ds-swipe-hint">Swipe &larr; &rarr; to explore &middot; full view on desktop</p>
+          <div className="wf2-ds-native wf2-ds-typo-native">
+            <p className="wf2-ds-native-label">Two typefaces, each with a job</p>
+            <div className="wf2-ds-typo-stack">
+              <div className="wf2-ds-typo-row">
+                <p className="wf2-ds-typo-meta">Space Grotesk &middot; Display + headings</p>
+                <p className="wf2-ds-typo-sample-display">Unforgettable new destinations.</p>
+                <p className="wf2-ds-typo-sample-h2">Discovery by design.</p>
+              </div>
+              <div className="wf2-ds-typo-row">
+                <p className="wf2-ds-typo-meta">Inter &middot; Body + UI</p>
+                <p className="wf2-ds-typo-sample-body">
+                  Wayfarer is a discovery tool, not a booking platform. Everything had to survive that filter.
+                </p>
+                <p className="wf2-ds-typo-sample-label">Email address</p>
+              </div>
+            </div>
+            <p className="wf2-ds-native-note">
+              Display and heading rendering goes to Space Grotesk. Body, UI, and small type go to Inter. The roles are structural and they don&rsquo;t overlap.
             </p>
-            <Image
-              src="/images/work/wayfarer/wayfarer-sig-components-teaser.webp"
-              alt="Design System components teaser. eighteen documented sections, each with a code cross-reference to src/."
-              width={2400} height={1500}
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
-            />
           </div>
-        </div>
+        </figure>
+
       </div>
     </div>
   );
@@ -1251,11 +1772,6 @@ function ShippedSection() {
           gap: "64px", alignItems: "start", marginBottom: "64px",
         }} className="wf2-row">
           <div>
-            <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.20em", color: c.accent,
-              display: "block", marginBottom: "12px",
-            }}>03</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 600, color: c.ink, margin: 0,
@@ -1517,7 +2033,14 @@ function CutVsKept() {
           borderTop: `3px solid ${c.brand}`,
           padding: "28px 32px",
         }}>
-          <p style={{ ...labelStyle, color: c.brand }}>Cut</p>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+            <span style={{
+              fontFamily: font.sans, fontSize: "34px", fontWeight: 500,
+              color: c.brand, lineHeight: 1, letterSpacing: "-0.02em",
+              fontVariantNumeric: "tabular-nums",
+            }}>{cut.length}</span>
+            <p style={{ ...labelStyle, color: c.brand, margin: 0 }}>Cut</p>
+          </div>
           <h3 style={headStyle}>Transactional layer</h3>
           <div>
             {cut.map((s, i) => (
@@ -1531,7 +2054,14 @@ function CutVsKept() {
           borderTop: `3px solid ${c.accent}`,
           padding: "28px 32px",
         }}>
-          <p style={{ ...labelStyle, color: c.accent }}>Kept</p>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+            <span style={{
+              fontFamily: font.sans, fontSize: "34px", fontWeight: 500,
+              color: c.accent, lineHeight: 1, letterSpacing: "-0.02em",
+              fontVariantNumeric: "tabular-nums",
+            }}>{kept.length}</span>
+            <p style={{ ...labelStyle, color: c.accent, margin: 0 }}>Kept</p>
+          </div>
           <h3 style={headStyle}>Discovery layer</h3>
           <div>
             {kept.map((s, i) => (
@@ -1978,54 +2508,14 @@ function ProcessGallery() {
           </div>
         </div>
 
-        <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-          letterSpacing: "0.18em", textTransform: "uppercase",
-          color: c.muted, margin: "0 0 16px",
-        }}>
-          <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
-          Click 01 &middot; 02 &middot; 03 to switch phases
-        </p>
-
-        <div className="wf2-pg-carousel" style={{
-          border: `1px solid ${c.border}`, background: "#FAFAF9",
-        }}>
-          <input type="radio" name="wf2-pg-tabs" id="wf2-pg-tab-1" defaultChecked aria-label="Research phase" />
-          <input type="radio" name="wf2-pg-tabs" id="wf2-pg-tab-2" aria-label="Explorations phase" />
-          <input type="radio" name="wf2-pg-tabs" id="wf2-pg-tab-3" aria-label="Wireframes phase" />
-
-          <div className="wf2-pg-nav" style={{ display: "flex", borderBottom: `1px solid ${c.border}` }}>
-            {[
-              { id: "wf2-pg-tab-1", num: "01", label: "Research" },
-              { id: "wf2-pg-tab-2", num: "02", label: "Explorations" },
-              { id: "wf2-pg-tab-3", num: "03", label: "Wireframes" },
-            ].map((tab, i, arr) => (
-              <label key={tab.id} htmlFor={tab.id}
-                className={`wf2-pg-tab wf2-pg-tab-${i + 1}`}
-                style={{
-                  flex: 1, padding: "20px 24px", cursor: "pointer",
-                  display: "flex", alignItems: "baseline", gap: "10px",
-                  borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                  transition: "background 0.2s, color 0.2s",
-                }}
-              >
-                <span style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  color: c.accent, letterSpacing: "0.18em",
-                }}>{tab.num}</span>
-                <span style={{
-                  fontFamily: font.sans, fontSize: "14px", fontWeight: 500,
-                  color: c.ink, letterSpacing: "-0.005em",
-                }}>{tab.label}</span>
-              </label>
-            ))}
-          </div>
-
-          <div className="wf2-pg-panels" style={{
-            padding: "clamp(28px, 4vw, 48px)", background: "#FFFFFF",
-          }}>
-            {/* 01 Research */}
-            <div className="wf2-pg-panel" data-panel="1">
+        <div className="wf2-pg-stack">
+          {/* 01 Research */}
+          <article className="wf2-pg-card">
+            <header className="wf2-pg-card-header">
+              <span className="wf2-pg-num">01</span>
+              <span className="wf2-pg-label">Research</span>
+            </header>
+            <div className="wf2-pg-card-body">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2052,9 +2542,15 @@ function ProcessGallery() {
                 <p style={{ ...wireframeCardLabel, marginTop: "10px" }}>Competitor audit &middot; three lifts, three skips</p>
               </div>
             </div>
+          </article>
 
-            {/* 02 Explorations */}
-            <div className="wf2-pg-panel" data-panel="2">
+          {/* 02 Explorations */}
+          <article className="wf2-pg-card">
+            <header className="wf2-pg-card-header">
+              <span className="wf2-pg-num">02</span>
+              <span className="wf2-pg-label">Explorations</span>
+            </header>
+            <div className="wf2-pg-card-body">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2163,9 +2659,15 @@ function ProcessGallery() {
                 </div>
               </div>
             </div>
+          </article>
 
-            {/* 03 Wireframes */}
-            <div className="wf2-pg-panel" data-panel="3">
+          {/* 03 Wireframes */}
+          <article className="wf2-pg-card">
+            <header className="wf2-pg-card-header">
+              <span className="wf2-pg-num">03</span>
+              <span className="wf2-pg-label">Wireframes</span>
+            </header>
+            <div className="wf2-pg-card-body">
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 600, color: c.ink, margin: "0 0 8px",
@@ -2208,7 +2710,7 @@ function ProcessGallery() {
                 ))}
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -2264,7 +2766,7 @@ function SignupFunnelFlow() {
   ];
 
   return (
-    <div style={{ marginTop: "32px" }}>
+    <div style={{ marginTop: "clamp(80px, 10vw, 128px)" }}>
       <p style={{
         fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
         letterSpacing: "0.20em", textTransform: "uppercase",
@@ -2280,56 +2782,62 @@ function SignupFunnelFlow() {
         Five steps, then welcome.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "13px", fontWeight: 500,
-        letterSpacing: "0.06em", textTransform: "uppercase",
-        color: c.muted, margin: "0 0 24px",
+        fontFamily: font.sans, fontSize: "13px",
+        color: c.muted, lineHeight: 1.6,
+        margin: "0 0 40px", maxWidth: "780px",
       }}>
-        <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
-        Click a step to view it full size.
+        All six steps below, stacked in order. Each step independently validated. The review screen lets the user jump back into any step without losing input. Preference data drives the post-signup home feed.
       </p>
 
-      <div className="wf2-su-carousel" style={{
-        border: `1px solid ${c.border}`, background: "#FAFAF9",
-      }}>
-        {steps.map((s, i) => (
-          <input key={s.num} type="radio" name="wf2-su-tabs"
-            id={`wf2-su-tab-${i + 1}`} defaultChecked={i === 0}
-            aria-label={`Signup step ${s.num} ${s.label}`} />
-        ))}
-
-        <div className="wf2-su-nav" style={{
-          display: "grid", gridTemplateColumns: "repeat(6, 1fr)",
-          borderBottom: `1px solid ${c.border}`,
-        }}>
-          {steps.map((s, i, arr) => (
-            <label key={s.num} htmlFor={`wf2-su-tab-${i + 1}`}
-              className={`wf2-su-tab wf2-su-tab-${i + 1}`}
-              style={{
-                padding: "16px 12px", cursor: "pointer",
-                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                transition: "background 0.2s",
-                textAlign: "center",
-              }}
-            >
-              <p style={{
-                fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-                color: c.accent, letterSpacing: "0.18em", margin: "0 0 4px",
+      {/* Flattened from a CSS-only radio carousel to a static
+          vertical stack per the ceiling SLUR. Every step visible on
+          first paint. Left-rail numeral + label anchors the read;
+          right column carries the screen and its note. Accessible by
+          default, no hidden radio inputs. */}
+      <ol style={{ margin: 0, padding: 0, listStyle: "none" }}>
+        {steps.map((s) => (
+          <li
+            key={s.num}
+            style={{
+              display:             "grid",
+              gridTemplateColumns: "clamp(72px, 8vw, 120px) 1fr",
+              gap:                 "clamp(24px, 3vw, 48px)",
+              alignItems:          "start",
+              paddingBlock:        "clamp(40px, 5vw, 72px)",
+              borderTop:           `1px solid ${c.border}`,
+            }}
+            className="wf2-su-step"
+          >
+            {/* Numeral + label — sits in the left rail on desktop.
+                On mobile it drops to an inline eyebrow above the note
+                text (see .wf2-su-step mobile CSS: image row spans full
+                width, then num+label eyebrow, then note). */}
+            <div className="wf2-su-num">
+              <p className="wf2-su-num-numeral" style={{
+                fontFamily:         font.sans,
+                fontSize:           "clamp(40px, 5vw, 68px)",
+                fontWeight:         500,
+                letterSpacing:      "-0.03em",
+                lineHeight:         1,
+                color:              c.accent,
+                margin:             0,
+                fontVariantNumeric: "tabular-nums",
               }}>{s.num}</p>
-              <p style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-                color: c.ink, margin: 0, letterSpacing: "-0.005em",
-                lineHeight: 1.25,
+              <p className="wf2-su-num-label" style={{
+                fontFamily:    font.sans,
+                fontSize:      "12px",
+                fontWeight:    600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         c.ink,
+                margin:        "16px 0 0",
               }}>{s.label}</p>
-            </label>
-          ))}
-        </div>
-
-        <div className="wf2-su-panels" style={{
-          padding: "clamp(28px, 4vw, 48px)", background: "#FFFFFF",
-        }}>
-          {steps.map((s, i) => (
-            <div key={s.num} className="wf2-su-panel" data-panel={i + 1}>
-              <div style={{
+            </div>
+            {/* Image gets its own wrapper — note text is a separate
+                sibling below so mobile flex-reorder can render:
+                image → num+label eyebrow → note text. */}
+            <div className="wf2-su-media">
+              <div className="wf2-su-image" style={{
                 aspectRatio: "4 / 3",
                 overflow:    "hidden",
                 border:      `1px solid ${c.border}`,
@@ -2337,10 +2845,10 @@ function SignupFunnelFlow() {
               }}>
                 <Image
                   src={s.src}
-                  alt={`Wayfarer signup step ${s.num} — ${s.label}. Live at wayfarer.barreiro.com.`}
+                  alt={`Wayfarer signup step ${s.num}. ${s.label}. Live at wayfarer.barreiro.com.`}
                   width={2400}
                   height={1500}
-                  sizes="(max-width: 1240px) 100vw, 1100px"
+                  sizes="(max-width: 1240px) 100vw, 900px"
                   style={{
                     width:          "100%",
                     height:         "100%",
@@ -2350,24 +2858,27 @@ function SignupFunnelFlow() {
                   }}
                 />
               </div>
-              <p style={{
-                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              {/* Desktop-only render of note text (sits directly below
+                  image in the right column). Hidden on mobile so the
+                  separate wf2-su-note-standalone below takes over. */}
+              <p className="wf2-su-note-desktop" style={{
+                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
                 color: c.ink2, margin: "20px 0 0", maxWidth: "780px",
               }}>
-                <span style={{ fontWeight: 600, color: c.ink }}>Step {s.num} &middot; {s.label}.</span> {s.note}
+                {s.note}
               </p>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <p style={{
-        fontFamily: font.sans, fontSize: "13px",
-        color: c.muted, lineHeight: 1.6,
-        margin: "20px 0 0", maxWidth: "780px",
-      }}>
-        Each step independently validated. The review screen lets the user jump back into any step without losing input. Preference data drives the post-signup home feed.
-      </p>
+            {/* Mobile-only standalone note — renders below the eyebrow
+                after the reorder. Hidden on desktop. */}
+            <p className="wf2-su-note-standalone" style={{
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              color: c.ink2, margin: 0, display: "none",
+            }}>
+              {s.note}
+            </p>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
@@ -2426,7 +2937,7 @@ function BriefVsDelivered() {
         fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
         color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
       }}>
-        The brief asked for a homepage and an onboarding fix. The build expanded around both without breaking either. The expansion isn&rsquo;t scope creep. &sect;02 The Bet shows what got cut to make room for it.
+        The brief asked for a homepage and an onboarding fix. The build expanded around both without breaking either. The expansion isn&rsquo;t scope creep. The Bet section above shows what got cut to make room for it.
       </p>
 
       <div className="wf2-brief-scroll" tabIndex={0} role="region"
@@ -2564,7 +3075,7 @@ function ResearchEvidence() {
         <strong style={{ color: c.ink }}>Personas shaped the signup framing.</strong> The adventurous-traveler persona (21-30, researching before booking) treats discovery as a habit. The signup asks &lsquo;what kind of traveler are you&rsquo; first because that&rsquo;s the question they want to answer about themselves.
       </p>
       <p style={{ ...bodyStyle, margin: 0 }}>
-        <strong style={{ color: c.ink }}>The honest scale:</strong> small participant pool, self-directed research, no usability testing yet. The next pass tests the hypotheses in &sect;Evaluation Plan with 5-6 moderated sessions.
+        <strong style={{ color: c.ink }}>The honest scale:</strong> small participant pool, self-directed research, no usability testing yet. The next pass tests the hypotheses in the Evaluation Plan section with 5-6 moderated sessions.
       </p>
     </aside>
   );
@@ -2594,7 +3105,7 @@ function AccessibilitySection() {
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
-              Dedicated A11y system audit page in the Figma source. Contrast ratios for every color pairing (the warm off-white over navy pair clears 15:1; the muted variant clears 10.5:1). Focus orders documented per page. Keyboard nav patterns for the globe (continent-grid fallback). Screen-reader labels on every icon button. The artifact is the receipt.
+              Dedicated accessibility audit page in the Figma source. Contrast ratios for every color pairing (the warm off-white over navy pair clears 15:1; the muted variant clears 10.5:1). Focus orders documented per page. Keyboard nav patterns for the globe (continent-grid fallback). Screen-reader labels on every icon button. The artifact is the receipt.
             </p>
           </div>
         </div>
@@ -2602,20 +3113,125 @@ function AccessibilitySection() {
 
       <div style={{ padding: `0 ${SECTION_X}` }}>
         <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-          {/* Mat treatment matching the Spotify case study — gives this
-              long audit page a presentation backdrop instead of floating
-              against the page surface. */}
-          <div style={{ background: "#6E6E6E", padding: "clamp(20px, 3vw, 40px)" }}>
+          {/* Desktop: full audit image on a presentation mat.
+              Mobile: this whole block is hidden because the image text
+              is illegible at phone widths; the native card list below
+              takes over. */}
+          <div className="wf2-a11y-image">
             <Image
               src="/images/work/wayfarer/v2/a11y-audit.png"
-              alt="Wayfarer Accessibility · System Audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
+              alt="Wayfarer accessibility system audit. contrast checks per color pair, focus order documentation, keyboard nav patterns, screen-reader labels."
               width={1920} height={2652}
               sizes="(max-width: 1240px) 100vw, 1240px"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
             />
           </div>
+
+          {/* Mobile-only native card version. Hidden on desktop where the
+              image renders at full fidelity. */}
+          <A11yFindingsMobile />
         </div>
       </div>
     </section>
+  );
+}
+
+/* Native card list of the eight ranked audit findings — mobile-only.
+   The desktop reader sees the full audit image (with the scorecard and
+   cross-surface patterns); the mobile reader gets the findings that
+   would otherwise be unreadable on the image. */
+function A11yFindingsMobile() {
+  const findings: {
+    n: string; severity: "Blocking" | "Partial";
+    surface: string; wcag: string; issue: string; patch: string;
+  }[] = [
+    { n: "01", severity: "Blocking", surface: "Signup Modal", wcag: "WCAG 2.4.3, 2.4.7", issue: "Focus stays on the trigger button when the modal opens.", patch: "onOpen focus a heading, ref.current.focus() on the first input." },
+    { n: "02", severity: "Blocking", surface: "Signup Modal", wcag: "WCAG 4.1.2", issue: "No role=\"dialog\" or focus trap.", patch: "Wrap in role=\"dialog\" aria-modal=\"true\" and add focus trap. The Search Overlay does this already; copy the pattern." },
+    { n: "03", severity: "Blocking", surface: "Sign In Modal", wcag: "WCAG 2.4.3", issue: "No focus trap.", patch: "Same fix as #02. Wrap with focus trap. The role=\"dialog\" attribute already exists." },
+    { n: "04", severity: "Partial",  surface: "Signup · Step 2", wcag: "WCAG 4.1.3", issue: "Continue → Confirm & Join label change is silent.", patch: "Move focus to the Review heading on step 5 entry so screen readers re-read the new button label naturally." },
+    { n: "05", severity: "Partial",  surface: "Signup · all steps", wcag: "WCAG 4.1.3", issue: "Step transitions not announced.", patch: "Wrap step heading in <h2 ref={h2Ref}> and h2Ref.current.focus() on step change. Polite aria-live region is the alternative." },
+    { n: "06", severity: "Blocking", surface: "/planner", wcag: "WCAG 2.1.1", issue: "Drag-reorder has no keyboard path.", patch: "Add up/down arrow handlers to each focused segment that call onReorder programmatically. Optionally expose ↑ / ↓ buttons in the action row." },
+    { n: "07", severity: "Partial",  surface: "/discover, /destinations", wcag: "WCAG 1.3.3", issue: "Map markers under-announce.", patch: "Expand pin aria-label to include country + tagline: aria-label=\"View Bhutan, Bhutan, The Last Shangri-La\"." },
+    { n: "08", severity: "Partial",  surface: "Input fields, all forms", wcag: "WCAG 3.3.1, 3.3.3", issue: "Error messages not programmatically tied.", patch: "Add aria-invalid={!!error} to each input and aria-describedby={`${id}-error`} pointing at the error span." },
+  ];
+  return (
+    <div className="wf2-a11y-mobile" aria-labelledby="wf2-a11y-mobile-h">
+      <div style={{
+        fontFamily:    font.sans,
+        fontSize:      "11px",
+        fontWeight:    700,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         c.muted,
+        margin:        "0 0 12px",
+      }}>
+        Scorecard
+      </div>
+      <h3 id="wf2-a11y-mobile-h" style={{
+        fontFamily: font.sans, fontSize: "22px", fontWeight: 600,
+        color: c.ink, margin: "0 0 8px", letterSpacing: "-0.02em", lineHeight: 1.2,
+      }}>
+        Eight blocking, six partial. Eight ranked below.
+      </h3>
+      <p style={{
+        fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+        color: c.ink2, margin: "0 0 24px",
+      }}>
+        Six surfaces audited, three cross-surface patterns identified. Each row below links the finding to the route where it lives, the WCAG criterion it touches, and a one-line patch. Ordered by patch effort, quickest fixes first.
+      </p>
+
+      <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: "12px" }}>
+        {findings.map((f) => (
+          <li key={f.n}>
+            <article style={{
+              background: "#FFFFFF",
+              border: `1px solid ${c.border}`,
+              padding: "16px 18px",
+            }}>
+              <div style={{
+                display: "flex", alignItems: "baseline", justifyContent: "space-between",
+                gap: "10px", marginBottom: "10px",
+              }}>
+                <span style={{
+                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                  color: c.accent, letterSpacing: "0.14em",
+                }}>{f.n}</span>
+                <span style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "10px",
+                  fontWeight:    700,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  padding:       "3px 8px",
+                  border:        `1px solid ${f.severity === "Blocking" ? c.brand : c.border}`,
+                  color:         f.severity === "Blocking" ? c.brand : c.ink2,
+                  background:    f.severity === "Blocking" ? "rgba(140,26,26,0.06)" : "transparent",
+                }}>{f.severity}</span>
+              </div>
+              <p style={{
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 600,
+                letterSpacing: "0.06em", textTransform: "uppercase",
+                color: c.muted, margin: "0 0 6px",
+              }}>
+                {f.surface} · {f.wcag}
+              </p>
+              <p style={{
+                fontFamily: font.sans, fontSize: "14px", fontWeight: 600,
+                color: c.ink, margin: "0 0 6px", lineHeight: 1.4,
+                letterSpacing: "-0.005em",
+              }}>
+                {f.issue}
+              </p>
+              <p style={{
+                fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+                color: c.ink2, margin: 0,
+              }}>
+                {f.patch}
+              </p>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }

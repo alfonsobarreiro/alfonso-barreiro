@@ -8,6 +8,8 @@ import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
+import RecentlyPlayedDemo from "./_demo/RecentlyPlayedDemo";
+import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 
 /* ---------------------------------------------------------------------------
    /work/spotify
@@ -148,30 +150,61 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
+/* Decision callout — signature element across every case study.
+   Three-stack left bar (subject brand / Deep Teal / ink) is the
+   visual wordmark; the Decision/Why/Cost structure is the editorial
+   pattern. Why and Cost sit side-by-side on desktop so the trade-off
+   reads as one thought, not two paragraphs. */
 function Callout({ decision, why, cost }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
     letterSpacing: "0.18em", textTransform: "uppercase",
-    color: c.accent, margin: "0 0 8px",
+    color: c.accent, margin: "0 0 10px",
   };
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7, color: c.ink2, margin: 0,
   };
   return (
-    <aside style={{
-      background: c.callout, border: `1px solid ${c.border}`,
-      borderLeft: `4px solid ${c.accent}`,
-      padding: "28px 32px", maxWidth: "680px", marginTop: "40px",
+    <aside className="sp2-callout" style={{
+      background: "#FFFFFF",
+      border: `1px solid ${c.border}`,
+      padding: "32px 36px 32px 44px",
+      maxWidth: "760px",
+      marginTop: "40px",
+      position: "relative",
     }}>
+      {/* Signature stack: subject brand (Spotify green) → Deep Teal → ink.
+          One visual element you can quote from a screenshot. */}
+      <span aria-hidden="true" style={{
+        position: "absolute", left: 0, top: 28, bottom: 28,
+        width: "5px",
+        display: "grid",
+        gridTemplateRows: "1fr 1fr 1fr",
+      }}>
+        <span style={{ background: c.brand }} />
+        <span style={{ background: c.accent }} />
+        <span style={{ background: c.ink }} />
+      </span>
       <p style={labelStyle}>Decision</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "20px", fontWeight: 600,
-        color: c.accent, margin: "0 0 24px", letterSpacing: "-0.01em", lineHeight: 1.3,
+        fontFamily: font.sans, fontSize: "clamp(22px, 2.2vw, 26px)",
+        fontWeight: 600, color: c.ink, margin: "0 0 28px",
+        letterSpacing: "-0.015em", lineHeight: 1.25,
       }}>{decision}</p>
-      <p style={labelStyle}>Why</p>
-      <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
-      <p style={labelStyle}>Cost</p>
-      <p style={bodyStyle}>{cost}</p>
+      <div className="sp2-callout-grid" style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "32px",
+      }}>
+        <div>
+          <p style={labelStyle}>Why</p>
+          <p style={bodyStyle}>{why}</p>
+        </div>
+        <div>
+          <p style={labelStyle}>Cost</p>
+          <p style={bodyStyle}>{cost}</p>
+        </div>
+      </div>
     </aside>
   );
 }
@@ -223,9 +256,9 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
               display: "block", marginBottom: "12px",
             }}>{number}</span>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              fontFamily: font.sans, fontSize: "clamp(48px, 7vw, 84px)",
+              fontWeight: 500, color: c.ink, margin: 0,
+              letterSpacing: "-0.035em", lineHeight: 1.0,
             }}>{heading}.</h2>
           </div>
           <div>
@@ -277,7 +310,7 @@ export default function SpotifyV2() {
         ]}
       />
 
-      <main id="main-content" style={{ background: c.surface, paddingTop: "72px" }}>
+      <main id="main-content" style={{ background: c.surface, paddingTop: "72px", overflowX: "clip" }}>
 
         {/* Title block */}
         <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)` }}>
@@ -310,8 +343,228 @@ export default function SpotifyV2() {
           </p>
         </header>
 
+        {/* Sticky arc nav — same treatment as MSR + Wayfarer (Alfonso
+            2026-07-03). Jumps between the four arc anchors that already
+            wrap the tinted content blocks below. */}
+        <nav
+          aria-label="Case study arcs"
+          className="sp2-arc-nav"
+          style={{
+            position:     "sticky",
+            top:          "72px",
+            zIndex:       10,
+            alignSelf:    "stretch",
+            flexShrink:   0,
+            width:        "100%",
+            background:   "#FFFFFF",
+            borderTop:    `1px solid ${c.border}`,
+            borderBottom: `1px solid ${c.border}`,
+            margin:       "0 0 40px",
+          }}
+        >
+          <ul style={{
+            display:             "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            margin:              0,
+            padding:             0,
+            listStyle:           "none",
+          }}>
+            {[
+              { key: "premise",   label: "Premise"   },
+              { key: "research",  label: "Research"  },
+              { key: "decisions", label: "Decisions" },
+              { key: "details",   label: "Details"   },
+            ].map((arc, i, arr) => (
+              <li key={arc.key} style={{
+                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+              }}>
+                <a
+                  href={`#arc-${arc.key}`}
+                  data-arc-anchor={arc.key}
+                  aria-label={`${String(i + 1).padStart(2, "0")} · ${arc.label}`}
+                  suppressHydrationWarning
+                  style={{
+                    fontFamily:     font.sans,
+                    fontSize:       "13px",
+                    fontWeight:     700,
+                    letterSpacing:  "0.08em",
+                    textTransform:  "uppercase",
+                    color:          c.ink2,
+                    textDecoration: "none",
+                    display:        "flex",
+                    alignItems:     "center",
+                    justifyContent: "center",
+                    gap:            "6px",
+                    padding:        "16px 8px",
+                    transition:     "color 0.15s ease, background 0.15s ease",
+                  }}
+                >
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }} aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="sp2-arc-label" aria-hidden="true">{arc.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            if (typeof window === "undefined") return;
+            var NAV_STACK_HEIGHT = 140;
+            function wire() {
+              var anchors = document.querySelectorAll('a[data-arc-anchor]');
+              if (!anchors.length) return false;
+              var targets = ['premise', 'research', 'decisions', 'details']
+                .map(function (k) { return document.getElementById('arc-' + k); })
+                .filter(Boolean);
+              if (targets.length < 4) return false;
+              var map = {};
+              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
+              var activeKey = null;
+              var rafScheduled = false;
+              function computeActive() {
+                rafScheduled = false;
+                var scrollY = window.scrollY;
+                var activeLine = scrollY + window.innerHeight * 0.33;
+                var arcs = [];
+                for (var i = 0; i < targets.length; i++) {
+                  var el = targets[i];
+                  var top = el.getBoundingClientRect().top + scrollY;
+                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
+                }
+                var nextKey = null;
+                if (activeLine >= arcs[0].top) {
+                  for (var j = 0; j < arcs.length; j++) {
+                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
+                    if (activeLine >= arcs[j].top && activeLine < next) {
+                      nextKey = arcs[j].key;
+                      break;
+                    }
+                  }
+                }
+                if (nextKey === activeKey) return;
+                activeKey = nextKey;
+                anchors.forEach(function (a) {
+                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
+                    a.setAttribute('data-active', 'true');
+                  } else {
+                    a.removeAttribute('data-active');
+                  }
+                });
+              }
+              function onScroll() {
+                if (rafScheduled) return;
+                rafScheduled = true;
+                requestAnimationFrame(computeActive);
+              }
+              window.addEventListener('scroll', onScroll, { passive: true });
+              window.addEventListener('resize', onScroll, { passive: true });
+              computeActive();
+
+              anchors.forEach(function (a) {
+                a.addEventListener('click', function (ev) {
+                  var key = a.getAttribute('data-arc-anchor');
+                  var target = document.getElementById('arc-' + key);
+                  if (!target) return;
+                  ev.preventDefault();
+                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                  a.setAttribute('data-active', 'true');
+                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
+                });
+              });
+
+              function syncFromHash() {
+                var m = /^#arc-(premise|research|decisions|details)$/.exec(window.location.hash || '');
+                if (!m) return;
+                var key = m[1];
+                var target = document.getElementById('arc-' + key);
+                if (!target) return;
+                anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                if (map[key]) map[key].setAttribute('data-active', 'true');
+                var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+              window.addEventListener('hashchange', syncFromHash);
+              if (window.location.hash) setTimeout(syncFromHash, 200);
+              return true;
+            }
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
+            } else {
+              document.addEventListener('DOMContentLoaded', wire);
+            }
+          })();
+        ` }} />
+        <style>{`
+          .sp2-arc-nav a[data-active] {
+            color: var(--color-accent) !important;
+            background: rgba(15,61,62,0.06) !important;
+            box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+            font-weight: 700 !important;
+          }
+          .sp2-arc-nav a[data-active] span:first-child {
+            opacity: 1 !important;
+            color: var(--color-accent) !important;
+          }
+          .sp2-arc-nav a:hover {
+            color: ${c.ink};
+            background: rgba(15,61,62,0.04);
+          }
+          @media (max-width: 760px) {
+            .sp2-arc-nav {
+              position: fixed !important;
+              left: 0 !important;
+              right: 0 !important;
+              top: 72px !important;
+              padding: 0 !important;
+            }
+            .sp2-arc-nav ul { gap: 0 !important; }
+            .sp2-arc-nav a  {
+              font-size: 11px !important;
+              padding: 12px 4px !important;
+              letter-spacing: 0.06em !important;
+              gap: 4px !important;
+              color: ${c.ink2} !important;
+              transition: background 0.15s ease, color 0.15s ease !important;
+            }
+            .sp2-arc-nav a[data-active] {
+              color: var(--color-accent) !important;
+              background: rgba(15,61,62,0.06) !important;
+              box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+              font-weight: 700 !important;
+              border-bottom: none !important;
+            }
+            .sp2-arc-nav a[data-active] span:first-child {
+              opacity: 1 !important;
+              color: var(--color-accent) !important;
+            }
+            .sp2-arc-nav + script + style + div { padding-top: 36px !important; }
+          }
+          /* Under 480px, drop the arc labels ("Premise" / "Research" …)
+             and show only the numerals. Recovers ~13% viewport height
+             (audit 2026-07-03). Anchors carry aria-label with the full
+             name so screen readers are unaffected. */
+          @media (max-width: 480px) {
+            .sp2-arc-label { display: none !important; }
+            .sp2-arc-nav a {
+              padding: 8px 4px !important;
+              font-size: 12px !important;
+              letter-spacing: 0.10em !important;
+              min-height: 34px !important;
+            }
+            .sp2-arc-nav a span:first-child {
+              opacity: 1 !important;
+              font-size: 12px !important;
+            }
+          }
+        `}</style>
+
         {/* ── PREMISE arc tint ─ cool gray, no warm-neutral defaults */}
-        <div style={{ background: "#EEF2F6", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div id="arc-premise" style={{ background: "#EEF2F6", marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* Action sheet hero — case study opener. One affordance image
             (long-press action sheet open over a track row) + the three
             controls + power-user framing. Replaces the previous dark
@@ -360,7 +613,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div style={{ background: "#F1F4F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div id="arc-research" style={{ background: "#F1F4F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* User voices — direct quotes from public sources.
             People are reaching for affordances that don't exist yet. */}
         <UserVoices />
@@ -381,7 +634,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ cool lilac instead of warm cream */}
-        <div style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div id="arc-decisions" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* User journey — where the controls land */}
         <UserJourney />
 
@@ -395,12 +648,156 @@ export default function SpotifyV2() {
 
         <ArcDivider arc="Details" />
 
-        {/* ── DETAILS arc tint ─ cool slate-green instead of sage tint */}
-        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        {/* ── DETAILS arc tint ─ cool slate-green.
+            Closes after DecisionLogic so the interactive demo below
+            reads as its own moment, not as a Pause-section footer. */}
+        <div id="arc-details" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(40px, 6vw, 64px)", scrollMarginTop: "140px" }}>
         <DecisionLogic />
+        </div>
 
-        {/* Prototypes — moved out of DecisionLogic so the loops have their own breathing room */}
-        <Prototypes />
+        {/* Interactive demo — the spec lives above (DecisionLogic), the
+            real interaction sits here so the reader operates the model
+            instead of just reading about it. Framed as the crown-jewel
+            proof: editorial arrival, a monospace constants line that
+            names the spec numbers the demo enforces, then a dark c.jet
+            presentation mat so the interaction reads as a shipped
+            object, not a component-library sample. */}
+        <section
+          aria-label="Try the three controls"
+          style={{
+            /* Section is now light per Alfonso 2026-07-03: intro sits on
+               the case-study white surface, widget below is the sole
+               dark island (its own #181818 card + elevation). The prior
+               all-dark ground merged the intro copy into the widget's
+               own dark chrome; splitting them separates the editorial
+               setup from the interactive object. */
+            background:   c.surface,
+            color:        c.ink,
+            paddingTop:   "clamp(80px, 10vw, 128px)",
+            paddingBottom:"clamp(56px, 7vw, 88px)",
+            paddingLeft:  "clamp(24px, 6vw, 80px)",
+            paddingRight: "clamp(24px, 6vw, 80px)",
+            marginLeft:   "calc(50% - 50vw)",
+            marginRight:  "calc(50% - 50vw)",
+          }}
+        >
+          <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
+            <div style={{ maxWidth: "780px", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+              <p style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    700,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color:         c.accent,
+                margin:        "0 0 20px",
+              }}>Proof &nbsp;·&nbsp; try the three controls</p>
+              <h2 style={{
+                fontFamily:    font.sans,
+                fontSize:      "clamp(40px, 6vw, 72px)",
+                fontWeight:    500,
+                color:         c.ink,
+                margin:        "0 0 20px",
+                letterSpacing: "-0.035em",
+                lineHeight:    1,
+              }}>
+                Read the spec. Then try it.
+              </h2>
+              <p style={{
+                fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
+                lineHeight: 1.65, color: c.ink2,
+                margin: "0 0 28px", maxWidth: "60ch",
+              }}>
+                Pick a row in the shelf below, then use one of the three controls under it. The demo runs against the constants above.
+              </p>
+              {/* Constants monospace chip — darker Spotify green for AA
+                 contrast on the white surface (bright #1ED760 fails). */}
+              <p style={{
+                fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
+                fontSize:      "12px",
+                letterSpacing: "0.02em",
+                color:         "#0F6E32",
+                background:    "rgba(30,215,96,0.10)",
+                border:        `1px solid rgba(30,215,96,0.55)`,
+                padding:       "10px 14px",
+                display:       "inline-block",
+                margin:        0,
+              }}>
+                PIN_CAP = 4 &nbsp;·&nbsp; UNDO_WINDOW = 3s &nbsp;·&nbsp; PAUSE_PRESETS = [30m, 2h, tomorrow]
+              </p>
+            </div>
+
+            {/* Widget-level intro removed 2026-07-03 (Alfonso). It duplicated
+                the outer eyebrow ("try the three controls"), the outer h2
+                ("Read the spec. Then try it."), and repeated what each
+                control does — all of which are already handled above and
+                by the labeled buttons on the widget itself. */}
+
+            {/* The widget is the sole dark object in this section. */}
+            <div style={{ color: c.ink }}>
+              <RecentlyPlayedDemo />
+            </div>
+
+            {/* Keyboard shortcuts — dark text on light section. */}
+            <div style={{
+              display:     "flex",
+              flexWrap:    "wrap",
+              gap:         "12px",
+              marginTop:   "clamp(32px, 4vw, 48px)",
+              alignItems:  "center",
+            }}>
+              <span style={{
+                fontFamily:    font.sans,
+                fontSize:      "11px",
+                fontWeight:    700,
+                letterSpacing: "0.20em",
+                textTransform: "uppercase",
+                color:         c.muted,
+                marginRight:   "8px",
+              }}>Keyboard</span>
+              {[
+                { key: "P",     label: "Pin selected tile" },
+                { key: "R",     label: "Remove selected tile" },
+                { key: "Space", label: "Pause and resume" },
+                { key: "⌘Z",    label: "Undo the last change" },
+              ].map((k) => (
+                <span
+                  key={k.key}
+                  style={{
+                    display:        "inline-flex",
+                    alignItems:     "center",
+                    gap:            "8px",
+                    padding:        "8px 4px",
+                    fontFamily:     font.sans,
+                    fontSize:       "12px",
+                    color:          c.ink2,
+                    letterSpacing:  "0.02em",
+                  }}
+                >
+                  <kbd style={{
+                    fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontSize:      "11px",
+                    fontWeight:    700,
+                    padding:       "3px 8px",
+                    background:    "rgba(30,215,96,0.12)",
+                    color:         "#0F6E32",
+                    border:        "1px solid rgba(30,215,96,0.4)",
+                  }}>{k.key}</kbd>
+                  {k.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Prototypes section retired 2026-07-01. RecentlyPlayedDemo above
+            is now the single interactive proof; the three principle-exported
+            video loops became redundant. Function definition + CSS + pause
+            script left in place for now, will prune in a follow-up. */}
+
+        {/* ── DETAILS arc tint resumes for §02 The bet and everything
+            below (Shipped, Parity, meta). */}
+        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
 
         {/* §02 The Bet — image dropped (figma-slide-reversible-set.png was a
             text slide: title + 3 icons + 3 bullets, all already said by the
@@ -444,99 +841,243 @@ export default function SpotifyV2() {
               Mobile uses long-press to open the action sheet. Desktop uses a right-click context menu. The three controls and their state machines are identical. Only the affordance changes.
             </p>
 
-            <div className="sp2-parity-grid" style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1.2fr",
-              gap: "clamp(28px, 4vw, 48px)",
-              alignItems: "start",
-            }}>
-              {/* Editorial block — was rendered as text inside the composite */}
-              <div>
-                <p style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: c.muted, margin: "0 0 12px",
-                }}>
-                  Maintaining cross-platform consistency
-                </p>
-                <h3 style={{
-                  fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
-                  fontWeight: 700, color: c.ink, margin: "0 0 20px",
-                  letterSpacing: "-0.02em", lineHeight: 1.2,
-                }}>
-                  Consistent behavior on desktop.
-                </h3>
-                <p style={{
-                  fontFamily: font.sans, fontSize: "15px",
-                  lineHeight: 1.65, color: c.ink2, margin: "0 0 20px",
-                }}>
-                  Habitual desktop users access the same set of surfaced controls through a right-click context menu, matching Spotify&rsquo;s existing desktop paradigms.
-                </p>
-                <p style={{
-                  fontFamily: font.sans, fontSize: "13px", fontWeight: 700,
-                  color: c.ink, margin: "0 0 8px", letterSpacing: "-0.005em",
-                }}>
-                  This maintains:
-                </p>
-                <ul style={{
-                  fontFamily: font.sans, fontSize: "14px",
-                  lineHeight: 1.65, color: c.ink2,
-                  margin: 0, paddingLeft: "20px",
-                }}>
-                  <li>Predictable cross-platform behavior</li>
-                  <li>Minimal UI surface changes</li>
-                  <li>A familiar power-user pathway without expanding the primary UI surface.</li>
-                </ul>
-              </div>
+            {/* Sub-block ("Maintaining cross-platform consistency" +
+                bullets) removed 2026-07-03 (Alfonso): redundant with the
+                lead paragraph above. Dark-stripe wrapper also removed —
+                the image sits directly on the DETAILS arc mint tint. */}
 
-              {/* Screenshot — just the right-click menu, no text bake-in.
-                  On mobile we scroll horizontally so each menu item is
-                  legible instead of compressed into the column width. */}
-              <figure className="sp2-consistent-fig" style={{ margin: "0", padding: 0, textAlign: "center", width: "100%" }}>
-                <div className="sp2-consistent-scroll" style={{
-                  overflowX: "auto", WebkitOverflowScrolling: "touch",
-                  border: `1px solid ${c.border}`,
-                  margin: 0, padding: 0,
-                }}>
+            {/* Screenshot — full content-column width with numbered
+                annotations overlaid on the three surfaced controls
+                (Pin on top / Remove from Recently Played / Pause
+                listening history). On phones the container scrolls
+                horizontally so each menu item stays legible; the
+                annotations scroll with the image because they're
+                positioned inside the same scrolling container. */}
+            <figure className="sp2-consistent-fig" style={{ margin: 0, padding: 0, width: "100%" }}>
+                  <div className="sp2-consistent-scroll" style={{
+                    overflowX: "auto", WebkitOverflowScrolling: "touch",
+                    margin: 0, padding: 0,
+                    /* Nuke any stylesheet-level border/outline that could
+                       paint a light hairline around the image. */
+                    border: "none",
+                    outline: "none",
+                    background: "transparent",
+                  }}>
+                    <div className="sp2-parity-canvas" style={{
+                      position: "relative",
+                      width: "100%",
+                      minWidth: "760px",  // mobile scroll floor — below this, menu items become unreadable
+                      aspectRatio: "2564 / 1744",  // trimmed 2644x1824 → 2582x1766 to strip Figma-baked white padding
+                      border: "none",
+                      outline: "none",
+                      background: "transparent",
+                    }}>
                   <Image
-                    src="/images/work/spotify/spotify-desktop-context-menu-screenshot.webp"
+                    src="/images/work/spotify/desktop-parity-clean.png"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-                    width={652} height={448}
-                    sizes="(max-width: 760px) 100vw, 56vw"
-                    quality={95}
+                    width={2564}
+                    height={1744}
+                    sizes="(max-width: 760px) 200vw, 1240px"
+                    quality={100}
+                    unoptimized
                     className="sp2-consistent-img"
-                    style={{ width: "100%", height: "auto", display: "block", margin: 0, padding: 0 }}
+                    style={{ width: "100%", height: "auto", display: "block", border: "none", outline: "none" }}
                   />
+
+                  {/* Three numbered callouts, positioned as % of the image
+                      so they hold their target across viewport widths.
+                      Positions re-measured against the 2644×1824 hi-res
+                      Figma export on 2026-07-03. */}
+                  {[
+                    { n: "01", left: "54.0%", top: "25.5%", label: "Pin on top" },
+                    { n: "02", left: "58.0%", top: "30.4%", label: "Remove" },
+                    { n: "03", left: "90.0%", top: "12.6%", label: "Pause listening history" },
+                  ].map((a) => (
+                    <span
+                      key={a.n}
+                      aria-hidden="true"
+                      style={{
+                        position:      "absolute",
+                        left:          a.left,
+                        top:           a.top,
+                        transform:     "translate(-50%, -50%)",
+                        width:         "28px",
+                        height:        "28px",
+                        borderRadius:  "50%",
+                        background:    c.accent,
+                        color:         "#FFFFFF",
+                        display:       "inline-flex",
+                        alignItems:    "center",
+                        justifyContent:"center",
+                        fontFamily:    font.sans,
+                        fontSize:      "11px",
+                        fontWeight:    700,
+                        letterSpacing: "0.02em",
+                        border:        "2px solid #FFFFFF",
+                        boxShadow:     "0 2px 6px rgba(0,0,0,0.35)",
+                        fontVariantNumeric: "tabular-nums",
+                      }}
+                    >
+                      {a.n}
+                    </span>
+                  ))}
                 </div>
-                <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
-                <figcaption style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-                  letterSpacing: "0.12em", textTransform: "uppercase",
-                  color: c.muted, margin: "12px 0 0", textAlign: "center",
-                }}>
-                  Desktop right-click menu &middot; same actions, native pattern
-                </figcaption>
-              </figure>
-            </div>
+              </div>
+              <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
+
+              {/* Legend — pairs each number with the control it names.
+                  Sits below the image so mobile readers can see all three
+                  in order without scrolling the image. */}
+              <ol className="sp2-parity-legend" style={{
+                display: "flex", flexWrap: "wrap",
+                gap: "clamp(16px, 3vw, 32px)",
+                listStyle: "none",
+                padding: 0,
+                margin: "clamp(20px, 2.5vw, 32px) 0 0",
+              }}>
+                {[
+                  { n: "01", label: "Pin on top",                   sub: "Right-click menu" },
+                  { n: "02", label: "Remove from Recently Played",  sub: "Right-click menu" },
+                  { n: "03", label: "Pause listening history",      sub: "Shelf header pill" },
+                ].map((a) => (
+                  <li key={a.n} style={{
+                    display: "flex", gap: "10px", alignItems: "flex-start",
+                    fontFamily: font.sans, fontSize: "13px",
+                    lineHeight: 1.4, color: c.ink,
+                  }}>
+                    <span aria-hidden="true" style={{
+                      display:       "inline-flex",
+                      alignItems:    "center",
+                      justifyContent:"center",
+                      width:         "24px",
+                      height:        "24px",
+                      borderRadius:  "50%",
+                      background:    c.accent,
+                      color:         "#FFFFFF",
+                      fontSize:      "10px",
+                      fontWeight:    700,
+                      flexShrink:    0,
+                      marginTop:     "1px",
+                      fontVariantNumeric: "tabular-nums",
+                    }}>{a.n}</span>
+                    <span>
+                      <strong style={{ fontWeight: 700, letterSpacing: "-0.005em" }}>{a.label}</strong>
+                      <br />
+                      <span style={{ fontSize: "12px", color: c.muted, letterSpacing: "0.01em" }}>{a.sub}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+
+              <figcaption style={{
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+                letterSpacing: "0.12em", textTransform: "uppercase",
+                color: c.muted, margin: "clamp(20px, 2.5vw, 32px) 0 0",
+              }}>
+                Desktop right-click menu &middot; same actions, native pattern
+              </figcaption>
+            </figure>
           </div>
         </section>
 
-        {/* Meta block — 4 columns at desktop so each cell holds its
-            value on one line instead of wrapping to 2-3. Status + Type
-            merged into "Status." */}
-        <section aria-label="Case study metadata" style={{
-          borderTop: `1px solid ${c.border}`,
-          padding: `64px ${SECTION_X}`, background: c.surface,
+        {/* Design log closer — dated working-process entries in place
+            of the four-cell resume-slug meta strip. Six real notes
+            from the Figma file, in order of when they happened.
+            MetaCells drop to a fine-print colophon row above. */}
+        <section aria-label="Design log and colophon" style={{
+          borderTop:  `1px solid ${c.border}`,
+          padding:    `clamp(72px, 10vw, 128px) ${SECTION_X} clamp(48px, 6vw, 80px)`,
+          background: c.surface,
         }}>
-          <div style={{
-            maxWidth: CONTENT_MAX, margin: "0 auto",
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "32px",
-          }} className="sp2-meta">
-            <MetaCell label="Role"   value="UX/UI Designer · End-to-end" />
-            <MetaCell label="Year"   value="2025" />
-            <MetaCell label="Stack"  value="Figma · Principle · After Effects" />
-            <MetaCell label="Status" value="Self-directed concept · not shipped" />
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+
+            {/* Demoted MetaCells row — fine-print colophon. */}
+            <div style={{
+              display:             "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap:                 "24px",
+              paddingBottom:       "clamp(48px, 6vw, 80px)",
+              marginBottom:        "clamp(48px, 6vw, 80px)",
+              borderBottom:        `1px solid ${c.border}`,
+            }} className="sp2-meta-caption">
+              {[
+                { label: "Role",   value: "UX/UI Designer · End-to-end" },
+                { label: "Year",   value: "2026" },
+                { label: "Stack",  value: "Figma · Principle · After Effects" },
+                { label: "Status", value: "Self-directed concept · not shipped" },
+              ].map((m) => (
+                <div key={m.label}>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "9px", fontWeight: 700,
+                    letterSpacing: "0.20em", textTransform: "uppercase",
+                    color: c.muted, margin: "0 0 4px",
+                  }}>{m.label}</p>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "12px",
+                    color: c.ink2, margin: 0, lineHeight: 1.5,
+                  }}>{m.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.muted, margin: "0 0 20px",
+            }}>
+              Design log &nbsp;·&nbsp; the receipts
+            </p>
+            <h2 style={{
+              fontFamily: font.sans, fontSize: "clamp(28px, 3.6vw, 44px)",
+              fontWeight: 500, color: c.ink, margin: "0 0 48px",
+              letterSpacing: "-0.02em", lineHeight: 1.15, maxWidth: "24ch",
+            }}>
+              What actually happened, in order.
+            </h2>
+
+            <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: 0 }}>
+              {[
+                { date: "Feb 04, 2026", note: "First stakeholder read of the brief. Framed the problem as agency without signal loss, not history editing." },
+                { date: "Feb 12, 2026", note: "Ruled out permanent pause. Time-boxing survived the ML-signal-integrity review." },
+                { date: "Mar 03, 2026", note: "Cap set at four pins after engineering flagged shelf-perf degradation and ranking-signal noise past four." },
+                { date: "Mar 21, 2026", note: "Undo window locked at five seconds. Matches the existing snackbar pattern; nothing new for the user to learn." },
+                { date: "Apr 08, 2026", note: "Mobile long-press vs desktop right-click parity confirmed. Affordance changes, state machine does not." },
+                { date: "May 02, 2026", note: "Reduced-motion path documented. Every animated state has a static fallback that carries the same information." },
+              ].map((r, idx, arr) => (
+                <li key={r.date} style={{
+                  display:             "grid",
+                  gridTemplateColumns: "clamp(120px, 14vw, 180px) 1fr",
+                  gap:                 "clamp(20px, 3vw, 40px)",
+                  alignItems:          "baseline",
+                  paddingBlock:        "clamp(18px, 2.5vw, 26px)",
+                  borderTop:           `1px solid ${c.border}`,
+                  borderBottom:        idx === arr.length - 1 ? `1px solid ${c.border}` : "none",
+                }}>
+                  <span style={{
+                    fontFamily:         "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontSize:           "12px",
+                    fontWeight:         600,
+                    letterSpacing:      "0.02em",
+                    color:              c.accent,
+                    fontVariantNumeric: "tabular-nums",
+                    textTransform:      "uppercase",
+                  }}>{r.date}</span>
+                  <p style={{
+                    fontFamily: font.sans, fontSize: "clamp(15px, 1.6vw, 17px)",
+                    color: c.ink, margin: 0, lineHeight: 1.6,
+                  }}>{r.note}</p>
+                </li>
+              ))}
+            </ol>
+
+            <p style={{
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: c.brand, margin: "clamp(48px, 6vw, 80px) 0 0",
+              textAlign: "right",
+            }}>
+              Signed &nbsp;·&nbsp; Alfonso Barreiro
+            </p>
           </div>
         </section>
         </div>
@@ -587,6 +1128,7 @@ export default function SpotifyV2() {
 
         @media (max-width: 760px) {
           .sp2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .sp2-callout-grid     { grid-template-columns: 1fr !important; gap: 22px !important; }
           .sp2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           .sp2-persona-strip    { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-control-row      { grid-template-columns: 1fr !important; gap: 16px !important; }
@@ -602,10 +1144,78 @@ export default function SpotifyV2() {
           .sp2-midfi-pair       { grid-template-columns: 1fr !important; gap: 32px !important; }
           .sp2-midfi-pair figure:last-child img { max-width: 320px !important; margin: 0 auto; }
           .sp2-friction-grid    { grid-template-columns: 1fr !important; gap: 16px !important; }
-          .sp2-as-hero          { grid-template-columns: 1fr !important; gap: 28px !important; padding: 24px !important; }
+          .sp2-as-hero          { grid-template-columns: 1fr !important; gap: 28px !important; padding: 24px !important; overflow: hidden !important; max-width: 100% !important; }
+          .sp2-as-hero > *      { min-width: 0 !important; max-width: 100% !important; }
           .sp2-as-hero h2       { font-size: 24px !important; }
           .sp2-as-icons         { grid-template-columns: 1fr !important; gap: 18px !important; }
+          .sp2-as-icons > *     { min-width: 0 !important; }
+
+          /* iOS-Safari fix: 100vw includes vertical-scrollbar space,
+             so calc(50% - 50vw) full-bleed pushes elements a few px
+             wider than the actual layout viewport. Zero those margins
+             on mobile — the section's parent (arc-details div) is
+             already full width there, so no bleed math is needed. */
+          section[aria-label="Try the three controls"] {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+          }
+          /* Same fix for the parity figure's canonical full-bleed. */
+          .sp2-consistent-fig {
+            width: 100% !important;
+            max-width: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+          }
+          /* ActionSheetHero (Three controls for the shelf) — the
+             phone-mat section Alfonso saw bleeding past the right
+             viewport edge on iPhone 12. Clip anything that computes
+             wider than the section. overflow-x: clip is safer than
+             hidden because it does not create a scroll container,
+             so it does not break sticky positioning on ancestors. */
+          section[aria-label="Three controls for the shelf"] {
+            overflow-x: clip !important;
+            max-width: 100% !important;
+          }
+          section[aria-label="Three controls for the shelf"] > div {
+            max-width: 100% !important;
+          }
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .sp2-dl-beats         { grid-template-columns: 1fr !important; gap: 14px !important; }
+          .sp2-dl-video-row     { grid-template-columns: 1fr !important; gap: 32px !important; }
+          /* Mobile-only: drop the home-page-style empty canvas around the
+             phone so the chrome fills the row. The chrome PNG's ACTUAL
+             aspect is 1387:2800 (0.495) — the width/height numbers on
+             the JSX Image are just Next.js intrinsic hints, not the
+             natural file aspect. Container aspect must match the chrome
+             PNG or the phone bottom gets clipped (Alfonso 2026-07-03).
+             Screen is re-expressed as % of chrome instead of % of the
+             old padded container. */
+          .sp2-dl-phone         {
+            aspect-ratio: 1387 / 2800 !important;
+            max-width: none !important;
+            /* Phone sized by whichever dimension bites first: viewport
+               width, OR 80vh derived back to width via the chrome aspect.
+               80vh gives the phone breathing room on either side on
+               typical mobile aspects (390-430 × 844+): the vh cap wins,
+               so the phone is narrower than 100vw and margin-inline:auto
+               centers it in the row (Alfonso 2026-07-03: "center and
+               size down to fit within 80vh"). */
+            width: min(100vw, calc(80vh * 1387 / 2800)) !important;
+            margin-inline: auto !important;
+          }
+          .sp2-dl-phone-chrome  {
+            left:  0    !important;
+            top:   0    !important;
+            width: 100% !important;
+          }
+          .sp2-dl-phone-screen  {
+            left:   4.46% !important;
+            top:    1.70% !important;
+            width:  90.94% !important;
+            height: 95.54% !important;
+          }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
           .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
           .sp2-loops-row figure > div { width: 100% !important; max-width: 220px !important; }
@@ -670,12 +1280,20 @@ export default function SpotifyV2() {
              handles min-width + bleed-to-edges. */
           /* State diagram — keep native width; scroll horizontally inside the card. */
           .sp2-state-scroll .sp2-state-img { width: 720px !important; max-width: 720px !important; }
-          /* User journey — mobile renders the transposed vertical version
-             (one card per stage) instead of the wide horizontal table. */
-          .sp2-journey-desktop { display: none !important; }
-          .sp2-journey-mobile  { display: block !important; }
-          /* Sketches — native width on phones so each device sketch reads. */
-          .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
+          /* User journey — mobile shows a horizontally-scrollable slice of
+             the same wide artifact desktop uses, not the transposed 6-card
+             stack (Alfonso 2026-07-03). Reader gets a peek here + the full
+             view on a wider screen. Min-width forces scroll so the map
+             doesn't collapse to viewport width and lose all detail. */
+          .sp2-journey-desktop { display: flex !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; justify-content: flex-start !important; }
+          .sp2-journey-desktop .sp2-journey-img { width: 1200px !important; min-width: 1200px !important; max-width: none !important; }
+          .sp2-journey-mobile  { display: none !important; }
+          /* Three directions on paper — stack the 3-column grid to a
+             vertical stack on mobile. Each direction reads as its own
+             card. Landscape wireframes get the 1000:618 aspect frame;
+             portrait Remove image sits inside via object-fit contain
+             (Alfonso 2026-07-03). */
+          .sp2-sketches-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
           /* Consistent Behavior screenshot — fits viewport width, no scroll. */
           /* Scroll hint shown under every horizontally-scrolling block on
              phones. Hidden on desktop. Uses Deep Teal + heavier weight so
@@ -890,12 +1508,16 @@ function SketchesAndMidfi() {
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
-              Five interaction directions sketched on paper before any Figma frame. The winning direction survived three tests: does it preserve discovery, is it reversible, does it sit native to the shelf. Mid-fi mocked the answer on both surfaces (mobile + desktop) before any hi-fi work.
+              Three interaction directions sketched on paper before any Figma frame. The winning direction survived three tests: does it preserve discovery, is it reversible, does it sit native to the shelf. Mid-fi mocked the answer on both surfaces (mobile + desktop) before any hi-fi work.
             </p>
           </div>
         </div>
 
-        {/* Paper sketches — landscape Figma slide */}
+        {/* Three directions on paper — replaces the flat figma-sketches.png
+            with three separated cards (title + wireframe + body). Grid on
+            desktop, stack on mobile. Assets pulled from the Figma file
+            "Wireframes" frame (JrM6jElfVB1XXXVNWN980v · nodes 344:244,
+            344:246, 344:248) on 2026-07-03. */}
         <div style={{ marginBottom: "48px" }}>
           <p style={{
             fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
@@ -904,28 +1526,89 @@ function SketchesAndMidfi() {
           }}>Sketches</p>
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 20px",
+            fontWeight: 600, color: c.ink, margin: "0 0 8px",
             letterSpacing: "-0.02em", lineHeight: 1.2,
           }}>
             Three directions on paper.
           </h3>
-          <div className="sp2-sketches-scroll" tabIndex={0} role="region"
-            aria-label="Paper sketches, scroll horizontally to view all three"
-            style={{
-              border: `1px solid ${c.border}`, background: "#FFFFFF",
-              overflowX: "auto", WebkitOverflowScrolling: "touch",
-            }}>
-            <Image
-              src="/images/work/spotify/v2/figma-sketches.png"
-              alt="Sketching possible interaction patterns: three device sketches explored on paper before any Figma frame."
-              width={1840} height={769}
-              sizes="(max-width: 760px) 880px, (max-width: 1240px) 100vw, 1100px"
-              quality={95}
-              className="sp2-sketches-img"
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
+          <p style={{
+            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.55,
+            color: c.muted, margin: "0 0 32px", maxWidth: "780px",
+          }}>
+            Each direction tests a different affordance for the same shelf. Lightweight, reversible, native to the surface the control lives on.
+          </p>
+
+          <div className="sp2-sketches-grid" style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "clamp(20px, 3vw, 40px)",
+            alignItems: "start",
+          }}>
+            {[
+              {
+                key:   "pin",
+                title: "Pin item to top.",
+                src:   "/images/work/spotify/v2/sketches/sketch-pin.png",
+                w:     1000,
+                h:     618,
+                alt:   "Desktop wireframe: right-click menu on a Recently Played tile with 'Pin on top' at the top of the list.",
+                body:  "Right-click a tile. Pin on top sits at the top of the menu, with the four-pin cap named inline as a header.",
+              },
+              {
+                key:   "pause",
+                title: "Pause listening history.",
+                src:   "/images/work/spotify/v2/sketches/sketch-pause.png",
+                w:     1000,
+                h:     618,
+                alt:   "Desktop wireframe: a shelf-scoped 'Pause listening history' pill sits above Recently Played.",
+                body:  "A shelf-scoped pill above Recently Played. One click freezes the whole shelf, and the state stays visible.",
+              },
+              {
+                key:   "remove",
+                title: "Remove from Recently Played.",
+                src:   "/images/work/spotify/v2/sketches/sketch-remove.png",
+                w:     330,
+                h:     716,
+                alt:   "Mobile wireframe: long-press opens an action sheet with Remove from Recently Played on the surface.",
+                body:  "Long-press opens the action sheet with Remove on the surface. Don't suggest similar sits below for the softer signal.",
+              },
+            ].map(s => (
+              <figure key={s.key} style={{ margin: 0 }}>
+                <p style={{
+                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                  letterSpacing: "0.16em", textTransform: "uppercase",
+                  color: c.accent, margin: "0 0 12px",
+                }}>{s.key}</p>
+                <h4 style={{
+                  fontFamily: font.sans, fontSize: "clamp(18px, 1.6vw, 20px)",
+                  fontWeight: 600, color: c.ink, margin: "0 0 16px",
+                  letterSpacing: "-0.015em", lineHeight: 1.25,
+                }}>{s.title}</h4>
+                <div style={{
+                  background: "#FFFFFF", border: `1px solid ${c.border}`,
+                  padding: "16px", display: "flex",
+                  justifyContent: "center", alignItems: "center",
+                  marginBottom: "16px", aspectRatio: "1000 / 618",
+                }}>
+                  <Image
+                    src={s.src}
+                    alt={s.alt}
+                    width={s.w} height={s.h}
+                    sizes="(max-width: 760px) 90vw, 360px"
+                    quality={95}
+                    style={{
+                      width: "100%", height: "100%",
+                      objectFit: "contain", display: "block",
+                    }}
+                  />
+                </div>
+                <p style={{
+                  fontFamily: font.sans, fontSize: "14px", lineHeight: 1.55,
+                  color: c.ink2, margin: 0,
+                }}>{s.body}</p>
+              </figure>
+            ))}
           </div>
-          <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
         </div>
 
         {/* Mid-fi — desktop + mobile, paired. Desktop carries the surface
@@ -1020,17 +1703,27 @@ function DecisionLogic() {
       key:   "pin",
       title: "Pin",
       tagline: "Max four pins. Long-press, choose, swap. The cap teaches itself.",
-      surface: "Desktop",
-      // Desktop frames are ~1554x1260 (one is 1554x1082). Lock to 1554/1260
-      // and cover-crop so every cell in the grid has identical height.
+      surface: "Mobile",
+      // Legacy aspectRatio kept for fallback; the video block below
+      // uses the iPhone chrome's own ratio, not this value.
       aspectRatio: "1554 / 1260",
+      // Video walkthrough — the animation already shipping on the home
+      // page's Spotify tile, in iPhone chrome. Replaces the 6-frame
+      // wireframe grid so the reader watches the pin flow instead of
+      // reconstructing it from static beats. The frames array below
+      // becomes the caption timeline that names what to look for.
+      video: {
+        src:    "/images/work/spotify/pin-happy.webm",
+        poster: "/images/work/spotify/spotify-action-sheet.webp",
+        alt:    "Long-press an item on the Spotify Recently Played shelf opens an action sheet; tapping Pin moves it to the top.",
+      },
       frames: [
-        { src: "/images/work/spotify/v2/wf-pin-01.png", label: "Long-press a tile → Action sheet opens → Pin artist." },
-        { src: "/images/work/spotify/v2/wf-pin-02.png", label: "Pinned row appears → toast \"Pinned. Undo.\"" },
-        { src: "/images/work/spotify/v2/wf-pin-03.png", label: "Pin reorders to the first slot." },
-        { src: "/images/work/spotify/v2/wf-pin-04.png", label: "Unpin from menu → toast." },
-        { src: "/images/work/spotify/v2/wf-pin-05.png", label: "Pin a fifth item → limit modal." },
-        { src: "/images/work/spotify/v2/wf-pin-06.png", label: "Choose a replacement → swap → toast." },
+        { src: "/images/work/spotify/v2/wf-pin-01.png", beat: "Long-press.",       body: "The action sheet opens with Pin sitting at the top of the list." },
+        { src: "/images/work/spotify/v2/wf-pin-02.png", beat: "The tile locks in.",  body: "A Pinned snackbar with Undo runs for five seconds so the choice stays reversible." },
+        { src: "/images/work/spotify/v2/wf-pin-03.png", beat: "Order settles.",    body: "The pin takes the first slot and holds it, regardless of what plays next." },
+        { src: "/images/work/spotify/v2/wf-pin-04.png", beat: "Long-press again.", body: "The same menu opens with Unpin as the primary option so undo stays cheap." },
+        { src: "/images/work/spotify/v2/wf-pin-05.png", beat: "Cap hits at four.", body: "A limit modal names the ceiling and offers to swap rather than a soft warning toast." },
+        { src: "/images/work/spotify/v2/wf-pin-06.png", beat: "Pick a swap.",      body: "The new tile takes the freed slot and a confirmation toast closes the loop." },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1050,12 +1743,19 @@ function DecisionLogic() {
       // object-fit cover renders the full frame with no horizontal crop.
       // Step titles + acceptance strip stay visible.
       aspectRatio: "1000 / 1092",
+      // Remove animation is not a webm — it's a CSS-animated composite
+      // of PNG layers (SpotifyRemoveAnimation, 18s loop). Rendered inside
+      // the same iPhone chrome overlay as pin-happy / pause-happy via
+      // the "screen-only" variant so the reader sees the same device
+      // treatment across all three controls.
+      screen: <SpotifyRemoveAnimation variant="screen-only" />,
+      screenAlt: "Animated prototype: long-press an item on the Spotify Recently Played shelf, tap Remove from Recently Played, the tile slides out, a white Undo toast appears for a few seconds.",
       frames: [
-        { src: "/images/work/spotify/v2/wf-remove-01.png", label: "Long-press tile → Action sheet opens." },
-        { src: "/images/work/spotify/v2/wf-remove-02.png", label: "Tap Remove from Recently Played." },
-        { src: "/images/work/spotify/v2/wf-remove-03.png", label: "Item disappears → toast \"Removed. Undo.\"" },
-        { src: "/images/work/spotify/v2/wf-remove-04.png", label: "Tap Undo on the toast." },
-        { src: "/images/work/spotify/v2/wf-remove-05.png", label: "Item reappears in last spot → \"Restored.\"" },
+        { src: "/images/work/spotify/v2/wf-remove-01.png", beat: "Long-press.",     body: "The action sheet opens with Remove from Recently Played on the surface." },
+        { src: "/images/work/spotify/v2/wf-remove-02.png", beat: "Tap Remove.",     body: "The tile begins its 220 ms slide-out so the change reads as movement, not deletion." },
+        { src: "/images/work/spotify/v2/wf-remove-03.png", beat: "The row clears.", body: "A Removed snackbar with Undo runs for five seconds and holds the reversal open." },
+        { src: "/images/work/spotify/v2/wf-remove-04.png", beat: "Tap Undo.",       body: "The snackbar acknowledges the restore before the tile animates back in." },
+        { src: "/images/work/spotify/v2/wf-remove-05.png", beat: "The tile returns.", body: "It lands in its last position and a Restored toast confirms the reversal completed." },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1070,14 +1770,22 @@ function DecisionLogic() {
       key:   "pause",
       title: "Pause",
       tagline: "Time-boxed. 30 minutes, 2 hours, until tomorrow. Resume is automatic.",
-      surface: "Desktop",
+      surface: "Mobile",
       aspectRatio: "1554 / 1260",
+      // Video walkthrough — the pause-happy webm already ships alongside
+      // pin-happy. Long-press the header opens the shelf-scoped sheet,
+      // Pause → duration picker → paused state → timer expires.
+      video: {
+        src:    "/images/work/spotify/pause-happy.webm",
+        poster: "/images/work/spotify/spotify-pause-01-long-press.webp",
+        alt:    "Long-press the Recently Played header opens the shelf-scoped action sheet; tapping Pause opens a duration picker with 30 minutes, 2 hours, or until tomorrow.",
+      },
       frames: [
-        { src: "/images/work/spotify/v2/wf-pause-01.png", label: "Long-press shelf header → Action sheet opens." },
-        { src: "/images/work/spotify/v2/wf-pause-02.png", label: "Tap Pause Listening History." },
-        { src: "/images/work/spotify/v2/wf-pause-03.png", label: "Pick a duration: 30 min, 2 hrs, until tomorrow." },
-        { src: "/images/work/spotify/v2/wf-pause-04.png", label: "Shelf shows paused state with visible timer." },
-        { src: "/images/work/spotify/v2/wf-pause-05.png", label: "Pause expires → toast \"Listening history resumed.\"" },
+        { src: "/images/work/spotify/v2/wf-pause-01.png", beat: "Long-press the header.",  body: "The action sheet treats the whole shelf as the target, not any single tile." },
+        { src: "/images/work/spotify/v2/wf-pause-02.png", beat: "Tap Pause.",             body: "A duration picker replaces the sheet so the next tap picks a time-box, not a toggle." },
+        { src: "/images/work/spotify/v2/wf-pause-03.png", beat: "Pick a preset.",         body: "Thirty minutes, two hours, or until tomorrow. Three answers cover every real use case." },
+        { src: "/images/work/spotify/v2/wf-pause-04.png", beat: "Paused state visible.",  body: "The shelf carries a countdown so the pause is a promise, not a hidden mode." },
+        { src: "/images/work/spotify/v2/wf-pause-05.png", beat: "Timer expires.",         body: "A toast confirms that listening history is running again before the shelf refills." },
       ],
       dossier: [
         { lead: "Problem and state coverage.",
@@ -1111,16 +1819,18 @@ function DecisionLogic() {
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
               lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
-              Each control gets the same editorial treatment: title, the annotated wireframe broken into individual frames so each step reads, then three paragraphs naming the problem, the trade-off, and who wins. The looping prototypes live in their own tabbed section below.
+              Each control gets the same editorial treatment: title, the annotated walkthrough, then three paragraphs naming the problem, the trade-off, and who wins. The looping prototypes live in their own tabbed section below.
             </p>
           </div>
         </div>
 
-        {/* Sticky chapter nav — appears as the reader enters the
-            three-controls section and stays pinned through Pin / Remove /
-            Pause so the recall load (NN/g H6) of "which control am I
-            reading?" is always one glance away. Active state via
-            IntersectionObserver below. */}
+        {/* Sticky chip nav (PIN / REMOVE / PAUSE) removed 2026-07-03 (Alfonso).
+            The site-level PREMISE/RESEARCH/DECISIONS/DETAILS arc nav at the
+            top of the page carries the wayfinding load now, matching MSR and
+            Wayfarer. Nav script + hash-sync below are dead code and can be
+            pruned in a follow-up. */}
+        {/* Removed sp2-control-nav */}
+        {false && (
         <nav
           aria-label="Three controls"
           className="sp2-control-nav"
@@ -1171,6 +1881,7 @@ function DecisionLogic() {
             ))}
           </ul>
         </nav>
+        )}
 
         {flows.map((f, i) => (
           <article
@@ -1180,10 +1891,14 @@ function DecisionLogic() {
               marginTop:      i === 0 ? 0 : "120px",
               paddingTop:     i === 0 ? 0 : "80px",
               borderTop:      i === 0 ? "none" : `1px solid ${c.border}`,
-              /* Chip nav is sticky at 72px (global nav) + ~52px (chip
-                 strip) = 124px. Add ~16px buffer so jumped-to headings
-                 don't land directly under the chip strip. */
-              scrollMarginTop: "140px",
+              /* Sticky chip nav is 72px + ~52px = 124px. All three
+                 sections should land their header at the same distance
+                 below the chip strip. The first article has no padding
+                 above its header, so 140px works. Sections 2–3 have
+                 80px paddingTop before the header, so we shave 80 off
+                 the scrollMarginTop to compensate — otherwise the
+                 header lands 80px lower than the first section's did. */
+              scrollMarginTop: i === 0 ? "140px" : "60px",
             }}
           >
             <header style={{ marginBottom: "40px" }}>
@@ -1208,61 +1923,157 @@ function DecisionLogic() {
               }}>{f.tagline}</p>
             </header>
 
-            {/* Wireframe frames — wrapped in a dark mat so the flow reads
-                as one curated panel instead of frames floating against
-                the page. Each screen has rounded corners to feel
-                device-native. Mat darkened to #2F2F2F so the Spotify-
-                green caption number meets WCAG AA on its surface. */}
-            <div style={{
-              background: "#2F2F2F",
-              padding: "clamp(20px, 3vw, 40px)",
-              marginBottom: "56px",
-            }}>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "clamp(16px, 2vw, 24px)",
-              }} className="sp2-dl-frames">
-                {f.frames.map((frame, idx) => (
-                  <figure key={frame.src} style={{ margin: 0 }}>
-                    <div style={{
-                      aspectRatio: f.aspectRatio,
-                      overflow: "hidden",
-                      /* Mobile: medium-gray rounded background contrasts
-                         against the darker outer mat. Desktop: thin
-                         black behind the screen capture so the white UI
-                         elements pop. */
-                      background: f.surface === "Mobile" ? "#6E6E6E" : "#000000",
-                      borderRadius: f.surface === "Mobile"
-                        ? "clamp(14px, 1.6vw, 22px)"
-                        : "clamp(2px, 0.3vw, 4px)",
-                    }}>
-                      <Image
-                        src={frame.src}
-                        alt={`Step ${idx + 1}, ${frame.label.replace(/→/g, "then")}`}
-                        width={1554} height={1260}
-                        sizes="(max-width: 760px) 100vw, 380px"
-                        loading={idx < 2 ? "eager" : "lazy"}
+            {/* All three flows now have video or screen; the wireframe-
+                grid fallback that used to live in the else branch was
+                dead code and made TS narrow `f` to `never` on Vercel
+                builds. Deleted. */}
+            {(
+              /* Animation walkthrough — iPhone chrome + autoplay muted loop
+                 (for pin/pause webms) OR the CSS-animated Remove prototype
+                 injected via f.screen. Two-column on desktop: iPhone left
+                 (larger, no dark mat), beat timeline right. Stacks to single
+                 column on mobile via .sp2-dl-video-row. */
+              <div
+                className="sp2-dl-video-row"
+                style={{
+                  display:             "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap:                 "clamp(40px, 5vw, 80px)",
+                  alignItems:          "center",
+                  marginBottom:        "56px",
+                }}
+              >
+                {/* iPhone-framed animation hero. Overlay geometry matches
+                   SpotifyFramedAnimation on the home page so the device
+                   reads the same across the site. Larger footprint now
+                   that it owns its own column. */}
+                <div
+                  role="img"
+                  aria-label={f.video?.alt ?? f.screenAlt ?? ""}
+                  className="sp2-dl-phone"
+                  style={{
+                    /* Aspect + overflow copied VERBATIM from SpotifyFramedAnimation
+                       on the home page — the screen-div percentages inside were
+                       designed for a 2/3 outer, not the 1/1.35 (iPhone image
+                       aspect) I used originally, which pushed the screen div past
+                       the iPhone body and leaked mini-player content below the
+                       phone (Alfonso 2026-07-03). overflow:hidden matches the
+                       home shell so any residual leak is clipped.
+
+                       Mobile override (see .sp2-dl-phone in the @media block
+                       below): the outer hugs the chrome PNG so we don't carry
+                       ~44% of empty canvas around the phone on single-column
+                       widths — otherwise the phone reads small and adrift. */
+                    position:    "relative",
+                    width:       "100%",
+                    maxWidth:    "460px",
+                    aspectRatio: "2 / 3",
+                    overflow:    "hidden",
+                    justifySelf: "center",
+                  }}
+                >
+                  {/* Screen (below the iPhone PNG) — video or React-node
+                      animation fills the visible screen rect inside the
+                      iPhone body. */}
+                  <div className="sp2-dl-phone-screen" style={{
+                    position:     "absolute",
+                    left:         "24.46%",
+                    top:          "13.02%",
+                    width:        "51.01%",
+                    height:       "72.10%",
+                    overflow:     "hidden",
+                    borderRadius: "5.5%",
+                    background:   "#0F0F0F",
+                    zIndex:       2,
+                  }}>
+                    {f.video ? (
+                      /* eslint-disable-next-line jsx-a11y/media-has-caption */
+                      <video
+                        src={f.video.src}
+                        poster={f.video.poster}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        aria-label={f.video.alt}
                         style={{
-                          width: "100%", height: "100%",
-                          objectFit: "contain", objectPosition: "center",
-                          display: "block",
+                          position:       "absolute",
+                          inset:          0,
+                          width:          "100%",
+                          height:         "100%",
+                          objectFit:      "cover",
+                          objectPosition: "top center",
+                          display:        "block",
                         }}
                       />
-                    </div>
-                    <figcaption style={{
-                      fontFamily: font.sans, fontSize: "12px",
-                      margin: "12px 0 0", display: "flex", gap: "10px", alignItems: "baseline",
-                      lineHeight: 1.5,
+                    ) : (
+                      f.screen
+                    )}
+                  </div>
+                  {/* iPhone chrome (above the screen). */}
+                  <Image
+                    className="sp2-dl-phone-chrome"
+                    src="/images/devices/iphone-cropped.webp"
+                    alt=""
+                    aria-hidden
+                    width={720}
+                    height={972}
+                    sizes="(max-width: 760px) 100vw, 520px"
+                    style={{
+                      position:      "absolute",
+                      left:          "21.96%",
+                      top:           "11.74%",
+                      width:         "56.09%",
+                      height:        "auto",
+                      maxWidth:      "none",
+                      pointerEvents: "none",
+                      zIndex:        1,
+                    }}
+                  />
+                </div>
+
+                {/* Beat timeline — right column, single stack. Deep Teal
+                   numerals (SPOTIFY_GREEN doesn't meet contrast on the
+                   light DETAILS arc tint). */}
+                <ol
+                  className="sp2-dl-beats"
+                  style={{
+                    display:       "grid",
+                    gridTemplateColumns: "1fr",
+                    gap:           "clamp(18px, 2vw, 26px)",
+                    listStyle:     "none",
+                    padding:       0,
+                    margin:        0,
+                    maxWidth:      "520px",
+                  }}
+                >
+                  {f.frames.map((frame, idx) => (
+                    <li key={frame.src} style={{
+                      display:    "flex",
+                      gap:        "16px",
+                      alignItems: "baseline",
+                      fontFamily: font.sans,
+                      fontSize:   "14px",
+                      lineHeight: 1.55,
                     }}>
-                      <span style={{ fontWeight: 700, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
+                      <span style={{
+                        fontWeight:    700,
+                        letterSpacing: "0.14em",
+                        color:         c.accent,
+                        flexShrink:    0,
+                        fontVariantNumeric: "tabular-nums",
+                        minWidth:      "26px",
+                      }}>
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>{frame.label}</span>
-                    </figcaption>
-                  </figure>
-                ))}
+                      <span style={{ color: c.ink2, letterSpacing: "-0.005em" }}>
+                        <strong style={{ fontWeight: 700, color: c.ink }}>{frame.beat}</strong>{" "}{frame.body}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </div>
-            </div>
+            )}
 
             <div style={{ maxWidth: "880px" }}>
               {f.dossier.map((d) => (
@@ -1347,13 +2158,43 @@ function DecisionLogic() {
             trigger = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
             KEYS.forEach(k => { const el = document.getElementById('control-' + k); if (el) trigger.observe(el); });
           }
-          /* Defer first wire-up until React hydrates — otherwise
+          /* Sync the chip to the URL hash immediately. Without this,
+             deep-linking to #control-remove (or #control-pause) leaves
+             the SSR-default "pin active" chip lying about the current
+             section until the observer's next tick. */
+          function syncChipToHash() {
+            var m = /^#control-(pin|remove|pause)$/.exec(window.location.hash || '');
+            if (!m) return;
+            var key = m[1];
+            document.querySelectorAll('.sp2-control-nav a[data-control-anchor]').forEach(function (a) {
+              if (a.getAttribute('data-control-anchor') === key) {
+                a.setAttribute('data-active', 'true');
+                a.setAttribute('aria-current', 'location');
+              } else {
+                a.removeAttribute('data-active');
+                a.removeAttribute('aria-current');
+              }
+            });
+          }
+          /* Defer observer wire-up until React hydrates — otherwise
              setAttribute('aria-current'/'data-active') on the chip
-             nav anchors triggers a hydration mismatch. */
+             nav anchors triggers a hydration mismatch. Sync the chip
+             to hash FIRST so any deep-link lands with the right chip. */
           function chipInit() {
+            syncChipToHash();
             wireObserver();
             update();
           }
+          /* Also react to fragment navigation while the page is open
+             (back/forward, chip-clicks that update hash). Delay the
+             observer's next tick so the browser's smooth-scroll has
+             time to reach the new section before the viewport probe
+             runs — otherwise the observer sees the OLD scroll position
+             and immediately overrides the chip we just set. */
+          window.addEventListener('hashchange', function () {
+            syncChipToHash();
+            setTimeout(schedule, 900);
+          });
           if (document.readyState === 'complete') setTimeout(chipInit, 200);
           else window.addEventListener('load', function() { setTimeout(chipInit, 200); });
           /* When the document becomes visible again (tab return, scroll
@@ -1361,13 +2202,22 @@ function DecisionLogic() {
           document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible') schedule();
           });
-          /* Re-wire IO when nav anchors are clicked — programmatic
-             smooth-scroll in iOS Safari sometimes lands without firing
-             scroll events. One re-wire-on-click covers it without a
-             forever-running interval. */
+          /* On click of a chip, immediately paint the active state on
+             the tapped chip so there's no stale-active gap while the
+             smooth-scroll runs. Then re-wire the observer once the
+             scroll settles — iOS Safari sometimes lands programmatic
+             scroll without firing scroll events. */
           document.addEventListener('click', function(e) {
             var t = e.target;
-            if (t && t.closest && t.closest('a[data-control-anchor]')) {
+            var link = t && t.closest && t.closest('a[data-control-anchor]');
+            if (link) {
+              var key = link.getAttribute('data-control-anchor');
+              document.querySelectorAll('.sp2-control-nav a[data-control-anchor]').forEach(function(a) {
+                a.removeAttribute('data-active');
+                a.removeAttribute('aria-current');
+              });
+              link.setAttribute('data-active', 'true');
+              link.setAttribute('aria-current', 'location');
               setTimeout(function() { wireObserver(); schedule(); }, 400);
             }
           }, { passive: true });
@@ -1375,7 +2225,11 @@ function DecisionLogic() {
           /* State diagram opens centered — the interesting nodes (Pinned
              / arrows) sit in the middle of the canvas, so scrollLeft=0
              would land on empty whitespace. Other scrollers (sketches,
-             right-click) stay left-aligned because they read L→R. */
+             right-click) stay left-aligned because they read L→R.
+             Aggressive re-centering strategy because Next.js Image swaps
+             the src after initial paint, mobile Safari fires a viewport
+             resize as the URL bar collapses, and layout can shift as
+             fonts finish loading. */
           function centerState() {
             const el = document.querySelector('.sp2-state-scroll');
             if (!el) return;
@@ -1385,23 +2239,39 @@ function DecisionLogic() {
           }
           function wireStateCenter() {
             centerState();
-            const img = document.querySelector('.sp2-state-scroll img');
-            if (img && !img.complete) img.addEventListener('load', centerState, { once: true });
-            [200, 600, 1500].forEach(t => setTimeout(centerState, t));
+            const el = document.querySelector('.sp2-state-scroll');
+            const img = el && el.querySelector('img');
+            if (img) {
+              if (!img.complete) img.addEventListener('load', centerState, { once: true });
+              // Next.js Image swaps src after low-quality placeholder — watch for it.
+              try {
+                const mo = new MutationObserver(centerState);
+                mo.observe(img, { attributes: true, attributeFilter: ['src', 'srcset'] });
+              } catch (_) {}
+            }
+            if (el && typeof ResizeObserver === 'function') {
+              try {
+                const ro = new ResizeObserver(centerState);
+                ro.observe(el);
+              } catch (_) {}
+            }
+            [50, 150, 400, 800, 1500, 2500].forEach(t => setTimeout(centerState, t));
           }
           if (document.readyState === 'complete') wireStateCenter();
           else window.addEventListener('load', wireStateCenter);
           window.addEventListener('resize', centerState);
+          document.addEventListener('visibilitychange', () => { if (!document.hidden) centerState(); });
         })();
       ` }} />
       <style>{`
         .sp2-control-nav a[data-active] {
-          color: #252B28 !important;
-          background: #FAFAF9 !important;
-          box-shadow: inset 0 -3px 0 var(--color-accent) !important;
+          color: var(--color-accent) !important;
+          background: rgba(15,61,62,0.06) !important;
+          box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+          font-weight: 700 !important;
         }
         .sp2-control-nav a[data-active] span:first-child {
-          opacity: 0.85 !important;
+          opacity: 1 !important;
           color: var(--color-accent) !important;
         }
         .sp2-control-nav a:hover {
@@ -1636,9 +2506,9 @@ function ShippedSection() {
               display: "block", marginBottom: "12px",
             }}>03</span>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              fontFamily: font.sans, fontSize: "clamp(48px, 7vw, 84px)",
+              fontWeight: 500, color: c.ink, margin: 0,
+              letterSpacing: "-0.035em", lineHeight: 1.0,
             }}>
               Shipped, with receipts.
             </h2></div>
@@ -1888,8 +2758,10 @@ function ActionSheetHero() {
         }}>
           {/* Phone with the action sheet open. Rounded corners on the
              container mimic the real iPhone screen radius so it reads as a
-             device in hand rather than a flat rectangular grab. */}
-          <div style={{
+             device in hand rather than a flat rectangular grab. A small
+             long-press pulse indicator sits over the shelf-row area (top
+             third) so the reader sees the gesture, not just the result. */}
+          <div className="sp2-as-phone" style={{
             aspectRatio:  "780 / 1711",
             overflow:     "hidden",
             background:   "#000",
@@ -1897,6 +2769,7 @@ function ActionSheetHero() {
             width:        "100%",
             maxWidth:     "320px",
             borderRadius: "clamp(18px, 2vw, 28px)",
+            position:     "relative",
           }}>
             <Image
               src="/images/work/spotify/spotify-action-sheet.webp"
@@ -1909,6 +2782,51 @@ function ActionSheetHero() {
                 display: "block",
               }}
             />
+            <span aria-hidden="true" className="sp2-as-press">
+              <span className="sp2-as-press-ring" />
+              <span className="sp2-as-press-dot"  />
+            </span>
+            <style>{`
+              /* Long-press indicator over the phone: a small dot with
+                 expanding ring rides the top-third row area. Reads as
+                 "finger held here" — cues the gesture that opens the
+                 action sheet shown in the same frame. */
+              .sp2-as-press {
+                position: absolute;
+                top:      18%;
+                left:     78%;
+                width:    64px; height: 64px;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+              }
+              .sp2-as-press-ring,
+              .sp2-as-press-dot {
+                position: absolute;
+                top: 50%; left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+              }
+              .sp2-as-press-dot {
+                width: 18px; height: 18px;
+                background: #FFFFFF;
+                opacity: 0.85;
+                box-shadow: 0 0 0 2px rgba(255,255,255,0.35);
+              }
+              .sp2-as-press-ring {
+                width: 18px; height: 18px;
+                border: 2px solid #1ED760;
+                opacity: 0;
+                animation: sp2-press-pulse 2400ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+              }
+              @keyframes sp2-press-pulse {
+                0%   { width: 18px; height: 18px; opacity: 0.9; }
+                80%  { width: 72px; height: 72px; opacity: 0; }
+                100% { width: 72px; height: 72px; opacity: 0; }
+              }
+              @media (prefers-reduced-motion: reduce) {
+                .sp2-as-press-ring { animation: none; opacity: 0.5; }
+              }
+            `}</style>
           </div>
 
           {/* Caption + icon cells */}
@@ -2374,25 +3292,36 @@ function UserJourney() {
         {/* Journey map — desktop renders the wide image; mobile renders
             the transposed vertical version (JourneyVerticalMobile) so the
             map reads top-to-bottom instead of horizontal-scroll. */}
-        <div className="sp2-journey-scroll sp2-journey-desktop" tabIndex={0}
+        {/* Journey map sits directly on the DECISIONS arc tint. The
+            prior white inner box + border framed the map like a
+            gallery print, which fought the dark-on-lavender rhythm
+            the rest of the arc uses. */}
+        {/* Journey map — no aspect-ratio container, no max-height,
+            no object-fit. Plain <Image> at natural width, height
+            auto. Full map always visible, bottom never clipped. */}
+        <div className="sp2-journey-scroll sp2-journey-desktop"
           role="region"
-          aria-label="User journey map, scroll horizontally to view all six stages"
+          aria-label="User journey map"
           style={{
-            background: "#FFFFFF", border: `1px solid ${c.border}`,
-            padding: "clamp(12px, 3vw, 40px)",
-            overflowX: "auto",
-          WebkitOverflowScrolling: "touch",
+            display:        "flex",
+            justifyContent: "center",
         }}>
           <Image
-            src="/images/work/spotify/v2/figma-user-journey.png"
-            alt="User journey map — Recently Played shelf with the three opportunity points called out."
-            width={1920} height={1080}
-            sizes="(max-width: 760px) 980px, (max-width: 1240px) 100vw, 1240px"
+            src="/images/work/spotify/v2/figma-user-journey-final.png"
+            alt="User journey map. Recently Played shelf with the three opportunity points called out."
+            width={1920} height={1160}
+            sizes="(min-width: 1400px) 1400px, 100vw"
             quality={95}
             className="sp2-journey-img"
-            style={{ width: "100%", height: "auto", display: "block" }}
+            style={{
+              display:  "block",
+              width:    "100%",
+              height:   "auto",
+              maxWidth: "1400px",
+            }}
           />
         </div>
+        <p className="sp2-scroll-after">Swipe to explore &middot; full view on desktop &rarr;</p>
         <JourneyVerticalMobile />
       </div>
     </section>
@@ -2537,7 +3466,7 @@ function JourneyVerticalMobile() {
 
           <section style={{ marginBottom: "16px" }}>
             <p style={labelStyle}>Thought</p>
-            <p style={{ ...bodyStyle, fontStyle: "italic", color: c.ink2 }}>
+            <p style={{ ...bodyStyle, color: c.ink2 }}>
               &ldquo;{s.thought}&rdquo;
             </p>
           </section>

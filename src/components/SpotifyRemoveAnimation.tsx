@@ -36,16 +36,21 @@ import Image from "next/image";
 
 type Props = {
   /**
-   * "full" (default) — iPhone frame + annotations + caption. For case study embeds.
-   * "bare"            — just the screen with soft rounded corners and shadow.
-   *                    No phone bezel, no annotations, no caption.
-   *                    For hero embeds or compact spots.
+   * "full" (default)   — iPhone frame + annotations + caption. For case study embeds.
+   * "bare"             — just the screen with soft rounded corners and shadow.
+   *                     No phone bezel, no annotations, no caption.
+   *                     For hero embeds or compact spots.
+   * "screen-only"      — just the animated layers. No wrapper, no rounded corners,
+   *                     no shadow. The caller supplies the screen container
+   *                     (e.g. the DecisionLogic iPhone-chrome overlay for the
+   *                     Remove control walkthrough).
    */
-  variant?: "full" | "bare";
+  variant?: "full" | "bare" | "screen-only";
 };
 
 export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
-  const isBare = variant === "bare";
+  const isBare       = variant === "bare";
+  const isScreenOnly = variant === "screen-only";
   return (
     <>
       <style>{`
@@ -355,7 +360,9 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
            risk. Users who need motion stopped can pause the tab or scroll past. */
       `}</style>
 
-      {isBare ? (
+      {isScreenOnly ? (
+        <Screen />
+      ) : isBare ? (
         <div className="spra-bare" aria-label="Animated prototype: Remove interaction on Spotify Recently Played">
           <Screen />
         </div>

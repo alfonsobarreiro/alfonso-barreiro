@@ -44,6 +44,9 @@ export default function WayfarerGlobePeek({ paused: _paused = false }: { paused?
           height:         "100%",
           objectFit:      "cover",
           objectPosition: "center",
+          /* No transform crop — the outer shell is now a matching
+             navy radial, so the video's baked-in navy edges are
+             welcome and the row reads as one continuous field. */
           display:        "block",
         }}
       >

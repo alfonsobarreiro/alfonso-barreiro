@@ -23,11 +23,12 @@ export default function NotFound() {
     <>
       <Nav />
       <main
+        className="notfound-section"
         style={{
-          minHeight:      "calc(100vh - 80px)",
+          minHeight:      "auto",
           display:        "flex",
           alignItems:     "center",
-          padding:        "120px clamp(32px, 6vw, 80px) 80px",
+          padding:        "96px clamp(32px, 6vw, 80px) 56px",
           background:     "#FFFFFF",
           position:       "relative",
           overflow:       "hidden",
@@ -110,8 +111,12 @@ export default function NotFound() {
             }}
           >
             A link that didn&apos;t exist yet.
-            <br />
-            <span style={{ color: "var(--color-brand)", fontWeight: 500 }}>
+            <span style={{
+              color:      "var(--color-brand)",
+              fontWeight: 500,
+              display:    "block",
+              marginTop:  "0.35em",
+            }}>
               Decision someone hasn&apos;t made.
             </span>
           </h1>
@@ -222,6 +227,12 @@ export default function NotFound() {
           }
           .nf-home:hover {
             transform: translateY(-2px);
+          }
+          /* Mirror Home Hero's mobile padding at the same 899px breakpoint. */
+          @media (max-width: 899px) {
+            .notfound-section {
+              padding: 56px clamp(24px, 5vw, 48px) 40px !important;
+            }
           }
         `}</style>
       </main>

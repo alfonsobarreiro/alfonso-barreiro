@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
+/* Page is authoring-only. Do not deploy — SLUX audit 2026-07-03 flagged
+   it as templated and off-brand (ABD cyan instead of house palette,
+   missing hover states, no distinctive voice). Production returns 404,
+   dev keeps rendering so it can be reworked. */
 export const metadata: Metadata = {
   title: "ABD UI · Production Design System",
   description:
     "Case study: A token-driven design system that ships. 120 components, 15 color tokens, and a role-based token architecture published to CSS, JSON, and Figma so design and code read from one source.",
   alternates: { canonical: "https://www.barreiro.com/work/abd-ui-system" },
+  robots: { index: false, follow: false },
   openGraph: {
     type: "article",
     url: "https://www.barreiro.com/work/abd-ui-system",
@@ -74,6 +80,7 @@ const DOWNSTREAM = [
 ];
 
 export default function Page() {
+  if (process.env.NODE_ENV === "production") notFound();
   return (
     <>
       <Nav />

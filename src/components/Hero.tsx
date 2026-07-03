@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* Stagger delays for hero entrance elements */
 const HERO_DELAYS = ["0s", "0.12s", "0.24s", "0.36s", "0.5s"];
@@ -116,25 +116,31 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Name */}
+          {/* Thesis-as-H1. The nav wordmark already carries the
+              name; the hero H1 now carries the POV so the fold sells
+              a viewpoint instead of restating the byline. Second
+              sentence lifts the crimson accent that was on the name. */}
           <h1
             className="hero-reveal"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(48px, 7.5vw, 96px)",
-              fontWeight:    300,
-              lineHeight:    0.95,
+              fontSize:      "clamp(30px, 4vw, 56px)",
+              fontWeight:    400,
+              lineHeight:    1.1,
               letterSpacing: "-0.025em",
               color:         "#252B28",
-              margin:        "0 0 36px",
+              margin:        "0 0 32px",
+              maxWidth:      "18ch",
             }}
           >
-            Alfonso
+            Most design problems aren&rsquo;t visual problems.
             <br />
-            <span style={{ color: "var(--color-brand)", fontWeight: 500 }}>Barreiro</span>
+            <span style={{ color: "var(--color-brand)", fontWeight: 500, display: "inline-block", marginTop: "0.4em" }}>
+              They&rsquo;re decisions someone hasn&rsquo;t made yet.
+            </span>
           </h1>
 
-          {/* Positioning */}
+          {/* Method deck — the "how" underneath the "what" of the H1. */}
           <p
             className="hero-reveal"
             style={{
@@ -147,9 +153,21 @@ export default function Hero() {
               fontWeight:   400,
             }}
           >
-            Most design problems aren&apos;t visual problems. They&apos;re
-            decisions someone hasn&apos;t made yet: surfaced through
-            research, made explicit, shipped to a live product.
+            Surfaced through research, made explicit, shipped to a live product.
+          </p>
+          <p
+            className="hero-reveal hero-availability"
+            style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "13px",
+              fontWeight:    500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color:         "var(--color-accent)",
+              margin:        "0 0 44px",
+            }}
+          >
+            Available for senior UX/UI roles at product teams · Remote from Portland
           </p>
         </div>
 
@@ -280,6 +298,11 @@ export default function Hero() {
              scale itself. */
           .hero-text-col h1 { margin-bottom: 20px !important; }
           .hero-text-col p  { margin-bottom: 0 !important; }
+          /* The AVAILABLE line was landing right against the philosophy
+             paragraph on mobile because the rule above zeros its neighbor's
+             margin-bottom. Give the availability line its own breathing
+             room via margin-top (unaffected by the sibling rule). */
+          .hero-text-col p.hero-availability { margin-top: 24px !important; }
           /* Scroll hint overlaps the CTAs on mobile and the gesture is
              already obvious on a phone. Hide it. */
           .scroll-hint { display: none !important; }
@@ -299,10 +322,36 @@ const COUNT_TARGET = 13;
 function HeroResultPanel() {
   const panelRef = useRef<HTMLAnchorElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  /* Count-up animation removed — the number now lands at 13 directly.
-     Was a nice flourish on desktop but read as a distraction on mobile
-     where the panel is below the fold. */
-  const n = COUNT_TARGET;
+  /* Count-up: desktop-only, fires when the panel enters the viewport.
+     Restored 2026-07-03 after the SLUX audit flagged the flat 13× as
+     one of the lifts to portfolio-defining. Gated on min-width: 900px
+     + prefers-reduced-motion so mobile / motion-averse readers get 13
+     immediately (why it was pulled the first time). */
+  const [n, setN] = useState<number>(COUNT_TARGET);
+  const statRef = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    const el = statRef.current;
+    if (!el) return;
+    const mqNarrow = window.matchMedia("(max-width: 899px)");
+    const mqMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mqNarrow.matches || mqMotion.matches) return;
+    setN(0);
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const start = performance.now();
+      const dur = 1400;
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        setN(COUNT_TARGET * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.5 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   /* WCAG 2.2.2 Pause, Stop, Hide. The walkthrough video autoplays for
      ~22s per loop. Cap it at 2 loops so motion stops after ~44s
@@ -495,13 +544,14 @@ function HeroResultPanel() {
             visually dominate to the point where the descriptor reads
             as a footnote glued to the digit. */}
         <p
+          ref={statRef}
           style={{
             fontFamily:         "var(--font-dm-sans), sans-serif",
             fontSize:           "clamp(40px, 4.5vw, 56px)",
             lineHeight:         1,
-            fontWeight:         800,
+            fontWeight:         700,
             letterSpacing:      "-0.02em",
-            color:              "var(--color-brand)",
+            color:              "var(--color-accent)",
             margin:             "10px 0 0",
             fontVariantNumeric: "tabular-nums",
           }}
@@ -520,7 +570,7 @@ function HeroResultPanel() {
             maxWidth:       "260px",
           }}
         >
-          CTR lift on affiliate placements
+          Return-visits on the results page
         </p>
 
         {/* CTA */}

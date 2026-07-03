@@ -8,6 +8,7 @@ import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
+import DiagnosticFlowDemo from "./_demo/DiagnosticFlowDemo";
 
 /* ---------------------------------------------------------------------------
    /work/mens-sole-revival-v2
@@ -153,6 +154,47 @@ function ArcDivider({ arc }: { arc: string }) {
    section. Three "you are here" badges per section was scaffolding the
    reader didn't need. Same call we made on Spotify + Wayfarer. */
 
+/* Beat header — three named breakpoints inside the Details arc.
+   Breaks the seven-adjacent-aside monotony flagged in the SLUR
+   ceiling analysis and gives the arc a Pentagram-style act structure
+   (Evidence / Interaction / Trade-offs). Numeral leads, label
+   follows, hairline seats it on the page. */
+function BeatHeader({ n, label }: { n: string; label: string }) {
+  return (
+    <div style={{
+      display:      "flex",
+      alignItems:   "baseline",
+      gap:          "clamp(20px, 3vw, 40px)",
+      margin:       "clamp(96px, 12vw, 160px) 0 clamp(40px, 5vw, 64px)",
+      paddingBottom: "20px",
+      borderBottom: `1px solid ${c.borderStrong}`,
+    }}>
+      <span style={{
+        fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+        fontSize:           "clamp(48px, 7vw, 88px)",
+        fontWeight:         800,
+        letterSpacing:      "-0.005em",
+        color:              c.brand,
+        lineHeight:         0.95,
+        fontVariantNumeric: "tabular-nums",
+      }}>{n}</span>
+      <span style={{
+        fontFamily:    font.sans,
+        fontSize:      "clamp(16px, 1.6vw, 20px)",
+        fontWeight:    600,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color:         c.ink,
+      }}>{label}</span>
+    </div>
+  );
+}
+
+/* Decision callout — signature element across every case study.
+   Three-stack left bar (crimson / Deep Teal / ink) is the visual
+   wordmark; the Decision/Why/Cost structure is the editorial
+   pattern. Why and Cost sit side-by-side on desktop so the trade-off
+   reads as one thought. */
 function Callout({
   decision, why, cost,
 }: { decision: string; why: string; cost: string }) {
@@ -163,7 +205,7 @@ function Callout({
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
-    margin:        "0 0 8px",
+    margin:        "0 0 10px",
   };
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
@@ -173,31 +215,50 @@ function Callout({
     margin:     0,
   };
   return (
-    <aside style={{
-      background:   c.callout,
-      borderLeft:   `4px solid ${c.brand}`,
-      padding:      "28px 32px",
-      maxWidth:     "680px",
+    <aside className="msr2-callout" style={{
+      background:   "#FFFFFF",
+      border:       `1px solid ${c.border}`,
+      padding:      "32px 36px 32px 44px",
+      maxWidth:     "760px",
       marginTop:    "40px",
+      position:     "relative",
     }}>
+      <span aria-hidden="true" style={{
+        position: "absolute", left: 0, top: 28, bottom: 28,
+        width: "5px",
+        display: "grid",
+        gridTemplateRows: "1fr 1fr 1fr",
+      }}>
+        <span style={{ background: c.brand }} />
+        <span style={{ background: c.accent }} />
+        <span style={{ background: c.ink }} />
+      </span>
       <p style={labelStyle}>Decision</p>
       <p style={{
         fontFamily:    font.sans,
-        fontSize:      "20px",
+        fontSize:      "clamp(22px, 2.2vw, 26px)",
         fontWeight:    600,
-        color:         c.brand,
-        margin:        "0 0 24px",
-        letterSpacing: "-0.01em",
-        lineHeight:    1.3,
+        color:         c.ink,
+        margin:        "0 0 28px",
+        letterSpacing: "-0.015em",
+        lineHeight:    1.25,
       }}>
         {decision}
       </p>
-
-      <p style={labelStyle}>Why</p>
-      <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
-
-      <p style={labelStyle}>Cost</p>
-      <p style={bodyStyle}>{cost}</p>
+      <div className="msr2-callout-grid" style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "32px",
+      }}>
+        <div>
+          <p style={labelStyle}>Why</p>
+          <p style={bodyStyle}>{why}</p>
+        </div>
+        <div>
+          <p style={labelStyle}>Cost</p>
+          <p style={bodyStyle}>{cost}</p>
+        </div>
+      </div>
     </aside>
   );
 }
@@ -350,58 +411,66 @@ export default function MSRv2() {
             at mobile (see media query in style block) because global
             `main { display: flex }` makes sticky unreliable at small
             viewports. */}
+        {/* Arc nav rebuilt to match Spotify's sp2-control-nav exactly:
+            solid white, grid of equal columns with divider lines,
+            13px 700 uppercase labels, and an inset bottom-underline
+            active state tinted with the site accent. */}
         <nav
           aria-label="Case study arcs"
           className="msr2-arc-nav"
           style={{
-            position:       "sticky",
-            top:            "72px",
-            zIndex:         10,
-            alignSelf:      "stretch",
-            flexShrink:     0,
-            width:          "100%",
-            background:     "rgba(255, 255, 255, 0.94)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            borderTop:      `1px solid ${c.border}`,
-            borderBottom:   `1px solid ${c.border}`,
-            padding:        "14px 0",
+            position:     "sticky",
+            top:          "72px",
+            zIndex:       10,
+            alignSelf:    "stretch",
+            flexShrink:   0,
+            width:        "100%",
+            background:   "#FFFFFF",
+            borderTop:    `1px solid ${c.border}`,
+            borderBottom: `1px solid ${c.border}`,
+            margin:       "0 0 40px",
           }}
         >
           <ul style={{
-            display: "flex", gap: "clamp(16px, 3vw, 32px)", justifyContent: "center",
-            margin: 0, padding: `0 ${SECTION_X}`, listStyle: "none", flexWrap: "wrap",
+            display:             "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            margin:              0,
+            padding:             0,
+            listStyle:           "none",
           }}>
             {[
               { key: "premise",   label: "Premise"   },
               { key: "research",  label: "Research"  },
               { key: "decisions", label: "Decisions" },
               { key: "details",   label: "Details"   },
-            ].map((arc, i) => (
-              <li key={arc.key}>
+            ].map((arc, i, arr) => (
+              <li key={arc.key} style={{
+                borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
+              }}>
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
+                  aria-label={`${String(i + 1).padStart(2, "0")} · ${arc.label}`}
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
-                    fontWeight:     600,
-                    letterSpacing:  "0.06em",
+                    fontWeight:     700,
+                    letterSpacing:  "0.08em",
                     textTransform:  "uppercase",
                     color:          c.ink2,
                     textDecoration: "none",
-                    display:        "inline-flex",
-                    alignItems:     "baseline",
-                    gap:            "8px",
-                    padding:        "4px 0",
-                    borderBottom:   "2px solid transparent",
-                    transition:     "color 0.2s ease, border-color 0.2s ease",
+                    display:        "flex",
+                    alignItems:     "center",
+                    justifyContent: "center",
+                    gap:            "6px",
+                    padding:        "16px 8px",
+                    transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.55, fontVariantNumeric: "tabular-nums" }}>
+                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }} aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  {arc.label}
+                  <span className="msr2-arc-label" aria-hidden="true">{arc.label}</span>
                 </a>
               </li>
             ))}
@@ -411,31 +480,106 @@ export default function MSRv2() {
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
             if (typeof window === "undefined") return;
+            var NAV_STACK_HEIGHT = 140;
             function wire() {
-              const anchors = document.querySelectorAll('a[data-arc-anchor]');
+              var anchors = document.querySelectorAll('a[data-arc-anchor]');
               if (!anchors.length) return false;
-              const targets = ['premise', 'research', 'decisions', 'details']
-                .map(k => document.getElementById('arc-' + k))
+              var targets = ['premise', 'research', 'decisions', 'details']
+                .map(function (k) { return document.getElementById('arc-' + k); })
                 .filter(Boolean);
               if (targets.length < 4) return false;
-              const map = {};
-              anchors.forEach(a => { map[a.getAttribute('data-arc-anchor')] = a; });
-              const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                  const key = e.target.id.replace('arc-', '');
-                  const anchor = map[key];
-                  if (!anchor) return;
-                  if (e.isIntersecting) {
-                    anchors.forEach(a => a.removeAttribute('data-active'));
-                    anchor.setAttribute('data-active', 'true');
+              var map = {};
+              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
+              /* Active-state as pure function of scroll position.
+                 Retired the IntersectionObserver: with two moving
+                 pieces (IO + scroll listener) the clear-zone kept
+                 racing the activate-zone. This runs on every scroll
+                 (throttled via rAF), computes an "active line" 1/3
+                 down the viewport, and picks whichever arc contains
+                 that line. Above the first arc: no active. */
+              var activeKey = null;
+              var rafScheduled = false;
+              function computeActive() {
+                rafScheduled = false;
+                var scrollY = window.scrollY;
+                var activeLine = scrollY + window.innerHeight * 0.33;
+                var arcs = [];
+                for (var i = 0; i < targets.length; i++) {
+                  var el = targets[i];
+                  var top = el.getBoundingClientRect().top + scrollY;
+                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
+                }
+                var nextKey = null;
+                if (activeLine >= arcs[0].top) {
+                  for (var j = 0; j < arcs.length; j++) {
+                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
+                    if (activeLine >= arcs[j].top && activeLine < next) {
+                      nextKey = arcs[j].key;
+                      break;
+                    }
+                  }
+                }
+                if (nextKey === activeKey) return;
+                activeKey = nextKey;
+                anchors.forEach(function (a) {
+                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
+                    a.setAttribute('data-active', 'true');
+                  } else {
+                    a.removeAttribute('data-active');
                   }
                 });
-              }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-              targets.forEach(t => obs.observe(t));
+              }
+              function onScroll() {
+                if (rafScheduled) return;
+                rafScheduled = true;
+                requestAnimationFrame(computeActive);
+              }
+              window.addEventListener('scroll', onScroll, { passive: true });
+              window.addEventListener('resize', onScroll, { passive: true });
+              computeActive();
+
+              /* Programmatic click handler — computes exact scroll
+                 position so all four arcs land at the same distance
+                 below the sticky arc-nav. Without this, clicking 01
+                 Premise from the top of the page landed lower than
+                 clicking 02/03/04 because the arc-nav hadn't yet
+                 crossed its sticky threshold. */
+              anchors.forEach(function (a) {
+                a.addEventListener('click', function (ev) {
+                  var key = a.getAttribute('data-arc-anchor');
+                  var target = document.getElementById('arc-' + key);
+                  if (!target) return;
+                  ev.preventDefault();
+                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                  a.setAttribute('data-active', 'true');
+                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
+                });
+              });
+
+              /* Deep-link + back/forward hashchange sync — matches the
+                 pattern the Spotify chip nav uses so external
+                 #arc-decisions links (from resume PDFs, Slack forwards,
+                 SEO snippets) land with the right chip painted and
+                 scroll to the target through our custom nav-stack math. */
+              function syncFromHash() {
+                var m = /^#arc-(premise|research|decisions|details)$/.exec(window.location.hash || '');
+                if (!m) return;
+                var key = m[1];
+                var target = document.getElementById('arc-' + key);
+                if (!target) return;
+                anchors.forEach(function (x) { x.removeAttribute('data-active'); });
+                if (map[key]) map[key].setAttribute('data-active', 'true');
+                var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+              window.addEventListener('hashchange', syncFromHash);
+              if (window.location.hash) setTimeout(syncFromHash, 200);
               return true;
             }
             if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(() => requestAnimationFrame(wire));
+              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
             } else {
               document.addEventListener('DOMContentLoaded', wire);
             }
@@ -443,28 +587,75 @@ export default function MSRv2() {
         ` }} />
         <style>{`
           .msr2-arc-nav a[data-active] {
-            color: var(--color-brand) !important;
-            border-bottom-color: var(--color-brand) !important;
+            color: var(--color-accent) !important;
+            background: rgba(15,61,62,0.06) !important;
+            box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+            font-weight: 700 !important;
           }
-          .msr2-arc-nav a:hover { color: ${c.ink}; }
+          .msr2-arc-nav a[data-active] span:first-child {
+            opacity: 1 !important;
+            color: var(--color-accent) !important;
+          }
+          .msr2-arc-nav a:hover {
+            color: ${c.ink};
+            background: rgba(15,61,62,0.04);
+          }
           @media (max-width: 760px) {
             .msr2-arc-nav {
               position: fixed !important;
               left: 0 !important;
               right: 0 !important;
               top: 72px !important;
-              padding: 6px 0 !important;
+              padding: 0 !important;
             }
-            .msr2-arc-nav ul { gap: 14px !important; }
-            .msr2-arc-nav a  { font-size: 11px !important; padding: 2px 0 !important; }
-            /* Hide 01/02/03 numerals on phones — they crowd the chip text. */
-            .msr2-arc-nav a span:first-child { display: none !important; }
+            .msr2-arc-nav ul { gap: 0 !important; }
+            /* Anchor sized to fit four cells at 390 px viewport. */
+            .msr2-arc-nav a  {
+              font-size: 11px !important;
+              padding: 12px 4px !important;
+              letter-spacing: 0.06em !important;
+              gap: 4px !important;
+              color: ${c.ink2} !important;
+              transition: background 0.15s ease, color 0.15s ease !important;
+            }
+            /* Active state — same Deep Teal inset underline the desktop
+               nav uses. Replaces the old crimson filled pill so the
+               visual language is consistent across breakpoints. */
+            .msr2-arc-nav a[data-active] {
+              color: var(--color-accent) !important;
+              background: rgba(15,61,62,0.06) !important;
+              box-shadow: inset 0 -4px 0 var(--color-accent) !important;
+              font-weight: 700 !important;
+              border-bottom: none !important;
+            }
+            .msr2-arc-nav a[data-active] span:first-child {
+              opacity: 1 !important;
+              color: var(--color-accent) !important;
+            }
             .msr2-arc-nav + script + style + div { padding-top: 36px !important; }
+          }
+          /* Under 480px, drop the arc labels ("Premise" / "Research" …)
+             and show only the numerals. Recovers about 13% of the
+             viewport height the nav was eating (audit 2026-07-03).
+             Aria-labels on the anchors already carry the full name for
+             screen readers, so hiding the label text is safe. */
+          @media (max-width: 480px) {
+            .msr2-arc-label { display: none !important; }
+            .msr2-arc-nav a {
+              padding: 8px 4px !important;
+              font-size: 12px !important;
+              letter-spacing: 0.10em !important;
+              min-height: 34px !important;
+            }
+            .msr2-arc-nav a span:first-child {
+              opacity: 1 !important;
+              font-size: 12px !important;
+            }
           }
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
-        <div id="arc-premise" style={{ background: "#EEF2F6", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-premise" style={{ background: "#EEF2F6", marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Hero image — full homepage capture, cropped
@@ -489,15 +680,26 @@ export default function MSRv2() {
         }}>
           <p style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(28px, 4vw, 44px)",
-            fontWeight:    500,
-            color:         c.brand,
+            fontSize:      "clamp(28px, 3.8vw, 48px)",
+            fontWeight:    400,
+            color:         c.ink,
             margin:        0,
-            lineHeight:    1.25,
-            letterSpacing: "-0.015em",
-            maxWidth:      "900px",
+            lineHeight:    1.18,
+            letterSpacing: "-0.03em",
+            maxWidth:      "22ch",
           }}>
-            &ldquo;The middle, where someone could teach men what&rsquo;s happening to their feet and what to do about it, didn&rsquo;t exist.&rdquo;
+            &ldquo;Three weeks in, the spreadsheet stopped disagreeing with the interviews. The men weren&rsquo;t shopping. They were reading.&rdquo;
+          </p>
+          <p style={{
+            fontFamily:    font.sans,
+            fontSize:      "11px",
+            fontWeight:    700,
+            letterSpacing: "0.22em",
+            color:         c.accent,
+            textTransform: "uppercase",
+            margin:        "28px 0 0",
+          }}>
+            From the margin memo, week 3
           </p>
         </section>
 
@@ -512,12 +714,12 @@ export default function MSRv2() {
           imageCrop={null}
           body={
             <>
-              Men over 40 quietly Google their foot problems. Clinical sites scare them. Commerce sites push to them. The middle, where someone could teach them what&rsquo;s happening and what to do about it, didn&rsquo;t exist. The articles that ranked were written for women, repackaged with a stock photo of a guy.
+              Men over 40 quietly Google their foot problems. Clinical sites scare them. Commerce sites push to them. The articles that ranked were written for women, repackaged with a stock photo of a guy.
             </>
           }
           callout={{
             decision: "Pivot from e-commerce to editorial in week 3.",
-            why:      "Three weeks of margin modeling kept pointing to the same answer. The friction wasn’t execution. It was the starting point. These men aren’t hiring a product. They’re hiring a reason to start paying attention.",
+            why:      "Three weeks of margin modeling kept pointing to the same answer. The friction wasn’t execution. It was the starting point. These men don’t need a product. They need a reason to start paying attention.",
             cost:     "Threw out the Shopify spec. Restarted the IA from scratch.",
           }}
         />
@@ -528,7 +730,7 @@ export default function MSRv2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-research" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Research strip — compact bridge between §01
@@ -545,7 +747,7 @@ export default function MSRv2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ */}
-        <div id="arc-decisions" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-decisions" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             §02 — The bet (inlined; uses a code-rendered
@@ -578,13 +780,14 @@ export default function MSRv2() {
                   marginBottom:  "12px",
                 }}>02</span>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   The bet.
                 </h2></div>
@@ -686,13 +889,14 @@ export default function MSRv2() {
               <div>
                 <Eyebrow>Brand identity</Eyebrow>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   A brand that&rsquo;s actually for men.
                 </h2></div>
@@ -718,7 +922,7 @@ export default function MSRv2() {
         <ArcDivider arc="Details" />
 
         {/* ── DETAILS arc tint ─ */}
-        <div id="arc-details" style={{ background: "#ECEFF3", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "152px" }}>
+        <div id="arc-details" style={{ background: "#ECEFF3", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* ─────────────────────────────────────────────
             Design system — replaced the single
@@ -741,13 +945,14 @@ export default function MSRv2() {
               <div>
                 <Eyebrow>Design system</Eyebrow>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   Built once.<br/>Used everywhere.
                 </h2></div>
@@ -780,7 +985,7 @@ export default function MSRv2() {
               marginInline:  "auto",
             }}>
               <span aria-hidden="true" style={{ color: c.accent }}>→ </span>
-              Click 01 · 02 · 03 to switch panels
+              Three panels: color tokens, type ramp, components.
             </p>
             <DesignSystemCarousel />
           </div>
@@ -805,13 +1010,14 @@ export default function MSRv2() {
                   marginBottom:  "12px",
                 }}>03</span>
                 <h2 style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
-                  color:         c.ink,
-                  margin:        0,
-                  letterSpacing: "-0.025em",
-                  lineHeight:    1.05,
+                  fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                  fontSize:       "clamp(48px, 6.5vw, 96px)",
+                  fontWeight:     800,
+                  textTransform:  "uppercase",
+                  color:          c.ink,
+                  margin:         0,
+                  letterSpacing:  "-0.005em",
+                  lineHeight:     0.95,
                 }}>
                   Shipped.
                 </h2></div>
@@ -937,14 +1143,161 @@ export default function MSRv2() {
               </div>
             </div>
 
-            {/* Annotated assessment — Pentagram-pattern decision callouts on
-                top of the Nail Health section capture. Single visual that
-                signals "I can articulate why every component is shaped the
-                way it is." Lives between the assessment 2-up and the
-                affiliate Decision callout. */}
-            <div style={{ marginTop: "80px", marginBottom: "40px" }}>
+            {/* The Details arc runs as three named beats: EVIDENCE
+                (what the data shows), INTERACTION (try the routing
+                for yourself), TRADE-OFFS (what got cut and what could
+                still fail). The mid-arc pause is a full-bleed dark
+                block on the ten-week GA4 numbers — the page's single
+                highest hiring signal, given room to breathe. */}
+
+            <BeatHeader n="01" label="Evidence" />
+
+            <div style={{ marginTop: "40px", marginBottom: "40px" }}>
               <AnnotatedAssessment />
             </div>
+
+            <AssessmentFunnelFlow />
+
+            <UserResearch />
+
+            {/* Early outcomes — promoted from a crimson-rail aside to
+                a full-bleed dark editorial break so the ten-week GA4
+                numbers carry the weight they've earned. Same copy,
+                composed as a Barlow-numeral proof band. */}
+            <div style={{
+              marginTop:     "80px",
+              marginBottom:  "80px",
+              marginLeft:    "calc(50% - 50vw)",
+              marginRight:   "calc(50% - 50vw)",
+              background:    "#13100C",
+              color:         "#F5F0E8",
+              paddingTop:    "clamp(72px, 10vw, 128px)",
+              paddingBottom: "clamp(72px, 10vw, 128px)",
+              paddingLeft:   SECTION_X,
+              paddingRight:  SECTION_X,
+            }}>
+              <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+                <p style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "11px",
+                  fontWeight:    700,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color:         "#D2C7B4",
+                  margin:        "0 0 32px",
+                }}>
+                  Early outcomes &nbsp;·&nbsp; first 10 weeks live &nbsp;·&nbsp; GA4, Apr&ndash;Jun 2026
+                </p>
+                <div style={{
+                  display:             "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap:                 "clamp(40px, 5vw, 80px)",
+                  alignItems:          "start",
+                }} className="msr-outcomes-grid">
+                  <div>
+                    <p style={{
+                      fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                      fontSize:           "clamp(96px, 12vw, 160px)",
+                      fontWeight:         800,
+                      lineHeight:         0.9,
+                      letterSpacing:      "-0.01em",
+                      color:              "#F5F0E8",
+                      margin:             0,
+                      fontVariantNumeric: "tabular-nums",
+                    }}>4:53</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
+                      Average engaged time per session. High for a content site, and the exact signal MSR was built to produce.
+                    </p>
+                  </div>
+                  <div>
+                    <p style={{
+                      fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                      fontSize:           "clamp(96px, 12vw, 160px)",
+                      fontWeight:         800,
+                      lineHeight:         0.9,
+                      letterSpacing:      "-0.01em",
+                      color:              "#F5F0E8",
+                      margin:             0,
+                      fontVariantNumeric: "tabular-nums",
+                    }}>3.2</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
+                      Sessions per user across 41 early visitors in 6 countries with zero paid promotion. Early readers come back.
+                    </p>
+                  </div>
+                  <div>
+                    <p style={{
+                      fontFamily:         "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+                      fontSize:           "clamp(96px, 12vw, 160px)",
+                      fontWeight:         800,
+                      lineHeight:         0.9,
+                      letterSpacing:      "-0.01em",
+                      color:              "var(--color-brand)",
+                      margin:             0,
+                      fontVariantNumeric: "tabular-nums",
+                    }}>0</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
+                      Organic search clicks so far, on 4 impressions. Discovery is direct or referral. SEO is the clear next lever.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── §02 Interaction — try-it moment. Ryan flagged that the
+                demo was disappearing into the Callout family (same
+                crimson-rail card on paper). Fix: swap the quiet BeatHeader
+                for a real editorial arrival (Deep Teal eyebrow + display
+                headline + deck), and give DiagnosticFlowDemo its own
+                "instrument" chrome (white bg, elevation shadow, no left
+                rail). See DiagnosticFlowDemo.tsx for the widget change. */}
+            <div style={{
+              marginTop: "clamp(96px, 12vw, 160px)",
+              marginBottom: "clamp(56px, 8vw, 96px)",
+              marginLeft: "calc(50% - 50vw)",
+              marginRight: "calc(50% - 50vw)",
+              background: "#FFFFFF",
+              paddingTop: "clamp(72px, 10vw, 112px)",
+              paddingBottom: "clamp(56px, 8vw, 96px)",
+              paddingLeft: SECTION_X,
+              paddingRight: SECTION_X,
+            }}>
+              <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+
+                {/* §02 arrival — matches the 01 · Evidence + 03 ·
+                    Trade-offs BeatHeader pattern (Alfonso 2026-07-03:
+                    "01 and 03 exist as Beat but 02 was different, and
+                    Try it · Diagnostic routing reads junior"). Same
+                    numeric+label header, then display H2 + deck. */}
+                <BeatHeader n="02" label="Interaction" />
+                <div style={{ maxWidth: "780px", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+                  <h2 style={{
+                    fontFamily:    font.sans,
+                    fontSize:      "clamp(36px, 5vw, 60px)",
+                    fontWeight:    600,
+                    color:         c.ink,
+                    margin:        "0 0 20px",
+                    letterSpacing: "-0.03em",
+                    lineHeight:    1.05,
+                  }}>
+                    The routing logic is the whole case.
+                  </h2>
+                  <p style={{
+                    fontFamily: font.sans,
+                    fontSize:   "clamp(16px, 1.6vw, 19px)",
+                    lineHeight: 1.6,
+                    color:      c.ink2,
+                    margin:     0,
+                    maxWidth:   "62ch",
+                  }}>
+                    The same three-step routing that runs behind the assessment on the live site. Pick what&rsquo;s bothering you, then follow it through select, route, and hand-off.
+                  </p>
+                </div>
+
+                <DiagnosticFlowDemo />
+              </div>
+            </div>
+
+            <BeatHeader n="03" label="Trade-offs" />
 
             <Callout
               decision="Affiliate CTAs, not product listings."
@@ -956,25 +1309,10 @@ export default function MSRv2() {
                 got dropped from the original scope, not just what shipped. */}
             <WhatICut />
 
-            {/* Early outcomes — real GA4 data from the live site. Single
-                highest hiring signal on the page. */}
-            <EarlyOutcomes />
-
             {/* What could still go wrong — honest risks callout. Pairs
-                with EarlyOutcomes (which showed what's working) to surface
-                what's unproven. Decision-transparency move. */}
+                with the Early Outcomes numbers (what's working) to
+                surface what's unproven. */}
             <HonestRisks />
-
-            {/* Assessment funnel visual — pairs with the Voice-of-the-User
-                callout below. Five-node horizontal flow visualizing the
-                6 → 6 → 6 → 5 → 3 funnel + the 13× return-views annotation. */}
-            <AssessmentFunnelFlow />
-
-            {/* Voice of the user — real GA4 behavioral data pulled
-                June 2026, ~10 weeks live. Three paragraphs covering the
-                editorial bet (pillar engagement), affiliate bet (review
-                read-time), and the honest scale. */}
-            <UserResearch />
           </div>
         </section>
 
@@ -1083,33 +1421,53 @@ export default function MSRv2() {
 
       {/* Responsive */}
       <style>{`
-        /* Design system carousel — CSS-only tabs (hidden radios + ~ sibling).
-           Radios use clip-path to stay focusable so keyboard users can
-           Tab + arrow through the three tabs. pointer-events:none would
-           remove them from the focus chain. */
-        .msr2-ds-carousel > input[type="radio"] { position: absolute; opacity: 0; clip: rect(0 0 0 0); clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
-        /* Project focus ring onto the visible label via :has() */
-        .msr2-ds-carousel:has(#msr2-ds-tab-1:focus-visible) .msr2-ds-tab-1,
-        .msr2-ds-carousel:has(#msr2-ds-tab-2:focus-visible) .msr2-ds-tab-2,
-        .msr2-ds-carousel:has(#msr2-ds-tab-3:focus-visible) .msr2-ds-tab-3 {
-          outline: 2px solid var(--color-focus-ring);
-          outline-offset: -2px;
+        /* Design system panels — three cards in normal vertical flow.
+           Was a sticky-stack (position: sticky with staggered top
+           offsets) but Alfonso called it: the stack fought the case
+           study's editorial pacing on desktop. Plain flow reads
+           better, and killing the 30vh trailing padding closes the
+           dead space above 03 Shipped. */
+        .msr2-ds-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
         }
-        .msr2-ds-panel { display: none; }
-        #msr2-ds-tab-1:checked ~ .msr2-ds-panels > [data-panel="1"] { display: block; }
-        #msr2-ds-tab-2:checked ~ .msr2-ds-panels > [data-panel="2"] { display: block; }
-        #msr2-ds-tab-3:checked ~ .msr2-ds-panels > [data-panel="3"] { display: block; }
-        /* Tab active states — read which radio is checked, highlight the matching tab label */
-        #msr2-ds-tab-1:checked ~ .msr2-ds-nav .msr2-ds-tab-1,
-        #msr2-ds-tab-2:checked ~ .msr2-ds-nav .msr2-ds-tab-2,
-        #msr2-ds-tab-3:checked ~ .msr2-ds-nav .msr2-ds-tab-3 {
+        .msr2-ds-card {
           background: #FFFFFF;
-          box-shadow: inset 0 -3px 0 var(--color-brand);
+          border: 1px solid ${c.border};
+          box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
         }
-        .msr2-ds-tab:hover { background: rgba(255,255,255,0.5); }
+        .msr2-ds-card-header {
+          padding: 20px 24px;
+          display: flex;
+          align-items: baseline;
+          gap: 14px;
+          background: #FAFAF9;
+          border-bottom: 1px solid ${c.border};
+        }
+        .msr2-ds-num {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          color: ${c.accent};
+          text-transform: uppercase;
+        }
+        .msr2-ds-label {
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: -0.005em;
+          color: ${c.ink};
+          flex: 1;
+        }
+        .msr2-ds-card-body {
+          padding: clamp(28px, 4vw, 48px);
+        }
 
         @media (max-width: 760px) {
           .msr2-row              { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .msr2-callout-grid     { grid-template-columns: 1fr !important; gap: 22px !important; }
           .msr2-pair             { grid-template-columns: 1fr !important; }
           .msr2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           .msr2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
@@ -1128,9 +1486,9 @@ export default function MSRv2() {
           /* Funnel — collapse to 2 rows on phones (steps wrap) */
           .msr2-funnel-row       { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .msr2-funnel-row > div[aria-hidden] { display: none !important; }
-          /* Carousel tabs — stack vertically on phones */
-          .msr2-ds-nav           { flex-direction: column !important; }
-          .msr2-ds-nav .msr2-ds-tab { border-right: none !important; border-bottom: 1px solid var(--color-border) !important; }
+          /* Design-system cards on mobile — already in normal flow on
+             desktop; just tighten the gap for phone widths. */
+          .msr2-ds-stack { gap: 20px !important; }
           /* Carousel color grid — 2-col on phones */
           .msr2-ds-color-grid    { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
           .msr2-ds-type-grid     { grid-template-columns: 1fr !important; gap: 24px !important; }
@@ -1189,13 +1547,14 @@ function BigThree({
               {number}
             </span>
             <h2 style={{
-              fontFamily:    font.sans,
-              fontSize:      "clamp(32px, 4vw, 48px)",
-              fontWeight:    600,
-              color:         c.ink,
-              margin:        0,
-              letterSpacing: "-0.025em",
-              lineHeight:    1.05,
+              fontFamily:     "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
+              fontSize:       "clamp(48px, 6.5vw, 96px)",
+              fontWeight:     800,
+              textTransform:  "uppercase",
+              color:          c.ink,
+              margin:         0,
+              letterSpacing:  "-0.005em",
+              lineHeight:     0.95,
             }}>
               {heading}.
             </h2>
@@ -1400,6 +1759,13 @@ function ResearchStrip() {
     margin:        0,
     letterSpacing: "-0.005em",
   };
+  const stepNote: React.CSSProperties = {
+    fontFamily: font.sans,
+    fontSize:   "13px",
+    lineHeight: 1.55,
+    color:      c.ink2,
+    margin:     "10px 0 0",
+  };
 
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `0 ${SECTION_X}` }}>
@@ -1414,14 +1780,23 @@ function ResearchStrip() {
         <div>
           <p style={stepLabel}>Week 1</p>
           <p style={stepBody}>Margin modeling</p>
+          <p style={stepNote}>
+            Sourced sample lots from six manufacturers. Modeled margins across three price tiers. Every product path leaked to competitors with better selection.
+          </p>
         </div>
         <div>
           <p style={stepLabel}>Week 2</p>
           <p style={stepBody}>Customer interviews</p>
+          <p style={stepNote}>
+            Eight conversations with men 35 to 55 who had bought dress shoes in the last year. Almost all had a foot pain story. None had shopped for shoes with a diagnostic question in mind.
+          </p>
         </div>
         <div>
           <p style={stepLabel}>Week 3</p>
           <p style={stepBody}>The pivot</p>
+          <p style={stepNote}>
+            Traffic and search data pointed at information, not products. Recategorized the site around foot conditions before the catalog was ever built.
+          </p>
         </div>
       </div>
     </div>
@@ -1447,6 +1822,13 @@ function WhatICut() {
     color:      c.ink2,
     margin:     0,
   };
+  const cut = [
+    "Shopify spec",
+    "Product-comparison cards",
+    "Five-star rating system",
+    "Newsletter popup",
+    "Subscription tier",
+  ];
   return (
     <aside style={{
       background: c.callout,
@@ -1457,13 +1839,48 @@ function WhatICut() {
       marginTop:  "40px",
     }}>
       <p style={labelStyle}>What I cut</p>
-      <p style={{ ...bodyStyle, margin: "0 0 22px" }}>
-        Shopify spec. Product-comparison cards. Five-star rating system. Newsletter popup. Subscription tier.
-      </p>
+      <ul className="msr-cut-list" style={{
+        listStyle: "none", padding: 0, margin: "0 0 22px",
+        display:   "flex", flexWrap: "wrap", gap: "6px 14px",
+      }}>
+        {cut.map((item) => (
+          <li key={item} className="msr-cut-item" style={{ ...bodyStyle, position: "relative" }}>
+            {item}
+          </li>
+        ))}
+      </ul>
       <p style={labelStyle}>Replaced with</p>
       <p style={bodyStyle}>
         Editorial pillars. Symptom-branching assessment. Affiliate context, not product listings. Routine prompts under every article. No popups.
       </p>
+      <style>{`
+        /* Each cut item strikes through as the callout scrolls into
+           view. CSS-only — animation-timeline: view() gives a real
+           scroll-linked reveal in modern browsers; unsupported
+           browsers just show the plain list. Stagger via :nth-child. */
+        @supports (animation-timeline: view()) {
+          @media (prefers-reduced-motion: no-preference) {
+            .msr-cut-item::after {
+              content: "";
+              position: absolute;
+              left: 0; right: 0;
+              top: 55%;
+              height: 1.5px;
+              background: ${c.brand};
+              transform-origin: left center;
+              transform: scaleX(0);
+              animation: msr-cut-strike linear both;
+              animation-timeline: view();
+              animation-range: entry 40% cover 30%;
+            }
+            .msr-cut-item:nth-child(2)::after { animation-range: entry 42% cover 32%; }
+            .msr-cut-item:nth-child(3)::after { animation-range: entry 44% cover 34%; }
+            .msr-cut-item:nth-child(4)::after { animation-range: entry 46% cover 36%; }
+            .msr-cut-item:nth-child(5)::after { animation-range: entry 48% cover 38%; }
+            @keyframes msr-cut-strike { to { transform: scaleX(1); } }
+          }
+        }
+      `}</style>
     </aside>
   );
 }
@@ -2131,66 +2548,33 @@ function DSPanelComponents() {
 }
 
 function DesignSystemCarousel() {
+  const panels = [
+    { num: "01", label: "Color tokens", body: <DSPanelColor /> },
+    { num: "02", label: "Type ramp",    body: <DSPanelType /> },
+    { num: "03", label: "Components",   body: <DSPanelComponents /> },
+  ];
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-      <div className="msr2-ds-carousel" style={{
-        border:     `1px solid ${c.border}`,
-        background: "#FAFAF9",
+      <p style={{
+        fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+        letterSpacing: "0.18em", textTransform: "uppercase",
+        color: c.muted, margin: "0 0 16px",
       }}>
-        {/* Hidden radios drive the tabs (CSS sibling selector). */}
-        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-1" defaultChecked aria-label="Color tokens panel" />
-        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-2" aria-label="Type ramp panel" />
-        <input type="radio" name="msr2-ds-tabs" id="msr2-ds-tab-3" aria-label="Components panel" />
-
-        {/* Tab nav */}
-        <div className="msr2-ds-nav" style={{
-          display:      "flex",
-          borderBottom: `1px solid ${c.border}`,
-        }}>
-          {[
-            { id: "msr2-ds-tab-1", num: "01", label: "Color tokens" },
-            { id: "msr2-ds-tab-2", num: "02", label: "Type ramp" },
-            { id: "msr2-ds-tab-3", num: "03", label: "Components" },
-          ].map((tab, i, arr) => (
-            <label
-              key={tab.id}
-              htmlFor={tab.id}
-              className={`msr2-ds-tab msr2-ds-tab-${i + 1}`}
-              style={{
-                flex:           1,
-                padding:        "20px 24px",
-                cursor:         "pointer",
-                display:        "flex",
-                alignItems:     "baseline",
-                gap:            "10px",
-                borderRight:    i < arr.length - 1 ? `1px solid ${c.border}` : "none",
-                transition:     "background 0.2s, color 0.2s",
-              }}
-            >
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    700,
-                color:         c.accent,
-                letterSpacing: "0.18em",
-              }}>{tab.num}</span>
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "14px",
-                fontWeight:    500,
-                color:         c.ink,
-                letterSpacing: "-0.005em",
-              }}>{tab.label}</span>
-            </label>
-          ))}
-        </div>
-
-        {/* Panels */}
-        <div className="msr2-ds-panels" style={{ padding: "clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px)" }}>
-          <div className="msr2-ds-panel" data-panel="1"><DSPanelColor /></div>
-          <div className="msr2-ds-panel" data-panel="2"><DSPanelType /></div>
-          <div className="msr2-ds-panel" data-panel="3"><DSPanelComponents /></div>
-        </div>
+        <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
+        Three panels, stacking as you scroll.
+      </p>
+      <div className="msr2-ds-stack">
+        {panels.map((p) => (
+          <article key={p.num} className="msr2-ds-card">
+            <header className="msr2-ds-card-header">
+              <span className="msr2-ds-num">{p.num}</span>
+              <span className="msr2-ds-label">{p.label}</span>
+            </header>
+            <div className="msr2-ds-card-body">
+              {p.body}
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   );

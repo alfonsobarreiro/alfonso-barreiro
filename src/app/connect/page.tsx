@@ -37,9 +37,7 @@ const WayfarerGlobe = () => (
   </svg>
 );
 
-/* MsrFeet: uses /images/work/msr/logo-msr-mark.svg (both feet, extracted from full logo) */
-
-/* ── Contact links (non-LinkedIn) ────────────────────────────────────── */
+/* ── Contact links (email + calendar + resume) ───────────────────────── */
 
 const contactLinks: {
   href: string;
@@ -47,6 +45,7 @@ const contactLinks: {
   icon: React.ReactNode;
   iconBg: string;
   external?: boolean;
+  download?: boolean;
 }[] = [
   {
     href: "mailto:alfonso@barreiro.com",
@@ -62,7 +61,7 @@ const contactLinks: {
   {
     href: "https://cal.com/alfonso-barreiro",
     label: "Book a coffee chat",
-    iconBg: "#3D4440",
+    iconBg: "var(--color-accent)",
     external: true,
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -77,7 +76,7 @@ const contactLinks: {
   {
     href: "/Alfonso_Barreiro_Resume_April_2026.pdf",
     label: "Resume",
-    iconBg: "#8A8680",
+    iconBg: "var(--color-ink)",
     external: true,
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -101,14 +100,15 @@ export default function ConnectPage() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 24px 10px;
+          padding: 32px 16px 48px;
           font-family: var(--font-dm-sans), sans-serif;
-          background-color: #FFFFFF;
+          background-color: var(--color-surface, #FFFFFF);
+          color: var(--color-ink, #191919);
         }
 
         .connect-content {
           width: 100%;
-          max-width: 420px;
+          max-width: 460px;
           display: flex;
           flex-direction: column;
         }
@@ -120,22 +120,23 @@ export default function ConnectPage() {
           gap: 12px;
           width: 100%;
           padding: 10px 14px;
-          border: 1px solid #6E6E6A;
+          border: 1px solid var(--color-border, #DEDCD7);
           background: transparent;
-          color: #252B28;
+          color: var(--color-ink, #191919);
           font-size: 14px;
           font-weight: 500;
           text-decoration: none;
           letter-spacing: 0.01em;
-          transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .connect-row:hover {
-          background: #FAFAF9;
-          transform: translateY(-3px);
-          box-shadow: 0 18px 44px rgba(37,43,40,0.22), 0 4px 12px rgba(37,43,40,0.22);
+          background: var(--color-callout, #F5F1EC);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 22px rgba(17, 17, 17, 0.10);
+          border-color: var(--color-ink-2, #4A4A4A);
         }
 
-        /* ── Solid variant (cognac fill) ──────────────── */
+        /* ── Solid variant (Crimson fill) ─────────────── */
         .connect-row.solid {
           background: var(--color-brand);
           border-color: var(--color-brand);
@@ -143,15 +144,17 @@ export default function ConnectPage() {
           font-weight: 600;
         }
         .connect-row.solid:hover {
-          background: #2A1830;
+          background: #6E1414;
+          border-color: #6E1414;
+          box-shadow: 0 10px 22px rgba(140, 26, 26, 0.28);
         }
 
         /* ── Section label ────────────────────────────── */
         .connect-label {
           font-size: 11px;
           font-weight: 700;
-          color: #8A8680;
-          letter-spacing: 0.12em;
+          color: var(--color-accent);
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           margin: 0 0 14px;
         }
@@ -165,14 +168,59 @@ export default function ConnectPage() {
           padding-bottom: 28px;
         }
         .connect-photo {
-          width: 64px;
-          height: 64px;
+          width: 72px;
+          height: 72px;
         }
         .connect-info {
           text-align: left;
         }
         .connect-info h1 {
-          font-size: 22px;
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 24px;
+          font-weight: 600;
+          color: var(--color-ink, #191919);
+          margin: 0 0 6px;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
+        }
+        .connect-tagline {
+          font-size: 13px;
+          font-weight: 500;
+          color: var(--color-brand);
+          margin: 0 0 4px;
+          letter-spacing: 0.01em;
+        }
+        .connect-location {
+          font-size: 12px;
+          color: var(--color-muted, #6B6B6B);
+          margin: 0;
+          letter-spacing: 0.04em;
+        }
+
+        /* ── Availability chip ────────────────────────── */
+        .connect-availability {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 20px;
+          padding: 10px 14px;
+          background: rgba(15, 61, 62, 0.06);
+          border-left: 2px solid var(--color-accent);
+        }
+        .connect-availability-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background-color: var(--color-accent);
+          flex-shrink: 0;
+          animation: pulse 2.2s ease-in-out infinite;
+        }
+        .connect-availability-text {
+          font-size: 11px;
+          font-weight: 500;
+          color: var(--color-ink-2, #4A4A4A);
+          letter-spacing: 0.02em;
+          line-height: 1.4;
         }
 
         /* ── Pulse animation ──────────────────────────── */
@@ -181,16 +229,34 @@ export default function ConnectPage() {
           50% { opacity: 0.4; }
         }
 
+        /* ── Home link ────────────────────────────────── */
+        .connect-home {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 11px;
+          font-weight: 700;
+          color: var(--color-accent);
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          text-decoration: none;
+          margin-top: 32px;
+          border-bottom: 1px solid transparent;
+          transition: border-color 0.2s ease;
+        }
+        .connect-home:hover { border-bottom-color: var(--color-accent); }
+
         /* ── Desktop: wider + side-by-side ─────────────── */
         @media (min-width: 768px) {
           .connect-page {
-            padding: 40px 20px;
+            padding: 56px 24px 64px;
             justify-content: center;
           }
           .connect-content {
-            max-width: 860px;
+            max-width: 880px;
             display: grid !important;
             grid-template-columns: 1fr 1fr;
+            column-gap: 40px;
           }
           .connect-header {
             grid-column: 1 / -1;
@@ -198,29 +264,32 @@ export default function ConnectPage() {
           .connect-identity {
             flex-direction: column;
             align-items: center;
+            gap: 20px;
+            padding-bottom: 40px;
           }
           .connect-photo {
-            width: 104px;
-            height: 104px;
+            width: 112px;
+            height: 112px;
           }
           .connect-info {
             text-align: center;
           }
           .connect-info h1 {
-            font-size: 28px;
+            font-size: 30px;
           }
+          .connect-tagline { font-size: 14px; }
           .connect-left {
             padding-right: 32px;
+            border-right: 1px solid var(--color-border, #DEDCD7);
           }
           .connect-right {
             padding-left: 32px;
-            border-left: 1px solid #6E6E6A;
           }
           .connect-divider { display: none; }
         }
 
         @media (min-width: 1024px) {
-          .connect-content { max-width: 920px; }
+          .connect-content { max-width: 960px; }
         }
       `}</style>
 
@@ -234,16 +303,16 @@ export default function ConnectPage() {
               style={{
                 borderRadius: "50%",
                 overflow: "hidden",
-                boxShadow: "0 2px 12px rgba(37,43,40,0.26)",
+                boxShadow: "0 2px 12px rgba(17, 17, 17, 0.20)",
                 flexShrink: 0,
               }}
             >
               <Image
                 src="/Alfonso-Barreiro-outdoors.png"
                 alt="Alfonso Barreiro"
-                width={104}
-                height={104}
-                sizes="104px"
+                width={112}
+                height={112}
+                sizes="112px"
                 priority
                 style={{
                   objectFit: "cover",
@@ -255,42 +324,11 @@ export default function ConnectPage() {
             </div>
 
             <div className="connect-info">
-              <h1
-                style={{
-                  fontFamily: "var(--font-dm-serif-display)",
-                  fontSize: 28,
-                  fontWeight: 400,
-                  color: "#252B28",
-                  margin: "0 0 4px",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                Alfonso Barreiro
-              </h1>
-
-              <p
-                style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: "var(--color-brand)",
-                  margin: "0 0 4px",
-                  letterSpacing: "0.02em",
-                  textWrap: "balance",
-                }}
-              >
-                UX / UI Designer · Research. Decide. Ship.
+              <h1>Alfonso Barreiro</h1>
+              <p className="connect-tagline">
+                UX / UI Designer &middot; Research. Decide. Ship.
               </p>
-
-              <p
-                style={{
-                  fontSize: 12,
-                  color: "#8A8680",
-                  margin: 0,
-                  letterSpacing: "0.04em",
-                }}
-              >
-                Portland, OR
-              </p>
+              <p className="connect-location">Portland, OR</p>
             </div>
           </div>
         </div>
@@ -300,7 +338,7 @@ export default function ConnectPage() {
           <p className="connect-label">Work</p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <a href="https://barreiro.com/#work" target="_blank" rel="noopener noreferrer" className="connect-row solid">
+            <a href="https://barreiro.com/" target="_blank" rel="noopener noreferrer" className="connect-row solid">
               <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -311,17 +349,19 @@ export default function ConnectPage() {
                   style={{ objectFit: "contain" }}
                 />
               </span>
-              <span>Selected work</span>
+              <span>Portfolio &middot; barreiro.com</span>
             </a>
 
-            <a href="https://wayfarer.barreiro.com/" target="_blank" rel="noopener noreferrer" className="connect-row">
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
-                <WayfarerGlobe />
+            <a href="https://barreiro.com/work/spotify" target="_blank" rel="noopener noreferrer" className="connect-row">
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#1DB954" }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true">
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.301.421-1.02.599-1.56.3z"/>
+                </svg>
               </span>
-              <span>Wayfarer Travel website</span>
+              <span>Case study &middot; Spotify</span>
             </a>
 
-            <a href="https://www.menssolerevival.com/" target="_blank" rel="noopener noreferrer" className="connect-row">
+            <a href="https://barreiro.com/work/mens-sole-revival" target="_blank" rel="noopener noreferrer" className="connect-row">
               <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -332,16 +372,38 @@ export default function ConnectPage() {
                   style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
                 />
               </span>
-              <span>Men&#39;s Sole Revival website</span>
+              <span>Case study &middot; Men&rsquo;s Sole Revival</span>
+            </a>
+
+            <a href="https://barreiro.com/work/wayfarer" target="_blank" rel="noopener noreferrer" className="connect-row">
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
+                <WayfarerGlobe />
+              </span>
+              <span>Case study &middot; Wayfarer</span>
+            </a>
+
+            <a href="https://barreiro.com/process" target="_blank" rel="noopener noreferrer" className="connect-row">
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-accent)" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="4" y1="6" x2="20" y2="6" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                </svg>
+              </span>
+              <span>Process</span>
             </a>
           </div>
 
           {/* ── Studio ────────────────────────────── */}
-          <p className="connect-label" style={{ marginTop: 20 }}>Studio</p>
+          <p className="connect-label" style={{ marginTop: 24 }}>Studio</p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <a href="https://alphabeta.design/" target="_blank" rel="noopener noreferrer" className="connect-row solid">
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF", fontWeight: 700, fontSize: 13, color: "var(--color-brand)", letterSpacing: "-0.02em" }}>
+            <a href="https://alphabeta.design/" target="_blank" rel="noopener noreferrer" className="connect-row">
+              <span style={{
+                width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0, backgroundColor: "var(--color-accent)", color: "#FFFFFF",
+                fontWeight: 700, fontSize: 12, letterSpacing: "-0.02em",
+              }}>
                 AB
               </span>
               <span>Alpha Beta Design</span>
@@ -354,8 +416,8 @@ export default function ConnectPage() {
           className="connect-divider"
           style={{
             height: 1,
-            backgroundColor: "#6E6E6A",
-            margin: "20px 0",
+            backgroundColor: "var(--color-border, #DEDCD7)",
+            margin: "24px 0",
           }}
         />
 
@@ -367,8 +429,6 @@ export default function ConnectPage() {
             <a
               href="/alfonso-barreiro.vcf"
               download
-              target="_blank"
-              rel="noopener noreferrer"
               className="connect-row solid"
             >
               <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#FFFFFF" }}>
@@ -388,7 +448,7 @@ export default function ConnectPage() {
               rel="noopener noreferrer"
               className="connect-row"
             >
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#0A66C2" }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true">
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
@@ -402,7 +462,7 @@ export default function ConnectPage() {
               rel="noopener noreferrer"
               className="connect-row"
             >
-              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-brand)" }}>
+              <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#EA4C89" }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true">
                   <path d="M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0zm7.93 5.527c1.297 1.583 2.087 3.601 2.13 5.79-.306-.063-3.368-.685-6.456-.297-.066-.152-.13-.305-.197-.456-.19-.448-.4-.89-.61-1.32 3.42-1.394 4.97-3.4 5.133-3.717zM12 2.166c2.31 0 4.42.86 6.03 2.276-.14.198-1.54 2.075-4.85 3.314-1.524-2.8-3.21-5.09-3.475-5.45A9.8 9.8 0 0112 2.166zM7.65 3.026c.253.34 1.91 2.64 3.453 5.38-4.34 1.155-8.166 1.135-8.58 1.13.604-2.888 2.56-5.292 5.127-6.51zM2.166 12.01v-.31c.404.008 4.903.066 9.537-1.324.267.523.522 1.054.756 1.59l-.366.105c-4.787 1.546-7.328 5.77-7.54 6.125A9.8 9.8 0 012.166 12.01zm9.834 9.824a9.78 9.78 0 01-6.043-2.075c.166-.34 2.054-3.97 7.29-5.798l.06-.02c1.31 3.397 1.846 6.25 1.985 7.067a9.76 9.76 0 01-3.292.826zm5.346-1.78c-.094-.563-.59-3.29-1.81-6.64 2.913-.466 5.463.292 5.78.398-.402 2.56-1.873 4.772-3.97 6.242z" />
                 </svg>
@@ -438,53 +498,19 @@ export default function ConnectPage() {
           </div>
 
           {/* Availability badge */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              marginTop: 20,
-              padding: "8px 14px",
-              background: "rgba(61,38,69,0.06)",
-              border: "1px solid rgba(61,38,69,0.25)",
-            }}
-          >
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                backgroundColor: "var(--color-brand)",
-                flexShrink: 0,
-                animation: "pulse 2.2s ease-in-out infinite",
-              }}
-            />
-            <span
-              style={{
-                fontSize: 11,
-                fontWeight: 500,
-                color: "#3D4440",
-                letterSpacing: "0.04em",
-              }}
-            >
+          <div className="connect-availability">
+            <span className="connect-availability-dot" aria-hidden="true" />
+            <span className="connect-availability-text">
               Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
             </span>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <p
-        style={{
-          fontSize: 11,
-          color: "#8A8680",
-          marginTop: 24,
-          textAlign: "center",
-          letterSpacing: "0.04em",
-        }}
-      >
-        barreiro.com
-      </p>
+      {/* Home link */}
+      <a href="https://barreiro.com/" target="_blank" rel="noopener noreferrer" className="connect-home">
+        Back to barreiro.com &rarr;
+      </a>
     </main>
   );
 }

@@ -6,7 +6,7 @@ import LogoMark from "./LogoMark";
 ───────────────────────────────────────────── */
 const font = "var(--font-dm-sans), -apple-system, sans-serif";
 
-const bg     = "#FAFAF9";  // cool off-white surface
+const bg     = "#F4F6F7";  // cool off-white surface
 const brand  = "var(--color-brand)";  // crimson — wordmark + primary CTA
 const accent = "var(--color-accent)";  // deep teal — eyebrow rule + accent
 const ink    = "#252B28";
@@ -29,6 +29,13 @@ const LinkedInIcon = () => (
 const ArrowIcon = () => (
   <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
     <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const LayersIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 17 12 22 22 17" />
+    <polyline points="2 12 12 17 22 12" />
   </svg>
 );
 
@@ -73,6 +80,12 @@ export default function Footer() {
 
           {/* Right: CTA pills */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+            <Link
+              href="/behind-this-site"
+              className="footer-pill footer-pill--default"
+            >
+              <LayersIcon /> Behind this site
+            </Link>
             <a
               href="/Alfonso_Barreiro_Resume_April_2026.pdf"
               target="_blank"

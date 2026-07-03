@@ -53,3 +53,4 @@ _resources/
 /*.jpeg
 /*.jpg
 /*.png
+.audit-tmp/

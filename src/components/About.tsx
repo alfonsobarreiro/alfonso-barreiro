@@ -61,19 +61,19 @@ const pillDefault: React.CSSProperties = {
 };
 const skillGroups = [
   {
-    category: "Research & Discovery",
-    value:    "Sharpens the problem before the team commits. Cuts the false-start weeks where a beautiful answer gets built for the wrong brief.",
-    skills:   ["User Interviews", "Competitive Analysis", "Heuristic Evaluation", "AI-Assisted Research"],
+    category: "Research",
+    value:    "I ask the question that makes the roadmap shorter, not longer.",
+    skills:   ["User Interviews", "Job Stories", "Competitive Teardown"],
   },
   {
-    category: "Design & Systems",
-    value:    "Tokenized systems halve handoff time and let multiple products share one vocabulary. Accessibility shipped from day one, not patched in QA.",
-    skills:   ["Interaction Design", "Design Systems", "Accessibility (WCAG)", "Responsive UI"],
+    category: "Systems",
+    value:    "I build the system first because the button has to get designed once.",
+    skills:   ["Figma", "Design Tokens", "Component API"],
   },
   {
-    category: "Delivery & Craft",
-    value:    "Prototypes that earn their keep. Usability findings that move the next sprint, not the next slide. Dev handoff that engineers actually use.",
-    skills:   ["Figma", "Prototyping", "Dev Handoff", "Usability Testing"],
+    category: "Delivery",
+    value:    "I ship it in the browser because Figma stops being the source of truth the day a dev opens it.",
+    skills:   ["Next.js", "Tailwind", "Accessibility"],
   },
 ];
 
@@ -359,7 +359,12 @@ export default function About() {
             </p>
           </div>
 
-          {/* Right — Skills */}
+          {/* Right — Skills.
+              Sticky within the row so the skills track the bio column,
+              but no inner scroll — the earlier maxHeight + overflowY
+              trapped mouse-wheel scroll inside this sidebar on 13"
+              MacBooks. If the sidebar ever gets taller than the
+              viewport it just stops sticking, which is fine. */}
           <div
             className="skills-box scroll-reveal"
             style={{
@@ -370,8 +375,6 @@ export default function About() {
               position:     "sticky",
               top:          "120px",
               alignSelf:    "start",
-              maxHeight:    "calc(100vh - 140px)",
-              overflowY:    "auto",
             }}
           >
             {skillGroups.map((group, i) => (
