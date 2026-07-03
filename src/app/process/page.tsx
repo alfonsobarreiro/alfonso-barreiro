@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import LogoMark from "@/components/LogoMark";
 import HoursRibbon from "./_components/HoursRibbon";
+import BridgeQuote from "./_components/BridgeQuote";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -121,6 +122,29 @@ export default function ProcessPage() {
               letter-spacing: 0.22em;
               top:            0;
             }
+          }
+
+          /* Belief-mark dingbats above each philosophy claim. Small stroke
+             SVGs in brand crimson, sized to feel like editorial marginalia
+             rather than icons. Mark sits above the numbered claim so the
+             existing counter geometry is untouched. */
+          .philo-item {
+            position:     relative;
+            padding-top:  56px;
+            margin-bottom: 8px;
+          }
+          .philo-item + .philo-item { margin-top: 12px; }
+          .philo-mark {
+            position: absolute;
+            left:     0;
+            top:      0;
+            width:    clamp(32px, 3.4vw, 40px);
+            height:   clamp(32px, 3.4vw, 40px);
+            color:    var(--color-brand);
+          }
+          @media (max-width: 640px) {
+            .philo-item { padding-top: 44px; padding-left: 0; }
+            .philo-mark { width: 30px; height: 30px; }
           }
 
           .process-cta-primary {
@@ -284,27 +308,13 @@ export default function ProcessPage() {
           </div>
         </section>
 
-        {/* ── Bridge pull quote ────────────────────────────────────────── */}
-        <section aria-label="Bridge note" style={{ padding: "clamp(60px, 7vw, 96px) clamp(32px, 6vw, 80px)", background: "#F4F6F7" }}>
+        {/* ── Bridge pull quote — editorial phrase-by-phrase reveal ──── */}
+        <section aria-label="Bridge note" style={{
+          padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
+          background: "#F4F6F7",
+        }}>
           <div style={innerWrapper}>
-            <figure style={{
-              margin:      0,
-              borderLeft:  "3px solid var(--color-brand)",
-              paddingLeft: "32px",
-              maxWidth:    "780px",
-            }}>
-              <blockquote style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(24px, 3.2vw, 38px)",
-                fontWeight:    500,
-                lineHeight:    1.25,
-                color:         "#252B28",
-                margin:        0,
-                letterSpacing: "-0.02em",
-              }}>
-                The work that ships is the work after the decisions are clear.
-              </blockquote>
-            </figure>
+            <BridgeQuote />
           </div>
         </section>
 
@@ -320,38 +330,74 @@ export default function ProcessPage() {
               A few things I&apos;ve come to believe.
             </p>
 
-            <p style={beliefClaim} className="philo-claim">Design is decision-making.</p>
-            <p style={beliefBody}>
-              Everything visible on a screen is a record of choices someone made, and
-              could have made differently. If you can&apos;t explain what you
-              didn&apos;t build and why, you didn&apos;t really design it. You just
-              shipped it.
-            </p>
+            <div className="philo-item">
+              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 20 L18 20" />
+                <path d="M18 20 L28 12" />
+                <path d="M18 20 L28 28" />
+                <circle cx="28" cy="12" r="2.4" fill="currentColor" stroke="none" />
+                <circle cx="28" cy="28" r="2.4" fill="currentColor" stroke="none" />
+              </svg>
+              <p style={beliefClaim} className="philo-claim">Design is decision-making.</p>
+              <p style={beliefBody}>
+                Everything visible on a screen is a record of choices someone made, and
+                could have made differently. If you can&apos;t explain what you
+                didn&apos;t build and why, you didn&apos;t really design it. You just
+                shipped it.
+              </p>
+            </div>
 
-            <p style={beliefClaim} className="philo-claim">Problem framing comes before pixels.</p>
-            <p style={beliefBody}>
-              Most designs fail at the question, not the execution. What problem,
-              for whom, under what constraints, and what would success actually mean.
-              If those four answers aren&apos;t clear, the prettiest interface in the
-              world won&apos;t save the work.
-            </p>
+            <div className="philo-item">
+              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <rect x="8" y="10" width="24" height="20" />
+                <path d="M14 22 L18 22 M22 22 L26 22" strokeLinecap="round" />
+              </svg>
+              <p style={beliefClaim} className="philo-claim">Problem framing comes before pixels.</p>
+              <p style={beliefBody}>
+                Most designs fail at the question, not the execution. What problem,
+                for whom, under what constraints, and what would success actually mean.
+                If those four answers aren&apos;t clear, the prettiest interface in the
+                world won&apos;t save the work.
+              </p>
+            </div>
 
-            <p style={beliefClaim} className="philo-claim">Prototypes are probes, not proof.</p>
-            <p style={beliefBody}>
-              You build them to find out, not to convince. If you can&apos;t name in
-              one sentence what the prototype is trying to teach you, you&apos;re
-              producing, not prototyping.
-            </p>
+            <div className="philo-item">
+              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="24" cy="20" r="8" />
+                <path d="M6 20 L14 20" />
+                <path d="M11 17 L14 20 L11 23" />
+              </svg>
+              <p style={beliefClaim} className="philo-claim">Prototypes are probes, not proof.</p>
+              <p style={beliefBody}>
+                You build them to find out, not to convince. If you can&apos;t name in
+                one sentence what the prototype is trying to teach you, you&apos;re
+                producing, not prototyping.
+              </p>
+            </div>
 
-            <p style={beliefClaim} className="philo-claim">The best design decisions are also the cleanest business calls.</p>
-            <p style={beliefBody}>
-              When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
-            </p>
+            <div className="philo-item">
+              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <circle cx="12" cy="20" r="4" fill="currentColor" stroke="none" />
+                <path d="M16 20 L24 20" strokeLinecap="round" />
+                <circle cx="28" cy="20" r="4" />
+              </svg>
+              <p style={beliefClaim} className="philo-claim">The best design decisions are also the cleanest business calls.</p>
+              <p style={beliefBody}>
+                When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
+              </p>
+            </div>
 
-            <p style={beliefClaim} className="philo-claim">Translation cost between disciplines is real.</p>
-            <p style={{ ...beliefBody, marginBottom: 0 }}>
-              Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
-            </p>
+            <div className="philo-item">
+              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <circle cx="14" cy="16" r="8" />
+                <circle cx="26" cy="16" r="8" />
+                <circle cx="20" cy="26" r="8" />
+              </svg>
+              <p style={beliefClaim} className="philo-claim">Translation cost between disciplines is real.</p>
+              <p style={{ ...beliefBody, marginBottom: 0 }}>
+                Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
+              </p>
+            </div>
           </div>
         </section>
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import StatCell from "./_components/StatCell";
 
 export const metadata: Metadata = {
   title: "About",
@@ -82,54 +83,25 @@ const innerWrapper: React.CSSProperties = {
   margin:   "0 auto",
 };
 
-/* StatCell — one cell in the "by the numbers" memory anchor.
-   Big editorial number + optional unit + caption. Colors are tuned
-   for the light surface (#F4F6F7). */
-function StatCell({ n, unit, caption }: { n: string; unit: string; caption: string }) {
-  /* Three-row grid so all cells align regardless of whether they carry
-     a unit label. The unit row always reserves its own height (via a
-     non-breaking space fallback) so cells without units don't pull
-     their caption up higher than cells with units. */
-  return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-      <p style={{
-        fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(80px, 11vw, 156px)",
-        fontWeight:    300,
-        lineHeight:    0.85,
-        letterSpacing: "-0.05em",
-        color:         "#252B28",
-        margin:        0,
-        fontVariantNumeric: "tabular-nums",
-      }}>
-        {n}
-      </p>
-      <p aria-hidden={!unit || undefined} style={{
-        fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(14px, 1.4vw, 18px)",
-        fontWeight:    600,
-        letterSpacing: "0.16em",
-        textTransform: "uppercase",
-        color:         "var(--color-brand)",
-        margin:        "10px 0 20px",
-        minHeight:     "clamp(18px, 1.7vw, 22px)",
-        lineHeight:    1,
-      }}>
-        {unit || " "}
-      </p>
-      <p style={{
-        fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "14px",
-        lineHeight: 1.55,
-        color:      "#3D4440",
-        margin:     0,
-        maxWidth:   "300px",
-      }}>
-        {caption}
-      </p>
-    </div>
-  );
-}
+/* Pull-quote style: hairlines top + bottom, italic serif center. */
+const pullQuoteWrap: React.CSSProperties = {
+  margin:       "40px auto",
+  padding:      "24px 0",
+  borderTop:    "1px solid var(--color-border)",
+  borderBottom: "1px solid var(--color-border)",
+  textAlign:    "center",
+  maxWidth:     "620px",
+};
+const pullQuoteText: React.CSSProperties = {
+  fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+  fontStyle:     "italic",
+  fontSize:      "clamp(22px, 3vw, 30px)",
+  fontWeight:    400,
+  lineHeight:    1.3,
+  color:         "#252B28",
+  letterSpacing: "-0.02em",
+  margin:        0,
+};
 
 /* ── Page ───────────────────────────────────────────────────────────── */
 
@@ -457,6 +429,13 @@ export default function AboutPage() {
               That gap is what pulled me into design. Not the visual part. The
               decisions underneath.
             </p>
+
+            <figure style={pullQuoteWrap}>
+              <blockquote style={pullQuoteText}>
+                Not the visual part. The decisions underneath.
+              </blockquote>
+            </figure>
+
             <p style={body}>
               I tried a few directions before this one. Front-end engineering, which
               is where most career-path code people end up. Visual design, which I
@@ -484,6 +463,13 @@ export default function AboutPage() {
             <p style={body}>
               I went remote in 2019, about a year and a half into Boomtime. At first the change was mine, not the company&apos;s. Then the rest of the industry caught up. We shipped UX/UI work for a hundred-plus client websites without an office. I held the design quality bar the same way I&apos;d held it in person: tight feedback loops, written critique, fewer meetings, more artifacts. The work didn&apos;t suffer. Some of it got cleaner.
             </p>
+
+            <figure style={pullQuoteWrap}>
+              <blockquote style={pullQuoteText}>
+                Remote isn&apos;t a constraint; it&apos;s a discipline.
+              </blockquote>
+            </figure>
+
             <p style={body}>
               Two-plus years followed at VARA Winery &amp; Distillery as Director of Marketing &amp; DTC. Back in-person in Albuquerque, running the site redesign and the brand identity for a new spirits line. Then in late 2024 I left the director seat to go all-in on UX/UI. The remote chapter resumed in Portland: independent practice, DesignLab UX Academy, three case studies. None of them built from a shared room.
             </p>
