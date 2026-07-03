@@ -232,16 +232,6 @@ export default function Work() {
             order: 1 !important;
             max-width: 100% !important;
           }
-          /* Tag pills stay visible on mobile so the capability taxonomy
-             is scannable at first paint — desktop hides them behind a
-             hover reveal, but touch has no hover. */
-          .work-row .work-tag-pills {
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: auto !important;
-            transform: none !important;
-            margin-top: 12px !important;
-          }
         }
       `}</style>
     </section>
@@ -485,38 +475,6 @@ function ProjectCard({
           {project.deck}
         </p>
       ) : null}
-
-      {/* Hover-revealed pills — payoff for closer attention. Reserved
-          space prevents layout shift; opacity + transform animate only.
-          Hidden on mobile (no hover) so the View Case Study link sits
-          right under the deck instead of after dead air. */}
-      <div
-        className="work-tag-pills"
-        aria-hidden={!hovered}
-        style={{
-          display:      "flex",
-          gap:          "8px",
-          flexWrap:     "wrap",
-          marginBottom: "28px",
-          opacity:      hovered ? 1 : 0,
-          transform:    hovered ? "translateY(0)" : "translateY(6px)",
-          transition:   "opacity 0.35s ease, transform 0.35s ease",
-        }}
-      >
-        {project.tags.map((tag) => (
-          <span key={tag} style={{
-            fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "13px",
-            padding:      "6px 14px",
-            background:   "#F5F5F4",
-            color:        "#252B28",
-            fontWeight:   400,
-            border:       "1px solid #6E6E6A",
-          }}>
-            {tag}
-          </span>
-        ))}
-      </div>
 
       {isLive ? (
         <Link
