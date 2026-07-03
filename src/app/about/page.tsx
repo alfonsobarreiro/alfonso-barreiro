@@ -83,23 +83,23 @@ const innerWrapper: React.CSSProperties = {
   margin:   "0 auto",
 };
 
-/* Pull-quote style: hairlines top + bottom, italic serif center. */
+/* Pull-quote style: left-aligned, brand sans, no italic (Alfonso
+   2026-07-03: did not like the serif italic centered treatment).
+   Deep Teal left rail carries the visual weight without borrowing
+   editorial typography. */
 const pullQuoteWrap: React.CSSProperties = {
-  margin:       "40px auto",
-  padding:      "24px 0",
-  borderTop:    "1px solid var(--color-border)",
-  borderBottom: "1px solid var(--color-border)",
-  textAlign:    "center",
-  maxWidth:     "620px",
+  margin:       "40px 0",
+  padding:      "6px 0 6px 24px",
+  borderLeft:   "3px solid var(--color-accent)",
+  maxWidth:     "720px",
 };
 const pullQuoteText: React.CSSProperties = {
-  fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
-  fontStyle:     "italic",
-  fontSize:      "clamp(22px, 3vw, 30px)",
-  fontWeight:    400,
-  lineHeight:    1.3,
+  fontFamily:    "var(--font-dm-sans), sans-serif",
+  fontSize:      "clamp(22px, 2.6vw, 30px)",
+  fontWeight:    600,
+  lineHeight:    1.25,
   color:         "#252B28",
-  letterSpacing: "-0.02em",
+  letterSpacing: "-0.025em",
   margin:        0,
 };
 
