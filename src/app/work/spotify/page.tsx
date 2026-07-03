@@ -381,6 +381,7 @@ export default function SpotifyV2() {
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
+                  suppressHydrationWarning
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
