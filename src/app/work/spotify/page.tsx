@@ -837,29 +837,31 @@ export default function SpotifyV2() {
             <figure className="sp2-consistent-fig" style={{ margin: 0, padding: 0, width: "100%" }}>
                   <div className="sp2-consistent-scroll" style={{
                     overflowX: "auto", WebkitOverflowScrolling: "touch",
-                    /* Full-bleed to viewport edges so there's no mint
-                       (or any color) showing on the sides of the mockup
-                       (Alfonso 2026-07-03: "Do not leave the white
-                       around the desktop image!"). */
-                    marginLeft:  "calc(50% - 50vw)",
-                    marginRight: "calc(50% - 50vw)",
-                    padding: 0,
+                    margin: 0, padding: 0,
+                    /* Nuke any stylesheet-level border/outline that could
+                       paint a light hairline around the image. */
+                    border: "none",
+                    outline: "none",
+                    background: "transparent",
                   }}>
                     <div className="sp2-parity-canvas" style={{
                       position: "relative",
                       width: "100%",
                       minWidth: "760px",  // mobile scroll floor — below this, menu items become unreadable
-                      aspectRatio: "2644 / 1824",
+                      aspectRatio: "2582 / 1766",  // trimmed 2644x1824 → 2582x1766 to strip Figma-baked white padding
+                      border: "none",
+                      outline: "none",
+                      background: "transparent",
                     }}>
                   <Image
                     src="/images/work/spotify/spotify-desktop-context-menu-hires.png"
                     alt="Spotify Desktop Recently Played shelf with the right-click context menu showing Pin, Remove from history, and Pause history actions."
-                    width={2644}
-                    height={1824}
+                    width={2582}
+                    height={1766}
                     sizes="(max-width: 760px) 200vw, 1240px"
                     quality={95}
                     className="sp2-consistent-img"
-                    style={{ width: "100%", height: "auto", display: "block" }}
+                    style={{ width: "100%", height: "auto", display: "block", border: "none", outline: "none" }}
                   />
 
                   {/* Three numbered callouts, positioned as % of the image
