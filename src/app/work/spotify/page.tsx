@@ -822,47 +822,10 @@ export default function SpotifyV2() {
               Mobile uses long-press to open the action sheet. Desktop uses a right-click context menu. The three controls and their state machines are identical. Only the affordance changes.
             </p>
 
-            {/* Editorial block — stacked above the image so the desktop
-                mockup can take the full content column (per Alfonso
-                2026-07-03: previous 1fr:1.2fr grid squeezed the shot
-                into ~56vw and the menu items lost legibility). */}
-            <div style={{ maxWidth: PROSE_MAX, marginBottom: "clamp(40px, 5vw, 64px)" }}>
-              <p style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                letterSpacing: "0.18em", textTransform: "uppercase",
-                color: c.muted, margin: "0 0 12px",
-              }}>
-                Maintaining cross-platform consistency
-              </p>
-              <h3 style={{
-                fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
-                fontWeight: 700, color: c.ink, margin: "0 0 20px",
-                letterSpacing: "-0.02em", lineHeight: 1.2,
-              }}>
-                Consistent behavior on desktop.
-              </h3>
-              <p style={{
-                fontFamily: font.sans, fontSize: "15px",
-                lineHeight: 1.65, color: c.ink2, margin: "0 0 20px",
-              }}>
-                Habitual desktop users access the same set of surfaced controls through a right-click context menu, matching Spotify&rsquo;s existing desktop paradigms.
-              </p>
-              <p style={{
-                fontFamily: font.sans, fontSize: "13px", fontWeight: 700,
-                color: c.ink, margin: "0 0 8px", letterSpacing: "-0.005em",
-              }}>
-                This maintains:
-              </p>
-              <ul style={{
-                fontFamily: font.sans, fontSize: "14px",
-                lineHeight: 1.65, color: c.ink2,
-                margin: 0, paddingLeft: "20px",
-              }}>
-                <li>Predictable cross-platform behavior</li>
-                <li>Minimal UI surface changes</li>
-                <li>A familiar power-user pathway without expanding the primary UI surface.</li>
-              </ul>
-            </div>
+            {/* Sub-block ("Maintaining cross-platform consistency" +
+                bullets) removed 2026-07-03 (Alfonso): redundant with the
+                lead paragraph above. Dark-stripe wrapper also removed —
+                the image sits directly on the DETAILS arc mint tint. */}
 
             {/* Screenshot — full content-column width with numbered
                 annotations overlaid on the three surfaced controls
@@ -872,21 +835,6 @@ export default function SpotifyV2() {
                 annotations scroll with the image because they're
                 positioned inside the same scrolling container. */}
             <figure className="sp2-consistent-fig" style={{ margin: 0, padding: 0, width: "100%" }}>
-              {/* Full-bleed dark stripe wraps the scroll container so
-                  the section's light background never shows around the
-                  dark mockup (Alfonso 2026-07-03). Same pattern as
-                  MSR EarlyOutcomes: full-viewport-width dark ground,
-                  content padded from the viewport edges inside. */}
-              <div style={{
-                marginLeft:    "calc(50% - 50vw)",
-                marginRight:   "calc(50% - 50vw)",
-                background:    c.jet,
-                paddingTop:    "clamp(40px, 5vw, 72px)",
-                paddingBottom: "clamp(40px, 5vw, 72px)",
-                paddingLeft:   SECTION_X,
-                paddingRight:  SECTION_X,
-              }}>
-                <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
                   <div className="sp2-consistent-scroll" style={{
                     overflowX: "auto", WebkitOverflowScrolling: "touch",
                     margin: 0, padding: 0,
@@ -945,8 +893,6 @@ export default function SpotifyV2() {
                       {a.n}
                     </span>
                   ))}
-                </div>
-              </div>
                 </div>
               </div>
               <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
