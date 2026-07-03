@@ -1177,14 +1177,13 @@ export default function SpotifyV2() {
             aspect-ratio: 1387 / 2800 !important;
             max-width: none !important;
             /* Phone sized by whichever dimension bites first: viewport
-               width, OR 96vh derived back to width via the chrome aspect.
-               96vh means on any typical mobile aspect (390-430 × 844+ tall)
-               the phone reaches full 100vw. Guarantees the iPhone still
-               fits vertically on stubby viewports while going as big as
-               possible on the common ones (Alfonso 2026-07-03: originally
-               "fits fully height-wise", follow-up "iPhones can be a bit
-               bigger"). */
-            width: min(100vw, calc(96vh * 1387 / 2800)) !important;
+               width, OR 80vh derived back to width via the chrome aspect.
+               80vh gives the phone breathing room on either side on
+               typical mobile aspects (390-430 × 844+): the vh cap wins,
+               so the phone is narrower than 100vw and margin-inline:auto
+               centers it in the row (Alfonso 2026-07-03: "center and
+               size down to fit within 80vh"). */
+            width: min(100vw, calc(80vh * 1387 / 2800)) !important;
             margin-inline: auto !important;
           }
           .sp2-dl-phone-chrome  {
@@ -1267,7 +1266,7 @@ export default function SpotifyV2() {
              stack (Alfonso 2026-07-03). Reader gets a peek here + the full
              view on a wider screen. Min-width forces scroll so the map
              doesn't collapse to viewport width and lose all detail. */
-          .sp2-journey-desktop { display: flex !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+          .sp2-journey-desktop { display: flex !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; justify-content: flex-start !important; }
           .sp2-journey-desktop .sp2-journey-img { width: 1200px !important; min-width: 1200px !important; max-width: none !important; }
           .sp2-journey-mobile  { display: none !important; }
           /* Three directions on paper — stack the 3-column grid to a
