@@ -85,6 +85,55 @@ const swatch: React.CSSProperties = {
   border:       "1px solid rgba(37, 43, 40, 0.15)",
 };
 
+/* One step in the decision chronology. Numbered label + editorial
+   caption above; Figma-exported artifact below. The caption sits
+   ABOVE the image so the reader knows what they're about to see
+   before they see it — reads as an editorial decision log. */
+function ArtifactStep({ label, caption, src, width, height }: {
+  label: string; caption: string; src: string; width: number; height: number;
+}) {
+  return (
+    <figure style={{ margin: 0 }}>
+      <div style={{ marginBottom: "clamp(20px, 3vw, 28px)", maxWidth: "780px" }}>
+        <p style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "11px",
+          fontWeight:    700,
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+          color:         "var(--color-brand)",
+          margin:        "0 0 14px",
+        }}>
+          {label}
+        </p>
+        <p style={{
+          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontSize:   "15px",
+          lineHeight: 1.65,
+          color:      "#3D4440",
+          margin:     0,
+        }}>
+          {caption}
+        </p>
+      </div>
+      <Image
+        src={src}
+        alt={caption}
+        width={width}
+        height={height}
+        sizes="(max-width: 760px) 100vw, 920px"
+        quality={92}
+        style={{
+          width:   "100%",
+          height:  "auto",
+          display: "block",
+          border:  "1px solid #E8E4DE",
+        }}
+      />
+    </figure>
+  );
+}
+
 export default function BehindThisSitePage() {
   return (
     <>
@@ -136,45 +185,131 @@ export default function BehindThisSitePage() {
           </div>
         </section>
 
-        {/* ── The palette decision — lifted from About 2026-07-02 ─────── */}
-        <section aria-label="The palette decision" style={sectionWrapper("#F4F6F7")}>
+        {/* ── The mark and how it works — brand book expansion pulled
+             from the Barreiro.com Figma foundation artifact (page 01)
+             on 2026-07-03. Five modules stacked under one editorial
+             section: The Mark, Size Scale, Four Surfaces, Wordmark, and
+             Applications. Rendered in code (LogoMark component) so every
+             glyph stays vector-crisp. */}
+        <section aria-label="The mark and how it works" style={{
+          padding:    "clamp(96px, 12vw, 152px) clamp(32px, 6vw, 80px)",
+          background: "#FCFAF9",
+        }}>
           <div style={innerWrapper}>
-            <h2 style={sectionH2}>The palette decision.</h2>
-            <p style={{ ...body, marginBottom: "16px" }}>
-              Design is decision-making. Everything you&apos;re looking at on barreiro.com is a downstream consequence of choices someone signed off on. Below is one of them, the palette decision, as it looked the day it locked.
-            </p>
-            <p style={{ ...body, marginBottom: "40px" }}>
-              Two candidate brand systems rendered as the same MSR homepage, side by side, at production scale. C won on 2026-06-11. The color you&apos;re reading this in is the left column of that comparison.
+
+            {/* ── Section eyebrow ── */}
+            <p style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "11px",
+              fontWeight:    700,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color:         "var(--color-brand)",
+              margin:        "0 0 20px",
+            }}>
+              Foundation artifact &nbsp;·&nbsp; Brand
             </p>
 
-            <figure style={{ margin: 0 }}>
-              <Image
-                src="/images/about/design-source-decision.jpg"
-                alt="Case-study test frame from the Barreiro.com Figma file. Top banner reads DECISION LOCKED · C · LIGHT WITH CONVICTION with hex tokens Paper #FCFAF9, Crimson #8C1A1A, Deep Teal #0F3D3E, Soft Ink #1A1A1A, signed by Alfon on 2026-06-11, replacing aubergine plus sage. Below the banner, the Men's Sole Revival homepage renders twice at production scale: on the left in Theme C (Crimson + Deep Teal) and on the right in Theme E (Petrol Blue + Burnt Ochre). Both columns show identical layout and content with a labeled token strip at the bottom."
-                width={1024}
-                height={945}
-                sizes="(max-width: 760px) 100vw, 920px"
-                style={{
-                  width:   "100%",
-                  height:  "auto",
-                  display: "block",
-                  border:  "1px solid var(--color-border)",
-                }}
+            {/* ── H2 (serif display italic — matches Figma frame) ── */}
+            <h2 style={{
+              fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+              fontSize:      "clamp(40px, 6vw, 72px)",
+              fontWeight:    400,
+              fontStyle:     "italic",
+              color:         "#252B28",
+              margin:        "0 0 24px",
+              letterSpacing: "-0.02em",
+              lineHeight:    1.05,
+            }}>
+              The mark
+            </h2>
+
+            <p style={{ ...body, maxWidth: "620px", margin: "0 0 clamp(64px, 8vw, 96px)" }}>
+              An infinity-A monogram, dual-purpose. The loop is Alpha + Beta (the studio). The A-arrow is the designer. Used at 24 px in nav today; here it sits back up to its proper role as the anchor of the brand.
+            </p>
+
+            {/* Six real Figma artifacts pulled from six different pages
+                of the Barreiro.com working file. Reads as a decision
+                chronology — the mark, the color exploration, the type
+                pairings tried, the systems tested, the runner-up
+                (Aubergine) that got ruled out, and the direction that
+                actually shipped. Replaces both the previous code
+                recreations AND the standalone "palette decision" image
+                (Alfonso 2026-07-03: "there is a lot in there"). */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px, 7vw, 96px)" }}>
+
+              <ArtifactStep
+                label="01 · The mark"
+                caption="Infinity ∞ + A-arrow integrated into a single continuous form. Reads as a loop, an A, and a closed system — the dual identity of designer + studio in one glyph."
+                src="/images/behind-this-site/mark-hero.png"
+                width={1536}
+                height={500}
               />
-              <figcaption style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
-                lineHeight:    1.6,
-                color:         "#5A5752",
-                margin:        "16px 0 0",
-                letterSpacing: "0.01em",
-                maxWidth:      "760px",
-              }}>
-                Case-study test frame from the Barreiro.com working file. Same layout, same content, two brand systems. C on the left is what shipped. E on the right was the last runner-up. Full token strip on each column.
-              </figcaption>
-            </figure>
+
+              <ArtifactStep
+                label="02 · Where the brand went warm"
+                caption="Cognac, Burnt Sienna, and other warm-editorial candidates the mark tried on before Crimson locked. The register was always warm; the specific hue took iterations."
+                src="/images/behind-this-site/color-exploration.png"
+                width={1680}
+                height={2120}
+              />
+
+              <ArtifactStep
+                label="03 · How Alfonso Barreiro reads"
+                caption="Three type pairings tested against the wordmark: DM Serif Display + DM Sans, Fraunces + DM Sans, Newsreader + Inter. The specimen block underneath shows editorial + running text together — the two registers the site needs to hold."
+                src="/images/behind-this-site/typography-exploration.png"
+                width={1680}
+                height={2120}
+              />
+
+              <ArtifactStep
+                label="04 · Brand systems tested"
+                caption="Surface / Brand / Accent / Ink token quartets across the shortlist. Each row also carries a live preview so the tokens are graded against real UI, not swatches in isolation."
+                src="/images/behind-this-site/brand-systems.png"
+                width={1768}
+                height={1640}
+              />
+
+              <ArtifactStep
+                label="05 · The Aubergine detour"
+                caption="Applied to a full homepage before the direction pivoted. The runner-up that got the shipping palette its confidence: I ruled Aubergine out only after seeing it at production scale."
+                src="/images/behind-this-site/aubergine-locked.png"
+                width={1440}
+                height={3400}
+              />
+
+              <ArtifactStep
+                label="06 · The direction that shipped"
+                caption="Homepage · C · Light with Conviction. The design of the site you're reading, locked 2026-06-16. Same layout as page 05, different palette, different weight — same site, different soul."
+                src="/images/behind-this-site/homepage-c-shipped.png"
+                width={1440}
+                height={3500}
+              />
+
+            </div>
+
           </div>
+
+          {/* Responsive: stack sub-grids on narrow viewports */}
+          <style>{`
+            @media (max-width: 720px) {
+              .bts-surfaces,
+              .bts-wordmarks,
+              .bts-applications {
+                grid-template-columns: 1fr !important;
+              }
+              .bts-size-scale {
+                justify-content: flex-start !important;
+                gap: 16px !important;
+              }
+            }
+          `}</style>
         </section>
+
+        {/* "The palette decision" section removed 2026-07-03 — the six-
+             artifact chronology above ends on the same "shipped design"
+             beat with a higher-fidelity Figma export (Alfonso hated the
+             prior C-vs-E composite image). */}
 
         {/* ── The system underneath it — Alpha Beta Design ────────────── */}
         <section aria-label="The design system underneath" style={sectionWrapper("#FFFFFF")}>

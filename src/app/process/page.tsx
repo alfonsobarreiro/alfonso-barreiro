@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import LogoMark from "@/components/LogoMark";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -149,12 +150,31 @@ export default function ProcessPage() {
           }
         `}</style>
 
-        {/* ── Hero ─────────────────────────────────────────────────────── */}
+        {/* ── Hero — with watermark ∞ mark behind the H1. Uses the same
+             pattern as /not-found's giant "404" but with the brand
+             glyph. Renders as texture, not focus (Alfonso 2026-07-03). */}
         <section aria-label="Process introduction" style={{
           padding:    "clamp(112px, 14vw, 168px) clamp(32px, 6vw, 80px) clamp(64px, 8vw, 96px)",
           background: "#FFFFFF",
+          position:   "relative",
+          overflow:   "hidden",
         }}>
-          <div style={innerWrapper}>
+          {/* Watermark ∞ — sits behind everything, low-opacity so the
+              glyph is the texture, not the message. */}
+          <div
+            aria-hidden="true"
+            style={{
+              position:      "absolute",
+              top:           "-3vw",
+              right:         "-4vw",
+              pointerEvents: "none",
+              userSelect:    "none",
+            }}
+          >
+            <LogoMark size={420} variant="dark" opacity={0.05} />
+          </div>
+
+          <div style={{ ...innerWrapper, position: "relative", zIndex: 2 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
               <span style={{ display: "inline-block", width: "24px", height: "1px", background: "var(--color-accent)" }} />
               <p style={{
@@ -198,6 +218,10 @@ export default function ProcessPage() {
         {/* ── Where I add value ────────────────────────────────────────── */}
         <section aria-label="Where I add value" className="value-list" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
+              <LogoMark size={22} variant="dark" opacity={0.8} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+            </div>
             <h2 style={sectionH2}>Where I add value</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
               The shorter version of how the work pays back.
@@ -252,6 +276,10 @@ export default function ProcessPage() {
         {/* ── How I think about the work ───────────────────────────────── */}
         <section aria-label="How I think about the work" className="philo-list" style={sectionWrapper("#F4F6F7")}>
           <div style={innerWrapper}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
+              <LogoMark size={22} variant="dark" opacity={0.8} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+            </div>
             <h2 style={sectionH2}>How I think about the work</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
               A few things I&apos;ve come to believe.
@@ -295,6 +323,10 @@ export default function ProcessPage() {
         {/* ── Closer + CTA ─────────────────────────────────────────────── */}
         <section aria-label="Next step" style={sectionWrapper("#FFFFFF")}>
           <div style={innerWrapper}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
+              <LogoMark size={22} variant="dark" opacity={0.8} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+            </div>
             <p style={{ ...body, maxWidth: "620px", marginBottom: "36px" }}>
               If any of this reads like the seat you&apos;re trying to fill, the case studies show it running in the artifact. The contact page is the shortest way to start.
             </p>
