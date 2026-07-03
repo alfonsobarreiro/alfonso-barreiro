@@ -1166,14 +1166,26 @@ export default function SpotifyV2() {
           .sp2-dl-beats         { grid-template-columns: 1fr !important; gap: 14px !important; }
           .sp2-dl-video-row     { grid-template-columns: 1fr !important; gap: 32px !important; }
           /* Mobile-only: drop the home-page-style empty canvas around the
-             phone so the chrome fills the row. Container aspect switches
-             to match the chrome PNG (720:972), chrome renders at 100%,
-             screen is re-expressed as % of chrome instead of % of the
-             old padded container. Result: mobile Decisions reads with the
-             same density as desktop, just single-column (Alfonso 2026-07-03). */
+             phone so the chrome fills the row. The chrome PNG's ACTUAL
+             aspect is 1387:2800 (0.495) — the width/height numbers on
+             the JSX Image are just Next.js intrinsic hints, not the
+             natural file aspect. Container aspect must match the chrome
+             PNG or the phone bottom gets clipped (Alfonso 2026-07-03).
+             Screen is re-expressed as % of chrome instead of % of the
+             old padded container. */
           .sp2-dl-phone         {
-            aspect-ratio: 720 / 972 !important;
-            max-width: 340px !important;
+            aspect-ratio: 1387 / 2800 !important;
+            max-width: none !important;
+            /* Phone sized by whichever dimension bites first: viewport
+               width, OR 96vh derived back to width via the chrome aspect.
+               96vh means on any typical mobile aspect (390-430 × 844+ tall)
+               the phone reaches full 100vw. Guarantees the iPhone still
+               fits vertically on stubby viewports while going as big as
+               possible on the common ones (Alfonso 2026-07-03: originally
+               "fits fully height-wise", follow-up "iPhones can be a bit
+               bigger"). */
+            width: min(100vw, calc(96vh * 1387 / 2800)) !important;
+            margin-inline: auto !important;
           }
           .sp2-dl-phone-chrome  {
             left:  0    !important;
@@ -1182,9 +1194,9 @@ export default function SpotifyV2() {
           }
           .sp2-dl-phone-screen  {
             left:   4.46% !important;
-            top:    2.54% !important;
+            top:    1.70% !important;
             width:  90.94% !important;
-            height: 95.22% !important;
+            height: 95.54% !important;
           }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
           .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
@@ -1250,10 +1262,14 @@ export default function SpotifyV2() {
              handles min-width + bleed-to-edges. */
           /* State diagram — keep native width; scroll horizontally inside the card. */
           .sp2-state-scroll .sp2-state-img { width: 720px !important; max-width: 720px !important; }
-          /* User journey — mobile renders the transposed vertical version
-             (one card per stage) instead of the wide horizontal table. */
-          .sp2-journey-desktop { display: none !important; }
-          .sp2-journey-mobile  { display: block !important; }
+          /* User journey — mobile shows a horizontally-scrollable slice of
+             the same wide artifact desktop uses, not the transposed 6-card
+             stack (Alfonso 2026-07-03). Reader gets a peek here + the full
+             view on a wider screen. Min-width forces scroll so the map
+             doesn't collapse to viewport width and lose all detail. */
+          .sp2-journey-desktop { display: flex !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+          .sp2-journey-desktop .sp2-journey-img { width: 1200px !important; min-width: 1200px !important; max-width: none !important; }
+          .sp2-journey-mobile  { display: none !important; }
           /* Sketches — native width on phones so each device sketch reads. */
           .sp2-sketches-scroll .sp2-sketches-img { width: 880px !important; max-width: 880px !important; }
           /* Consistent Behavior screenshot — fits viewport width, no scroll. */
@@ -3170,6 +3186,7 @@ function UserJourney() {
             }}
           />
         </div>
+        <p className="sp2-scroll-after">Swipe to explore &middot; full view on desktop &rarr;</p>
         <JourneyVerticalMobile />
       </div>
     </section>

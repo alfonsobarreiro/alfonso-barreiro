@@ -630,6 +630,12 @@ export default function RecentlyPlayedDemo() {
         }
         @media (max-width: 520px) {
           .sp2-demo-shelf { grid-template-columns: 1fr !important; }
+          /* Mobile: show only the first 4 tiles (Alfonso 2026-07-03).
+             Six tiles was too heavy on a phone; four keeps the demo
+             legible and still gives room to try Pin, Remove, Pause on
+             a real shelf. Extras stay in state — Pin/Remove/Undo work
+             naturally as the order shifts. */
+          .sp2-demo-shelf .sp2-demo-row:nth-child(n+5) { display: none !important; }
         }
         .sp2-demo-chip:focus-visible,
         .sp2-demo-row:focus-visible {
