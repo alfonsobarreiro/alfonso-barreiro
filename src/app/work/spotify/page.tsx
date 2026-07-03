@@ -1165,6 +1165,27 @@ export default function SpotifyV2() {
           .sp2-dl-frames        { grid-template-columns: 1fr !important; gap: 20px !important; }
           .sp2-dl-beats         { grid-template-columns: 1fr !important; gap: 14px !important; }
           .sp2-dl-video-row     { grid-template-columns: 1fr !important; gap: 32px !important; }
+          /* Mobile-only: drop the home-page-style empty canvas around the
+             phone so the chrome fills the row. Container aspect switches
+             to match the chrome PNG (720:972), chrome renders at 100%,
+             screen is re-expressed as % of chrome instead of % of the
+             old padded container. Result: mobile Decisions reads with the
+             same density as desktop, just single-column (Alfonso 2026-07-03). */
+          .sp2-dl-phone         {
+            aspect-ratio: 720 / 972 !important;
+            max-width: 340px !important;
+          }
+          .sp2-dl-phone-chrome  {
+            left:  0    !important;
+            top:   0    !important;
+            width: 100% !important;
+          }
+          .sp2-dl-phone-screen  {
+            left:   4.46% !important;
+            top:    2.54% !important;
+            width:  90.94% !important;
+            height: 95.22% !important;
+          }
           .sp2-loops-row        { grid-template-columns: 1fr !important; gap: 24px !important; justify-items: center !important; }
           .sp2-loops-row figure { width: 100% !important; display: flex !important; justify-content: center !important; }
           .sp2-loops-row figure > div { width: 100% !important; max-width: 220px !important; }
@@ -1826,6 +1847,7 @@ function DecisionLogic() {
                 <div
                   role="img"
                   aria-label={f.video?.alt ?? f.screenAlt ?? ""}
+                  className="sp2-dl-phone"
                   style={{
                     /* Aspect + overflow copied VERBATIM from SpotifyFramedAnimation
                        on the home page — the screen-div percentages inside were
@@ -1833,7 +1855,12 @@ function DecisionLogic() {
                        aspect) I used originally, which pushed the screen div past
                        the iPhone body and leaked mini-player content below the
                        phone (Alfonso 2026-07-03). overflow:hidden matches the
-                       home shell so any residual leak is clipped. */
+                       home shell so any residual leak is clipped.
+
+                       Mobile override (see .sp2-dl-phone in the @media block
+                       below): the outer hugs the chrome PNG so we don't carry
+                       ~44% of empty canvas around the phone on single-column
+                       widths — otherwise the phone reads small and adrift. */
                     position:    "relative",
                     width:       "100%",
                     maxWidth:    "460px",
@@ -1845,7 +1872,7 @@ function DecisionLogic() {
                   {/* Screen (below the iPhone PNG) — video or React-node
                       animation fills the visible screen rect inside the
                       iPhone body. */}
-                  <div style={{
+                  <div className="sp2-dl-phone-screen" style={{
                     position:     "absolute",
                     left:         "24.46%",
                     top:          "13.02%",
@@ -1882,6 +1909,7 @@ function DecisionLogic() {
                   </div>
                   {/* iPhone chrome (above the screen). */}
                   <Image
+                    className="sp2-dl-phone-chrome"
                     src="/images/devices/iphone-cropped.webp"
                     alt=""
                     aria-hidden
