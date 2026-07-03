@@ -10,7 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/work/spotify`,                      lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/wayfarer`,                     lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/mens-sole-revival`,            lastModified, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${SITE}/work/abd-ui-system`,                lastModified, changeFrequency: "monthly", priority: 0.8 },
+    /* ABD UI System pulled from sitemap 2026-07-03 — authoring only,
+       notFound() guard on the page in production. */
     { url: `${SITE}/about`,                             lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE}/connect`,                           lastModified, changeFrequency: "yearly",  priority: 0.7 },
     { url: `${SITE}/work/presentations`,                lastModified, changeFrequency: "monthly", priority: 0.7 },
