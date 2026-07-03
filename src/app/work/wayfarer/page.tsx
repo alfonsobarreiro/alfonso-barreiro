@@ -453,7 +453,28 @@ export default function WayfarerV2() {
             margin:              0,
             padding:             0,
             listStyle:           "none",
+            position:            "relative",
           }}>
+            {/* Sliding underline — a single 4px accent bar that
+                translates across the 4 cells as active state changes.
+                Reads as one continuous element travelling, not four
+                separate underlines fading in and out. */}
+            <span
+              className="wf2-arc-slider"
+              aria-hidden="true"
+              style={{
+                position:  "absolute",
+                left:      0,
+                bottom:    0,
+                width:     "25%",
+                height:    "4px",
+                background: c.accent,
+                transform: "translateX(0)",
+                transition: "transform 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease",
+                opacity:   0,
+                pointerEvents: "none",
+              }}
+            />
             {[
               { key: "premise",   label: "Premise"   },
               { key: "research",  label: "Research"  },
@@ -543,13 +564,26 @@ export default function WayfarerV2() {
                 }
                 if (nextKey === activeKey) return;
                 activeKey = nextKey;
-                anchors.forEach(function (a) {
+                var activeIdx = -1;
+                anchors.forEach(function (a, aidx) {
                   if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
                     a.setAttribute('data-active', 'true');
+                    activeIdx = aidx;
                   } else {
                     a.removeAttribute('data-active');
                   }
                 });
+                /* Move the sliding underline. One shared bar, transforms
+                   horizontally so it reads as a single traveling element. */
+                var slider = document.querySelector('.wf2-arc-slider');
+                if (slider) {
+                  if (activeIdx >= 0) {
+                    slider.style.transform = 'translateX(' + (activeIdx * 100) + '%)';
+                    slider.style.opacity = '1';
+                  } else {
+                    slider.style.opacity = '0';
+                  }
+                }
               }
               function onScroll() {
                 if (rafScheduled) return;
@@ -614,9 +648,12 @@ export default function WayfarerV2() {
           .wf2-arc-nav a[data-active] {
             color: var(--color-accent) !important;
             background: rgba(15,61,62,0.06) !important;
-            box-shadow: inset 0 -4px 0 var(--color-accent) !important;
             font-weight: 700 !important;
           }
+          /* Sliding underline handles the active underline visual. Kept
+             separate from the anchor's box-shadow so it can travel across
+             cells as one shared element (a single bar transitioning left,
+             not four bars fading in and out). */
           .wf2-arc-nav a[data-active] span:first-child {
             opacity: 1 !important;
             color: var(--color-accent) !important;
@@ -2011,7 +2048,14 @@ function CutVsKept() {
           borderTop: `3px solid ${c.brand}`,
           padding: "28px 32px",
         }}>
-          <p style={{ ...labelStyle, color: c.brand }}>Cut</p>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+            <span style={{
+              fontFamily: font.sans, fontSize: "34px", fontWeight: 500,
+              color: c.brand, lineHeight: 1, letterSpacing: "-0.02em",
+              fontVariantNumeric: "tabular-nums",
+            }}>{cut.length}</span>
+            <p style={{ ...labelStyle, color: c.brand, margin: 0 }}>Cut</p>
+          </div>
           <h3 style={headStyle}>Transactional layer</h3>
           <div>
             {cut.map((s, i) => (
@@ -2025,7 +2069,14 @@ function CutVsKept() {
           borderTop: `3px solid ${c.accent}`,
           padding: "28px 32px",
         }}>
-          <p style={{ ...labelStyle, color: c.accent }}>Kept</p>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+            <span style={{
+              fontFamily: font.sans, fontSize: "34px", fontWeight: 500,
+              color: c.accent, lineHeight: 1, letterSpacing: "-0.02em",
+              fontVariantNumeric: "tabular-nums",
+            }}>{kept.length}</span>
+            <p style={{ ...labelStyle, color: c.accent, margin: 0 }}>Kept</p>
+          </div>
           <h3 style={headStyle}>Discovery layer</h3>
           <div>
             {kept.map((s, i) => (

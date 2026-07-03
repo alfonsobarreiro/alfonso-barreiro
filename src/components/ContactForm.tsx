@@ -20,10 +20,23 @@ function validateField(name: string, value: string): string | undefined {
   return undefined;
 }
 
+/* Marginalia readout for the message field. Word ranges cross a few
+   editorial thresholds so the reader sees the note change as they
+   write — reads as an author annotating their draft, not a form. */
+function marginNote(words: number): string {
+  if (words === 0)  return "";
+  if (words < 8)    return "a start";
+  if (words < 25)   return "warming up";
+  if (words < 60)   return "sounds thoughtful";
+  if (words < 120)  return "you're making a case";
+  return "a proper letter";
+}
+
 export default function ContactForm() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [msgWords, setMsgWords] = useState<number>(0);
   const successRef = useRef<HTMLDivElement>(null);
   const isSubmitting = formState === "submitting";
 
@@ -175,12 +188,41 @@ export default function ContactForm() {
             suppressHydrationWarning: true,
           };
           return (
-            <div key={field}>
-              <label htmlFor={field} style={labelStyle}>{label}{reqAsterisk}</label>
+            <div key={field} style={isMessage ? { position: "relative" } : undefined}>
+              <div style={
+                isMessage
+                  ? { display: "flex", justifyContent: "space-between", alignItems: "baseline" }
+                  : undefined
+              }>
+                <label htmlFor={field} style={labelStyle}>{label}{reqAsterisk}</label>
+                {isMessage && msgWords > 0 && (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                      fontStyle:     "italic",
+                      fontSize:      "13px",
+                      color:         "#6B6E6A",
+                      letterSpacing: "-0.005em",
+                      transition:    "opacity 200ms ease",
+                    }}
+                  >
+                    <span style={{ fontVariantNumeric: "tabular-nums", color: "var(--color-brand)", fontStyle: "normal", fontFamily: font, fontWeight: 600, marginRight: 6 }}>
+                      {msgWords}
+                    </span>
+                    {msgWords === 1 ? "word" : "words"}
+                    &nbsp;&middot;&nbsp;{marginNote(msgWords)}
+                  </span>
+                )}
+              </div>
               {isMessage ? (
                 <textarea
                   {...commonProps}
                   rows={5}
+                  onChange={(e) => {
+                    const v = e.currentTarget.value.trim();
+                    setMsgWords(v ? v.split(/\s+/).filter(Boolean).length : 0);
+                  }}
                   style={{ ...inputStyle(field, !!err), resize: "vertical", lineHeight: 1.65 }}
                 />
               ) : (

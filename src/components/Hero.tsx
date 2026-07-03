@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* Stagger delays for hero entrance elements */
 const HERO_DELAYS = ["0s", "0.12s", "0.24s", "0.36s", "0.5s"];
@@ -322,10 +322,36 @@ const COUNT_TARGET = 13;
 function HeroResultPanel() {
   const panelRef = useRef<HTMLAnchorElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  /* Count-up animation removed — the number now lands at 13 directly.
-     Was a nice flourish on desktop but read as a distraction on mobile
-     where the panel is below the fold. */
-  const n = COUNT_TARGET;
+  /* Count-up: desktop-only, fires when the panel enters the viewport.
+     Restored 2026-07-03 after the SLUX audit flagged the flat 13× as
+     one of the lifts to portfolio-defining. Gated on min-width: 900px
+     + prefers-reduced-motion so mobile / motion-averse readers get 13
+     immediately (why it was pulled the first time). */
+  const [n, setN] = useState<number>(COUNT_TARGET);
+  const statRef = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    const el = statRef.current;
+    if (!el) return;
+    const mqNarrow = window.matchMedia("(max-width: 899px)");
+    const mqMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mqNarrow.matches || mqMotion.matches) return;
+    setN(0);
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const start = performance.now();
+      const dur = 1400;
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        setN(COUNT_TARGET * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.5 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   /* WCAG 2.2.2 Pause, Stop, Hide. The walkthrough video autoplays for
      ~22s per loop. Cap it at 2 loops so motion stops after ~44s
@@ -518,6 +544,7 @@ function HeroResultPanel() {
             visually dominate to the point where the descriptor reads
             as a footnote glued to the digit. */}
         <p
+          ref={statRef}
           style={{
             fontFamily:         "var(--font-dm-sans), sans-serif",
             fontSize:           "clamp(40px, 4.5vw, 56px)",

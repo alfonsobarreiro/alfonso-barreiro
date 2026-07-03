@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import LogoMark from "@/components/LogoMark";
 import HoursRibbon from "./_components/HoursRibbon";
 import BridgeQuote from "./_components/BridgeQuote";
+import TranslationCostDiagram from "./_components/TranslationCostDiagram";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -394,9 +395,10 @@ export default function ProcessPage() {
                 <circle cx="20" cy="26" r="8" />
               </svg>
               <p style={beliefClaim} className="philo-claim">Translation cost between disciplines is real.</p>
-              <p style={{ ...beliefBody, marginBottom: 0 }}>
+              <p style={beliefBody}>
                 Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
               </p>
+              <TranslationCostDiagram />
             </div>
           </div>
         </section>
