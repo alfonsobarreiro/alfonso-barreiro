@@ -48,14 +48,13 @@ export default function BridgeQuote() {
         }
         .bridge-quote-phrase {
           display:        block;
-          font-family:    var(--font-dm-serif-display), Georgia, serif;
-          font-style:     italic;
-          font-size:      clamp(28px, 5vw, 58px);
-          font-weight:    400;
+          font-family:    var(--font-dm-sans), sans-serif;
+          font-size:      clamp(28px, 5vw, 56px);
+          font-weight:    600;
           color:          #252B28;
           margin:         0;
-          letter-spacing: -0.02em;
-          line-height:    1.18;
+          letter-spacing: -0.025em;
+          line-height:    1.15;
           opacity:        0;
           transform:      translateY(10px);
           transition:     opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
