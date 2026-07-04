@@ -488,6 +488,7 @@ export default function WayfarerV2() {
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
+                  aria-label={`${String(i + 1).padStart(2, "0")} · ${arc.label}`}
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
@@ -504,10 +505,10 @@ export default function WayfarerV2() {
                     transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
+                  <span aria-hidden="true" style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  {arc.label}
+                  <span className="wf2-arc-label">{arc.label}</span>
                 </a>
               </li>
             ))}
@@ -575,6 +576,22 @@ export default function WayfarerV2() {
             /* The fixed nav lifts out of flow — push subsequent content
                down by the nav's height. */
             .wf2-arc-nav + script + style + div { padding-top: 36px !important; }
+          }
+          /* Under 480px, drop the numerals and show labels only.
+             Alfonso 2026-07-04: "All the mobile navs should be
+             words, not numbers." */
+          @media (max-width: 480px) {
+            .wf2-arc-nav a span:first-child { display: none !important; }
+            .wf2-arc-nav a {
+              gap: 0 !important;
+              padding: 12px 3px !important;
+              font-size: 10px !important;
+              letter-spacing: 0.04em !important;
+            }
+            .wf2-arc-label {
+              font-size: 10px !important;
+              letter-spacing: 0.04em !important;
+            }
           }
         `}</style>
 

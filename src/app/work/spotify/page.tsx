@@ -457,27 +457,21 @@ export default function SpotifyV2() {
             }
             .sp2-arc-nav + script + style + div { padding-top: 36px !important; }
           }
-          /* Under 480px, keep the labels but shrink the whole nav so
-             the reader still sees Premise / Research / Decisions /
-             Details in context. Stacks numeral over label so all four
-             cells fit at 390 px. */
+          /* Under 480px, drop the numerals and show labels only.
+             Alfonso 2026-07-04: "All the mobile navs should be
+             words, not numbers." */
           @media (max-width: 480px) {
             .sp2-arc-nav a {
-              padding: 9px 2px !important;
+              padding: 12px 3px !important;
               font-size: 10px !important;
-              letter-spacing: 0.06em !important;
-              gap: 3px !important;
-              flex-direction: column !important;
-              min-height: 42px !important;
-              justify-content: center !important;
+              letter-spacing: 0.04em !important;
+              gap: 0 !important;
+              min-height: 40px !important;
             }
-            .sp2-arc-nav a span:first-child {
-              opacity: 0.6 !important;
-              font-size: 9px !important;
-            }
+            .sp2-arc-nav a span:first-child { display: none !important; }
             .sp2-arc-label {
               font-size: 10px !important;
-              letter-spacing: 0.06em !important;
+              letter-spacing: 0.04em !important;
             }
           }
         `}</style>
