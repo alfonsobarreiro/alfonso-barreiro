@@ -54,7 +54,7 @@ export default function TranslationCostDiagram() {
           height:     66px;
           border-radius: 50%;
           border:     1.5px solid var(--color-brand);
-          background: rgba(140, 26, 26, 0.06);
+          background: transparent;
           transform:  translate(-50%, -50%);
           display:    flex;
           align-items: center;
