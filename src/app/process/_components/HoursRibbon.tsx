@@ -17,7 +17,7 @@ const MOVES: Move[] = [
   { label: "Research",  hours: 22, color: "#6F2020", kind: "research",  words: "Interviews. Clustering. The pattern surfaces." },
   { label: "Decisions", hours: 20, color: "#0F3D3E", kind: "decisions", words: "Trade-offs named in the language the org tracks." },
   { label: "Ship",      hours: 18, color: "#3D5C5A", kind: "ship",      words: "Handoff, QA, iteration. The work ships." },
-  { label: "Figma",     hours: 12, color: "#B8B4AE", kind: "figma",     words: "Finally, the pixels. Twelve of one hundred." },
+  { label: "Figma",     hours: 12, color: "#5A5752", kind: "figma",     words: "Finally, the pixels. Twelve of one hundred." },
 ];
 
 const STEP_MS   = 260;
@@ -562,41 +562,46 @@ export default function HoursRibbon() {
           .hours-rib-words,
           .hours-rib-hint { display: none; }
 
+          /* Mobile Five moves — plain vertical stack. Retired the
+             sticky "come out of each other" scroll-driven card stack
+             per Alfonso 2026-07-04 ("do not do the card stack").
+             Cards flow in normal document order; heights stay
+             proportional to hours so Framing is tallest and Figma
+             is shortest. */
           .hours-rib-mscroll {
             display:   block;
             position:  relative;
-            height:    1500px;
-            margin:    0 calc(-1 * clamp(16px, 4vw, 32px));
+            height:    auto;
           }
           .hours-rib-msticky {
             display:  block;
-            position: sticky;
-            top:      72px;
-            height:   ${MOBILE_STACK_HEIGHT}px;
+            position: static;
+            height:   auto;
           }
 
           .hours-rib-track {
-            position:   relative;
-            display:    block;
-            height:     100%;
-            background: transparent;
+            position:       relative;
+            display:        flex;
+            flex-direction: column;
+            gap:            2px;
+            height:         auto;
+            background:     transparent;
           }
           .hours-rib-seg {
-            position:  absolute;
-            top:       0; left: 0; right: 0;
+            position:  relative;
+            top:       auto; left: auto; right: auto;
             width:     100%;
-            transform: none;
+            transform: none !important;
             transition: none;
             display:   flex;
             flex-direction: column;
             padding:   16px clamp(16px, 4vw, 24px);
-            will-change: transform;
           }
-          .hours-rib-seg[data-kind="framing"]   { height: ${MOBILE_HEIGHTS[0]}px; z-index: 5; }
-          .hours-rib-seg[data-kind="research"]  { height: ${MOBILE_HEIGHTS[1]}px; z-index: 4; }
-          .hours-rib-seg[data-kind="decisions"] { height: ${MOBILE_HEIGHTS[2]}px; z-index: 3; }
-          .hours-rib-seg[data-kind="ship"]      { height: ${MOBILE_HEIGHTS[3]}px; z-index: 2; }
-          .hours-rib-seg[data-kind="figma"]     { height: ${MOBILE_HEIGHTS[4]}px; z-index: 1; }
+          .hours-rib-seg[data-kind="framing"]   { height: ${MOBILE_HEIGHTS[0]}px; }
+          .hours-rib-seg[data-kind="research"]  { height: ${MOBILE_HEIGHTS[1]}px; }
+          .hours-rib-seg[data-kind="decisions"] { height: ${MOBILE_HEIGHTS[2]}px; }
+          .hours-rib-seg[data-kind="ship"]      { height: ${MOBILE_HEIGHTS[3]}px; }
+          .hours-rib-seg[data-kind="figma"]     { height: ${MOBILE_HEIGHTS[4]}px; }
 
           .hours-rib-seg-head {
             display:         flex;
