@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
+import StickyArcNavInit from "@/components/StickyArcNavInit";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 import RecentlyPlayedDemo from "./_demo/RecentlyPlayedDemo";
@@ -409,96 +410,8 @@ export default function SpotifyV2() {
           </ul>
         </nav>
 
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function() {
-            if (typeof window === "undefined") return;
-            var NAV_STACK_HEIGHT = 140;
-            function wire() {
-              var anchors = document.querySelectorAll('a[data-arc-anchor]');
-              if (!anchors.length) return false;
-              var targets = ['premise', 'research', 'decisions', 'details']
-                .map(function (k) { return document.getElementById('arc-' + k); })
-                .filter(Boolean);
-              if (targets.length < 4) return false;
-              var map = {};
-              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
-              var activeKey = null;
-              var rafScheduled = false;
-              function computeActive() {
-                rafScheduled = false;
-                var scrollY = window.scrollY;
-                var activeLine = scrollY + window.innerHeight * 0.33;
-                var arcs = [];
-                for (var i = 0; i < targets.length; i++) {
-                  var el = targets[i];
-                  var top = el.getBoundingClientRect().top + scrollY;
-                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
-                }
-                var nextKey = null;
-                if (activeLine >= arcs[0].top) {
-                  for (var j = 0; j < arcs.length; j++) {
-                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
-                    if (activeLine >= arcs[j].top && activeLine < next) {
-                      nextKey = arcs[j].key;
-                      break;
-                    }
-                  }
-                }
-                if (nextKey === activeKey) return;
-                activeKey = nextKey;
-                anchors.forEach(function (a) {
-                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
-                    a.setAttribute('data-active', 'true');
-                  } else {
-                    a.removeAttribute('data-active');
-                  }
-                });
-              }
-              function onScroll() {
-                if (rafScheduled) return;
-                rafScheduled = true;
-                requestAnimationFrame(computeActive);
-              }
-              window.addEventListener('scroll', onScroll, { passive: true });
-              window.addEventListener('resize', onScroll, { passive: true });
-              computeActive();
+        <StickyArcNavInit arcs={["premise", "research", "decisions", "details"]} />
 
-              anchors.forEach(function (a) {
-                a.addEventListener('click', function (ev) {
-                  var key = a.getAttribute('data-arc-anchor');
-                  var target = document.getElementById('arc-' + key);
-                  if (!target) return;
-                  ev.preventDefault();
-                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
-                  a.setAttribute('data-active', 'true');
-                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
-                  window.scrollTo({ top: y, behavior: 'smooth' });
-                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
-                });
-              });
-
-              function syncFromHash() {
-                var m = /^#arc-(premise|research|decisions|details)$/.exec(window.location.hash || '');
-                if (!m) return;
-                var key = m[1];
-                var target = document.getElementById('arc-' + key);
-                if (!target) return;
-                anchors.forEach(function (x) { x.removeAttribute('data-active'); });
-                if (map[key]) map[key].setAttribute('data-active', 'true');
-                var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-              }
-              window.addEventListener('hashchange', syncFromHash);
-              if (window.location.hash) setTimeout(syncFromHash, 200);
-              return true;
-            }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
-            } else {
-              document.addEventListener('DOMContentLoaded', wire);
-            }
-          })();
-        ` }} />
         <style>{`
           .sp2-arc-nav a[data-active] {
             color: var(--color-accent) !important;
@@ -544,21 +457,27 @@ export default function SpotifyV2() {
             }
             .sp2-arc-nav + script + style + div { padding-top: 36px !important; }
           }
-          /* Under 480px, drop the arc labels ("Premise" / "Research" …)
-             and show only the numerals. Recovers ~13% viewport height
-             (audit 2026-07-03). Anchors carry aria-label with the full
-             name so screen readers are unaffected. */
+          /* Under 480px, keep the labels but shrink the whole nav so
+             the reader still sees Premise / Research / Decisions /
+             Details in context. Stacks numeral over label so all four
+             cells fit at 390 px. */
           @media (max-width: 480px) {
-            .sp2-arc-label { display: none !important; }
             .sp2-arc-nav a {
-              padding: 8px 4px !important;
-              font-size: 12px !important;
-              letter-spacing: 0.10em !important;
-              min-height: 34px !important;
+              padding: 9px 2px !important;
+              font-size: 10px !important;
+              letter-spacing: 0.06em !important;
+              gap: 3px !important;
+              flex-direction: column !important;
+              min-height: 42px !important;
+              justify-content: center !important;
             }
             .sp2-arc-nav a span:first-child {
-              opacity: 1 !important;
-              font-size: 12px !important;
+              opacity: 0.6 !important;
+              font-size: 9px !important;
+            }
+            .sp2-arc-label {
+              font-size: 10px !important;
+              letter-spacing: 0.06em !important;
             }
           }
         `}</style>

@@ -84,7 +84,7 @@ export default function TranslationCostDiagram() {
       <div className="tcd-figure" aria-hidden="true">
         <span
           className="tcd-node"
-          style={{ left: phase === "apart" ? "8%"  : together ? "32%" : "40%" }}
+          style={{ left: phase === "apart" ? "8%"  : together ? "20%" : "40%" }}
         >
           Design
         </span>
@@ -96,7 +96,7 @@ export default function TranslationCostDiagram() {
         </span>
         <span
           className="tcd-node"
-          style={{ left: phase === "apart" ? "92%" : together ? "68%" : "60%" }}
+          style={{ left: phase === "apart" ? "92%" : together ? "80%" : "60%" }}
         >
           Eng
         </span>

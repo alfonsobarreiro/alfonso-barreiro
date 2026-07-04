@@ -211,12 +211,14 @@ export default function HoursRibbon() {
         .hours-rib-call {
           position:         absolute;
           top:              0;
-          transform:        translateX(-100%) rotate(-2deg);
+          transform:        translateX(-100%);
           transform-origin: right center;
-          font-family:      var(--font-dm-serif-display), Georgia, serif;
-          font-style:       italic;
-          font-size:        17px;
-          color:            #252B28;
+          font-family:      var(--font-dm-sans), sans-serif;
+          font-size:        11px;
+          font-weight:      700;
+          letter-spacing:   0.14em;
+          text-transform:   uppercase;
+          color:            var(--color-brand);
           white-space:      nowrap;
           opacity:          0;
           transition:       opacity 500ms ease;
@@ -297,9 +299,9 @@ export default function HoursRibbon() {
         .fr-q {
           position:    absolute;
           transform:   translate(-50%, -50%);
-          font-family: var(--font-dm-serif-display), Georgia, serif;
-          font-style:  italic;
-          font-size:   24px;
+          font-family: var(--font-dm-sans), sans-serif;
+          font-weight: 600;
+          font-size:   22px;
           color:       rgba(255,255,255,0.55);
           transition:  transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 500ms, opacity 400ms ease 500ms;
         }
@@ -308,9 +310,9 @@ export default function HoursRibbon() {
           position:    absolute;
           top:         50%; left: 50%;
           transform:   translate(-50%, -50%) scale(0);
-          font-family: var(--font-dm-serif-display), Georgia, serif;
-          font-style:  italic;
-          font-size:   36px;
+          font-family: var(--font-dm-sans), sans-serif;
+          font-weight: 600;
+          font-size:   34px;
           color:       #FFFFFF;
           transition:  transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms;
         }
@@ -344,9 +346,9 @@ export default function HoursRibbon() {
           position:    absolute;
           left:        50%;
           transform:   translate(-50%, -50%);
-          font-family: var(--font-dm-serif-display), Georgia, serif;
-          font-style:  italic;
-          font-size:   20px;
+          font-family: var(--font-dm-sans), sans-serif;
+          font-weight: 600;
+          font-size:   18px;
           color:       #FFFFFF;
           opacity:     0;
           transition:  opacity 380ms ease;
@@ -495,11 +497,11 @@ export default function HoursRibbon() {
           margin-top:  32px;
           min-height:  56px;
           text-align:  center;
-          font-family: var(--font-dm-serif-display), Georgia, serif;
-          font-style:  italic;
+          font-family: var(--font-dm-sans), sans-serif;
           font-size:   19px;
+          font-weight: 500;
           color:       #252B28;
-          letter-spacing: -0.005em;
+          letter-spacing: -0.01em;
           line-height: 1.35;
           opacity:     0;
           animation:   rib-words-in 400ms ease forwards;
@@ -541,10 +543,11 @@ export default function HoursRibbon() {
           padding-top: 20px;
           border-top:  1px solid #E8E4DE;
           text-align:  center;
-          font-family: var(--font-dm-serif-display), Georgia, serif;
-          font-style:  italic;
+          font-family: var(--font-dm-sans), sans-serif;
           font-size:   19px;
+          font-weight: 500;
           color:       #252B28;
+          letter-spacing: -0.01em;
           opacity:     0;
           transition:  opacity 500ms ease;
         }
@@ -629,12 +632,13 @@ export default function HoursRibbon() {
           }
           .hours-rib-seg-words {
             display:     block;
-            font-family: var(--font-dm-serif-display), Georgia, serif;
-            font-style:  italic;
+            font-family: var(--font-dm-sans), sans-serif;
             font-size:   14px;
-            color:       rgba(255,255,255,0.85);
+            font-weight: 500;
+            color:       rgba(255,255,255,0.9);
             margin:      0;
             line-height: 1.4;
+            letter-spacing: -0.005em;
           }
 
           .fr-q      { font-size: 18px; }

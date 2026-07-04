@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import CenterScrollX from "@/components/CenterScrollX";
+import StickyArcNavInit from "@/components/StickyArcNavInit";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
@@ -513,137 +514,8 @@ export default function WayfarerV2() {
           </ul>
         </nav>
 
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function() {
-            if (typeof window === "undefined") return;
-            /* Top-nav (72px) + arc-nav height (~54px) = 126. Add a small
-               breathing room (14px) so section content doesn't sit flush
-               against the sticky strip. */
-            var NAV_STACK_HEIGHT = 140;
+        <StickyArcNavInit arcs={["premise", "research", "decisions", "details"]} />
 
-            /* Defer setup until the arc divs exist further down the page —
-               this script runs as soon as the browser parses it, which is
-               before the rest of the body. */
-            function wire() {
-              var anchors = document.querySelectorAll('a[data-arc-anchor]');
-              if (!anchors.length) return false;
-              var targets = ['premise', 'research', 'decisions', 'details']
-                .map(function (k) { return document.getElementById('arc-' + k); })
-                .filter(Boolean);
-              if (targets.length < 4) return false;
-              var map = {};
-              anchors.forEach(function (a) { map[a.getAttribute('data-arc-anchor')] = a; });
-              /* Active-state as pure function of scroll position.
-                 Retired the IntersectionObserver: with two moving
-                 pieces (IO + scroll listener) the clear-zone kept
-                 racing the activate-zone. This runs on every scroll
-                 (throttled via rAF), computes an "active line" 1/3
-                 down the viewport, and picks whichever arc contains
-                 that line. Above the first arc: no active. */
-              var activeKey = null;
-              var rafScheduled = false;
-              function computeActive() {
-                rafScheduled = false;
-                var scrollY = window.scrollY;
-                var activeLine = scrollY + window.innerHeight * 0.33;
-                var arcs = [];
-                for (var i = 0; i < targets.length; i++) {
-                  var el = targets[i];
-                  var top = el.getBoundingClientRect().top + scrollY;
-                  arcs.push({ key: el.id.replace('arc-', ''), top: top });
-                }
-                var nextKey = null;
-                if (activeLine >= arcs[0].top) {
-                  for (var j = 0; j < arcs.length; j++) {
-                    var next = j + 1 < arcs.length ? arcs[j + 1].top : Infinity;
-                    if (activeLine >= arcs[j].top && activeLine < next) {
-                      nextKey = arcs[j].key;
-                      break;
-                    }
-                  }
-                }
-                if (nextKey === activeKey) return;
-                activeKey = nextKey;
-                var activeIdx = -1;
-                anchors.forEach(function (a, aidx) {
-                  if (nextKey && a.getAttribute('data-arc-anchor') === nextKey) {
-                    a.setAttribute('data-active', 'true');
-                    activeIdx = aidx;
-                  } else {
-                    a.removeAttribute('data-active');
-                  }
-                });
-                /* Move the sliding underline. One shared bar, transforms
-                   horizontally so it reads as a single traveling element. */
-                var slider = document.querySelector('.wf2-arc-slider');
-                if (slider) {
-                  if (activeIdx >= 0) {
-                    slider.style.transform = 'translateX(' + (activeIdx * 100) + '%)';
-                    slider.style.opacity = '1';
-                  } else {
-                    slider.style.opacity = '0';
-                  }
-                }
-              }
-              function onScroll() {
-                if (rafScheduled) return;
-                rafScheduled = true;
-                requestAnimationFrame(computeActive);
-              }
-              window.addEventListener('scroll', onScroll, { passive: true });
-              window.addEventListener('resize', onScroll, { passive: true });
-              computeActive();
-
-              /* Programmatic click handler — computes the exact scroll
-                 position so all four arcs land at the same distance
-                 below the sticky arc-nav. Without this, clicking 01
-                 Premise from the top of the page landed lower than
-                 clicking 02/03/04 because the arc-nav hadn't yet
-                 crossed its sticky threshold. */
-              anchors.forEach(function (a) {
-                a.addEventListener('click', function (ev) {
-                  var key = a.getAttribute('data-arc-anchor');
-                  var target = document.getElementById('arc-' + key);
-                  if (!target) return;
-                  ev.preventDefault();
-                  /* Immediately paint the active chip so the visitor
-                     sees state change even before scroll settles. */
-                  anchors.forEach(function (x) { x.removeAttribute('data-active'); });
-                  a.setAttribute('data-active', 'true');
-                  var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
-                  window.scrollTo({ top: y, behavior: 'smooth' });
-                  /* Update the URL hash without triggering a jump. */
-                  if (history && history.replaceState) history.replaceState(null, '', '#arc-' + key);
-                });
-              });
-
-              /* Deep-link + back/forward hashchange sync — matches the
-                 pattern the Spotify chip nav uses so external
-                 #arc-decisions links (from resume PDFs, Slack forwards,
-                 SEO snippets) land with the right chip painted and
-                 scroll to the target through our custom nav-stack math. */
-              function syncFromHash() {
-                var m = /^#arc-(premise|research|decisions|details)$/.exec(window.location.hash || '');
-                if (!m) return;
-                var key = m[1];
-                var target = document.getElementById('arc-' + key);
-                if (!target) return;
-                anchors.forEach(function (x) { x.removeAttribute('data-active'); });
-                if (map[key]) map[key].setAttribute('data-active', 'true');
-                var y = target.getBoundingClientRect().top + window.scrollY - NAV_STACK_HEIGHT;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-              }
-              window.addEventListener('hashchange', syncFromHash);
-              if (window.location.hash) setTimeout(syncFromHash, 200);
-              return true;
-            }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-              if (!wire()) requestAnimationFrame(function () { requestAnimationFrame(wire); });
-            } else {
-              document.addEventListener('DOMContentLoaded', wire);
-            }
-          })();
-        ` }} />
         <style>{`
           .wf2-arc-nav a[data-active] {
             color: var(--color-accent) !important;
