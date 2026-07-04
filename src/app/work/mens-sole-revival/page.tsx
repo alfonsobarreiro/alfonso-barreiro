@@ -550,6 +550,13 @@ export default function MSRv2() {
               letter-spacing: 0.04em !important;
             }
           }
+          /* Mobile hero — kill horizontal padding so the homepage
+             capture goes edge-to-edge on phone. Alfonso 2026-07-04:
+             "MSR mobile is not full width." */
+          @media (max-width: 640px) {
+            .msr2-hero-section { padding-left: 0 !important; padding-right: 0 !important; }
+            .msr2-hero-section > div { border-left: 0 !important; border-right: 0 !important; }
+          }
         `}</style>
 
         {/* ── PREMISE arc tint ─ */}
@@ -559,7 +566,7 @@ export default function MSRv2() {
             Hero image — full homepage capture, cropped
             to top portion so the hero lands first.
         ───────────────────────────────────────────── */}
-        <section aria-label="Hero" style={{ padding: `0 ${SECTION_X} 120px` }}>
+        <section className="msr2-hero-section" aria-label="Hero" style={{ padding: `0 ${SECTION_X} 120px` }}>
           <HeroImage
             src="/images/work/msr/v2/homepage-live.jpg"
             alt="Men’s Sole Revival homepage. diagnostic-first hero with assessment CTA and editorial article grid."

@@ -40,7 +40,7 @@ export default function TranslationCostDiagram() {
       <style>{`
         .tcd {
           margin-top:   20px;
-          max-width:    360px;
+          max-width:    280px;
         }
         .tcd-figure {
           position:   relative;
@@ -53,7 +53,7 @@ export default function TranslationCostDiagram() {
           width:      66px;
           height:     66px;
           border-radius: 50%;
-          border:     1.5px solid var(--color-brand);
+          border:     2px solid var(--color-brand);
           background: transparent;
           transform:  translate(-50%, -50%);
           display:    flex;
