@@ -163,7 +163,7 @@ export default function ProcessPage() {
             letter-spacing: 0.08em;
             text-transform: uppercase;
             text-decoration: none;
-            border-radius:  0;
+            border-radius:  4px;
             background:     var(--color-brand);
             border:         1px solid var(--color-brand);
             color:          #FFFFFF;

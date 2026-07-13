@@ -126,7 +126,7 @@ export default function AboutPage() {
             letter-spacing: 0.08em;
             text-transform: uppercase;
             text-decoration: none;
-            border-radius:  0;
+            border-radius:  4px;
             transition:     transform 0.25s ease, box-shadow 0.25s ease, background 0.2s, border-color 0.2s, color 0.2s;
           }
           .about-cta-primary {

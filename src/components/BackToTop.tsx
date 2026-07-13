@@ -42,7 +42,7 @@ export default function BackToTop() {
           background:      "var(--color-brand)",
           color:           "#FAFAF9",
           border:          "none",
-          borderRadius:    0,
+          borderRadius:    4,
           cursor:          "pointer",
           display:         "flex",
           alignItems:      "center",

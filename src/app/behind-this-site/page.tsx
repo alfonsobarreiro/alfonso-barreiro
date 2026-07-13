@@ -73,6 +73,7 @@ const tokenChip: React.CSSProperties = {
   gap:           "8px",
   padding:       "6px 12px",
   border:        "1px solid var(--color-cream-48)",
+  borderRadius:  4,
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize:      "12px",
   fontWeight:    500,
@@ -84,7 +85,7 @@ const swatch: React.CSSProperties = {
   display:      "inline-block",
   width:        "12px",
   height:       "12px",
-  borderRadius: 0,
+  borderRadius: 3,
   border:       "1px solid rgba(244, 239, 232, 0.20)",
 };
 
@@ -263,6 +264,7 @@ function StackVisual() {
           background: rgba(244, 239, 232, 0.04);
           border: 1px solid rgba(244, 239, 232, 0.12);
           border-left: 3px solid var(--color-brand);
+          border-radius: 4px;
           display: grid;
           grid-template-columns: 1fr auto;
           grid-template-rows: auto auto auto;

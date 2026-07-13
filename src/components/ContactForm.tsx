@@ -88,21 +88,21 @@ export default function ContactForm() {
 
   const inputStyle = (field: string, hasError: boolean): React.CSSProperties => ({
     width:        "100%",
-    background:   "transparent",
-    border:       "none",
-    borderBottom: hasError
+    background:   "#FFFFFF",
+    border:       hasError
       ? "1px solid #B91C1C"
       : focusedField === field
       ? "1px solid var(--color-accent)"
       : "1px solid #8A8680",
-    borderRadius: 0,
-    padding:      "14px 0",
+    borderRadius: 4,
+    padding:      "12px 14px",
     color:        "#252B28",
     fontSize:     "15px",
     fontFamily:   font,
     fontWeight:   400,
     outline:      "none",
-    transition:   "border-color 0.2s",
+    transition:   "border-color 0.2s, box-shadow 0.2s",
+    boxShadow:    focusedField === field ? "0 0 0 3px rgba(15, 61, 62, 0.10)" : "none",
     caretColor:   "var(--color-accent)",
   });
 
@@ -264,7 +264,7 @@ export default function ContactForm() {
           style={{
             padding: "15px 36px",
             background: isSubmitting ? "rgba(140,26,26,0.6)" : "var(--color-brand)",
-            color: "#FFFFFF", border: "none", borderRadius: 0,
+            color: "#FFFFFF", border: "none", borderRadius: 4,
             fontSize: "13px", fontWeight: 600, fontFamily: font,
             letterSpacing: "0.07em", textTransform: "uppercase",
             cursor: isSubmitting ? "not-allowed" : "pointer",
