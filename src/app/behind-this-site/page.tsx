@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   description:
     "How this site is built. The palette decision, the design system underneath it, and the stack that ships it.",
   alternates: { canonical: "https://www.barreiro.com/behind-this-site" },
-  robots: { index: false, follow: true },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/behind-this-site",
