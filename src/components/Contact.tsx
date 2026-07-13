@@ -280,7 +280,7 @@ export default function Contact() {
                     background:    formState === "submitting" ? "rgba(61,38,69,0.6)" : "var(--color-brand)",
                     color:         "#F5F5F4",
                     border:        "none",
-                    borderRadius:  0,
+                    borderRadius:  4,
                     fontSize:      "13px",
                     fontWeight:    600,
                     fontFamily:    "var(--font-dm-sans), sans-serif",

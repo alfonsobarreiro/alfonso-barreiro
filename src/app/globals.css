@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* HMR bump 2026-06-19 13:03 / 14:32 / 15:18 / 15:42 / 2026-07-03 11:20 — force recompile */
+/* HMR bump 2026-06-19 13:03 / 14:32 / 15:18 / 15:42 / 2026-07-03 11:20 / 12:15 — force recompile */
 
 /* Ensure Tailwind scans slide components so slide-only classes (mb-*, px-*, py-*, etc.) are generated */
 @source "../components/msr-slides";

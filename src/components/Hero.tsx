@@ -112,7 +112,7 @@ export default function Hero() {
                 margin:        0,
               }}
             >
-              UX / UI Designer · Portland
+              UX/UI Designer living in Portland,&nbsp;OR
             </p>
           </div>
 
@@ -133,10 +133,10 @@ export default function Hero() {
               maxWidth:      "18ch",
             }}
           >
-            Most design problems aren&rsquo;t visual problems.
+            I look at most things and ask why they built it that way.
             <br />
             <span style={{ color: "var(--color-brand)", fontWeight: 500, display: "inline-block", marginTop: "0.4em" }}>
-              They&rsquo;re decisions someone hasn&rsquo;t made yet.
+              Not just at work, but in life. In everyday things.
             </span>
           </h1>
 
@@ -153,7 +153,7 @@ export default function Hero() {
               fontWeight:   400,
             }}
           >
-            Surfaced through research, made explicit, shipped to a live product.
+            Before shapes, images, colors, and typography: understanding what a product actually solves, seeing who else is trying similar things, deciding where it can go. Pixels are the fruition of that work.
           </p>
           <p
             className="hero-reveal hero-availability"
@@ -167,7 +167,7 @@ export default function Hero() {
               margin:        "0 0 44px",
             }}
           >
-            Available for senior UX/UI roles at product teams · Remote from Portland
+            I&rsquo;m available for UX/UI roles with product teams &amp; remote work from Portland
           </p>
         </div>
 
@@ -180,7 +180,7 @@ export default function Hero() {
                 padding:       "14px 32px",
                 background:    "var(--color-brand)",
                 color:         "#FAFAF9",
-                borderRadius:  0,
+                borderRadius:  4,
                 fontSize:      "14px",
                 fontWeight:    500,
                 fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -205,7 +205,7 @@ export default function Hero() {
                 background:     "transparent",
                 color:          "#252B28",
                 border:         "1px solid #252B28",
-                borderRadius:   0,
+                borderRadius:   4,
                 fontSize:       "14px",
                 fontWeight:     500,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
@@ -281,7 +281,7 @@ export default function Hero() {
         }
         @media (max-width: 899px) {
           .hero-section {
-            padding: 56px clamp(24px, 5vw, 48px) 40px !important;
+            padding: 96px clamp(24px, 5vw, 48px) 40px !important;
             min-height: auto !important;
           }
           .hero-grid {
