@@ -221,6 +221,23 @@ export default function ProcessPage() {
               </p>
             </div>
 
+            <p style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "clamp(20px, 2.2vw, 28px)",
+              fontWeight:    500,
+              color:         "var(--color-cream-72)",
+              margin:        "0 0 24px",
+              letterSpacing: "-0.015em",
+              lineHeight:    1.3,
+              maxWidth:      "760px",
+            }}>
+              Most design problems aren&apos;t visual problems.
+              <br />
+              <span style={{ color: "var(--color-brand)", fontWeight: 500 }}>
+                They&apos;re decisions someone hasn&apos;t made yet.
+              </span>
+            </p>
+
             <h1 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(36px, 5vw, 64px)",

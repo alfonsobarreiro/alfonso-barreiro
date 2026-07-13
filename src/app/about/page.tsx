@@ -285,6 +285,19 @@ export default function AboutPage() {
                 >
                   What pulled me in wasn&apos;t the visual part.
                 </p>
+                <p
+                  style={{
+                    fontFamily:    "var(--font-dm-sans), sans-serif",
+                    fontSize:      "clamp(17px, 1.7vw, 20px)",
+                    fontWeight:    400,
+                    color:         "var(--color-cream-72)",
+                    margin:        "28px 0 0",
+                    lineHeight:    1.55,
+                    maxWidth:      "540px",
+                  }}
+                >
+                  I get to be part of building products that solve real problems. Here&apos;s how I came to that.
+                </p>
               </div>
 
               {/* Right: hero photo */}
