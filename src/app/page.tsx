@@ -45,8 +45,8 @@ function EditorialBreak() {
     <section
       aria-label="Thesis"
       style={{
-        background:  "var(--color-accent)",
-        color:       "#FAFAF9",
+        background:  "var(--color-ground-navy)",
+        color:       "var(--color-cream)",
         padding:     "clamp(120px, 14vw, 200px) clamp(24px, 6vw, 80px)",
         marginLeft:  "calc(50% - 50vw)",
         marginRight: "calc(50% - 50vw)",
