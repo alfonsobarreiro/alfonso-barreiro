@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* HMR bump 2026-06-19 13:03 / 14:32 / 15:18 / 15:42 — force recompile */
+/* HMR bump 2026-06-19 13:03 / 14:32 / 15:18 / 15:42 / 2026-07-03 11:20 — force recompile */
 
 /* Ensure Tailwind scans slide components so slide-only classes (mb-*, px-*, py-*, etc.) are generated */
 @source "../components/msr-slides";
@@ -44,10 +44,20 @@
    var(--color-accent-hover) / var(--color-focus-ring). */
 :root,
 :root[data-brand="c"] {
-  --color-brand:        #8C1A1A; /* Crimson */
+  --color-brand:        #CF5B48; /* Terracotta (was Crimson #8C1A1A, retired 2026-07-03: the values-palette exercise revealed Crimson wasn't Alfonso) */
+  --color-brand-hover:  #B34734;
   --color-accent:       #0F3D3E; /* Deep Teal */
   --color-accent-hover: #0A2D2E;
   --color-focus-ring:   #0F3D3E;
+  /* Values palette — grounds + text for the personal-editorial voice
+     used on About / Process / Behind This Site. Case studies keep the
+     white paper ground; personal pages sit on Navy with Cream text. */
+  --color-ground-navy:  #0F283D;
+  --color-ground-burnt: #8A3C12;
+  --color-cream:        #F4EFE8;
+  --color-cream-92:     rgba(244, 239, 232, 0.92);
+  --color-cream-72:     rgba(244, 239, 232, 0.72);
+  --color-cream-48:     rgba(244, 239, 232, 0.48);
 }
 :root[data-brand="aubergine"] {
   --color-brand:        #3D2645;
