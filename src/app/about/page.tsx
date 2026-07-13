@@ -29,6 +29,9 @@ export const metadata: Metadata = {
 };
 
 /* ── Shared style atoms ─────────────────────────────────────────────── */
+/* Page runs on Navy #0F283D ground with Cream text (Alfonso
+   2026-07-03 values-palette pivot). Case studies stay on white paper;
+   About / Process / Behind This Site carry the personal-editorial voice. */
 
 const eyebrowRow: React.CSSProperties = {
   display:      "flex",
@@ -41,7 +44,7 @@ const eyebrowDash: React.CSSProperties = {
   display:    "inline-block",
   width:      "24px",
   height:     "1px",
-  background: "var(--color-accent)",
+  background: "var(--color-brand)",
 };
 
 const eyebrowLabel: React.CSSProperties = {
@@ -50,7 +53,7 @@ const eyebrowLabel: React.CSSProperties = {
   fontWeight:    600,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
-  color:         "var(--color-accent)",
+  color:         "var(--color-brand)",
   margin:        0,
 };
 
@@ -58,7 +61,7 @@ const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize:      "clamp(24px, 3vw, 36px)",
   fontWeight:    600,
-  color:         "#252B28",
+  color:         "var(--color-cream)",
   margin:        "0 0 28px",
   letterSpacing: "-0.02em",
   lineHeight:    1.2,
@@ -68,14 +71,14 @@ const body: React.CSSProperties = {
   fontFamily:   "var(--font-dm-sans), sans-serif",
   fontSize:     "17px",
   lineHeight:   1.75,
-  color:        "#3D4440",
+  color:        "var(--color-cream-72)",
   margin:       "0 0 20px",
   maxWidth:     "680px",
 };
 
-const sectionWrapper = (background: string): React.CSSProperties => ({
+const sectionWrapper = (): React.CSSProperties => ({
   padding:    "96px clamp(32px, 6vw, 80px)",
-  background,
+  background: "var(--color-ground-navy)",
 });
 
 const innerWrapper: React.CSSProperties = {
@@ -84,14 +87,13 @@ const innerWrapper: React.CSSProperties = {
   margin:   "0 auto",
 };
 
-/* Pull-quote style: left-aligned, brand sans, no italic (Alfonso
-   2026-07-03: did not like the serif italic centered treatment).
-   Deep Teal left rail carries the visual weight without borrowing
-   editorial typography. */
+/* Pull-quote style: left-aligned, brand sans, no italic. Terracotta
+   left rail carries the weight on the Navy ground (Deep Teal would
+   sink into the ground; Terracotta pops). */
 const pullQuoteWrap: React.CSSProperties = {
   margin:       "40px 0",
   padding:      "6px 0 6px 24px",
-  borderLeft:   "3px solid var(--color-accent)",
+  borderLeft:   "3px solid var(--color-brand)",
   maxWidth:     "720px",
 };
 const pullQuoteText: React.CSSProperties = {
@@ -99,7 +101,7 @@ const pullQuoteText: React.CSSProperties = {
   fontSize:      "clamp(22px, 2.6vw, 30px)",
   fontWeight:    600,
   lineHeight:    1.25,
-  color:         "#252B28",
+  color:         "var(--color-cream)",
   letterSpacing: "-0.025em",
   margin:        0,
 };
@@ -110,7 +112,7 @@ export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main id="main-content" style={{ background: "#FFFFFF" }}>
+      <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
         <style>{`
           .about-cta-primary,
           .about-cta-secondary {
@@ -159,16 +161,21 @@ export default function AboutPage() {
             border-color: #252B28;
             color:        #252B28;
           }
-          .about-studio-link {
-            color:           var(--color-accent);
+          /* Inline links on the Navy ground — Deep Teal reads too dark
+             here, so links use Cream underlined; hover flashes to
+             Terracotta. Same pattern for the "On the shelf" book titles. */
+          .about-studio-link,
+          .about-shelf-link {
+            color:           var(--color-cream);
             text-decoration: none;
             font-weight:     500;
-            border-bottom:   1px solid var(--color-accent);
+            border-bottom:   1px solid var(--color-cream-48);
             transition:      border-color 0.2s, color 0.2s;
           }
-          .about-studio-link:hover {
-            border-bottom-color: var(--color-accent-hover);
-            color:               var(--color-accent-hover);
+          .about-studio-link:hover,
+          .about-shelf-link:hover {
+            border-bottom-color: var(--color-brand);
+            color:               var(--color-brand);
           }
 
           /* RemoteTimeline: bars are hover/focus reveals for their
@@ -241,7 +248,7 @@ export default function AboutPage() {
           aria-label="About Alfonso Barreiro"
           style={{
             padding:    "140px clamp(32px, 6vw, 80px) 96px",
-            background: "#FFFFFF",
+            background: "var(--color-ground-navy)",
           }}
         >
           <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
@@ -250,14 +257,14 @@ export default function AboutPage() {
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <div style={eyebrowRow}>
                   <span style={eyebrowDash} />
-                  <p style={{ ...eyebrowLabel, color: "#5A5752" }}>About</p>
+                  <p style={eyebrowLabel}>About</p>
                 </div>
                 <h1
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     fontSize:      "clamp(36px, 4.8vw, 60px)",
                     fontWeight:    600,
-                    color:         "#252B28",
+                    color:         "var(--color-cream)",
                     margin:        "0 0 12px",
                     letterSpacing: "-0.025em",
                     lineHeight:    1.1,
@@ -330,11 +337,11 @@ export default function AboutPage() {
               Light surface (matches the rest of the page) — the numbers
               carry the weight without needing a dark slab to punch. */}
         <section aria-label="By the numbers" style={{
-          background: "#F4F6F7",
-          color:      "#252B28",
+          background: "var(--color-ground-navy)",
+          color:      "var(--color-cream)",
           padding:    "clamp(60px, 7vw, 100px) clamp(24px, 5vw, 80px)",
-          borderTop:    "1px solid var(--color-border)",
-          borderBottom: "1px solid var(--color-border)",
+          borderTop:    "1px solid var(--color-cream-48)",
+          borderBottom: "1px solid var(--color-cream-48)",
         }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div
@@ -349,7 +356,7 @@ export default function AboutPage() {
                 display:    "inline-block",
                 width:      "32px",
                 height:     "1px",
-                background: "var(--color-accent)",
+                background: "var(--color-brand)",
                 flexShrink: 0,
               }} />
               {/* Eyebrow promoted to an h2 so the marquee stats block
@@ -361,7 +368,7 @@ export default function AboutPage() {
                 fontWeight:    600,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color:         "#5A5752",
+                color:         "var(--color-cream-72)",
                 margin:        0,
               }}>
                 By the day · by the week
@@ -412,7 +419,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── What pulled me into design ─────────────────────────────── */}
-        <section aria-label="What pulled me into design" style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="What pulled me into design" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>What pulled me into design</h2>
             <p style={body}>
@@ -455,7 +462,7 @@ export default function AboutPage() {
              Prose first (three chapters: in-office, going remote, the
              current remote chapter). Visual timeline below locks the
              career arc in one frame. */}
-        <section aria-label="How I work" style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="How I work" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>How I work</h2>
             <p style={body}>
@@ -486,7 +493,7 @@ export default function AboutPage() {
             "The file behind this site" section moved to /behind-this-site (footer link) on 2026-07-02. */}
 
         {/* ── Alpha Beta Design ──────────────────────────────────────── */}
-        <section aria-label="Alpha Beta Design" style={sectionWrapper("#F4F6F7")}>
+        <section aria-label="Alpha Beta Design" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Alpha Beta Design</h2>
             <p style={{ ...body, margin: 0 }}>
@@ -507,13 +514,13 @@ export default function AboutPage() {
         </section>
 
         {/* ── On the shelf ───────────────────────────────────────────── */}
-        <section aria-label="On the shelf" style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="On the shelf" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>On the shelf</h2>
             <p style={body}>
               Two books on the desk right now:{" "}
-              <em style={{ color: "#252B28" }}>Designing with Intention</em> and{" "}
-              <em style={{ color: "#252B28" }}>Refactoring UI</em>. The first is about
+              <em style={{ color: "var(--color-cream)" }}>Designing with Intention</em> and{" "}
+              <em style={{ color: "var(--color-cream)" }}>Refactoring UI</em>. The first is about
               how to think about design. The second is about how to make a screen
               actually look right. I&apos;m trying to read them as one lens, not two
               separate books.
@@ -529,7 +536,7 @@ export default function AboutPage() {
              (two paragraphs, not three). The Hiragana/walks/birds material
              reads more honestly here, alongside the "On the shelf" reading
              section, than as a closer on the homepage. ────────────────── */}
-        <section aria-label="Off-screen" style={sectionWrapper("#F4F6F7")}>
+        <section aria-label="Off-screen" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Off-screen</h2>
             <p style={{ ...body, margin: 0 }}>
@@ -545,7 +552,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Find me in Portland ────────────────────────────────────── */}
-        <section aria-label="Find me in Portland" style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="Find me in Portland" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Find me in Portland</h2>
             <p style={{ ...body, marginBottom: "36px" }}>
@@ -626,7 +633,7 @@ function RemoteTimeline() {
         fontWeight:    700,
         letterSpacing: "0.18em",
         textTransform: "uppercase",
-        color:         "var(--color-accent)",
+        color:         "var(--color-brand)",
         margin:        "0 0 12px",
       }}>
         Career arc · fifteen years
@@ -635,7 +642,7 @@ function RemoteTimeline() {
         fontFamily:    "var(--font-dm-sans), sans-serif",
         fontSize:      "clamp(22px, 2.4vw, 30px)",
         fontWeight:    600,
-        color:         "#252B28",
+        color:         "var(--color-cream)",
         margin:        "0 0 32px",
         letterSpacing: "-0.02em",
         lineHeight:    1.2,
@@ -662,7 +669,7 @@ function RemoteTimeline() {
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "11px",
                 fontWeight:    600,
-                color:         "#5A5752",
+                color:         "var(--color-cream-72)",
                 letterSpacing: "0.06em",
               }}>{y}</span>
             );
@@ -756,11 +763,11 @@ function RemoteTimeline() {
         flexWrap: "wrap",
         marginBottom: "40px",
       }}>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "#3D4440", letterSpacing: "0.02em" }}>
-          <span style={{ display: "inline-block", width: "14px", height: "10px", background: "#252B28" }} aria-hidden />
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-cream-72)", letterSpacing: "0.02em" }}>
+          <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-cream-72)" }} aria-hidden />
           In-office · 2010–2019, 2022–2024
         </span>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "#3D4440", letterSpacing: "0.02em" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-cream-72)", letterSpacing: "0.02em" }}>
           <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-brand)" }} aria-hidden />
           Remote · 2019–2021, 2024–now
         </span>

@@ -97,7 +97,7 @@ export default function Hero() {
                 display:    "inline-block",
                 width:      "32px",
                 height:     "1px",
-                background: "var(--color-accent)",
+                background: "var(--color-ground-navy)",
                 flexShrink: 0,
               }}
             />
@@ -163,7 +163,7 @@ export default function Hero() {
               fontWeight:    500,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color:         "var(--color-accent)",
+              color:         "var(--color-ground-navy)",
               margin:        "0 0 44px",
             }}
           >
@@ -551,7 +551,7 @@ function HeroResultPanel() {
             lineHeight:         1,
             fontWeight:         700,
             letterSpacing:      "-0.02em",
-            color:              "var(--color-accent)",
+            color:              "var(--color-ground-navy)",
             margin:             "10px 0 0",
             fontVariantNumeric: "tabular-nums",
           }}

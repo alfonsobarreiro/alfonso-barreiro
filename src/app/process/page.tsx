@@ -27,11 +27,15 @@ export const metadata: Metadata = {
   },
 };
 
+/* Page runs on Navy #0F283D ground with Cream text (Alfonso
+   2026-07-03 values-palette pivot). Same treatment as About and
+   Behind This Site. */
+
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize:      "clamp(24px, 3vw, 36px)",
   fontWeight:    600,
-  color:         "#252B28",
+  color:         "var(--color-cream)",
   margin:        "0 0 28px",
   letterSpacing: "-0.02em",
   lineHeight:    1.2,
@@ -41,14 +45,14 @@ const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
   fontSize:   "17px",
   lineHeight: 1.75,
-  color:      "#3D4440",
+  color:      "var(--color-cream-72)",
   margin:     "0 0 20px",
   maxWidth:   "680px",
 };
 
 const beliefClaim: React.CSSProperties = {
   ...body,
-  color:        "#252B28",
+  color:        "var(--color-cream)",
   fontWeight:   600,
   marginBottom: "8px",
 };
@@ -58,9 +62,9 @@ const beliefBody: React.CSSProperties = {
   marginBottom: "40px",
 };
 
-const sectionWrapper = (background: string): React.CSSProperties => ({
+const sectionWrapper = (): React.CSSProperties => ({
   padding:    "96px clamp(32px, 6vw, 80px)",
-  background,
+  background: "var(--color-ground-navy)",
 });
 
 const innerWrapper: React.CSSProperties = {
@@ -73,7 +77,7 @@ export default function ProcessPage() {
   return (
     <>
       <Nav />
-      <main id="main-content" style={{ background: "#FFFFFF" }}>
+      <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
         <style>{`
           .value-list  { counter-reset: value; }
           .philo-list  { counter-reset: philo; }
@@ -106,7 +110,7 @@ export default function ProcessPage() {
             font-size:       clamp(20px, 2.4vw, 28px);
             font-weight:     500;
             letter-spacing:  0.02em;
-            color:           #252B28;
+            color:           var(--color-cream);
             font-variant-numeric: tabular-nums;
             line-height:     1;
           }
@@ -167,8 +171,8 @@ export default function ProcessPage() {
           }
           .process-cta-primary:hover {
             transform:  translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37,43,40,0.18);
-            background: #6F1414;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+            background: var(--color-brand-hover);
           }
           @media (prefers-reduced-motion: reduce) {
             .process-cta-primary { transition: none !important; }
@@ -181,12 +185,13 @@ export default function ProcessPage() {
              glyph. Renders as texture, not focus (Alfonso 2026-07-03). */}
         <section aria-label="Process introduction" style={{
           padding:    "clamp(112px, 14vw, 168px) clamp(32px, 6vw, 80px) clamp(64px, 8vw, 96px)",
-          background: "#FFFFFF",
+          background: "var(--color-ground-navy)",
           position:   "relative",
           overflow:   "hidden",
         }}>
           {/* Watermark ∞ — sits behind everything, low-opacity so the
-              glyph is the texture, not the message. */}
+              glyph is the texture, not the message. On Navy the mark
+              flips to a Cream tint at very low alpha. */}
           <div
             aria-hidden="true"
             style={{
@@ -197,19 +202,19 @@ export default function ProcessPage() {
               userSelect:    "none",
             }}
           >
-            <LogoMark size={420} variant="dark" opacity={0.05} />
+            <LogoMark size={420} variant="light" opacity={0.06} />
           </div>
 
           <div style={{ ...innerWrapper, position: "relative", zIndex: 2 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-              <span style={{ display: "inline-block", width: "24px", height: "1px", background: "var(--color-accent)" }} />
+              <span style={{ display: "inline-block", width: "24px", height: "1px", background: "var(--color-brand)" }} />
               <p style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "11px",
                 fontWeight:    600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color:         "var(--color-accent)",
+                color:         "var(--color-brand)",
                 margin:        0,
               }}>
                 Process
@@ -220,7 +225,7 @@ export default function ProcessPage() {
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(36px, 5vw, 64px)",
               fontWeight:    500,
-              color:         "#252B28",
+              color:         "var(--color-cream)",
               margin:        "0 0 28px",
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
@@ -232,7 +237,7 @@ export default function ProcessPage() {
             <p style={{
               ...body,
               fontSize:  "clamp(18px, 1.6vw, 21px)",
-              color:     "#3D4440",
+              color:     "var(--color-cream-72)",
               maxWidth:  "720px",
               margin:    0,
             }}>
@@ -248,12 +253,12 @@ export default function ProcessPage() {
              vertically with per-row words baked in. */}
         <section aria-label="Where the hours go" style={{
           padding:    "clamp(72px, 9vw, 112px) clamp(32px, 6vw, 80px)",
-          background: "#FFFFFF",
+          background: "var(--color-ground-navy)",
         }}>
           <div style={innerWrapper}>
             <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="dark" opacity={0.8} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+              <LogoMark size={22} variant="light" opacity={0.85} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
             </div>
             <p style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -261,7 +266,7 @@ export default function ProcessPage() {
               fontWeight:    600,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color:         "var(--color-accent)",
+              color:         "var(--color-brand)",
               margin:        "0 0 12px",
             }}>
               Where the hours go
@@ -271,16 +276,26 @@ export default function ProcessPage() {
               Rough proportions across a real engagement. Figma is the shortest of them.
             </p>
 
-            <HoursRibbon />
+            {/* HoursRibbon widget was designed for a light ground.
+                Wrap it in a Cream tile so it reads as an artifact
+                card on the Navy section. */}
+            <div style={{
+              marginTop: "40px",
+              background: "var(--color-cream)",
+              padding: "clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px)",
+              border: "1px solid var(--color-cream-48)",
+            }}>
+              <HoursRibbon />
+            </div>
           </div>
         </section>
 
         {/* ── Where I add value ────────────────────────────────────────── */}
-        <section aria-label="Where I add value" className="value-list" style={sectionWrapper("#F4F6F7")}>
+        <section aria-label="Where I add value" className="value-list" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="dark" opacity={0.8} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+              <LogoMark size={22} variant="light" opacity={0.85} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
             </div>
             <h2 style={sectionH2}>Where I add value</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
@@ -312,19 +327,25 @@ export default function ProcessPage() {
         {/* ── Bridge pull quote — editorial phrase-by-phrase reveal ──── */}
         <section aria-label="Bridge note" style={{
           padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
-          background: "#F4F6F7",
+          background: "var(--color-ground-navy)",
         }}>
           <div style={innerWrapper}>
-            <BridgeQuote />
+            <div style={{
+              background: "var(--color-cream)",
+              padding: "clamp(40px, 6vw, 80px) clamp(28px, 4vw, 56px)",
+              border: "1px solid var(--color-cream-48)",
+            }}>
+              <BridgeQuote />
+            </div>
           </div>
         </section>
 
         {/* ── How I think about the work ───────────────────────────────── */}
-        <section aria-label="How I think about the work" className="philo-list" style={sectionWrapper("#F4F6F7")}>
+        <section aria-label="How I think about the work" className="philo-list" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="dark" opacity={0.8} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+              <LogoMark size={22} variant="light" opacity={0.85} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
             </div>
             <h2 style={sectionH2}>How I think about the work</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
@@ -398,17 +419,24 @@ export default function ProcessPage() {
               <p style={beliefBody}>
                 Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
               </p>
-              <TranslationCostDiagram />
+              <div style={{
+                marginTop: "8px",
+                background: "var(--color-cream)",
+                padding: "clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px)",
+                border: "1px solid var(--color-cream-48)",
+              }}>
+                <TranslationCostDiagram />
+              </div>
             </div>
           </div>
         </section>
 
         {/* ── Closer + CTA ─────────────────────────────────────────────── */}
-        <section aria-label="Next step" style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="Next step" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="dark" opacity={0.8} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "#B8B4AE" }} />
+              <LogoMark size={22} variant="light" opacity={0.85} />
+              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
             </div>
             <p style={{ ...body, maxWidth: "620px", marginBottom: "36px" }}>
               If any of this reads like the seat you&apos;re trying to fill, the case studies show it running in the artifact. The contact page is the shortest way to start.

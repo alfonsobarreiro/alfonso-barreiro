@@ -12,9 +12,13 @@ type Move = {
   words: string;
 };
 
+/* Segment colors follow the values palette (Alfonso 2026-07-03):
+   Terracotta for the "high-heat" upstream work, Burnt Orange for
+   the research chapter, Deep Teal for decisions, cooler teal for
+   ship, warm neutral for the small-Figma segment. */
 const MOVES: Move[] = [
-  { label: "Framing",   hours: 28, color: "#8C1A1A", kind: "framing",   words: "Sharpen the question. Cut the wrong-brief weeks." },
-  { label: "Research",  hours: 22, color: "#6F2020", kind: "research",  words: "Interviews. Clustering. The pattern surfaces." },
+  { label: "Framing",   hours: 28, color: "#CF5B48", kind: "framing",   words: "Sharpen the question. Cut the wrong-brief weeks." },
+  { label: "Research",  hours: 22, color: "#8A3C12", kind: "research",  words: "Interviews. Clustering. The pattern surfaces." },
   { label: "Decisions", hours: 20, color: "#0F3D3E", kind: "decisions", words: "Trade-offs named in the language the org tracks." },
   { label: "Ship",      hours: 18, color: "#3D5C5A", kind: "ship",      words: "Handoff, QA, iteration. The work ships." },
   { label: "Figma",     hours: 12, color: "#5A5752", kind: "figma",     words: "Finally, the pixels. Twelve of one hundred." },

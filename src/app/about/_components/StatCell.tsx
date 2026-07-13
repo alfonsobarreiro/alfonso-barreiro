@@ -55,7 +55,7 @@ export default function StatCell({
           fontWeight:    300,
           lineHeight:    0.85,
           letterSpacing: "-0.05em",
-          color:         "#252B28",
+          color:         "var(--color-cream)",
           margin:        0,
           fontVariantNumeric: "tabular-nums",
         }}
@@ -84,7 +84,7 @@ export default function StatCell({
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "14px",
           lineHeight: 1.55,
-          color:      "#3D4440",
+          color:      "var(--color-cream-72)",
           margin:     0,
           maxWidth:   "300px",
         }}

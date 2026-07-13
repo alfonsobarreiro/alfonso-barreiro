@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   description:
     "How this site is built. The palette decision, the design system underneath it, and the stack that ships it.",
   alternates: { canonical: "https://www.barreiro.com/behind-this-site" },
-  robots: { index: false, follow: true },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/behind-this-site",
@@ -18,11 +17,15 @@ export const metadata: Metadata = {
   },
 };
 
+/* Page runs on Navy #0F283D ground with Cream text (Alfonso
+   2026-07-03 values-palette pivot). Same treatment as About and
+   Process. */
+
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize:      "clamp(24px, 3vw, 36px)",
   fontWeight:    600,
-  color:         "#252B28",
+  color:         "var(--color-cream)",
   margin:        "0 0 28px",
   letterSpacing: "-0.02em",
   lineHeight:    1.2,
@@ -32,14 +35,14 @@ const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
   fontSize:   "17px",
   lineHeight: 1.75,
-  color:      "#3D4440",
+  color:      "var(--color-cream-72)",
   margin:     "0 0 20px",
   maxWidth:   "680px",
 };
 
-const sectionWrapper = (background: string): React.CSSProperties => ({
+const sectionWrapper = (): React.CSSProperties => ({
   padding:    "96px clamp(32px, 6vw, 80px)",
-  background,
+  background: "var(--color-ground-navy)",
 });
 
 const innerWrapper: React.CSSProperties = {
@@ -52,7 +55,7 @@ const stackRow: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize:      "14px",
   lineHeight:    1.7,
-  color:         "#3D4440",
+  color:         "var(--color-cream-72)",
   margin:        "0 0 8px",
   paddingLeft:   "18px",
   position:      "relative",
@@ -60,7 +63,7 @@ const stackRow: React.CSSProperties = {
 
 const stackLabel: React.CSSProperties = {
   fontWeight:    600,
-  color:         "#252B28",
+  color:         "var(--color-cream)",
   letterSpacing: "0.01em",
 };
 
@@ -69,11 +72,11 @@ const tokenChip: React.CSSProperties = {
   alignItems:    "center",
   gap:           "8px",
   padding:       "6px 12px",
-  border:        "1px solid rgba(110, 110, 108, 0.35)",
+  border:        "1px solid var(--color-cream-48)",
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize:      "12px",
   fontWeight:    500,
-  color:         "#3D4440",
+  color:         "var(--color-cream)",
   letterSpacing: "0.02em",
 };
 
@@ -82,7 +85,7 @@ const swatch: React.CSSProperties = {
   width:        "12px",
   height:       "12px",
   borderRadius: 0,
-  border:       "1px solid rgba(37, 43, 40, 0.15)",
+  border:       "1px solid rgba(244, 239, 232, 0.20)",
 };
 
 /* One step in the decision chronology. Numbered label + editorial
@@ -110,7 +113,7 @@ function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "clamp(28px, 3.6vw, 44px)",
           fontWeight:    600,
-          color:         "#252B28",
+          color:         "var(--color-cream)",
           margin:        "0 0 16px",
           letterSpacing: "-0.02em",
           lineHeight:    1.15,
@@ -122,7 +125,7 @@ function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize:   "15px",
             lineHeight: 1.65,
-            color:      "#3D4440",
+            color:      "var(--color-cream-72)",
             margin:     0,
           }}>
             {caption}
@@ -140,10 +143,186 @@ function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
           width:   "100%",
           height:  "auto",
           display: "block",
-          border:  "1px solid #E8E4DE",
+          border:  "1px solid var(--color-cream-48)",
         }}
       />
     </figure>
+  );
+}
+
+/* ── Visual stack explainer ─────────────────────────────────────────
+   Seven stack layers rendered as a grid of tiles: small SVG glyph
+   top-left, uppercase label, body copy. Left rail on each tile in
+   Terracotta reinforces the "layer stripe" reading. Highest layer
+   (Analytics) sits top-left; lowest (Framework) bottom-right. */
+
+type StackLayer = {
+  n:      string;
+  label:  string;
+  body:   React.ReactNode;
+  icon:   React.ReactNode;
+};
+
+const stackLayers: StackLayer[] = [
+  {
+    n:     "01",
+    label: "Framework",
+    body:  "Next.js App Router. TypeScript. Server components where they fit, client where they earn it.",
+    icon:  (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 18V6L18 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M18 6V14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    n:     "02",
+    label: "Hosting",
+    body:  <><code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>main</code> ships to barreiro.com. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>staging</code> ships to staging.barreiro.com. Vercel + GitHub auto-deploy.</>,
+    icon:  (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 4L21 20H3L12 4Z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      </svg>
+    ),
+  },
+  {
+    n:     "03",
+    label: "Design source",
+    body:  "Figma. Every screen begins there and gets translated to code by hand.",
+    icon:  (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="9"  cy="6"  r="3" stroke="currentColor" strokeWidth="1.75" />
+        <circle cx="15" cy="12" r="3" stroke="currentColor" strokeWidth="1.75" />
+        <circle cx="9"  cy="18" r="3" stroke="currentColor" strokeWidth="1.75" />
+      </svg>
+    ),
+  },
+  {
+    n:     "04",
+    label: "Typography",
+    body:  "DM Sans for the interface. Lora for editorial pull quotes. Barlow Condensed for section §-headings on case studies.",
+    icon:  (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <text x="4" y="18" fontFamily="var(--font-dm-sans), sans-serif" fontSize="17" fontWeight="700" fill="currentColor">Aa</text>
+      </svg>
+    ),
+  },
+  {
+    n:     "05",
+    label: "Motion",
+    body:  "Native CSS transitions. IntersectionObserver for scroll reveals. Zero animation libraries.",
+    icon:  (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 14C6 14 6 10 9 10C12 10 12 14 15 14C18 14 18 10 21 10" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    n:     "06",
+    label: "Content",
+    body:  "Written in plain sentences under a voice profile that bans em dashes, motivational closers, and AI-tell vocabulary. Every user-facing string goes through it.",
+    icon:  (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 7H19M5 12H19M5 17H14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    n:     "07",
+    label: "Analytics",
+    body:  "None. If you're here, you're here.",
+    icon:  (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="8"  stroke="currentColor" strokeWidth="1.75" />
+        <path d="M6 6L18 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+];
+
+function StackVisual() {
+  return (
+    <div className="bts-stack-grid">
+      {stackLayers.map((layer, i) => (
+        <div key={layer.n} className={`bts-stack-tile${i === stackLayers.length - 1 ? " bts-stack-tile-wide" : ""}`}>
+          <span className="bts-stack-num">{layer.n}</span>
+          <span className="bts-stack-icon" aria-hidden="true">{layer.icon}</span>
+          <p className="bts-stack-label">{layer.label}</p>
+          <p className="bts-stack-body">{layer.body}</p>
+        </div>
+      ))}
+      <style>{`
+        .bts-stack-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+        .bts-stack-tile {
+          position: relative;
+          padding: clamp(20px, 2.6vw, 32px) clamp(20px, 2.6vw, 28px) clamp(22px, 2.6vw, 28px) clamp(28px, 3.2vw, 40px);
+          background: rgba(244, 239, 232, 0.04);
+          border: 1px solid rgba(244, 239, 232, 0.12);
+          border-left: 3px solid var(--color-brand);
+          display: grid;
+          grid-template-columns: 1fr auto;
+          grid-template-rows: auto auto auto;
+          column-gap: 16px;
+          row-gap: 8px;
+          align-items: start;
+        }
+        .bts-stack-num {
+          grid-column: 1;
+          grid-row: 1;
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--color-brand);
+          font-variant-numeric: tabular-nums;
+          line-height: 1;
+        }
+        .bts-stack-icon {
+          grid-column: 2;
+          grid-row: 1 / span 2;
+          width: clamp(28px, 3vw, 36px);
+          height: clamp(28px, 3vw, 36px);
+          color: var(--color-cream);
+          opacity: 0.85;
+          justify-self: end;
+        }
+        .bts-stack-icon svg { width: 100%; height: 100%; display: block; }
+        .bts-stack-label {
+          grid-column: 1;
+          grid-row: 2;
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: clamp(20px, 2vw, 24px);
+          font-weight: 600;
+          letter-spacing: -0.015em;
+          line-height: 1.15;
+          color: var(--color-cream);
+          margin: 0;
+        }
+        .bts-stack-body {
+          grid-column: 1 / -1;
+          grid-row: 3;
+          font-family: var(--font-dm-sans), sans-serif;
+          font-size: 14px;
+          line-height: 1.6;
+          color: var(--color-cream-72);
+          margin: 4px 0 0;
+        }
+        /* Layer 07 (Analytics) reads as the punchline — span both
+           columns on desktop for editorial breath. */
+        .bts-stack-tile-wide {
+          grid-column: 1 / -1;
+        }
+        @media (max-width: 720px) {
+          .bts-stack-grid { grid-template-columns: 1fr; }
+          .bts-stack-tile-wide { grid-column: 1; }
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -151,23 +330,23 @@ export default function BehindThisSitePage() {
   return (
     <>
       <Nav />
-      <main id="main-content" style={{ background: "#FFFFFF" }}>
+      <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
 
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <section aria-label="Behind this site introduction" style={{
           padding:    "clamp(112px, 14vw, 168px) clamp(32px, 6vw, 80px) clamp(64px, 8vw, 96px)",
-          background: "#FFFFFF",
+          background: "var(--color-ground-navy)",
         }}>
           <div style={innerWrapper}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-              <span style={{ display: "inline-block", width: "24px", height: "1px", background: "var(--color-accent)" }} />
+              <span style={{ display: "inline-block", width: "24px", height: "1px", background: "var(--color-brand)" }} />
               <p style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "11px",
                 fontWeight:    600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color:         "var(--color-accent)",
+                color:         "var(--color-brand)",
                 margin:        0,
               }}>
                 Behind this site
@@ -178,7 +357,7 @@ export default function BehindThisSitePage() {
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(36px, 5vw, 64px)",
               fontWeight:    500,
-              color:         "#252B28",
+              color:         "var(--color-cream)",
               margin:        "0 0 28px",
               letterSpacing: "-0.03em",
               lineHeight:    1.05,
@@ -206,7 +385,7 @@ export default function BehindThisSitePage() {
              glyph stays vector-crisp. */}
         <section aria-label="The mark and how it works" style={{
           padding:    "clamp(96px, 12vw, 152px) clamp(32px, 6vw, 80px)",
-          background: "#FCFAF9",
+          background: "var(--color-ground-navy)",
         }}>
           <div style={innerWrapper}>
 
@@ -223,13 +402,11 @@ export default function BehindThisSitePage() {
               Foundation artifact &nbsp;·&nbsp; Brand
             </p>
 
-            {/* ── H2 — brand font only (Alfonso 2026-07-03). Serif italic
-                was fighting the brand. */}
             <h2 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(36px, 5.4vw, 60px)",
               fontWeight:    600,
-              color:         "#252B28",
+              color:         "var(--color-cream)",
               margin:        "0 0 24px",
               letterSpacing: "-0.025em",
               lineHeight:    1.08,
@@ -299,7 +476,7 @@ export default function BehindThisSitePage() {
               <ArtifactStep
                 eyebrow="06 · The direction that shipped"
                 heading="Homepage C · Light with Conviction."
-                caption="The wireframe of the site you're reading right now, locked 2026-06-16. Crimson on paper. Deep Teal as the second voice. Same DM Sans running text as the Aubergine detour above."
+                caption="The wireframe of the site you're reading right now, locked 2026-06-16. Terracotta on Navy. Deep Teal as the second voice. Same DM Sans running text as the Aubergine detour above."
                 src="/images/behind-this-site/homepage-c-shipped-v3.png"
                 width={1440}
                 height={3400}
@@ -351,7 +528,7 @@ export default function BehindThisSitePage() {
              prior C-vs-E composite image). */}
 
         {/* ── The system underneath it — Alpha Beta Design ────────────── */}
-        <section aria-label="The design system underneath" style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="The design system underneath" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>The system underneath it.</h2>
             <p style={body}>
@@ -361,10 +538,10 @@ export default function BehindThisSitePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color:           "var(--color-accent)",
+                  color:           "var(--color-cream)",
                   textDecoration:  "none",
                   fontWeight:      500,
-                  borderBottom:    "1px solid var(--color-accent)",
+                  borderBottom:    "1px solid var(--color-cream-48)",
                 }}
               >
                 Alpha Beta Design
@@ -372,13 +549,13 @@ export default function BehindThisSitePage() {
               , a portable design system I maintain for client work. Same tokens, same components, same layout scaffolding that powers Men&apos;s Sole Revival and Wayfarer. The brand swap between projects is a variable change, not a rebuild.
             </p>
             <p style={body}>
-              Roles instead of literal names. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "#F4F6F7", padding: "1px 6px" }}>--color-brand</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "#F4F6F7", padding: "1px 6px" }}>--crimson</code>. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "#F4F6F7", padding: "1px 6px" }}>--color-accent</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "#F4F6F7", padding: "1px 6px" }}>--deep-teal</code>. Each project points those variables at its own hexes and the system does the rest.
+              Roles instead of literal names. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--color-brand</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--crimson</code>. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--color-accent</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--deep-teal</code>. Each project points those variables at its own hexes and the system does the rest.
             </p>
 
             <div style={{ marginTop: "32px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
               <span style={tokenChip}>
-                <span style={{ ...swatch, background: "#8C1A1A" }} aria-hidden="true" />
-                --color-brand · #8C1A1A
+                <span style={{ ...swatch, background: "#CF5B48" }} aria-hidden="true" />
+                --color-brand · #CF5B48
               </span>
               <span style={tokenChip}>
                 <span style={{ ...swatch, background: "#0F3D3E" }} aria-hidden="true" />
@@ -396,35 +573,32 @@ export default function BehindThisSitePage() {
           </div>
         </section>
 
-        {/* ── The stack ────────────────────────────────────────────────── */}
-        <section aria-label="Stack" style={sectionWrapper("#F4F6F7")}>
+        {/* ── The stack — visual explainer ────────────────────────────
+             Seven layers as a visual stack, top-down (highest = closest
+             to the reader, lowest = closest to metal). Each layer has
+             a small SVG glyph, an uppercase label, and one line of body
+             copy. Compact 2-column grid on desktop, single column on
+             mobile (2026-07-03 Alfonso ask). */}
+        <section aria-label="Stack" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Stack.</h2>
-            <p style={{ ...body, marginBottom: "36px" }}>
-              What ships this page.
+            <p style={{ ...body, marginBottom: "clamp(40px, 5vw, 56px)" }}>
+              What ships this page. Seven layers, top-down.
             </p>
 
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              <li style={stackRow}><span style={stackLabel}>Framework:</span> Next.js App Router, TypeScript.</li>
-              <li style={stackRow}><span style={stackLabel}>Hosting:</span> Vercel. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em" }}>main</code> deploys to barreiro.com; <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em" }}>staging</code> deploys to staging.barreiro.com.</li>
-              <li style={stackRow}><span style={stackLabel}>Design source:</span> Figma. Every screen begins there and gets translated by hand.</li>
-              <li style={stackRow}><span style={stackLabel}>Typography:</span> DM Sans for interface. Lora for editorial pull quotes. Barlow Condensed for section §-headings on the case studies.</li>
-              <li style={stackRow}><span style={stackLabel}>Motion:</span> Native CSS transitions. IntersectionObserver for scroll reveals. No animation library.</li>
-              <li style={stackRow}><span style={stackLabel}>Content:</span> Written in plain sentences under a voice profile that bans em dashes, motivational closers, and AI-tell vocabulary. Every user-facing string goes through it.</li>
-              <li style={{ ...stackRow, marginBottom: 0 }}><span style={stackLabel}>Analytics:</span> None. If you&apos;re here, you&apos;re here.</li>
-            </ul>
+            <StackVisual />
           </div>
         </section>
 
         {/* ── Sign-off ─────────────────────────────────────────────────── */}
-        <section aria-label="Sign-off" style={sectionWrapper("#FFFFFF")}>
+        <section aria-label="Sign-off" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <p style={{
               ...body,
               fontSize: "clamp(18px, 1.5vw, 20px)",
               maxWidth: "620px",
               margin:   0,
-              color:    "#252B28",
+              color:    "var(--color-cream)",
             }}>
               Built solo. Every design decision, every commit, every line of copy signed by the same hand.
             </p>
