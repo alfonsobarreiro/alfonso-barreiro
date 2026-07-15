@@ -296,7 +296,7 @@ export default function AboutPage() {
                     maxWidth:      "540px",
                   }}
                 >
-                  I get to be part of building products that solve real problems. Here&apos;s how I came to that.
+                  I get to be part of building products that solve real problems. How I came to that is below.
                 </p>
               </div>
 
@@ -400,7 +400,7 @@ export default function AboutPage() {
               <StatCell n="7"   unit="books"        caption="Read this year. Fiction, design theory, poetry. What I read shapes what I make." />
               <StatCell n="5+"  unit="hours a day"  caption="Music while designing. Ambient and ECM keep the room quiet enough to hear the work." />
               <StatCell n="3"   unit="miles a day"  caption="Walked around Portland. Solves what the desk can't." />
-              <StatCell n="1"   unit="hour a week"  caption="Poetry. Mary Oliver and Dylan Thomas mostly." />
+              <StatCell n="8"   unit="miles a week" caption="Trail walking/running Mt. Tabor, as I plan to run an ultra marathon in a year and a half." />
             </div>
           </div>
           <style>{`
