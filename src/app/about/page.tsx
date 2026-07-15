@@ -350,12 +350,17 @@ export default function AboutPage() {
               Light surface (matches the rest of the page) — the numbers
               carry the weight without needing a dark slab to punch. */}
         <section aria-label="By the numbers" style={{
-          background: "var(--color-ground-navy)",
-          color:      "var(--color-cream)",
+          background: "#FFFFFF",
+          color:      "#252B28",
           padding:    "clamp(60px, 7vw, 100px) clamp(24px, 5vw, 80px)",
-          borderTop:    "1px solid var(--color-cream-48)",
-          borderBottom: "1px solid var(--color-cream-48)",
-        }}>
+          /* StatCell reads cream tokens for its numeral, unit fallback,
+             and caption. Remap those tokens locally so the same
+             component reads as ink-on-white here without needing a
+             variant prop. Brand token (unit label) already reads on
+             white, no override needed. */
+          ["--color-cream" as unknown as string]:    "#252B28",
+          ["--color-cream-72" as unknown as string]: "#3D4440",
+        } as React.CSSProperties}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div
               style={{
