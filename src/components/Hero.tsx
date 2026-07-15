@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 /* Stagger delays for hero entrance elements */
-const HERO_DELAYS = ["0s", "0.12s", "0.24s", "0.36s", "0.5s"];
+const HERO_DELAYS = ["0s", "0.12s", "0.24s", "0.36s", "0.42s", "0.5s"];
 
 /**
  * Hero
@@ -164,10 +164,24 @@ export default function Hero() {
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color:         "var(--color-ground-navy)",
-              margin:        "0 0 44px",
+              margin:        "0",
             }}
           >
-            I&rsquo;m available for UX/UI roles with product teams &amp; remote work from Portland
+            I&rsquo;m available for mid to senior UX/UI roles with product teams &amp; remote work from Portland
+          </p>
+          <p
+            className="hero-reveal hero-credentials"
+            style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "12px",
+              fontWeight:    500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color:         "#5A5752",
+              margin:        "12px 0 44px",
+            }}
+          >
+            Fifteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
           </p>
         </div>
 
