@@ -133,10 +133,10 @@ export default function Hero() {
               maxWidth:      "18ch",
             }}
           >
-            I look at most things and ask why they built it that way.
+            I look at most things and ask why they were built that way.
             <br />
             <span style={{ color: "var(--color-brand)", fontWeight: 500, display: "inline-block", marginTop: "0.4em" }}>
-              Not just at work, but in life. In everyday things.
+              Not just at work. In everyday things.
             </span>
           </h1>
 
@@ -153,7 +153,7 @@ export default function Hero() {
               fontWeight:   400,
             }}
           >
-            Before shapes, images, colors, and typography: understanding what a product actually solves, seeing who else is trying similar things, deciding where it can go. Pixels are the fruition of that work.
+            Before shapes, images, colors, and typography: understanding what a product actually solves, seeing who else is trying similar things, deciding where it can go. Pixels are where that work lands.
           </p>
           <p
             className="hero-reveal hero-availability"
