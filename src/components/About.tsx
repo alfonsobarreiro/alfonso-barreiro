@@ -315,7 +315,7 @@ export default function About() {
                 Send a message <ArrowIcon />
               </Link>
               <a
-                href="/Alfonso_Barreiro_Resume_April_2026.pdf"
+                href="/Alfonso_Barreiro_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={pillDefault}

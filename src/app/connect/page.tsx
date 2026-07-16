@@ -74,7 +74,7 @@ const contactLinks: {
     ),
   },
   {
-    href: "/Alfonso_Barreiro_Resume_April_2026.pdf",
+    href: "/Alfonso_Barreiro_Resume.pdf",
     label: "Resume",
     iconBg: "var(--color-ink)",
     external: true,
