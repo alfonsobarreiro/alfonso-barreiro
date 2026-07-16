@@ -181,7 +181,7 @@ export default function Hero() {
               margin:        "12px 0 44px",
             }}
           >
-            Fifteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
+            Eighteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
           </p>
         </div>
 

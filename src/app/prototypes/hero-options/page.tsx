@@ -359,7 +359,7 @@ function HeroPositioning() {
     >
       Most design problems aren&apos;t visual problems. They&apos;re
       decisions someone hasn&apos;t made yet: surfaced through research,
-      made explicit, shipped to a live product. Fifteen years in design,
+      made explicit, shipped to a live product. Eighteen years in design,
       four-plus remote across two chapters since 2019.
     </p>
   );
