@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { DM_Serif_Display, DM_Sans, Barlow_Condensed, Lora, Space_Grotesk, Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import BrandSwitch from "@/components/BrandSwitch";
 import KeyboardModality from "@/components/KeyboardModality";
 import "./globals.css";
+
+// GA4 measurement ID for barreiro.com. Reads NEXT_PUBLIC_GA_MEASUREMENT_ID
+// on Vercel if you ever rotate/change the ID; falls back to the hardcoded
+// value so out-of-the-box installs work without touching env vars.
+const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-3ZBC8QJ3C3";
 
 // Pre-hydration brand setter: runs before first paint so ?brand=c / ?brand=e
 // apply without flashing the default aubergine palette. The BrandSwitch
@@ -154,6 +161,12 @@ export default function RootLayout({
         </Suspense>
         <KeyboardModality />
         {children}
+        {/* GA4 fires on production only (VERCEL_ENV === "production").
+            Staging (staging.barreiro.com) and localhost do NOT report,
+            so the property receives clean traffic from real visitors. */}
+        {process.env.VERCEL_ENV === "production" && (
+          <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        )}
       </body>
     </html>
   );
