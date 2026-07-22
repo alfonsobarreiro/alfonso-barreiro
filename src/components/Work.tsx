@@ -38,7 +38,7 @@ const projects: Project[] = [
     subtitle:    "Recently Played Controls",
     description:
       "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
-    thesis:      "People are reaching for affordances that don't exist yet.",
+    thesis:      "Three controls I keep wanting Spotify to add.",
     deck:        "Pin · Remove · Pause. Three reversible controls. Each one completes in one or two taps.",
     meta:        "DESIGNER · 2026 · CONCEPT",
     tags:        ["Feature design", "Interaction model", "Constraint mapping"],
@@ -52,7 +52,7 @@ const projects: Project[] = [
     subtitle:    "Travel Discovery Platform",
     description:
       "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
-    thesis:      "Travel content is invitation, not data.",
+    thesis:      "Built the trip planner around duration, not dates.",
     deck:        "Homepage as editorial cover, not a directory. Discovery through a globe and curated cards.",
     meta:        "DESIGNER · 2026 · LIVE",
     tags:        ["Information Architecture", "Design System", "Multi-step Form UX"],
@@ -162,6 +162,7 @@ export default function Work() {
         padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px)",
         background: "#FFFFFF",
         borderTop:  "1px solid rgba(0, 0, 0, 0.06)",
+        overflowX:  "clip",
       }}
     >
       <div style={{ width: "100%", margin: "0 auto" }}>
@@ -201,7 +202,7 @@ export default function Work() {
           style={{
             display:        "flex",
             flexDirection:  "column",
-            gap:            "clamp(64px, 8vw, 120px)",
+            gap:            0,
           }}
         >
           {projects.map((project, idx) => (
@@ -220,8 +221,10 @@ export default function Work() {
           .work-row {
             flex-direction: column !important;
             align-items: stretch !important;
-            gap: clamp(24px, 5vw, 36px) !important;
+            gap: clamp(28px, 6vw, 44px) !important;
             justify-content: flex-start !important;
+            min-height: auto !important;
+            padding: clamp(56px, 12vw, 96px) clamp(24px, 6vw, 40px) !important;
           }
           .work-row .work-row-image {
             order: 0 !important;
@@ -231,6 +234,13 @@ export default function Work() {
           .work-row .work-row-content {
             order: 1 !important;
             max-width: 100% !important;
+          }
+          .work-row .work-row-thesis {
+            font-size: clamp(36px, 8vw, 48px) !important;
+            line-height: 1.08 !important;
+          }
+          .work-row .work-row-deck {
+            font-size: clamp(15px, 4vw, 18px) !important;
           }
         }
       `}</style>
@@ -259,20 +269,6 @@ function ProjectCard({
   const isWayfarer = project.title === "Wayfarer";
   const isSpotify  = project.title === "Spotify";
   const isABD      = project.title === "ABD UI";
-
-  // Editorial row — flex layout, device and thesis sit close together.
-  // The row alignment alternates left/right via imageOnRight (passed in
-  // by index parity at the call site).
-  const rowStyle: React.CSSProperties = {
-    display:        "flex",
-    width:          "100%",
-    alignItems:     "center",
-    gap:            "clamp(40px, 5vw, 80px)",
-    justifyContent: imageOnRight ? "flex-end" : "flex-start",
-    textDecoration: "none",
-    color:          "inherit",
-    cursor:         "default",
-  };
 
   /* Per-project aspect ratio: MSR (landscape MacBook) stays 16:10 so the
      laptop reads landscape; Wayfarer and Spotify use 4:5 so portrait iPad /
@@ -308,12 +304,13 @@ function ProjectCard({
   const shellBg = isSpotify
     ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2E2E2E 0%, #181818 60%, #0A0A0A 100%)"
     : isWayfarer
-    /* Wayfarer row: SOLID #1F1C3B — the exact hex the video's baked
-       backdrop uses in every sampled edge pixel (ffmpeg + PIL).
-       Any radial with a lifted center reads as purple-inside-navy;
-       matching the video exactly makes shell + video read as one
-       continuous field. */
-    ? "#1F1C3B"
+    /* Wayfarer row: darker cool ground-navy so the iPad sits on a
+       distinct atmosphere rather than the video's baked navy filling
+       the whole panel. The video's baked #1F1C3B edges are masked
+       away in WayfarerGlobePeek via a radial mask, so the darker row
+       shows through the video's periphery and reads as one field
+       around a floating iPad. */
+    ? "var(--color-ground-navy)"
     : isMSR
     /* MSR row: dark neutral gray gradient. The MacBook Pro's Space
        Black chassis was disappearing against warm ink #13100C; a
@@ -327,9 +324,35 @@ function ProjectCard({
     ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1B2228 0%, #14181A 60%, #0F1316 100%)"
     : "#F5F5F4";
 
+  /* Full-bleed editorial row (Option B) — each project becomes its own
+     cinematic 100vw panel. The row escapes the section's horizontal
+     padding via calc(50% - 50vw) negative margins, and the per-project
+     brand-anchored gradient (previously on the device shell only) now
+     paints the entire panel. Zigzag alternation is preserved through
+     justifyContent driven by imageOnRight. */
+  const rowStyle: React.CSSProperties = {
+    display:        "flex",
+    alignItems:     "center",
+    gap:            "clamp(40px, 6vw, 100px)",
+    justifyContent: imageOnRight ? "flex-end" : "flex-start",
+    background:     shellBg,
+    minHeight:      "clamp(720px, 80vh, 960px)",
+    padding:        "clamp(80px, 10vw, 160px) clamp(48px, 8vw, 120px)",
+    marginLeft:     "calc(50% - 50vw)",
+    marginRight:    "calc(50% - 50vw)",
+    textDecoration: "none",
+    color:          "inherit",
+    cursor:         "default",
+  };
+
+  /* The shell background is now transparent — the row's shellBg paints
+     the whole panel, so the shell only carries its per-device padding
+     for chrome breathing room. flex:0 0 auto keeps the shell at its
+     declared width; maxWidth caps it at ~45–50vw so the content column
+     always has room to breathe on wide viewports. */
   const shellStyle: React.CSSProperties = {
     display:      "block",
-    background:   shellBg,
+    background:   "transparent",
     padding:      shellPadding,
     borderRadius: 0,
     order:        imageOnRight ? 2 : 0,
@@ -337,15 +360,11 @@ function ProjectCard({
     color:        "inherit",
     transition:   "transform 0.3s ease",
     transform:    hovered && isLive ? "translateY(-3px)" : "translateY(0)",
-    /* Per-project shell width. Each device gets a footprint sized to its
-       editorial showroom — iPhone smallest, iPad mid, MBP largest. Using
-       flex shorthand (grow 0, shrink 1, basis = target width) so the shell
-       actually claims its declared width inside the flex row, then can
-       shrink at narrower viewports. */
-    ...(isSpotify  && { width: "460px", maxWidth: "100%" }),
-    ...(isWayfarer && { width: "540px", maxWidth: "100%" }),
-    ...(isMSR      && { width: "540px", maxWidth: "100%" }),
-    ...(isABD      && { width: "540px", maxWidth: "100%" }),
+    flex:         "0 0 auto",
+    ...(isSpotify  && { width: "460px", maxWidth: "45vw" }),
+    ...(isWayfarer && { width: "540px", maxWidth: "50vw" }),
+    ...(isMSR      && { width: "540px", maxWidth: "50vw" }),
+    ...(isABD      && { width: "540px", maxWidth: "50vw" }),
   };
 
   const imgBox: React.CSSProperties = {
@@ -425,8 +444,8 @@ function ProjectCard({
       fontWeight:     600,
       letterSpacing:  "0.18em",
       textTransform:  "uppercase",
-      color:          "#5A5752",
-      marginBottom:   "28px",
+      color:          "#E5E5E5",
+      marginBottom:   "24px",
     }}>
       {eyebrowLabel}
     </div>
@@ -441,20 +460,23 @@ function ProjectCard({
       className="work-row-content"
       style={{
         order:    imageOnRight ? 1 : 2,
-        maxWidth: "560px",
+        maxWidth: "640px",
       }}
     >
       {editorialEyebrow}
 
-      <p style={{
-        fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(28px, 3.4vw, 44px)",
-        fontWeight:    500,
-        color:         "#252B28",
-        margin:        "0 0 18px",
-        letterSpacing: "-0.03em",
-        lineHeight:    1.1,
-      }}>
+      <p
+        className="work-row-thesis"
+        style={{
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "clamp(48px, 6vw, 96px)",
+          fontWeight:    600,
+          color:         "#FFFFFF",
+          margin:        "0 0 24px",
+          letterSpacing: "-0.03em",
+          lineHeight:    1.05,
+        }}
+      >
         {project.thesis}
       </p>
 
@@ -462,16 +484,19 @@ function ProjectCard({
           beneath the thesis. The thesis is the insight; the deck is what
           a recruiter needs to see next. */}
       {project.deck ? (
-        <p style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(16px, 1.5vw, 20px)",
-          fontWeight:    400,
-          color:         "#5A5752",
-          margin:        "0 0 28px",
-          letterSpacing: "-0.005em",
-          lineHeight:    1.45,
-          maxWidth:      "560px",
-        }}>
+        <p
+          className="work-row-deck"
+          style={{
+            fontFamily:    "var(--font-dm-sans), sans-serif",
+            fontSize:      "clamp(16px, 1.6vw, 20px)",
+            fontWeight:    400,
+            color:         "#C5C8C7",
+            margin:        "0 0 32px",
+            letterSpacing: "-0.005em",
+            lineHeight:    1.45,
+            maxWidth:      "560px",
+          }}
+        >
           {project.deck}
         </p>
       ) : null}
@@ -485,16 +510,26 @@ function ProjectCard({
           onFocus={() => setHovered(true)}
           onBlur={() => setHovered(false)}
           style={{
+            /* Brand CTA on dark grounds. Terracotta (--color-brand
+               #CF5B48) is the house brand. On the Spotify Jet, Wayfarer
+               navy, and MSR gray-radial full-bleed rows it dips below
+               WCAG AA at its native luminance, so we apply
+               filter: brightness(1.35) to lift it into the on-dark
+               range (~#F27E6D) while keeping single-source-of-truth
+               on the token. Same treatment used by the Option A
+               cinematic hero panel — one consistent on-dark brand
+               behavior across the site. */
             display:        "inline-flex",
             alignItems:     "center",
             gap:            "10px",
             color:          "var(--color-brand)",
+            filter:         "brightness(1.35)",
             fontFamily:     "var(--font-dm-sans), sans-serif",
             fontSize:       "14px",
             fontWeight:     500,
             letterSpacing:  "0.02em",
             textDecoration: "none",
-            opacity:        hovered ? 1 : 0.85,
+            opacity:        hovered ? 1 : 0.9,
             transition:     "opacity 0.25s ease",
           }}
         >
@@ -509,7 +544,7 @@ function ProjectCard({
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "13px",
-          color:      "#5A5752",
+          color:      "#C5C8C7",
           margin:     0,
         }}>
           Case study in progress

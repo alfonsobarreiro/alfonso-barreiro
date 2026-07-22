@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 /* Stagger delays for hero entrance elements */
-const HERO_DELAYS = ["0s", "0.12s", "0.24s", "0.36s", "0.42s", "0.5s"];
+const HERO_DELAYS = ["0s", "0.12s", "0.18s", "0.24s", "0.36s", "0.42s"];
 
 /**
  * Hero
@@ -140,20 +140,24 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Method deck — the "how" underneath the "what" of the H1. */}
+          {/* Positioning tagline — the compressed answer to "what do you do."
+              Sits between the H1's POV hook and the method-deck elaboration,
+              so a scanning hiring manager gets the full-stack claim in one
+              line before deciding whether to keep reading. */}
           <p
-            className="hero-reveal"
+            className="hero-reveal hero-tagline"
             style={{
-              fontFamily:   "var(--font-dm-sans), sans-serif",
-              fontSize:     "clamp(16px, 1.7vw, 19px)",
-              lineHeight:   1.65,
-              color:        "#2F3531",
-              maxWidth:     "480px",
-              marginBottom: "44px",
-              fontWeight:   400,
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "clamp(17px, 1.6vw, 20px)",
+              fontWeight:    600,
+              color:         "#252B28",
+              margin:        "0 0 44px",
+              maxWidth:      "480px",
+              lineHeight:    1.4,
+              letterSpacing: "-0.005em",
             }}
           >
-            Before shapes, images, colors, and typography: understanding what a product actually solves, seeing who else is trying similar things, deciding where it can go. Pixels are where that work lands.
+            Research, decide, design, and build. Start to finish.
           </p>
           <p
             className="hero-reveal hero-availability"
@@ -178,7 +182,7 @@ export default function Hero() {
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color:         "#5A5752",
-              margin:        "12px 0 44px",
+              margin:        "12px 0 20px",
             }}
           >
             Eighteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
@@ -403,7 +407,7 @@ function HeroResultPanel() {
       style={{
         display:        "flex",
         flexDirection:  "column",
-        gap:            "clamp(24px, 2.8vw, 32px)",
+        gap:            "clamp(12px, 1.5vw, 20px)",
         textDecoration: "none",
         color:          "inherit",
       }}
@@ -505,10 +509,8 @@ function HeroResultPanel() {
       </div>
       </div>
 
-      {/* Text block — below the device, left-aligned to the iPad body's
-          left edge (~14 % of the panel because the PNG is scaled 122.81 %
-          and offset -11.46 %). Right padding mirrors so the text block
-          matches the iPad's footprint exactly. */}
+      {/* Text block — below the device, left-aligned. The 14 % side padding
+          keeps the copy aligned with the iPad body inside the panel. */}
       <div
         style={{
           display:        "flex",
@@ -553,21 +555,19 @@ function HeroResultPanel() {
           Men&apos;s Sole Revival
         </h2>
 
-        {/* Stat — the strongest number on the page reads first.
-            Split into stat + descriptor lines so the "13×" doesn't
-            visually dominate to the point where the descriptor reads
-            as a footnote glued to the digit. */}
+        {/* Stat — the 13× lift. The count-up animation targets this p
+            via statRef; the IntersectionObserver flow is unchanged. */}
         <p
           ref={statRef}
           style={{
             fontFamily:         "var(--font-dm-sans), sans-serif",
             fontSize:           "clamp(40px, 4.5vw, 56px)",
-            lineHeight:         1,
             fontWeight:         700,
             letterSpacing:      "-0.02em",
             color:              "var(--color-ground-navy)",
             margin:             "10px 0 0",
             fontVariantNumeric: "tabular-nums",
+            lineHeight:         1,
           }}
         >
           {Math.round(n)}×

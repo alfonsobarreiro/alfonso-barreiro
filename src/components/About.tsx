@@ -62,17 +62,17 @@ const pillDefault: React.CSSProperties = {
 const skillGroups = [
   {
     category: "Research",
-    value:    "I ask the question that makes the roadmap shorter, not longer.",
+    value:    "The sharper question shortens the roadmap.",
     skills:   ["User Interviews", "Job Stories", "Competitive Teardown"],
   },
   {
     category: "Systems",
-    value:    "I build the system first because the button has to get designed once.",
+    value:    "The button gets designed once. Everything else composes from it.",
     skills:   ["Figma", "Design Tokens", "Component API"],
   },
   {
     category: "Delivery",
-    value:    "I ship it in the browser because Figma stops being the source of truth the day a dev opens it.",
+    value:    "Figma stops being the source of truth the day a dev opens it. So the browser is where I ship.",
     skills:   ["Next.js", "Tailwind", "Accessibility"],
   },
 ];
@@ -528,8 +528,7 @@ export default function About() {
             }}
           >
             By the time I open it, the research, the brief, and the structure
-            have already done most of the work. The interface is the last step,
-            not the first place I look for answers.
+            have already done most of the work.
           </p>
         </section>
 

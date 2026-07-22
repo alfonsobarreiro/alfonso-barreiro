@@ -36,8 +36,9 @@ export default function Home() {
 /* Dark editorial break between Work and About. The site otherwise
    scrolls white-on-white; this one full-bleed section carries the
    composition from portfolio-template to editorial-magazine rhythm.
-   Deep Teal ground, one serif pull-quote lifted from the About
-   thesis, crimson rule above, uppercase attribution below. Sharp
+   Warm dark ground (photo proxy) with a soft radial vignette for
+   edge lighting, one large sans pull-quote lifted from the About
+   thesis, cream rule above, uppercase attribution below. Sharp
    corners on the container per the site-wide rule against large
    rounded rectangles. */
 function EditorialBreak() {
@@ -74,7 +75,7 @@ function EditorialBreak() {
             maxWidth:      "20ch",
           }}
         >
-          Most design problems aren&rsquo;t visual problems. They&rsquo;re decisions someone hasn&rsquo;t made yet.
+          Most design problems aren&rsquo;t visual problems. They&rsquo;re unmade decisions.
         </p>
         <p
           style={{
