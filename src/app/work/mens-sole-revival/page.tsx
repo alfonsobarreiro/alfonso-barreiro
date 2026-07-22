@@ -1091,7 +1091,7 @@ export default function MSRv2() {
                   color:         "#D2C7B4",
                   margin:        "0 0 32px",
                 }}>
-                  Early outcomes &nbsp;·&nbsp; first 10 weeks live &nbsp;·&nbsp; GA4, Apr&ndash;Jun 2026
+                  Early outcomes &nbsp;·&nbsp; first 16 weeks live &nbsp;·&nbsp; GA4, Apr&ndash;Jul 2026
                 </p>
                 <div style={{
                   display:             "grid",
@@ -1109,9 +1109,9 @@ export default function MSRv2() {
                       color:              "#F5F0E8",
                       margin:             0,
                       fontVariantNumeric: "tabular-nums",
-                    }}>4:53</p>
+                    }}>4:30</p>
                     <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
-                      Average engaged time per session. High for a content site, and the exact signal MSR was built to produce.
+                      Average engagement time per user. High for a content site, and the exact signal MSR was built to produce.
                     </p>
                   </div>
                   <div>
@@ -1126,7 +1126,7 @@ export default function MSRv2() {
                       fontVariantNumeric: "tabular-nums",
                     }}>3.2</p>
                     <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: "#D2C7B4", margin: "18px 0 0", maxWidth: "26ch" }}>
-                      Sessions per user across 41 early visitors in 6 countries with zero paid promotion. Early readers come back.
+                      Sessions per user across 53 users in 7 countries with zero paid promotion. Early readers come back.
                     </p>
                   </div>
                   <div>
@@ -1818,12 +1818,12 @@ function EarlyOutcomes() {
       maxWidth:   "780px",
       marginTop:  "32px",
     }}>
-      <p style={labelStyle}>Early outcomes · first 10 weeks live (GA4, Apr–Jun 2026)</p>
+      <p style={labelStyle}>Early outcomes · first 16 weeks live (GA4, Apr–Jul 2026)</p>
       <p style={bodyStyle}>
-        <strong style={{ color: c.ink }}>4m 53s average engaged time per session.</strong> High for a content site, and the exact signal MSR was built to produce: visitors stay to read, they don&apos;t bounce.
+        <strong style={{ color: c.ink }}>4m 30s average engagement time per user.</strong> High for a content site, and the exact signal MSR was built to produce: visitors stay to read, they don&apos;t bounce.
       </p>
       <p style={bodyStyle}>
-        <strong style={{ color: c.ink }}>~3.2 sessions per user</strong> across 41 early visitors in 6 countries, with zero paid promotion. Early readers come back.
+        <strong style={{ color: c.ink }}>~3.2 sessions per user</strong> across 53 users in 7 countries, with zero paid promotion. Early readers come back.
       </p>
       <p style={{ ...bodyStyle, margin: 0 }}>
         <strong style={{ color: c.ink }}>The honest gap:</strong> Search Console shows 4 impressions and 0 clicks across the same window, all on a single branded query. Discovery is direct or referral-based; organic search has not yet started. SEO is the clear next lever, and the phased plan below is how I&apos;ll measure whether engaged time holds as the audience grows.
@@ -1867,7 +1867,7 @@ function HonestRisks() {
     }}>
       <p style={labelStyle}>What could still go wrong</p>
       <p style={bodyStyle}>
-        <strong style={{ color: c.ink }}>SEO is unproven.</strong> Engaged time can hold or collapse as the audience grows past 41 visitors. Won&rsquo;t know for six months.
+        <strong style={{ color: c.ink }}>SEO is unproven.</strong> Engagement time can hold or collapse as the audience grows past 53 users. Won&rsquo;t know for six months.
       </p>
       <p style={bodyStyle}>
         <strong style={{ color: c.ink }}>Affiliate is slow by design.</strong> Editorial independence is the trade. If volume doesn&rsquo;t ramp, the math stops working.
@@ -1908,10 +1908,10 @@ function UserResearch() {
   // can use to evaluate the funnel at a glance. The aside below has
   // the prose context for anyone who keeps reading.
   const stats = [
-    { num: "6",   label: "users started the flow" },
-    { num: "100%", label: "finished the triage step" },
-    { num: "83%", label: "reached results" },
-    { num: "13×", label: "avg results revisits" },
+    { num: "78",     label: "started the assessment" },
+    { num: "86%",    label: "finished it" },
+    { num: "4m 30s", label: "avg engagement per user" },
+    { num: "53",     label: "users in 7 countries" },
   ];
 
   return (
@@ -1960,7 +1960,7 @@ function UserResearch() {
         margin:        "0 0 16px",
         maxWidth:      "780px",
       }}>
-        Assessment funnel · live data · n = 6 users over 10 weeks
+        Site analytics · Apr–Jul 2026 · 168 sessions · 367 page views
       </p>
 
     <aside style={{
@@ -1973,16 +1973,16 @@ function UserResearch() {
     }}>
       <p style={labelStyle}>Voice of the user · Behavioral data (GA4)</p>
       <p style={bodyStyle}>
-        <strong style={{ color: c.ink }}>One pillar article holds 9m 30s of engagement per reader, with 9 views per active user.</strong> Four readers have returned to &ldquo;Men&rsquo;s Foot Health: Evidence-Based Care for Men Over 40&rdquo; nine times each. Long-form reading, not skimming. That was the editorial bet.
+        <strong style={{ color: c.ink }}>78 visitors started the assessment. 67 finished.</strong> That&rsquo;s 86% completion of a five-part flow. The sticky skip button, the humane checklist language, the section-by-section trust build: all of it held. What I designed to feel like reading, not filling out a form, is being read through.
       </p>
       <p style={bodyStyle}>
-        <strong style={{ color: c.ink }}>The product-review trust model also produces real read-time.</strong> Three readers average 4m 45s on a single Superfeet insole review. Editorial independence is producing trust, not bounce. That was the affiliate bet.
+        <strong style={{ color: c.ink }}>Average engagement time is 4m 30s per user.</strong> Content-site benchmarks sit around two to three minutes. The editorial bet, long-form reading over skim-and-bounce, is producing the read-time it needed.
       </p>
       <p style={bodyStyle}>
-        <strong style={{ color: c.ink }}>The assessment funnel holds end-to-end.</strong> Six users started the 12-frame flow. All six finished the triage step. Five reached the results page. Three downloaded the PDF takeaway. The five who reached results came back to that page an average of thirteen times. The results aren&rsquo;t a finish line. They&rsquo;re a reference document.
+        <strong style={{ color: c.ink }}>53 users across 7 countries in the first four months.</strong> Traffic is direct-driven so far: 166 direct sessions against 2 organic. SEO is still developing. What&rsquo;s arriving is intent, not stumbled-onto search results.
       </p>
       <p style={{ ...bodyStyle, margin: 0 }}>
-        <strong style={{ color: c.ink }}>The honest scale:</strong> 41 active users over 10 weeks. The sample is small. The behavior pattern is real.
+        <strong style={{ color: c.ink }}>The honest scale:</strong> 53 users, 168 sessions, 367 page views over roughly four months. The sample is small. The behavior pattern is real.
       </p>
     </aside>
     </>
@@ -2110,18 +2110,15 @@ function AnnotatedAssessment() {
 }
 
 /* ---------- Assessment funnel visual
-   Pairs with the Voice-of-the-User callout. Five-node horizontal flow:
-   Started → Triage → Sections → Results → PDF. Numbers under each step,
-   muted treatment on the drop-off step, and the "× 13 return views"
-   annotation under Results. */
+   Pairs with the Voice-of-the-User callout. Two-node horizontal flow:
+   Started sections → Reached results. Completion rate called out as a
+   sublabel under the endpoint. Reshaped from the earlier five-node view
+   after the GA4 slice was refreshed (Apr–Jul 2026, 78 → 67 = 86%). */
 
 function AssessmentFunnelFlow() {
   const steps = [
-    { num: "01", label: "Started",  count: 6, drop: false },
-    { num: "02", label: "Triage",   count: 6, drop: false },
-    { num: "03", label: "Sections", count: 6, drop: false },
-    { num: "04", label: "Results",  count: 5, drop: true, sublabel: "&times; 13 avg return views per user" },
-    { num: "05", label: "PDF",      count: 3, drop: true },
+    { num: "01", label: "Started sections", count: 78, drop: false },
+    { num: "02", label: "Reached results",  count: 67, drop: false, sublabel: "86% completion rate" },
   ];
 
   return (
@@ -2142,12 +2139,12 @@ function AssessmentFunnelFlow() {
         color:         c.accent,
         margin:        "0 0 18px",
       }}>
-        Assessment funnel &middot; 6 started &middot; 3 finished with the takeaway
+        Assessment funnel &middot; 78 started sections &middot; 67 reached results
       </p>
 
       <div style={{
         display:             "grid",
-        gridTemplateColumns: "1fr auto 1fr auto 1fr auto 1fr auto 1fr",
+        gridTemplateColumns: "1fr auto 1fr",
         alignItems:          "stretch",
         gap:                 "4px",
       }} className="msr2-funnel-row">
