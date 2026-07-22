@@ -91,7 +91,7 @@ export default function Testimonials() {
               color: c.ink, margin: 0, maxWidth: "640px",
             }}
           >
-            What clients said about the part that doesn&rsquo;t ship in the file.
+            What people say.
           </h2>
         </div>
 

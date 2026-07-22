@@ -9,21 +9,21 @@ import WalkTrace from "./_components/WalkTrace";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Fifteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
+    "Eighteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
+      "Eighteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
+      "Eighteen years in design. What pulled me in wasn't the visual part. UX/UI Designer in Portland, OR.",
     images: ["/about/opengraph-image"],
   },
 };
@@ -270,7 +270,7 @@ export default function AboutPage() {
                     lineHeight:    1.1,
                   }}
                 >
-                  Fifteen years in design.
+                  Eighteen years in design.
                 </h1>
                 <p
                   style={{
@@ -654,7 +654,7 @@ function RemoteTimeline() {
         color:         "var(--color-brand)",
         margin:        "0 0 12px",
       }}>
-        Career arc · fifteen years
+        Career arc · 2010 to today
       </p>
       <h3 style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",

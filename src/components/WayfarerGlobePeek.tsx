@@ -44,9 +44,19 @@ export default function WayfarerGlobePeek({ paused: _paused = false }: { paused?
           height:         "100%",
           objectFit:      "cover",
           objectPosition: "center",
-          /* No transform crop — the outer shell is now a matching
-             navy radial, so the video's baked-in navy edges are
-             welcome and the row reads as one continuous field. */
+          /* Precise clip-path around the iPad's rounded rectangle,
+             removing the baked #1F1C3B padding so the darker ground-navy
+             row shows through cleanly. Values were measured from a
+             frame of the source video (960x1200): the iPad occupies a
+             centered 792x1098 region with 4.25% vertical and 8.75%
+             horizontal insets, and the device corners fit a ~60px
+             radius (6.25% of the 960px short side). The slash in the
+             round value gives circular corners in the element's 4:5
+             box: 6.25% of width equals ~5% of height, both mapping to
+             60px at native rendering. WebkitClipPath duplicates for
+             older Safari builds. */
+          clipPath:       "inset(4.25% 8.75% 4.25% 8.75% round 6.25% / 5%)",
+          WebkitClipPath: "inset(4.25% 8.75% 4.25% 8.75% round 6.25% / 5%)",
           display:        "block",
         }}
       >
