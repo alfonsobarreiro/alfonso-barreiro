@@ -26,7 +26,7 @@ interface Project {
 }
 
 /* Order: Spotify → Wayfarer → MSR → ABD UI.
-   MSR is already the hero (13× over the live site), so leading with it again
+   MSR is already the hero (86% completion stat over the live site), so leading with it again
    would repeat the same evidence twice. Spotify opens the work section with
    interaction craft, Wayfarer carries the shipped-product range, MSR closes
    the project triad with the measurable-result case the hero set up. ABD UI
@@ -67,7 +67,7 @@ const projects: Project[] = [
     description:
       "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
     thesis:      "Pivoted from e-commerce to editorial in week 3.",
-    deck:        "Diagnostic-first resource for men over 40. Live since April. 13× return-visits on the results page.",
+    deck:        "Diagnostic-first resource for men over 40. Live since April. 86% of visitors finish the assessment.",
     meta:        "DESIGNER · 2026 · LIVE SINCE APRIL",
     tags:        ["Brand Identity", "Content UX", "Editorial"],
     year:        "2026",

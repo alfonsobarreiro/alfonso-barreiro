@@ -11,8 +11,8 @@ const HERO_DELAYS = ["0s", "0.12s", "0.18s", "0.24s", "0.36s", "0.42s"];
  * Hero
  * ─────────────────────────────────────────────────────────────────────────────
  * Lead with measurable shipped result. Right column is the live Men's Sole
- * Revival site with the 13× CTR lift overlaid. The number counts up from
- * 1 → 13 the first time the panel enters the viewport.
+ * Revival site with the 86% assessment completion rate overlaid. The number
+ * counts up from 0 → 86 the first time the panel enters the viewport.
  *
  * Spotify Remove animation moved to the Work section's Spotify card.
  */
@@ -248,7 +248,7 @@ export default function Hero() {
             </a>
         </div>
 
-        {/* ── RIGHT: live MSR site + 13× ─────────────────────── */}
+        {/* ── RIGHT: live MSR site + 86% completion stat ─────── */}
         <div className="hero-reveal" style={{ gridArea: "ipad", width: "100%" }}>
           <HeroResultPanel />
         </div>
@@ -332,19 +332,19 @@ export default function Hero() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */
-/* Right column: live MSR site screenshot + 13× count-up overlay                */
+/* Right column: live MSR site screenshot + 86% count-up overlay                */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
-const COUNT_TARGET = 13;
+const COUNT_TARGET = 86;
 
 function HeroResultPanel() {
   const panelRef = useRef<HTMLAnchorElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   /* Count-up: desktop-only, fires when the panel enters the viewport.
-     Restored 2026-07-03 after the SLUX audit flagged the flat 13× as
+     Restored 2026-07-03 after the SLUX audit flagged the flat stat as
      one of the lifts to portfolio-defining. Gated on min-width: 900px
-     + prefers-reduced-motion so mobile / motion-averse readers get 13
-     immediately (why it was pulled the first time). */
+     + prefers-reduced-motion so mobile / motion-averse readers get the
+     target number immediately (why it was pulled the first time). */
   const [n, setN] = useState<number>(COUNT_TARGET);
   const statRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
@@ -402,7 +402,7 @@ function HeroResultPanel() {
     <Link
       href="/work/mens-sole-revival"
       ref={panelRef}
-      aria-label="Men's Sole Revival case study — 13× CTR lift"
+      aria-label="Men's Sole Revival case study · 86% assessment completion"
       className="hero-result-anchor"
       style={{
         display:        "flex",
@@ -555,8 +555,8 @@ function HeroResultPanel() {
           Men&apos;s Sole Revival
         </h2>
 
-        {/* Stat — the 13× lift. The count-up animation targets this p
-            via statRef; the IntersectionObserver flow is unchanged. */}
+        {/* Stat — the 86% assessment completion rate. The count-up animation
+            targets this p via statRef; the IntersectionObserver flow is unchanged. */}
         <p
           ref={statRef}
           style={{
@@ -570,7 +570,7 @@ function HeroResultPanel() {
             lineHeight:         1,
           }}
         >
-          {Math.round(n)}×
+          {Math.round(n)}%
         </p>
         <p
           style={{
@@ -584,7 +584,7 @@ function HeroResultPanel() {
             maxWidth:       "260px",
           }}
         >
-          Return-visits on the results page
+          of visitors finish the assessment
         </p>
 
         {/* CTA */}

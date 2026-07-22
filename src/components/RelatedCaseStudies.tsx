@@ -44,7 +44,7 @@ const ALL: Card[] = [
   {
     slug:    "mens-sole-revival",
     title:   "Men's Sole Revival",
-    tagline: "13× return-visits after pivoting from e-commerce to editorial.",
+    tagline: "Pivoted from e-commerce to editorial. 86% of visitors finish the assessment.",
     meta:    "Foot Health Content Platform · 2026",
     image:   "/cs-msr-preview.jpg",
     href:    "/work/mens-sole-revival",

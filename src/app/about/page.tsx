@@ -346,7 +346,7 @@ export default function AboutPage() {
         {/* ── By the numbers — memory anchor stat block ────────────────
               Distills the About story into three sticky figures so the
               page has a single editorial moment people can carry away.
-              Same rhythm as the MSR funnel stats + the home 13× hook.
+              Same rhythm as the MSR funnel stats + the home 86% hook.
               Light surface (matches the rest of the page) — the numbers
               carry the weight without needing a dark slab to punch. */}
         <section aria-label="By the numbers" style={{
