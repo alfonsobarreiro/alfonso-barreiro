@@ -74,7 +74,6 @@ export default function Testimonials() {
         {/* Section header */}
         <div style={{ marginBottom: "clamp(48px, 6vw, 72px)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px" }}>
-            <span style={{ display: "inline-block", width: "32px", height: "1px", background: c.accent, flexShrink: 0 }} />
             <p style={{
               fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",

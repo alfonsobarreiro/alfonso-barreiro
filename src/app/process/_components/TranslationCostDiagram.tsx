@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 /* Small editorial diagram that ships with the "Translation cost between
    disciplines is real" belief. Three labeled circles start apart, then
    pull together into a Venn overlap when the reader scrolls the belief
-   into view. Argues the belief's payoff line ("Eighteen years across
+   into view. Argues the belief's payoff line ("Fifteen years across
    all three, so I can hold the conversation without the relay") in the
    visual language, not just the copy. */
 export default function TranslationCostDiagram() {
@@ -103,7 +103,7 @@ export default function TranslationCostDiagram() {
       </div>
 
       <p className="tcd-caption">
-        Eighteen years across all three &middot; <b>no relay needed</b>
+        Fifteen years across all three &middot; <b>no relay needed</b>
       </p>
     </div>
   );

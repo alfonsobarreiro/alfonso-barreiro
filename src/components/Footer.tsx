@@ -74,7 +74,21 @@ export default function Footer() {
               margin:        0,
               letterSpacing: "-0.005em",
             }}>
-              Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
+              <span
+                className="availability-dot"
+                aria-hidden="true"
+                style={{
+                  display:       "inline-block",
+                  width:         "7px",
+                  height:        "7px",
+                  borderRadius:  "50%",
+                  background:    "var(--color-accent)",
+                  marginRight:   "10px",
+                  verticalAlign: "middle",
+                  animation:     "pulse 2.2s ease-in-out infinite",
+                }}
+              />
+              Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.
             </p>
           </div>
 
@@ -144,7 +158,7 @@ export default function Footer() {
                 color:         muted,
                 lineHeight:    1,
               }}>
-                UX / UI Designer · Portland, OR
+                Product Designer · Portland, OR
               </span>
             </div>
           </div>

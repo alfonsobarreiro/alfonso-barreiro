@@ -331,7 +331,7 @@ export default function ProcessPage() {
 
             <p style={beliefClaim} className="value-claim">I talk fluently with PMs, engineers, and stakeholders.</p>
             <p style={beliefBody}>
-              Eighteen years across marketing, operations, and product mean I can hold a technical review, a stakeholder briefing, and a research synthesis without translation cost. Less translation, fewer meetings, fewer surprises.
+              Fifteen years across marketing, operations, and product mean I can hold a technical review, a stakeholder briefing, and a research synthesis without translation cost. Less translation, fewer meetings, fewer surprises.
             </p>
 
             <p style={beliefClaim} className="value-claim">I run AI-augmented research and synthesis.</p>
@@ -434,7 +434,7 @@ export default function ProcessPage() {
               </svg>
               <p style={beliefClaim} className="philo-claim">Translation cost between disciplines is real.</p>
               <p style={beliefBody}>
-                Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Eighteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
+                Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Fifteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
               </p>
               <div style={{
                 marginTop: "8px",

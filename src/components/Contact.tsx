@@ -99,14 +99,6 @@ export default function Contact() {
               marginBottom: "28px",
             }}
           >
-            <span
-              style={{
-                display:    "inline-block",
-                width:      "24px",
-                height:     "1px",
-                background: "var(--color-accent)",
-              }}
-            />
             <p
               style={{
                 fontSize:      "11px",
@@ -147,7 +139,7 @@ export default function Contact() {
               maxWidth:     "380px",
             }}
           >
-            Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
+            Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.
           </p>
 
           {/* Direct email */}

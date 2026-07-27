@@ -3,7 +3,7 @@ export function PersonSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Alfonso Barreiro",
-    jobTitle: "UX/UI Designer",
+    jobTitle: "Product Designer",
     url: "https://www.barreiro.com",
     image: "https://www.barreiro.com/opengraph-image",
     address: {

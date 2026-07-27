@@ -6,21 +6,21 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch. Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.",
+    "Get in touch. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.",
   alternates: { canonical: "https://www.barreiro.com/contact" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/contact",
     title: "Contact — Alfonso Barreiro",
     description:
-      "Get in touch. Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.",
+      "Get in touch. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.",
     images: ["/contact/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact — Alfonso Barreiro",
     description:
-      "Get in touch. Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.",
+      "Get in touch. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.",
     images: ["/contact/opengraph-image"],
   },
 };
@@ -91,7 +91,7 @@ export default function ContactPage() {
                 margin:     "0 0 40px",
                 maxWidth:   "460px",
               }}>
-                Open to full-time UX/UI roles and selective contract work.
+                Open to product and UX/UI roles, contract or full-time.
                 Portland, OR or remote. I&apos;ll get back to you within a day
                 or two.
               </p>

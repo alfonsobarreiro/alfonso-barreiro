@@ -548,6 +548,68 @@ export default function SpotifyV2() {
 
         {/* ── DECISIONS arc tint ─ cool lilac instead of warm cream */}
         <div id="arc-decisions" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+
+        {/* The cut decision — spine of the Decisions arc. Which control
+            got prioritized and against what criterion. */}
+        <section
+          aria-label="What I cut, and why"
+          style={{ padding: `clamp(48px, 6vw, 80px) ${SECTION_X} clamp(24px, 4vw, 40px)` }}
+        >
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+            <Eyebrow>The cut decision</Eyebrow>
+            <h2 style={{
+              fontFamily:    font.sans,
+              fontSize:      "clamp(28px, 4vw, 48px)",
+              fontWeight:    600,
+              color:         c.ink,
+              margin:        "0 0 32px",
+              letterSpacing: "-0.025em",
+              lineHeight:    1.1,
+              maxWidth:      "780px",
+            }}>
+              What I cut, and why.
+            </h2>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.75, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
+              I started with three controls for the Recently Played shelf: Pin, Remove, and Pause. I couldn&rsquo;t ship all three as equals, so I ranked them against one question. Which one fixes a problem the shelf actually leaves you stuck with?
+            </p>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.75, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
+              Remove won. The shelf shows what you played to anyone looking at your screen, and there&rsquo;s no clean way to take something off it. Pin is additive, a preference, not a fix. Remove solves the actual pain.
+            </p>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
+              Pause stayed, but time-boxed. A permanent pause changes what the shelf is. A temporary one hands you control for the moment you need it, then the shelf returns to normal on its own.
+            </p>
+          </div>
+        </section>
+
+        {/* Edge cases — sits next to the cut decision because edges
+            qualify the decisions they come from. */}
+        <section
+          aria-label="Edge cases I considered"
+          style={{ padding: `clamp(24px, 4vw, 40px) ${SECTION_X} clamp(48px, 6vw, 80px)` }}
+        >
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+            <Eyebrow>Edge cases</Eyebrow>
+            <h2 style={{
+              fontFamily:    font.sans,
+              fontSize:      "clamp(28px, 4vw, 48px)",
+              fontWeight:    600,
+              color:         c.ink,
+              margin:        "0 0 32px",
+              letterSpacing: "-0.025em",
+              lineHeight:    1.1,
+              maxWidth:      "780px",
+            }}>
+              Edge cases I considered.
+            </h2>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.75, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
+              Remove has to be reversible. If it deletes instead of hides, it repeats the exact destructive pattern I&rsquo;m critiquing, so undo is part of the control, not an add-on.
+            </p>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
+              Pause needs an expiry you can see. When the time-box ends, the shelf comes back on its own, and no one should have to remember they paused it.
+            </p>
+          </div>
+        </section>
+
         {/* User journey — where the controls land */}
         <UserJourney />
 
@@ -890,6 +952,33 @@ export default function SpotifyV2() {
                 Desktop right-click menu &middot; same actions, native pattern
               </figcaption>
             </figure>
+          </div>
+        </section>
+
+        {/* Evaluation — how I'd know the concept worked. Sits just
+            before the design log so it reads as the honest close before
+            the meta info, not as an add-on to Parity above. */}
+        <section
+          aria-label="How I'd know it worked"
+          style={{ padding: `clamp(72px, 10vw, 128px) ${SECTION_X} clamp(48px, 6vw, 80px)` }}
+        >
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+            <Eyebrow>Evaluation</Eyebrow>
+            <h2 style={{
+              fontFamily:    font.sans,
+              fontSize:      "clamp(28px, 4vw, 48px)",
+              fontWeight:    600,
+              color:         c.ink,
+              margin:        "0 0 32px",
+              letterSpacing: "-0.025em",
+              lineHeight:    1.1,
+              maxWidth:      "780px",
+            }}>
+              How I&rsquo;d know it worked.
+            </h2>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
+              This is a concept, so there are no live numbers and I won&rsquo;t invent any. Here&rsquo;s the test I&rsquo;d run instead. Put the prototype in front of five power users who share a screen at home or at work. Success is narrow: they can take an item off the shelf in one action, undo it if they change their mind, and say what Pause does without me explaining it. If they can&rsquo;t undo, Remove is just the destructive pattern again, and the concept fails its own point.
+            </p>
           </div>
         </section>
 
@@ -2766,7 +2855,9 @@ function ActionSheetHero() {
               Spotify&rsquo;s Recently Played is one of the best surfaces in
               consumer music. For power users on shared screens, family
               devices, and one-off plays, three lightweight controls add the
-              lever they keep reaching for. All reversible, all native to the
+              lever they keep reaching for. The shelf broadcasts your recent
+              plays to anyone sharing the screen, and power users are the
+              ones who notice and care. All reversible, all native to the
               shelf, none touch the recommendation engine.
             </p>
 

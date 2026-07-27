@@ -66,12 +66,17 @@ const skillGroups = [
     skills:   ["User Interviews", "Job Stories", "Competitive Teardown"],
   },
   {
-    category: "Systems",
-    value:    "The button gets designed once. Everything else composes from it.",
-    skills:   ["Figma", "Design Tokens", "Component API"],
+    category: "Decide",
+    value:    "Most design problems are decisions someone hasn’t made yet.",
+    skills:   ["Problem Framing", "Prioritization", "Success Metrics"],
   },
   {
-    category: "Delivery",
+    category: "Design",
+    value:    "The button gets designed once. Everything else composes from it.",
+    skills:   ["Information Architecture", "Interaction", "Design Systems"],
+  },
+  {
+    category: "Build",
     value:    "Figma stops being the source of truth the day a dev opens it. So the browser is where I ship.",
     skills:   ["Next.js", "Tailwind", "Accessibility"],
   },
@@ -158,14 +163,6 @@ export default function About() {
                 marginBottom: "24px",
               }}
             >
-              <span
-                style={{
-                  display:    "inline-block",
-                  width:      "24px",
-                  height:     "1px",
-                  background: "var(--color-accent)",
-                }}
-              />
               <p
                 style={{
                   fontSize:      "11px",
@@ -246,7 +243,7 @@ export default function About() {
                   color:         "#2F3531",
                 }}
               >
-                Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
+                Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.
               </span>
             </div>
 
@@ -261,7 +258,7 @@ export default function About() {
                 lineHeight:    1.15,
               }}
             >
-              I design from the gaps I actually live in.
+              Research, decide, design, and build. Start to finish.
             </h2>
 
             <p
@@ -289,11 +286,11 @@ export default function About() {
                 maxWidth:     "640px",
               }}
             >
-              I design from the gaps I actually live in. Spotify is my most-used app,
+              I do my best work on problems I&apos;ve had to live through myself. Spotify is my most-used app,
               and the Recently Played shelf had blind spots that bothered me for years.
               I dealt with plantar fasciitis, toenail fungus, and the quiet shame men
               carry about neglecting their own bodies, so I built a resource for it.
-              Each project starts with a real problem I can feel, not a brief I was handed.
+              Each project starts with a real problem I can feel. When I&apos;m handed a brief, my first job is finding the real problem inside it.
             </p>
             {/* Para 3 (Hiragana, walks, birds, etc.) moved to /about's
                 "Off-screen" section — keeps the home About at 2 paragraphs
@@ -377,6 +374,20 @@ export default function About() {
               alignSelf:    "start",
             }}
           >
+            {/* Intro — frames the four pillars as ownership territory,
+                not a skills checklist. */}
+            <p
+              style={{
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontSize:   "15px",
+                fontWeight: 500,
+                lineHeight: 1.55,
+                color:      "#252B28",
+                margin:     "0 0 32px",
+              }}
+            >
+              As a Product Designer, this is what I own from problem to shipped surface.
+            </p>
             {skillGroups.map((group, i) => (
               <div
                 key={group.category}
@@ -433,6 +444,21 @@ export default function About() {
               </div>
             ))}
 
+            {/* Outro — signals the four moves aren't a rigid checklist,
+                they're a spine that flexes per project. */}
+            <p
+              style={{
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontSize:   "14px",
+                fontWeight: 500,
+                lineHeight: 1.55,
+                color:      "#5A5752",
+                margin:     "32px 0 0",
+              }}
+            >
+              The mix shifts per project. The shape doesn&apos;t.
+            </p>
+
             {/* About-page discovery CTA — quieter than the home CTAs in the
                 left column, sits at the foot of the skills box for a reader
                 who wants the full story. */}
@@ -473,64 +499,6 @@ export default function About() {
             </div>
           </div>
         </div>
-
-        {/* Process note — promoted from a small bordered card to a
-            page-width editorial moment. Display-size opening line carries
-            the page's signature take; the rest reads as the supporting
-            paragraph. Aligns with the editorial cadence used in the case
-            studies (display thesis + body deck). */}
-        <section
-          className="process-section scroll-reveal"
-          style={{
-            padding:      "clamp(80px, 9vw, 128px) 0 0",
-            borderTop:    "1px solid rgba(110, 110, 108, 0.18)",
-            marginTop:    "clamp(40px, 5vw, 64px)",
-            maxWidth:     "100%",
-          }}
-        >
-          <p
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "11px",
-              fontWeight:    600,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color:         "#5A5752",
-              margin:        "0 0 28px",
-            }}
-          >
-            How I work
-          </p>
-          <h2
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(32px, 4.5vw, 56px)",
-              fontWeight:    600,
-              lineHeight:    1.1,
-              color:         "#252B28",
-              margin:        "0 0 24px",
-              letterSpacing: "-0.025em",
-              maxWidth:      "900px",
-            }}
-          >
-            Figma comes last.
-          </h2>
-          <p
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(17px, 1.6vw, 20px)",
-              fontWeight:    400,
-              lineHeight:    1.55,
-              color:         "#5A5752",
-              margin:        0,
-              letterSpacing: "-0.005em",
-              maxWidth:      "760px",
-            }}
-          >
-            By the time I open it, the research, the brief, and the structure
-            have already done most of the work.
-          </p>
-        </section>
 
       </div>
 
