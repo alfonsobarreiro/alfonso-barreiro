@@ -23,6 +23,10 @@ interface Project {
   status:      "live" | "coming-soon";
   href?:       string;
   image?:      string;
+  /** If true, renders an "Interactive prototype" badge under the eyebrow.
+      Signals to scanners that the case study contains a working demo,
+      not just static comps. */
+  interactive?: boolean;
 }
 
 /* Order: Spotify → Wayfarer → MSR → ABD UI.
@@ -46,6 +50,7 @@ const projects: Project[] = [
     status:      "live",
     href:        "/work/spotify",
     image:       "/cs-spotify-preview.png",
+    interactive: true,
   },
   {
     title:       "Wayfarer",
@@ -464,6 +469,34 @@ function ProjectCard({
       }}
     >
       {editorialEyebrow}
+
+      {project.interactive ? (
+        <div style={{
+          display:       "inline-flex",
+          alignItems:    "center",
+          gap:           "8px",
+          padding:       "5px 10px",
+          background:    "rgba(30,215,96,0.12)",
+          border:        "1px solid rgba(30,215,96,0.45)",
+          borderRadius:  "3px",
+          marginBottom:  "20px",
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "10px",
+          fontWeight:    700,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color:         "#7AE29B",
+        }}>
+          <span aria-hidden="true" style={{
+            display:      "inline-block",
+            width:        "6px",
+            height:       "6px",
+            borderRadius: "50%",
+            background:   "#1ED760",
+          }} />
+          Interactive prototype
+        </div>
+      ) : null}
 
       <p
         className="work-row-thesis"
