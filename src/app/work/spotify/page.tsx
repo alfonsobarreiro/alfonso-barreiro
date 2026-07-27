@@ -666,7 +666,7 @@ export default function SpotifyV2() {
                 textTransform: "uppercase",
                 color:         c.accent,
                 margin:        "0 0 20px",
-              }}>Proof &nbsp;·&nbsp; try the three controls</p>
+              }}>Interactive prototype &nbsp;·&nbsp; try the three controls</p>
               <h2 style={{
                 fontFamily:    font.sans,
                 fontSize:      "clamp(40px, 6vw, 72px)",
