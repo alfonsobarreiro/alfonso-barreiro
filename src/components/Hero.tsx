@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 /* Stagger delays for hero entrance elements */
-const HERO_DELAYS = ["0s", "0.12s", "0.18s", "0.24s", "0.36s", "0.42s"];
+const HERO_DELAYS = ["0s", "0.12s", "0.30s", "0.42s"];
 
 /**
  * Hero
@@ -92,15 +92,6 @@ export default function Hero() {
               marginBottom: "28px",
             }}
           >
-            <span
-              style={{
-                display:    "inline-block",
-                width:      "32px",
-                height:     "1px",
-                background: "var(--color-ground-navy)",
-                flexShrink: 0,
-              }}
-            />
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -112,7 +103,7 @@ export default function Hero() {
                 margin:        0,
               }}
             >
-              UX/UI Designer living in Portland,&nbsp;OR
+              Product Designer living in Portland,&nbsp;OR
             </p>
           </div>
 
@@ -133,46 +124,13 @@ export default function Hero() {
               maxWidth:      "18ch",
             }}
           >
-            I look at most things and ask why they were built that way.
+            I look at things I like and ask why they made it that way.
             <br />
             <span style={{ color: "var(--color-brand)", fontWeight: 500, display: "inline-block", marginTop: "0.4em" }}>
-              Not just at work. In everyday things.
+              Then how I&rsquo;d make it better.
             </span>
           </h1>
 
-          {/* Positioning tagline — the compressed answer to "what do you do."
-              Sits between the H1's POV hook and the method-deck elaboration,
-              so a scanning hiring manager gets the full-stack claim in one
-              line before deciding whether to keep reading. */}
-          <p
-            className="hero-reveal hero-tagline"
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(17px, 1.6vw, 20px)",
-              fontWeight:    600,
-              color:         "#252B28",
-              margin:        "0 0 44px",
-              maxWidth:      "480px",
-              lineHeight:    1.4,
-              letterSpacing: "-0.005em",
-            }}
-          >
-            Research, decide, design, and build. Start to finish.
-          </p>
-          <p
-            className="hero-reveal hero-availability"
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "13px",
-              fontWeight:    500,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color:         "var(--color-ground-navy)",
-              margin:        "0",
-            }}
-          >
-            I&rsquo;m available for mid to senior UX/UI roles with product teams &amp; remote work from Portland
-          </p>
           <p
             className="hero-reveal hero-credentials"
             style={{
@@ -185,7 +143,7 @@ export default function Hero() {
               margin:        "12px 0 20px",
             }}
           >
-            Eighteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
+            Fifteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
           </p>
         </div>
 
@@ -320,7 +278,6 @@ export default function Hero() {
              paragraph on mobile because the rule above zeros its neighbor's
              margin-bottom. Give the availability line its own breathing
              room via margin-top (unaffected by the sibling rule). */
-          .hero-text-col p.hero-availability { margin-top: 24px !important; }
           /* Scroll hint overlaps the CTAs on mobile and the gesture is
              already obvious on a phone. Hide it. */
           .scroll-hint { display: none !important; }

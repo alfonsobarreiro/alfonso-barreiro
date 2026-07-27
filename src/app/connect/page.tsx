@@ -4,19 +4,19 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Connect — Alfonso Barreiro",
   description:
-    "UX/UI Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+    "Product Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
   alternates: { canonical: "https://www.barreiro.com/connect" },
   openGraph: {
     title: "Connect — Alfonso Barreiro",
     description:
-      "UX/UI Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+      "Product Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
     url: "https://barreiro.com/connect",
     images: [
       {
         url: "https://barreiro.com/og-connect.jpg",
         width: 1200,
         height: 630,
-        alt: "Alfonso Barreiro — UX / UI Designer. Research. Decide. Ship.",
+        alt: "Alfonso Barreiro — Product Designer. Research. Decide. Ship.",
       },
     ],
   },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Connect — Alfonso Barreiro",
     description:
-      "UX/UI Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+      "Product Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
     images: ["https://barreiro.com/og-connect.jpg"],
   },
 };
@@ -501,7 +501,7 @@ export default function ConnectPage() {
           <div className="connect-availability">
             <span className="connect-availability-dot" aria-hidden="true" />
             <span className="connect-availability-text">
-              Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
+              Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.
             </span>
           </div>
         </div>

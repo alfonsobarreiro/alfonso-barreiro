@@ -34,7 +34,7 @@ export default async function Image() {
           Let’s make something good.
         </div>
         <div style={{ fontSize: 28, opacity: 0.7 }}>
-          Alfonso Barreiro · UX/UI Designer · Portland, OR
+          Alfonso Barreiro · Product Designer · Portland, OR
         </div>
       </div>
     ),

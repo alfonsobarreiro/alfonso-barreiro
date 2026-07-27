@@ -78,11 +78,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.barreiro.com"),
   title: {
-    default: "Alfonso Barreiro · UX/UI Designer",
+    default: "Alfonso Barreiro · Product Designer",
     template: "%s · Alfonso Barreiro",
   },
   description:
-    "UX/UI Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+    "Product Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
   authors: [{ name: "Alfonso Barreiro", url: "https://www.barreiro.com" }],
   creator: "Alfonso Barreiro",
   openGraph: {
@@ -90,23 +90,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.barreiro.com",
     siteName: "Alfonso Barreiro",
-    title: "Alfonso Barreiro · UX/UI Designer",
+    title: "Alfonso Barreiro · Product Designer",
     description:
-      "UX/UI Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+      "Product Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Alfonso Barreiro · UX/UI Designer",
+        alt: "Alfonso Barreiro · Product Designer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alfonso Barreiro · UX/UI Designer",
+    title: "Alfonso Barreiro · Product Designer",
     description:
-      "UX/UI Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+      "Product Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
     images: ["/opengraph-image"],
     creator: "@alfbarreiro",
   },
