@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
-  title: "Connect — Alfonso Barreiro",
+  title: "Connect",
   description:
-    "Product Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+    "Product Designer in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
   alternates: { canonical: "https://www.barreiro.com/connect" },
   openGraph: {
-    title: "Connect — Alfonso Barreiro",
+    title: "Connect · Alfonso Barreiro",
     description:
-      "Product Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+      "Product Designer in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
     url: "https://barreiro.com/connect",
     images: [
       {
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Connect — Alfonso Barreiro",
+    title: "Connect · Alfonso Barreiro",
     description:
-      "Product Designer in Portland, OR. View my work, grab my resume, or book a coffee chat.",
+      "Product Designer in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
     images: ["https://barreiro.com/og-connect.jpg"],
   },
 };
@@ -92,7 +93,9 @@ const contactLinks: {
 
 export default function ConnectPage() {
   return (
-    <main className="connect-page">
+    <>
+      <PersonSchema />
+      <main className="connect-page">
       <style>{`
         /* ── Page ─────────────────────────────────────── */
         .connect-page {
@@ -512,5 +515,6 @@ export default function ConnectPage() {
         Back to barreiro.com &rarr;
       </a>
     </main>
+    </>
   );
 }

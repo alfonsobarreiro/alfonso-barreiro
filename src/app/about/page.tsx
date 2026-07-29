@@ -5,25 +5,26 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import StatCell from "./_components/StatCell";
 import WalkTrace from "./_components/WalkTrace";
+import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Fifteen years in design. What pulled me in wasn't the visual part. Product Designer in Portland, OR.",
+    "Fifteen years in design. Product Designer in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. What pulled me in wasn't the visual part. Product Designer in Portland, OR.",
+      "Fifteen years in design. Product Designer in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. What pulled me in wasn't the visual part. Product Designer in Portland, OR.",
+      "Fifteen years in design. Product Designer in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
     images: ["/about/opengraph-image"],
   },
 };
@@ -111,6 +112,7 @@ const pullQuoteText: React.CSSProperties = {
 export default function AboutPage() {
   return (
     <>
+      <PersonSchema />
       <Nav />
       <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
         <style>{`
