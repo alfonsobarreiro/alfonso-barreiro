@@ -527,8 +527,9 @@ export default function AboutPage() {
                 Alpha Beta Design
               </a>
               . It&apos;s a portable design system and a set of microsite templates I
-              use for client work. The portfolio site you&apos;re on is built on it.
-              Wayfarer and Men&apos;s Sole Revival are too.
+              use for client work. The portfolio site you&apos;re on is built on it.{" "}
+              <Link href="/work/wayfarer" className="about-studio-link">Wayfarer</Link> and{" "}
+              <Link href="/work/mens-sole-revival" className="about-studio-link">Men&apos;s Sole Revival</Link> are too.
             </p>
           </div>
         </section>

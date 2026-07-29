@@ -638,6 +638,7 @@ export default function SpotifyV2() {
             presentation mat so the interaction reads as a shipped
             object, not a component-library sample. */}
         <section
+          id="try-it"
           aria-label="Try the three controls"
           style={{
             /* Section is now light per Alfonso 2026-07-03: intro sits on
@@ -646,14 +647,19 @@ export default function SpotifyV2() {
                all-dark ground merged the intro copy into the widget's
                own dark chrome; splitting them separates the editorial
                setup from the interactive object. */
-            background:   c.surface,
-            color:        c.ink,
-            paddingTop:   "clamp(80px, 10vw, 128px)",
-            paddingBottom:"clamp(56px, 7vw, 88px)",
-            paddingLeft:  "clamp(24px, 6vw, 80px)",
-            paddingRight: "clamp(24px, 6vw, 80px)",
-            marginLeft:   "calc(50% - 50vw)",
-            marginRight:  "calc(50% - 50vw)",
+            background:      c.surface,
+            color:           c.ink,
+            paddingTop:      "clamp(80px, 10vw, 128px)",
+            paddingBottom:   "clamp(56px, 7vw, 88px)",
+            paddingLeft:     "clamp(24px, 6vw, 80px)",
+            paddingRight:    "clamp(24px, 6vw, 80px)",
+            marginLeft:      "calc(50% - 50vw)",
+            marginRight:     "calc(50% - 50vw)",
+            /* Deep-link target from the homepage Work-card badge
+               ("INTERACTIVE PROTOTYPE" → /work/spotify#try-it).
+               scrollMarginTop matches the arc-tint divs so the
+               sticky nav (72px + arc nav) doesn't overlap the top. */
+            scrollMarginTop: "140px",
           }}
         >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
