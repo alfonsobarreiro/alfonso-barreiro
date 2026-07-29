@@ -2,25 +2,26 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
+import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.",
+    "Get in touch with Alfonso Barreiro. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote. Fifteen years in design and shipping.",
   alternates: { canonical: "https://www.barreiro.com/contact" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/contact",
     title: "Contact — Alfonso Barreiro",
     description:
-      "Get in touch. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.",
+      "Get in touch with Alfonso Barreiro. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote. Fifteen years in design and shipping.",
     images: ["/contact/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact — Alfonso Barreiro",
     description:
-      "Get in touch. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.",
+      "Get in touch with Alfonso Barreiro. Open to product and UX/UI roles, contract or full-time. Portland, OR or remote. Fifteen years in design and shipping.",
     images: ["/contact/opengraph-image"],
   },
 };
@@ -39,6 +40,7 @@ const font = "var(--font-dm-sans), -apple-system, sans-serif";
 export default function ContactPage() {
   return (
     <>
+      <PersonSchema />
       <Nav />
       <main id="main-content" style={{ background: "#FFFFFF", paddingTop: "72px" }}>
 

@@ -6,24 +6,25 @@ import LogoMark from "@/components/LogoMark";
 import HoursRibbon from "./_components/HoursRibbon";
 import BridgeQuote from "./_components/BridgeQuote";
 import TranslationCostDiagram from "./_components/TranslationCostDiagram";
+import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
   title: "Process",
   description:
-    "Where I add value, in the language teams already track. And how I think about the work, in the language I actually use.",
+    "Where I add value, in the language teams already track. How I think about the work, in the language I actually use. Fifteen years across agency and product.",
   alternates: { canonical: "https://www.barreiro.com/process" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/process",
     title: "Process · Alfonso Barreiro",
     description:
-      "Where I add value, in the language teams already track. And how I think about the work, in the language I actually use.",
+      "Where I add value, in the language teams already track. How I think about the work, in the language I actually use. Fifteen years across agency and product.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Process · Alfonso Barreiro",
     description:
-      "Where I add value, in the language teams already track. And how I think about the work, in the language I actually use.",
+      "Where I add value, in the language teams already track. How I think about the work, in the language I actually use. Fifteen years across agency and product.",
   },
 };
 
@@ -76,6 +77,7 @@ const innerWrapper: React.CSSProperties = {
 export default function ProcessPage() {
   return (
     <>
+      <PersonSchema />
       <Nav />
       <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
         <style>{`

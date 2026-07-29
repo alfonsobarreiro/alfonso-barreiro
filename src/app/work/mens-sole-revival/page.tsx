@@ -24,21 +24,21 @@ import DiagnosticFlowDemo from "./_demo/DiagnosticFlowDemo";
 --------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
-  title: "Men’s Sole Revival · Foot Health Content Platform",
+  title: { absolute: "Men’s Sole Revival · Foot Health · Alfonso Barreiro" },
   description:
     "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
   alternates: { canonical: "https://www.barreiro.com/work/mens-sole-revival" },
   openGraph: {
     type: "article",
     url: "https://www.barreiro.com/work/mens-sole-revival",
-    title: "Men’s Sole Revival · Foot Health Content Platform",
+    title: "Men’s Sole Revival · Foot Health Editorial",
     description:
       "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
     images: ["/work/mens-sole-revival/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Men’s Sole Revival · Foot Health Content Platform",
+    title: "Men’s Sole Revival · Foot Health Editorial",
     description:
       "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
     images: ["/work/mens-sole-revival/opengraph-image"],

@@ -131,6 +131,25 @@ export default function Hero() {
             </span>
           </h1>
 
+          {/* Visually-hidden H2 carrying the primary keyword phrase.
+              The H1 (POV) doesn't include "Product Designer" — the SEO
+              audit flagged the fold as low-topical-signal. This H2 gives
+              Google + screen readers the keyword phrase without changing
+              the visible design. Heading order is preserved (H1 → H2). */}
+          <h2 style={{
+            position:   "absolute",
+            width:      "1px",
+            height:     "1px",
+            padding:    0,
+            margin:     "-1px",
+            overflow:   "hidden",
+            clip:       "rect(0, 0, 0, 0)",
+            whiteSpace: "nowrap",
+            border:     0,
+          }}>
+            Alfonso Barreiro, Product Designer in Portland, Oregon.
+          </h2>
+
           <p
             className="hero-reveal hero-credentials"
             style={{
