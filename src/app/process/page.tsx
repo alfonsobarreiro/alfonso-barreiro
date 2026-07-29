@@ -292,7 +292,7 @@ export default function ProcessPage() {
             </p>
             <h2 style={sectionH2}>One project. Five moves.</h2>
             <p style={{ ...body, marginBottom: 0 }}>
-              Rough proportions across a real engagement. Figma is the shortest of them.
+              Ranked by hours. Figma is the shortest.
             </p>
 
             {/* HoursRibbon widget was designed for a light ground.
