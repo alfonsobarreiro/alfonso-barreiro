@@ -193,36 +193,6 @@ export default function Hero() {
             >
               View Work
             </a>
-            <a
-              href="/contact"
-              style={{
-                padding:        "14px 32px",
-                background:     "transparent",
-                color:          "#252B28",
-                border:         "1px solid #252B28",
-                borderRadius:   4,
-                fontSize:       "14px",
-                fontWeight:     500,
-                fontFamily:     "var(--font-dm-sans), sans-serif",
-                display:        "inline-flex",
-                alignItems:     "center",
-                cursor:         "pointer",
-                textDecoration: "none",
-                transition:     "background 0.2s, color 0.2s, transform 0.25s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#252B28";
-                e.currentTarget.style.color      = "#FAFAF9";
-                e.currentTarget.style.transform  = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color      = "#252B28";
-                e.currentTarget.style.transform  = "translateY(0)";
-              }}
-            >
-              Say hello
-            </a>
         </div>
 
         {/* ── RIGHT: live MSR site + 86% completion stat ─────── */}

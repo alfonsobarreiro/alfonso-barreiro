@@ -470,23 +470,40 @@ function ProjectCard({
     >
       {editorialEyebrow}
 
-      {project.interactive ? (
-        <div style={{
-          display:       "inline-flex",
-          alignItems:    "center",
-          gap:           "8px",
-          padding:       "5px 10px",
-          background:    "rgba(30,215,96,0.12)",
-          border:        "1px solid rgba(30,215,96,0.45)",
-          borderRadius:  "3px",
-          marginBottom:  "20px",
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "10px",
-          fontWeight:    700,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color:         "#7AE29B",
-        }}>
+      {project.interactive && project.href ? (
+        <Link
+          href={`${project.href}#try-it`}
+          aria-label={`Try the ${project.title} interactive prototype`}
+          className="work-row-demo-link"
+          style={{
+            display:        "inline-flex",
+            alignItems:     "center",
+            gap:            "8px",
+            padding:        "5px 10px",
+            background:     "rgba(30,215,96,0.12)",
+            border:         "1px solid rgba(30,215,96,0.45)",
+            borderRadius:   "3px",
+            marginBottom:   "20px",
+            fontFamily:     "var(--font-dm-sans), sans-serif",
+            fontSize:       "10px",
+            fontWeight:     700,
+            letterSpacing:  "0.14em",
+            textTransform:  "uppercase",
+            color:          "#7AE29B",
+            textDecoration: "none",
+            transition:     "background 0.2s ease, border-color 0.2s ease, transform 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background   = "rgba(30,215,96,0.20)";
+            e.currentTarget.style.borderColor  = "rgba(30,215,96,0.75)";
+            e.currentTarget.style.transform    = "translateY(-1px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background   = "rgba(30,215,96,0.12)";
+            e.currentTarget.style.borderColor  = "rgba(30,215,96,0.45)";
+            e.currentTarget.style.transform    = "translateY(0)";
+          }}
+        >
           <span aria-hidden="true" style={{
             display:      "inline-block",
             width:        "6px",
@@ -495,7 +512,8 @@ function ProjectCard({
             background:   "#1ED760",
           }} />
           Interactive prototype
-        </div>
+          <span aria-hidden="true" style={{ marginLeft: "2px", fontSize: "11px", lineHeight: 1 }}>→</span>
+        </Link>
       ) : null}
 
       <p
