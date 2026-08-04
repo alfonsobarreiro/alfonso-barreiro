@@ -67,7 +67,7 @@ const skillGroups = [
   },
   {
     category: "Decide",
-    value:    "Most design problems are decisions someone hasn’t made yet.",
+    value:    "I name the tradeoff before I open Figma.",
     skills:   ["Problem Framing", "Prioritization", "Success Metrics"],
   },
   {
