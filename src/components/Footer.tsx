@@ -21,10 +21,27 @@ const DownloadIcon = () => (
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
   </svg>
 );
+/* LinkedIn brand badge — white glyph on LinkedIn brand blue (#0A66C2).
+   Standardized so every LinkedIn touch on the site reads the same
+   (Testimonials carousel uses the same treatment). */
 const LinkedInIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" />
-  </svg>
+  <span
+    aria-hidden="true"
+    style={{
+      display:        "inline-flex",
+      alignItems:     "center",
+      justifyContent: "center",
+      width:          18,
+      height:         18,
+      background:     "#0A66C2",
+      borderRadius:   2,
+      flexShrink:     0,
+    }}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="#FFFFFF">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" />
+    </svg>
+  </span>
 );
 const ArrowIcon = () => (
   <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
