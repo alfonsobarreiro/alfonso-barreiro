@@ -43,7 +43,7 @@ const projects: Project[] = [
     description:
       "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
     thesis:      "Three controls I keep wanting Spotify to add.",
-    deck:        "Pin · Remove · Pause. Three reversible controls. Each one completes in one or two taps.",
+    deck:        "The shelf millions use daily, with no user control. Pin · Remove · Pause, three reversible fixes grounded in 200+ user posts.",
     meta:        "DESIGNER · 2026 · CONCEPT",
     tags:        ["Feature design", "Interaction model", "Constraint mapping"],
     year:        "2026",
@@ -72,7 +72,7 @@ const projects: Project[] = [
     description:
       "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
     thesis:      "Pivoted from e-commerce to editorial in week 3.",
-    deck:        "Diagnostic-first resource for men over 40. Live since April. 86% of visitors finish the assessment.",
+    deck:        "Cost: the storefront I'd already designed. Diagnostic-first resource for men over 40, live since April. 86% of visitors finish the assessment.",
     meta:        "DESIGNER · 2026 · LIVE SINCE APRIL",
     tags:        ["Brand Identity", "Content UX", "Editorial"],
     year:        "2026",
