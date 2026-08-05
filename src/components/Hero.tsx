@@ -73,14 +73,13 @@ export default function Hero() {
           width:               "100%",
           display:             "grid",
           gridTemplateColumns: "minmax(0, 1fr) clamp(380px, 40vw, 540px)",
-          gridTemplateAreas:   `"text ipad" "ctas ipad"`,
           columnGap:           "clamp(48px, 7vw, 96px)",
           rowGap:              "clamp(28px, 3vw, 44px)",
           alignItems:          "start",
         }}
       >
-        {/* ── LEFT TOP: intro copy ─────────────────────────── */}
-        <div className="hero-text-col" style={{ gridArea: "text", maxWidth: "560px" }}>
+        {/* ── LEFT: intro copy + CTA (single stacked block) ─────────────── */}
+        <div className="hero-text-col" style={{ maxWidth: "560px" }}>
 
           {/* Eyebrow */}
           <div
@@ -99,7 +98,7 @@ export default function Hero() {
                 fontWeight:    500,
                 letterSpacing: "0.10em",
                 textTransform: "uppercase",
-                color:         "#2F3531",
+                color:         "#5A5752",
                 margin:        0,
               }}
             >
@@ -154,7 +153,7 @@ export default function Hero() {
             className="hero-reveal hero-credentials"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "12px",
+              fontSize:      "13px",
               fontWeight:    500,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
@@ -164,10 +163,12 @@ export default function Hero() {
           >
             Fifteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
           </p>
-        </div>
 
-        {/* ── LEFT BOTTOM: CTAs (own grid item so mobile can reorder it after the iPad) ── */}
-        <div className="hero-reveal hero-cta-row" style={{ gridArea: "ctas", display: "flex", gap: "14px", flexWrap: "wrap" }}>
+          {/* CTA — sits inside the text column so it reads as part of the
+              stacked message rather than a floating action. marginTop
+              approximates the previous grid rowGap so vertical breathing
+              stays consistent. */}
+          <div className="hero-reveal hero-cta-row" style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginTop: "clamp(20px, 2.5vw, 32px)" }}>
             <a
               href="#work"
               className="on-crimson"
@@ -193,10 +194,11 @@ export default function Hero() {
             >
               View Work
             </a>
+          </div>
         </div>
 
         {/* ── RIGHT: live MSR site + 86% completion stat ─────── */}
-        <div className="hero-reveal" style={{ gridArea: "ipad", width: "100%" }}>
+        <div className="hero-reveal" style={{ width: "100%" }}>
           <HeroResultPanel />
         </div>
       </div>
@@ -212,8 +214,8 @@ export default function Hero() {
           display:       "flex",
           alignItems:    "center",
           gap:           "10px",
-          color:         "#6E6E6A",
-          fontSize:      "11px",
+          color:         "#5A5752",
+          fontSize:      "13px",
           letterSpacing: "0.12em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -224,7 +226,7 @@ export default function Hero() {
           style={{
             width:      "1px",
             height:     "44px",
-            background: "linear-gradient(to bottom, transparent, #6E6E6A)",
+            background: "linear-gradient(to bottom, transparent, #5A5752)",
           }}
         />
         Scroll
@@ -251,7 +253,6 @@ export default function Hero() {
           }
           .hero-grid {
             grid-template-columns: 1fr !important;
-            grid-template-areas: "text" "ipad" "ctas" !important;
             column-gap: 0 !important;
             row-gap: 28px !important;
           }
@@ -474,8 +475,8 @@ function HeroResultPanel() {
         <p
           style={{
             fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "11px",
-            fontWeight:     600,
+            fontSize:       "13px",
+            fontWeight:     500,
             letterSpacing:  "0.18em",
             textTransform:  "uppercase",
             color:          "#5A5752",
@@ -508,7 +509,7 @@ function HeroResultPanel() {
           style={{
             fontFamily:         "var(--font-dm-sans), sans-serif",
             fontSize:           "clamp(40px, 4.5vw, 56px)",
-            fontWeight:         700,
+            fontWeight:         600,
             letterSpacing:      "-0.02em",
             color:              "var(--color-ground-navy)",
             margin:             "10px 0 0",
@@ -525,7 +526,7 @@ function HeroResultPanel() {
             fontWeight:     500,
             lineHeight:     1.4,
             letterSpacing:  "0.01em",
-            color:          "#3D4440",
+            color:          "#5A5752",
             margin:         "8px 0 0",
             maxWidth:       "260px",
           }}
@@ -542,7 +543,7 @@ function HeroResultPanel() {
             gap:           "8px",
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "13px",
-            fontWeight:    600,
+            fontWeight:    500,
             letterSpacing: "0.04em",
             color:         "var(--color-brand)",
             marginTop:     "12px",
