@@ -14,7 +14,10 @@ export default function Hero() {
       id="hero"
       className="hero-section"
       style={{
-        padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px) clamp(64px, 8vw, 120px)",
+        minHeight:  "85vh",
+        display:    "flex",
+        alignItems: "center",
+        padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
         position:   "relative",
         overflow:   "hidden",
         background: "var(--color-paper)",
@@ -42,6 +45,20 @@ export default function Hero() {
           >
             I find the problem, then I design the fix.
           </h1>
+
+          <p
+            style={{
+              fontFamily:    "var(--font-dm-sans), sans-serif",
+              fontSize:      "17px",
+              lineHeight:    1.6,
+              fontWeight:    400,
+              letterSpacing: 0,
+              color:         "var(--color-text)",
+              margin:        "0",
+            }}
+          >
+            Fifteen years · Agency, in-house, product · 100+ sites shipped
+          </p>
 
           {/* Visually-hidden H2 — keyword phrase absent from the H1. */}
           <h2 style={{
