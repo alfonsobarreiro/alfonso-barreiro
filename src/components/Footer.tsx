@@ -10,7 +10,7 @@ const muted = "var(--color-neutral-600)";
 
 export default function Footer() {
   return (
-    <footer style={{ background: bg, borderTop: "1px solid var(--color-neutral-300)" }}>
+    <footer style={{ background: bg, borderTop: "1px solid var(--color-brand)" }}>
       <div style={{ padding: "40px clamp(32px, 6vw, 80px)" }}>
         <div
           className="footer-strip"
