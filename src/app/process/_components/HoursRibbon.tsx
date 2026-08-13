@@ -17,11 +17,11 @@ type Move = {
    the research chapter, Deep Teal for decisions, cooler teal for
    ship, warm neutral for the small-Figma segment. */
 const MOVES: Move[] = [
-  { label: "Framing",   hours: 28, color: "#CF5B48", kind: "framing",   words: "Sharpen the question. Cut the wrong-brief weeks." },
-  { label: "Research",  hours: 22, color: "#8A3C12", kind: "research",  words: "Interviews. Clustering. The pattern surfaces." },
-  { label: "Decisions", hours: 20, color: "#0F3D3E", kind: "decisions", words: "Trade-offs named in the language the org tracks." },
-  { label: "Ship",      hours: 18, color: "#3D5C5A", kind: "ship",      words: "Handoff, QA, iteration. The work ships." },
-  { label: "Figma",     hours: 12, color: "#5A5752", kind: "figma",     words: "Finally, the pixels. Twelve of one hundred." },
+  { label: "Framing",   hours: 28, color: "var(--color-terracotta)", kind: "framing",   words: "Sharpen the question. Cut the wrong-brief weeks." },
+  { label: "Research",  hours: 22, color: "var(--color-burnt-orange)", kind: "research",  words: "Interviews. Clustering. The pattern surfaces." },
+  { label: "Decisions", hours: 20, color: "var(--color-deep-teal)", kind: "decisions", words: "Trade-offs named in the language the org tracks." },
+  { label: "Ship",      hours: 18, color: "var(--color-neutral-600)", kind: "ship",      words: "Handoff, QA, iteration. The work ships." },
+  { label: "Figma",     hours: 12, color: "var(--color-neutral-600)", kind: "figma",     words: "Finally, the pixels. Twelve of one hundred." },
 ];
 
 const STEP_MS   = 260;
@@ -219,9 +219,9 @@ export default function HoursRibbon() {
           transform-origin: right center;
           font-family:      var(--font-dm-sans), sans-serif;
           font-size:        11px;
-          font-weight:      700;
+          font-weight: 500;
           letter-spacing:   0.14em;
-          text-transform:   uppercase;
+          text-transform: none;
           color:            var(--color-brand);
           white-space:      nowrap;
           opacity:          0;
@@ -255,16 +255,16 @@ export default function HoursRibbon() {
         .hours-rib-lab-num {
           font-family:     var(--font-dm-sans), sans-serif;
           font-size:       10px;
-          font-weight:     700;
+          font-weight: 500;
           letter-spacing:  0.18em;
-          color:           #6B6E6A;
+          color:           var(--color-neutral-600);
           margin:          0;
         }
         .hours-rib-lab-name {
           font-family:    var(--font-dm-sans), sans-serif;
           font-size:      13px;
-          font-weight:    600;
-          color:          #252B28;
+          font-weight: 500;
+          color:          var(--color-text);
           margin:         2px 0 0;
           letter-spacing: -0.005em;
         }
@@ -283,7 +283,7 @@ export default function HoursRibbon() {
           position: relative;
           display:  flex;
           height:   140px;
-          background: #F4F6F7;
+          background: var(--color-neutral-100);
           overflow: hidden;
           cursor:   default;
         }
@@ -304,7 +304,7 @@ export default function HoursRibbon() {
           position:    absolute;
           transform:   translate(-50%, -50%);
           font-family: var(--font-dm-sans), sans-serif;
-          font-weight: 600;
+          font-weight: 500;
           font-size:   22px;
           color:       rgba(255,255,255,0.55);
           transition:  transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 500ms, opacity 400ms ease 500ms;
@@ -315,9 +315,9 @@ export default function HoursRibbon() {
           top:         50%; left: 50%;
           transform:   translate(-50%, -50%) scale(0);
           font-family: var(--font-dm-sans), sans-serif;
-          font-weight: 600;
+          font-weight: 500;
           font-size:   34px;
-          color:       #FFFFFF;
+          color:       var(--color-inverse);
           transition:  transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms;
         }
         .hours-rib-seg.is-on .fr-bang { transform: translate(-50%, -50%) scale(1); }
@@ -338,7 +338,7 @@ export default function HoursRibbon() {
           top:            62%;
           left:           22%; right: 22%;
           height:         1px;
-          background:     #FFFFFF;
+          background:     var(--color-inverse);
           transform:      scaleX(0);
           transform-origin: center;
           transition:     transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 900ms;
@@ -351,14 +351,14 @@ export default function HoursRibbon() {
           left:        50%;
           transform:   translate(-50%, -50%);
           font-family: var(--font-dm-sans), sans-serif;
-          font-weight: 600;
+          font-weight: 500;
           font-size:   18px;
-          color:       #FFFFFF;
+          color:       var(--color-inverse);
           opacity:     0;
           transition:  opacity 380ms ease;
         }
         .de-mark.de-x     { top: 34%; color: rgba(255,255,255,0.5); transition-delay: 700ms; }
-        .de-mark.de-check { top: 66%; color: #FFFFFF;                transition-delay: 950ms; }
+        .de-mark.de-check { top: 66%; color: var(--color-inverse);                transition-delay: 950ms; }
         .hours-rib-seg.is-on .de-mark { opacity: 1; }
 
         /* ── Ship scene ── */
@@ -385,7 +385,7 @@ export default function HoursRibbon() {
           left:          15%;
           width:         10px; height: 10px;
           border-radius: 50%;
-          background:    #FFFFFF;
+          background:    var(--color-inverse);
           transform:     translate(-50%, -50%);
           transition:    left 900ms cubic-bezier(0.22, 1, 0.36, 1) 600ms;
         }
@@ -405,7 +405,7 @@ export default function HoursRibbon() {
         .fi-cursor {
           position:   absolute;
           width:      2px; height: 18px;
-          background: #FFFFFF;
+          background: var(--color-inverse);
           opacity:    0;
           transition: opacity 200ms ease 700ms;
         }
@@ -417,8 +417,8 @@ export default function HoursRibbon() {
           position:    absolute;
           font-family: var(--font-dm-sans), sans-serif;
           font-size:   18px;
-          font-weight: 700;
-          color:       #FFFFFF;
+          font-weight: 500;
+          color:       var(--color-inverse);
           opacity:     0;
           transition:  opacity 400ms ease 1500ms;
         }
@@ -437,7 +437,7 @@ export default function HoursRibbon() {
           font-family: var(--font-dm-sans), sans-serif;
           font-size:   12px;
           font-weight: 500;
-          color:       #6B6E6A;
+          color:       var(--color-neutral-600);
           font-variant-numeric: tabular-nums;
           opacity:     0;
           transition:  opacity 300ms ease 400ms;
@@ -455,7 +455,7 @@ export default function HoursRibbon() {
           top:        50%;
           left:       0; right: 0;
           height:     1px;
-          background: repeating-linear-gradient(90deg, #C6C2BC 0 4px, transparent 4px 8px);
+          background: repeating-linear-gradient(90deg, var(--color-neutral-300) 0 4px, transparent 4px 8px);
         }
         .hours-rib-thread-node {
           position:      absolute;
@@ -463,8 +463,8 @@ export default function HoursRibbon() {
           transform:     translate(-50%, -50%);
           width:         8px; height: 8px;
           border-radius: 50%;
-          background:    #FFFFFF;
-          border:        1px solid #C6C2BC;
+          background:    var(--color-inverse);
+          border:        1px solid var(--color-neutral-300);
           opacity:       0;
           transition:    opacity 300ms ease;
         }
@@ -489,9 +489,9 @@ export default function HoursRibbon() {
           top:            calc(50% + 14px);
           font-family:    var(--font-dm-sans), sans-serif;
           font-size:      10px;
-          font-weight:    600;
+          font-weight: 500;
           letter-spacing: 0.14em;
-          color:          #6B6E6A;
+          color:          var(--color-neutral-600);
         }
         .hours-rib-thread-ends.is-start { left: 0; }
         .hours-rib-thread-ends.is-end   { right: 0; }
@@ -504,7 +504,7 @@ export default function HoursRibbon() {
           font-family: var(--font-dm-sans), sans-serif;
           font-size:   19px;
           font-weight: 500;
-          color:       #252B28;
+          color:       var(--color-text);
           letter-spacing: -0.01em;
           line-height: 1.35;
           opacity:     0;
@@ -515,9 +515,9 @@ export default function HoursRibbon() {
           font-family:    var(--font-dm-sans), sans-serif;
           font-style:     normal;
           font-size:      10px;
-          font-weight:    700;
+          font-weight: 500;
           letter-spacing: 0.22em;
-          text-transform: uppercase;
+          text-transform: none;
           color:          var(--color-brand);
           margin-bottom:  8px;
         }
@@ -534,8 +534,8 @@ export default function HoursRibbon() {
           font-size:   11px;
           font-weight: 500;
           letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color:       #6B6E6A;
+          text-transform: none;
+          color:       var(--color-neutral-600);
           opacity:     0;
           transition:  opacity 500ms ease;
         }
@@ -545,12 +545,12 @@ export default function HoursRibbon() {
         .hours-rib-close {
           margin-top:  40px;
           padding-top: 20px;
-          border-top:  1px solid #E8E4DE;
+          border-top:  1px solid var(--color-neutral-200);
           text-align:  center;
           font-family: var(--font-dm-sans), sans-serif;
           font-size:   19px;
           font-weight: 500;
-          color:       #252B28;
+          color:       var(--color-text);
           letter-spacing: -0.01em;
           opacity:     0;
           transition:  opacity 500ms ease;
@@ -611,19 +611,19 @@ export default function HoursRibbon() {
             display:         flex;
             justify-content: space-between;
             align-items:     baseline;
-            color:           #FFFFFF;
+            color:           var(--color-inverse);
           }
           .hours-rib-seg-num {
             font-family:    var(--font-dm-sans), sans-serif;
             font-size:      10px;
-            font-weight:    700;
+            font-weight: 500;
             letter-spacing: 0.22em;
             opacity:        0.7;
           }
           .hours-rib-seg-name {
             font-family:    var(--font-dm-sans), sans-serif;
             font-size:      14px;
-            font-weight:    600;
+            font-weight: 500;
             letter-spacing: -0.005em;
             margin-left:    10px;
             margin-right:   auto;
@@ -631,7 +631,7 @@ export default function HoursRibbon() {
           .hours-rib-seg-hrs {
             font-family:    var(--font-dm-sans), sans-serif;
             font-size:      13px;
-            font-weight:    600;
+            font-weight: 500;
             font-variant-numeric: tabular-nums;
           }
           .hours-rib-seg-scene {

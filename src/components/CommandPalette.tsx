@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { searchEntries, searchIndex, type SearchEntry } from "@/lib/search-index";
+import { searchEntries, type SearchEntry } from "@/lib/search-index";
 
 // Custom event names used to open/close the palette from outside (e.g. the
 // nav button). Keeps the component self-contained without needing a context.
@@ -26,7 +26,6 @@ export default function CommandPalette() {
   const router = useRouter();
 
   const results = query ? searchEntries(query, 8) : [];
-  const quickLinks = searchIndex.filter((e) => e.kind === "case-study");
 
   // Cmd+K / Ctrl+K global listener + custom open/close events
   useEffect(() => {
@@ -73,7 +72,7 @@ export default function CommandPalette() {
   }, [router]);
 
   const onInputKeyDown = (e: React.KeyboardEvent) => {
-    const list = query ? results : quickLinks;
+    const list = results;
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setSelectedIdx((i) => Math.min(i + 1, list.length - 1));
@@ -98,7 +97,7 @@ export default function CommandPalette() {
         position: "fixed",
         inset: 0,
         zIndex: 500,
-        background: "rgba(37,43,40,0.55)",
+        background: "rgba(15, 40, 61, 0.72)",
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
         display: "flex",
@@ -112,30 +111,30 @@ export default function CommandPalette() {
         style={{
           width: "100%",
           maxWidth: "640px",
-          background: "#FFFFFF",
-          border: "1px solid #E8E4DE",
-          borderRadius: 0,
+          background: "var(--color-surface)",
+          border: "1px solid var(--color-border)",
+          borderRadius: 16,
           boxShadow: "0 18px 60px rgba(37,43,40,0.18), 0 4px 12px rgba(37,43,40,0.08)",
           overflow: "hidden",
         }}
       >
         {/* Input */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "0 20px", borderBottom: "1px solid #E8E4DE" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "0 20px", borderBottom: "1px solid var(--color-border)" }}>
           <SearchSvg />
           <input
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onInputKeyDown}
-            placeholder="Search case studies, sections, pages…"
+            placeholder="Search"
             style={{
               flex: 1,
               padding: "20px 0",
               border: "none",
               outline: "none",
-              fontSize: "16px",
+              fontSize: "15px",
               fontFamily: "var(--font-dm-sans), sans-serif",
-              color: "#252B28",
+              color: "var(--color-text)",
               background: "transparent",
             }}
           />
@@ -147,8 +146,8 @@ export default function CommandPalette() {
             <p style={{
               padding: "32px 20px",
               fontFamily: "var(--font-dm-sans), sans-serif",
-              fontSize: "14px",
-              color: "#8A8680",
+              fontSize: "15px",
+              color: "var(--color-text-muted)",
               textAlign: "center",
               margin: 0,
             }}>
@@ -166,48 +165,6 @@ export default function CommandPalette() {
             />
           ))}
 
-          {!query && (
-            <>
-              <p style={{
-                padding: "8px 20px 4px",
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize: "11px",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "#8A8680",
-                margin: 0,
-              }}>
-                Quick links
-              </p>
-              {quickLinks.map((entry, i) => (
-                <ResultRow
-                  key={entry.id}
-                  entry={entry}
-                  selected={i === selectedIdx}
-                  onHover={() => setSelectedIdx(i)}
-                  onSelect={() => navigate(entry)}
-                />
-              ))}
-            </>
-          )}
-        </div>
-
-        {/* Footer hints */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "16px",
-          padding: "10px 20px",
-          borderTop: "1px solid #E8E4DE",
-          background: "#FAFAF9",
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize: "11px",
-          color: "#8A8680",
-        }}>
-          <Hint kbd="↑↓" label="navigate" />
-          <Hint kbd="↩" label="select" />
-          <Hint kbd="esc" label="close" />
         </div>
       </div>
     </div>
@@ -235,7 +192,7 @@ function ResultRow({
         gap: "12px",
         width: "100%",
         padding: "12px 18px 12px 18px",
-        background: selected ? "#FAFAF9" : "transparent",
+        background: selected ? "var(--color-bg-page)" : "transparent",
         border: "none",
         cursor: "pointer",
         textAlign: "left",
@@ -246,9 +203,9 @@ function ResultRow({
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize: "14px",
+          fontSize: "15px",
           fontWeight: 500,
-          color: "#252B28",
+          color: "var(--color-text)",
           margin: 0,
           overflow: "hidden",
           textOverflow: "ellipsis",
@@ -260,7 +217,7 @@ function ResultRow({
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize: "12px",
-            color: "#8A8680",
+            color: "var(--color-text-muted)",
             margin: "2px 0 0",
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -272,8 +229,8 @@ function ResultRow({
       </div>
       <span style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize: "11px",
-        color: "#A8A39C",
+        fontSize: "12px",
+        color: "var(--color-neutral-400)",
         opacity: selected ? 1 : 0,
         transition: "opacity 0.15s",
       }}>
@@ -285,10 +242,10 @@ function ResultRow({
 
 function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
   const map: Record<SearchEntry["kind"], { label: string; bg: string; color: string }> = {
-    "case-study":   { label: "Case",   bg: "rgba(61,38,69,0.12)", color: "var(--color-brand)" },
-    "section":      { label: "§",      bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
-    "page":         { label: "Page",   bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
-    "presentation": { label: "Slides", bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
+    "case-study":   { label: "Case",   bg: "var(--color-terracotta-100)", color: "var(--color-text-link)" },
+    "section":      { label: "§",      bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
+    "page":         { label: "Page",   bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
+    "presentation": { label: "Slides", bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
   };
   const { label, bg, color } = map[kind];
   return (
@@ -298,13 +255,13 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
       justifyContent: "center",
       minWidth: "44px",
       padding: "3px 8px",
-      borderRadius: "4px",
+      borderRadius: 0,
       background: bg,
       color,
       fontFamily: "var(--font-dm-sans), sans-serif",
-      fontSize: "10px",
-      fontWeight: 700,
-      letterSpacing: "0.06em",
+      fontSize: "12px",
+      fontWeight: 500,
+      letterSpacing: "0.01em",
       flexShrink: 0,
     }}>
       {label}
@@ -312,29 +269,11 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
   );
 }
 
-function Hint({ kbd, label }: { kbd: string; label: string }) {
-  return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
-      <kbd style={{
-        fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize: "10px",
-        padding: "2px 6px",
-        background: "#FFFFFF",
-        border: "1px solid #E8E4DE",
-        borderRadius: "4px",
-        color: "#525252",
-        lineHeight: 1,
-      }}>{kbd}</kbd>
-      <span>{label}</span>
-    </span>
-  );
-}
-
 function SearchSvg() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ flexShrink: 0, opacity: 0.5 }}>
-      <circle cx="11" cy="11" r="7" stroke="#252B28" strokeWidth="1.6" />
-      <path d="M20 20L16.5 16.5" stroke="#252B28" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="11" cy="11" r="7" stroke="var(--color-text)" strokeWidth="1.6" />
+      <path d="M20 20L16.5 16.5" stroke="var(--color-text)" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   );
 }

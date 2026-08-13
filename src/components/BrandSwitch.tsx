@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
-const VALID = new Set(["c", "e", "aubergine"]);
+const VALID = new Set(["c", "e"]);
 
 export default function BrandSwitch() {
   const params = useSearchParams();

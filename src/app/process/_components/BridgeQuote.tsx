@@ -50,8 +50,8 @@ export default function BridgeQuote() {
           display:        block;
           font-family:    var(--font-dm-sans), sans-serif;
           font-size:      clamp(28px, 5vw, 56px);
-          font-weight:    600;
-          color:          #252B28;
+          font-weight: 500;
+          color:          var(--color-text);
           margin:         0;
           letter-spacing: -0.025em;
           line-height:    1.15;

@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import LogoMark from "@/components/LogoMark";
 import HoursRibbon from "./_components/HoursRibbon";
 import BridgeQuote from "./_components/BridgeQuote";
-import TranslationCostDiagram from "./_components/TranslationCostDiagram";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
@@ -28,33 +26,32 @@ export const metadata: Metadata = {
   },
 };
 
-/* Page runs on Navy #0F283D ground with Cream text (Alfonso
-   2026-07-03 values-palette pivot). Same treatment as About and
-   Behind This Site. */
+/* Page runs on Warm White paper ground with ink text.
+   Matches /about pattern; sections tighten to 48px padding. */
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(24px, 3vw, 36px)",
-  fontWeight:    600,
-  color:         "var(--color-cream)",
-  margin:        "0 0 28px",
-  letterSpacing: "-0.02em",
-  lineHeight:    1.2,
+  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontWeight:    500,
+  color:         "var(--color-text)",
+  margin:        "0 0 24px",
+  letterSpacing: "-0.01em",
+  lineHeight:    1.15,
 };
 
 const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
   fontSize:   "17px",
-  lineHeight: 1.75,
-  color:      "var(--color-cream-72)",
-  margin:     "0 0 20px",
+  lineHeight: 1.6,
+  color:      "var(--color-text)",
+  margin:     "0 0 24px",
   maxWidth:   "680px",
 };
 
 const beliefClaim: React.CSSProperties = {
   ...body,
-  color:        "var(--color-cream)",
-  fontWeight:   600,
+  color:        "var(--color-text)",
+  fontWeight:   500,
   marginBottom: "8px",
 };
 
@@ -64,14 +61,21 @@ const beliefBody: React.CSSProperties = {
 };
 
 const sectionWrapper = (): React.CSSProperties => ({
-  padding:    "96px clamp(32px, 6vw, 80px)",
-  background: "var(--color-ground-navy)",
+  padding:    "48px clamp(32px, 6vw, 80px)",
+  background: "var(--color-paper)",
 });
 
 const innerWrapper: React.CSSProperties = {
   width:    "100%",
-  maxWidth: "920px",
+  maxWidth: "var(--content-max)",
   margin:   "0 auto",
+};
+
+const artifactTile: React.CSSProperties = {
+  marginTop:  "40px",
+  background: "var(--color-neutral-100)",
+  padding:    "clamp(24px, 3vw, 40px) clamp(24px, 3vw, 32px)",
+  border:     "1px solid var(--color-neutral-300)",
 };
 
 export default function ProcessPage() {
@@ -79,42 +83,33 @@ export default function ProcessPage() {
     <>
       <PersonSchema />
       <Nav />
-      <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
+      <main id="main-content" style={{ background: "var(--color-paper)" }}>
         <style>{`
           .value-list  { counter-reset: value; }
           .philo-list  { counter-reset: philo; }
           .value-claim,
           .philo-claim {
             position:     relative;
-            padding-left: clamp(56px, 7vw, 88px);
+            padding-left: clamp(40px, 4vw, 56px);
           }
           .value-claim { counter-increment: value; }
           .philo-claim { counter-increment: philo; }
-          .value-claim::before {
-            content:         counter(value, decimal-leading-zero);
-            position:        absolute;
-            left:            0;
-            top:             0.05em;
-            font-family:     var(--font-dm-sans), sans-serif;
-            font-size:       clamp(20px, 2.4vw, 28px);
-            font-weight:     500;
-            letter-spacing:  0.02em;
-            color:           var(--color-brand);
+          .value-claim::before,
+          .philo-claim::before {
+            content:              counter(value, decimal-leading-zero);
+            position:             absolute;
+            left:                 0;
+            top:                  0.05em;
+            font-family:          var(--font-dm-sans), sans-serif;
+            font-size:            clamp(20px, 2.4vw, 28px);
+            font-weight:          500;
+            letter-spacing:       0;
+            color:                var(--color-text);
             font-variant-numeric: tabular-nums;
-            line-height:     1;
+            line-height:          1;
           }
           .philo-claim::before {
-            content:         counter(philo, decimal-leading-zero);
-            position:        absolute;
-            left:            0;
-            top:             0.05em;
-            font-family:     var(--font-dm-sans), sans-serif;
-            font-size:       clamp(20px, 2.4vw, 28px);
-            font-weight:     500;
-            letter-spacing:  0.02em;
-            color:           var(--color-cream);
-            font-variant-numeric: tabular-nums;
-            line-height:     1;
+            content: counter(philo, decimal-leading-zero);
           }
           @media (max-width: 640px) {
             .value-claim,
@@ -124,198 +119,82 @@ export default function ProcessPage() {
             }
             .value-claim::before,
             .philo-claim::before {
-              font-size:      12px;
-              font-weight:    700;
-              letter-spacing: 0.22em;
+              font-size:      15px;
+              font-weight:    500;
+              letter-spacing: 0;
               top:            0;
             }
           }
 
-          /* Belief-mark dingbats above each philosophy claim. Small stroke
-             SVGs in brand crimson, sized to feel like editorial marginalia
-             rather than icons. Mark sits above the numbered claim so the
-             existing counter geometry is untouched. */
           .philo-item {
-            position:     relative;
-            padding-top:  56px;
+            position:      relative;
             margin-bottom: 8px;
           }
-          .philo-item + .philo-item { margin-top: 12px; }
-          .philo-mark {
-            position: absolute;
-            left:     0;
-            top:      0;
-            width:    clamp(32px, 3.4vw, 40px);
-            height:   clamp(32px, 3.4vw, 40px);
-            color:    var(--color-brand);
-          }
-          @media (max-width: 640px) {
-            .philo-item { padding-top: 44px; padding-left: 0; }
-            .philo-mark { width: 30px; height: 30px; }
-          }
+          .philo-item + .philo-item { margin-top: 32px; }
 
           .process-cta-primary {
-            display:        inline-flex;
-            align-items:    center;
-            gap:            8px;
-            padding:        12px 24px;
-            font-family:    var(--font-dm-sans), sans-serif;
-            font-size:      12px;
-            font-weight:    600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+            display:         inline-flex;
+            align-items:     center;
+            gap:             8px;
+            padding:         16px 24px;
+            font-family:     var(--font-dm-sans), sans-serif;
+            font-size:       15px;
+            font-weight:     500;
+            letter-spacing:  0;
             text-decoration: none;
-            border-radius:  4px;
-            background:     var(--color-brand);
-            border:         1px solid var(--color-brand);
-            color:          #FFFFFF;
-            transition:     transform 0.25s ease, box-shadow 0.25s ease, background 0.2s;
+            border-radius:   0;
+            background:      var(--color-brand);
+            border:          1px solid var(--color-brand);
+            color:           var(--color-inverse);
+            transition:      background 0.2s, border-color 0.2s;
           }
           .process-cta-primary:hover {
-            transform:  translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
-            background: var(--color-brand-hover);
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .process-cta-primary { transition: none !important; }
-            .process-cta-primary:hover { transform: none !important; }
+            background:   var(--color-brand-hover);
+            border-color: var(--color-brand-hover);
           }
         `}</style>
 
-        {/* ── Hero — with watermark ∞ mark behind the H1. Uses the same
-             pattern as /not-found's giant "404" but with the brand
-             glyph. Renders as texture, not focus (Alfonso 2026-07-03). */}
+        {/* ── Hero ── */}
         <section aria-label="Process introduction" style={{
-          padding:    "clamp(112px, 14vw, 168px) clamp(32px, 6vw, 80px) clamp(64px, 8vw, 96px)",
-          background: "var(--color-ground-navy)",
-          position:   "relative",
-          overflow:   "hidden",
+          padding:  "96px clamp(32px, 6vw, 80px) 64px",
+          background: "var(--color-paper)",
         }}>
-          {/* Watermark ∞ — sits behind everything, low-opacity so the
-              glyph is the texture, not the message. On Navy the mark
-              flips to a Cream tint at very low alpha. */}
-          <div
-            aria-hidden="true"
-            style={{
-              position:      "absolute",
-              top:           "-3vw",
-              right:         "-4vw",
-              pointerEvents: "none",
-              userSelect:    "none",
-            }}
-          >
-            <LogoMark size={420} variant="light" opacity={0.06} />
-          </div>
-
-          <div style={{ ...innerWrapper, position: "relative", zIndex: 2 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-              <span style={{ display: "inline-block", width: "24px", height: "1px", background: "var(--color-brand)" }} />
-              <p style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         "var(--color-brand)",
-                margin:        0,
-              }}>
-                Process
-              </p>
-            </div>
-
-            <p style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(20px, 2.2vw, 28px)",
-              fontWeight:    500,
-              color:         "var(--color-cream-72)",
-              margin:        "0 0 24px",
-              letterSpacing: "-0.015em",
-              lineHeight:    1.3,
-              maxWidth:      "760px",
-            }}>
-              Most design problems aren&apos;t visual problems.
-              <br />
-              <span style={{ color: "var(--color-brand)", fontWeight: 500 }}>
-                They&apos;re decisions someone hasn&apos;t made yet.
-              </span>
-            </p>
-
+          <div style={innerWrapper}>
             <h1 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(36px, 5vw, 64px)",
+              fontSize:      "clamp(40px, 4.8vw, 60px)",
               fontWeight:    500,
-              color:         "var(--color-cream)",
-              margin:        "0 0 28px",
-              letterSpacing: "-0.03em",
-              lineHeight:    1.05,
+              color:         "var(--color-text)",
+              margin:        "0 0 24px",
+              letterSpacing: "-0.02em",
+              lineHeight:    1.1,
               maxWidth:      "820px",
             }}>
-              What I add first isn&apos;t a Figma file. It&apos;s a sharper problem statement.
+              What I add first isn&rsquo;t a Figma file. It&rsquo;s a sharper problem statement.
             </h1>
 
-            <p style={{
-              ...body,
-              fontSize:  "clamp(18px, 1.6vw, 21px)",
-              color:     "var(--color-cream-72)",
-              maxWidth:  "720px",
-              margin:    0,
-            }}>
+            <p style={{ ...body, maxWidth: "720px", margin: 0 }}>
               Two frames on this page. Where I add value, in the language teams already track. And how I think about the work, in the language I actually use.
             </p>
           </div>
         </section>
 
-        {/* ── Where the hours go — interactive ribbon diagram ──────────
-             Visual proof of the "Figma comes last" claim. Five proportional
-             segments with mini-scenes inside; on desktop the traveler dot
-             is mouse-controlled and words update per segment. Mobile stacks
-             vertically with per-row words baked in. */}
-        <section aria-label="Where the hours go" style={{
-          padding:    "clamp(72px, 9vw, 112px) clamp(32px, 6vw, 80px)",
-          background: "var(--color-ground-navy)",
-        }}>
+        {/* ── Where the hours go ── */}
+        <section aria-label="Where the hours go" style={sectionWrapper()}>
           <div style={innerWrapper}>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="light" opacity={0.85} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
-            </div>
-            <p style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "11px",
-              fontWeight:    600,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color:         "var(--color-brand)",
-              margin:        "0 0 12px",
-            }}>
-              Where the hours go
-            </p>
             <h2 style={sectionH2}>One project. Five moves.</h2>
             <p style={{ ...body, marginBottom: 0 }}>
               Ranked by hours. Figma is the shortest.
             </p>
-
-            {/* HoursRibbon widget was designed for a light ground.
-                Wrap it in a Cream tile so it reads as an artifact
-                card on the Navy section. */}
-            <div style={{
-              marginTop: "40px",
-              background: "var(--color-cream)",
-              padding: "clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px)",
-              border: "1px solid var(--color-cream-48)",
-            }}>
+            <div style={artifactTile}>
               <HoursRibbon />
             </div>
           </div>
         </section>
 
-        {/* ── Where I add value ────────────────────────────────────────── */}
+        {/* ── Where I add value ── */}
         <section aria-label="Where I add value" className="value-list" style={sectionWrapper()}>
           <div style={innerWrapper}>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="light" opacity={0.85} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
-            </div>
             <h2 style={sectionH2}>Where I add value</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
               The shorter version of how the work pays back.
@@ -323,7 +202,7 @@ export default function ProcessPage() {
 
             <p style={beliefClaim} className="value-claim">I frame the problem before Figma opens.</p>
             <p style={beliefBody}>
-              Most design hours go to the wrong question. I push for a sharp problem statement at the start so the team doesn&apos;t spend three weeks building a beautiful answer to the wrong brief. The case studies show the artifact; the savings happen earlier.
+              Most design hours go to the wrong question. I push for a sharp problem statement at the start so the team doesn&rsquo;t spend three weeks building a beautiful answer to the wrong brief. The case studies show the artifact; the savings happen earlier.
             </p>
 
             <p style={beliefClaim} className="value-claim">I tie design decisions to business outcomes.</p>
@@ -338,90 +217,54 @@ export default function ProcessPage() {
 
             <p style={beliefClaim} className="value-claim">I run AI-augmented research and synthesis.</p>
             <p style={{ ...beliefBody, marginBottom: 0 }}>
-              Claude for clustering 200-plus community posts. AI-assisted competitive audits. AI-augmented production workflows that cut a creative team&apos;s timelines twenty percent at VARA without dropping quality. The model is the second pair of hands, not the designer.
+              Claude for clustering 200-plus community posts. AI-assisted competitive audits. AI-augmented production workflows that cut a creative team&rsquo;s timelines twenty percent at VARA without dropping quality. The model is the second pair of hands, not the designer.
             </p>
           </div>
         </section>
 
-        {/* ── Bridge pull quote — editorial phrase-by-phrase reveal ──── */}
-        <section aria-label="Bridge note" style={{
-          padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
-          background: "var(--color-ground-navy)",
-        }}>
+        {/* ── Bridge quote ── */}
+        <section aria-label="Bridge note" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <div style={{
-              background: "var(--color-cream)",
-              padding: "clamp(40px, 6vw, 80px) clamp(28px, 4vw, 56px)",
-              border: "1px solid var(--color-cream-48)",
+              background: "var(--color-neutral-100)",
+              padding:    "clamp(32px, 4vw, 64px) clamp(24px, 3vw, 48px)",
+              border:     "1px solid var(--color-neutral-300)",
             }}>
               <BridgeQuote />
             </div>
           </div>
         </section>
 
-        {/* ── How I think about the work ───────────────────────────────── */}
+        {/* ── How I think about the work ── */}
         <section aria-label="How I think about the work" className="philo-list" style={sectionWrapper()}>
           <div style={innerWrapper}>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="light" opacity={0.85} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
-            </div>
             <h2 style={sectionH2}>How I think about the work</h2>
             <p style={{ ...body, marginBottom: "40px" }}>
-              A few things I&apos;ve come to believe.
+              A few things I&rsquo;ve come to believe.
             </p>
 
             <div className="philo-item">
-              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M6 20 L18 20" />
-                <path d="M18 20 L28 12" />
-                <path d="M18 20 L28 28" />
-                <circle cx="28" cy="12" r="2.4" fill="currentColor" stroke="none" />
-                <circle cx="28" cy="28" r="2.4" fill="currentColor" stroke="none" />
-              </svg>
               <p style={beliefClaim} className="philo-claim">Design is decision-making.</p>
               <p style={beliefBody}>
-                Everything visible on a screen is a record of choices someone made, and
-                could have made differently. If you can&apos;t explain what you
-                didn&apos;t build and why, you didn&apos;t really design it. You just
-                shipped it.
+                Everything visible on a screen is a record of choices someone made, and could have made differently. If you can&rsquo;t explain what you didn&rsquo;t build and why, you didn&rsquo;t really design it. You just shipped it.
               </p>
             </div>
 
             <div className="philo-item">
-              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                <rect x="8" y="10" width="24" height="20" />
-                <path d="M14 22 L18 22 M22 22 L26 22" strokeLinecap="round" />
-              </svg>
               <p style={beliefClaim} className="philo-claim">Problem framing comes before pixels.</p>
               <p style={beliefBody}>
-                Most designs fail at the question, not the execution. What problem,
-                for whom, under what constraints, and what would success actually mean.
-                If those four answers aren&apos;t clear, the prettiest interface in the
-                world won&apos;t save the work.
+                Most designs fail at the question, not the execution. What problem, for whom, under what constraints, and what would success actually mean. If those four answers aren&rsquo;t clear, the prettiest interface in the world won&rsquo;t save the work.
               </p>
             </div>
 
             <div className="philo-item">
-              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="24" cy="20" r="8" />
-                <path d="M6 20 L14 20" />
-                <path d="M11 17 L14 20 L11 23" />
-              </svg>
               <p style={beliefClaim} className="philo-claim">Prototypes are probes, not proof.</p>
               <p style={beliefBody}>
-                You build them to find out, not to convince. If you can&apos;t name in
-                one sentence what the prototype is trying to teach you, you&apos;re
-                producing, not prototyping.
+                You build them to find out, not to convince. If you can&rsquo;t name in one sentence what the prototype is trying to teach you, you&rsquo;re producing, not prototyping.
               </p>
             </div>
 
             <div className="philo-item">
-              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                <circle cx="12" cy="20" r="4" fill="currentColor" stroke="none" />
-                <path d="M16 20 L24 20" strokeLinecap="round" />
-                <circle cx="28" cy="20" r="4" />
-              </svg>
               <p style={beliefClaim} className="philo-claim">The best design decisions are also the cleanest business calls.</p>
               <p style={beliefBody}>
                 When a trade-off is named in the language the org already tracks, stakeholder debates resolve fast. Most arguments about taste are really arguments about cost that nobody named.
@@ -429,36 +272,19 @@ export default function ProcessPage() {
             </div>
 
             <div className="philo-item">
-              <svg className="philo-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                <circle cx="14" cy="16" r="8" />
-                <circle cx="26" cy="16" r="8" />
-                <circle cx="20" cy="26" r="8" />
-              </svg>
               <p style={beliefClaim} className="philo-claim">Translation cost between disciplines is real.</p>
               <p style={beliefBody}>
-                Designers, PMs, and engineers each carry a dialect. The team that doesn&apos;t need a translator between them ships faster. Fifteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
+                Designers, PMs, and engineers each carry a dialect. The team that doesn&rsquo;t need a translator between them ships faster. Fifteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
               </p>
-              <div style={{
-                marginTop: "8px",
-                background: "var(--color-cream)",
-                padding: "clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px)",
-                border: "1px solid var(--color-cream-48)",
-              }}>
-                <TranslationCostDiagram />
-              </div>
             </div>
           </div>
         </section>
 
-        {/* ── Closer + CTA ─────────────────────────────────────────────── */}
+        {/* ── Closer + CTA ── */}
         <section aria-label="Next step" style={sectionWrapper()}>
           <div style={innerWrapper}>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px" }}>
-              <LogoMark size={22} variant="light" opacity={0.85} />
-              <span style={{ display: "inline-block", height: "1px", flex: 1, maxWidth: "72px", background: "var(--color-cream-48)" }} />
-            </div>
-            <p style={{ ...body, maxWidth: "620px", marginBottom: "36px" }}>
-              If any of this reads like the seat you&apos;re trying to fill, the case studies show it running in the artifact. The contact page is the shortest way to start.
+            <p style={{ ...body, maxWidth: "620px", marginBottom: "24px" }}>
+              If any of this reads like the seat you&rsquo;re trying to fill, the case studies show it running in the artifact. The contact page is the shortest way to start.
             </p>
             <Link href="/contact" className="process-cta-primary">
               Get in touch

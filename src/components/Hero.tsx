@@ -1,140 +1,49 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-
-/* Stagger delays for hero entrance elements */
-const HERO_DELAYS = ["0s", "0.12s", "0.30s", "0.42s"];
+import { Button } from "@/components/ui/Button";
 
 /**
- * Hero
- * ─────────────────────────────────────────────────────────────────────────────
- * Lead with measurable shipped result. Right column is the live Men's Sole
- * Revival site with the 86% assessment completion rate overlaid. The number
- * counts up from 0 → 86 the first time the panel enters the viewport.
- *
- * Spotify Remove animation moved to the Work section's Spotify card.
+ * Hero — text-only. Right column (MSR iPad + 86% stat) removed per the
+ * 20-portfolio reference calibration: 20 of 20 senior portfolios ship
+ * no hero image, no metrics block, no entrance animation.
+ * Right-column slot reserved for a portrait when shot.
  */
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  /* Staggered fade/slide-in on mount */
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const targets = section.querySelectorAll<HTMLElement>(".hero-reveal");
-
-    /* Hero entrance: opacity + translateY + a 3% scale bloom. The scale is
-       subtle enough to read as polish, not theatre — the whole hero
-       "blooms forward" together as the page settles. */
-    targets.forEach((el) => {
-      el.style.opacity        = "0";
-      el.style.transform      = "translateY(24px) scale(0.97)";
-      el.style.transformOrigin = "center center";
-    });
-
-    requestAnimationFrame(() => {
-      targets.forEach((el, i) => {
-        const delay = HERO_DELAYS[i] || "0s";
-        el.style.transition =
-          `opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay},` +
-          ` transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay}`;
-      });
-      requestAnimationFrame(() => {
-        targets.forEach((el) => {
-          el.style.opacity   = "1";
-          el.style.transform = "translateY(0) scale(1)";
-        });
-      });
-    });
-  }, []);
-
   return (
     <section
       id="hero"
-      ref={sectionRef}
       className="hero-section"
       style={{
-        minHeight:      "auto",
-        display:        "flex",
-        alignItems:     "center",
-        padding:        "96px clamp(32px, 6vw, 80px) 56px",
-        position:       "relative",
-        overflow:       "hidden",
-        background:     "#FFFFFF",
+        padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px) clamp(64px, 8vw, 120px)",
+        position:   "relative",
+        overflow:   "hidden",
+        background: "var(--color-paper)",
       }}
     >
       <div
-        className="hero-grid"
         style={{
-          maxWidth:            "1320px",
-          margin:              "0 auto",
-          width:               "100%",
-          display:             "grid",
-          gridTemplateColumns: "minmax(0, 1fr) clamp(380px, 40vw, 540px)",
-          columnGap:           "clamp(48px, 7vw, 96px)",
-          rowGap:              "clamp(28px, 3vw, 44px)",
-          alignItems:          "start",
+          maxWidth: "var(--content-max)",
+          margin:   "0 auto",
+          width:    "100%",
         }}
       >
-        {/* ── LEFT: intro copy + CTA (single stacked block) ─────────────── */}
-        <div className="hero-text-col" style={{ maxWidth: "560px" }}>
-
-          {/* Eyebrow */}
-          <div
-            className="hero-reveal"
-            style={{
-              display:      "flex",
-              alignItems:   "center",
-              gap:          "14px",
-              marginBottom: "28px",
-            }}
-          >
-            <p
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
-                fontWeight:    500,
-                letterSpacing: "0.10em",
-                textTransform: "uppercase",
-                color:         "#5A5752",
-                margin:        0,
-              }}
-            >
-              Product Designer living in Portland,&nbsp;OR
-            </p>
-          </div>
-
-          {/* Thesis-as-H1. The nav wordmark already carries the
-              name; the hero H1 now carries the POV so the fold sells
-              a viewpoint instead of restating the byline. Second
-              sentence lifts the crimson accent that was on the name. */}
+        <div className="hero-text-col" style={{ maxWidth: "720px" }}>
           <h1
-            className="hero-reveal"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(30px, 4vw, 56px)",
-              fontWeight:    400,
+              fontSize:      "clamp(40px, 4vw, 60px)",
+              fontWeight:    500,
               lineHeight:    1.1,
-              letterSpacing: "-0.025em",
-              color:         "#252B28",
+              letterSpacing: "-0.02em",
+              color:         "var(--color-text)",
               margin:        "0 0 32px",
               maxWidth:      "18ch",
             }}
           >
-            I look at things I like and ask why they made it that way.
-            <br />
-            <span style={{ color: "var(--color-brand)", fontWeight: 500, display: "inline-block", marginTop: "0.4em" }}>
-              Then how I&rsquo;d make it better.
-            </span>
+            I find the problem, then I design the fix.
           </h1>
 
-          {/* Visually-hidden H2 carrying the primary keyword phrase.
-              The H1 (POV) doesn't include "Product Designer" — the SEO
-              audit flagged the fold as low-topical-signal. This H2 gives
-              Google + screen readers the keyword phrase without changing
-              the visible design. Heading order is preserved (H1 → H2). */}
+          {/* Visually-hidden H2 — keyword phrase absent from the H1. */}
           <h2 style={{
             position:   "absolute",
             width:      "1px",
@@ -149,441 +58,13 @@ export default function Hero() {
             Alfonso Barreiro, Product Designer in Portland, Oregon.
           </h2>
 
-          <p
-            className="hero-reveal hero-credentials"
-            style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "13px",
-              fontWeight:    500,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color:         "#5A5752",
-              margin:        "12px 0 20px",
-            }}
-          >
-            Fifteen years &middot; Agency, in-house, product &middot; 100+ sites shipped
-          </p>
-
-          {/* CTA — sits inside the text column so it reads as part of the
-              stacked message rather than a floating action. marginTop
-              approximates the previous grid rowGap so vertical breathing
-              stays consistent. */}
-          <div className="hero-reveal hero-cta-row" style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginTop: "clamp(20px, 2.5vw, 32px)" }}>
-            <a
-              href="#work"
-              className="on-crimson"
-              style={{
-                padding:       "14px 32px",
-                background:    "var(--color-brand)",
-                color:         "#FAFAF9",
-                borderRadius:  4,
-                fontSize:      "14px",
-                fontWeight:    500,
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                letterSpacing: "0.03em",
-                display:       "inline-flex",
-                alignItems:    "center",
-                transition:    "transform 0.25s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
+          <div className="hero-cta-row" style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "32px" }}>
+            <Button variant="primary" size="lg" href="#work">
               View Work
-            </a>
+            </Button>
           </div>
         </div>
-
-        {/* ── RIGHT: live MSR site + 86% completion stat ─────── */}
-        <div className="hero-reveal" style={{ width: "100%" }}>
-          <HeroResultPanel />
-        </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div
-        aria-hidden="true"
-        className="scroll-hint hero-reveal"
-        style={{
-          position:      "absolute",
-          bottom:        "48px",
-          left:          "48px",
-          display:       "flex",
-          alignItems:    "center",
-          gap:           "10px",
-          color:         "#5A5752",
-          fontSize:      "13px",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          animation:     "scrollBounce 2s ease-in-out 1.2s 3, scrollFadeOut 0.5s ease-out 7.2s forwards",
-        }}
-      >
-        <div
-          style={{
-            width:      "1px",
-            height:     "44px",
-            background: "linear-gradient(to bottom, transparent, #5A5752)",
-          }}
-        />
-        Scroll
-      </div>
-
-      {/* Responsive */}
-      <style>{`
-        /* Reduced motion — honor the OS pref on the CTA hover lifts.
-           The inline onMouseEnter still sets transform, but this
-           !important rule overrides it so reduced-motion users don't
-           get the bounce. */
-        @media (prefers-reduced-motion: reduce) {
-          .hero-cta-row > a {
-            transition: none !important;
-          }
-          .hero-cta-row > a:hover {
-            transform: none !important;
-          }
-        }
-        @media (max-width: 899px) {
-          .hero-section {
-            padding: 96px clamp(24px, 5vw, 48px) 40px !important;
-            min-height: auto !important;
-          }
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            column-gap: 0 !important;
-            row-gap: 28px !important;
-          }
-          .hero-text-col {
-            max-width: 100% !important;
-          }
-          /* H1 + positioning paragraph margins eat too much vertical room
-             at mobile widths. Tighten without touching the typography
-             scale itself. */
-          .hero-text-col h1 { margin-bottom: 20px !important; }
-          .hero-text-col p  { margin-bottom: 0 !important; }
-          /* The AVAILABLE line was landing right against the philosophy
-             paragraph on mobile because the rule above zeros its neighbor's
-             margin-bottom. Give the availability line its own breathing
-             room via margin-top (unaffected by the sibling rule). */
-          /* Scroll hint overlaps the CTAs on mobile and the gesture is
-             already obvious on a phone. Hide it. */
-          .scroll-hint { display: none !important; }
-        }
-        @keyframes scrollFadeOut { to { opacity: 0; } }
-      `}</style>
     </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────────── */
-/* Right column: live MSR site screenshot + 86% count-up overlay                */
-/* ─────────────────────────────────────────────────────────────────────────── */
-
-const COUNT_TARGET = 86;
-
-function HeroResultPanel() {
-  const panelRef = useRef<HTMLAnchorElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  /* Count-up: desktop-only, fires when the panel enters the viewport.
-     Restored 2026-07-03 after the SLUX audit flagged the flat stat as
-     one of the lifts to portfolio-defining. Gated on min-width: 900px
-     + prefers-reduced-motion so mobile / motion-averse readers get the
-     target number immediately (why it was pulled the first time). */
-  const [n, setN] = useState<number>(COUNT_TARGET);
-  const statRef = useRef<HTMLParagraphElement>(null);
-  useEffect(() => {
-    const el = statRef.current;
-    if (!el) return;
-    const mqNarrow = window.matchMedia("(max-width: 899px)");
-    const mqMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mqNarrow.matches || mqMotion.matches) return;
-    setN(0);
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return;
-      io.disconnect();
-      const start = performance.now();
-      const dur = 1400;
-      const tick = (now: number) => {
-        const p = Math.min(1, (now - start) / dur);
-        const eased = 1 - Math.pow(1 - p, 3);
-        setN(COUNT_TARGET * eased);
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    }, { threshold: 0.5 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  /* WCAG 2.2.2 Pause, Stop, Hide. The walkthrough video autoplays for
-     ~22s per loop. Cap it at 2 loops so motion stops after ~44s
-     instead of running forever. Pause when scrolled out of viewport
-     so the motion doesn't burn battery off-screen either. */
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    let loops = 0;
-    const onEnded = () => {
-      loops += 1;
-      if (loops >= 2) {
-        v.pause();
-        v.removeAttribute("loop");
-      }
-    };
-    v.addEventListener("ended", onEnded);
-    const io = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) v.pause();
-      else if (loops < 2) v.play().catch(() => { /* ignored */ });
-    }, { threshold: 0.1 });
-    io.observe(v);
-    return () => {
-      v.removeEventListener("ended", onEnded);
-      io.disconnect();
-    };
-  }, []);
-
-  return (
-    <Link
-      href="/work/mens-sole-revival"
-      ref={panelRef}
-      aria-label="Men's Sole Revival case study · 86% assessment completion"
-      className="hero-result-anchor"
-      style={{
-        display:        "flex",
-        flexDirection:  "column",
-        gap:            "clamp(12px, 1.5vw, 20px)",
-        textDecoration: "none",
-        color:          "inherit",
-      }}
-    >
-      {/* iPad — Figma iPad Pro 12.9 Space Gray PNG (transparent BG) with
-          live MSR content overlaid at the screen rectangle. PNG is sized
-          122.81 % of panel width and offset so the iPad body fills the
-          panel with a visible chrome margin around it. The iPad screen
-          sits at (17.16 %, 14.36 %, 65.72 %, 70.22 %) of the 4:5 panel.
-
-          A `.hero-ipad-tilt` wrapper carries a slow Z-axis rotation
-          (~-1 → +1 deg, 14 s ease-in-out) so the device gently sways. The
-          tilt wrapper is separate from the hover transform on .hero-ipad
-          so they don't fight each other. */}
-      <div
-        className="hero-ipad-tilt"
-        style={{ width: "100%", position: "relative" }}
-      >
-<div
-        className="hero-ipad"
-        style={{
-          position:    "relative",
-          width:       "100%",
-          aspectRatio: "4 / 5",
-          flexShrink:  0,
-          overflow:    "visible",
-          transition:  "transform 0.3s ease",
-        }}
-      >
-        {/* Screen content layer (above device PNG) */}
-        <div
-          className="hero-ipad-screen"
-          style={{
-            position:     "absolute",
-            left:         "17.64%",
-            top:          "12.83%",
-            width:        "64.67%",
-            height:       "74.27%",
-            overflow:     "hidden",
-            borderRadius: "1.9%",
-            background:   "#0F0F0F",
-            zIndex:       2,
-          }}
-        >
-          {/* Pre-rendered walkthrough — same home → review → black-fade
-              → reset sequence the CSS keyframes used to drive, but baked
-              into a single 22 s loop video. Matches the SpotifyFramed
-              Animation pattern (autoplay + loop + muted + playsInline)
-              so iOS Safari handles it reliably. Poster image shows the
-              homepage at frame 0 in case the video hasn't loaded yet. */}
-          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-          <video
-            ref={videoRef}
-            src="/cs-msr-walkthrough.webm"
-            poster="/cs-msr-homepage.jpg"
-            aria-label="Men's Sole Revival walkthrough. Homepage scrolls to a product review and resets."
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="hero-ipad-video"
-            style={{
-              position:       "absolute",
-              top:            0,
-              left:           0,
-              width:          "100%",
-              height:         "100%",
-              objectFit:      "cover",
-              objectPosition: "top center",
-              display:        "block",
-              background:     "#000",
-            }}
-          >
-            <source src="/cs-msr-walkthrough.webm" type="video/webm" />
-            <source src="/cs-msr-walkthrough.mp4" type="video/mp4" />
-          </video>
-
-        </div>
-
-        {/* iPad Pro chrome (below the screen content) — scaled up and
-            offset so the iPad body fills the panel; transparent BG so the
-            page surface shows through outside the device. */}
-        <img
-          src="/images/devices/ipad-pro.webp"
-          alt=""
-          aria-hidden
-          style={{
-            position:      "absolute",
-            left:          "-23.91%",
-            top:           "-9.29%",
-            width:         "148.08%",
-            maxWidth:      "none",
-            height:        "auto",
-            pointerEvents: "none",
-            zIndex:        1,
-          }}
-        />
-      </div>
-      </div>
-
-      {/* Text block — below the device, left-aligned. The 14 % side padding
-          keeps the copy aligned with the iPad body inside the panel. */}
-      <div
-        style={{
-          display:        "flex",
-          flexDirection:  "column",
-          alignItems:     "flex-start",
-          textAlign:      "left",
-          gap:            "10px",
-          paddingLeft:    "14%",
-          paddingRight:   "14%",
-        }}
-      >
-        {/* Eyebrow — small uppercase label matching the editorial pattern
-            used across the Work cards. Frames the stat as a feature, not
-            a floating number. */}
-        <p
-          style={{
-            fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "13px",
-            fontWeight:     500,
-            letterSpacing:  "0.18em",
-            textTransform:  "uppercase",
-            color:          "#5A5752",
-            margin:         "0",
-          }}
-        >
-          Featured Result · Live Since April 2026
-        </p>
-
-        {/* Title — h2 so the featured case study is announced as a
-            heading landmark to screen-reader users. */}
-        <h2
-          style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(22px, 2.2vw, 28px)",
-            fontWeight:    600,
-            lineHeight:    1.15,
-            letterSpacing: "-0.015em",
-            color:         "#252B28",
-            margin:        "8px 0 0",
-          }}
-        >
-          Men&apos;s Sole Revival
-        </h2>
-
-        {/* Stat — the 86% assessment completion rate. The count-up animation
-            targets this p via statRef; the IntersectionObserver flow is unchanged. */}
-        <p
-          ref={statRef}
-          style={{
-            fontFamily:         "var(--font-dm-sans), sans-serif",
-            fontSize:           "clamp(40px, 4.5vw, 56px)",
-            fontWeight:         600,
-            letterSpacing:      "-0.02em",
-            color:              "var(--color-ground-navy)",
-            margin:             "10px 0 0",
-            fontVariantNumeric: "tabular-nums",
-            lineHeight:         1,
-          }}
-        >
-          {Math.round(n)}%
-        </p>
-        <p
-          style={{
-            fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "clamp(14px, 1.2vw, 15px)",
-            fontWeight:     500,
-            lineHeight:     1.4,
-            letterSpacing:  "0.01em",
-            color:          "#5A5752",
-            margin:         "8px 0 0",
-            maxWidth:       "260px",
-          }}
-        >
-          of visitors finish the assessment
-        </p>
-
-        {/* CTA */}
-        <span
-          className="hero-result-cta"
-          style={{
-            display:       "inline-flex",
-            alignItems:    "center",
-            gap:           "8px",
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "13px",
-            fontWeight:    500,
-            letterSpacing: "0.04em",
-            color:         "var(--color-brand)",
-            marginTop:     "12px",
-            transition:    "transform 0.25s ease",
-          }}
-        >
-          View case study
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-            <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
-      </div>
-
-      <style>{`
-        .hero-result-anchor:hover .hero-ipad       { transform: translateY(-3px); }
-        .hero-result-anchor:hover .hero-result-cta { transform: translateX(4px); }
-
-        /* Tilt removed. The wrapper stays as a passthrough so the JSX
-           structure doesn't need to change. */
-        .hero-ipad-tilt { /* no transform */ }
-
-        /* The home → review → black-fade → reset sequence used to be four
-           chained CSS animations driven by keyframes. It now lives in
-           /public/cs-msr-walkthrough.{webm,mp4} as a baked 22 s video
-           loop, the same pattern SpotifyFramedAnimation uses for iOS
-           reliability. Reduced motion is handled by the video element
-           pausing itself when the user prefers no motion. */
-        @media (prefers-reduced-motion: reduce) {
-          .hero-ipad-screen video {
-            display: none;
-          }
-          .hero-ipad-screen {
-            background-image: url("/cs-msr-homepage.jpg");
-            background-size: 100% auto;
-            background-position: top center;
-            background-repeat: no-repeat;
-            background-color: #000;
-          }
-        }
-      `}</style>
-    </Link>
   );
 }

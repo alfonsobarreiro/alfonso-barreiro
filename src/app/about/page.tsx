@@ -3,8 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import StatCell from "./_components/StatCell";
-import WalkTrace from "./_components/WalkTrace";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
@@ -30,9 +28,9 @@ export const metadata: Metadata = {
 };
 
 /* ── Shared style atoms ─────────────────────────────────────────────── */
-/* Page runs on Navy #0F283D ground with Cream text (Alfonso
-   2026-07-03 values-palette pivot). Case studies stay on white paper;
-   About / Process / Behind This Site carry the personal-editorial voice. */
+/* Page runs on Warm White paper ground with ink text. Terracotta
+   is the accent on eyebrows + brand pull-quote rules. A dark section
+   only earns its place if a specific editorial moment calls for it. */
 
 const eyebrowRow: React.CSSProperties = {
   display:      "flex",
@@ -50,60 +48,58 @@ const eyebrowDash: React.CSSProperties = {
 
 const eyebrowLabel: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "11px",
-  fontWeight:    600,
-  letterSpacing: "0.14em",
-  textTransform: "uppercase",
+  fontSize:      "12px",
+  fontWeight:    500,
+  letterSpacing: "0.01em",
   color:         "var(--color-brand)",
   margin:        0,
 };
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(24px, 3vw, 36px)",
-  fontWeight:    600,
-  color:         "var(--color-cream)",
-  margin:        "0 0 28px",
-  letterSpacing: "-0.02em",
-  lineHeight:    1.2,
+  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontWeight:    500,
+  color:         "var(--color-text)",
+  margin:        "0 0 24px",
+  letterSpacing: "-0.01em",
+  lineHeight:    1.15,
 };
 
 const body: React.CSSProperties = {
   fontFamily:   "var(--font-dm-sans), sans-serif",
   fontSize:     "17px",
-  lineHeight:   1.75,
-  color:        "var(--color-cream-72)",
-  margin:       "0 0 20px",
+  lineHeight:   1.6,
+  color:        "var(--color-text)",
+  margin:       "0 0 24px",
   maxWidth:     "680px",
 };
 
 const sectionWrapper = (): React.CSSProperties => ({
-  padding:    "96px clamp(32px, 6vw, 80px)",
-  background: "var(--color-ground-navy)",
+  padding:    "48px clamp(32px, 6vw, 80px)",
+  background: "var(--color-paper)",
 });
 
 const innerWrapper: React.CSSProperties = {
   width:    "100%",
-  maxWidth: "920px",
+  maxWidth: "var(--content-max)",
   margin:   "0 auto",
 };
 
-/* Pull-quote style: left-aligned, brand sans, no italic. Terracotta
-   left rail carries the weight on the Navy ground (Deep Teal would
-   sink into the ground; Terracotta pops). */
+/* Pull-quote: left-aligned, DM Sans, never italic. Terracotta left
+   rail carries the accent on the ink ground. */
 const pullQuoteWrap: React.CSSProperties = {
-  margin:       "40px 0",
-  padding:      "6px 0 6px 24px",
+  margin:       "32px 0",
+  padding:      "8px 0 8px 24px",
   borderLeft:   "3px solid var(--color-brand)",
   maxWidth:     "720px",
 };
 const pullQuoteText: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(22px, 2.6vw, 30px)",
-  fontWeight:    600,
-  lineHeight:    1.25,
-  color:         "var(--color-cream)",
-  letterSpacing: "-0.025em",
+  fontSize:      "clamp(20px, 2.5vw, 28px)",
+  fontWeight:    500,
+  lineHeight:    1.15,
+  color:         "var(--color-text)",
+  letterSpacing: "-0.01em",
   margin:        0,
 };
 
@@ -114,64 +110,16 @@ export default function AboutPage() {
     <>
       <PersonSchema />
       <Nav />
-      <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
+      <main id="main-content" style={{ background: "var(--color-paper)" }}>
         <style>{`
-          .about-cta-primary,
-          .about-cta-secondary {
-            display:        inline-flex;
-            align-items:    center;
-            gap:            8px;
-            padding:        12px 24px;
-            font-family:    var(--font-dm-sans), sans-serif;
-            font-size:      12px;
-            font-weight:    600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius:  4px;
-            transition:     transform 0.25s ease, box-shadow 0.25s ease, background 0.2s, border-color 0.2s, color 0.2s;
-          }
-          .about-cta-primary {
-            background:   var(--color-brand);
-            border:       1px solid var(--color-brand);
-            color:        #FFFFFF;
-          }
-          .about-cta-primary:hover {
-            transform:    translateY(-2px);
-            /* Neutral ink shadow reads as depth; brand-color shadows
-               tend to look like a faint halo, not lift. */
-            box-shadow:   0 4px 12px rgba(37,43,40,0.18);
-            background:   #6F1414;
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .about-cta-primary,
-            .about-cta-secondary {
-              transition: none !important;
-            }
-            .about-cta-primary:hover,
-            .about-cta-secondary:hover {
-              transform: none !important;
-            }
-          }
-          .about-cta-secondary {
-            background:   #FFFFFF;
-            border:       1px solid var(--color-border-strong);
-            color:        #3D4440;
-          }
-          .about-cta-secondary:hover {
-            transform:    translateY(-1px);
-            border-color: #252B28;
-            color:        #252B28;
-          }
-          /* Inline links on the Navy ground — Deep Teal reads too dark
-             here, so links use Cream underlined; hover flashes to
-             Terracotta. Same pattern for the "On the shelf" book titles. */
+          /* Inline links: underlined ink, hover flashes to Terracotta.
+             Same pattern for the "On the shelf" book titles. */
           .about-studio-link,
           .about-shelf-link {
-            color:           var(--color-cream);
+            color:           var(--color-text);
             text-decoration: none;
             font-weight:     500;
-            border-bottom:   1px solid var(--color-cream-48);
+            border-bottom:   1px solid var(--color-neutral-400);
             transition:      border-color 0.2s, color 0.2s;
           }
           .about-studio-link:hover,
@@ -194,16 +142,16 @@ export default function AboutPage() {
             cursor:     pointer;
             transition: background 0.18s ease;
           }
-          .rt-bar[data-tier="office"] { background: #7A7773; }
+          .rt-bar[data-tier="office"] { background: var(--color-neutral-500); }
           .rt-bar[data-tier="remote"] { background: var(--color-brand); }
           .rt-bar[data-tier="office"]:hover,
-          .rt-bar[data-tier="office"]:focus-visible { background: #252B28; outline: none; }
+          .rt-bar[data-tier="office"]:focus-visible { background: var(--color-text); outline: none; }
           .rt-bar[data-tier="remote"]:hover,
-          .rt-bar[data-tier="remote"]:focus-visible { background: #B72222; outline: none; }
+          .rt-bar[data-tier="remote"]:focus-visible { background: var(--color-brand-hover); outline: none; }
           .rt-bar[data-last="false"] { border-right: 1px solid rgba(255,255,255,0.7); }
 
           .rt-chapter-card {
-            background: #FFFFFF;
+            background: var(--color-paper);
             transition: background 0.2s ease, box-shadow 0.2s ease;
           }
           .rt-outer:has(.rt-bar[data-idx="0"]:hover)         .rt-chapter-card[data-idx="0"],
@@ -218,7 +166,7 @@ export default function AboutPage() {
           .rt-outer:has(.rt-bar[data-idx="4"]:focus-visible) .rt-chapter-card[data-idx="4"],
           .rt-outer:has(.rt-bar[data-idx="5"]:hover)         .rt-chapter-card[data-idx="5"],
           .rt-outer:has(.rt-bar[data-idx="5"]:focus-visible) .rt-chapter-card[data-idx="5"] {
-            background: #EDEFF2;
+            background: var(--color-neutral-100);
             box-shadow: 0 1px 0 rgba(0,0,0,0.03);
           }
           @media (prefers-reduced-motion: reduce) {
@@ -231,9 +179,9 @@ export default function AboutPage() {
             top:             -22px;
             font-family:     var(--font-dm-sans), sans-serif;
             font-size:       10px;
-            font-weight:     700;
+            font-weight:     500;
             letter-spacing:  0.22em;
-            text-transform:  uppercase;
+            text-transform:  none;
             color:           var(--color-brand);
             pointer-events:  none;
           }
@@ -249,26 +197,22 @@ export default function AboutPage() {
         <section
           aria-label="About Alfonso Barreiro"
           style={{
-            padding:    "140px clamp(32px, 6vw, 80px) 96px",
-            background: "var(--color-ground-navy)",
+            padding:    "96px clamp(32px, 6vw, 80px) 64px",
+            background: "var(--color-paper)",
           }}
         >
           <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
             <div className="about-hero-grid">
               {/* Left: text */}
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                <div style={eyebrowRow}>
-                  <span style={eyebrowDash} />
-                  <p style={eyebrowLabel}>About</p>
-                </div>
                 <h1
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "clamp(36px, 4.8vw, 60px)",
-                    fontWeight:    600,
-                    color:         "var(--color-cream)",
-                    margin:        "0 0 12px",
-                    letterSpacing: "-0.025em",
+                    fontSize:      "clamp(40px, 4.8vw, 60px)",
+                    fontWeight:    500,
+                    color:         "var(--color-text)",
+                    margin:        "0 0 24px",
+                    letterSpacing: "-0.02em",
                     lineHeight:    1.1,
                   }}
                 >
@@ -277,24 +221,11 @@ export default function AboutPage() {
                 <p
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "clamp(20px, 2.6vw, 30px)",
-                    fontWeight:    500,
-                    color:         "var(--color-brand)",
-                    margin:        0,
-                    letterSpacing: "-0.02em",
-                    lineHeight:    1.2,
-                  }}
-                >
-                  What pulled me in wasn&apos;t the visual part.
-                </p>
-                <p
-                  style={{
-                    fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "clamp(17px, 1.7vw, 20px)",
+                    fontSize:      "17px",
                     fontWeight:    400,
-                    color:         "var(--color-cream-72)",
-                    margin:        "28px 0 0",
-                    lineHeight:    1.55,
+                    color:         "var(--color-text)",
+                    margin:        0,
+                    lineHeight:    1.6,
                     maxWidth:      "540px",
                   }}
                 >
@@ -310,7 +241,7 @@ export default function AboutPage() {
                     width:       "100%",
                     aspectRatio: "3 / 4",
                     overflow:    "hidden",
-                    background:  "#F5F5F4",
+                    background:  "var(--color-neutral-100)",
                   }}
                 >
                   <Image
@@ -340,99 +271,6 @@ export default function AboutPage() {
               }
               .about-hero-grid > div:last-child {
                 order: -1;
-              }
-            }
-          `}</style>
-        </section>
-
-        {/* ── By the numbers — memory anchor stat block ────────────────
-              Distills the About story into three sticky figures so the
-              page has a single editorial moment people can carry away.
-              Same rhythm as the MSR funnel stats + the home 86% hook.
-              Light surface (matches the rest of the page) — the numbers
-              carry the weight without needing a dark slab to punch. */}
-        <section aria-label="By the numbers" style={{
-          background: "#FFFFFF",
-          color:      "#252B28",
-          padding:    "clamp(60px, 7vw, 100px) clamp(24px, 5vw, 80px)",
-          /* StatCell reads cream tokens for its numeral, unit fallback,
-             and caption. Remap those tokens locally so the same
-             component reads as ink-on-white here without needing a
-             variant prop. Brand token (unit label) already reads on
-             white, no override needed. */
-          ["--color-cream" as unknown as string]:    "#252B28",
-          ["--color-cream-72" as unknown as string]: "#3D4440",
-        } as React.CSSProperties}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div
-              style={{
-                display:      "flex",
-                alignItems:   "center",
-                gap:          "14px",
-                marginBottom: "clamp(28px, 4vw, 44px)",
-              }}
-            >
-              <span style={{
-                display:    "inline-block",
-                width:      "32px",
-                height:     "1px",
-                background: "var(--color-brand)",
-                flexShrink: 0,
-              }} />
-              {/* Eyebrow promoted to an h2 so the marquee stats block
-                  has a real heading landmark for screen-reader rotor
-                  navigation. Visual weight stays small/uppercase. */}
-              <h2 style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "12px",
-                fontWeight:    600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color:         "var(--color-cream-72)",
-                margin:        0,
-              }}>
-                By the day · by the week
-              </h2>
-            </div>
-
-            <div
-              className="about-stats-grid"
-              style={{
-                display:             "grid",
-                gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                gap:                 "clamp(24px, 4vw, 56px)",
-                alignItems:          "start",
-              }}
-            >
-              <StatCell n="7"   unit="books"        caption="Read this year. Fiction, design theory, poetry. What I read shapes what I make." />
-              <StatCell n="5+"  unit="hours a day"  caption="Music while designing. Ambient and ECM keep the room quiet enough to hear the work." />
-              <StatCell n="3"   unit="miles a day"  caption="Walked around Portland. Solves what the desk can't." />
-              <StatCell n="8"   unit="miles a week" caption="Trail walking/running Mt. Tabor, as I plan to run an ultra marathon in a year and a half." />
-            </div>
-          </div>
-          <style>{`
-            /* 4-up on desktop drops to 2x2 at ≤760px so the numerals stay
-               readable at phone widths. The stacked-column pattern lost
-               the "by the numbers" gestalt on the prior 3-up trio; a 2x2
-               grid keeps the comparison legible without the trio's cramp. */
-            @media (max-width: 760px) {
-              .about-stats-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 24px 16px !important;
-                align-items: start !important;
-              }
-              .about-stats-grid p:first-child {
-                font-size: clamp(40px, 14vw, 64px) !important;
-                margin-bottom: 8px !important;
-              }
-              .about-stats-grid p:first-child > span {
-                font-size: 11px !important;
-                margin-left: 4px !important;
-                display: block !important;
-              }
-              .about-stats-grid p:last-child {
-                font-size: 11px !important;
-                line-height: 1.4 !important;
               }
             }
           `}</style>
@@ -540,10 +378,10 @@ export default function AboutPage() {
             <h2 style={sectionH2}>On the shelf</h2>
             <p style={body}>
               Two books on the desk right now:{" "}
-              <em style={{ color: "var(--color-cream)" }}>Designing with Intention</em> and{" "}
-              <em style={{ color: "var(--color-cream)" }}>Refactoring UI</em>. The first is about
+              <span style={{ color: "var(--color-text)", fontWeight: 500 }}>Designing with Intention</span> and{" "}
+              <span style={{ color: "var(--color-text)", fontWeight: 500 }}>Refactoring UI</span>. The first is about
               how to think about design. The second is about how to make a screen
-              actually look right. I&apos;m trying to read them as one lens, not two
+              actually look right. I&rsquo;m trying to read them as one lens, not two
               separate books.
             </p>
             <p style={{ ...body, margin: 0 }}>
@@ -561,14 +399,13 @@ export default function AboutPage() {
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Off-screen</h2>
             <p style={{ ...body, margin: 0 }}>
-              I still learn like I&apos;m running out of time. I&apos;m teaching
+              I still learn like I&rsquo;m running out of time. I&rsquo;m teaching
               myself Hiragana. I walk five miles a day, building back toward a
               marathon. I meditate. I watch birds. I read everything. If that
-              sounds like someone with too many interests, you&apos;re probably
+              sounds like someone with too many interests, you&rsquo;re probably
               right. But the curiosity is the same muscle I use in research. I
-              just don&apos;t turn it off.
+              just don&rsquo;t turn it off.
             </p>
-            <WalkTrace />
           </div>
         </section>
 
@@ -576,36 +413,18 @@ export default function AboutPage() {
         <section aria-label="Find me in Portland" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Find me in Portland</h2>
-            <p style={{ ...body, marginBottom: "36px" }}>
-              If any of this resonates, or if you have a problem you want a second
-              pair of eyes on, the easiest way to reach me is over coffee. I keep a
-              calendar open.
+            <p style={{ ...body, margin: 0 }}>
+              If any of this resonates, or you have a problem you want a second
+              pair of eyes on, coffee is the easiest way. Book a time at{" "}
+              <a href="https://cal.com/alfonso-barreiro" target="_blank" rel="noopener noreferrer" className="about-shelf-link">
+                cal.com/alfonso-barreiro
+              </a>
+              , or email{" "}
+              <a href="mailto:alfonso@barreiro.com" className="about-shelf-link">
+                alfonso@barreiro.com
+              </a>
+              .
             </p>
-
-            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              <a
-                href="https://cal.com/alfonso-barreiro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="about-cta-primary"
-              >
-                Coffee in Portland
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <Link href="/contact" className="about-cta-secondary">
-                Send a message
-              </Link>
-              <a
-                href="https://www.linkedin.com/in/alfonso-barreiro/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="about-cta-secondary"
-              >
-                LinkedIn
-              </a>
-            </div>
           </div>
         </section>
       </main>
@@ -647,26 +466,14 @@ function RemoteTimeline() {
 
   return (
     <div className="rt-outer" style={{ width: "100%" }}>
-      {/* Top eyebrow */}
-      <p style={{
-        fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "11px",
-        fontWeight:    700,
-        letterSpacing: "0.18em",
-        textTransform: "uppercase",
-        color:         "var(--color-brand)",
-        margin:        "0 0 12px",
-      }}>
-        Career arc · 2010 to today
-      </p>
       <h3 style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(22px, 2.4vw, 30px)",
-        fontWeight:    600,
-        color:         "var(--color-cream)",
+        fontSize:      "20px",
+        fontWeight:    500,
+        color:         "var(--color-text)",
         margin:        "0 0 32px",
-        letterSpacing: "-0.02em",
-        lineHeight:    1.2,
+        letterSpacing: "-0.01em",
+        lineHeight:    1.35,
       }}>
         Six chapters. Two remote periods. One through-line.
       </h3>
@@ -689,8 +496,8 @@ function RemoteTimeline() {
                 transform:     "translateX(-50%)",
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "11px",
-                fontWeight:    600,
-                color:         "var(--color-cream-72)",
+                fontWeight:    500,
+                color:         "var(--color-text-muted)",
                 letterSpacing: "0.06em",
               }}>{y}</span>
             );
@@ -703,7 +510,7 @@ function RemoteTimeline() {
         <div style={{
           position: "relative",
           height: "44px",
-          background: "#ECEFF3",
+          background: "var(--color-neutral-100)",
           border: "1px solid var(--color-border)",
         }}>
           {chapters.map((ch, idx) => {
@@ -766,9 +573,9 @@ function RemoteTimeline() {
             transform:     "translateX(-50%)",
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "10px",
-            fontWeight:    700,
+            fontWeight:    500,
             letterSpacing: "0.18em",
-            textTransform: "uppercase",
+            textTransform: "none",
             color:         "var(--color-brand)",
             whiteSpace:    "nowrap",
           }}>
@@ -784,11 +591,11 @@ function RemoteTimeline() {
         flexWrap: "wrap",
         marginBottom: "40px",
       }}>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-cream-72)", letterSpacing: "0.02em" }}>
-          <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-cream-72)" }} aria-hidden />
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.02em" }}>
+          <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-neutral-500)" }} aria-hidden />
           In-office · 2010–2019, 2022–2024
         </span>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-cream-72)", letterSpacing: "0.02em" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.02em" }}>
           <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-brand)" }} aria-hidden />
           Remote · 2019–2021, 2024–now
         </span>
@@ -810,42 +617,38 @@ function RemoteTimeline() {
               data-idx={idx}
               className="rt-chapter-card"
               style={{
-                border:    "1px solid var(--color-border)",
-                borderTop: `3px solid ${ch.remote ? "var(--color-brand)" : "#252B28"}`,
-                padding:   "20px 22px",
+                border:  "1px solid var(--color-neutral-300)",
+                padding: "24px",
               }}
             >
               <p style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "10px",
-                fontWeight:    700,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color:         ch.remote ? "var(--color-brand)" : "#5A5752",
-                margin:        "0 0 6px",
-              }}>{yearLabel}{ch.remote ? " · Remote" : ""}</p>
-              <p style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "16px",
-                fontWeight:    700,
-                color:         "#252B28",
-                margin:        "0 0 4px",
+                fontSize:      "20px",
+                fontWeight:    500,
+                color:         "var(--color-text)",
+                margin:        "0 0 8px",
                 letterSpacing: "-0.01em",
+                lineHeight:    1.35,
               }}>{ch.name}</p>
               <p style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
-                fontWeight:    500,
-                color:         "#3D4440",
-                margin:        "0 0 10px",
-              }}>{ch.role} · {ch.location}</p>
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontSize:   "15px",
+                fontWeight: 400,
+                lineHeight: 1.5,
+                color:      "var(--color-text)",
+                margin:     "0 0 16px",
+              }}>{ch.note}</p>
               <p style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 fontSize:   "12px",
-                lineHeight: 1.55,
-                color:      "#5A5752",
+                fontWeight: 500,
+                lineHeight: 1.4,
+                color:      "var(--color-neutral-600)",
                 margin:     0,
-              }}>{ch.note}</p>
+              }}>
+                {ch.role} · {ch.location} · {yearLabel}
+                {ch.remote ? " · remote" : ""}
+              </p>
             </article>
           );
         })}
@@ -870,7 +673,7 @@ function RemoteTimeline() {
           .rt-outer .rt-chapter-card[data-idx="1"],
           .rt-outer .rt-chapter-card[data-idx="2"],
           .rt-outer .rt-chapter-card[data-idx="4"] {
-            border-left-color: #252B28 !important;
+            border-left-color: var(--color-text) !important;
           }
           .rt-outer .rt-chapter-card[data-idx="3"],
           .rt-outer .rt-chapter-card[data-idx="5"] {

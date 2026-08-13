@@ -35,7 +35,7 @@ export default function SpotifyFramedAnimation() {
           height:       "72.10%",
           overflow:     "hidden",
           borderRadius: "5.5%",
-          background:   "#0F0F0F",
+          background:   "var(--color-device-chrome)",
           zIndex:       2,
         }}
       >

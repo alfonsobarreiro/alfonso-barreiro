@@ -1,73 +1,204 @@
 @import "tailwindcss";
 
-/* HMR bump 2026-06-19 13:03 / 14:32 / 15:18 / 15:42 / 2026-07-03 11:20 / 12:15 — force recompile */
+/* HMR bump 2026-06-19 13:03 / 14:32 / 15:18 / 15:42 / 2026-07-03 11:20 / 12:15 / 2026-08-12 06:52 — force recompile */
 
 /* Ensure Tailwind scans slide components so slide-only classes (mb-*, px-*, py-*, etc.) are generated */
 @source "../components/msr-slides";
 @source "../components/wayfarer-slides";
 
 @theme inline {
-  /* ── Neutral scale ── */
+  /* ── Neutral scale (Tailwind @theme layer for utility gen).
+       Full 9-step ramp per vault Foundations — Color.md, locked 2026-08-11.
+       Consumers should prefer :root DS tokens; @theme values here exist only
+       so Tailwind can generate `bg-neutral-*`, `text-neutral-*` utilities. */
   --color-neutral-50:  #FAFAF9;
-  --color-neutral-100: #E2E0DC;
-  --color-neutral-200: #A8A39A;
+  --color-neutral-100: #F5F5F4;
+  --color-neutral-200: #E6E3DE;
+  --color-neutral-300: #DEDCD7;
+  --color-neutral-400: #B8B4AC;
+  --color-neutral-500: #6E6E6A;
+  --color-neutral-600: #5A5752;
+  --color-neutral-700: #3D4440;
   --color-neutral-800: #2F3531;
   --color-neutral-900: #252B28;
 
-  /* ── Semantic tokens. Active brand colors live in the :root[data-
-       brand="c"] block below; these are the surface/foreground/border
-       defaults that don't change with brand theming. */
-  --color-background:          #FAFAF9;
-  --color-surface:             #FFFFFF;
-  --color-foreground:          #252B28;
-  --color-foreground-secondary:#2F3531;
-  --color-foreground-muted:    #5A5752;
-  /* #8A8680 hits 3.4:1 on white — safe floor for 1.4.11. Earlier
-     attempts at #BFB9AF (2.18:1) and #A29C90 (~2.7:1) tested cleaner
-     in some calculators but fail in stricter ones; sticking with the
-     same value as border-strong avoids ambiguity. */
-  --color-border:              #8A8680;
-  --color-border-strong:       #7A7670;
+  /* Semantic defaults for Tailwind @theme.
+     --color-foreground now resolves to Navy (DS ink), not the old #252B28
+     deep neutral. --color-border and --color-border-strong point at the
+     neutral ramp so hairlines and heavier dividers pull from DS. */
+  --color-background:           #FAFAF9;
+  --color-surface:              #FFFFFF;
+  --color-foreground:           #0F283D;
+  --color-foreground-secondary: #2F3531;
+  --color-foreground-muted:     #5A5752;
+  --color-border:               #E6E3DE;
+  --color-border-strong:        #B8B4AC;
 
   /* ── Typography ── */
   --font-sans:    var(--font-dm-sans);
-  --font-display: var(--font-dm-serif-display);
+  --font-display: var(--font-dm-sans);
 }
 
-/* ── Brand-aware semantic tokens ──
-   Default is C (Crimson + Deep Teal). The previous aubergine system and the
-   runner-up E (Petrol Blue) stay reachable via ?brand=aubergine and ?brand=e
-   for comparison. BrandSwitch reads the param and sets data-brand on <html>;
-   the boot script in layout.tsx runs pre-hydration to avoid a flash.
-   The Tailwind @theme inline tokens above are unused by the chrome — every
-   brand reference goes through var(--color-brand) / var(--color-accent) /
-   var(--color-accent-hover) / var(--color-focus-ring). */
+/* ══════════════════════════════════════════════════════════════════════
+   DS-LOCKED COLOR TOKENS — SOURCE OF TRUTH
+   Per vault Foundations — Color.md, locked 2026-08-11; ported to code
+   2026-08-12 (portfolio DS conformance audit Round 2).
+   Every consumer file must resolve to a token below or a semantic alias.
+   Raw hex outside this file is drift.
+   ══════════════════════════════════════════════════════════════════════ */
+
 :root,
 :root[data-brand="c"] {
-  --color-brand:        #CF5B48; /* Terracotta (was Crimson #8C1A1A, retired 2026-07-03: the values-palette exercise revealed Crimson wasn't Alfonso) */
-  --color-brand-hover:  #B34734;
-  --color-accent:       #0F3D3E; /* Deep Teal */
-  --color-accent-hover: #0A2D2E;
-  --color-focus-ring:   #0F3D3E;
-  /* Values palette — grounds + text for the personal-editorial voice
-     used on About / Process / Behind This Site. Case studies keep the
-     white paper ground; personal pages sit on Navy with Cream text. */
-  --color-ground-navy:  #0F283D;
-  --color-ground-burnt: #8A3C12;
-  --color-cream:        #F4EFE8;
-  --color-cream-92:     rgba(244, 239, 232, 0.92);
-  --color-cream-72:     rgba(244, 239, 232, 0.72);
-  --color-cream-48:     rgba(244, 239, 232, 0.48);
+  /* ── ROLE TOKENS ── */
+  --color-terracotta:  #CF5B48;
+  --color-navy:        #0F283D;
+  --color-warm-white:  #FAFAF9;
+
+  /* ── SUPPORTING ── */
+  --color-deep-teal:    #0F3D3E;
+  --color-paper:        #FFFFFF;
+  --color-burnt-orange: #8A3C12;
+
+  /* ── NEUTRAL RAMP 100–900 ── */
+  --color-neutral-100: #F5F5F4;
+  --color-neutral-200: #E6E3DE;
+  --color-neutral-300: #DEDCD7;
+  --color-neutral-400: #B8B4AC;
+  --color-neutral-500: #6E6E6A;
+  --color-neutral-600: #5A5752;
+  --color-neutral-700: #3D4440;
+  --color-neutral-800: #2F3531;
+  --color-neutral-900: #252B28;
+
+  /* ── TERRACOTTA RAMP 100–900 ── */
+  --color-terracotta-100: #FCE9E4;
+  --color-terracotta-200: #F8CFC5;
+  --color-terracotta-300: #F2B4A2; /* dark-surface link (~8:1 on Navy) */
+  --color-terracotta-400: #DF8371;
+  --color-terracotta-500: #CF5B48; /* identity: never body, never CTA fill on white */
+  --color-terracotta-600: #B34734; /* CTA fill on white */
+  --color-terracotta-700: #953626; /* link on white (~7.5:1 on Warm White) */
+  --color-terracotta-800: #6E2818; /* link hover on white */
+  --color-terracotta-900: #4A1810;
+
+  /* ── SEMANTIC ALIASES — light surfaces ── */
+  --color-bg-page:         var(--color-warm-white);
+  --color-bg-elevated:     var(--color-neutral-100);
+  --color-bg-case-study:   var(--color-paper);
+  --color-bg-inverse:      var(--color-navy);
+  --color-bg-cta-primary:  var(--color-terracotta-600);
+
+  --color-text:            var(--color-navy);
+  --color-text-heading:    var(--color-navy);
+  --color-text-body:       var(--color-navy);
+  --color-text-muted:      var(--color-neutral-600);
+  --color-text-caption:    var(--color-neutral-500);
+  --color-text-link:       var(--color-terracotta-700);
+  --color-text-link-hover: var(--color-terracotta-800);
+
+  /* Focus ring: DS says Terracotta-500. Previous value was Deep Teal
+     (#0F3D3E, 11.95:1 on white) which had higher contrast; Terracotta-500
+     against Warm White is ~3.5:1 (passes WCAG 2.2 non-text 3:1 minimum
+     but a hair tighter than the old value). If focus visibility becomes
+     an issue in dark-mode or on dark grounds, revisit — vault decision
+     stands for now. */
+  --color-focus-ring:      var(--color-terracotta-500);
+
+  /* ── DARK-SURFACE TOKENS — content on Navy ── */
+  --color-inverse:          #FFFFFF;
+  --color-inverse-body:     rgb(255 255 255 / 0.80);
+  --color-inverse-muted:    rgb(255 255 255 / 0.60);
+  --color-inverse-caption:  rgb(255 255 255 / 0.50);
+  --color-inverse-hairline: rgb(255 255 255 / 0.10);
+  --color-inverse-link:     var(--color-inverse);
+  --color-inverse-link-hover: var(--color-terracotta-300);
+
+  /* ── SURFACE-SPECIFIC BACKGROUND TOKENS ── */
+  /* Glassy nav on light — same rgba value as --color-inverse-body but a
+     distinct token so future opacity tuning on inverse-body (which is a
+     text token) doesn't silently move the nav surface. */
+  --color-bg-nav-scrolled:  rgb(255 255 255 / 0.80);
+
+  /* ── EXCEPTION TOKENS (per Foundations — Color) ── */
+  /* Device chrome: near-black for iPad bezels + video fallbacks. Distinct
+     from --color-navy which is warmer. */
+  --color-device-chrome:    #0F0F0F;
+  /* External brand marks — one source of truth per third-party surface. */
+  --color-brand-linkedin:      #0A66C2;
+  --color-brand-spotify-500:   #1ED760;
+  --color-brand-spotify-300:   #7AE29B;
+
+  /* ── TYPOGRAPHY SCALE — six-step + article-body override ── */
+  --text-display: 60px;
+  --text-h1:      40px;
+  --text-h2:      28px;
+  --text-h3:      20px;
+  --text-h4:      15px;
+  --text-body:    15px;
+  --text-article: 17px; /* scoped to .article-body only */
+  --text-small:   12px;
+
+  --leading-display: 1.05;
+  --leading-h1:      1.10;
+  --leading-h2:      1.15;
+  --leading-h3:      1.35;
+  --leading-body:    1.5;
+  --leading-article: 1.6;
+
+  --tracking-wordmark: -0.03em;
+  --tracking-display:  -0.02em;
+  --tracking-heading:  -0.01em;
+  --tracking-body:      0em;
+  --tracking-eyebrow:   0.01em;
+
+  /* Button radius — sharp per DS default (large containers are radius 0;
+     buttons are neither large-container nor pill/avatar). Override to 4
+     or 999 at the button primitive when Round 4b lands. */
+  --radius-button: 0;
+
+  /* One content max-width, applied across every section for a stable
+     vertical spine. Full-bleed sections escape via calc(50% - 50vw). */
+  --content-max: 1240px;
+
+  /* Elevation tokens (Foundations — Color, Round 5 spec).
+     Three-step ladder. --shadow-1 for micro-hover / floating chips,
+     --shadow-2 for floating micro-controls (BackToTop), --shadow-3
+     for modal / overlay. All soft, biased down. */
+  --shadow-1: 0 1px 3px rgb(0 0 0 / 0.06), 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-2: 0 4px 12px rgb(0 0 0 / 0.10), 0 2px 4px rgb(0 0 0 / 0.06);
+  --shadow-3: 0 12px 32px rgb(0 0 0 / 0.14), 0 4px 8px rgb(0 0 0 / 0.08);
+
+  /* ── LEGACY ALIASES — pointers to DS tokens.
+       These stay so any consumer that still references the old names
+       resolves correctly. Homepage consumers should migrate off these
+       toward the DS-named tokens above; the audit will re-flag any
+       remaining legacy references in future rounds. ── */
+  --color-brand:        var(--color-terracotta);
+  --color-brand-hover:  var(--color-terracotta-600);
+  --color-accent:       var(--color-deep-teal);
+  --color-accent-hover: var(--color-deep-teal); /* legacy alias — hover-tightening retired; resolves same tone */
+  --color-ground-navy:  var(--color-navy);
+  --color-ground-burnt: var(--color-burnt-orange);
+
+  /* Cream ladder retired. Legacy pointers now resolve to the white-alpha
+     inverse ladder per DS (was a warm-cream ladder #F4EFE8). Any
+     consumer that still uses --color-cream will render with white-alpha,
+     which is what the DS specifies for dark-surface content. */
+  --color-cream:        var(--color-inverse-body);
+  --color-cream-92:     rgb(255 255 255 / 0.92);
+  --color-cream-72:     rgb(255 255 255 / 0.72);
+  --color-cream-48:     rgb(255 255 255 / 0.48);
 }
-:root[data-brand="aubergine"] {
-  --color-brand:        #3D2645;
-  --color-accent:       #7A8B6E;
-  --color-accent-hover: #5F7556;
-  --color-focus-ring:   #7A8B6E;
-}
+
+/* Aubergine palette REMOVED 2026-08-12 per DS retirement rule. The
+   ?brand=aubergine URL param branch in layout.tsx boot script is
+   removed alongside so the retired palette is unreachable. */
+
 :root[data-brand="e"] {
-  --color-brand:        #1F4A6E; /* Petrol Blue */
-  --color-accent:       #BC9A2D; /* Burnt Ochre */
+  /* Petrol Blue — runner-up palette, kept for A/B comparison. Not part
+     of the DS; do not reference outside the ?brand=e URL param path. */
+  --color-brand:        #1F4A6E;
+  --color-accent:       #BC9A2D;
   --color-accent-hover: #A07F1F;
   --color-focus-ring:   #1F4A6E;
 }
@@ -80,6 +211,45 @@
     padding: 0;
   }
 }
+
+/* ── Imagery treatment classes (Foundations — Imagery) ──
+   Portfolio default is full-colour restrained documentary look. Never
+   apply inline filter: in JSX; apply one of these classes on the image
+   wrapper instead. Empty .portrait-photo marks the default treatment;
+   the muted and grayscale variants are utility overrides. */
+.portrait-photo  { filter: none; }
+.muted-photo     { filter: saturate(0.85) contrast(0.95); }
+.grayscale-photo { filter: grayscale(1); }
+
+/* ── DS component primitives (src/components/ui/*) ──
+   Hover + focus rules shared by Button.tsx and LinkArrow.tsx. Keeps
+   inline JS handlers out of the primitives so :hover works on both
+   <button> and <Link> anchors uniformly. */
+.ui-btn--primary:hover       { background: var(--color-terracotta-700); border-color: var(--color-terracotta-700); transform: translateY(-1px); }
+.ui-btn--ghost:hover         { border-color: var(--color-neutral-600); color: var(--color-text); }
+.ui-btn--inverse-fill:hover  { background: var(--color-neutral-100); border-color: var(--color-neutral-100); }
+.ui-btn:focus-visible        { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+
+/* BackToTop consumer override — deeper ink swap + bigger lift + arrow nudge
+   to reinforce the "return to origin" affordance. Uses !important because
+   BackToTop passes an inline `transform` (opacity/visibility reveal). Placed
+   after .ui-btn--primary:hover so specificity ties resolve in this rule's
+   favor for background/border. Focus ring gets a larger offset to clear the
+   floating shadow. */
+.back-to-top-btn:hover {
+  background:   var(--color-text) !important;
+  border-color: var(--color-text) !important;
+  transform:    translateY(-4px) !important;
+  box-shadow:   0 12px 28px rgba(0, 0, 0, 0.28);
+}
+.back-to-top-btn .btt-arrow        { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+.back-to-top-btn:hover .btt-arrow  { transform: translateY(-2px); }
+.back-to-top-btn:focus-visible     { outline-offset: 3px; }
+
+.ui-linkarrow:hover .ui-linkarrow__arrow { transform: translateX(4px); }
+.ui-linkarrow--on-light:hover { color: var(--color-text-link-hover); }
+.ui-linkarrow--on-dark:hover  { color: var(--color-inverse-link-hover); }
+.ui-linkarrow:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-offset: 3px; border-radius: 2px; }
 
 html {
   scroll-behavior: smooth;
@@ -106,8 +276,8 @@ main > footer {
 }
 
 body {
-  background:               #FFFFFF;
-  color:                    #252B28;
+  background:               var(--color-bg-page);
+  color:                    var(--color-text);
   font-family:              var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing:   antialiased;
   -moz-osx-font-smoothing:  grayscale;
@@ -134,8 +304,8 @@ main > footer {
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar        { width: 5px; }
-::-webkit-scrollbar-track  { background: #FFFFFF; }
-::-webkit-scrollbar-thumb  { background: #B8B0A2; border-radius: 3px; }
+::-webkit-scrollbar-track  { background: var(--color-paper); }
+::-webkit-scrollbar-thumb  { background: var(--color-neutral-400); border-radius: 3px; }
 
 /* ── Base links ── */
 a {
@@ -148,19 +318,19 @@ a {
    older Safari/iOS WebViews that don't yet emit :focus-visible — leave
    the default outline in place there and let :focus-visible style
    modern browsers.
-   Default ring is Deep Teal on light surfaces (11.95:1 on white).
-   For elements on crimson surfaces (primary CTAs, mobile menu overlay)
-   we paint a double-ring via box-shadow: 2px white inner + 2px teal
-   outer so the ring is visible on both light AND crimson backgrounds. */
+   Focus ring is Terracotta-500 per DS (was Deep Teal). For elements on
+   crimson surfaces (primary CTAs, mobile menu overlay) we paint a
+   double-ring via box-shadow: 2px white inner + 2px terracotta outer so
+   the ring is visible on both light AND crimson backgrounds. */
 a:focus-visible        { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
 button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
 
 /* On-crimson focus ring — opt-in via .on-crimson on elements that sit
-   against a var(--color-brand) background. White inner + teal outer
-   keeps the ring visible whether the bg is white or crimson. */
+   against a var(--color-brand) background. White inner + terracotta
+   outer keeps the ring visible whether the bg is white or crimson. */
 .on-crimson:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--color-focus-ring);
+  box-shadow: 0 0 0 2px var(--color-inverse), 0 0 0 4px var(--color-focus-ring);
 }
 /* Mobile menu overlay focus outline — only paint it when the user is
    in keyboard-nav mode. When the menu opens on tap, JS programmatically
@@ -169,13 +339,13 @@ button:focus-visible   { outline: 2px solid var(--color-focus-ring); outline-off
    and touch users see a box around "Work" that shouldn't be there.
    The body[data-keyboard-nav] flag is set by KeyboardModality only on
    Tab / arrow keys and cleared on mousedown/touchstart. */
-.menu-overlay-crimson a:focus-visible,
-.menu-overlay-crimson button:focus-visible {
+.menu-overlay-terracotta a:focus-visible,
+.menu-overlay-terracotta button:focus-visible {
   outline: none;
 }
-body[data-keyboard-nav] .menu-overlay-crimson a:focus-visible,
-body[data-keyboard-nav] .menu-overlay-crimson button:focus-visible {
-  outline: 2px solid #FFFFFF;
+body[data-keyboard-nav] .menu-overlay-terracotta a:focus-visible,
+body[data-keyboard-nav] .menu-overlay-terracotta button:focus-visible {
+  outline: 2px solid var(--color-inverse);
   outline-offset: 2px;
 }
 
@@ -204,14 +374,14 @@ body[data-keyboard-nav] .skip-link:focus {
   width: auto;
   height: auto;
   padding: 12px 18px;
-  background: var(--color-brand);
-  color: #FFFFFF;
+  background: var(--color-terracotta);
+  color: var(--color-inverse);
   font-family: var(--font-dm-sans), sans-serif;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.04em;
   text-decoration: none;
-  outline: 2px solid #FFFFFF;
+  outline: 2px solid var(--color-inverse);
   outline-offset: 2px;
 }
 
@@ -220,24 +390,13 @@ button {
 }
 
 /* ── Site logo hover ──────────────────────────────────────────────
-   Same calm energy as the buttons: the whole logo lifts 2px on hover,
-   "Alfonso" flips to the brand color so the wordmark reads crimson,
-   and the mark dips its opacity a touch. No rotation, no scale. */
-.site-logo {
-  cursor: pointer;
-  transition: transform 0.25s ease;
-}
-.site-logo:hover                 { transform: translateY(-2px); }
-.site-logo-mark                  { display: inline-flex; transition: opacity 0.25s ease; }
-.site-logo:hover .site-logo-mark { opacity: 0.78; }
-.site-logo-first                 { transition: color 0.25s ease; }
-.site-logo:hover .site-logo-first { color: var(--color-brand); }
-@media (prefers-reduced-motion: reduce) {
-  .site-logo,
-  .site-logo-mark,
-  .site-logo-first              { transition: none !important; }
-  .site-logo:hover              { transform: none !important; }
-}
+   Hover: whole wordmark flips to Terracotta uniformly. No lift, no
+   opacity dim on the mark, no per-span split. Matches the link-hover
+   pattern (color change is the affordance). */
+.site-logo                       { cursor: pointer; }
+.site-logo-mark                  { display: inline-flex; }
+.site-logo .nav-wordmark         { transition: color 0.2s ease; }
+.site-logo:hover .nav-wordmark   { color: var(--color-terracotta) !important; }
 
 /* ── Scroll reveal & hero reveal: respect reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
@@ -408,12 +567,12 @@ button {
     cursor: pointer;
     list-style: none;
     padding: 14px 20px;
-    background: #FFFFFF;
-    border: 1px solid #A99B8A;
+    background: var(--color-paper);
+    border: 1px solid var(--color-neutral-400);
     font-family: var(--font-dm-sans), -apple-system, sans-serif;
     font-size: 13px;
-    font-weight: 600;
-    color: #252B28;
+    font-weight: 500;
+    color: var(--color-text);
     text-align: center;
     letter-spacing: 0.02em;
   }
@@ -467,8 +626,8 @@ button {
 }
 
 /* ── Case study nav ── */
-.cs-back-link       { color: #5A5752; transition: color 0.2s; }
-.cs-back-link:hover { color: #252B28; }
+.cs-back-link       { color: var(--color-neutral-600); transition: color 0.2s; }
+.cs-back-link:hover { color: var(--color-text); }
 
 /* ── Case study — Wayfarer §03 table + Callout sidebar ──
    When a Callout sits in the right column of the cs-nb-grid layout,
@@ -483,7 +642,7 @@ button {
 .cs-thumb { transition: transform 0.25s ease, opacity 0.2s ease; }
 .cs-thumb > p   { transition: color 0.2s ease; }
 .cs-thumb:hover { transform: translateY(-2px); }
-.cs-thumb:hover > p   { color: #F5F3EF !important; }
+.cs-thumb:hover > p   { color: var(--color-inverse) !important; }
 
 /* ── MSR Slide viewer ──────────────────────────────────────────────────────
    The MSR case study slides use three font classes (font-display,
@@ -514,4 +673,3 @@ button {
 .wayfarer-slide .font-body {
   font-family: var(--font-inter), "Inter", system-ui, sans-serif !important;
 }
-

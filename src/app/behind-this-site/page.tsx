@@ -17,32 +17,31 @@ export const metadata: Metadata = {
   },
 };
 
-/* Page runs on Navy #0F283D ground with Cream text (Alfonso
-   2026-07-03 values-palette pivot). Same treatment as About and
-   Process. */
+/* Page runs on Warm White paper ground with ink text. Matches
+   /about and /process treatment. */
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(24px, 3vw, 36px)",
-  fontWeight:    600,
-  color:         "var(--color-cream)",
-  margin:        "0 0 28px",
-  letterSpacing: "-0.02em",
-  lineHeight:    1.2,
+  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontWeight:    500,
+  color:         "var(--color-text)",
+  margin:        "0 0 24px",
+  letterSpacing: "-0.01em",
+  lineHeight:    1.15,
 };
 
 const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
   fontSize:   "17px",
   lineHeight: 1.75,
-  color:      "var(--color-cream-72)",
+  color:      "var(--color-text-muted)",
   margin:     "0 0 20px",
   maxWidth:   "680px",
 };
 
 const sectionWrapper = (): React.CSSProperties => ({
-  padding:    "96px clamp(32px, 6vw, 80px)",
-  background: "var(--color-ground-navy)",
+  padding:    "48px clamp(32px, 6vw, 80px)",
+  background: "var(--color-paper)",
 });
 
 const innerWrapper: React.CSSProperties = {
@@ -53,17 +52,17 @@ const innerWrapper: React.CSSProperties = {
 
 const stackRow: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "14px",
+  fontSize: "15px",
   lineHeight:    1.7,
-  color:         "var(--color-cream-72)",
+  color:         "var(--color-text-muted)",
   margin:        "0 0 8px",
   paddingLeft:   "18px",
   position:      "relative",
 };
 
 const stackLabel: React.CSSProperties = {
-  fontWeight:    600,
-  color:         "var(--color-cream)",
+  fontWeight: 500,
+  color:         "var(--color-text)",
   letterSpacing: "0.01em",
 };
 
@@ -72,12 +71,12 @@ const tokenChip: React.CSSProperties = {
   alignItems:    "center",
   gap:           "8px",
   padding:       "6px 12px",
-  border:        "1px solid var(--color-cream-48)",
-  borderRadius:  4,
+  border:        "1px solid var(--color-neutral-400)",
+  borderRadius: 0,
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize:      "12px",
   fontWeight:    500,
-  color:         "var(--color-cream)",
+  color:         "var(--color-text)",
   letterSpacing: "0.02em",
 };
 
@@ -85,36 +84,25 @@ const swatch: React.CSSProperties = {
   display:      "inline-block",
   width:        "12px",
   height:       "12px",
-  borderRadius: 3,
-  border:       "1px solid rgba(244, 239, 232, 0.20)",
+  borderRadius: 0,
+  border:       "1px solid var(--color-neutral-400)",
 };
 
 /* One step in the decision chronology. Numbered label + editorial
    caption above; Figma-exported artifact below. The caption sits
    ABOVE the image so the reader knows what they're about to see
    before they see it — reads as an editorial decision log. */
-function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
-  eyebrow: string; heading: string; caption?: string; src: string; width: number; height: number;
+function ArtifactStep({ heading, caption, src, width, height }: {
+  heading: string; caption?: string; src: string; width: number; height: number;
 }) {
   return (
     <figure className="bts-artifact" style={{ margin: 0 }}>
       <div style={{ marginBottom: "clamp(20px, 3vw, 28px)", maxWidth: "780px" }}>
-        <p style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
-          fontWeight:    700,
-          letterSpacing: "0.22em",
-          textTransform: "uppercase",
-          color:         "var(--color-brand)",
-          margin:        "0 0 14px",
-        }}>
-          {eyebrow}
-        </p>
         <h3 style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "clamp(28px, 3.6vw, 44px)",
-          fontWeight:    600,
-          color:         "var(--color-cream)",
+          fontWeight: 500,
+          color:         "var(--color-text)",
           margin:        "0 0 16px",
           letterSpacing: "-0.02em",
           lineHeight:    1.15,
@@ -126,7 +114,7 @@ function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize:   "15px",
             lineHeight: 1.65,
-            color:      "var(--color-cream-72)",
+            color:      "var(--color-text-muted)",
             margin:     0,
           }}>
             {caption}
@@ -144,7 +132,7 @@ function ArtifactStep({ eyebrow, heading, caption, src, width, height }: {
           width:   "100%",
           height:  "auto",
           display: "block",
-          border:  "1px solid var(--color-cream-48)",
+          border:  "1px solid var(--color-neutral-400)",
         }}
       />
     </figure>
@@ -179,7 +167,7 @@ const stackLayers: StackLayer[] = [
   {
     n:     "02",
     label: "Hosting",
-    body:  <><code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>main</code> ships to barreiro.com. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>staging</code> ships to staging.barreiro.com. Vercel + GitHub auto-deploy.</>,
+    body:  <><code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>main</code> ships to barreiro.com. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>staging</code> ships to staging.barreiro.com. Vercel + GitHub auto-deploy.</>,
     icon:  (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 4L21 20H3L12 4Z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -204,7 +192,7 @@ const stackLayers: StackLayer[] = [
     body:  "DM Sans for the interface. Lora for editorial pull quotes. Barlow Condensed for section §-headings on case studies.",
     icon:  (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <text x="4" y="18" fontFamily="var(--font-dm-sans), sans-serif" fontSize="17" fontWeight="700" fill="currentColor">Aa</text>
+        <text x="4" y="18" fontFamily="var(--font-dm-sans), sans-serif" fontSize="17" fontWeight="500" fill="currentColor">Aa</text>
       </svg>
     ),
   },
@@ -261,10 +249,9 @@ function StackVisual() {
         .bts-stack-tile {
           position: relative;
           padding: clamp(20px, 2.6vw, 32px) clamp(20px, 2.6vw, 28px) clamp(22px, 2.6vw, 28px) clamp(28px, 3.2vw, 40px);
-          background: rgba(244, 239, 232, 0.04);
-          border: 1px solid rgba(244, 239, 232, 0.12);
-          border-left: 3px solid var(--color-brand);
-          border-radius: 4px;
+          background: var(--color-neutral-100);
+          border: 1px solid var(--color-neutral-300);
+          border-radius: 0;
           display: grid;
           grid-template-columns: 1fr auto;
           grid-template-rows: auto auto auto;
@@ -276,10 +263,10 @@ function StackVisual() {
           grid-column: 1;
           grid-row: 1;
           font-family: var(--font-dm-sans), sans-serif;
-          font-size: 11px;
-          font-weight: 700;
+          font-size: 12px;
+          font-weight: 500;
           letter-spacing: 0.22em;
-          text-transform: uppercase;
+          text-transform: none;
           color: var(--color-brand);
           font-variant-numeric: tabular-nums;
           line-height: 1;
@@ -289,7 +276,7 @@ function StackVisual() {
           grid-row: 1 / span 2;
           width: clamp(28px, 3vw, 36px);
           height: clamp(28px, 3vw, 36px);
-          color: var(--color-cream);
+          color: var(--color-text);
           opacity: 0.85;
           justify-self: end;
         }
@@ -299,19 +286,19 @@ function StackVisual() {
           grid-row: 2;
           font-family: var(--font-dm-sans), sans-serif;
           font-size: clamp(20px, 2vw, 24px);
-          font-weight: 600;
+          font-weight: 500;
           letter-spacing: -0.015em;
           line-height: 1.15;
-          color: var(--color-cream);
+          color: var(--color-text);
           margin: 0;
         }
         .bts-stack-body {
           grid-column: 1 / -1;
           grid-row: 3;
           font-family: var(--font-dm-sans), sans-serif;
-          font-size: 14px;
+          font-size: 15px;
           line-height: 1.6;
-          color: var(--color-cream-72);
+          color: var(--color-text-muted);
           margin: 4px 0 0;
         }
         /* Layer 07 (Analytics) reads as the punchline — span both
@@ -332,37 +319,22 @@ export default function BehindThisSitePage() {
   return (
     <>
       <Nav />
-      <main id="main-content" style={{ background: "var(--color-ground-navy)" }}>
+      <main id="main-content" style={{ background: "var(--color-paper)" }}>
 
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <section aria-label="Behind this site introduction" style={{
-          padding:    "clamp(112px, 14vw, 168px) clamp(32px, 6vw, 80px) clamp(64px, 8vw, 96px)",
-          background: "var(--color-ground-navy)",
+          padding:    "96px clamp(32px, 6vw, 80px) 64px",
+          background: "var(--color-paper)",
         }}>
           <div style={innerWrapper}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-              <span style={{ display: "inline-block", width: "24px", height: "1px", background: "var(--color-brand)" }} />
-              <p style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "11px",
-                fontWeight:    600,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         "var(--color-brand)",
-                margin:        0,
-              }}>
-                Behind this site
-              </p>
-            </div>
-
             <h1 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(36px, 5vw, 64px)",
+              fontSize:      "clamp(40px, 4.8vw, 60px)",
               fontWeight:    500,
-              color:         "var(--color-cream)",
-              margin:        "0 0 28px",
-              letterSpacing: "-0.03em",
-              lineHeight:    1.05,
+              color:         "var(--color-text)",
+              margin:        "0 0 24px",
+              letterSpacing: "-0.02em",
+              lineHeight:    1.1,
               maxWidth:      "820px",
             }}>
               How this site is built.
@@ -386,32 +358,18 @@ export default function BehindThisSitePage() {
              Applications. Rendered in code (LogoMark component) so every
              glyph stays vector-crisp. */}
         <section aria-label="The mark and how it works" style={{
-          padding:    "clamp(96px, 12vw, 152px) clamp(32px, 6vw, 80px)",
-          background: "var(--color-ground-navy)",
+          padding:    "48px clamp(32px, 6vw, 80px)",
+          background: "var(--color-paper)",
         }}>
           <div style={innerWrapper}>
-
-            {/* ── Section eyebrow ── */}
-            <p style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "11px",
-              fontWeight:    700,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color:         "var(--color-brand)",
-              margin:        "0 0 20px",
-            }}>
-              Foundation artifact &nbsp;·&nbsp; Brand
-            </p>
-
             <h2 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(36px, 5.4vw, 60px)",
-              fontWeight:    600,
-              color:         "var(--color-cream)",
+              fontSize:      "clamp(28px, 3.5vw, 40px)",
+              fontWeight:    500,
+              color:         "var(--color-text)",
               margin:        "0 0 24px",
-              letterSpacing: "-0.025em",
-              lineHeight:    1.08,
+              letterSpacing: "-0.01em",
+              lineHeight:    1.15,
               maxWidth:      "820px",
             }}>
               An infinity-A into B monogram, Alfonso Barreiro, and alpha beta design.
@@ -432,7 +390,6 @@ export default function BehindThisSitePage() {
             <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px, 7vw, 96px)" }}>
 
               <ArtifactStep
-                eyebrow="01 · The mark"
                 heading="Infinity, an A, and a closed system in one glyph."
                 src="/images/behind-this-site/mark-hero.png"
                 width={1536}
@@ -440,7 +397,6 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                eyebrow="02 · Color exploration"
                 heading="Where the brand went warm."
                 caption="Cognac, Burnt Sienna, and other warm-editorial candidates the mark tried on before Crimson locked. The register was always warm; the specific hue took iterations."
                 src="/images/behind-this-site/color-exploration.png"
@@ -449,7 +405,6 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                eyebrow="03 · Typography"
                 heading="How Alfonso Barreiro reads."
                 caption="Three type pairings tested against the wordmark: DM Serif Display + DM Sans, Fraunces + DM Sans, Newsreader + Inter. The specimen block underneath shows editorial + running text together — the two registers the site needs to hold."
                 src="/images/behind-this-site/typography-exploration.png"
@@ -458,7 +413,6 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                eyebrow="04 · Token systems"
                 heading="Tokens graded against real UI, not swatches."
                 caption="Surface / Brand / Accent / Ink token quartets across the shortlist. Each row also carries a live preview so the tokens are graded against real UI, not swatches in isolation."
                 src="/images/behind-this-site/brand-systems.png"
@@ -467,7 +421,6 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                eyebrow="05 · The runner-up"
                 heading="The Aubergine detour."
                 caption="Applied to a full homepage before the direction pivoted. The runner-up that got the shipping palette its confidence: I ruled Aubergine out only after seeing it at production scale."
                 src="/images/behind-this-site/aubergine-locked-v2.png"
@@ -476,7 +429,6 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                eyebrow="06 · The direction that shipped"
                 heading="Homepage C · Light with Conviction."
                 caption="The wireframe of the site you're reading right now, locked 2026-06-16. Terracotta on Navy. Deep Teal as the second voice. Same DM Sans running text as the Aubergine detour above."
                 src="/images/behind-this-site/homepage-c-shipped-v3.png"
@@ -502,25 +454,6 @@ export default function BehindThisSitePage() {
               }
             }
 
-            /* Scroll-reveal on each of the six artifact figures. Uses
-               animation-timeline: view() so the whole thing is a single
-               CSS rule that costs no JavaScript — the artifact glides
-               from below and fades in as it enters the viewport, then
-               settles. Graceful degradation: browsers without support
-               ignore the timeline and just render at final state. */
-            @supports (animation-timeline: view()) {
-              @media (prefers-reduced-motion: no-preference) {
-                .bts-artifact {
-                  animation: bts-artifact-in linear both;
-                  animation-timeline: view();
-                  animation-range: entry 0% cover 22%;
-                }
-                @keyframes bts-artifact-in {
-                  from { opacity: 0; transform: translateY(28px); }
-                  to   { opacity: 1; transform: translateY(0);    }
-                }
-              }
-            }
           `}</style>
         </section>
 
@@ -540,10 +473,10 @@ export default function BehindThisSitePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color:           "var(--color-cream)",
+                  color:           "var(--color-text)",
                   textDecoration:  "none",
                   fontWeight:      500,
-                  borderBottom:    "1px solid var(--color-cream-48)",
+                  borderBottom:    "1px solid var(--color-neutral-400)",
                 }}
               >
                 Alpha Beta Design
@@ -551,7 +484,7 @@ export default function BehindThisSitePage() {
               , a portable design system I maintain for client work. Same tokens, same components, same layout scaffolding that powers Men&apos;s Sole Revival and Wayfarer. The brand swap between projects is a variable change, not a rebuild.
             </p>
             <p style={body}>
-              Roles instead of literal names. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--color-brand</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--crimson</code>. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--color-accent</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "rgba(244, 239, 232, 0.10)", padding: "1px 6px", color: "var(--color-cream)" }}>--deep-teal</code>. Each project points those variables at its own hexes and the system does the rest.
+              Roles instead of literal names. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--color-brand</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--crimson</code>. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--color-accent</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--deep-teal</code>. Each project points those variables at its own hexes and the system does the rest.
             </p>
 
             <div style={{ marginTop: "32px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
@@ -564,12 +497,12 @@ export default function BehindThisSitePage() {
                 --color-accent · #0F3D3E
               </span>
               <span style={tokenChip}>
-                <span style={{ ...swatch, background: "#FCFAF9" }} aria-hidden="true" />
-                --color-paper · #FCFAF9
+                <span style={{ ...swatch, background: "#FAFAF9" }} aria-hidden="true" />
+                --color-paper · #FAFAF9
               </span>
               <span style={tokenChip}>
-                <span style={{ ...swatch, background: "#1A1A1A" }} aria-hidden="true" />
-                --color-ink · #1A1A1A
+                <span style={{ ...swatch, background: "#0F283D" }} aria-hidden="true" />
+                --color-ink · #0F283D
               </span>
             </div>
           </div>
@@ -600,20 +533,18 @@ export default function BehindThisSitePage() {
               fontSize: "clamp(18px, 1.5vw, 20px)",
               maxWidth: "620px",
               margin:   0,
-              color:    "var(--color-cream)",
+              color:    "var(--color-text)",
             }}>
               Built solo. Every design decision, every commit, every line of copy signed by the same hand.
             </p>
             <p style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "12px",
-              fontWeight:    600,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color:         "#5A5752",
-              margin:        "24px 0 0",
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontSize:   "15px",
+              fontWeight: 400,
+              color:      "var(--color-neutral-600)",
+              margin:     "16px 0 0",
             }}>
-              Alfonso Barreiro · Portland, OR · 2026
+              Alfonso Barreiro, Portland, OR, 2026.
             </p>
           </div>
         </section>
