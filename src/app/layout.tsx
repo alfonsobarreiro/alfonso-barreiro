@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { DM_Serif_Display, DM_Sans, Barlow_Condensed, Lora, Space_Grotesk, Inter } from "next/font/google";
+import { DM_Sans, Barlow_Condensed, Lora, Space_Grotesk, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import BrandSwitch from "@/components/BrandSwitch";
 import KeyboardModality from "@/components/KeyboardModality";
@@ -13,21 +13,15 @@ const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-3ZBC8QJ3C3";
 
 // Pre-hydration brand setter: runs before first paint so ?brand=c / ?brand=e
-// apply without flashing the default aubergine palette. The BrandSwitch
-// component below handles client-side route changes.
-const BRAND_BOOT_SCRIPT = `(function(){try{var p=new URLSearchParams(window.location.search);var b=p.get("brand");if(b==="c"||b==="e"||b==="aubergine"){document.documentElement.setAttribute("data-brand",b);}}catch(e){}})();`;
-
-const dmSerifDisplay = DM_Serif_Display({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-dm-serif-display",
-  display: "swap",
-});
+// apply without flashing an unexpected palette. The BrandSwitch component
+// below handles client-side route changes. Aubergine branch removed
+// 2026-08-12: aubergine palette is retired per DS Foundations Color, so
+// the URL param path must not paint it.
+const BRAND_BOOT_SCRIPT = `(function(){try{var p=new URLSearchParams(window.location.search);var b=p.get("brand");if(b==="c"||b==="e"){document.documentElement.setAttribute("data-brand",b);}}catch(e){}})();`;
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500"],
   variable: "--font-dm-sans",
   display: "swap",
 });
@@ -52,7 +46,6 @@ const barlowCondensed = Barlow_Condensed({
 const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
   variable: "--font-lora",
   display: "swap",
   preload: false,
@@ -151,7 +144,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSerifDisplay.variable} ${dmSans.variable} ${barlowCondensed.variable} ${lora.variable} ${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${dmSans.variable} ${barlowCondensed.variable} ${lora.variable} ${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: BRAND_BOOT_SCRIPT }} />
       </head>

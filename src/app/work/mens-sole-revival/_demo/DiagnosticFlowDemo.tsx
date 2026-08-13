@@ -179,14 +179,14 @@ function RoutingPath({
         )}
 
         {/* Node numerals */}
-        <text x="60"  y="38.5" textAnchor="middle" fontSize="10" fontWeight="700" fill={stepDone(1) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">1</text>
-        <text x="200" y="38.5" textAnchor="middle" fontSize="10" fontWeight="700" fill={stepDone(2) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">2</text>
-        <text x="340" y="38.5" textAnchor="middle" fontSize="10" fontWeight="700" fill={stepDone(3) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">3</text>
+        <text x="60"  y="38.5" textAnchor="middle" fontSize="10" fontWeight="500" fill={stepDone(1) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">1</text>
+        <text x="200" y="38.5" textAnchor="middle" fontSize="10" fontWeight="500" fill={stepDone(2) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">2</text>
+        <text x="340" y="38.5" textAnchor="middle" fontSize="10" fontWeight="500" fill={stepDone(3) ? "#FFFFFF" : muted} fontFamily="var(--font-dm-sans), sans-serif">3</text>
 
         {/* Labels below the nodes */}
-        <text x="60"  y="66" textAnchor="middle" fontSize="10" letterSpacing="1.4" fill={active(1) ? ink : muted} fontWeight={active(1) ? 700 : 600} fontFamily="var(--font-dm-sans), sans-serif">SELECT</text>
-        <text x="200" y="66" textAnchor="middle" fontSize="10" letterSpacing="1.4" fill={active(2) ? ink : muted} fontWeight={active(2) ? 700 : 600} fontFamily="var(--font-dm-sans), sans-serif">ROUTE</text>
-        <text x="340" y="66" textAnchor="middle" fontSize="10" letterSpacing="1.4" fill={active(3) ? ink : muted} fontWeight={active(3) ? 700 : 600} fontFamily="var(--font-dm-sans), sans-serif">HAND OFF</text>
+        <text x="60"  y="66" textAnchor="middle" fontSize="10" letterSpacing="0" fill={active(1) ? ink : muted} fontWeight={active(1) ? 500 : 400} fontFamily="var(--font-dm-sans), sans-serif">Select</text>
+        <text x="200" y="66" textAnchor="middle" fontSize="10" letterSpacing="0" fill={active(2) ? ink : muted} fontWeight={active(2) ? 500 : 400} fontFamily="var(--font-dm-sans), sans-serif">Route</text>
+        <text x="340" y="66" textAnchor="middle" fontSize="10" letterSpacing="0" fill={active(3) ? ink : muted} fontWeight={active(3) ? 500 : 400} fontFamily="var(--font-dm-sans), sans-serif">Hand off</text>
       </svg>
     </div>
   );
@@ -309,11 +309,10 @@ export default function DiagnosticFlowDemo() {
           boxShadow:     `0 0 0 3px ${c.accent}22`,
         }} />
         <span style={{
-          fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
-          fontSize:      "11px",
-          fontWeight:    600,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
+          fontFamily:    "var(--font-dm-sans), sans-serif",
+          fontSize:      "12px",
+          fontWeight:    500,
+          letterSpacing: 0,
           color:         c.muted,
         }}>
           Live · Diagnostic routing
@@ -333,7 +332,7 @@ export default function DiagnosticFlowDemo() {
             style={{
               fontFamily:    font.sans,
               fontSize:      "16px",
-              fontWeight:    600,
+              fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 16px",
               letterSpacing: "-0.01em",
@@ -369,7 +368,7 @@ export default function DiagnosticFlowDemo() {
                     textAlign:     "left",
                     fontFamily:    font.sans,
                     fontSize:      "15px",
-                    fontWeight:    600,
+                    fontWeight: 500,
                     cursor:        "pointer",
                     minHeight:     "108px",
                     transition,
@@ -426,7 +425,7 @@ export default function DiagnosticFlowDemo() {
                         alignItems:    "center",
                         justifyContent:"center",
                         fontSize:      "12px",
-                        fontWeight:    700,
+                        fontWeight: 500,
                         lineHeight:    1,
                       }}
                     >
@@ -473,9 +472,9 @@ export default function DiagnosticFlowDemo() {
                 padding:       "14px 28px",
                 fontFamily:    font.sans,
                 fontSize:      "14px",
-                fontWeight:    600,
+                fontWeight: 500,
                 letterSpacing: "0.04em",
-                textTransform: "uppercase",
+                textTransform: "none",
                 cursor:        selected.size === 0 ? "not-allowed" : "pointer",
                 minHeight:     "44px",
                 transition,
@@ -495,7 +494,7 @@ export default function DiagnosticFlowDemo() {
             style={{
               fontFamily:    font.sans,
               fontSize:      "16px",
-              fontWeight:    600,
+              fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 6px",
               letterSpacing: "-0.01em",
@@ -535,9 +534,9 @@ export default function DiagnosticFlowDemo() {
                 <span style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
-                  fontWeight:    700,
+                  fontWeight: 500,
                   letterSpacing: "0.16em",
-                  textTransform: "uppercase",
+                  textTransform: "none",
                   color:         c.brand,
                   display:       "block",
                   marginBottom:  "10px",
@@ -547,7 +546,7 @@ export default function DiagnosticFlowDemo() {
                 <h4 style={{
                   fontFamily:    font.sans,
                   fontSize:      "16px",
-                  fontWeight:    600,
+                  fontWeight: 500,
                   color:         c.ink,
                   margin:        "0 0 8px",
                   letterSpacing: "-0.01em",
@@ -588,9 +587,9 @@ export default function DiagnosticFlowDemo() {
                 padding:       "12px 20px",
                 fontFamily:    font.sans,
                 fontSize:      "13px",
-                fontWeight:    600,
+                fontWeight: 500,
                 letterSpacing: "0.04em",
-                textTransform: "uppercase",
+                textTransform: "none",
                 cursor:        "pointer",
                 minHeight:     "44px",
                 transition,
@@ -609,9 +608,9 @@ export default function DiagnosticFlowDemo() {
                 padding:       "14px 28px",
                 fontFamily:    font.sans,
                 fontSize:      "14px",
-                fontWeight:    600,
+                fontWeight: 500,
                 letterSpacing: "0.04em",
-                textTransform: "uppercase",
+                textTransform: "none",
                 cursor:        "pointer",
                 minHeight:     "44px",
                 transition,
@@ -631,7 +630,7 @@ export default function DiagnosticFlowDemo() {
             style={{
               fontFamily:    font.sans,
               fontSize:      "16px",
-              fontWeight:    600,
+              fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 6px",
               letterSpacing: "-0.01em",
@@ -673,9 +672,9 @@ export default function DiagnosticFlowDemo() {
                 padding:        "14px 28px",
                 fontFamily:     font.sans,
                 fontSize:       "14px",
-                fontWeight:     600,
+                fontWeight: 500,
                 letterSpacing:  "0.04em",
-                textTransform:  "uppercase",
+                textTransform: "none",
                 textDecoration: "none",
                 cursor:         "pointer",
                 minHeight:      "44px",
@@ -697,9 +696,9 @@ export default function DiagnosticFlowDemo() {
                 padding:       "12px 20px",
                 fontFamily:    font.sans,
                 fontSize:      "13px",
-                fontWeight:    600,
+                fontWeight: 500,
                 letterSpacing: "0.04em",
-                textTransform: "uppercase",
+                textTransform: "none",
                 cursor:        "pointer",
                 minHeight:     "44px",
                 transition,

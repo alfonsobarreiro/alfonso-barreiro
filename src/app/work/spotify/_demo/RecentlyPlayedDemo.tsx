@@ -418,7 +418,7 @@ export default function RecentlyPlayedDemo() {
                 }}>
                   <span style={{
                     fontSize:       "14px",
-                    fontWeight:     600,
+                    fontWeight: 500,
                     color:          "#FFFFFF",
                     letterSpacing:  "-0.005em",
                     overflow:       "hidden",
@@ -469,9 +469,9 @@ export default function RecentlyPlayedDemo() {
         fontFamily: "var(--font-dm-sans), sans-serif",
         fontSize:   "12px",
         letterSpacing: "0.16em",
-        textTransform: "uppercase",
+        textTransform: "none",
         color:      canAct ? SPOTIFY_GREEN : "rgba(255,255,255,0.55)",
-        fontWeight: 700,
+        fontWeight: 500,
       }}>
         {selectedId ? "Now pick an action" : "Choose an artist to pin or remove"}
       </p>
@@ -531,9 +531,9 @@ export default function RecentlyPlayedDemo() {
             minHeight:      "44px",
             fontFamily:     "var(--font-dm-sans), sans-serif",
             fontSize:       "11px",
-            fontWeight:     600,
+            fontWeight: 500,
             letterSpacing:  "0.12em",
-            textTransform:  "uppercase",
+            textTransform: "none",
             cursor:         "pointer",
             transition:     "color 0.15s, border-color 0.15s",
           }}
@@ -601,9 +601,9 @@ export default function RecentlyPlayedDemo() {
                 color:          SPOTIFY_JET,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 fontSize:       "12px",
-                fontWeight:     700,
+                fontWeight: 500,
                 letterSpacing:  "0.12em",
-                textTransform:  "uppercase",
+                textTransform: "none",
                 cursor:         "pointer",
                 padding:        "8px 4px",
                 minHeight:      "44px",
@@ -690,9 +690,9 @@ function ActionChip({
         color:          disabled ? "rgba(255,255,255,0.36)" : pressed ? SPOTIFY_GREEN : "#FFFFFF",
         fontFamily:     "var(--font-dm-sans), sans-serif",
         fontSize:       "12px",
-        fontWeight:     600,
+        fontWeight: 500,
         letterSpacing:  "0.12em",
-        textTransform:  "uppercase",
+        textTransform: "none",
         cursor:         disabled ? "not-allowed" : "pointer",
         transition:     "background 0.15s, border-color 0.15s, color 0.15s",
       }}
@@ -712,7 +712,7 @@ function ActionChip({
           marginLeft:     "6px",
           fontFamily:     "ui-monospace, SFMono-Regular, Menlo, monospace",
           fontSize:       "10px",
-          fontWeight:     700,
+          fontWeight: 500,
           padding:        "2px 6px",
           background:     "rgba(255,255,255,0.08)",
           color:          "rgba(255,255,255,0.65)",

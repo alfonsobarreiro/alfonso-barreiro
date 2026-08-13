@@ -49,89 +49,51 @@ export const metadata: Metadata = {
   },
 };
 
+/* Tokenized against the brand system. Spotify-specific green is a
+   non-text marker only (fails WCAG AA as text on white). All other
+   values resolve to brand tokens so the case study inherits any
+   token-layer change automatically. */
 const c = {
-  surface:  "#FFFFFF",
-  ink:      "#252B28",
-  ink2:     "#3D4440",
-  muted:    "#5A5752",                // deepened from #8A8680 for AA on body text
-  // Site chrome stays crimson elsewhere (nav, footer). Inside this
-  // case study, the brand-themed marker is Spotify green so every
-  // callout, eyebrow, and accent reads native to the subject.
-  // NOTE: c.brand (green) is for non-text decoration only — borders,
-  // dots, backgrounds. Text uses c.accent (Deep Teal, 11.95:1 on white)
-  // because #1ED760 on white is 1.92:1 and fails WCAG AA.
-  brand:    "#1ED760",                // Spotify green — non-text marker only
-  brandSite:"var(--color-brand)",     // site crimson — only used if explicitly needed
-  accent:   "var(--color-accent)",    // deep teal — primary text accent
-  accent2:  "var(--color-accent-hover)",
-  border:        "#DEDCD7",
-  borderStrong:  "#A8A6A0",
-  callout:       "#FAFAF9",
-  // Spotify-specific palette
-  green:    "#1ED760",                // marker only, never as text
-  greenDark:"#13A046",                // marker only, fails AA on white at body size
-  jet:      "#121212",
-  jetDeep:  "#000000",
-  ash:      "#1A1A1A",
+  surface:      "var(--color-paper)",
+  ink:          "var(--color-text)",
+  ink2:         "var(--color-neutral-700)",
+  muted:        "var(--color-neutral-600)",
+  brand:        "var(--color-brand-spotify-500)",
+  brandSite:    "var(--color-brand)",
+  accent:       "var(--color-accent)",
+  accent2:      "var(--color-accent-hover)",
+  border:       "var(--color-neutral-300)",
+  borderStrong: "var(--color-neutral-400)",
+  callout:      "var(--color-neutral-100)",
+  green:        "var(--color-brand-spotify-500)",
+  greenDark:    "var(--color-brand-spotify-500)",
+  jet:          "var(--color-device-chrome)",
+  jetDeep:      "var(--color-device-chrome)",
+  ash:          "var(--color-neutral-900)",
 };
 
 const font = {
   sans: "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
-const SECTION_X    = "clamp(24px, 6vw, 80px)";
-const CONTENT_MAX  = "1240px";
+const SECTION_X    = "clamp(32px, 6vw, 80px)";
+const CONTENT_MAX  = "var(--content-max)";
 const PROSE_MAX    = "680px";
 
 /* ---------- small atoms ---------- */
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-      <span style={{ display: "inline-block", width: "32px", height: "1px", background: c.accent }} />
-      <span style={{
-        fontFamily:    font.sans,
-        fontSize:      "11px",
-        fontWeight:    600,
-        letterSpacing: "0.16em",
-        textTransform: "uppercase",
-        color:         c.accent,
-      }}>{children}</span>
-    </div>
-  );
+/* Eyebrow retired 2026-08-12 — per SPD-restraint audit, all eyebrows
+   killed sitewide. Component stays as a null return so call sites don't
+   need to change; strip the calls in a later cleanup pass. */
+function Eyebrow({ children: _children }: { children: React.ReactNode }) {
+  return null;
 }
 
-/* Arc divider — marks the transition between major case-study acts
-   (Premise → Research → Decisions → Details). A subtle horizontal rule
-   with the arc name centered, so a reader scrolling top-to-bottom can
-   feel the four-act structure without re-reading every chapter pill. */
-function ArcDivider({ arc }: { arc: string }) {
-  return (
-    <div
-      role="separator"
-      aria-label={`${arc} arc begins`}
-      style={{
-        display:        "flex",
-        alignItems:     "center",
-        gap:            "20px",
-        maxWidth:       CONTENT_MAX,
-        margin:         "clamp(48px, 10vw, 120px) auto clamp(32px, 6vw, 80px)",
-        padding:        `0 ${SECTION_X}`,
-      }}
-    >
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-      <span style={{
-        fontFamily:     font.sans,
-        fontSize:       "11px",
-        fontWeight:     700,
-        letterSpacing:  "0.30em",
-        textTransform:  "uppercase",
-        color:          c.accent,
-        whiteSpace:     "nowrap",
-      }}>{arc}</span>
-      <span style={{ flex: 1, height: "1px", background: c.borderStrong }} />
-    </div>
-  );
+/* ArcDivider retired 2026-08-12 — decorative section rule flagged as
+   ornament chrome. Section headings + content flow carry the arc
+   transitions on their own. */
+function ArcDivider({ arc: _arc }: { arc: string }) {
+  return null;
 }
 
 /* CategoryPill removed. Each section already carries an Eyebrow +
@@ -144,7 +106,7 @@ function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
       fontFamily:    font.sans, fontSize: "11px", fontWeight: 500,
-      letterSpacing: "0.10em", textTransform: "uppercase",
+      letterSpacing: "0.10em", textTransform: "none",
       color: c.ink2, padding: "6px 14px",
       border: `1px solid ${c.borderStrong}`,
     }}>{children}</span>
@@ -158,39 +120,25 @@ function Tag({ children }: { children: React.ReactNode }) {
    reads as one thought, not two paragraphs. */
 function Callout({ decision, why, cost }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-    letterSpacing: "0.18em", textTransform: "uppercase",
-    color: c.accent, margin: "0 0 10px",
+    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    color: c.muted, margin: "0 0 8px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7, color: c.ink2, margin: 0,
+    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5, color: c.ink, margin: 0,
   };
   return (
     <aside className="sp2-callout" style={{
-      background: "#FFFFFF",
+      background: c.callout,
       border: `1px solid ${c.border}`,
-      padding: "32px 36px 32px 44px",
+      padding: "32px",
       maxWidth: "760px",
-      marginTop: "40px",
-      position: "relative",
+      marginTop: "32px",
     }}>
-      {/* Signature stack: subject brand (Spotify green) → Deep Teal → ink.
-          One visual element you can quote from a screenshot. */}
-      <span aria-hidden="true" style={{
-        position: "absolute", left: 0, top: 28, bottom: 28,
-        width: "5px",
-        display: "grid",
-        gridTemplateRows: "1fr 1fr 1fr",
-      }}>
-        <span style={{ background: c.brand }} />
-        <span style={{ background: c.accent }} />
-        <span style={{ background: c.ink }} />
-      </span>
       <p style={labelStyle}>Decision</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "clamp(22px, 2.2vw, 26px)",
-        fontWeight: 600, color: c.ink, margin: "0 0 28px",
-        letterSpacing: "-0.015em", lineHeight: 1.25,
+        fontFamily: font.sans, fontSize: "clamp(20px, 2.5vw, 28px)",
+        fontWeight: 500, color: c.ink, margin: "0 0 24px",
+        letterSpacing: "-0.01em", lineHeight: 1.15,
       }}>{decision}</p>
       <div className="sp2-callout-grid" style={{
         display: "grid",
@@ -219,8 +167,8 @@ function HeroImage({ src, alt, priority = false, w = 1920, h = 1080 }: {
           mat instead of floating against the page surface. Border dropped
           because the frame itself does the bounding work now. */}
       <div style={{
-        background: "#484848",
-        padding:    "clamp(20px, 3vw, 40px)",
+        background: "var(--color-neutral-800)",
+        padding:    "clamp(24px, 3vw, 32px)",
       }}>
         <Image
           src={src} alt={alt} width={w} height={h} priority={priority}
@@ -251,15 +199,10 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
           gap: "64px", alignItems: "start",
         }} className="sp2-row">
           <div>
-            <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.20em", color: c.accent,
-              display: "block", marginBottom: "12px",
-            }}>{number}</span>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(48px, 7vw, 84px)",
+              fontFamily: font.sans, fontSize: "clamp(40px, 4.8vw, 60px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.035em", lineHeight: 1.0,
+              letterSpacing: "-0.02em", lineHeight: 1.1,
             }}>{heading}.</h2>
           </div>
           <div>
@@ -277,17 +220,13 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
 
 function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div>
-      <p style={{
-        fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-        letterSpacing: "0.18em", textTransform: "uppercase",
-        color: c.accent, margin: "0 0 8px",
-      }}>{label}</p>
-      <p style={{
-        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.55,
-        color: c.ink, margin: 0,
-      }}>{value}</p>
-    </div>
+    <p style={{
+      fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+      color: c.ink, margin: 0,
+    }}>
+      <span style={{ color: c.muted }}>{label}: </span>
+      {value}
+    </p>
   );
 }
 
@@ -314,34 +253,23 @@ export default function SpotifyV2() {
       <main id="main-content" style={{ background: c.surface, paddingTop: "72px", overflowX: "clip" }}>
 
         {/* Title block */}
-        <header style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `clamp(56px, 12vw, 120px) ${SECTION_X} clamp(40px, 8vw, 80px)` }}>
-          <Eyebrow>Concept · Self-directed</Eyebrow>
-          <h1 style={{
-            fontFamily: font.sans, fontSize: "clamp(36px, 10vw, 96px)",
-            fontWeight: 500, color: c.ink, margin: "0 0 20px",
-            letterSpacing: "-0.035em", lineHeight: 1.0,
-          }}>
-            Pin. Remove. Pause.
-          </h1>
-          <p style={{
-            fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
-            lineHeight: 1.4, color: c.ink2, margin: "0 0 40px",
-            maxWidth: "780px", letterSpacing: "-0.01em",
-          }}>
-            Three reversible controls for Spotify&rsquo;s Recently Played shelf. Each one completes in one or two taps.
-          </p>
-          <div className="sp2-hero-tags" style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "40px" }}>
-            <Tag>Feature design</Tag>
-            <Tag>Interaction model</Tag>
-            <Tag>Constraint mapping</Tag>
-            <Tag>Reversible by default</Tag>
+        <header style={{ padding: `96px ${SECTION_X} 64px` }}>
+          <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+            <h1 style={{
+              fontFamily: font.sans, fontSize: "clamp(40px, 4.8vw, 60px)",
+              fontWeight: 500, color: c.ink, margin: "0 0 24px",
+              letterSpacing: "-0.02em", lineHeight: 1.1,
+            }}>
+              Pin. Remove. Pause.
+            </h1>
+            <p style={{
+              fontFamily: font.sans, fontSize: "17px",
+              lineHeight: 1.6, color: c.ink, margin: "0 0 32px",
+              maxWidth: "680px",
+            }}>
+              Three reversible controls for Spotify&rsquo;s Recently Played shelf. Each one completes in one or two taps. Self-directed concept — Recently Played is one of Spotify&rsquo;s highest-traffic surfaces and one of its least controllable. Three additive, reversible controls without rebuilding the shelf or breaking the recommendation engine.
+            </p>
           </div>
-          <p className="sp2-hero-caption" style={{
-            fontFamily: font.sans, fontSize: "13px", color: c.muted,
-            margin: 0, lineHeight: 1.6, maxWidth: "780px",
-          }}>
-            Self-directed concept. Recently Played is one of Spotify&rsquo;s highest-traffic surfaces and one of its least controllable. This case study designs three additive, reversible controls without rebuilding the shelf or breaking the recommendation engine.
-          </p>
         </header>
 
         {/* Sticky arc nav — same treatment as MSR + Wayfarer (Alfonso
@@ -357,7 +285,7 @@ export default function SpotifyV2() {
             alignSelf:    "stretch",
             flexShrink:   0,
             width:        "100%",
-            background:   "#FFFFFF",
+            background: "var(--color-paper)",
             borderTop:    `1px solid ${c.border}`,
             borderBottom: `1px solid ${c.border}`,
             margin:       "0 0 40px",
@@ -382,28 +310,23 @@ export default function SpotifyV2() {
                 <a
                   href={`#arc-${arc.key}`}
                   data-arc-anchor={arc.key}
-                  aria-label={`${String(i + 1).padStart(2, "0")} · ${arc.label}`}
+                  aria-label={arc.label}
                   suppressHydrationWarning
                   style={{
                     fontFamily:     font.sans,
-                    fontSize:       "13px",
-                    fontWeight:     700,
-                    letterSpacing:  "0.08em",
-                    textTransform:  "uppercase",
+                    fontSize:       "15px",
+                    fontWeight:     500,
+                    letterSpacing:  0,
                     color:          c.ink2,
                     textDecoration: "none",
                     display:        "flex",
                     alignItems:     "center",
                     justifyContent: "center",
-                    gap:            "6px",
                     padding:        "16px 8px",
                     transition:     "color 0.15s ease, background 0.15s ease",
                   }}
                 >
-                  <span style={{ opacity: 0.45, fontVariantNumeric: "tabular-nums" }} aria-hidden="true">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="sp2-arc-label" aria-hidden="true">{arc.label}</span>
+                  <span className="sp2-arc-label">{arc.label}</span>
                 </a>
               </li>
             ))}
@@ -417,7 +340,7 @@ export default function SpotifyV2() {
             color: var(--color-accent) !important;
             background: rgba(15,61,62,0.06) !important;
             box-shadow: inset 0 -4px 0 var(--color-accent) !important;
-            font-weight: 700 !important;
+            font-weight: 500 !important;
           }
           .sp2-arc-nav a[data-active] span:first-child {
             opacity: 1 !important;
@@ -448,7 +371,7 @@ export default function SpotifyV2() {
               color: var(--color-accent) !important;
               background: rgba(15,61,62,0.06) !important;
               box-shadow: inset 0 -4px 0 var(--color-accent) !important;
-              font-weight: 700 !important;
+              font-weight: 500 !important;
               border-bottom: none !important;
             }
             .sp2-arc-nav a[data-active] span:first-child {
@@ -477,7 +400,7 @@ export default function SpotifyV2() {
         `}</style>
 
         {/* ── PREMISE arc tint ─ cool gray, no warm-neutral defaults */}
-        <div id="arc-premise" style={{ background: "#EEF2F6", marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+        <div id="arc-premise" style={{ background: "var(--color-neutral-100)", marginTop: "24px", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* Action sheet hero — case study opener. One affordance image
             (long-press action sheet open over a track row) + the three
             controls + power-user framing. Replaces the previous dark
@@ -526,7 +449,7 @@ export default function SpotifyV2() {
         <ArcDivider arc="Research" />
 
         {/* ── RESEARCH arc tint ─ */}
-        <div id="arc-research" style={{ background: "#F1F4F8", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+        <div id="arc-research" style={{ background: "var(--color-neutral-100)", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
         {/* User voices — direct quotes from public sources.
             People are reaching for affordances that don't exist yet. */}
         <UserVoices />
@@ -547,24 +470,23 @@ export default function SpotifyV2() {
         <ArcDivider arc="Decisions" />
 
         {/* ── DECISIONS arc tint ─ cool lilac instead of warm cream */}
-        <div id="arc-decisions" style={{ background: "#EFEAF2", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
+        <div id="arc-decisions" style={{ background: "var(--color-neutral-100)", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)", scrollMarginTop: "140px" }}>
 
         {/* The cut decision — spine of the Decisions arc. Which control
             got prioritized and against what criterion. */}
         <section
           aria-label="What I cut, and why"
-          style={{ padding: `clamp(48px, 6vw, 80px) ${SECTION_X} clamp(24px, 4vw, 40px)` }}
+          style={{ padding: `48px ${SECTION_X}` }}
         >
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-            <Eyebrow>The cut decision</Eyebrow>
             <h2 style={{
               fontFamily:    font.sans,
-              fontSize:      "clamp(28px, 4vw, 48px)",
-              fontWeight:    600,
+              fontSize:      "clamp(28px, 3.5vw, 40px)",
+              fontWeight:    500,
               color:         c.ink,
-              margin:        "0 0 32px",
-              letterSpacing: "-0.025em",
-              lineHeight:    1.1,
+              margin:        "0 0 24px",
+              letterSpacing: "-0.01em",
+              lineHeight:    1.15,
               maxWidth:      "780px",
             }}>
               What I cut, and why.
@@ -592,7 +514,7 @@ export default function SpotifyV2() {
             <h2 style={{
               fontFamily:    font.sans,
               fontSize:      "clamp(28px, 4vw, 48px)",
-              fontWeight:    600,
+              fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 32px",
               letterSpacing: "-0.025em",
@@ -626,7 +548,7 @@ export default function SpotifyV2() {
         {/* ── DETAILS arc tint ─ cool slate-green.
             Closes after DecisionLogic so the interactive demo below
             reads as its own moment, not as a Pause-section footer. */}
-        <div id="arc-details" style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(40px, 6vw, 64px)", scrollMarginTop: "140px" }}>
+        <div id="arc-details" style={{ background: "var(--color-neutral-100)", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(40px, 6vw, 64px)", scrollMarginTop: "140px" }}>
         <DecisionLogic />
         </div>
 
@@ -664,23 +586,14 @@ export default function SpotifyV2() {
         >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
             <div style={{ maxWidth: "780px", marginBottom: "clamp(48px, 6vw, 72px)" }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    700,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color:         c.accent,
-                margin:        "0 0 20px",
-              }}>Interactive prototype &nbsp;·&nbsp; try the three controls</p>
               <h2 style={{
                 fontFamily:    font.sans,
-                fontSize:      "clamp(40px, 6vw, 72px)",
+                fontSize:      "clamp(40px, 4.8vw, 60px)",
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 20px",
-                letterSpacing: "-0.035em",
-                lineHeight:    1,
+                letterSpacing: "-0.02em",
+                lineHeight:    1.1,
               }}>
                 Read the spec. Then try it.
               </h2>
@@ -697,7 +610,7 @@ export default function SpotifyV2() {
                 fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
                 fontSize:      "12px",
                 letterSpacing: "0.02em",
-                color:         "#0F6E32",
+                color:         "var(--color-accent)",
                 background:    "rgba(30,215,96,0.10)",
                 border:        `1px solid rgba(30,215,96,0.55)`,
                 padding:       "10px 14px",
@@ -730,9 +643,9 @@ export default function SpotifyV2() {
               <span style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
-                fontWeight:    700,
+                fontWeight: 500,
                 letterSpacing: "0.20em",
-                textTransform: "uppercase",
+                textTransform: "none",
                 color:         c.muted,
                 marginRight:   "8px",
               }}>Keyboard</span>
@@ -758,10 +671,10 @@ export default function SpotifyV2() {
                   <kbd style={{
                     fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
                     fontSize:      "11px",
-                    fontWeight:    700,
+                    fontWeight: 500,
                     padding:       "3px 8px",
                     background:    "rgba(30,215,96,0.12)",
-                    color:         "#0F6E32",
+                    color:         "var(--color-accent)",
                     border:        "1px solid rgba(30,215,96,0.4)",
                   }}>{k.key}</kbd>
                   {k.label}
@@ -778,7 +691,7 @@ export default function SpotifyV2() {
 
         {/* ── DETAILS arc tint resumes for §02 The bet and everything
             below (Shipped, Parity, meta). */}
-        <div style={{ background: "#E8EEEC", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div style={{ background: "var(--color-neutral-100)", paddingTop: "clamp(40px, 8vw, 80px)", paddingBottom: "clamp(24px, 4vw, 40px)" }}>
 
         {/* §02 The Bet — image dropped (figma-slide-reversible-set.png was a
             text slide: title + 3 icons + 3 bullets, all already said by the
@@ -811,7 +724,7 @@ export default function SpotifyV2() {
             <Eyebrow>Desktop parity</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: "0 0 24px",
+              fontWeight: 500, color: c.ink, margin: "0 0 24px",
               letterSpacing: "-0.025em", lineHeight: 1.05, maxWidth: "780px",
             }}>
               Same logic, native shell.
@@ -886,13 +799,13 @@ export default function SpotifyV2() {
                         height:        "28px",
                         borderRadius:  "50%",
                         background:    c.accent,
-                        color:         "#FFFFFF",
+                        color: "var(--color-inverse)",
                         display:       "inline-flex",
                         alignItems:    "center",
                         justifyContent:"center",
                         fontFamily:    font.sans,
                         fontSize:      "11px",
-                        fontWeight:    700,
+                        fontWeight: 500,
                         letterSpacing: "0.02em",
                         border:        "2px solid #FFFFFF",
                         boxShadow:     "0 2px 6px rgba(0,0,0,0.35)",
@@ -934,15 +847,15 @@ export default function SpotifyV2() {
                       height:        "24px",
                       borderRadius:  "50%",
                       background:    c.accent,
-                      color:         "#FFFFFF",
+                      color: "var(--color-inverse)",
                       fontSize:      "10px",
-                      fontWeight:    700,
+                      fontWeight: 500,
                       flexShrink:    0,
                       marginTop:     "1px",
                       fontVariantNumeric: "tabular-nums",
                     }}>{a.n}</span>
                     <span>
-                      <strong style={{ fontWeight: 700, letterSpacing: "-0.005em" }}>{a.label}</strong>
+                      <strong style={{ fontWeight: 500, letterSpacing: "-0.005em" }}>{a.label}</strong>
                       <br />
                       <span style={{ fontSize: "12px", color: c.muted, letterSpacing: "0.01em" }}>{a.sub}</span>
                     </span>
@@ -951,8 +864,8 @@ export default function SpotifyV2() {
               </ol>
 
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-                letterSpacing: "0.12em", textTransform: "uppercase",
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                letterSpacing: "0.12em", textTransform: "none",
                 color: c.muted, margin: "clamp(20px, 2.5vw, 32px) 0 0",
               }}>
                 Desktop right-click menu &middot; same actions, native pattern
@@ -973,7 +886,7 @@ export default function SpotifyV2() {
             <h2 style={{
               fontFamily:    font.sans,
               fontSize:      "clamp(28px, 4vw, 48px)",
-              fontWeight:    600,
+              fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 32px",
               letterSpacing: "-0.025em",
@@ -1016,8 +929,8 @@ export default function SpotifyV2() {
               ].map((m) => (
                 <div key={m.label}>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "9px", fontWeight: 700,
-                    letterSpacing: "0.20em", textTransform: "uppercase",
+                    fontFamily: font.sans, fontSize: "9px", fontWeight: 500,
+                    letterSpacing: "0.20em", textTransform: "none",
                     color: c.muted, margin: "0 0 4px",
                   }}>{m.label}</p>
                   <p style={{
@@ -1028,17 +941,10 @@ export default function SpotifyV2() {
               ))}
             </div>
 
-            <p style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.22em", textTransform: "uppercase",
-              color: c.muted, margin: "0 0 20px",
-            }}>
-              Design log &nbsp;·&nbsp; the receipts
-            </p>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(28px, 3.6vw, 44px)",
+              fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
               fontWeight: 500, color: c.ink, margin: "0 0 48px",
-              letterSpacing: "-0.02em", lineHeight: 1.15, maxWidth: "24ch",
+              letterSpacing: "-0.01em", lineHeight: 1.15, maxWidth: "24ch",
             }}>
               What actually happened, in order.
             </h2>
@@ -1064,11 +970,11 @@ export default function SpotifyV2() {
                   <span style={{
                     fontFamily:         "ui-monospace, SFMono-Regular, Menlo, monospace",
                     fontSize:           "12px",
-                    fontWeight:         600,
+                    fontWeight: 500,
                     letterSpacing:      "0.02em",
                     color:              c.accent,
                     fontVariantNumeric: "tabular-nums",
-                    textTransform:      "uppercase",
+                    textTransform: "none",
                   }}>{r.date}</span>
                   <p style={{
                     fontFamily: font.sans, fontSize: "clamp(15px, 1.6vw, 17px)",
@@ -1078,14 +984,6 @@ export default function SpotifyV2() {
               ))}
             </ol>
 
-            <p style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.22em", textTransform: "uppercase",
-              color: c.brand, margin: "clamp(48px, 6vw, 80px) 0 0",
-              textAlign: "right",
-            }}>
-              Signed &nbsp;·&nbsp; Alfonso Barreiro
-            </p>
           </div>
         </section>
         </div>
@@ -1312,8 +1210,8 @@ export default function SpotifyV2() {
             align-items: center !important;
             gap: 6px !important;
             font-family: var(--font-dm-sans), system-ui, sans-serif;
-            font-size: 11px !important; font-weight: 700 !important;
-            letter-spacing: 0.14em !important; text-transform: uppercase !important;
+            font-size: 11px !important; font-weight: 500 !important;
+            letter-spacing: 0.14em !important; text-transform: none !important;
             color: var(--color-accent) !important;
             background: rgba(15, 61, 62, 0.06) !important;
             padding: 6px 10px !important;
@@ -1474,12 +1372,12 @@ function ResearchStrip() {
             />
             <div>
               <p style={{
-                fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+                fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
                 letterSpacing: "0.20em", color: p.type === "Negative" ? c.muted : c.accent,
-                textTransform: "uppercase", margin: "0 0 4px",
+                textTransform: "none", margin: "0 0 4px",
               }}>{p.type} persona</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "16px", fontWeight: 600,
+                fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
                 color: c.ink, margin: "0 0 8px", letterSpacing: "-0.01em",
               }}>{p.name}</p>
               <p style={{
@@ -1503,11 +1401,10 @@ function SketchesAndMidfi() {
           gap: "64px", alignItems: "start", marginBottom: "48px",
         }} className="sp2-row">
           <div>
-            <Eyebrow>Sketches &amp; mid-fi</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
+              fontWeight: 500, color: c.ink, margin: 0,
+              letterSpacing: "-0.01em", lineHeight: 1.15,
             }}>
               From paper to pixels.
             </h2></div>
@@ -1527,15 +1424,10 @@ function SketchesAndMidfi() {
             "Wireframes" frame (JrM6jElfVB1XXXVNWN980v · nodes 344:244,
             344:246, 344:248) on 2026-07-03. */}
         <div style={{ marginBottom: "48px" }}>
-          <p style={{
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-            letterSpacing: "0.20em", textTransform: "uppercase",
-            color: c.accent, margin: "0 0 12px",
-          }}>Sketches</p>
           <h3 style={{
-            fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 8px",
-            letterSpacing: "-0.02em", lineHeight: 1.2,
+            fontFamily: font.sans, fontSize: "20px",
+            fontWeight: 500, color: c.ink, margin: "0 0 8px",
+            letterSpacing: "-0.01em", lineHeight: 1.35,
           }}>
             Three directions on paper.
           </h3>
@@ -1582,18 +1474,13 @@ function SketchesAndMidfi() {
               },
             ].map(s => (
               <figure key={s.key} style={{ margin: 0 }}>
-                <p style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                  letterSpacing: "0.16em", textTransform: "uppercase",
-                  color: c.accent, margin: "0 0 12px",
-                }}>{s.key}</p>
                 <h4 style={{
-                  fontFamily: font.sans, fontSize: "clamp(18px, 1.6vw, 20px)",
-                  fontWeight: 600, color: c.ink, margin: "0 0 16px",
-                  letterSpacing: "-0.015em", lineHeight: 1.25,
+                  fontFamily: font.sans, fontSize: "20px",
+                  fontWeight: 500, color: c.ink, margin: "0 0 16px",
+                  letterSpacing: "-0.01em", lineHeight: 1.35,
                 }}>{s.title}</h4>
                 <div style={{
-                  background: "#FFFFFF", border: `1px solid ${c.border}`,
+                  background: "var(--color-paper)", border: `1px solid ${c.border}`,
                   padding: "16px", display: "flex",
                   justifyContent: "center", alignItems: "center",
                   marginBottom: "16px", aspectRatio: "1000 / 618",
@@ -1623,15 +1510,10 @@ function SketchesAndMidfi() {
             weight on the left; mobile sits to the right as the companion
             artifact. Same wireframes the annotated walkthrough below refers to. */}
         <div style={{ marginBottom: "48px" }}>
-          <p style={{
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-            letterSpacing: "0.20em", textTransform: "uppercase",
-            color: c.accent, margin: "0 0 12px",
-          }}>Mid-fi &middot; desktop + mobile</p>
           <h3 style={{
-            fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 12px",
-            letterSpacing: "-0.02em", lineHeight: 1.2,
+            fontFamily: font.sans, fontSize: "20px",
+            fontWeight: 500, color: c.ink, margin: "0 0 12px",
+            letterSpacing: "-0.01em", lineHeight: 1.35,
           }}>
             Two surfaces, before the annotation.
           </h3>
@@ -1666,8 +1548,8 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-                letterSpacing: "0.12em", textTransform: "uppercase",
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                letterSpacing: "0.12em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Desktop &middot; mid-fi</figcaption>
             </figure>
@@ -1688,8 +1570,8 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-                letterSpacing: "0.12em", textTransform: "uppercase",
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                letterSpacing: "0.12em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Mobile &middot; mid-fi</figcaption>
             </figure>
@@ -1817,7 +1699,7 @@ function DecisionLogic() {
             <Eyebrow>Three controls, decoded</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Pin. Remove. Pause.
@@ -1846,7 +1728,7 @@ function DecisionLogic() {
             position:   "sticky",
             top:        "72px",
             zIndex:     10,
-            background: "#FFFFFF",
+            background: "var(--color-paper)",
             borderTop:    `1px solid ${c.border}`,
             borderBottom: `1px solid ${c.border}`,
             margin:     "0 0 40px",
@@ -1867,9 +1749,9 @@ function DecisionLogic() {
                   style={{
                     fontFamily:     font.sans,
                     fontSize:       "13px",
-                    fontWeight:     700,
+                    fontWeight: 500,
                     letterSpacing:  "0.08em",
-                    textTransform:  "uppercase",
+                    textTransform: "none",
                     color:          c.ink2,
                     textDecoration: "none",
                     display:        "flex",
@@ -1910,19 +1792,10 @@ function DecisionLogic() {
             }}
           >
             <header style={{ marginBottom: "40px" }}>
-              <p style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-                letterSpacing: "0.20em", color: c.accent,
-                textTransform: "uppercase", margin: "0 0 14px",
-              }}>{f.key.toUpperCase()} &middot; {f.surface}</p>
-              {/* H3 caps at 44px so it stays one step below the parent
-                 H2 "Pin. Remove. Pause." (clamp 32-48px) at every
-                 viewport, not just mobile. Previous max 64px still
-                 dominated above 533px width. */}
               <h3 style={{
-                fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
-                fontWeight: 700, color: c.ink, margin: "0 0 16px",
-                letterSpacing: "-0.03em", lineHeight: 1.05,
+                fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
+                fontWeight: 500, color: c.ink, margin: "0 0 16px",
+                letterSpacing: "-0.01em", lineHeight: 1.15,
               }}>{f.title}.</h3>
               <p style={{
                 fontFamily: font.sans, fontSize: "clamp(18px, 2vw, 24px)",
@@ -1991,7 +1864,7 @@ function DecisionLogic() {
                     height:       "72.10%",
                     overflow:     "hidden",
                     borderRadius: "5.5%",
-                    background:   "#0F0F0F",
+                    background:   "var(--color-device-chrome)",
                     zIndex:       2,
                   }}>
                     {f.video ? (
@@ -2065,7 +1938,7 @@ function DecisionLogic() {
                       lineHeight: 1.55,
                     }}>
                       <span style={{
-                        fontWeight:    700,
+                        fontWeight: 500,
                         letterSpacing: "0.14em",
                         color:         c.accent,
                         flexShrink:    0,
@@ -2075,7 +1948,7 @@ function DecisionLogic() {
                         {String(idx + 1).padStart(2, "0")}
                       </span>
                       <span style={{ color: c.ink2, letterSpacing: "-0.005em" }}>
-                        <strong style={{ fontWeight: 700, color: c.ink }}>{frame.beat}</strong>{" "}{frame.body}
+                        <strong style={{ fontWeight: 500, color: c.ink }}>{frame.beat}</strong>{" "}{frame.body}
                       </span>
                     </li>
                   ))}
@@ -2090,7 +1963,7 @@ function DecisionLogic() {
                   lineHeight: 1.7, color: c.ink2,
                   margin: "0 0 22px", letterSpacing: "-0.003em",
                 }}>
-                  <strong style={{ color: c.ink, fontWeight: 700 }}>{d.lead}</strong>{" "}
+                  <strong style={{ color: c.ink, fontWeight: 500 }}>{d.lead}</strong>{" "}
                   {d.body}
                 </p>
               ))}
@@ -2276,7 +2149,7 @@ function DecisionLogic() {
           color: var(--color-accent) !important;
           background: rgba(15,61,62,0.06) !important;
           box-shadow: inset 0 -4px 0 var(--color-accent) !important;
-          font-weight: 700 !important;
+          font-weight: 500 !important;
         }
         .sp2-control-nav a[data-active] span:first-child {
           opacity: 1 !important;
@@ -2335,7 +2208,7 @@ function Prototypes() {
             <Eyebrow>Prototypes</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               The loops.
@@ -2351,7 +2224,7 @@ function Prototypes() {
         </div>
 
         <div className="sp2-loops-carousel" style={{
-          border: `1px solid ${c.border}`, background: "#FFFFFF",
+          border: `1px solid ${c.border}`, background: "var(--color-paper)",
         }}>
           {loops.map((l, i) => (
             <input key={l.key} type="radio" name="sp2-loops-tabs"
@@ -2375,7 +2248,7 @@ function Prototypes() {
                 {/* Numeral removed — Pin / Remove / Pause titles read on
                     their own and free up horizontal room on mobile. */}
                 <span style={{
-                  fontFamily: font.sans, fontSize: "16px", fontWeight: 600,
+                  fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
                   color: c.ink, letterSpacing: "-0.01em",
                 }}>{l.title}</span>
               </label>
@@ -2383,7 +2256,7 @@ function Prototypes() {
           </div>
 
           <div className="sp2-loops-panels" style={{
-            padding: "clamp(32px, 5vw, 56px)", background: "#FFFFFF",
+            padding: "clamp(32px, 5vw, 56px)", background: "var(--color-paper)",
           }}>
             {loops.map((l, i) => (
               <div key={l.key} className="sp2-loops-panel" data-panel={i + 1}>
@@ -2443,7 +2316,7 @@ function Prototypes() {
                           alignItems: "center", justifyContent: "center",
                           background: "rgba(0,0,0,0.65)",
                           border: "1px solid rgba(255,255,255,0.95)",
-                          color: "#FFFFFF",
+                          color: "var(--color-inverse)",
                           cursor: "pointer",
                           padding: 0,
                           /* Square (4px) instead of pill (999px) so the
@@ -2470,13 +2343,13 @@ function Prototypes() {
                   {/* Body copy on the right */}
                   <div>
                     <p style={{
-                      fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                      fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
                       letterSpacing: "0.20em", color: c.accent,
-                      textTransform: "uppercase", margin: "0 0 16px",
+                      textTransform: "none", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
                     <h3 style={{
                       fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
-                      fontWeight: 700, color: c.ink, margin: "0 0 24px",
+                      fontWeight: 500, color: c.ink, margin: "0 0 24px",
                       letterSpacing: "-0.03em", lineHeight: 1.05,
                     }}>{l.title}.</h3>
                     <p style={{
@@ -2508,15 +2381,10 @@ function ShippedSection() {
           gap: "64px", alignItems: "start", marginBottom: "48px",
         }} className="sp2-row">
           <div>
-            <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.20em", color: c.accent,
-              display: "block", marginBottom: "12px",
-            }}>03</span>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(48px, 7vw, 84px)",
+              fontFamily: font.sans, fontSize: "clamp(40px, 4.8vw, 60px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.035em", lineHeight: 1.0,
+              letterSpacing: "-0.02em", lineHeight: 1.1,
             }}>
               Shipped, with receipts.
             </h2></div>
@@ -2530,16 +2398,9 @@ function ShippedSection() {
 
         {/* Pause state diagram */}
         <div style={{ marginBottom: "64px" }}>
-          <p style={{
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-            letterSpacing: "0.20em", textTransform: "uppercase",
-            color: c.accent, margin: "0 0 12px",
-          }}>
-            State diagram &middot; Pause
-          </p>
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 24px",
+            fontWeight: 500, color: c.ink, margin: "0 0 24px",
             letterSpacing: "-0.02em", lineHeight: 1.2,
           }}>
             Time-boxed, four states, every transition reversible.
@@ -2550,7 +2411,7 @@ function ShippedSection() {
           <div className="sp2-state-scroll" tabIndex={0} role="region"
             aria-label="Pause state diagram, scroll horizontally to view"
             style={{
-              background: "#FFFFFF", border: `1px solid ${c.border}`,
+              background: "var(--color-paper)", border: `1px solid ${c.border}`,
               padding: "clamp(12px, 3vw, 48px)",
               overflowX: "auto",
               WebkitOverflowScrolling: "touch",
@@ -2575,12 +2436,12 @@ function ShippedSection() {
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px",
         }} className="sp2-decisions-grid">
           <aside style={{
-            background: "#FFFFFF", border: `1px solid ${c.border}`,
+            background: "var(--color-paper)", border: `1px solid ${c.border}`,
             borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+              letterSpacing: "0.18em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>What could still go wrong</p>
             <p style={{
@@ -2604,12 +2465,12 @@ function ShippedSection() {
           </aside>
 
           <aside style={{
-            background: "#FFFFFF", border: `1px solid ${c.border}`,
+            background: "var(--color-paper)", border: `1px solid ${c.border}`,
             borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+              letterSpacing: "0.18em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>Validation plan</p>
             <p style={{
@@ -2642,13 +2503,13 @@ function ShippedSection() {
         {/* Reflection — what I'd test next. Senior signal:
             naming the riskiest decision before anyone else does. */}
         <aside style={{
-          background: "#FFFFFF", border: `1px solid ${c.border}`,
+          background: "var(--color-paper)", border: `1px solid ${c.border}`,
           borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           marginTop: "32px",
         }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase",
+            fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+            letterSpacing: "0.18em", textTransform: "none",
             color: c.accent, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
           <p style={{
@@ -2695,17 +2556,10 @@ function FrictionList() {
   return (
     <section aria-label="Where the shelf gets in the way" style={{ padding: `0 ${SECTION_X} 80px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
-        <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-          letterSpacing: "0.20em", textTransform: "uppercase",
-          color: c.accent, margin: "0 0 12px",
-        }}>
-          Contextual friction
-        </p>
         <h2 style={{
-          fontFamily: font.sans, fontSize: "clamp(28px, 3.4vw, 40px)",
-          fontWeight: 600, color: c.ink, margin: "0 0 24px",
-          letterSpacing: "-0.02em", lineHeight: 1.15,
+          fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
+          fontWeight: 500, color: c.ink, margin: "0 0 24px",
+          letterSpacing: "-0.01em", lineHeight: 1.15,
           maxWidth: "780px",
         }}>
           Where the shelf gets in the way.
@@ -2761,7 +2615,7 @@ function ActionSheetHero() {
              product photography AND the Spotify-green eyebrow meets WCAG
              AA on the mat surface. No drop shadow on the phone — the
              contrast against the mat does the lift on its own. */
-          background: "#404040",
+          background: "var(--color-neutral-800)",
           padding:    "clamp(32px, 4vw, 64px)",
         }}>
           {/* Phone with the action sheet open. Rounded corners on the
@@ -2838,24 +2692,24 @@ function ActionSheetHero() {
           </div>
 
           {/* Caption + icon cells */}
-          <div style={{ color: "#FAFAF9" }}>
+          <div style={{ color: "var(--color-inverse)" }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-              letterSpacing: "0.20em", textTransform: "uppercase",
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+              letterSpacing: "0.20em", textTransform: "none",
               color: c.green, margin: "0 0 14px",
             }}>
               For power users · additive · reversible
             </p>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(28px, 3vw, 38px)",
-              fontWeight: 600, color: "#FAFAF9", margin: "0 0 18px",
+              fontWeight: 500, color: "var(--color-inverse)", margin: "0 0 18px",
               letterSpacing: "-0.02em", lineHeight: 1.15,
               maxWidth: "560px",
             }}>
               Three controls for the shelf people use every day.
             </h2><p style={{
               fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
-              lineHeight: 1.7, color: "#FAFAF9",
+              lineHeight: 1.7, color: "var(--color-inverse)",
               margin: "0 0 36px", maxWidth: "560px",
             }}>
               Spotify&rsquo;s Recently Played is one of the best surfaces in
@@ -2910,8 +2764,8 @@ function IconCell({ color, glyph, name, note }: {
       </div>
       <div>
         <p style={{
-          fontFamily: font.sans, fontSize: "17px", fontWeight: 700,
-          color: "#FFFFFF", margin: "0 0 4px", letterSpacing: "-0.01em",
+          fontFamily: font.sans, fontSize: "17px", fontWeight: 500,
+          color: "var(--color-inverse)", margin: "0 0 4px", letterSpacing: "-0.01em",
         }}>{name}</p>
         <p style={{
           fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5,
@@ -2994,7 +2848,7 @@ function UserVoices() {
             <Eyebrow>What users said</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               The signal was in the open.
@@ -3028,8 +2882,8 @@ function UserVoices() {
               }}>&ldquo;{q.text}&rdquo;</p>
               <p style={{
                 fontFamily: font.sans, fontSize: "11px",
-                fontWeight: 600, letterSpacing: "0.12em",
-                textTransform: "uppercase", color: c.muted,
+                fontWeight: 500, letterSpacing: "0.12em",
+                textTransform: "none", color: c.muted,
                 margin: "auto 0 0",
               }}>{q.source}</p>
             </blockquote>
@@ -3053,8 +2907,8 @@ function CompetitiveAudit() {
     { name: "Spotify (proposed)",    vals: ["✓", "✓", "✓", "✓", "✓"],       proposed: true },
   ];
   const thStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-    letterSpacing: "0.18em", textTransform: "uppercase",
+    fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+    letterSpacing: "0.18em", textTransform: "none",
     textAlign: "left", padding: "14px 18px", color: c.muted,
     borderBottom: `1px solid ${c.border}`,
   };
@@ -3079,7 +2933,7 @@ function CompetitiveAudit() {
             <Eyebrow>Competitive audit</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Five categories.<br />One open slot.
@@ -3092,8 +2946,8 @@ function CompetitiveAudit() {
               Heuristic audit across seven listening platforms. Apple Music, Amazon Music, and YouTube Music all ship at least one shelf-level control. TikTok and YouTube treat the feed as inline-editable by default. Spotify ships none. The pattern is in the open.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              letterSpacing: "0.18em", textTransform: "none",
               color: c.muted, margin: "0 0 8px",
             }}>
               The five categories
@@ -3131,8 +2985,8 @@ function CompetitiveAudit() {
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
               />
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
-                letterSpacing: "0.12em", textTransform: "uppercase",
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                letterSpacing: "0.12em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>{it.name}</figcaption>
             </figure>
@@ -3142,7 +2996,7 @@ function CompetitiveAudit() {
         <div className="sp2-audit-scroll" tabIndex={0} role="region"
           aria-label="Competitive audit table, scroll horizontally to view all columns"
           style={{
-            border: `1px solid ${c.border}`, background: "#FFFFFF", overflow: "auto",
+            border: `1px solid ${c.border}`, background: "var(--color-paper)", overflow: "auto",
           }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
@@ -3167,8 +3021,8 @@ function CompetitiveAudit() {
                   background: r.proposed
                     ? "rgba(30,215,96,0.10)"
                     : r.current
-                    ? "#F4F4F2"
-                    : "#FFFFFF",
+                    ? "var(--color-neutral-100)"
+                    : "var(--color-paper)",
                 }}>
                   <td style={{
                     ...tdBase,
@@ -3224,13 +3078,13 @@ function OutOfScope() {
   return (
     <div style={{ margin: "0 0 56px" }}>
       <p style={{
-        fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
-        letterSpacing: "0.20em", textTransform: "uppercase",
+        fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+        letterSpacing: "0.20em", textTransform: "none",
         color: c.accent, margin: "0 0 12px",
       }}>Out of scope</p>
       <h3 style={{
         fontFamily: font.sans, fontSize: "clamp(22px, 2.6vw, 30px)",
-        fontWeight: 600, color: c.ink, margin: "0 0 12px",
+        fontWeight: 500, color: c.ink, margin: "0 0 12px",
         letterSpacing: "-0.02em", lineHeight: 1.2,
       }}>
         Four things that got named, defended, and skipped.
@@ -3247,16 +3101,16 @@ function OutOfScope() {
       }} className="sp2-decisions-grid">
         {items.map((it) => (
           <div key={it.title} style={{
-            background: "#FFFFFF", border: `1px solid ${c.border}`,
+            background: "var(--color-paper)", border: `1px solid ${c.border}`,
             padding: "24px 28px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+              letterSpacing: "0.18em", textTransform: "none",
               color: c.muted, margin: "0 0 8px",
             }}>Skipped</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "16px", fontWeight: 600,
+              fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
               color: c.ink, margin: "0 0 10px", letterSpacing: "-0.01em",
             }}>{it.title}</p>
             <p style={{
@@ -3285,7 +3139,7 @@ function UserJourney() {
             <Eyebrow>User journey</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Where the controls land.
@@ -3432,8 +3286,8 @@ function JourneyVerticalMobile() {
   ];
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
-    letterSpacing: "0.16em", textTransform: "uppercase",
+    fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+    letterSpacing: "0.16em", textTransform: "none",
     color: c.muted, margin: "0 0 6px",
   };
   const bodyStyle: React.CSSProperties = {
@@ -3445,17 +3299,17 @@ function JourneyVerticalMobile() {
     <div className="sp2-journey-mobile" style={{ display: "none" }}>
       {stages.map((s, i) => (
         <article key={s.name} style={{
-          background: "#FFFFFF", border: `1px solid ${c.border}`,
+          background: "var(--color-paper)", border: `1px solid ${c.border}`,
           padding: "20px 18px", marginTop: i === 0 ? 0 : "12px",
         }}>
           {/* Stage header — jet background so white text meets AA (white
               on Spotify green was 1.92:1, fails). Green moves to a thin
               left bar where contrast doesn't matter. */}
           <div style={{
-            background: c.jet, color: "#FFFFFF",
+            background: c.jet, color: "var(--color-inverse)",
             borderLeft: `3px solid ${c.green}`,
-            fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
-            letterSpacing: "0.10em", textTransform: "uppercase",
+            fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+            letterSpacing: "0.10em", textTransform: "none",
             padding: "8px 12px", margin: "-20px -18px 16px",
             display: "flex", justifyContent: "space-between", alignItems: "baseline",
           }}>
@@ -3506,7 +3360,7 @@ function JourneyVerticalMobile() {
             <p style={{ ...labelStyle, color: c.accent, marginBottom: "4px" }}>
               Opportunity
             </p>
-            <p style={{ ...bodyStyle, fontWeight: 600 }}>{s.opportunity}</p>
+            <p style={{ ...bodyStyle, fontWeight: 500 }}>{s.opportunity}</p>
           </section>
         </article>
       ))}

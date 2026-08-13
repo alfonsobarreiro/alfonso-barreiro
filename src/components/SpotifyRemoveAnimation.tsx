@@ -264,12 +264,12 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
         .spra-toast-text {
           color: #000000;
           font-size: 10px;
-          font-weight: 600;
+          font-weight: 500;
         }
         .spra-toast-undo {
           color: #000000;
           font-size: 10px;
-          font-weight: 600;
+          font-weight: 500;
           letter-spacing: 0;
           padding: 3px 10px;
           border: 1px solid rgba(0,0,0,0.35);
@@ -317,9 +317,9 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
         .spra-ann-3 { animation: spra-ann3 18s infinite; }
         .spra-ann-eyebrow {
           font-size: 10px;
-          font-weight: 700;
+          font-weight: 500;
           letter-spacing: 0.14em;
-          text-transform: uppercase;
+          text-transform: none;
           color: #1ED760;
           margin-bottom: 8px;
         }
@@ -345,7 +345,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           font-size: 11px;
           font-weight: 500;
           letter-spacing: 0.12em;
-          text-transform: uppercase;
+          text-transform: none;
           color: rgba(245,243,239,0.35);
           font-family: var(--font-dm-sans), sans-serif;
         }

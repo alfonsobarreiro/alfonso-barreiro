@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Button } from "@/components/ui/Button";
+import { LinkedInBadge } from "@/components/ui/icons";
 
 type Testimonial = {
   pull:      string;          // oversized pull-quote line
@@ -17,14 +20,14 @@ type Testimonial = {
 const ITEMS: Testimonial[] = [
   {
     pull: "The deck he built sells me better than I sell myself.",
-    body: "Alfonso didn't take my word for what my business should be. He interviewed me like a researcher, pressure-tested my positioning against the actual market, and came back with evidence, not opinions. The deck he built sells me better than I sell myself. If you get the chance to work with him, take it.",
+    body: "Alfonso didn't take my word for what my business should be. He interviewed me like a researcher, pressure-tested my positioning against the actual market, and came back with evidence. The deck he built sells me better than I sell myself. If you get the chance to work with him, take it.",
     name: "JP Clement",
     role: "Founder, The Marketing Distillery · Former CEO, VARA & Boomtime",
     linkedin: "https://www.linkedin.com/in/jpclement/",
   },
   {
     pull: "His ability to listen and translate my ideas into a logo that stands out.",
-    body: "Working with Alfonso on my company logo for Sky Valley Comm was a great experience. His keen eye for design and attention to detail helped bring my vision to life in a way that truly represents my brand. The most beneficial part of our collaboration was his ability to listen and translate my ideas into a professional, unique logo that stands out. His expertise made the process seamless, and the final result exceeded my expectations. Thanks to Alfonso's work, my brand now has a strong and memorable identity.",
+    body: "Working with Alfonso on my company logo for Sky Valley Comm was a great experience. His keen eye for design and attention to detail helped bring my vision to life in a way that represents my brand. The most beneficial part of our collaboration was his ability to listen and translate my ideas into a professional, unique logo that stands out. His expertise made the process seamless, and the final result exceeded my expectations. Thanks to Alfonso's work, my brand now has a strong and memorable identity.",
     name: "Pamela Accetta Smith",
     role: "Founder & CEO, Sky Valley Comm",
     linkedin: "https://www.linkedin.com/in/pamela-accetta-smith-5278379/",
@@ -39,36 +42,6 @@ const ITEMS: Testimonial[] = [
 ];
 
 /* ── SVG glyphs ─────────────────────────────────────────────────────── */
-
-/* LinkedIn brand badge — white glyph on LinkedIn brand blue (#0A66C2).
-   Standardized so every LinkedIn touch on the site reads the same. */
-const LinkedInBadge = ({ size = 20 }: { size?: number }) => (
-  <span
-    aria-hidden="true"
-    style={{
-      display:        "inline-flex",
-      alignItems:     "center",
-      justifyContent: "center",
-      width:          size,
-      height:         size,
-      background:     "#0A66C2",
-      borderRadius:   2,
-      flexShrink:     0,
-    }}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={Math.round(size * 0.6)}
-      height={Math.round(size * 0.6)}
-      viewBox="0 0 24 24"
-      fill="#FFFFFF"
-    >
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect x="2" y="9" width="4" height="12" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  </span>
-);
 
 const ChevronLeft = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -85,20 +58,20 @@ const ChevronRight = () => (
 /* ── Tokens ─────────────────────────────────────────────────────────── */
 
 const SECTION_X = "clamp(24px, 6vw, 80px)";
-const CONTENT_MAX = "1240px";
+const CONTENT_MAX = "var(--content-max)";
 
 const font = {
   sans: "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
 const c = {
-  ink:     "#252B28",
-  body:    "#3D4440",
-  muted:   "#5A5752",
-  brand:   "var(--color-brand)",
-  accent:  "var(--color-accent)",
-  surface: "#FFFFFF",
-  border:  "#E6E3DE",
+  ink:     "var(--color-text)",
+  body:    "var(--color-text-body)",
+  muted:   "var(--color-text-muted)",
+  brand:   "var(--color-terracotta)",
+  accent:  "var(--color-deep-teal)",
+  surface: "var(--color-paper)",
+  border:  "var(--color-neutral-200)",
 };
 
 /* ── Autoscroll config ──────────────────────────────────────────────── */
@@ -231,18 +204,14 @@ export default function Testimonials() {
           }}
         >
           <div>
-            <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: c.accent, margin: "0 0 18px",
-            }}>
+            <Eyebrow tone="accent" style={{ margin: "0 0 18px" }}>
               Client voices
-            </p>
+            </Eyebrow>
             <h2
               id="testimonials-h2"
               style={{
-                fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
-                fontWeight: 400, lineHeight: 1.15, letterSpacing: "-0.02em",
+                fontFamily: font.sans, fontSize: "28px",
+                fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em",
                 color: c.ink, margin: 0, maxWidth: "640px",
               }}
             >
@@ -263,8 +232,8 @@ export default function Testimonials() {
             <span
               aria-live="polite"
               style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 700,
-                letterSpacing: "0.14em", textTransform: "uppercase",
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                letterSpacing: "0.01em",
                 color: c.muted,
                 fontVariantNumeric: "tabular-nums",
               }}
@@ -273,40 +242,24 @@ export default function Testimonials() {
               <span style={{ margin: "0 6px", opacity: 0.5 }}>/</span>
               {String(ITEMS.length).padStart(2, "0")}
             </span>
-            <button
-              type="button"
+            <Button
+              variant="ghost"
+              shape="circle"
+              size="sm"
               onClick={prev}
-              aria-label="Previous testimonial"
-              className="testimonial-nav-btn"
-              style={{
-                width: 40, height: 40, borderRadius: "50%",
-                border: `1px solid ${c.border}`,
-                background: c.surface,
-                color: c.ink,
-                display: "inline-flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer",
-                transition: "background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s",
-              }}
+              ariaLabel="Previous testimonial"
             >
               <ChevronLeft />
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              variant="ghost"
+              shape="circle"
+              size="sm"
               onClick={next}
-              aria-label="Next testimonial"
-              className="testimonial-nav-btn"
-              style={{
-                width: 40, height: 40, borderRadius: "50%",
-                border: `1px solid ${c.border}`,
-                background: c.surface,
-                color: c.ink,
-                display: "inline-flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer",
-                transition: "background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s",
-              }}
+              ariaLabel="Next testimonial"
             >
               <ChevronRight />
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -357,10 +310,10 @@ export default function Testimonials() {
                   {/* Pull-quote */}
                   <p style={{
                     fontFamily:    font.sans,
-                    fontSize:      "clamp(24px, 2.6vw, 32px)",
+                    fontSize:      "28px",
                     fontWeight:    400,
-                    lineHeight:    1.25,
-                    letterSpacing: "-0.02em",
+                    lineHeight:    1.15,
+                    letterSpacing: "-0.01em",
                     color:         c.ink,
                     margin:        "0 0 28px",
                   }}>
@@ -371,7 +324,7 @@ export default function Testimonials() {
                   <p style={{
                     fontFamily: font.sans,
                     fontSize:   "15px",
-                    lineHeight: 1.7,
+                    lineHeight: 1.5,
                     color:      c.body,
                     margin:     "0 0 28px",
                   }}>
@@ -391,8 +344,8 @@ export default function Testimonials() {
                         alignItems:     "center",
                         gap:            "10px",
                         fontFamily:     font.sans,
-                        fontSize:       "14px",
-                        fontWeight:     600,
+                        fontSize:       "15px",
+                        fontWeight:     500,
                         color:          c.ink,
                         letterSpacing:  "0.01em",
                         textDecoration: "none",
@@ -404,7 +357,7 @@ export default function Testimonials() {
                     </a>
                   ) : (
                     <span style={{
-                      fontFamily: font.sans, fontSize: "14px", fontWeight: 600,
+                      fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
                       color: c.ink, letterSpacing: "0.01em",
                     }}>
                       {t.name}
@@ -412,7 +365,7 @@ export default function Testimonials() {
                   )}
                   <span style={{
                     fontFamily: font.sans, fontSize: "12px",
-                    color: c.muted, letterSpacing: "0.04em",
+                    color: c.muted, letterSpacing: "0.01em",
                   }}>
                     {t.role}
                   </span>
@@ -466,27 +419,15 @@ export default function Testimonials() {
 
         /* Keyboard focus ring on the track container. */
         .testimonials-track:focus-visible {
-          outline: 2px solid var(--color-brand);
+          outline: 2px solid var(--color-focus-ring);
           outline-offset: 4px;
           border-radius: 2px;
         }
 
-        /* Nav button hover / focus. */
-        .testimonial-nav-btn:hover {
-          background: var(--color-brand);
-          border-color: var(--color-brand);
-          color: #FAFAF9;
-          transform: translateY(-1px);
-        }
-        .testimonial-nav-btn:focus-visible {
-          outline: 2px solid var(--color-brand);
-          outline-offset: 2px;
-        }
-
         /* Dot hover for the inactive dots. */
-        .testimonial-dot:hover { background: #B8B4AC; }
+        .testimonial-dot:hover { background: var(--color-neutral-400); }
         .testimonial-dot:focus-visible {
-          outline: 2px solid var(--color-brand);
+          outline: 2px solid var(--color-focus-ring);
           outline-offset: 3px;
         }
 

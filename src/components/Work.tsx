@@ -6,6 +6,7 @@ import Image from "next/image";
 import MSRPagePeek from "@/components/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
 import SpotifyFramedAnimation from "@/components/SpotifyFramedAnimation";
+import { LinkArrow } from "@/components/ui/LinkArrow";
 
 interface Project {
   title:       string;
@@ -27,6 +28,16 @@ interface Project {
       Signals to scanners that the case study contains a working demo,
       not just static comps. */
   interactive?: boolean;
+  /** Per-case brand atmosphere for the row. Data-driven replacement for
+      the isSpotify/isWayfarer/isMSR/isABD ternary chains in ProjectCard.
+      Only `shellBg` is required — the other fields fall through to the
+      per-project ternary defaults when omitted. */
+  atmosphere?: {
+    shellBg:       string;
+    aspect?:       string;
+    shellPadding?: string;
+    shellWidth?:   { width: string; maxWidth: string };
+  };
 }
 
 /* Order: Spotify → Wayfarer → MSR → ABD UI.
@@ -43,14 +54,19 @@ const projects: Project[] = [
     description:
       "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
     thesis:      "Three controls I keep wanting Spotify to add.",
-    deck:        "The shelf millions use daily, with no user control. Pin · Remove · Pause, three reversible fixes grounded in 200+ user posts.",
-    meta:        "DESIGNER · 2026 · CONCEPT",
+    deck:        "The shelf 600M+ Spotify users see daily, with no controls. Pin · Remove · Pause, grounded in 200+ user posts.",
+    meta:        "Designer · 2026 · Concept",
     tags:        ["Feature design", "Interaction model", "Constraint mapping"],
     year:        "2026",
     status:      "live",
     href:        "/work/spotify",
     image:       "/cs-spotify-preview.png",
     interactive: true,
+    atmosphere: {
+      /* Spotify Jet, radial-anchored slightly-high-center. Raw hex is a
+         per-case brand nod intentionally kept outside the token layer. */
+      shellBg: "radial-gradient(ellipse 80% 60% at 50% 35%, #2E2E2E 0%, #181818 60%, #0A0A0A 100%)",
+    },
   },
   {
     title:       "Wayfarer",
@@ -58,13 +74,21 @@ const projects: Project[] = [
     description:
       "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
     thesis:      "Built the trip planner around duration, not dates.",
-    deck:        "Homepage as editorial cover, not a directory. Discovery through a globe and curated cards.",
-    meta:        "DESIGNER · 2026 · LIVE",
+    deck:        "Homepage as an editorial cover. Discovery through a globe and curated cards.",
+    meta:        "Designer · 2026 · Live",
     tags:        ["Information Architecture", "Design System", "Multi-step Form UX"],
     year:        "2026",
     status:      "live",
     href:        "/work/wayfarer",
     image:       "/cs-wayfarer-preview.jpg",
+    atmosphere: {
+      /* Wayfarer row: darker cool ground-navy so the iPad sits on a
+         distinct atmosphere rather than the video's baked navy filling
+         the whole panel. WayfarerGlobePeek masks the video's baked
+         #1F1C3B edges via a radial mask, so this ground shows through
+         the video's periphery. */
+      shellBg: "var(--color-bg-inverse)",
+    },
   },
   {
     title:       "Men's Sole Revival",
@@ -73,12 +97,18 @@ const projects: Project[] = [
       "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
     thesis:      "Pivoted from e-commerce to editorial in week 3.",
     deck:        "Cost: the storefront I'd already designed. Diagnostic-first resource for men over 40, live since April. 86% of visitors finish the assessment.",
-    meta:        "DESIGNER · 2026 · LIVE SINCE APRIL",
+    meta:        "Designer · 2026 · Live since April",
     tags:        ["Brand Identity", "Content UX", "Editorial"],
     year:        "2026",
     status:      "live",
     href:        "/work/mens-sole-revival",
     image:       "/cs-msr-preview.jpg",
+    atmosphere: {
+      /* MSR row: dark neutral gray gradient so the MacBook Pro's Space
+         Black chassis reads cleanly (warm ink #13100C was swallowing
+         the silhouette). Keeps the radial rhythm the Spotify row uses. */
+      shellBg: "radial-gradient(ellipse 80% 60% at 50% 35%, #4A4A4A 0%, #333333 60%, #262626 100%)",
+    },
   },
   // ABD UI hidden 2026-07-01 pending case-study rework to match the
   // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
@@ -90,7 +120,7 @@ const projects: Project[] = [
   //     "A token-driven design system that powers every Alpha Beta Design client site. One source of truth published to CSS, JSON, and Figma. 120 components, 15 color tokens, one accessibility floor. The hard part was choosing role-based tokens over a literal palette so a brand swap takes minutes, not days.",
   //   thesis:      "The button has to get designed once.",
   //   deck:        "Token-driven. Published to CSS, JSON, and Figma from one source. Refuses one-off values.",
-  //   meta:        "DESIGN SYSTEM · LIVE · ONGOING",
+  //   meta:        "Design System · Live · Ongoing",
   //   tags:        ["Design Tokens", "Component API", "Accessibility"],
   //   year:        "2026",
   //   status:      "live",
@@ -105,59 +135,6 @@ const DELAYS = ["0s", "0.1s", "0.2s", "0.35s"];
 export default function Work() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const targets = section.querySelectorAll<HTMLElement>(".scroll-reveal");
-
-    /* 1. Hide immediately, with a subtle scale-down so the row reads as
-          "off in the distance" before it blooms forward. 4% scale + 24px
-          translateY is the SLUX dose — premium-feeling, never theatrical. */
-    targets.forEach((el) => {
-      el.style.opacity        = "0";
-      el.style.transform      = "translateY(24px) scale(0.96)";
-      el.style.transformOrigin = "center top";
-    });
-
-    /* 2. Next frame: register the eased transition so the reveal can animate.
-          Longer 0.9s with a calm cubic-bezier reads as deliberate rather
-          than snappy. */
-    requestAnimationFrame(() => {
-      targets.forEach((el, i) => {
-        const delay = DELAYS[i] || "0s";
-        el.style.transition =
-          `opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay},` +
-          ` transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) ${delay}`;
-      });
-
-      /* 3. Observe — bloom each row to identity once it crosses the threshold */
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const el = entry.target as HTMLElement;
-              el.style.opacity   = "1";
-              el.style.transform = "translateY(0) scale(1)";
-              observer.unobserve(el);
-            }
-          });
-        },
-        { threshold: 0.08, rootMargin: "0px 0px -20px 0px" }
-      );
-
-      targets.forEach((el) => observer.observe(el));
-
-      /* Cleanup stored on section for the return */
-      (section as any).__scrollObserver = observer;
-    });
-
-    return () => {
-      const obs = (section as any).__scrollObserver as IntersectionObserver | undefined;
-      if (obs) obs.disconnect();
-    };
-  }, []);
-
   return (
     <section
       id="work"
@@ -165,12 +142,12 @@ export default function Work() {
       className="work-section"
       style={{
         padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px)",
-        background: "#FFFFFF",
-        borderTop:  "1px solid rgba(0, 0, 0, 0.06)",
+        background: "var(--color-paper)",
+        borderTop:  "1px solid var(--color-neutral-200)",
         overflowX:  "clip",
       }}
     >
-      <div style={{ width: "100%", margin: "0 auto" }}>
+      <div style={{ width: "100%", maxWidth: "var(--content-max)", margin: "0 auto" }}>
 
         {/* Section header */}
         <div
@@ -186,11 +163,11 @@ export default function Work() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(28px, 4vw, 48px)",
-                fontWeight:    600,
-                color:         "#252B28",
+                fontSize:      "clamp(28px, 4vw, 40px)",
+                fontWeight:    500,
+                color:         "var(--color-text)",
                 margin:        0,
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.01em",
                 lineHeight:    1.1,
               }}
             >
@@ -241,11 +218,11 @@ export default function Work() {
             max-width: 100% !important;
           }
           .work-row .work-row-thesis {
-            font-size: clamp(36px, 8vw, 48px) !important;
-            line-height: 1.08 !important;
+            font-size: clamp(28px, 8vw, 40px) !important;
+            line-height: 1.15 !important;
           }
           .work-row .work-row-deck {
-            font-size: clamp(15px, 4vw, 18px) !important;
+            font-size: clamp(15px, 4vw, 20px) !important;
           }
         }
       `}</style>
@@ -281,7 +258,7 @@ function ProjectCard({
   /* imgBox aspect matches each device's natural visible aspect so the
      gray shell hugs the chrome (no transparent dead space). */
   const imgAspect = isMSR     ? "4 / 3"
-                  : isWayfarer ? "4 / 5"
+                  : isWayfarer ? "3 / 4"
                   : isSpotify  ? "2 / 3"
                   : isABD      ? "16 / 10"
                   : "16 / 10";
@@ -300,34 +277,19 @@ function ProjectCard({
 
   /* Per-project brand-anchored backdrop. Each row gets its own
      atmosphere so the section reads as three editorial spreads instead
-     of three template instances. */
-  /* All three case-study rows share the same radial rhythm now:
-     ellipse anchored slightly-high-center, ~30 units of lightness
-     spread from center to edge. Prior Spotify gradient was too tight
-     to read as radial; prior Wayfarer was solid. Palettes stay
-     brand-anchored (Spotify Jet, Wayfarer navy, MSR neutral gray). */
-  const shellBg = isSpotify
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #2E2E2E 0%, #181818 60%, #0A0A0A 100%)"
-    : isWayfarer
-    /* Wayfarer row: darker cool ground-navy so the iPad sits on a
-       distinct atmosphere rather than the video's baked navy filling
-       the whole panel. The video's baked #1F1C3B edges are masked
-       away in WayfarerGlobePeek via a radial mask, so the darker row
-       shows through the video's periphery and reads as one field
-       around a floating iPad. */
-    ? "var(--color-ground-navy)"
-    : isMSR
-    /* MSR row: dark neutral gray gradient. The MacBook Pro's Space
-       Black chassis was disappearing against warm ink #13100C; a
-       medium-dark gray backdrop lets the device silhouette read
-       cleanly. Keeps the radial rhythm the Spotify row uses. */
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #4A4A4A 0%, #333333 60%, #262626 100%)"
-    : isABD
-    /* ABD UI: dark slate ground with cyan-ink center so the system
-       screenshot reads as software-on-display, not a fourth case-
-       study template instance. */
-    ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1B2228 0%, #14181A 60%, #0F1316 100%)"
-    : "#F5F5F4";
+     of three template instances. Palettes stay brand-anchored
+     (Spotify Jet, Wayfarer navy, MSR neutral gray, ABD slate) and are
+     declared on each project entry via `atmosphere.shellBg` — see the
+     per-project data at the top of the file. Falls back to per-case
+     ternaries (kept for the commented-out ABD entry) then neutral-100
+     for any future entry that ships without an atmosphere. */
+  const shellBg = project.atmosphere?.shellBg
+    ?? (isABD
+      /* ABD UI: dark slate ground with cyan-ink center so the system
+         screenshot reads as software-on-display, not a fourth case-
+         study template instance. Raw hex is a per-case brand nod. */
+      ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1B2228 0%, #14181A 60%, #0F1316 100%)"
+      : "var(--color-neutral-100)");
 
   /* Full-bleed editorial row (Option B) — each project becomes its own
      cinematic 100vw panel. The row escapes the section's horizontal
@@ -335,14 +297,19 @@ function ProjectCard({
      brand-anchored gradient (previously on the device shell only) now
      paints the entire panel. Zigzag alternation is preserved through
      justifyContent driven by imageOnRight. */
+  /* MSR row hugs its content: the landscape MacBook is already the widest
+     shell in the section, so the panel tightens (padding, min-height, and
+     the image↔text gap) to close the inner spacing toward the margins. */
   const rowStyle: React.CSSProperties = {
     display:        "flex",
     alignItems:     "center",
-    gap:            "clamp(40px, 6vw, 100px)",
+    gap:            isMSR ? "clamp(32px, 4vw, 64px)" : "clamp(40px, 6vw, 100px)",
     justifyContent: imageOnRight ? "flex-end" : "flex-start",
     background:     shellBg,
-    minHeight:      "clamp(720px, 80vh, 960px)",
-    padding:        "clamp(80px, 10vw, 160px) clamp(48px, 8vw, 120px)",
+    minHeight:      isMSR ? "clamp(560px, 62vh, 760px)" : "clamp(720px, 80vh, 960px)",
+    padding:        isMSR
+      ? "clamp(48px, 6vw, 88px) clamp(40px, 5vw, 80px)"
+      : "clamp(80px, 10vw, 160px) clamp(48px, 8vw, 120px)",
     marginLeft:     "calc(50% - 50vw)",
     marginRight:    "calc(50% - 50vw)",
     textDecoration: "none",
@@ -367,8 +334,8 @@ function ProjectCard({
     transform:    hovered && isLive ? "translateY(-3px)" : "translateY(0)",
     flex:         "0 0 auto",
     ...(isSpotify  && { width: "460px", maxWidth: "45vw" }),
-    ...(isWayfarer && { width: "540px", maxWidth: "50vw" }),
-    ...(isMSR      && { width: "540px", maxWidth: "50vw" }),
+    ...(isWayfarer && { width: "440px", maxWidth: "40vw" }),
+    ...(isMSR      && { width: "720px", maxWidth: "58vw" }),
     ...(isABD      && { width: "540px", maxWidth: "50vw" }),
   };
 
@@ -430,36 +397,9 @@ function ProjectCard({
     </div>
   );
 
-  /* Editorial mockup (Spotify only for now): number eyebrow, thesis as
-     display headline, project title demoted to a small label, no tag pills.
-     The other rows keep the original title + subtitle + tags layout until
-     we decide whether to roll this pattern out across all three. */
-  /* Per-project eyebrow carries info the thesis doesn't (category +
-     year), keeping the project name out so the eyebrow isn't a redundant
-     label for what the thesis already implies. */
-  const eyebrowLabel = isSpotify   ? "Interaction Study · 2026"
-                     : isWayfarer ? "Travel Discovery · 2026 · Live"
-                     : isMSR      ? "Foot Health Editorial · 2026 · Live"
-                     : project.meta;
-
-  const editorialEyebrow = (
-    <div style={{
-      fontFamily:     "var(--font-dm-sans), sans-serif",
-      fontSize:       "11px",
-      fontWeight:     600,
-      letterSpacing:  "0.18em",
-      textTransform:  "uppercase",
-      color:          "#E5E5E5",
-      marginBottom:   "24px",
-    }}>
-      {eyebrowLabel}
-    </div>
-  );
-
-  /* Editorial content block — same shape for every project so the section
-     reads as three magazine spreads, not three template instances.
-     Eyebrow + thesis (display weight) + hover-revealed pills + crimson
-     View Case Study CTA. */
+  /* Editorial content block — same shape for every project: thesis
+     (display), deck (body), View Case Study link. No eyebrow, no
+     interactive-prototype pill, no photo credit — restraint per brand. */
   const contentBlock = (
     <div
       className="work-row-content"
@@ -468,68 +408,20 @@ function ProjectCard({
         maxWidth: "640px",
       }}
     >
-      {editorialEyebrow}
-
-      {project.interactive && project.href ? (
-        <Link
-          href={`${project.href}#try-it`}
-          aria-label={`Try the ${project.title} interactive prototype`}
-          className="work-row-demo-link"
-          style={{
-            display:        "inline-flex",
-            alignItems:     "center",
-            gap:            "8px",
-            padding:        "5px 10px",
-            background:     "rgba(30,215,96,0.12)",
-            border:         "1px solid rgba(30,215,96,0.45)",
-            borderRadius:   "3px",
-            marginBottom:   "20px",
-            fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "10px",
-            fontWeight:     700,
-            letterSpacing:  "0.14em",
-            textTransform:  "uppercase",
-            color:          "#7AE29B",
-            textDecoration: "none",
-            transition:     "background 0.2s ease, border-color 0.2s ease, transform 0.2s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background   = "rgba(30,215,96,0.20)";
-            e.currentTarget.style.borderColor  = "rgba(30,215,96,0.75)";
-            e.currentTarget.style.transform    = "translateY(-1px)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background   = "rgba(30,215,96,0.12)";
-            e.currentTarget.style.borderColor  = "rgba(30,215,96,0.45)";
-            e.currentTarget.style.transform    = "translateY(0)";
-          }}
-        >
-          <span aria-hidden="true" style={{
-            display:      "inline-block",
-            width:        "6px",
-            height:       "6px",
-            borderRadius: "50%",
-            background:   "#1ED760",
-          }} />
-          Interactive prototype
-          <span aria-hidden="true" style={{ marginLeft: "2px", fontSize: "11px", lineHeight: 1 }}>→</span>
-        </Link>
-      ) : null}
-
-      <p
+      <h2
         className="work-row-thesis"
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(48px, 6vw, 96px)",
-          fontWeight:    600,
-          color:         "#FFFFFF",
+          fontSize:      "clamp(28px, 3vw, 40px)",
+          fontWeight:    500,
+          color:         "var(--color-inverse)",
           margin:        "0 0 24px",
-          letterSpacing: "-0.03em",
+          letterSpacing: "-0.02em",
           lineHeight:    1.05,
         }}
       >
         {project.thesis}
-      </p>
+      </h2>
 
       {/* Deck — magazine-style subhead carrying the constraint or method
           beneath the thesis. The thesis is the insight; the deck is what
@@ -539,12 +431,12 @@ function ProjectCard({
           className="work-row-deck"
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(16px, 1.6vw, 20px)",
+            fontSize:      "clamp(15px, 1.6vw, 20px)",
             fontWeight:    400,
-            color:         "#C5C8C7",
+            color:         "var(--color-inverse-body)",
             margin:        "0 0 32px",
-            letterSpacing: "-0.005em",
-            lineHeight:    1.45,
+            letterSpacing: "0em",
+            lineHeight:    1.5,
             maxWidth:      "560px",
           }}
         >
@@ -553,49 +445,21 @@ function ProjectCard({
       ) : null}
 
       {isLive ? (
-        <Link
-          href={project.href!}
-          aria-label={`View ${project.title} case study`}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          onFocus={() => setHovered(true)}
-          onBlur={() => setHovered(false)}
-          style={{
-            /* Brand CTA on dark grounds. Terracotta (--color-brand
-               #CF5B48) is the house brand. On the Spotify Jet, Wayfarer
-               navy, and MSR gray-radial full-bleed rows it dips below
-               WCAG AA at its native luminance, so we apply
-               filter: brightness(1.35) to lift it into the on-dark
-               range (~#F27E6D) while keeping single-source-of-truth
-               on the token. Same treatment used by the Option A
-               cinematic hero panel — one consistent on-dark brand
-               behavior across the site. */
-            display:        "inline-flex",
-            alignItems:     "center",
-            gap:            "10px",
-            color:          "var(--color-brand)",
-            filter:         "brightness(1.35)",
-            fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "14px",
-            fontWeight:     500,
-            letterSpacing:  "0.02em",
-            textDecoration: "none",
-            opacity:        hovered ? 1 : 0.9,
-            transition:     "opacity 0.25s ease",
-          }}
-        >
-          View Case Study
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-            style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.25s ease" }}
-          >
-            <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </Link>
+        /* View-case-study CTA. The DS LinkArrow handles the arrow-nudge
+           on hover/focus via .ui-linkarrow styles in globals.css, so the
+           per-instance onMouseEnter/onFocus hover state that drove a
+           JS translate is no longer needed. The link's accessible name
+           comes from its children ("View case study"). The image above
+           already carries a project-specific aria-label, so assistive
+           tech can still land on the correct case study by link. */
+        <LinkArrow href={project.href!} tone="on-dark">
+          View case study
+        </LinkArrow>
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "13px",
-          color:      "#C5C8C7",
+          fontSize:   "12px",
+          color:      "var(--color-inverse-muted)",
           margin:     0,
         }}>
           Case study in progress

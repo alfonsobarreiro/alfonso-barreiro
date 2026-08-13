@@ -70,45 +70,14 @@ export default function RelatedCaseStudies({ current }: Props) {
       <div style={{ maxWidth: "1320px", margin: "0 auto" }}>
         {/* Section header */}
         <div style={{ marginBottom: "clamp(40px, 5vw, 64px)" }}>
-          <div
-            style={{
-              display:      "flex",
-              alignItems:   "center",
-              gap:          "14px",
-              marginBottom: "16px",
-            }}
-          >
-            <span
-              style={{
-                display:    "inline-block",
-                width:      "32px",
-                height:     "1px",
-                background: "var(--color-accent)",
-                flexShrink: 0,
-              }}
-            />
-            <p
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "12px",
-                fontWeight:    700,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color:         "#6E6E6A",
-                margin:        0,
-              }}
-            >
-              Keep reading
-            </p>
-          </div>
           <h2
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(28px, 3.5vw, 40px)",
-              fontWeight:    400,
+              fontWeight:    500,
               lineHeight:    1.15,
-              letterSpacing: "-0.02em",
-              color:         "#252B28",
+              letterSpacing: "-0.01em",
+              color:         "var(--color-text)",
               margin:        0,
               maxWidth:      "560px",
             }}
@@ -137,20 +106,6 @@ export default function RelatedCaseStudies({ current }: Props) {
                 color:          "inherit",
               }}
             >
-              <p
-                style={{
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "11px",
-                  fontWeight:    700,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color:         "var(--color-brand)",
-                  margin:        "0 0 14px",
-                }}
-              >
-                {i === 0 ? "Next" : "Then"}
-              </p>
-
               {/* Thumbnail */}
               <div
                 className="related-cs-thumb"
@@ -172,28 +127,15 @@ export default function RelatedCaseStudies({ current }: Props) {
                 />
               </div>
 
-              {/* Meta + title + tagline */}
-              <p
-                style={{
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "12px",
-                  fontWeight:    600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         "#8A8680",
-                  margin:        "0 0 10px",
-                }}
-              >
-                {c.meta}
-              </p>
+              {/* Title + tagline (meta eyebrow removed per SPD restraint) */}
               <h3
                 style={{
                   fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "clamp(28px, 3vw, 40px)",
+                  fontSize:      "clamp(28px, 3.5vw, 40px)",
                   fontWeight:    500,
-                  lineHeight:    1.1,
-                  letterSpacing: "-0.02em",
-                  color:         "#252B28",
+                  lineHeight:    1.15,
+                  letterSpacing: "-0.01em",
+                  color:         "var(--color-text)",
                   margin:        "0 0 14px",
                 }}
               >
@@ -203,8 +145,8 @@ export default function RelatedCaseStudies({ current }: Props) {
                 style={{
                   fontFamily: "var(--font-dm-sans), sans-serif",
                   fontSize:   "15px",
-                  lineHeight: 1.55,
-                  color:      "var(--color-accent)",
+                  lineHeight: 1.5,
+                  color:      "var(--color-text)",
                   margin:     "0 0 20px",
                 }}
               >
@@ -216,16 +158,17 @@ export default function RelatedCaseStudies({ current }: Props) {
                   display:        "inline-flex",
                   alignItems:     "center",
                   gap:            "8px",
-                  color:          "var(--color-brand)",
-                  fontSize:       "12px",
-                  fontWeight:     600,
+                  color:          "var(--color-text-link)",
+                  fontSize:       "15px",
+                  fontWeight:     500,
                   fontFamily:     "var(--font-dm-sans), sans-serif",
-                  letterSpacing:  "0.12em",
-                  textTransform:  "uppercase",
-                  transition:     "transform 0.25s ease",
+                  letterSpacing:  0,
+                  transition:     "color 0.2s ease",
                 }}
               >
-                Read case study
+                <span style={{ borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>
+                  Read case study
+                </span>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
                   <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>

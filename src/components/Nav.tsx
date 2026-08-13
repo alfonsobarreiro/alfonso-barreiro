@@ -5,8 +5,15 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
 import CommandPalette, { openCommandPalette } from "./CommandPalette";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
-const navLinks = ["work", "process", "about"] as const;
+const navLinks = ["work", "process", "about", "behind"] as const;
+
+const NAV_ROUTES: Partial<Record<(typeof navLinks)[number], { href: string; label: string }>> = {
+  about:   { href: "/about",             label: "About" },
+  process: { href: "/process",           label: "Process" },
+  behind:  { href: "/behind-this-site",  label: "Behind this site" },
+};
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -98,21 +105,21 @@ export default function Nav() {
           right:          0,
           zIndex:         300,
           height:         "72px",
-          padding:        "0 48px",
+          padding:        "0 max(clamp(32px, 6vw, 80px), calc((100vw - var(--content-max)) / 2))",
           display:        "flex",
           alignItems:     "center",
           justifyContent: "space-between",
           background:     menuOpen
-            ? "var(--color-brand)"
+            ? "var(--color-terracotta)"
             : scrolled
-              ? "rgba(255,255,255,0.82)"
-              : "#FFFFFF",
+              ? "var(--color-bg-nav-scrolled)"
+              : "var(--color-paper)",
           backdropFilter: !menuOpen && scrolled ? "blur(12px)" : "none",
           WebkitBackdropFilter: !menuOpen && scrolled ? "blur(12px)" : "none",
           borderBottom:   menuOpen
-            ? "1px solid rgba(245,243,239,0.08)"
+            ? "1px solid var(--color-inverse-hairline)"
             : scrolled
-              ? "1px solid rgba(232,228,222,0.6)"
+              ? "1px solid var(--color-neutral-200)"
               : "none",
           transition:     "background 0.3s, border-color 0.3s, backdrop-filter 0.3s",
         }}
@@ -132,16 +139,16 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "18px",
-                fontWeight:    600,
-                letterSpacing: "-0.015em",
-                color:         menuOpen ? "#F5F5F4" : "#252B28",
+                fontSize:      "20px",
+                fontWeight:    500,
+                letterSpacing: "-0.03em",
+                color:         menuOpen ? "var(--color-inverse)" : "var(--color-text)",
                 transition:    "color 0.25s ease",
                 lineHeight:    1,
               }}
             >
               <span className="site-logo-first">Alfonso</span>{" "}
-              <span style={{ color: menuOpen ? "#F5F5F4" : "var(--color-brand)" }}>Barreiro</span>
+              <span>Barreiro</span>
             </span>
           </button>
         ) : (
@@ -153,16 +160,16 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "18px",
-                fontWeight:    600,
-                letterSpacing: "-0.015em",
-                color:         menuOpen ? "#F5F5F4" : "#252B28",
+                fontSize:      "20px",
+                fontWeight:    500,
+                letterSpacing: "-0.03em",
+                color:         menuOpen ? "var(--color-inverse)" : "var(--color-text)",
                 transition:    "color 0.25s ease",
                 lineHeight:    1,
               }}
             >
               <span className="site-logo-first">Alfonso</span>{" "}
-              <span style={{ color: menuOpen ? "#F5F5F4" : "var(--color-brand)" }}>Barreiro</span>
+              <span>Barreiro</span>
             </span>
           </Link>
         )}
@@ -172,39 +179,13 @@ export default function Nav() {
           {navLinks.map((link) => (
             <NavLink
               key={link}
-              label={link}
+              label={NAV_ROUTES[link]?.label ?? link}
               isHome={isHome}
-              routeHref={link === "about" ? "/about" : link === "process" ? "/process" : undefined}
+              routeHref={NAV_ROUTES[link]?.href}
               onScrollClick={() => scrollTo(link)}
             />
           ))}
           <SearchTrigger />
-          <Link
-            href="/contact"
-            className="on-crimson"
-            style={{
-              padding:        "10px 24px",
-              background:     "var(--color-brand)",
-              border:         "none",
-              borderRadius:   4,
-              color:          "#FFFFFF",
-              fontSize:       "13px",
-              fontWeight:     500,
-              letterSpacing:  "0.04em",
-              cursor:         "pointer",
-              transition:     "transform 0.25s ease, box-shadow 0.25s ease",
-              textDecoration: "none",
-              display:        "inline-block",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
-          >
-            Get in touch
-          </Link>
         </div>
 
         {/* Mobile-only search icon next to hamburger */}
@@ -226,8 +207,8 @@ export default function Nav() {
           }}
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" stroke={menuOpen ? "#F5F5F4" : "#252B28"} strokeWidth="1.6" />
-            <path d="M20 20L16.5 16.5" stroke={menuOpen ? "#F5F5F4" : "#252B28"} strokeWidth="1.6" strokeLinecap="round" />
+            <circle cx="11" cy="11" r="7" stroke={menuOpen ? "var(--color-inverse)" : "var(--color-text)"} strokeWidth="1.6" />
+            <path d="M20 20L16.5 16.5" stroke={menuOpen ? "var(--color-inverse)" : "var(--color-text)"} strokeWidth="1.6" strokeLinecap="round" />
           </svg>
         </button>
 
@@ -256,11 +237,11 @@ export default function Nav() {
         >
           {menuOpen ? (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M6 6L18 18M6 18L18 6" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M6 6L18 18M6 18L18 6" stroke="var(--color-inverse)" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           ) : (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4 6H20M4 12H20M4 18H20" stroke="#252B28" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M4 6H20M4 12H20M4 18H20" stroke="var(--color-text)" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           )}
         </button>
@@ -277,12 +258,12 @@ export default function Nav() {
         aria-label="Site navigation"
         inert={!menuOpen}
         aria-hidden={!menuOpen}
-        className="menu-overlay-crimson"
+        className="menu-overlay-terracotta"
         style={{
           position:        "fixed",
           inset:           0,
           zIndex:          200,
-          background:      "var(--color-brand)",
+          background:      "var(--color-terracotta)",
           display:         "flex",
           flexDirection:   "column",
           justifyContent:  "center",
@@ -294,31 +275,22 @@ export default function Nav() {
       >
         {/* Eyebrow */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "48px" }}>
-          <span style={{ width: "20px", height: "1px", background: "rgba(255,255,255,0.55)" }} />
-          <span style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "11px",
-            fontWeight:    600,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color:         "rgba(255,255,255,0.78)",
-          }}>
-            Navigation
-          </span>
+          <span style={{ width: "20px", height: "1px", background: "var(--color-inverse-caption)" }} />
+          <Eyebrow tone="inverse">Navigation</Eyebrow>
         </div>
 
         {/* Nav links */}
         {navLinks.map((link) => {
           const overlayLinkStyle: React.CSSProperties = {
             fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "clamp(42px, 12vw, 72px)",
+            fontSize:       "clamp(40px, 8vw, 60px)",
             fontWeight:     500,
-            color:          "#FFFFFF",
-            letterSpacing:  "-0.025em",
+            color:          "var(--color-inverse)",
+            letterSpacing:  "-0.02em",
             lineHeight:     1.1,
             background:     "none",
             border:         "none",
-            borderBottom:   "1px solid rgba(255,255,255,0.18)",
+            borderBottom:   "1px solid var(--color-inverse-hairline)",
             cursor:         "pointer",
             padding:        "12px 0",
             textAlign:      "left",
@@ -332,10 +304,10 @@ export default function Nav() {
           const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "0.72");
           const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "1");
 
-          // "about" and "process" always route to their pages, regardless of current page
-          if (link === "about" || link === "process") {
-            const href = link === "about" ? "/about" : "/process";
-            const label = link === "about" ? "About" : "Process";
+          // Route-based nav items always link to their pages regardless of current page
+          const route = NAV_ROUTES[link];
+          if (route) {
+            const { href, label } = route;
             return (
               <Link
                 key={link}
@@ -383,17 +355,7 @@ export default function Nav() {
           flexDirection:"column",
           gap:          "14px",
         }}>
-          <span style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "10px",
-            fontWeight:    700,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color:         "rgba(255,255,255,0.65)",
-            marginBottom:  "2px",
-          }}>
-            Case studies
-          </span>
+          <Eyebrow tone="inverse" style={{ fontSize: "12px", marginBottom: "2px" }}>Case studies</Eyebrow>
           {[
             { href: "/work/spotify",            label: "Spotify"            },
             { href: "/work/wayfarer",           label: "Wayfarer"           },
@@ -406,10 +368,10 @@ export default function Nav() {
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily:     "var(--font-dm-sans), sans-serif",
-                fontSize:       "18px",
+                fontSize:       "20px",
                 fontWeight:     500,
-                color:          "#FFFFFF",
-                letterSpacing:  "-0.005em",
+                color:          "var(--color-inverse)",
+                letterSpacing:  "-0.01em",
                 textDecoration: "none",
                 transition:     "opacity 0.2s",
               }}
@@ -421,32 +383,6 @@ export default function Nav() {
           ))}
         </div>
 
-        {/* CTA — inverted on the crimson menu backdrop (white card with
-            crimson text instead of the usual crimson-on-white button). */}
-        <Link
-          href="/contact"
-          onClick={() => setMenuOpen(false)}
-          style={{
-            marginTop:      "40px",
-            padding:        "16px 32px",
-            background:     "#FFFFFF",
-            border:         "none",
-            borderRadius:   4,
-            color:          "var(--color-brand)",
-            fontSize:       "13px",
-            fontWeight:     700,
-            letterSpacing:  "0.07em",
-            textTransform:  "uppercase",
-            fontFamily:     "var(--font-dm-sans), sans-serif",
-            cursor:         "pointer",
-            alignSelf:      "flex-start",
-            textDecoration: "none",
-            display:        "inline-block",
-          }}
-        >
-          Get in touch
-        </Link>
-
         {/* Footer note */}
         <p style={{
           position:   "absolute",
@@ -454,7 +390,7 @@ export default function Nav() {
           left:       "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "12px",
-          color:      "rgba(255,255,255,0.85)",
+          color:      "var(--color-inverse-body)",
           margin:     0,
         }}>
           © 2026 Alfonso Barreiro
@@ -470,68 +406,32 @@ export default function Nav() {
 function SearchTrigger() {
   return (
     <button
-      className="nav-search-pill"
+      type="button"
       onClick={() => openCommandPalette()}
-      aria-label="Search (⌘K)"
+      aria-label="Search"
+      title="Search (⌘K)"
       style={{
         display:       "inline-flex",
         alignItems:    "center",
         gap:           "8px",
-        padding:       "6px 10px 6px 8px",
+        padding:       0,
         background:    "transparent",
-        border:        "1px solid #8A8680",
-        borderRadius:  0,
+        border:        "none",
         cursor:        "pointer",
-        color:         "#3D4440",
-        minHeight:     "40px",
+        color:         "var(--color-text-muted)",
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "12px",
-        transition:    "color 0.2s, border-color 0.2s, background 0.2s",
+        fontSize:      "15px",
+        fontWeight:    500,
+        transition:    "color 0.2s",
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = "#252B28";
-        e.currentTarget.style.borderColor = "#B8B0A2";
-        e.currentTarget.style.background = "#FAFAF9";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = "#3D4440";
-        e.currentTarget.style.borderColor = "#8A8680";
-        e.currentTarget.style.background = "transparent";
-      }}
+      onMouseEnter={(e) => { e.currentTarget.style.color = "var(--color-text)"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-text-muted)"; }}
     >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
-        <path d="M20 20L16.5 16.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
       </svg>
-      <span className="nav-search-label">Search</span>
-      <kbd className="nav-search-kbd" style={{
-        fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "10px",
-        padding:    "2px 5px",
-        background: "#FAFAF9",
-        border:     "1px solid #8A8680",
-        borderRadius: "3px",
-        color:      "#5A5752",
-        lineHeight: 1,
-        marginLeft: "2px",
-      }}>
-        ⌘K
-      </kbd>
-      <style>{`
-        /* Below 960px, collapse the search pill to icon-only so the
-           desktop nav (logo + 2 links + search + Get in touch CTA) has
-           room without elements squeezing into each other. */
-        @media (max-width: 960px) {
-          .nav-search-pill {
-            padding: 8px !important;
-            border-color: transparent !important;
-          }
-          .nav-search-pill .nav-search-label,
-          .nav-search-pill .nav-search-kbd {
-            display: none !important;
-          }
-        }
-      `}</style>
+      <span>Search</span>
     </button>
   );
 }
@@ -551,19 +451,19 @@ function NavLink({
     background:    "none",
     border:        "none",
     cursor:        "pointer",
-    color:         "#3D4440",
-    fontSize:      "13px",
+    color:         "var(--color-neutral-700)",
+    fontSize:      "15px",
     fontWeight:    500,
-    letterSpacing: "0.08em",
-    textTransform: "uppercase",
+    letterSpacing: "0.01em",
     /* Padded to clear WCAG 2.5.8 Target Size (Minimum) — 24x24 floor.
-       13px line-height + 12px vertical padding = ~37px hit target. */
+       15px line-height + 12px vertical padding = ~39px hit target. */
     padding:       "12px 4px",
     transition:    "color 0.2s",
     textDecoration: "none",
     display:       "inline-flex",
     alignItems:    "center",
   };
+  const displayLabel = label.charAt(0).toUpperCase() + label.slice(1);
 
   // If a routeHref is provided, always navigate to that route (regardless of current page)
   if (routeHref) {
@@ -571,10 +471,10 @@ function NavLink({
       <Link
         href={routeHref}
         style={sharedStyle}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "#252B28")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "#3D4440")}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-neutral-700)")}
       >
-        {label}
+        {displayLabel}
       </Link>
     );
   }
@@ -584,10 +484,10 @@ function NavLink({
       <button
         onClick={onScrollClick}
         style={sharedStyle}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "#252B28")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "#3D4440")}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-neutral-700)")}
       >
-        {label}
+        {displayLabel}
       </button>
     );
   }
@@ -596,10 +496,10 @@ function NavLink({
     <Link
       href={`/#${label}`}
       style={sharedStyle}
-      onMouseEnter={(e) => (e.currentTarget.style.color = "#252B28")}
-      onMouseLeave={(e) => (e.currentTarget.style.color = "#3D4440")}
+      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text)")}
+      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-neutral-700)")}
     >
-      {label}
+      {displayLabel}
     </Link>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
 
 export const metadata: Metadata = {
@@ -52,10 +51,7 @@ export default function ContactPage() {
           <div
             className="contact-page-grid"
             style={{
-              display:             "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap:                 "80px",
-              alignItems:          "start",
+              maxWidth: "720px",
             }}
           >
             {/* Left — intro */}
@@ -99,28 +95,22 @@ export default function ContactPage() {
               </p>
               <p style={{
                 fontFamily: font,
-                fontSize:   "14px",
-                lineHeight: 1.6,
-                color:      c.muted,
+                fontSize:   "20px",
+                lineHeight: 1.5,
+                color:      c.ink,
                 margin:     0,
               }}>
-                Prefer email?{" "}
                 <a
                   href="mailto:alfonso@barreiro.com"
                   style={{
-                    color:              c.accent,
-                    textDecoration:     "underline",
-                    textUnderlineOffset: "3px",
+                    color:               c.accent,
+                    textDecoration:      "underline",
+                    textUnderlineOffset: "4px",
                   }}
                 >
                   alfonso@barreiro.com
                 </a>
               </p>
-            </div>
-
-            {/* Right — form */}
-            <div>
-              <ContactForm />
             </div>
           </div>
         </section>
