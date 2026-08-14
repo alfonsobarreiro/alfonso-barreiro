@@ -14,7 +14,7 @@ export default function Hero() {
       id="hero"
       className="hero-section"
       style={{
-        minHeight:  "85vh",
+        minHeight:  "70vh",
         display:    "flex",
         alignItems: "center",
         padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
