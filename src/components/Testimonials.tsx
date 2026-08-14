@@ -187,7 +187,7 @@ export default function Testimonials() {
       style={{
         background: c.surface,
         padding:    "clamp(80px, 9vw, 140px) " + SECTION_X,
-        borderTop:  `1px solid var(--color-brand)`,
+        borderTop:  `none`,
       }}
     >
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>

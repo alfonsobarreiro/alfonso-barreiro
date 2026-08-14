@@ -21,7 +21,7 @@ export default function About() {
       className="about-section"
       style={{
         padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px)",
-        borderTop:  "1px solid var(--color-brand)",
+        borderTop:  "none",
         background: "var(--color-paper)",
       }}
     >
