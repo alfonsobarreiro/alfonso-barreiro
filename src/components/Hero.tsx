@@ -57,7 +57,7 @@ export default function Hero() {
               margin:        "0",
             }}
           >
-            Fifteen years · Agency, in-house, product · 100+ sites shipped
+            Fifteen years in agency, in-house, and product. Now, a Product Designer.<br />100+ sites shipped.
           </p>
 
           {/* Visually-hidden H2 — keyword phrase absent from the H1. */}

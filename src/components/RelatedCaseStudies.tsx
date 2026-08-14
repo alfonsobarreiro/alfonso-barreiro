@@ -64,7 +64,7 @@ export default function RelatedCaseStudies({ current }: Props) {
       style={{
         background: "#FFFFFF",
         padding:    "clamp(80px, 9vw, 140px) clamp(24px, 5vw, 80px)",
-        borderTop:  "1px solid var(--color-brand)",
+        borderTop:  "none",
       }}
     >
       <div style={{ maxWidth: "1320px", margin: "0 auto" }}>

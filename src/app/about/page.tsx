@@ -231,6 +231,31 @@ export default function AboutPage() {
                 >
                   I get to be part of building products that solve real problems. How I came to that is below.
                 </p>
+                <p
+                  style={{
+                    display:       "inline-flex",
+                    alignItems:    "center",
+                    gap:           "10px",
+                    fontFamily:    "var(--font-dm-sans), sans-serif",
+                    fontSize:      "15px",
+                    fontWeight:    500,
+                    color:         "var(--color-brand)",
+                    margin:        "24px 0 0",
+                    lineHeight:    1.4,
+                  }}
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display:      "inline-block",
+                      width:        "8px",
+                      height:       "8px",
+                      borderRadius: "50%",
+                      background:   "var(--color-brand)",
+                    }}
+                  />
+                  Open for work
+                </p>
               </div>
 
               {/* Right: hero photo */}

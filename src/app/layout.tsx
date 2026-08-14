@@ -4,6 +4,7 @@ import { DM_Sans, Barlow_Condensed, Lora, Space_Grotesk, Inter } from "next/font
 import { GoogleAnalytics } from "@next/third-parties/google";
 import BrandSwitch from "@/components/BrandSwitch";
 import KeyboardModality from "@/components/KeyboardModality";
+import ScrollToTopOnRoute from "@/components/ScrollToTopOnRoute";
 import "./globals.css";
 
 // GA4 measurement ID for barreiro.com. Reads NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -151,6 +152,9 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         <Suspense fallback={null}>
           <BrandSwitch />
+        </Suspense>
+        <Suspense fallback={null}>
+          <ScrollToTopOnRoute />
         </Suspense>
         <KeyboardModality />
         {children}
