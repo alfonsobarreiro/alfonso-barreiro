@@ -163,7 +163,7 @@ export default function Work() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(28px, 4vw, 40px)",
+                fontSize:      "clamp(28px,4vw,40px)",
                 fontWeight:    500,
                 color:         "var(--color-text)",
                 margin:        0,
@@ -412,7 +412,7 @@ function ProjectCard({
         className="work-row-thesis"
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(28px, 3vw, 40px)",
+          fontSize:      "clamp(28px,3vw,40px)",
           fontWeight:    500,
           color:         "var(--color-inverse)",
           margin:        "0 0 24px",
@@ -431,7 +431,7 @@ function ProjectCard({
           className="work-row-deck"
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(15px, 1.6vw, 20px)",
+            fontSize:      "clamp(15px,1.6vw,20px)",
             fontWeight:    400,
             color:         "var(--color-inverse-body)",
             margin:        "0 0 32px",

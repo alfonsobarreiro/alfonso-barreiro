@@ -116,7 +116,7 @@ export default function SpotifyPrototypeWalkthroughs() {
         <p
           style={{
             fontFamily:    font.sans,
-            fontSize:      "11px",
+            fontSize:      "12px",
             fontWeight:    500,
             letterSpacing: "0.01em",
             textTransform: "uppercase",
@@ -131,7 +131,7 @@ export default function SpotifyPrototypeWalkthroughs() {
         <h2
           style={{
             fontFamily:    font.display,
-            fontSize:      "clamp(28px, 4vw, 44px)",
+            fontSize:      "clamp(28px,4vw,40px)",
             fontWeight:    400,
             color:         c.ink,
             margin:        "0 0 48px",
@@ -173,7 +173,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                 <span
                   style={{
                     fontFamily:    font.sans,
-                    fontSize:      "11px",
+                    fontSize:      "12px",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -190,7 +190,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                   id={`walkthrough-${flow.id}-title`}
                   style={{
                     fontFamily:    font.display,
-                    fontSize:      "clamp(22px, 2.6vw, 30px)",
+                    fontSize:      "clamp(20px,2.6vw,28px)",
                     fontWeight:    400,
                     color:         c.ink,
                     margin:        0,
@@ -205,7 +205,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                 <span
                   style={{
                     fontFamily:    font.sans,
-                    fontSize:      "13px",
+                    fontSize:      "15px",
                     fontWeight:    500,
                     fontVariantNumeric: "tabular-nums",
                     color:         c.muted,
@@ -301,7 +301,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                     <span
                       style={{
                         fontFamily:    font.sans,
-                        fontSize:      "11px",
+                        fontSize:      "12px",
                         fontWeight:    500,
                         letterSpacing: "0.01em",
                         textTransform: "uppercase",
@@ -313,7 +313,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                     <span
                       style={{
                         fontFamily: font.sans,
-                        fontSize:   "13px",
+                        fontSize:   "15px",
                         lineHeight: 1.5,
                         color:      c.body,
                         maxWidth:   "320px",
@@ -329,7 +329,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                   <p
                     style={{
                       fontFamily:    font.sans,
-                      fontSize:      "11px",
+                      fontSize:      "12px",
                       fontWeight:    500,
                       letterSpacing: "0.01em",
                       textTransform: "uppercase",
@@ -375,7 +375,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                         <span
                           style={{
                             fontFamily: font.sans,
-                            fontSize:   "14px",
+                            fontSize:   "15px",
                             lineHeight: 1.5,
                             color:      c.body,
                           }}

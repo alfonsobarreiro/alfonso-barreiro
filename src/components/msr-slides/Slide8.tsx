@@ -34,14 +34,14 @@ export default function Slide8() {
         <div className="rounded-lg overflow-hidden mb-5" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
           <div className="grid px-5 py-2" style={{ gridTemplateColumns: "200px 240px 1fr", background: "#F8F7F7", borderBottom: "1px solid #EEEDEC" }}>
             {["What to Measure","Metric","Why It Matters"].map((h) => (
-              <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ color: h === "Why It Matters" ? "#C4703A" : "#938C86", fontSize: 8, fontWeight: h === "Why It Matters" ? 700 : 500 }}>{h}</span>
+              <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ color: h === "Why It Matters" ? "#C4703A" : "#938C86", fontSize: 12, fontWeight: h === "Why It Matters" ? 700 : 500 }}>{h}</span>
             ))}
           </div>
           {criteria.map((c, i) => (
             <div key={c.measure} className="grid px-5 py-[7px] items-start" style={{ gridTemplateColumns: "200px 240px 1fr", background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < criteria.length - 1 ? "1px solid #EEEDEC" : "none" }}>
-              <span className="font-body font-medium" style={{ fontSize: 11, color: "#13100C" }}>{c.measure}</span>
-              <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{c.metric}</span>
-              <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{c.why}</span>
+              <span className="font-body font-medium" style={{ fontSize: 12, color: "#13100C" }}>{c.measure}</span>
+              <span className="font-body" style={{ fontSize: 12, color: "#6B6560" }}>{c.metric}</span>
+              <span className="font-body" style={{ fontSize: 12, color: "#6B6560" }}>{c.why}</span>
             </div>
           ))}
         </div>
@@ -51,15 +51,15 @@ export default function Slide8() {
           <div className="rounded-lg p-5 relative overflow-hidden" style={{ flex: "1 1 0", background: "#FFFFFF", border: "1px solid #D6D3D1" }}>
             <div className="absolute top-0 left-0 bottom-0 w-[3px]" style={{ background: "linear-gradient(180deg, #938C86 0%, rgba(147,140,134,0.2) 100%)" }} />
             <div className="pl-3">
-              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#6B6560", fontSize: 9, fontWeight: 500 }}>What Wasn&rsquo;t Done</span>
-              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 11 }}>I didn&rsquo;t conduct user interviews before building. I didn&rsquo;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.</p>
+              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#6B6560", fontSize: 12, fontWeight: 500 }}>What Wasn&rsquo;t Done</span>
+              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 12 }}>I didn&rsquo;t conduct user interviews before building. I didn&rsquo;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.</p>
             </div>
           </div>
           {/* Reflection */}
           <div className="rounded-lg p-5 flex flex-col gap-3" style={{ flex: "1 1 0", background: "linear-gradient(135deg, rgba(196,112,58,0.04) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.15)" }}>
-            <span className="font-display uppercase tracking-[0.2em] block" style={{ color: "#C4703A", fontSize: 9, fontWeight: 500 }}>Reflection</span>
+            <span className="font-display uppercase tracking-[0.2em] block" style={{ color: "#C4703A", fontSize: 12, fontWeight: 500 }}>Reflection</span>
             {reflections.map((r, i) => (
-              <p key={i} className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 11 }}>{r}</p>
+              <p key={i} className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 12 }}>{r}</p>
             ))}
           </div>
         </div>

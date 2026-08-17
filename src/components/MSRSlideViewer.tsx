@@ -315,7 +315,7 @@ export default function MSRSlideViewer() {
         aria-hidden="true"
         style={{
           textAlign:     "center",
-          fontSize:      "11px",
+          fontSize:      "12px",
           color:         "#6B6560",
           margin:        "6px 0 0",
           fontFamily:    "var(--font-dm-sans), sans-serif",

@@ -283,7 +283,7 @@ export default function Nav() {
         {navLinks.map((link) => {
           const overlayLinkStyle: React.CSSProperties = {
             fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "clamp(40px, 8vw, 60px)",
+            fontSize:       "clamp(40px,8vw,60px)",
             fontWeight:     500,
             color:          "var(--color-inverse)",
             letterSpacing:  "-0.02em",

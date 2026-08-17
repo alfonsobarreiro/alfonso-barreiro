@@ -353,7 +353,7 @@ export default function RecentlyPlayedDemo() {
             padding:    "32px",
             textAlign:  "center",
             color:      "rgba(255,255,255,0.55)",
-            fontSize:   "14px",
+            fontSize:   "15px",
             border:     "1px dashed rgba(255,255,255,0.18)",
           }}>
             Shelf empty. Click Reset to restore all artists.
@@ -417,7 +417,7 @@ export default function RecentlyPlayedDemo() {
                   flex:           1,
                 }}>
                   <span style={{
-                    fontSize:       "14px",
+                    fontSize:       "15px",
                     fontWeight: 500,
                     color:          "#FFFFFF",
                     letterSpacing:  "0",
@@ -530,7 +530,7 @@ export default function RecentlyPlayedDemo() {
             padding:        "8px 14px",
             minHeight:      "44px",
             fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "11px",
+            fontSize:       "12px",
             fontWeight: 500,
             letterSpacing:  "0.01em",
             textTransform: "none",
@@ -556,7 +556,7 @@ export default function RecentlyPlayedDemo() {
           marginTop:    "16px",
           color:        "#FFFFFF",
           fontFamily:   "var(--font-dm-sans), sans-serif",
-          fontSize:     "13px",
+          fontSize:     "15px",
         }}>
           <PauseIcon />
           <span>Listening history paused. Resumes in <strong style={{ color: SPOTIFY_GREEN, fontVariantNumeric: "tabular-nums" }}>{pausedAt}s</strong>.</span>
@@ -586,7 +586,7 @@ export default function RecentlyPlayedDemo() {
             borderRadius: "6px",
             boxShadow:    "0 10px 28px rgba(0,0,0,0.45)",
             fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "13px",
+            fontSize:     "15px",
             transition:   reducedMotion ? "none" : "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
@@ -711,7 +711,7 @@ function ActionChip({
         <span aria-hidden="true" style={{
           marginLeft:     "6px",
           fontFamily:     "ui-monospace, SFMono-Regular, Menlo, monospace",
-          fontSize:       "10px",
+          fontSize:       "12px",
           fontWeight: 500,
           padding:        "2px 6px",
           background:     "rgba(255,255,255,0.08)",

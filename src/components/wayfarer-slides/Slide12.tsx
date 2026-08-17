@@ -16,7 +16,7 @@ function Cell({ hex, emphasis }: { hex: string; emphasis?: boolean }) {
         background: hex, border: `1px solid ${wf.n200}`,
       }} />
       <span className="font-body" style={{
-        fontSize: 14, fontFamily: "monospace",
+        fontSize: 15, fontFamily: "monospace",
         color: emphasis ? wf.n900 : wf.n500,
         fontWeight: emphasis ? 600 : 400,
       }}>{hex}</span>
@@ -30,7 +30,7 @@ export default function Slide12() {
       <Eyebrow>05 · Design System</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 16px",
-        fontSize: 52, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
+        fontSize: 60, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
         color: wf.n900, maxWidth: 1100,
       }}>
         One vocabulary. Different values per project.
@@ -51,7 +51,7 @@ export default function Slide12() {
         }}>
           {["TOKEN","WAYFARER","PORTFOLIO","MSR"].map((h) => (
             <div key={h} className="font-body" style={{
-              fontSize: 11, fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
+              fontSize: 12, fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
             }}>{h}</div>
           ))}
         </div>
@@ -61,7 +61,7 @@ export default function Slide12() {
             padding: "16px 20px", alignItems: "center",
             borderBottom: i < rows.length - 1 ? `1px solid ${wf.n200}` : "none",
           }}>
-            <div className="font-body" style={{ fontSize: 14, fontFamily: "monospace", color: wf.n900, fontWeight: 500 }}>{r.token}</div>
+            <div className="font-body" style={{ fontSize: 15, fontFamily: "monospace", color: wf.n900, fontWeight: 500 }}>{r.token}</div>
             <Cell hex={r.wayfarer} emphasis />
             <Cell hex={r.portfolio} />
             <Cell hex={r.msr} />

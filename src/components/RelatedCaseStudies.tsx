@@ -73,7 +73,7 @@ export default function RelatedCaseStudies({ current }: Props) {
           <h2
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(28px, 3.5vw, 40px)",
+              fontSize:      "clamp(28px,3.5vw,40px)",
               fontWeight:    500,
               lineHeight:    1.15,
               letterSpacing: "-0.01em",
@@ -131,7 +131,7 @@ export default function RelatedCaseStudies({ current }: Props) {
               <h3
                 style={{
                   fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "clamp(28px, 3.5vw, 40px)",
+                  fontSize:      "clamp(28px,3.5vw,40px)",
                   fontWeight:    500,
                   lineHeight:    1.15,
                   letterSpacing: "-0.01em",

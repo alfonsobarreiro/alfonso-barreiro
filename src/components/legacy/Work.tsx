@@ -169,7 +169,7 @@ export default function Work() {
               />
               <p
                 style={{
-                  fontSize:      "11px",
+                  fontSize:      "12px",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -184,7 +184,7 @@ export default function Work() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(28px, 4vw, 48px)",
+                fontSize:      "clamp(28px,4vw,60px)",
                 fontWeight:    500,
                 color:         "#252B28",
                 margin:        0,
@@ -197,7 +197,7 @@ export default function Work() {
             <p
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "clamp(15px, 1.5vw, 17px)",
+                fontSize:     "clamp(15px,1.5vw,17px)",
                 lineHeight:   1.6,
                 color:        "#3D4440",
                 margin:       "20px 0 0",
@@ -323,7 +323,7 @@ function ProjectCard({
       >
         <p style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
+          fontSize:      "12px",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -334,7 +334,7 @@ function ProjectCard({
         </p>
         <p style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(15px, 1.4vw, 18px)",
+          fontSize:      "clamp(15px,1.4vw,17px)",
           fontWeight:    500,
           lineHeight:    1.35,
           letterSpacing: "0",
@@ -353,7 +353,7 @@ function ProjectCard({
       {/* Title — display weight, room to breathe now. */}
       <h3 style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(34px, 4.5vw, 56px)",
+        fontSize:      "clamp(40px,4.5vw,60px)",
         fontWeight:    500,
         color:         "#252B28",
         margin:        "0 0 10px",
@@ -366,7 +366,7 @@ function ProjectCard({
       {/* Subtitle + year — quiet editorial eyebrow */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "14px",
+        fontSize:      "15px",
         color:         "#8A8680",
         margin:        "0 0 24px",
         fontWeight:    500,
@@ -380,7 +380,7 @@ function ProjectCard({
           single column and the content cell suddenly becomes full-width. */}
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "clamp(15px, 1.4vw, 17px)",
+        fontSize:   "clamp(15px,1.4vw,17px)",
         lineHeight: 1.6,
         color:      "#3D4440",
         margin:     "0 0 18px",
@@ -392,7 +392,7 @@ function ProjectCard({
       {/* Thesis — italic accent line */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "14px",
+        fontSize:      "15px",
         lineHeight:    1.5,
         color:         "var(--color-accent)",
         fontStyle:     "italic",
@@ -408,7 +408,7 @@ function ProjectCard({
         {project.tags.map((tag) => (
           <span key={tag} style={{
             fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "11px",
+            fontSize:     "12px",
             padding:      "4px 12px",
             background:   "#F5F5F4",
             color:        "#3D4440",
@@ -427,7 +427,7 @@ function ProjectCard({
           alignItems:    "center",
           gap:           "8px",
           color:         "var(--color-brand)",
-          fontSize:      "13px",
+          fontSize:      "15px",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -445,7 +445,7 @@ function ProjectCard({
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "13px",
+          fontSize:   "15px",
           color:      "#8A8680",
           margin:     0,
           fontStyle:  "italic",

@@ -331,7 +331,7 @@ export default function DiagnosticFlowDemo() {
             id="diag-step1-h"
             style={{
               fontFamily:    font.sans,
-              fontSize:      "16px",
+              fontSize:      "15px",
               fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 16px",
@@ -451,7 +451,7 @@ export default function DiagnosticFlowDemo() {
               aria-live="polite"
               style={{
                 fontFamily: font.sans,
-                fontSize:   "13px",
+                fontSize:   "15px",
                 color:      c.muted,
                 margin:     0,
               }}
@@ -471,7 +471,7 @@ export default function DiagnosticFlowDemo() {
                 border:        "none",
                 padding:       "14px 28px",
                 fontFamily:    font.sans,
-                fontSize:      "14px",
+                fontSize:      "15px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "none",
@@ -493,7 +493,7 @@ export default function DiagnosticFlowDemo() {
             id="diag-step2-h"
             style={{
               fontFamily:    font.sans,
-              fontSize:      "16px",
+              fontSize:      "15px",
               fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 6px",
@@ -504,7 +504,7 @@ export default function DiagnosticFlowDemo() {
           </p>
           <p style={{
             fontFamily: font.sans,
-            fontSize:   "13px",
+            fontSize:   "15px",
             color:      c.muted,
             margin:     "0 0 24px",
           }}>
@@ -533,7 +533,7 @@ export default function DiagnosticFlowDemo() {
               >
                 <span style={{
                   fontFamily:    font.sans,
-                  fontSize:      "11px",
+                  fontSize:      "12px",
                   fontWeight: 500,
                   letterSpacing: "0.01em",
                   textTransform: "none",
@@ -545,7 +545,7 @@ export default function DiagnosticFlowDemo() {
                 </span>
                 <h4 style={{
                   fontFamily:    font.sans,
-                  fontSize:      "16px",
+                  fontSize:      "15px",
                   fontWeight: 500,
                   color:         c.ink,
                   margin:        "0 0 8px",
@@ -556,7 +556,7 @@ export default function DiagnosticFlowDemo() {
                 </h4>
                 <p style={{
                   fontFamily: font.sans,
-                  fontSize:   "14px",
+                  fontSize:   "15px",
                   lineHeight: 1.5,
                   color:      c.ink2,
                   margin:     0,
@@ -586,7 +586,7 @@ export default function DiagnosticFlowDemo() {
                 border:        `1px solid ${c.border}`,
                 padding:       "12px 20px",
                 fontFamily:    font.sans,
-                fontSize:      "13px",
+                fontSize:      "15px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "none",
@@ -607,7 +607,7 @@ export default function DiagnosticFlowDemo() {
                 border:        "none",
                 padding:       "14px 28px",
                 fontFamily:    font.sans,
-                fontSize:      "14px",
+                fontSize:      "15px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "none",
@@ -629,7 +629,7 @@ export default function DiagnosticFlowDemo() {
             id="diag-step3-h"
             style={{
               fontFamily:    font.sans,
-              fontSize:      "16px",
+              fontSize:      "15px",
               fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 6px",
@@ -640,7 +640,7 @@ export default function DiagnosticFlowDemo() {
           </p>
           <p style={{
             fontFamily: font.sans,
-            fontSize:   "14px",
+            fontSize:   "15px",
             lineHeight: 1.6,
             color:      c.ink2,
             margin:     "0 0 12px",
@@ -650,7 +650,7 @@ export default function DiagnosticFlowDemo() {
           </p>
           <p style={{
             fontFamily: font.sans,
-            fontSize:   "13px",
+            fontSize:   "15px",
             lineHeight: 1.5,
             color:      c.muted,
             margin:     "0 0 24px",
@@ -671,7 +671,7 @@ export default function DiagnosticFlowDemo() {
                 border:         "none",
                 padding:        "14px 28px",
                 fontFamily:     font.sans,
-                fontSize:       "14px",
+                fontSize:       "15px",
                 fontWeight: 500,
                 letterSpacing:  "0.01em",
                 textTransform: "none",
@@ -695,7 +695,7 @@ export default function DiagnosticFlowDemo() {
                 border:        `1px solid ${c.border}`,
                 padding:       "12px 20px",
                 fontFamily:    font.sans,
-                fontSize:      "13px",
+                fontSize:      "15px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "none",

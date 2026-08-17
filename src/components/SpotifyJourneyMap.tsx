@@ -35,7 +35,7 @@ export default function SpotifyJourneyMap() {
           <p
             style={{
               fontFamily:    font.sans,
-              fontSize:      "11px",
+              fontSize:      "12px",
               fontWeight:    500,
               letterSpacing: "0.01em",
               textTransform: "uppercase",
@@ -78,7 +78,7 @@ export default function SpotifyJourneyMap() {
           <h3
             style={{
               fontFamily:    font.display,
-              fontSize:      "clamp(20px, 2.4vw, 28px)",
+              fontSize:      "clamp(20px,2.4vw,28px)",
               fontWeight:    400,
               color:         c.ink,
               margin:        "0 0 12px",

@@ -62,7 +62,7 @@ export default function GlobeIframeDemo() {
       <header style={{ marginBottom: "20px" }}>
         <span style={{
           fontFamily:    font.sans,
-          fontSize:      "11px",
+          fontSize:      "12px",
           fontWeight:    500,
           letterSpacing: "0.01em",
           color:         c.coral,
@@ -74,7 +74,7 @@ export default function GlobeIframeDemo() {
         </span>
         <h3 style={{
           fontFamily:    font.sans,
-          fontSize:      "clamp(20px, 2.4vw, 26px)",
+          fontSize:      "clamp(20px,2.4vw,28px)",
           fontWeight:    500,
           color:         c.navy,
           margin:        "0 0 8px",
@@ -128,7 +128,7 @@ export default function GlobeIframeDemo() {
               background:     "rgba(26,34,54,0.92)",
               color:          "#F4F6F7",
               fontFamily:     font.sans,
-              fontSize:       "14px",
+              fontSize:       "15px",
               fontWeight:     500,
               letterSpacing:  "0.01em",
               pointerEvents:  "none",
@@ -158,7 +158,7 @@ export default function GlobeIframeDemo() {
           >
             <p style={{
               fontFamily: font.sans,
-              fontSize:   "16px",
+              fontSize:   "15px",
               fontWeight: 500,
               margin:     0,
               maxWidth:   "44ch",
@@ -167,7 +167,7 @@ export default function GlobeIframeDemo() {
             </p>
             <p style={{
               fontFamily: font.sans,
-              fontSize:   "14px",
+              fontSize:   "15px",
               color:      "rgba(244,246,247,0.78)",
               margin:     0,
               maxWidth:   "44ch",
@@ -184,7 +184,7 @@ export default function GlobeIframeDemo() {
                 color:           "#FFFFFF",
                 padding:         "12px 22px",
                 fontFamily:      font.sans,
-                fontSize:        "13px",
+                fontSize:        "15px",
                 fontWeight:      500,
                 letterSpacing:   "0.01em",
                 textTransform:   "uppercase",
@@ -227,7 +227,7 @@ export default function GlobeIframeDemo() {
           rel="noopener noreferrer"
           style={{
             fontFamily:     font.sans,
-            fontSize:       "13px",
+            fontSize:       "15px",
             fontWeight:     500,
             color:          c.accent,
             textDecoration: "none",

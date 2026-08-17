@@ -83,7 +83,7 @@ export default function SpotifyQuoteRotator({
         <p
           style={{
             fontFamily: fontDisplay,
-            fontSize:   "clamp(15px, 1.8vw, 19px)",
+            fontSize:   "clamp(15px,1.8vw,17px)",
             color:      bodyColor,
             margin:     "0 0 10px",
             lineHeight: 1.5,

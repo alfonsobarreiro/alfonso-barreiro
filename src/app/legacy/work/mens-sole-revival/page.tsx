@@ -79,7 +79,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
       <span style={{ display: "inline-block", width: "32px", height: "1px", background: c.accent }} />
       <span style={{
         fontFamily:    font.sans,
-        fontSize:      "11px",
+        fontSize:      "12px",
         fontWeight:    500,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
@@ -95,7 +95,7 @@ function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
       fontFamily:    font.sans,
-      fontSize:      "11px",
+      fontSize:      "12px",
       fontWeight:    500,
       letterSpacing: "0.01em",
       textTransform: "uppercase",
@@ -113,7 +113,7 @@ function Callout({
 }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "10px",
+    fontSize:      "12px",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -224,7 +224,7 @@ export default function MSRv2() {
         <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `24px ${SECTION_X} 0` }}>
           <Link href="/#work" style={{
             fontFamily:     font.sans,
-            fontSize:       "13px",
+            fontSize:       "15px",
             color:          c.muted,
             textDecoration: "none",
           }}>
@@ -245,7 +245,7 @@ export default function MSRv2() {
 
           <h1 style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(48px, 8vw, 96px)",
+            fontSize:      "clamp(60px,8vw,96px)",
             fontWeight:    500,
             color:         c.ink,
             margin:        "0 0 32px",
@@ -258,7 +258,7 @@ export default function MSRv2() {
 
           <p style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(20px, 2.4vw, 26px)",
+            fontSize:      "clamp(20px,2.4vw,28px)",
             lineHeight:    1.5,
             fontWeight:    400,
             color:         c.ink2,
@@ -285,7 +285,7 @@ export default function MSRv2() {
               alignItems:     "center",
               gap:            "10px",
               fontFamily:     font.sans,
-              fontSize:       "13px",
+              fontSize:       "15px",
               fontWeight:     500,
               letterSpacing:  "0.01em",
               textTransform:  "uppercase",
@@ -322,7 +322,7 @@ export default function MSRv2() {
         }}>
           <p style={{
             fontFamily:    font.sans,
-            fontSize:      "clamp(28px, 4vw, 44px)",
+            fontSize:      "clamp(28px,4vw,40px)",
             fontWeight:    500,
             color:         c.brand,
             margin:        0,
@@ -387,7 +387,7 @@ export default function MSRv2() {
               <div>
                 <span style={{
                   fontFamily:    font.sans,
-                  fontSize:      "11px",
+                  fontSize:      "12px",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   color:         c.accent,
@@ -396,7 +396,7 @@ export default function MSRv2() {
                 }}>02</span>
                 <h2 style={{
                   fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
+                  fontSize:      "clamp(28px,4vw,60px)",
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
@@ -410,7 +410,7 @@ export default function MSRv2() {
               <div>
                 <p style={{
                   fontFamily: font.sans,
-                  fontSize:   "clamp(16px, 1.6vw, 18px)",
+                  fontSize:   "clamp(15px,1.6vw,17px)",
                   lineHeight: 1.6,
                   color:      c.ink2,
                   margin:     0,
@@ -452,7 +452,7 @@ export default function MSRv2() {
                 <div>
                   <h3 style={{
                     fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
-                    fontSize:      "clamp(56px, 7vw, 96px)",
+                    fontSize:      "clamp(60px,7vw,96px)",
                     fontWeight:    500,
                     color:         "#F5F0E8",
                     margin:        0,
@@ -464,7 +464,7 @@ export default function MSRv2() {
                   </h3>
                   <p style={{
                     fontFamily:    "var(--font-lora), Lora, Georgia, serif",
-                    fontSize:      "clamp(15px, 1.6vw, 18px)",
+                    fontSize:      "clamp(15px,1.6vw,17px)",
                     color:         "#C4703A",
                     fontStyle:     "italic",
                     margin:        "24px 0 0",
@@ -501,7 +501,7 @@ export default function MSRv2() {
                 <Eyebrow>Brand identity</Eyebrow>
                 <h2 style={{
                   fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
+                  fontSize:      "clamp(28px,4vw,60px)",
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
@@ -514,7 +514,7 @@ export default function MSRv2() {
               <div>
                 <p style={{
                   fontFamily: font.sans,
-                  fontSize:   "clamp(16px, 1.6vw, 18px)",
+                  fontSize:   "clamp(15px,1.6vw,17px)",
                   lineHeight: 1.6,
                   color:      c.ink2,
                   margin:     0,
@@ -549,7 +549,7 @@ export default function MSRv2() {
                 <Eyebrow>Design system</Eyebrow>
                 <h2 style={{
                   fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
+                  fontSize:      "clamp(28px,4vw,60px)",
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
@@ -562,7 +562,7 @@ export default function MSRv2() {
               <div>
                 <p style={{
                   fontFamily: font.sans,
-                  fontSize:   "clamp(16px, 1.6vw, 18px)",
+                  fontSize:   "clamp(15px,1.6vw,17px)",
                   lineHeight: 1.6,
                   color:      c.ink2,
                   margin:     0,
@@ -578,7 +578,7 @@ export default function MSRv2() {
           <div style={{ padding: `0 ${SECTION_X}` }}>
             <p style={{
               fontFamily:    font.sans,
-              fontSize:      "11px",
+              fontSize:      "12px",
               fontWeight:    500,
               letterSpacing: "0.01em",
               textTransform: "uppercase",
@@ -605,7 +605,7 @@ export default function MSRv2() {
               <div>
                 <span style={{
                   fontFamily:    font.sans,
-                  fontSize:      "11px",
+                  fontSize:      "12px",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   color:         c.accent,
@@ -614,7 +614,7 @@ export default function MSRv2() {
                 }}>03</span>
                 <h2 style={{
                   fontFamily:    font.sans,
-                  fontSize:      "clamp(32px, 4vw, 48px)",
+                  fontSize:      "clamp(28px,4vw,60px)",
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
@@ -626,7 +626,7 @@ export default function MSRv2() {
               </div>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "clamp(16px, 1.6vw, 18px)",
+                fontSize:   "clamp(15px,1.6vw,17px)",
                 lineHeight: 1.6,
                 color:      c.ink2,
                 margin:     0,
@@ -683,7 +683,7 @@ export default function MSRv2() {
                         background:    "rgba(255,255,255,0.94)",
                         padding:       "5px 12px",
                         fontFamily:    font.sans,
-                        fontSize:      "10px",
+                        fontSize:      "12px",
                         fontWeight:    500,
                         letterSpacing: "0.01em",
                         color:         c.ink,
@@ -716,7 +716,7 @@ export default function MSRv2() {
                         background:    "rgba(255,255,255,0.94)",
                         padding:       "5px 12px",
                         fontFamily:    font.sans,
-                        fontSize:      "10px",
+                        fontSize:      "12px",
                         fontWeight:    500,
                         letterSpacing: "0.01em",
                         color:         c.ink,
@@ -796,7 +796,7 @@ export default function MSRv2() {
             <Eyebrow>Mobile</Eyebrow>
             <p style={{
               fontFamily:    font.sans,
-              fontSize:      "clamp(20px, 2vw, 24px)",
+              fontSize:      "clamp(20px,2vw,20px)",
               fontWeight:    500,
               color:         c.ink,
               margin:        "0 0 48px",
@@ -836,7 +836,7 @@ export default function MSRv2() {
                   </div>
                   <figcaption style={{
                     fontFamily:    font.sans,
-                    fontSize:      "11px",
+                    fontSize:      "12px",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -974,7 +974,7 @@ function BigThree({
           <div>
             <span style={{
               fontFamily:    font.sans,
-              fontSize:      "11px",
+              fontSize:      "12px",
               fontWeight:    500,
               letterSpacing: "0.01em",
               color:         c.accent,
@@ -985,7 +985,7 @@ function BigThree({
             </span>
             <h2 style={{
               fontFamily:    font.sans,
-              fontSize:      "clamp(32px, 4vw, 48px)",
+              fontSize:      "clamp(28px,4vw,60px)",
               fontWeight:    500,
               color:         c.ink,
               margin:        0,
@@ -999,7 +999,7 @@ function BigThree({
           <div>
             <p style={{
               fontFamily: font.sans,
-              fontSize:   "clamp(16px, 1.6vw, 18px)",
+              fontSize:   "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6,
               color:      c.ink2,
               margin:     0,
@@ -1044,7 +1044,7 @@ function PivotInfographic() {
 
   const colLabel: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "10px",
+    fontSize:      "12px",
     fontWeight:    500,
     color:         muted,
     letterSpacing: "0.01em",
@@ -1053,7 +1053,7 @@ function PivotInfographic() {
   };
   const colDisplay: React.CSSProperties = {
     fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
-    fontSize:      "clamp(34px, 4.5vw, 52px)",
+    fontSize:      "clamp(40px,4.5vw,60px)",
     fontWeight:    500,
     color:         paper,
     letterSpacing: "0.01em",
@@ -1063,7 +1063,7 @@ function PivotInfographic() {
   };
   const liBase: React.CSSProperties = {
     fontFamily: font.sans,
-    fontSize:   "14px",
+    fontSize:   "15px",
     color:      paper,
     margin:     "0 0 10px",
     letterSpacing: "0.01em",
@@ -1079,7 +1079,7 @@ function PivotInfographic() {
         {/* Eyebrow */}
         <p style={{
           fontFamily:    font.sans,
-          fontSize:      "11px",
+          fontSize:      "12px",
           fontWeight:    500,
           color:         muted,
           letterSpacing: "0.01em",
@@ -1130,7 +1130,7 @@ function PivotInfographic() {
             </svg>
             <p style={{
               fontFamily:    font.sans,
-              fontSize:      "11px",
+              fontSize:      "12px",
               fontWeight:    500,
               color:         cognac,
               letterSpacing: "0.01em",
@@ -1178,7 +1178,7 @@ function PivotInfographic() {
 function ResearchStrip() {
   const stepLabel: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "10px",
+    fontSize:      "12px",
     fontWeight:    500,
     color:         c.accent,
     letterSpacing: "0.01em",
@@ -1226,7 +1226,7 @@ function ResearchStrip() {
 function WhatICut() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "10px",
+    fontSize:      "12px",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -1266,7 +1266,7 @@ function WhatICut() {
 function EarlyOutcomes() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "10px",
+    fontSize:      "12px",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -1313,7 +1313,7 @@ function EarlyOutcomes() {
 function HonestRisks() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "10px",
+    fontSize:      "12px",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -1361,7 +1361,7 @@ function HonestRisks() {
 function UserResearch() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "10px",
+    fontSize:      "12px",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -1404,7 +1404,7 @@ function UserResearch() {
           }}>
             <p style={{
               fontFamily:    "var(--font-barlow-condensed), sans-serif",
-              fontSize:      "clamp(36px, 4vw, 56px)",
+              fontSize:      "clamp(40px,4vw,60px)",
               fontWeight:    500,
               color:         c.brand,
               margin:        "0 0 6px",
@@ -1424,7 +1424,7 @@ function UserResearch() {
       </div>
       <p style={{
         fontFamily:    font.sans,
-        fontSize:      "11px",
+        fontSize:      "12px",
         letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         c.muted,
@@ -1476,7 +1476,7 @@ function AnnotatedAssessment() {
 
   const eyebrowStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "11px",
+    fontSize:      "12px",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -1485,7 +1485,7 @@ function AnnotatedAssessment() {
   };
   const subheadStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "clamp(18px, 2vw, 22px)",
+    fontSize:      "clamp(17px,2vw,20px)",
     fontWeight:    500,
     color:         c.ink,
     margin:        "0 0 40px",
@@ -1503,7 +1503,7 @@ function AnnotatedAssessment() {
   };
   const itemBody: React.CSSProperties = {
     fontFamily: font.sans,
-    fontSize:   "14px",
+    fontSize:   "15px",
     lineHeight: 1.6,
     color:      c.ink2,
     margin:     0,
@@ -1516,7 +1516,7 @@ function AnnotatedAssessment() {
     background:     "var(--color-brand)",
     color:          "#FFFFFF",
     fontFamily:     font.sans,
-    fontSize:       "11px",
+    fontSize:       "12px",
     fontWeight:     500,
     alignItems:     "center",
     justifyContent: "center",
@@ -1606,7 +1606,7 @@ function AssessmentFunnelFlow() {
     }}>
       <p style={{
         fontFamily:    font.sans,
-        fontSize:      "10px",
+        fontSize:      "12px",
         fontWeight:    500,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
@@ -1633,7 +1633,7 @@ function AssessmentFunnelFlow() {
             }}>
               <p style={{
                 fontFamily:    font.sans,
-                fontSize:      "10px",
+                fontSize:      "12px",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 color:         c.accent,
@@ -1649,7 +1649,7 @@ function AssessmentFunnelFlow() {
               }}>{s.label}</p>
               <p style={{
                 fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
-                fontSize:      "clamp(28px, 3.6vw, 40px)",
+                fontSize:      "clamp(28px,3.6vw,40px)",
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        0,
@@ -1659,7 +1659,7 @@ function AssessmentFunnelFlow() {
               {s.sublabel && (
                 <p style={{
                   fontFamily: font.sans,
-                  fontSize:   "10px",
+                  fontSize:   "12px",
                   color:      c.muted,
                   margin:     "8px 0 0",
                   lineHeight: 1.35,
@@ -1672,7 +1672,7 @@ function AssessmentFunnelFlow() {
                 alignItems:     "center",
                 justifyContent: "center",
                 color:          c.accent,
-                fontSize:       "16px",
+                fontSize:       "15px",
               }} aria-hidden>&rarr;</div>
             )}
           </React.Fragment>
@@ -1720,7 +1720,7 @@ function DSPanelColor() {
             <div style={{ padding: "14px 16px 16px" }}>
               <p style={{
                 fontFamily:    font.sans,
-                fontSize:      "13px",
+                fontSize:      "15px",
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 4px",
@@ -1728,7 +1728,7 @@ function DSPanelColor() {
               }}>{t.label}</p>
               <p style={{
                 fontFamily:    font.sans,
-                fontSize:      "11px",
+                fontSize:      "12px",
                 color:         c.muted,
                 margin:        "0 0 6px",
                 letterSpacing: "0.01em",
@@ -1770,7 +1770,7 @@ function DSPanelType() {
         <div style={{ border: `1px solid ${c.border}`, padding: "32px 28px", background: "#FFFFFF" }}>
           <p style={{
             fontFamily:    font.sans,
-            fontSize:      "10px",
+            fontSize:      "12px",
             fontWeight:    500,
             color:         c.accent,
             letterSpacing: "0.01em",
@@ -1779,7 +1779,7 @@ function DSPanelType() {
           }}>Display · Barlow Condensed</p>
           <p style={{
             fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
-            fontSize:      "clamp(72px, 9vw, 120px)",
+            fontSize:      "clamp(72px,9vw,120px)",
             fontWeight:    500,
             color:         "#13100C",
             margin:        "0 0 18px",
@@ -1788,7 +1788,7 @@ function DSPanelType() {
           }}>Aa</p>
           <p style={{
             fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
-            fontSize:      "22px",
+            fontSize:      "20px",
             fontWeight:    500,
             color:         "#13100C",
             margin:        "0 0 10px",
@@ -1797,7 +1797,7 @@ function DSPanelType() {
           }}>The Men&rsquo;s Foot Health Assessment</p>
           <p style={{
             fontFamily: font.sans,
-            fontSize:   "11px",
+            fontSize:   "12px",
             color:      c.muted,
             margin:     0,
             letterSpacing: "0.01em",
@@ -1808,7 +1808,7 @@ function DSPanelType() {
         <div style={{ border: `1px solid ${c.border}`, padding: "32px 28px", background: "#FFFFFF" }}>
           <p style={{
             fontFamily:    font.sans,
-            fontSize:      "10px",
+            fontSize:      "12px",
             fontWeight:    500,
             color:         c.accent,
             letterSpacing: "0.01em",
@@ -1817,7 +1817,7 @@ function DSPanelType() {
           }}>Long-form · Lora</p>
           <p style={{
             fontFamily: "var(--font-lora), Lora, Georgia, serif",
-            fontSize:   "clamp(72px, 9vw, 120px)",
+            fontSize:   "clamp(72px,9vw,120px)",
             color:      "#13100C",
             margin:     "0 0 18px",
             lineHeight: 0.9,
@@ -1839,7 +1839,7 @@ function DSPanelType() {
           }}>&ldquo;After years of neglect, men over 40 finally have a place to start.&rdquo;</p>
           <p style={{
             fontFamily: font.sans,
-            fontSize:   "11px",
+            fontSize:   "12px",
             color:      c.muted,
             margin:     0,
             letterSpacing: "0.01em",
@@ -1893,7 +1893,7 @@ function DSPanelComponents() {
           }}>
             <span style={{
               fontFamily:    font.sans,
-              fontSize:      "10px",
+              fontSize:      "12px",
               fontWeight:    500,
               color:         c.accent,
               letterSpacing: "0.01em",
@@ -1902,7 +1902,7 @@ function DSPanelComponents() {
             <div style={{ flex: 1 }}>
               <p style={{
                 fontFamily:    font.sans,
-                fontSize:      "14px",
+                fontSize:      "15px",
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 2px",
@@ -1962,14 +1962,14 @@ function DesignSystemCarousel() {
             >
               <span style={{
                 fontFamily:    font.sans,
-                fontSize:      "11px",
+                fontSize:      "12px",
                 fontWeight:    500,
                 color:         c.accent,
                 letterSpacing: "0.01em",
               }}>{tab.num}</span>
               <span style={{
                 fontFamily:    font.sans,
-                fontSize:      "14px",
+                fontSize:      "15px",
                 fontWeight:    500,
                 color:         c.ink,
                 letterSpacing: "0",
@@ -2003,7 +2003,7 @@ function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; te
     }}>
       <span style={{
         fontFamily:    font.sans,
-        fontSize:      "10px",
+        fontSize:      "12px",
         fontWeight:    500,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
@@ -2013,7 +2013,7 @@ function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; te
       </span>
       <span style={{
         fontFamily:    font.sans,
-        fontSize:      "11px",
+        fontSize:      "12px",
         color:         textColor,
         opacity:       0.65,
         letterSpacing: "0.01em",
@@ -2054,7 +2054,7 @@ function AssessmentThumb({ src, alt, number }: { src: string; alt: string; numbe
         background:    "rgba(255,255,255,0.94)",
         padding:       "4px 10px",
         fontFamily:    font.sans,
-        fontSize:      "10px",
+        fontSize:      "12px",
         fontWeight:    500,
         letterSpacing: "0.01em",
         color:         c.ink,
@@ -2072,7 +2072,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
     <div>
       <p style={{
         fontFamily:    font.sans,
-        fontSize:      "10px",
+        fontSize:      "12px",
         fontWeight:    500,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
@@ -2083,7 +2083,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
       </p>
       <p style={{
         fontFamily: font.sans,
-        fontSize:   "14px",
+        fontSize:   "15px",
         lineHeight: 1.5,
         color:      c.ink,
         margin:     0,

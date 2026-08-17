@@ -63,7 +63,7 @@ export default function MSRDeckPage() {
                 href="/work/presentations"
                 style={{
                   fontFamily: font.sans,
-                  fontSize: "13px",
+                  fontSize: "15px",
                   color: c.muted,
                   textDecoration: "none",
                 }}
@@ -72,14 +72,14 @@ export default function MSRDeckPage() {
               </Link>
               <span style={{
                 fontFamily: font.sans,
-                fontSize: "13px",
+                fontSize: "15px",
                 color: c.border,
               }}>
                 /
               </span>
               <h1 style={{
                 fontFamily: font.sans,
-                fontSize: "14px",
+                fontSize: "15px",
                 fontWeight: 500,
                 color: c.ink,
                 margin: 0,
@@ -124,7 +124,7 @@ export default function MSRDeckPage() {
             <div>
               <p style={{
                 fontFamily: font.sans,
-                fontSize: "11px",
+                fontSize: "12px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -135,7 +135,7 @@ export default function MSRDeckPage() {
               </p>
               <p style={{
                 fontFamily: font.display,
-                fontSize: "clamp(20px, 3vw, 28px)",
+                fontSize: "clamp(20px,3vw,28px)",
                 fontWeight: 500,
                 color: c.ink,
                 margin: 0,
@@ -155,7 +155,7 @@ export default function MSRDeckPage() {
                 borderRadius: "8px",
                 color: "#F5F5F4",
                 fontFamily: font.sans,
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textDecoration: "none",

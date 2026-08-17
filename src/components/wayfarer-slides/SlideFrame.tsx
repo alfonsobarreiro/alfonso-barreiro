@@ -69,7 +69,7 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
         top:           56,
         left:          96,
         fontFamily:    "var(--font-inter), Inter, sans-serif",
-        fontSize:      14,
+        fontSize:      15,
         fontWeight:    500,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
@@ -89,7 +89,7 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
       }}>
         <span style={{
           fontFamily:    "var(--font-inter), Inter, sans-serif",
-          fontSize:      11,
+          fontSize:      12,
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -100,7 +100,7 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
         <span style={{ width: 1, height: 12, background: border }} />
         <span style={{
           fontFamily:    "var(--font-inter), Inter, sans-serif",
-          fontSize:      11,
+          fontSize:      12,
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",

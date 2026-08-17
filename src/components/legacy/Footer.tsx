@@ -58,7 +58,7 @@ export default function Footer() {
           <div style={{ maxWidth: "480px" }}>
             <p style={{
               fontFamily:    font,
-              fontSize:      "clamp(18px, 2vw, 22px)",
+              fontSize:      "clamp(17px,2vw,20px)",
               fontWeight:    500,
               color:         ink,
               margin:        "0 0 8px",
@@ -69,7 +69,7 @@ export default function Footer() {
             </p>
             <p style={{
               fontFamily: font,
-              fontSize:   "13px",
+              fontSize:   "15px",
               lineHeight: 1.5,
               color:      ink2,
               margin:     0,
@@ -121,7 +121,7 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               <span style={{
                 fontFamily:    font,
-                fontSize:      "14px",
+                fontSize:      "15px",
                 fontWeight:    500,
                 color:         ink2,
                 letterSpacing: "-0.01em",
@@ -131,7 +131,7 @@ export default function Footer() {
               </span>
               <span style={{
                 fontFamily:    font,
-                fontSize:      "10px",
+                fontSize:      "12px",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",

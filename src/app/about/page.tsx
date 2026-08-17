@@ -57,7 +57,7 @@ const eyebrowLabel: React.CSSProperties = {
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontSize:      "clamp(28px,3.5vw,40px)",
   fontWeight:    500,
   color:         "var(--color-text)",
   margin:        "0 0 24px",
@@ -95,7 +95,7 @@ const pullQuoteWrap: React.CSSProperties = {
 };
 const pullQuoteText: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(20px, 2.5vw, 28px)",
+  fontSize:      "clamp(20px,2.5vw,28px)",
   fontWeight:    500,
   lineHeight:    1.15,
   color:         "var(--color-text)",
@@ -208,7 +208,7 @@ export default function AboutPage() {
                 <h1
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "clamp(40px, 4.8vw, 60px)",
+                    fontSize:      "clamp(40px,4.8vw,60px)",
                     fontWeight:    500,
                     color:         "var(--color-text)",
                     margin:        "0 0 24px",
@@ -520,7 +520,7 @@ function RemoteTimeline() {
                 top:           0,
                 transform:     "translateX(-50%)",
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "11px",
+                fontSize:      "12px",
                 fontWeight:    500,
                 color:         "var(--color-text-muted)",
                 letterSpacing: "0.01em",
@@ -597,7 +597,7 @@ function RemoteTimeline() {
             top:           0,
             transform:     "translateX(-50%)",
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "10px",
+            fontSize:      "12px",
             fontWeight:    500,
             letterSpacing: "0.01em",
             textTransform: "none",

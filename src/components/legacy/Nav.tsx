@@ -84,7 +84,7 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "18px",
+                fontSize:      "17px",
                 fontWeight:    500,
                 letterSpacing: "-0.01em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
@@ -105,7 +105,7 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "18px",
+                fontSize:      "17px",
                 fontWeight:    500,
                 letterSpacing: "-0.01em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
@@ -139,7 +139,7 @@ export default function Nav() {
               border:         "none",
               borderRadius:   0,
               color:          "#FFFFFF",
-              fontSize:       "13px",
+              fontSize:       "15px",
               fontWeight:     500,
               letterSpacing:  "0.01em",
               cursor:         "pointer",
@@ -230,7 +230,7 @@ export default function Nav() {
           <span style={{ width: "20px", height: "1px", background: "var(--color-accent)" }} />
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "11px",
+            fontSize:      "12px",
             fontWeight:    500,
             letterSpacing: "0.01em",
             textTransform: "uppercase",
@@ -244,7 +244,7 @@ export default function Nav() {
         {navLinks.map((link) => {
           const overlayLinkStyle: React.CSSProperties = {
             fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "clamp(42px, 12vw, 72px)",
+            fontSize:       "clamp(40px,12vw,72px)",
             fontWeight:     500,
             color:          "rgba(245,243,239,0.85)",
             letterSpacing:  "-0.02em",
@@ -314,7 +314,7 @@ export default function Nav() {
             border:         "none",
             borderRadius:   0,
             color:          "#FFFFFF",
-            fontSize:       "13px",
+            fontSize:       "15px",
             fontWeight:     500,
             letterSpacing:  "0.01em",
             textTransform:  "uppercase",
@@ -385,7 +385,7 @@ function SearchTrigger() {
       <span>Search</span>
       <kbd style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "10px",
+        fontSize:   "12px",
         padding:    "2px 5px",
         background: "#FAFAF9",
         border:     "1px solid #E8E4DE",
@@ -416,7 +416,7 @@ function NavLink({
     border:        "none",
     cursor:        "pointer",
     color:         "#8A8680",
-    fontSize:      "13px",
+    fontSize:      "15px",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",

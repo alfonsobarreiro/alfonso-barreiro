@@ -60,7 +60,7 @@ export default function About() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(28px, 3.5vw, 40px)",
+                fontSize:      "clamp(28px,3.5vw,40px)",
                 fontWeight:    500,
                 color:         "var(--color-text)",
                 margin:        "0 0 24px",

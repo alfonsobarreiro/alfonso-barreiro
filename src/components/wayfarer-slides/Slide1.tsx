@@ -30,7 +30,7 @@ export default function Slide1() {
 
             <p className="font-body" style={{
               margin: "28px 0 0", maxWidth: 820,
-              fontSize: 18, lineHeight: 1.5, color: wf.n700,
+              fontSize: 17, lineHeight: 1.5, color: wf.n700,
             }}>
               A concept travel discovery platform for DesignLab. AI-assisted development
               made it possible to build far beyond the brief. The real design work was
@@ -54,7 +54,7 @@ export default function Slide1() {
           ].map(([label, value]) => (
             <div key={label}>
               <div className="font-body" style={{
-                fontSize: 11, fontWeight: 500, letterSpacing: "0.01em",
+                fontSize: 12, fontWeight: 500, letterSpacing: "0.01em",
                 color: wf.n500, marginBottom: 6, textTransform: "uppercase",
               }}>
                 {label}

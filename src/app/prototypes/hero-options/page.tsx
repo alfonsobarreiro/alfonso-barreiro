@@ -49,7 +49,7 @@ function PrototypeNav() {
       <p
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
+          fontSize:      "12px",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -63,7 +63,7 @@ function PrototypeNav() {
         href="/"
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
+          fontSize:      "12px",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -164,7 +164,7 @@ function VariantA() {
               style={{
                 marginLeft:    "12px",
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "10px",
+                fontSize:      "12px",
                 letterSpacing: "0.01em",
                 color:         "#8A8680",
               }}
@@ -217,7 +217,7 @@ function VariantA() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "11px",
+                fontSize:      "12px",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -230,7 +230,7 @@ function VariantA() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(96px, 11vw, 156px)",
+                fontSize:      "clamp(96px,11vw,156px)",
                 fontWeight:    400,
                 lineHeight:    0.85,
                 letterSpacing: "-0.03em",
@@ -243,7 +243,7 @@ function VariantA() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "14px",
+                fontSize:      "15px",
                 lineHeight:    1.5,
                 fontWeight:    500,
                 color:         "#FAFAF9",
@@ -260,7 +260,7 @@ function VariantA() {
                 alignItems:     "center",
                 gap:            "8px",
                 color:          "var(--color-accent)",
-                fontSize:       "11px",
+                fontSize:       "12px",
                 fontWeight:     500,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 letterSpacing:  "0.01em",
@@ -310,7 +310,7 @@ function Eyebrow({ text }: { text: string }) {
       <p
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "13px",
+          fontSize:      "15px",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -329,7 +329,7 @@ function HeroName() {
     <h1
       style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(48px, 7.5vw, 96px)",
+        fontSize:      "clamp(60px,7.5vw,96px)",
         fontWeight:    400,
         lineHeight:    0.95,
         letterSpacing: "-0.02em",
@@ -349,7 +349,7 @@ function HeroPositioning() {
     <p
       style={{
         fontFamily:   "var(--font-dm-sans), sans-serif",
-        fontSize:     "clamp(16px, 1.7vw, 19px)",
+        fontSize:     "clamp(15px,1.7vw,17px)",
         lineHeight:   1.6,
         color:        "#3D4440",
         maxWidth:     "480px",
@@ -375,7 +375,7 @@ function HeroCTAs() {
           background:    "var(--color-brand)",
           color:         "#FAFAF9",
           borderRadius:  0,
-          fontSize:      "14px",
+          fontSize:      "15px",
           fontWeight:    500,
           fontFamily:    "var(--font-dm-sans), sans-serif",
           letterSpacing: "0.01em",
@@ -392,7 +392,7 @@ function HeroCTAs() {
           color:          "#252B28",
           border:         "1px solid #252B28",
           borderRadius:   0,
-          fontSize:       "14px",
+          fontSize:       "15px",
           fontWeight:     500,
           fontFamily:     "var(--font-dm-sans), sans-serif",
           textDecoration: "none",

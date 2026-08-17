@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontSize:      "clamp(28px,3.5vw,40px)",
   fontWeight:    500,
   color:         "var(--color-text)",
   margin:        "0 0 24px",
@@ -162,7 +162,7 @@ export default function ProcessPage() {
           <div style={innerWrapper}>
             <h1 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(40px, 4.8vw, 60px)",
+              fontSize:      "clamp(40px,4.8vw,60px)",
               fontWeight:    500,
               color:         "var(--color-text)",
               margin:        "0 0 24px",

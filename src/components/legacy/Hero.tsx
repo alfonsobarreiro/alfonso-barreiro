@@ -102,7 +102,7 @@ export default function Hero() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
+                fontSize:      "15px",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -119,7 +119,7 @@ export default function Hero() {
             className="hero-reveal"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(48px, 7.5vw, 96px)",
+              fontSize:      "clamp(60px,7.5vw,96px)",
               fontWeight:    400,
               lineHeight:    0.95,
               letterSpacing: "-0.02em",
@@ -137,7 +137,7 @@ export default function Hero() {
             className="hero-reveal"
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
-              fontSize:     "clamp(16px, 1.7vw, 19px)",
+              fontSize:     "clamp(15px,1.7vw,17px)",
               lineHeight:   1.6,
               color:        "#3D4440",
               maxWidth:     "480px",
@@ -161,7 +161,7 @@ export default function Hero() {
                 background:    "var(--color-brand)",
                 color:         "#FAFAF9",
                 borderRadius:  0,
-                fontSize:      "14px",
+                fontSize:      "15px",
                 fontWeight:    500,
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 letterSpacing: "0.01em",
@@ -186,7 +186,7 @@ export default function Hero() {
                 color:          "#252B28",
                 border:         "1px solid #252B28",
                 borderRadius:   0,
-                fontSize:       "14px",
+                fontSize:       "15px",
                 fontWeight:     500,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 display:        "inline-flex",
@@ -229,7 +229,7 @@ export default function Hero() {
           alignItems:    "center",
           gap:           "10px",
           color:         "#6E6E6A",
-          fontSize:      "11px",
+          fontSize:      "12px",
           letterSpacing: "0.01em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -395,7 +395,7 @@ function HeroResultPanel() {
           <span
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "11px",
+              fontSize:      "12px",
               fontWeight:    500,
               letterSpacing: "0.01em",
               color:         "#3D4440",
@@ -456,7 +456,7 @@ function HeroResultPanel() {
           right:         "clamp(20px, 3vw, 36px)",
           zIndex:        3,
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
+          fontSize:      "12px",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -484,7 +484,7 @@ function HeroResultPanel() {
         <p
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(22px, 2.2vw, 28px)",
+            fontSize:      "clamp(20px,2.2vw,28px)",
             fontWeight:    500,
             lineHeight:    1.15,
             letterSpacing: "-0.01em",
@@ -499,7 +499,7 @@ function HeroResultPanel() {
         <p
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(88px, 10vw, 140px)",
+            fontSize:      "clamp(88px,10vw,140px)",
             fontWeight:    400,
             lineHeight:    0.85,
             letterSpacing: "-0.03em",
@@ -535,7 +535,7 @@ function HeroResultPanel() {
             alignItems:      "center",
             gap:             "10px",
             color:           "#FAFAF9",
-            fontSize:        "13px",
+            fontSize:        "15px",
             fontWeight:      500,
             fontFamily:      "var(--font-dm-sans), sans-serif",
             letterSpacing:   "0.01em",

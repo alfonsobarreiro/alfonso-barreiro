@@ -19,11 +19,11 @@ export default function Slide5() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Brand Exploration</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: 32, fontWeight: 500, maxWidth: 1100 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: 28, fontWeight: 500, maxWidth: 1100 }}>
           Clinical says &lsquo;this is a medical problem.&rsquo; Salesy says &lsquo;this is an emergency.&rsquo;{" "}
           <span style={{ color: "#C4703A" }}>Editorial says &lsquo;this is something men handle.&rsquo;</span>
         </h1>
-        <p className="font-body leading-relaxed mb-8" style={{ color: "#6B6560", fontSize: 13 }}>Does this aesthetic lower the stigma barrier before the first word is read?</p>
+        <p className="font-body leading-relaxed mb-8" style={{ color: "#6B6560", fontSize: 15 }}>Does this aesthetic lower the stigma barrier before the first word is read?</p>
 
         <div className="grid grid-cols-4 gap-5 flex-1">
           {directions.map((d) => {
@@ -32,7 +32,7 @@ export default function Slide5() {
             return (
               <div key={d.id} className="flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="flex items-center justify-center rounded-full" style={{ width: 18, height: 18, background: isChosen ? "#C4703A" : "#EEEDEC", color: isChosen ? "#FFFFFF" : isRejected ? "#B7B2AE" : "#938C86", fontSize: 10, fontWeight: 500 }}>
+                  <div className="flex items-center justify-center rounded-full" style={{ width: 18, height: 18, background: isChosen ? "#C4703A" : "#EEEDEC", color: isChosen ? "#FFFFFF" : isRejected ? "#B7B2AE" : "#938C86", fontSize: 12, fontWeight: 500 }}>
                     {isChosen ? "✓" : isRejected ? "✕" : "○"}
                   </div>
                   <span className="font-body" style={{ fontSize: 12, fontWeight: isChosen ? 600 : 500, color: isChosen ? "#13100C" : isRejected ? "#938C86" : "#6B6560" }}>{d.label}</span>
@@ -41,7 +41,7 @@ export default function Slide5() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={d.image} alt={d.label} style={{ width: "100%", height: "auto", display: "block" }} />
                 </div>
-                <p className="font-body leading-snug mt-3" style={{ color: isChosen ? "#6B6560" : "#938C86", fontSize: 11 }}>{d.annotation}</p>
+                <p className="font-body leading-snug mt-3" style={{ color: isChosen ? "#6B6560" : "#938C86", fontSize: 12 }}>{d.annotation}</p>
               </div>
             );
           })}

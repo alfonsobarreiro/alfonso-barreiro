@@ -133,7 +133,7 @@ export default function CommandPalette() {
               padding: "20px 0",
               border: "none",
               outline: "none",
-              fontSize: "16px",
+              fontSize: "15px",
               fontFamily: "var(--font-dm-sans), sans-serif",
               color: "#252B28",
               background: "transparent",
@@ -147,7 +147,7 @@ export default function CommandPalette() {
             <p style={{
               padding: "32px 20px",
               fontFamily: "var(--font-dm-sans), sans-serif",
-              fontSize: "14px",
+              fontSize: "15px",
               color: "#8A8680",
               textAlign: "center",
               margin: 0,
@@ -171,7 +171,7 @@ export default function CommandPalette() {
               <p style={{
                 padding: "8px 20px 4px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize: "11px",
+                fontSize: "12px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -202,7 +202,7 @@ export default function CommandPalette() {
           borderTop: "1px solid #E8E4DE",
           background: "#FAFAF9",
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize: "11px",
+          fontSize: "12px",
           color: "#8A8680",
         }}>
           <Hint kbd="↑↓" label="navigate" />
@@ -246,7 +246,7 @@ function ResultRow({
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize: "14px",
+          fontSize: "15px",
           fontWeight: 500,
           color: "#252B28",
           margin: 0,
@@ -272,7 +272,7 @@ function ResultRow({
       </div>
       <span style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize: "11px",
+        fontSize: "12px",
         color: "#A8A39C",
         opacity: selected ? 1 : 0,
         transition: "opacity 0.15s",
@@ -302,7 +302,7 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
       background: bg,
       color,
       fontFamily: "var(--font-dm-sans), sans-serif",
-      fontSize: "10px",
+      fontSize: "12px",
       fontWeight: 500,
       letterSpacing: "0.01em",
       flexShrink: 0,
@@ -317,7 +317,7 @@ function Hint({ kbd, label }: { kbd: string; label: string }) {
     <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
       <kbd style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize: "10px",
+        fontSize: "12px",
         padding: "2px 6px",
         background: "#FFFFFF",
         border: "1px solid #E8E4DE",

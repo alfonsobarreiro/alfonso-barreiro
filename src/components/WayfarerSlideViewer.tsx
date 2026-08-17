@@ -274,7 +274,7 @@ export default function WayfarerSlideViewer() {
 
       <p style={{
         textAlign:     "center",
-        fontSize:      "11px",
+        fontSize:      "12px",
         color:         "#8A8680",
         margin:        "6px 0 0",
         fontFamily:    "var(--font-dm-sans), sans-serif",

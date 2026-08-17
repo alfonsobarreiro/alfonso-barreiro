@@ -106,7 +106,7 @@ function ArcDivider({ arc: _arc }: { arc: string }) {
 function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
-      fontFamily:    font.sans, fontSize: "11px", fontWeight: 500,
+      fontFamily:    font.sans, fontSize: "12px", fontWeight: 500,
       letterSpacing: "0.01em", textTransform: "none",
       color: c.ink2, padding: "6px 14px",
       border: `1px solid ${c.borderStrong}`,
@@ -137,7 +137,7 @@ function Callout({ decision, why, cost }: { decision: string; why: string; cost:
     }}>
       <p style={labelStyle}>Decision</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "clamp(20px, 2.5vw, 28px)",
+        fontFamily: font.sans, fontSize: "clamp(20px,2.5vw,28px)",
         fontWeight: 500, color: c.ink, margin: "0 0 24px",
         letterSpacing: "-0.01em", lineHeight: 1.15,
       }}>{decision}</p>
@@ -201,14 +201,14 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
         }} className="sp2-row">
           <div>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(40px, 4.8vw, 60px)",
+              fontFamily: font.sans, fontSize: "clamp(40px,4.8vw,60px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.02em", lineHeight: 1.1,
             }}>{heading}.</h2>
           </div>
           <div>
             <p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>{body}</p>
             <Callout {...callout} />
@@ -257,7 +257,7 @@ export default function SpotifyV2() {
         <header style={{ padding: `96px ${SECTION_X} 64px` }}>
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <h1 style={{
-              fontFamily: font.sans, fontSize: "clamp(40px, 4.8vw, 60px)",
+              fontFamily: font.sans, fontSize: "clamp(40px,4.8vw,60px)",
               fontWeight: 500, color: c.ink, margin: "0 0 24px",
               letterSpacing: "-0.02em", lineHeight: 1.1,
             }}>
@@ -414,7 +414,7 @@ export default function SpotifyV2() {
             would clutter the landmark menu. */}
         <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `40px ${SECTION_X} 120px` }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
+            fontFamily: font.sans, fontSize: "clamp(28px,4vw,40px)",
             fontWeight: 500, color: c.ink, margin: 0,
             lineHeight: 1.15, letterSpacing: "-0.01em", maxWidth: "900px",
           }}>
@@ -482,7 +482,7 @@ export default function SpotifyV2() {
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <h2 style={{
               fontFamily:    font.sans,
-              fontSize:      "clamp(28px, 3.5vw, 40px)",
+              fontSize:      "clamp(28px,3.5vw,40px)",
               fontWeight:    500,
               color:         c.ink,
               margin:        "0 0 24px",
@@ -492,13 +492,13 @@ export default function SpotifyV2() {
             }}>
               What I cut, and why.
             </h2>
-            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.6, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)", lineHeight: 1.6, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
               I started with three controls for the Recently Played shelf: Pin, Remove, and Pause. I couldn&rsquo;t ship all three as equals, so I ranked them against one question. Which one fixes a problem the shelf actually leaves you stuck with?
             </p>
-            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.6, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)", lineHeight: 1.6, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
               Remove won. The shelf shows what you played to anyone looking at your screen, and there&rsquo;s no clean way to take something off it. Pin is additive, a preference, not a fix. Remove solves the actual pain.
             </p>
-            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)", lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
               Pause stayed, but time-boxed. A permanent pause changes what the shelf is. A temporary one hands you control for the moment you need it, then the shelf returns to normal on its own.
             </p>
           </div>
@@ -514,7 +514,7 @@ export default function SpotifyV2() {
             <Eyebrow>Edge cases</Eyebrow>
             <h2 style={{
               fontFamily:    font.sans,
-              fontSize:      "clamp(28px, 4vw, 48px)",
+              fontSize:      "clamp(28px,4vw,60px)",
               fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 32px",
@@ -524,10 +524,10 @@ export default function SpotifyV2() {
             }}>
               Edge cases I considered.
             </h2>
-            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.6, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)", lineHeight: 1.6, color: c.ink2, margin: "0 0 20px", maxWidth: PROSE_MAX }}>
               Remove has to be reversible. If it deletes instead of hides, it repeats the exact destructive pattern I&rsquo;m critiquing, so undo is part of the control, not an add-on.
             </p>
-            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)", lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
               Pause needs an expiry you can see. When the time-box ends, the shelf comes back on its own, and no one should have to remember they paused it.
             </p>
           </div>
@@ -589,7 +589,7 @@ export default function SpotifyV2() {
             <div style={{ maxWidth: "780px", marginBottom: "clamp(48px, 6vw, 72px)" }}>
               <h2 style={{
                 fontFamily:    font.sans,
-                fontSize:      "clamp(40px, 4.8vw, 60px)",
+                fontSize:      "clamp(40px,4.8vw,60px)",
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 20px",
@@ -599,7 +599,7 @@ export default function SpotifyV2() {
                 Read the spec. Then try it.
               </h2>
               <p style={{
-                fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
+                fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)",
                 lineHeight: 1.6, color: c.ink2,
                 margin: "0 0 28px", maxWidth: "60ch",
               }}>
@@ -643,7 +643,7 @@ export default function SpotifyV2() {
             }}>
               <span style={{
                 fontFamily:    font.sans,
-                fontSize:      "11px",
+                fontSize:      "12px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "none",
@@ -671,7 +671,7 @@ export default function SpotifyV2() {
                 >
                   <kbd style={{
                     fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    fontSize:      "11px",
+                    fontSize:      "12px",
                     fontWeight: 500,
                     padding:       "3px 8px",
                     background:    "rgba(30,215,96,0.12)",
@@ -724,13 +724,13 @@ export default function SpotifyV2() {
           <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
             <Eyebrow>Desktop parity</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 48px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,4vw,60px)",
               fontWeight: 500, color: c.ink, margin: "0 0 24px",
               letterSpacing: "-0.02em", lineHeight: 1.05, maxWidth: "780px",
             }}>
               Same logic, native shell.
             </h2><p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: "0 0 40px", maxWidth: PROSE_MAX,
             }}>
               Mobile uses long-press to open the action sheet. Desktop uses a right-click context menu. The three controls and their state machines are identical. Only the affordance changes.
@@ -805,7 +805,7 @@ export default function SpotifyV2() {
                         alignItems:    "center",
                         justifyContent:"center",
                         fontFamily:    font.sans,
-                        fontSize:      "11px",
+                        fontSize:      "12px",
                         fontWeight: 500,
                         letterSpacing: "0.01em",
                         border:        "2px solid #FFFFFF",
@@ -837,7 +837,7 @@ export default function SpotifyV2() {
                 ].map((a) => (
                   <li key={a.n} style={{
                     display: "flex", gap: "10px", alignItems: "flex-start",
-                    fontFamily: font.sans, fontSize: "13px",
+                    fontFamily: font.sans, fontSize: "15px",
                     lineHeight: 1.35, color: c.ink,
                   }}>
                     <span aria-hidden="true" style={{
@@ -849,7 +849,7 @@ export default function SpotifyV2() {
                       borderRadius:  "50%",
                       background:    c.accent,
                       color: "var(--color-inverse)",
-                      fontSize:      "10px",
+                      fontSize:      "12px",
                       fontWeight: 500,
                       flexShrink:    0,
                       marginTop:     "1px",
@@ -865,7 +865,7 @@ export default function SpotifyV2() {
               </ol>
 
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "clamp(20px, 2.5vw, 32px) 0 0",
               }}>
@@ -886,7 +886,7 @@ export default function SpotifyV2() {
             <Eyebrow>Evaluation</Eyebrow>
             <h2 style={{
               fontFamily:    font.sans,
-              fontSize:      "clamp(28px, 4vw, 48px)",
+              fontSize:      "clamp(28px,4vw,60px)",
               fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 32px",
@@ -896,7 +896,7 @@ export default function SpotifyV2() {
             }}>
               How I&rsquo;d know it worked.
             </h2>
-            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)", lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
+            <p style={{ fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)", lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX }}>
               This is a concept, so there are no live numbers and I won&rsquo;t invent any. Here&rsquo;s the test I&rsquo;d run instead. Put the prototype in front of five power users who share a screen at home or at work. Success is narrow: they can take an item off the shelf in one action, undo it if they change their mind, and say what Pause does without me explaining it. If they can&rsquo;t undo, Remove is just the destructive pattern again, and the concept fails its own point.
             </p>
           </div>
@@ -930,7 +930,7 @@ export default function SpotifyV2() {
               ].map((m) => (
                 <div key={m.label}>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "9px", fontWeight: 500,
+                    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                     letterSpacing: "0.01em", textTransform: "none",
                     color: c.muted, margin: "0 0 4px",
                   }}>{m.label}</p>
@@ -943,7 +943,7 @@ export default function SpotifyV2() {
             </div>
 
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,3.5vw,40px)",
               fontWeight: 500, color: c.ink, margin: "0 0 48px",
               letterSpacing: "-0.01em", lineHeight: 1.15, maxWidth: "24ch",
             }}>
@@ -978,7 +978,7 @@ export default function SpotifyV2() {
                     textTransform: "none",
                   }}>{r.date}</span>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "clamp(15px, 1.6vw, 17px)",
+                    fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
                     color: c.ink, margin: 0, lineHeight: 1.6,
                   }}>{r.note}</p>
                 </li>
@@ -1373,16 +1373,16 @@ function ResearchStrip() {
             />
             <div>
               <p style={{
-                fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                 letterSpacing: "0.01em", color: p.type === "Negative" ? c.muted : c.accent,
                 textTransform: "none", margin: "0 0 4px",
               }}>{p.type} persona</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
                 color: c.ink, margin: "0 0 8px", letterSpacing: "-0.01em",
               }}>{p.name}</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5,
+                fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
                 color: c.ink2, margin: 0,
               }}>{p.tension}</p>
             </div>
@@ -1403,7 +1403,7 @@ function SketchesAndMidfi() {
         }} className="sp2-row">
           <div>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,3.5vw,40px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.01em", lineHeight: 1.15,
             }}>
@@ -1411,7 +1411,7 @@ function SketchesAndMidfi() {
             </h2></div>
           <div>
             <p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Three interaction directions sketched on paper before any Figma frame. The winning direction survived three tests: does it preserve discovery, is it reversible, does it sit native to the shelf. Mid-fi mocked the answer on both surfaces (mobile + desktop) before any hi-fi work.
@@ -1499,7 +1499,7 @@ function SketchesAndMidfi() {
                   />
                 </div>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "14px", lineHeight: 1.5,
+                  fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
                   color: c.ink2, margin: 0,
                 }}>{s.body}</p>
               </figure>
@@ -1549,7 +1549,7 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Desktop &middot; mid-fi</figcaption>
@@ -1571,7 +1571,7 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Mobile &middot; mid-fi</figcaption>
@@ -1699,7 +1699,7 @@ function DecisionLogic() {
           <div>
             <Eyebrow>Three controls, decoded</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,4vw,60px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
@@ -1707,7 +1707,7 @@ function DecisionLogic() {
             </h2></div>
           <div>
             <p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Each control gets the same editorial treatment: title, the annotated walkthrough, then three paragraphs naming the problem, the trade-off, and who wins. The looping prototypes live in their own tabbed section below.
@@ -1749,7 +1749,7 @@ function DecisionLogic() {
                   {...(i === 0 ? { "data-active": "true", "aria-current": "location" as const } : {})}
                   style={{
                     fontFamily:     font.sans,
-                    fontSize:       "13px",
+                    fontSize:       "15px",
                     fontWeight: 500,
                     letterSpacing:  "0.01em",
                     textTransform: "none",
@@ -1794,12 +1794,12 @@ function DecisionLogic() {
           >
             <header style={{ marginBottom: "40px" }}>
               <h3 style={{
-                fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
+                fontFamily: font.sans, fontSize: "clamp(28px,3.5vw,40px)",
                 fontWeight: 500, color: c.ink, margin: "0 0 16px",
                 letterSpacing: "-0.01em", lineHeight: 1.15,
               }}>{f.title}.</h3>
               <p style={{
-                fontFamily: font.sans, fontSize: "clamp(18px, 2vw, 24px)",
+                fontFamily: font.sans, fontSize: "clamp(17px,2vw,20px)",
                 fontWeight: 500, color: c.ink2, margin: 0, lineHeight: 1.35,
                 letterSpacing: "-0.01em", maxWidth: "780px",
               }}>{f.tagline}</p>
@@ -1935,7 +1935,7 @@ function DecisionLogic() {
                       gap:        "16px",
                       alignItems: "baseline",
                       fontFamily: font.sans,
-                      fontSize:   "14px",
+                      fontSize:   "15px",
                       lineHeight: 1.5,
                     }}>
                       <span style={{
@@ -1960,7 +1960,7 @@ function DecisionLogic() {
             <div style={{ maxWidth: "880px" }}>
               {f.dossier.map((d) => (
                 <p key={d.lead} style={{
-                  fontFamily: font.sans, fontSize: "16px",
+                  fontFamily: font.sans, fontSize: "15px",
                   lineHeight: 1.6, color: c.ink2,
                   margin: "0 0 22px", letterSpacing: "0",
                 }}>
@@ -2037,7 +2037,7 @@ function Prototypes() {
           <div>
             <Eyebrow>Prototypes</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,4vw,60px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
@@ -2045,7 +2045,7 @@ function Prototypes() {
             </h2></div>
           <div>
             <p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Three short prototypes built in Principle and exported as looping web video. Each one shows the design&rsquo;s tightest signal: the timing, the confirmation, the reverse. If the interaction reads in three seconds with no caption, the design works.
@@ -2078,7 +2078,7 @@ function Prototypes() {
                 {/* Numeral removed — Pin / Remove / Pause titles read on
                     their own and free up horizontal room on mobile. */}
                 <span style={{
-                  fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
                   color: c.ink, letterSpacing: "-0.01em",
                 }}>{l.title}</span>
               </label>
@@ -2173,17 +2173,17 @@ function Prototypes() {
                   {/* Body copy on the right */}
                   <div>
                     <p style={{
-                      fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                      fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                       letterSpacing: "0.01em", color: c.accent,
                       textTransform: "none", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
                     <h3 style={{
-                      fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
+                      fontFamily: font.sans, fontSize: "clamp(28px,4vw,40px)",
                       fontWeight: 500, color: c.ink, margin: "0 0 24px",
                       letterSpacing: "-0.03em", lineHeight: 1.05,
                     }}>{l.title}.</h3>
                     <p style={{
-                      fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+                      fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
                       lineHeight: 1.6, color: c.ink2, margin: 0,
                       maxWidth: "520px",
                     }}>{l.body}</p>
@@ -2212,14 +2212,14 @@ function ShippedSection() {
         }} className="sp2-row">
           <div>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(40px, 4.8vw, 60px)",
+              fontFamily: font.sans, fontSize: "clamp(40px,4.8vw,60px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.02em", lineHeight: 1.1,
             }}>
               Shipped, with receipts.
             </h2></div>
           <p style={{
-            fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+            fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
             lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
           }}>
             Three controls, two affordances (mobile long-press, desktop right-click), one state machine. Below: the Pause state diagram that locks the time-boxed behavior, then the honest scope of what wasn&rsquo;t tested.
@@ -2229,7 +2229,7 @@ function ShippedSection() {
         {/* Pause state diagram */}
         <div style={{ marginBottom: "64px" }}>
           <h3 style={{
-            fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
+            fontFamily: font.sans, fontSize: "clamp(20px,2.4vw,28px)",
             fontWeight: 500, color: c.ink, margin: "0 0 24px",
             letterSpacing: "-0.02em", lineHeight: 1.15,
           }}>
@@ -2270,24 +2270,24 @@ function ShippedSection() {
             borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>What could still go wrong</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Discoverability of long-press.</strong> The gesture is common on iOS but invisible. First-run education or a contextual hint may be needed.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Pin&rsquo;s 4-item cap may frustrate power users.</strong> The cap protects the shelf&rsquo;s discovery role. A &ldquo;Show all pins&rdquo; affordance could relieve pressure if testing shows the limit hits often.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink }}>Pause without a visible timer reads as &ldquo;permanent&rdquo;.</strong> The paused state has to show its end-time clearly. If the user can&rsquo;t see when logging resumes, the time-box defeats itself.
@@ -2299,30 +2299,30 @@ function ShippedSection() {
             borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>Validation plan</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Discoverability.</strong> Time to first long-press without onboarding. Target under 8 seconds for at least 60% of first-time users.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Reversibility comprehension.</strong> After Removing an item, can the user describe what happened in one sentence? Target above 80%.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>ML signal integrity.</strong> Are Pause sessions adopted at rates that materially change recommendation quality? If yes, consider auto-resume rules.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink }}>The honest scope:</strong> no users tested this. Concept project. Hypotheses are reasoned from public signals and the stakeholder map, not from behavior.
@@ -2338,24 +2338,24 @@ function ShippedSection() {
           marginTop: "32px",
         }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+            fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
             letterSpacing: "0.01em", textTransform: "none",
             color: c.accent, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
           <p style={{
-            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
             color: c.ink2, margin: "0 0 14px",
           }}>
             <strong style={{ color: c.ink }}>The long-press discoverability.</strong> If I had one round of usability, this is where it goes. The whole interaction model rests on a gesture the user has to find without being told. A first-run hint or a one-time pulse animation on the shelf header could carry the cost, but I&rsquo;d want to see the unguided number first.
           </p>
           <p style={{
-            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
             color: c.ink2, margin: "0 0 14px",
           }}>
             <strong style={{ color: c.ink }}>The cap&rsquo;s breaking point.</strong> Pin holds four. If the test surfaces frustration at item three or item four, the cap design is right. If frustration shows up at item five (when the swap modal appears), the modal is the problem, not the cap. Two failure modes, two fixes.
           </p>
           <p style={{
-            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
             color: c.ink2, margin: 0,
           }}>
             <strong style={{ color: c.ink }}>Pause comprehension.</strong> The riskiest copy is the paused state. If a user looks at the shelf and can&rsquo;t describe when logging resumes in one sentence, the timer affordance failed and the time-box reads as permanent. That&rsquo;s the design&rsquo;s primary promise. The test catches it.
@@ -2387,14 +2387,14 @@ function FrictionList() {
     <section aria-label="Where the shelf gets in the way" style={{ padding: `0 ${SECTION_X} 80px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <h2 style={{
-          fontFamily: font.sans, fontSize: "clamp(28px, 3.5vw, 40px)",
+          fontFamily: font.sans, fontSize: "clamp(28px,3.5vw,40px)",
           fontWeight: 500, color: c.ink, margin: "0 0 24px",
           letterSpacing: "-0.01em", lineHeight: 1.15,
           maxWidth: "780px",
         }}>
           Where the shelf gets in the way.
         </h2><p style={{
-          fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+          fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
           lineHeight: 1.6, color: c.ink2, margin: "0 0 28px",
           maxWidth: PROSE_MAX,
         }}>
@@ -2524,21 +2524,21 @@ function ActionSheetHero() {
           {/* Caption + icon cells */}
           <div style={{ color: "var(--color-inverse)" }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.green, margin: "0 0 14px",
             }}>
               For power users · additive · reversible
             </p>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(28px, 3vw, 38px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,3vw,40px)",
               fontWeight: 500, color: "var(--color-inverse)", margin: "0 0 18px",
               letterSpacing: "-0.02em", lineHeight: 1.15,
               maxWidth: "560px",
             }}>
               Three controls for the shelf people use every day.
             </h2><p style={{
-              fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.5vw,17px)",
               lineHeight: 1.6, color: "var(--color-inverse)",
               margin: "0 0 36px", maxWidth: "560px",
             }}>
@@ -2598,7 +2598,7 @@ function IconCell({ color, glyph, name, note }: {
           color: "var(--color-inverse)", margin: "0 0 4px", letterSpacing: "-0.01em",
         }}>{name}</p>
         <p style={{
-          fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5,
+          fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
           color: "rgba(255, 255, 255, 0.88)", margin: 0,
         }}>{note}</p>
       </div>
@@ -2677,7 +2677,7 @@ function UserVoices() {
           <div>
             <Eyebrow>What users said</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,4vw,60px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
@@ -2685,7 +2685,7 @@ function UserVoices() {
             </h2></div>
           <div>
             <p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               No internal data, no brief. The research layer was built from public sources: Spotify Community threads, App Store reviews, Reddit, UX forum posts. AI-assisted clustering on 200+ posts surfaced six quotes that made the design unavoidable.
@@ -2706,12 +2706,12 @@ function UserVoices() {
               minHeight: "180px",
             }}>
               <p style={{
-                fontFamily: font.sans, fontSize: "16px",
+                fontFamily: font.sans, fontSize: "15px",
                 fontWeight: 500, color: c.ink, margin: 0,
                 lineHeight: 1.5, letterSpacing: "-0.01em",
               }}>&ldquo;{q.text}&rdquo;</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "11px",
+                fontFamily: font.sans, fontSize: "12px",
                 fontWeight: 500, letterSpacing: "0.01em",
                 textTransform: "none", color: c.muted,
                 margin: "auto 0 0",
@@ -2737,13 +2737,13 @@ function CompetitiveAudit() {
     { name: "Spotify (proposed)",    vals: ["✓", "✓", "✓", "✓", "✓"],       proposed: true },
   ];
   const thStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "none",
     textAlign: "left", padding: "14px 18px", color: c.muted,
     borderBottom: `1px solid ${c.border}`,
   };
   const tdBase: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "14px",
+    fontFamily: font.sans, fontSize: "15px",
     padding: "14px 18px", verticalAlign: "middle",
     borderBottom: `1px solid ${c.border}`,
   };
@@ -2762,7 +2762,7 @@ function CompetitiveAudit() {
           <div>
             <Eyebrow>Competitive audit</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,4vw,60px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
@@ -2770,7 +2770,7 @@ function CompetitiveAudit() {
             </h2></div>
           <div>
             <p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: "0 0 16px", maxWidth: PROSE_MAX,
             }}>
               Heuristic audit across seven listening platforms. Apple Music, Amazon Music, and YouTube Music all ship at least one shelf-level control. TikTok and YouTube treat the feed as inline-editable by default. Spotify ships none. The pattern is in the open.
@@ -2783,7 +2783,7 @@ function CompetitiveAudit() {
               The five categories
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px",
+              fontFamily: font.sans, fontSize: "15px",
               lineHeight: 1.6, color: c.ink, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Clear all · Pause history · Remove single · Inline controls · Reversible.
@@ -2815,7 +2815,7 @@ function CompetitiveAudit() {
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
               />
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>{it.name}</figcaption>
@@ -2908,19 +2908,19 @@ function OutOfScope() {
   return (
     <div style={{ margin: "0 0 56px" }}>
       <p style={{
-        fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
+        fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
         letterSpacing: "0.01em", textTransform: "none",
         color: c.accent, margin: "0 0 12px",
       }}>Out of scope</p>
       <h3 style={{
-        fontFamily: font.sans, fontSize: "clamp(22px, 2.6vw, 30px)",
+        fontFamily: font.sans, fontSize: "clamp(20px,2.6vw,28px)",
         fontWeight: 500, color: c.ink, margin: "0 0 12px",
         letterSpacing: "-0.02em", lineHeight: 1.15,
       }}>
         Four things that got named, defended, and skipped.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
+        fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
         color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
       }}>
         Knowing what not to design is the same skill as knowing what to design. Each item below was raised, considered, and deliberately left for a different surface or a different team.
@@ -2935,16 +2935,16 @@ function OutOfScope() {
             padding: "24px 28px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.muted, margin: "0 0 8px",
             }}>Skipped</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
               color: c.ink, margin: "0 0 10px", letterSpacing: "-0.01em",
             }}>{it.title}</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>{it.reason}</p>
           </div>
@@ -2968,7 +2968,7 @@ function UserJourney() {
           <div>
             <Eyebrow>User journey</Eyebrow>
             <h2 style={{
-              fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
+              fontFamily: font.sans, fontSize: "clamp(28px,4vw,60px)",
               fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
@@ -2976,7 +2976,7 @@ function UserJourney() {
             </h2></div>
           <div>
             <p style={{
-              fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
+              fontFamily: font.sans, fontSize: "clamp(15px,1.6vw,17px)",
               lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               One-frame journey across the Recently Played shelf. Peaks and valleys mapped against the three opportunity points where Pin, Remove, and Pause each earn their slot.
@@ -3116,12 +3116,12 @@ function JourneyVerticalMobile() {
   ];
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "none",
     color: c.muted, margin: "0 0 6px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5,
+    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
     color: c.ink, margin: 0,
   };
 

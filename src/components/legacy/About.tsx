@@ -36,7 +36,7 @@ const pillBase: React.CSSProperties = {
   gap:            "8px",
   padding:        "10px 20px",
   borderRadius:   0,
-  fontSize:       "11px",
+  fontSize:       "12px",
   fontWeight:     500,
   fontFamily:     "var(--font-dm-sans), sans-serif",
   letterSpacing:  "0.01em",
@@ -174,7 +174,7 @@ export default function About() {
               />
               <p
                 style={{
-                  fontSize:      "11px",
+                  fontSize:      "12px",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -241,7 +241,7 @@ export default function About() {
               <span
                 style={{
                   fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "11px",
+                  fontSize:      "12px",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -255,7 +255,7 @@ export default function About() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(26px, 3.5vw, 44px)",
+                fontSize:      "clamp(28px,3.5vw,40px)",
                 fontWeight:    500,
                 color:         "#252B28",
                 margin:        "0 0 28px",
@@ -270,7 +270,7 @@ export default function About() {
             <p
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "16px",
+                fontSize:     "15px",
                 lineHeight:   1.6,
                 color:        "#3D4440",
                 marginBottom: "20px",
@@ -285,7 +285,7 @@ export default function About() {
             <p
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "16px",
+                fontSize:     "15px",
                 lineHeight:   1.6,
                 color:        "#3D4440",
                 marginBottom: "40px",
@@ -336,7 +336,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize:   "13px",
+                fontSize:   "15px",
                 color:      "#8A8680",
                 margin:     "18px 0 0",
                 lineHeight: 1.5,
@@ -389,7 +389,7 @@ export default function About() {
                 <p
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "11px",
+                    fontSize:      "12px",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -419,7 +419,7 @@ export default function About() {
                       key={skill}
                       style={{
                         fontFamily:   "var(--font-dm-sans), sans-serif",
-                        fontSize:     "13px",
+                        fontSize:     "15px",
                         padding:      "6px 14px",
                         borderRadius: 0,
                         background:   "#F5F5F4",
@@ -452,7 +452,7 @@ export default function About() {
                   alignItems:     "center",
                   gap:            "8px",
                   fontFamily:     "var(--font-dm-sans), sans-serif",
-                  fontSize:       "13px",
+                  fontSize:       "15px",
                   fontWeight:     500,
                   letterSpacing:  "0.01em",
                   color:          "var(--color-brand)",
@@ -506,7 +506,7 @@ export default function About() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "11px",
+                fontSize:      "12px",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -520,7 +520,7 @@ export default function About() {
           <p
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(18px, 2.2vw, 26px)",
+              fontSize:      "clamp(17px,2.2vw,28px)",
               fontWeight:    500,
               lineHeight:    1.5,
               color:         "#252B28",

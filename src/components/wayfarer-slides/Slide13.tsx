@@ -15,7 +15,7 @@ export default function Slide13() {
       <Eyebrow>06 · Site Architecture</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 32px",
-        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
+        fontSize: 60, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1100,
       }}>
         Six page types. Each designed for a different user task.
@@ -29,7 +29,7 @@ export default function Slide13() {
         }}>
           {["ROUTE","TYPE","USER TASK","PURPOSE"].map((h) => (
             <div key={h} className="font-body" style={{
-              fontSize: 11, fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
+              fontSize: 12, fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
             }}>{h}</div>
           ))}
         </div>
@@ -39,10 +39,10 @@ export default function Slide13() {
             padding: "14px 20px", alignItems: "center",
             borderBottom: i < routes.length - 1 ? `1px solid ${wf.n200}` : "none",
           }}>
-            <div className="font-body" style={{ fontSize: 13, fontFamily: "monospace", color: wf.n500 }}>{r[0]}</div>
-            <div className="font-body" style={{ fontSize: 14, fontWeight: 500, color: wf.n900 }}>{r[1]}</div>
-            <div className="font-body" style={{ fontSize: 14, fontWeight: 500, color: wf.brand500 }}>{r[2]}</div>
-            <div className="font-body" style={{ fontSize: 14, color: wf.n700 }}>{r[3]}</div>
+            <div className="font-body" style={{ fontSize: 15, fontFamily: "monospace", color: wf.n500 }}>{r[0]}</div>
+            <div className="font-body" style={{ fontSize: 15, fontWeight: 500, color: wf.n900 }}>{r[1]}</div>
+            <div className="font-body" style={{ fontSize: 15, fontWeight: 500, color: wf.brand500 }}>{r[2]}</div>
+            <div className="font-body" style={{ fontSize: 15, color: wf.n700 }}>{r[3]}</div>
           </div>
         ))}
       </div>

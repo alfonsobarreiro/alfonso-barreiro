@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontSize:      "clamp(28px,3.5vw,40px)",
   fontWeight:    500,
   color:         "var(--color-text)",
   margin:        "0 0 24px",
@@ -100,7 +100,7 @@ function ArtifactStep({ heading, caption, src, width, height }: {
       <div style={{ marginBottom: "clamp(20px, 3vw, 28px)", maxWidth: "780px" }}>
         <h3 style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(28px, 3.6vw, 44px)",
+          fontSize:      "clamp(28px,3.6vw,40px)",
           fontWeight: 500,
           color:         "var(--color-text)",
           margin:        "0 0 16px",
@@ -329,7 +329,7 @@ export default function BehindThisSitePage() {
           <div style={innerWrapper}>
             <h1 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(40px, 4.8vw, 60px)",
+              fontSize:      "clamp(40px,4.8vw,60px)",
               fontWeight:    500,
               color:         "var(--color-text)",
               margin:        "0 0 24px",
@@ -342,7 +342,7 @@ export default function BehindThisSitePage() {
 
             <p style={{
               ...body,
-              fontSize: "clamp(18px, 1.6vw, 21px)",
+              fontSize: "clamp(17px,1.6vw,20px)",
               maxWidth: "720px",
               margin:   0,
             }}>
@@ -364,7 +364,7 @@ export default function BehindThisSitePage() {
           <div style={innerWrapper}>
             <h2 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(28px, 3.5vw, 40px)",
+              fontSize:      "clamp(28px,3.5vw,40px)",
               fontWeight:    500,
               color:         "var(--color-text)",
               margin:        "0 0 24px",
@@ -530,7 +530,7 @@ export default function BehindThisSitePage() {
           <div style={innerWrapper}>
             <p style={{
               ...body,
-              fontSize: "clamp(18px, 1.5vw, 20px)",
+              fontSize: "clamp(17px,1.5vw,20px)",
               maxWidth: "620px",
               margin:   0,
               color:    "var(--color-text)",

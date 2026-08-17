@@ -60,7 +60,7 @@ export default function ContactPage() {
                 <span style={{ display: "inline-block", width: "24px", height: "1px", background: c.accent }} />
                 <p style={{
                   fontFamily:    font,
-                  fontSize:      "11px",
+                  fontSize:      "12px",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -72,7 +72,7 @@ export default function ContactPage() {
               </div>
               <h1 id="contact-heading" style={{
                 fontFamily:    font,
-                fontSize:      "clamp(32px, 5vw, 64px)",
+                fontSize:      "clamp(28px,5vw,64px)",
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 28px",
@@ -83,7 +83,7 @@ export default function ContactPage() {
               </h1>
               <p style={{
                 fontFamily: font,
-                fontSize:   "18px",
+                fontSize:   "17px",
                 lineHeight: 1.6,
                 color:      c.body,
                 margin:     "0 0 40px",
