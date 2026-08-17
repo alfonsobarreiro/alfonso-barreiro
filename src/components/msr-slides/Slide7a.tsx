@@ -47,7 +47,7 @@ export default function Slide7a() {
         </div>
 
         {/* Headline */}
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: 30, fontWeight: 800, maxWidth: 1100 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: 30, fontWeight: 500, maxWidth: 1100 }}>
           Six artifacts.{" "}
           <span style={{ color: "#C4703A" }}>One diagnostic redesign.</span>
         </h1>
@@ -61,7 +61,7 @@ export default function Slide7a() {
         <div className="grid grid-cols-3 gap-5 flex-1">
           {artifacts.map((a) => (
             <div key={a.label} className="rounded-lg p-5 flex flex-col" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
-              <span className="font-display tracking-[0.14em] uppercase mb-2" style={{ fontSize: 10, color: "#C4703A", fontWeight: 700 }}>{a.label}</span>
+              <span className="font-display tracking-[0.14em] uppercase mb-2" style={{ fontSize: 10, color: "#C4703A", fontWeight: 500 }}>{a.label}</span>
               <h2 className="font-body font-semibold leading-tight mb-2" style={{ fontSize: 16, color: "#13100C" }}>{a.title}</h2>
               <p className="font-body leading-snug" style={{ fontSize: 11, color: "#6B6560" }}>{a.body}</p>
             </div>

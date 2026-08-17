@@ -100,7 +100,7 @@ export default function MSRCaseStudyLegacy() {
               <span style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
-                fontWeight:    600,
+                fontWeight:    500,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 color:         c.accent,
@@ -149,7 +149,7 @@ export default function MSRCaseStudyLegacy() {
                 { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: c.accent, margin: "0 0 4px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c.accent, margin: "0 0 4px" }}>
                     {label}
                   </p>
                   <p style={{ fontFamily: font.sans, fontSize: "14px", color: "rgba(245,243,239,0.75)", margin: 0 }}>
@@ -170,7 +170,7 @@ export default function MSRCaseStudyLegacy() {
                 <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
                   color:         c.accent,
@@ -221,7 +221,7 @@ export default function MSRCaseStudyLegacy() {
                     <p style={{
                       fontFamily:    font.sans,
                       fontSize:      "11px",
-                      fontWeight:    600,
+                      fontWeight:    500,
                       letterSpacing: "0.10em",
                       textTransform: "uppercase",
                       color:         "rgba(245,243,239,0.75)",
@@ -242,7 +242,7 @@ export default function MSRCaseStudyLegacy() {
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
-              fontWeight:    600,
+              fontWeight:    500,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               color:         c.muted,
@@ -358,7 +358,7 @@ export default function MSRCaseStudyLegacy() {
                   <p style={{
                     fontFamily:    font.sans,
                     fontSize:      "10px",
-                    fontWeight:    700,
+                    fontWeight:    500,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     color:         c.accent,
@@ -552,7 +552,7 @@ export default function MSRCaseStudyLegacy() {
                     },
                   ].map(({ cat, ex, mod, cap, lose }, i) => (
                     <tr key={cat} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }} dangerouslySetInnerHTML={{ __html: cat }} />
+                      <td style={{ ...tdStyle, fontWeight: 500, color: c.ink }} dangerouslySetInnerHTML={{ __html: cat }} />
                       <td style={{ ...tdStyle, color: c.body }} dangerouslySetInnerHTML={{ __html: ex }} />
                       <td style={{ ...tdStyle, color: c.body }}>{mod}</td>
                       <td style={{ ...tdStyle, color: c.ink }} dangerouslySetInnerHTML={{ __html: cap }} />
@@ -601,10 +601,10 @@ export default function MSRCaseStudyLegacy() {
                     { dim: "Growth",       before: "Paid acquisition",  after: "SEO, social, direct brand outreach" },
                   ].map(({ dim, before, after }, i) => (
                     <tr key={dim} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{dim}</td>
+                      <td style={{ ...tdStyle, fontWeight: 500, color: c.ink }}>{dim}</td>
                       <td style={{ ...tdStyle, color: c.muted }}>{before}</td>
-                      <td style={{ ...tdStyle, color: c.accent, fontWeight: 700, textAlign: "center", fontSize: "18px", lineHeight: 1 }}>&rarr;</td>
-                      <td style={{ ...tdStyle, color: c.ink, fontWeight: 600 }}>{after}</td>
+                      <td style={{ ...tdStyle, color: c.accent, fontWeight: 500, textAlign: "center", fontSize: "18px", lineHeight: 1 }}>&rarr;</td>
+                      <td style={{ ...tdStyle, color: c.ink, fontWeight: 500 }}>{after}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -648,7 +648,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
                   color: c.body, margin: 0,
                 }}>
-                  <span style={{ color: c.ink, fontWeight: 600 }}>Symptoms live in a tag rail, not the nav</span>
+                  <span style={{ color: c.ink, fontWeight: 500 }}>Symptoms live in a tag rail, not the nav</span>
                   {" · "}A man with cracked heels should not have to know whether the answer is a routine, a kit, or an article. The tag pulls relevant content from all three. The nav stays clean. The symptom does the routing.
                 </p>
               </div>
@@ -685,8 +685,8 @@ export default function MSRCaseStudyLegacy() {
                   ].map(({ route, type, task, purpose }, i) => (
                     <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
                       <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{type}</td>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.accent }}>{task}</td>
+                      <td style={{ ...tdStyle, fontWeight: 500, color: c.ink }}>{type}</td>
+                      <td style={{ ...tdStyle, fontWeight: 500, color: c.accent }}>{task}</td>
                       <td style={tdStyle}>{purpose}</td>
                     </tr>
                   ))}
@@ -744,7 +744,7 @@ export default function MSRCaseStudyLegacy() {
                     fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
                     color: c.body, margin: 0,
                   }}>
-                    <span style={{ color: c.ink, fontWeight: 600 }}>{detail}</span>
+                    <span style={{ color: c.ink, fontWeight: 500 }}>{detail}</span>
                     {" · "}{why}
                   </p>
                 </div>
@@ -948,7 +948,7 @@ export default function MSRCaseStudyLegacy() {
                   }}
                 >
                   <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                    fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase",
                     color: status === "Chosen" ? c.accent : status === "Rejected" ? c.muted : c.accent,
                     minWidth: "160px", flexShrink: 0, paddingTop: "2px",
                   }}>
@@ -966,7 +966,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
-                fontWeight:    600,
+                fontWeight:    500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color:         c.muted,
@@ -1008,7 +1008,7 @@ export default function MSRCaseStudyLegacy() {
                 <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color:         c.muted,
@@ -1042,7 +1042,7 @@ export default function MSRCaseStudyLegacy() {
                       <p style={{
                         fontFamily:    font.sans,
                         fontSize:      "10px",
-                        fontWeight:    700,
+                        fontWeight:    500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
                         color:         verdict === "Chosen" ? c.accent : c.muted,
@@ -1072,7 +1072,7 @@ export default function MSRCaseStudyLegacy() {
                     style={{ objectFit: "cover", objectPosition: "top" }}
                   />
                 </div>
-                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.ink, margin: "8px 0 0", fontWeight: 600 }}>
+                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.ink, margin: "8px 0 0", fontWeight: 500 }}>
                   Dark Editorial \u00B7 Chosen
                 </p>
               </div>
@@ -1120,14 +1120,14 @@ export default function MSRCaseStudyLegacy() {
                   }}
                 >
                   <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                    fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase",
                     color: status === "Chosen" ? c.accent : c.muted,
                     minWidth: "200px", flexShrink: 0, paddingTop: "2px",
                   }}>
                     {name} · {status}
                   </span>
                   <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
                       {typeface}
                     </p>
                     <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
@@ -1143,7 +1143,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
-                fontWeight:    600,
+                fontWeight:    500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color:         c.muted,
@@ -1173,7 +1173,7 @@ export default function MSRCaseStudyLegacy() {
                         style={{ objectFit: "cover" }}
                       />
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: c.ink, margin: "8px 0 2px" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: c.ink, margin: "8px 0 2px" }}>
                       {name}
                     </p>
                     <p style={{ fontFamily: "monospace", fontSize: "11px", color: c.muted, margin: 0 }}>
@@ -1202,7 +1202,7 @@ export default function MSRCaseStudyLegacy() {
                 <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color:         c.muted,
@@ -1226,10 +1226,10 @@ export default function MSRCaseStudyLegacy() {
                       borderRight: i < 3 ? `1px solid ${c.border}` : "none",
                     }}
                   >
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
                       {area}
                     </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 600, color: c.ink, margin: "0 0 6px", lineHeight: 1.4 }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.4 }}>
                       {decision}
                     </p>
                     <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0 }}>
@@ -1254,7 +1254,7 @@ export default function MSRCaseStudyLegacy() {
                 <p style={{
                   fontFamily:    "var(--font-barlow-condensed), \"Barlow Condensed\", Impact, sans-serif",
                   fontSize:      "clamp(28px, 5vw, 48px)",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   textTransform: "uppercase",
                   letterSpacing: "0.02em",
                   lineHeight:    1.05,
@@ -1266,7 +1266,7 @@ export default function MSRCaseStudyLegacy() {
                 <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "12px",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color:         c.muted,
@@ -1296,7 +1296,7 @@ export default function MSRCaseStudyLegacy() {
                 <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "12px",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color:         c.muted,
@@ -1325,7 +1325,7 @@ export default function MSRCaseStudyLegacy() {
                 <p style={{
                   fontFamily:    font.sans,
                   fontSize:      "12px",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color:         c.muted,
@@ -1382,7 +1382,7 @@ export default function MSRCaseStudyLegacy() {
                       <td style={tdStyle}>
                         <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
                           <span style={{ width: 14, height: 14, background: msr, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.ink, fontWeight: 600 }}>{msr}</span>
+                          <span style={{ fontFamily: "monospace", fontSize: "13px", color: c.ink, fontWeight: 500 }}>{msr}</span>
                         </span>
                       </td>
                     </tr>
@@ -1429,7 +1429,7 @@ export default function MSRCaseStudyLegacy() {
                     <span style={{
                       fontFamily:    font.sans,
                       fontSize:      "11px",
-                      fontWeight:    700,
+                      fontWeight:    500,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       color:         c.accent,
@@ -1437,7 +1437,7 @@ export default function MSRCaseStudyLegacy() {
                     <span style={{
                       fontFamily:    font.sans,
                       fontSize:      "11px",
-                      fontWeight:    700,
+                      fontWeight:    500,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       color:         c.ink,
@@ -1485,7 +1485,7 @@ export default function MSRCaseStudyLegacy() {
                 <span style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
                   color:         c.accent,
@@ -1517,7 +1517,7 @@ export default function MSRCaseStudyLegacy() {
               <h3 style={{
                 fontFamily:    font.sans,
                 fontSize:      "13px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color:         c.accent,
@@ -1564,7 +1564,7 @@ export default function MSRCaseStudyLegacy() {
                       fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
                       color: "rgba(245,243,239,0.4)", margin: 0,
                     }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 500 }}>{detail}</span>
                       {" \u00B7 "}{why}
                     </p>
                   </div>
@@ -1577,7 +1577,7 @@ export default function MSRCaseStudyLegacy() {
               <h3 style={{
                 fontFamily:    font.sans,
                 fontSize:      "13px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color:         c.accent,
@@ -1624,7 +1624,7 @@ export default function MSRCaseStudyLegacy() {
                       fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
                       color: "rgba(245,243,239,0.4)", margin: 0,
                     }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 500 }}>{detail}</span>
                       {" \u00B7 "}{why}
                     </p>
                   </div>
@@ -1637,7 +1637,7 @@ export default function MSRCaseStudyLegacy() {
               <h3 style={{
                 fontFamily:    font.sans,
                 fontSize:      "13px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color:         c.accent,
@@ -1684,7 +1684,7 @@ export default function MSRCaseStudyLegacy() {
                       fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
                       color: "rgba(245,243,239,0.4)", margin: 0,
                     }}>
-                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 600 }}>{detail}</span>
+                      <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 500 }}>{detail}</span>
                       {" \u00B7 "}{why}
                     </p>
                   </div>
@@ -1715,7 +1715,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "10px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 color:         c.accent,
@@ -1743,7 +1743,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "10px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 color:         c.accent,
@@ -1784,7 +1784,7 @@ export default function MSRCaseStudyLegacy() {
                     { hypothesis: "Community trusts the content",  metric: "Reddit engagement",          threshold: "Shared without prompting",     rationale: "Organic uptake in r/BarefootRunning or r/PlantarFasciitis is the early trust signal" },
                   ].map(({ hypothesis, metric, threshold, rationale }, i) => (
                     <tr key={hypothesis} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: c.ink }}>{hypothesis}</td>
+                      <td style={{ ...tdStyle, fontWeight: 500, color: c.ink }}>{hypothesis}</td>
                       <td style={tdStyle}>{metric}</td>
                       <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "13px", color: c.accent }}>{threshold}</td>
                       <td style={{ ...tdStyle, fontSize: "13px", color: c.body }}>{rationale}</td>
@@ -1804,7 +1804,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "10px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 color:         c.muted,
@@ -1865,7 +1865,7 @@ export default function MSRCaseStudyLegacy() {
               style={{
                 fontFamily:     font.sans,
                 fontSize:       "14px",
-                fontWeight:     600,
+                fontWeight:     500,
                 color:          c.ink,
                 textDecoration: "none",
                 display:        "inline-flex",
@@ -1890,7 +1890,7 @@ export default function MSRCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
             <div style={{ maxWidth: "640px" }}>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent, margin: "0 0 12px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent, margin: "0 0 12px" }}>
                 Source
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 400, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
@@ -1938,7 +1938,7 @@ export default function MSRCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
@@ -2016,7 +2016,7 @@ function Section({ label, title, children }: { label: string; title: string; chi
         <span style={{
           fontFamily:    f.sans,
           fontSize:      "11px",
-          fontWeight:    700,
+          fontWeight:    500,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           color:         c2.accent,
@@ -2053,7 +2053,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
         <p style={{
           fontFamily:    f.sans,
           fontSize:      "10px",
-          fontWeight:    700,
+          fontWeight:    500,
           letterSpacing: "0.14em",
           textTransform: "uppercase" as const,
           color:         c2.accent,
@@ -2091,7 +2091,7 @@ const bodyText: React.CSSProperties = {
 const subheading: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:      "20px",
-  fontWeight:    600,
+  fontWeight:    500,
   color:         "#252B28",
   margin:        "40px 0 16px",
   letterSpacing: "-0.015em",
@@ -2100,7 +2100,7 @@ const subheading: React.CSSProperties = {
 const thStyle: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:      "11px",
-  fontWeight:    700,
+  fontWeight:    500,
   letterSpacing: "0.1em",
   textTransform: "uppercase",
   color:         "#8A8680",

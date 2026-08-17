@@ -44,7 +44,7 @@ export default function NotFound() {
             right:         "-6vw",
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "clamp(280px, 38vw, 560px)",
-            fontWeight:    200,
+            fontWeight:    400,
             lineHeight:    0.8,
             letterSpacing: "-0.06em",
             color:         "#F1EFEB",
@@ -102,7 +102,7 @@ export default function NotFound() {
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(40px, 6vw, 80px)",
-              fontWeight:    300,
+              fontWeight:    400,
               lineHeight:    0.98,
               letterSpacing: "-0.025em",
               color:         "#252B28",
@@ -170,7 +170,7 @@ export default function NotFound() {
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     fontSize:      "16px",
-                    fontWeight:    600,
+                    fontWeight:    500,
                     color:         "#252B28",
                     margin:        "0 0 4px",
                     letterSpacing: "-0.01em",

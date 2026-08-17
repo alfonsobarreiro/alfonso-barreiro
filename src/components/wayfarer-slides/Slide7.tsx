@@ -16,7 +16,7 @@ export default function Slide7() {
 
         <h2 className="font-display" style={{
           margin: "28px 0 0",
-          fontSize: 72, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em",
+          fontSize: 72, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
           color: wf.white,
         }}>
           “AI tools expand what’s possible to build.<br />

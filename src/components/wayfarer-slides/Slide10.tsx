@@ -14,7 +14,7 @@ export default function Slide10() {
       <Eyebrow>04 · Design Decisions</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 36px",
-        fontSize: 48, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.015em",
+        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.015em",
         color: wf.n900, maxWidth: 1100,
       }}>
         Five steps. Each narrows personalization without feeling like a form.
@@ -37,11 +37,11 @@ export default function Slide10() {
               ))}
             </div>
             <div className="font-body" style={{
-              fontSize: 10, fontWeight: 700, letterSpacing: "0.14em",
+              fontSize: 10, fontWeight: 500, letterSpacing: "0.14em",
               color: wf.accent700, marginBottom: 6,
             }}>STEP {n}</div>
             <div className="font-heading" style={{
-              fontSize: 18, fontWeight: 700, color: wf.n900, marginBottom: 8, letterSpacing: "-0.01em",
+              fontSize: 18, fontWeight: 500, color: wf.n900, marginBottom: 8, letterSpacing: "-0.01em",
             }}>{t}</div>
             <div className="font-body" style={{
               fontSize: 13, lineHeight: 1.5, color: wf.n700,

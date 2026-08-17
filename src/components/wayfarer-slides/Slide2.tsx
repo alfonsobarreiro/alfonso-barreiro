@@ -7,7 +7,7 @@ export default function Slide2() {
 
       <h2 className="font-display" style={{
         margin: "24px 0 0",
-        fontSize: 52, fontWeight: 700, lineHeight: 1.12, letterSpacing: "-0.015em",
+        fontSize: 52, fontWeight: 500, lineHeight: 1.12, letterSpacing: "-0.015em",
         color: wf.n900, maxWidth: 1100,
       }}>
         A concept travel platform, designed around one constraint.

@@ -29,7 +29,7 @@ export default function Slide7() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Site Architecture</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 30, fontWeight: 800, maxWidth: 900 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 30, fontWeight: 500, maxWidth: 900 }}>
           Eight page types, each designed for{" "}
           <span style={{ color: "#C4703A" }}>a different user task.</span>
         </h1>

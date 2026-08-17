@@ -308,8 +308,8 @@ function ProjectCard({
     background:     shellBg,
     minHeight:      isMSR ? "clamp(560px, 62vh, 760px)" : "clamp(720px, 80vh, 960px)",
     padding:        isMSR
-      ? "clamp(48px, 6vw, 88px) clamp(40px, 5vw, 80px)"
-      : "clamp(80px, 10vw, 160px) clamp(48px, 8vw, 120px)",
+      ? "clamp(48px, 6vw, 88px) max(clamp(40px, 5vw, 80px), calc((100vw - var(--content-max)) / 2))"
+      : "clamp(80px, 10vw, 160px) max(clamp(48px, 8vw, 120px), calc((100vw - var(--content-max)) / 2))",
     marginLeft:     "calc(50% - 50vw)",
     marginRight:    "calc(50% - 50vw)",
     textDecoration: "none",

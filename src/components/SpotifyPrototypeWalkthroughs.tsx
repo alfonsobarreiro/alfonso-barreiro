@@ -9,7 +9,7 @@ const c = {
 };
 
 const font = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -117,7 +117,7 @@ export default function SpotifyPrototypeWalkthroughs() {
           style={{
             fontFamily:    font.sans,
             fontSize:      "11px",
-            fontWeight:    600,
+            fontWeight:    500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color:         c.muted,
@@ -174,7 +174,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                   style={{
                     fontFamily:    font.sans,
                     fontSize:      "11px",
-                    fontWeight:    700,
+                    fontWeight:    500,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     color:         flow.accent.chipText,
@@ -206,7 +206,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                   style={{
                     fontFamily:    font.sans,
                     fontSize:      "13px",
-                    fontWeight:    600,
+                    fontWeight:    500,
                     fontVariantNumeric: "tabular-nums",
                     color:         c.muted,
                     letterSpacing: "0.04em",
@@ -302,7 +302,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                       style={{
                         fontFamily:    font.sans,
                         fontSize:      "11px",
-                        fontWeight:    700,
+                        fontWeight:    500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
                         color:         c.muted,
@@ -330,7 +330,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                     style={{
                       fontFamily:    font.sans,
                       fontSize:      "11px",
-                      fontWeight:    600,
+                      fontWeight:    500,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       color:         c.muted,
@@ -364,7 +364,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                           style={{
                             fontFamily:    font.sans,
                             fontSize:      "12px",
-                            fontWeight:    700,
+                            fontWeight:    500,
                             fontVariantNumeric: "tabular-nums",
                             color:         flow.accent.ts,
                             letterSpacing: "0.02em",

@@ -28,7 +28,7 @@ export default function SpotifyQuoteRotator({
   borderColor = "#A8A39A",
   bgColor = "#FFFFFF",
   fontSans = "var(--font-dm-sans), system-ui, sans-serif",
-  fontDisplay = "var(--font-dm-serif-display), Georgia, serif",
+  fontDisplay = "var(--font-dm-sans), -apple-system, sans-serif",
 }: SpotifyQuoteRotatorProps) {
   const [active, setActive] = useState(0);
   const [fading, setFading] = useState(false);

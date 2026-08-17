@@ -19,7 +19,7 @@ export default function Slide5() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Brand Exploration</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: 32, fontWeight: 800, maxWidth: 1100 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: 32, fontWeight: 500, maxWidth: 1100 }}>
           Clinical says &lsquo;this is a medical problem.&rsquo; Salesy says &lsquo;this is an emergency.&rsquo;{" "}
           <span style={{ color: "#C4703A" }}>Editorial says &lsquo;this is something men handle.&rsquo;</span>
         </h1>
@@ -32,7 +32,7 @@ export default function Slide5() {
             return (
               <div key={d.id} className="flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="flex items-center justify-center rounded-full" style={{ width: 18, height: 18, background: isChosen ? "#C4703A" : "#EEEDEC", color: isChosen ? "#FFFFFF" : isRejected ? "#B7B2AE" : "#938C86", fontSize: 10, fontWeight: 700 }}>
+                  <div className="flex items-center justify-center rounded-full" style={{ width: 18, height: 18, background: isChosen ? "#C4703A" : "#EEEDEC", color: isChosen ? "#FFFFFF" : isRejected ? "#B7B2AE" : "#938C86", fontSize: 10, fontWeight: 500 }}>
                     {isChosen ? "✓" : isRejected ? "✕" : "○"}
                   </div>
                   <span className="font-body" style={{ fontSize: 12, fontWeight: isChosen ? 600 : 500, color: isChosen ? "#13100C" : isRejected ? "#938C86" : "#6B6560" }}>{d.label}</span>

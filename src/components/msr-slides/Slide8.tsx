@@ -25,7 +25,7 @@ export default function Slide8() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Evaluation Plan</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 28, fontWeight: 800, maxWidth: 1000 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 28, fontWeight: 500, maxWidth: 1000 }}>
           Reasoned, not tested.{" "}
           <span style={{ color: "#C4703A" }}>Here&rsquo;s how I&rsquo;ll find out if the reasoning holds.</span>
         </h1>
@@ -51,13 +51,13 @@ export default function Slide8() {
           <div className="rounded-lg p-5 relative overflow-hidden" style={{ flex: "1 1 0", background: "#FFFFFF", border: "1px solid #D6D3D1" }}>
             <div className="absolute top-0 left-0 bottom-0 w-[3px]" style={{ background: "linear-gradient(180deg, #938C86 0%, rgba(147,140,134,0.2) 100%)" }} />
             <div className="pl-3">
-              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#6B6560", fontSize: 9, fontWeight: 700 }}>What Wasn&rsquo;t Done</span>
+              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#6B6560", fontSize: 9, fontWeight: 500 }}>What Wasn&rsquo;t Done</span>
               <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 11 }}>I didn&rsquo;t conduct user interviews before building. I didn&rsquo;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.</p>
             </div>
           </div>
           {/* Reflection */}
           <div className="rounded-lg p-5 flex flex-col gap-3" style={{ flex: "1 1 0", background: "linear-gradient(135deg, rgba(196,112,58,0.04) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.15)" }}>
-            <span className="font-display uppercase tracking-[0.2em] block" style={{ color: "#C4703A", fontSize: 9, fontWeight: 700 }}>Reflection</span>
+            <span className="font-display uppercase tracking-[0.2em] block" style={{ color: "#C4703A", fontSize: 9, fontWeight: 500 }}>Reflection</span>
             {reflections.map((r, i) => (
               <p key={i} className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 11 }}>{r}</p>
             ))}

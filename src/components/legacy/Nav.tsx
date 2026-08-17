@@ -85,7 +85,7 @@ export default function Nav() {
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "18px",
-                fontWeight:    600,
+                fontWeight:    500,
                 letterSpacing: "-0.015em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
                 transition:    "color 0.25s ease",
@@ -106,7 +106,7 @@ export default function Nav() {
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "18px",
-                fontWeight:    600,
+                fontWeight:    500,
                 letterSpacing: "-0.015em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
                 transition:    "color 0.25s ease",
@@ -231,7 +231,7 @@ export default function Nav() {
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "11px",
-            fontWeight:    600,
+            fontWeight:    500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color:         "var(--color-accent)",
@@ -315,7 +315,7 @@ export default function Nav() {
             borderRadius:   0,
             color:          "#FFFFFF",
             fontSize:       "13px",
-            fontWeight:     600,
+            fontWeight:     500,
             letterSpacing:  "0.07em",
             textTransform:  "uppercase",
             fontFamily:     "var(--font-dm-sans), sans-serif",

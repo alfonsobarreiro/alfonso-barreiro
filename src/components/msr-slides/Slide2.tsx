@@ -38,7 +38,7 @@ export default function Slide2() {
         <div className="flex gap-4 mb-14">
           {stats.map((s) => (
             <div key={s.value} className="flex-1 rounded-lg px-5 py-4" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
-              <span className="font-display block leading-none" style={{ color: "#C4703A", fontSize: 32, fontWeight: 700 }}>{s.value}</span>
+              <span className="font-display block leading-none" style={{ color: "#C4703A", fontSize: 32, fontWeight: 500 }}>{s.value}</span>
               <span className="font-body block mt-2 leading-snug" style={{ color: "#6B6560", fontSize: 13 }}>{s.label}</span>
             </div>
           ))}
@@ -83,7 +83,7 @@ export default function Slide2() {
               <div className="mt-auto flex flex-col gap-2.5">
                 {msrTraits.map((trait) => (
                   <div key={trait} className="flex items-center gap-2.5">
-                    <span className="flex items-center justify-center rounded-full" style={{ width: 20, height: 20, background: "rgba(255,255,255,0.2)", fontSize: 11, color: "#FFFFFF", fontWeight: 700 }}>{"\u2713"}</span>
+                    <span className="flex items-center justify-center rounded-full" style={{ width: 20, height: 20, background: "rgba(255,255,255,0.2)", fontSize: 11, color: "#FFFFFF", fontWeight: 500 }}>{"\u2713"}</span>
                     <span className="font-body font-semibold" style={{ color: "#FFFFFF", fontSize: 13 }}>{trait}</span>
                   </div>
                 ))}

@@ -13,7 +13,7 @@ export default function Slide16() {
 
         <h2 className="font-display" style={{
           margin: 0,
-          fontSize: 140, fontWeight: 700, lineHeight: 1, letterSpacing: "-0.03em",
+          fontSize: 140, fontWeight: 500, lineHeight: 1, letterSpacing: "-0.03em",
           color: wf.white,
         }}>
           Thank you.

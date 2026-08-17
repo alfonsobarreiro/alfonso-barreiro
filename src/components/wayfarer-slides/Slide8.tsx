@@ -28,14 +28,14 @@ function List({ variant, heading, items }: { variant: "cut" | "kept"; heading: s
       <div style={{
         display: "inline-block", padding: "3px 10px",
         borderRadius: 999, background: chipBg, color: wf.white,
-        fontSize: 11, fontWeight: 700, letterSpacing: "0.14em",
+        fontSize: 11, fontWeight: 500, letterSpacing: "0.14em",
         fontFamily: "var(--font-inter), Inter, sans-serif",
       }}>
         {isCut ? "CUT" : "KEPT"}
       </div>
       <h3 className="font-heading" style={{
         margin: "16px 0 14px",
-        fontSize: 24, fontWeight: 700, color: wf.n900, letterSpacing: "-0.01em",
+        fontSize: 24, fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
       }}>{heading}</h3>
       {items.map((text) => (
         <div key={text} style={{ display: "flex", gap: 12, margin: "10px 0", alignItems: "flex-start" }}>
@@ -53,7 +53,7 @@ export default function Slide8() {
       <Eyebrow>03 · What Not to Build</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 10px",
-        fontSize: 52, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em",
+        fontSize: 52, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
         color: wf.n900,
       }}>
         I scaled it back.

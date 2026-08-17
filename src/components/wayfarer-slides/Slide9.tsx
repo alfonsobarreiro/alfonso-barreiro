@@ -6,7 +6,7 @@ export default function Slide9() {
       <Eyebrow>04 · Design Decisions</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 0",
-        fontSize: 48, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.015em",
+        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.015em",
         color: wf.n900, maxWidth: 1150,
       }}>
         40+ destinations, two entry points, one discovery path.
@@ -60,7 +60,7 @@ export default function Slide9() {
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {["All 87","Africa 10","Asia 29","Europe 25","N. America 9","S. America 10","Oceania 6"].map((c, i) => (
                 <span key={c} style={{
-                  padding: "3px 9px", borderRadius: 999, fontSize: 10, fontWeight: 600,
+                  padding: "3px 9px", borderRadius: 999, fontSize: 10, fontWeight: 500,
                   background: i === 2 ? wf.brand500 : wf.white,
                   color: i === 2 ? wf.white : wf.n700,
                   border: `1px solid ${i === 2 ? wf.brand500 : wf.n200}`,

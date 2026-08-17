@@ -15,7 +15,7 @@ export default function Slide11() {
       <Eyebrow>04 · Design Decisions</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 40px",
-        fontSize: 48, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.015em",
+        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.015em",
         color: wf.n900, maxWidth: 1100,
       }}>
         Two typefaces, six hues. The palette serves the content.
@@ -31,7 +31,7 @@ export default function Slide11() {
               marginBottom: 14,
             }} />
             <div className="font-body" style={{
-              fontSize: 10, fontWeight: 700, letterSpacing: "0.14em",
+              fontSize: 10, fontWeight: 500, letterSpacing: "0.14em",
               color: wf.n500, textTransform: "uppercase", marginBottom: 4,
             }}>{s.category}</div>
             <div className="font-body" style={{ fontSize: 15, fontWeight: 500, color: wf.n900 }}>{s.name}</div>
@@ -45,7 +45,7 @@ export default function Slide11() {
         <div>
           <Eyebrow tone="muted">Headings</Eyebrow>
           <div className="font-display" style={{
-            margin: "8px 0 6px", fontSize: 40, fontWeight: 700, color: wf.n900,
+            margin: "8px 0 6px", fontSize: 40, fontWeight: 500, color: wf.n900,
             letterSpacing: "-0.015em",
           }}>Space Grotesk Bold</div>
           <div className="font-body" style={{ fontSize: 13, color: wf.n500, fontFamily: "monospace" }}>
@@ -55,7 +55,7 @@ export default function Slide11() {
         <div>
           <Eyebrow tone="muted">Body</Eyebrow>
           <div className="font-display" style={{
-            margin: "8px 0 6px", fontSize: 40, fontWeight: 700, color: wf.n900,
+            margin: "8px 0 6px", fontSize: 40, fontWeight: 500, color: wf.n900,
             letterSpacing: "-0.015em",
           }}>Inter Regular</div>
           <div className="font-body" style={{ fontSize: 13, color: wf.n500, fontFamily: "monospace" }}>

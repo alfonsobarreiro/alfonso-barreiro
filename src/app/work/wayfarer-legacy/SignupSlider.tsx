@@ -209,7 +209,7 @@ export default function SignupSlider({ steps, autoAdvanceMs = 4500 }: Props) {
           borderRadius:  "999px",
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "11px",
-          fontWeight:    600,
+          fontWeight:    500,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
           backdropFilter: "blur(6px)",
@@ -295,7 +295,7 @@ export default function SignupSlider({ steps, autoAdvanceMs = 4500 }: Props) {
           flex:       "1 1 auto",
           minWidth:   "200px",
         }}>
-          <span style={{ color: "rgba(245,243,239,0.75)", fontWeight: 600 }}>
+          <span style={{ color: "rgba(245,243,239,0.75)", fontWeight: 500 }}>
             {current.title}.
           </span>{" "}
           {current.caption}

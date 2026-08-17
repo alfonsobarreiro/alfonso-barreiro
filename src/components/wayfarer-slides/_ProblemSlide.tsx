@@ -18,14 +18,14 @@ export default function ProblemSlide({
           <Eyebrow>02 · The Problem</Eyebrow>
           <div className="font-display" style={{
             marginTop: 32,
-            fontSize: 220, fontWeight: 700, color: wf.accent500,
+            fontSize: 220, fontWeight: 500, color: wf.accent500,
             lineHeight: 0.9, letterSpacing: "-0.04em",
           }}>
             {number}
           </div>
           <h2 className="font-display" style={{
             marginTop: 24,
-            fontSize: 52, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em",
+            fontSize: 52, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
             color: wf.n900,
           }}>
             {title}
@@ -35,7 +35,7 @@ export default function ProblemSlide({
         {/* Right — lead quote + paragraphs */}
         <div style={{ flex: 1, paddingTop: 56 }}>
           <p className="font-heading" style={{
-            margin: 0, fontSize: 28, fontWeight: 700, lineHeight: 1.3,
+            margin: 0, fontSize: 28, fontWeight: 500, lineHeight: 1.3,
             letterSpacing: "-0.01em", color: wf.n900, maxWidth: 700,
           }}>
             {lead}
