@@ -336,7 +336,7 @@ function NextCase() {
 
 /* shared styles */
 const bodyText: React.CSSProperties = {
-  fontFamily: font.sans, fontSize: "16px", lineHeight: 1.75, color: c.body, margin: "0 0 20px", maxWidth: "780px",
+  fontFamily: font.sans, fontSize: "16px", lineHeight: 1.6, color: c.body, margin: "0 0 20px", maxWidth: "780px",
 };
 const subheading: React.CSSProperties = {
   // Dropped from 20px to 18px so the H3 sits clearly below the
@@ -344,7 +344,7 @@ const subheading: React.CSSProperties = {
   fontFamily: font.sans, fontSize: "18px", fontWeight: 500, color: c.ink, margin: "40px 0 16px", letterSpacing: "-0.015em",
 };
 const listStyle: React.CSSProperties = { margin: "0 0 20px", paddingLeft: "20px", maxWidth: "780px" };
-const liStyle: React.CSSProperties = { fontFamily: font.sans, fontSize: "16px", lineHeight: 1.7, color: c.body, marginBottom: "10px" };
+const liStyle: React.CSSProperties = { fontFamily: font.sans, fontSize: "16px", lineHeight: 1.6, color: c.body, marginBottom: "10px" };
 const code: React.CSSProperties = {
   fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "13px", background: c.bgSection, border: `1px solid ${c.border}`, padding: "1px 6px", borderRadius: "3px", color: c.ink,
 };

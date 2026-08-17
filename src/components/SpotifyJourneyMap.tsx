@@ -83,7 +83,7 @@ export default function SpotifyJourneyMap() {
               color:         c.ink,
               margin:        "0 0 12px",
               letterSpacing: "-0.02em",
-              lineHeight:    1.2,
+              lineHeight:    1.15,
             }}
           >
             The gap between seeing a control and trusting it.
@@ -92,7 +92,7 @@ export default function SpotifyJourneyMap() {
             style={{
               fontFamily: font.sans,
               fontSize:   "15px",
-              lineHeight: 1.7,
+              lineHeight: 1.6,
               color:      c.body,
               margin:     0,
             }}

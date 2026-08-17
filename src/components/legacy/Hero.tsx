@@ -138,7 +138,7 @@ export default function Hero() {
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
               fontSize:     "clamp(16px, 1.7vw, 19px)",
-              lineHeight:   1.65,
+              lineHeight:   1.6,
               color:        "#3D4440",
               maxWidth:     "480px",
               marginBottom: "44px",

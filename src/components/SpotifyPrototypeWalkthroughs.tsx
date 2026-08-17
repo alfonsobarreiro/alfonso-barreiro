@@ -376,7 +376,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                           style={{
                             fontFamily: font.sans,
                             fontSize:   "14px",
-                            lineHeight: 1.55,
+                            lineHeight: 1.5,
                             color:      c.body,
                           }}
                         >

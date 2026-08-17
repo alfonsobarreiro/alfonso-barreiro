@@ -125,7 +125,7 @@ export default function SpotifyCaseStudyLegacy() {
             <p style={{
               fontFamily:  font.sans,
               fontSize:    "clamp(16px, 2.2vw, 20px)",
-              lineHeight:  1.55,
+              lineHeight:  1.5,
               color:       "rgba(245,243,239,0.65)",
               margin:      "0 0 40px",
               maxWidth:    "640px",
@@ -468,7 +468,7 @@ export default function SpotifyCaseStudyLegacy() {
                         <p style={{ fontFamily: font.sans, fontSize: "16px", fontWeight: 500, color: c.ink, margin: 0 }}>{name}</p>
                         <span style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: type === "Negative Persona" ? c.muted : c.accent }}>{type}</span>
                       </div>
-                      <p style={{ fontFamily: font.display, fontSize: "15px", fontStyle: "italic", color: c.muted, margin: 0, lineHeight: 1.4 }}>
+                      <p style={{ fontFamily: font.display, fontSize: "15px", fontStyle: "italic", color: c.muted, margin: 0, lineHeight: 1.35 }}>
                         &ldquo;{quote}&rdquo;
                       </p>
                     </div>
@@ -634,7 +634,7 @@ export default function SpotifyCaseStudyLegacy() {
                     <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
                       {team}
                     </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.4 }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.35 }}>
                       {concern}
                     </p>
                     <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0 }}>
@@ -685,7 +685,7 @@ export default function SpotifyCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "15px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     0,
               }}>
@@ -707,7 +707,7 @@ export default function SpotifyCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "14px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -772,7 +772,7 @@ export default function SpotifyCaseStudyLegacy() {
                       <p style={{
                         fontFamily: font.sans,
                         fontSize:   "13px",
-                        lineHeight: 1.65,
+                        lineHeight: 1.6,
                         color:      "rgba(245,243,239,0.5)",
                         margin:     0,
                       }}>{caption}</p>
@@ -798,7 +798,7 @@ export default function SpotifyCaseStudyLegacy() {
                     <p style={{
                       fontFamily: font.sans,
                       fontSize:   "12px",
-                      lineHeight: 1.55,
+                      lineHeight: 1.5,
                       color:      "rgba(245,243,239,0.4)",
                       margin:     0,
                     }}>
@@ -824,7 +824,7 @@ export default function SpotifyCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "14px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -869,7 +869,7 @@ export default function SpotifyCaseStudyLegacy() {
                       <p style={{
                         fontFamily: font.sans,
                         fontSize:   "13px",
-                        lineHeight: 1.65,
+                        lineHeight: 1.6,
                         color:      "rgba(245,243,239,0.55)",
                         margin:     0,
                       }}>{caption}</p>
@@ -899,7 +899,7 @@ export default function SpotifyCaseStudyLegacy() {
                       <p style={{
                         fontFamily: font.sans,
                         fontSize:   "12px",
-                        lineHeight: 1.55,
+                        lineHeight: 1.5,
                         color:      "rgba(245,243,239,0.4)",
                         margin:     0,
                       }}>
@@ -926,7 +926,7 @@ export default function SpotifyCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "14px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -991,7 +991,7 @@ export default function SpotifyCaseStudyLegacy() {
                       <p style={{
                         fontFamily: font.sans,
                         fontSize:   "13px",
-                        lineHeight: 1.65,
+                        lineHeight: 1.6,
                         color:      "rgba(245,243,239,0.5)",
                         margin:     0,
                       }}>{caption}</p>
@@ -1017,7 +1017,7 @@ export default function SpotifyCaseStudyLegacy() {
                     <p style={{
                       fontFamily: font.sans,
                       fontSize:   "12px",
-                      lineHeight: 1.55,
+                      lineHeight: 1.5,
                       color:      "rgba(245,243,239,0.4)",
                       margin:     0,
                     }}>
@@ -1064,7 +1064,7 @@ export default function SpotifyCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "15px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     0,
               }}>
@@ -1106,7 +1106,7 @@ export default function SpotifyCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "14px",
-                lineHeight: 1.7,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.7)",
                 margin:     "0 0 20px",
               }}>
@@ -1149,7 +1149,7 @@ export default function SpotifyCaseStudyLegacy() {
                     <dd style={{
                       fontFamily: font.sans,
                       fontSize:   "13px",
-                      lineHeight: 1.65,
+                      lineHeight: 1.6,
                       color:      "rgba(245,243,239,0.55)",
                       margin:     0,
                     }}>
@@ -1318,7 +1318,7 @@ export default function SpotifyCaseStudyLegacy() {
                   </span>
                   <div>
                     <p style={{ fontFamily: font.sans, fontSize: "14px", fontWeight: 500, color: c.ink, margin: "0 0 6px" }}>{item}</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>{reason}</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>{reason}</p>
                   </div>
                 </div>
               ))}
@@ -1347,7 +1347,7 @@ export default function SpotifyCaseStudyLegacy() {
                 color:         c.muted,
                 margin:        "0 0 12px",
               }}>Test Protocol</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 Moderated usability test. 6 participants across the four archetypes (Social Curator, Commuter, Parent on shared device, Explorer). Each participant completes three task scenarios: pin a specific item, remove an accidental or contextual listen, and pause history before handing the phone to a friend. Sessions recorded. Think-aloud protocol. 45 minutes per session.
               </p>
             </div>
@@ -1403,7 +1403,7 @@ export default function SpotifyCaseStudyLegacy() {
                 color:         c.muted,
                 margin:        "0 0 12px",
               }}>Decision Criteria</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 All feature-specific thresholds must pass for that feature to ship. If error rate or CSAT fails on a single feature, that feature gets a redesign cycle before re-test. UMUX-Lite is a directional signal, not a gate: if task metrics pass but UMUX-Lite is flat, the features ship and the team investigates perception gap in follow-up research.
               </p>
             </div>
@@ -1640,7 +1640,7 @@ function FeatureCard({
       </div>
       {/* Body */}
       <div style={{ padding: "28px" }}>
-        <p style={{ fontFamily: f.sans, fontSize: "15px", lineHeight: 1.7, color: c2.body, margin: "0 0 24px" }}>{body}</p>
+        <p style={{ fontFamily: f.sans, fontSize: "15px", lineHeight: 1.6, color: c2.body, margin: "0 0 24px" }}>{body}</p>
         <p style={{ fontFamily: f.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c2.muted, margin: "0 0 12px" }}>
           Key Decisions
         </p>
@@ -1648,7 +1648,7 @@ function FeatureCard({
           {decisions.map((d, i) => (
             <div key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
               <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: c2.accent, marginTop: "8px", flexShrink: 0 }} />
-              <p style={{ fontFamily: f.sans, fontSize: "14px", lineHeight: 1.65, color: c2.body, margin: 0 }}>{d}</p>
+              <p style={{ fontFamily: f.sans, fontSize: "14px", lineHeight: 1.6, color: c2.body, margin: 0 }}>{d}</p>
             </div>
           ))}
         </div>
@@ -1661,7 +1661,7 @@ function Detail({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p style={{ fontFamily: f.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c2.muted, margin: "0 0 4px" }}>{label}</p>
-      <p style={{ fontFamily: f.sans, fontSize: "13px", lineHeight: 1.55, color: c2.body, margin: 0 }}>{value}</p>
+      <p style={{ fontFamily: f.sans, fontSize: "13px", lineHeight: 1.5, color: c2.body, margin: 0 }}>{value}</p>
     </div>
   );
 }
@@ -1673,7 +1673,7 @@ function Detail({ label, value }: { label: string; value: string }) {
 const bodyText: React.CSSProperties = {
   fontFamily:  "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:    "16px",
-  lineHeight:  1.75,
+  lineHeight:  1.6,
   color:       "#3D4440",
   margin:      "0 0 20px",
 };

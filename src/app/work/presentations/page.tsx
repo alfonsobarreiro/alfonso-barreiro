@@ -182,7 +182,7 @@ export default function PresentationsIndex() {
                     fontFamily: font.display,
                     fontSize: "24px",
                     fontWeight: 500,
-                    lineHeight: 1.2,
+                    lineHeight: 1.15,
                     color: c.ink,
                     margin: "0 0 10px",
                     letterSpacing: "-0.015em",

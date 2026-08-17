@@ -271,7 +271,7 @@ export default function About() {
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
                 fontSize:     "16px",
-                lineHeight:   1.75,
+                lineHeight:   1.6,
                 color:        "#3D4440",
                 marginBottom: "20px",
                 maxWidth:     "640px",
@@ -286,7 +286,7 @@ export default function About() {
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
                 fontSize:     "16px",
-                lineHeight:   1.75,
+                lineHeight:   1.6,
                 color:        "#3D4440",
                 marginBottom: "40px",
                 maxWidth:     "640px",
@@ -339,7 +339,7 @@ export default function About() {
                 fontSize:   "13px",
                 color:      "#8A8680",
                 margin:     "18px 0 0",
-                lineHeight: 1.55,
+                lineHeight: 1.5,
               }}
             >
               Coffee in Portland?{" "}
@@ -405,7 +405,7 @@ export default function About() {
                   style={{
                     fontFamily:   "var(--font-dm-sans), sans-serif",
                     fontSize:     "13.5px",
-                    lineHeight:   1.55,
+                    lineHeight:   1.5,
                     color:        "#3D4440",
                     margin:       "0 0 16px",
                     fontWeight:   400,

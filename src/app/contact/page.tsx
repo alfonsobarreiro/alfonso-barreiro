@@ -84,7 +84,7 @@ export default function ContactPage() {
               <p style={{
                 fontFamily: font,
                 fontSize:   "18px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      c.body,
                 margin:     "0 0 40px",
                 maxWidth:   "460px",

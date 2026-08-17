@@ -37,7 +37,7 @@ export default function Slide12() {
       </h2>
       <p className="font-body" style={{
         margin: "0 0 36px", maxWidth: 1000,
-        fontSize: 17, lineHeight: 1.55, color: wf.n700,
+        fontSize: 17, lineHeight: 1.5, color: wf.n700,
       }}>
         Three-tier token architecture shared across Wayfarer, the portfolio, and MSR: CSS custom properties as the source of truth, TypeScript semantic aliases for components, Tailwind utilities for development. Same names, different values. The same token role carries three different brands without refactoring.
       </p>

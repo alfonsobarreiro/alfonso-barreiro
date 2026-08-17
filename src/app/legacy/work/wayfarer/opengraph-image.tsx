@@ -50,7 +50,7 @@ export default async function Image() {
             style={{
               fontSize: 28,
               opacity: 0.7,
-              lineHeight: 1.4,
+              lineHeight: 1.35,
               maxWidth: 900,
             }}
           >

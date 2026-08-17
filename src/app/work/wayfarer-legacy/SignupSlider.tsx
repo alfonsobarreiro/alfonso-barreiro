@@ -289,7 +289,7 @@ export default function SignupSlider({ steps, autoAdvanceMs = 4500 }: Props) {
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "13px",
-          lineHeight: 1.55,
+          lineHeight: 1.5,
           color:      "rgba(245,243,239,0.55)",
           margin:     0,
           flex:       "1 1 auto",

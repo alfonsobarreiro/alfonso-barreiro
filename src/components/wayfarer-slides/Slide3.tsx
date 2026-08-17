@@ -36,7 +36,7 @@ export default function Slide3() {
             <h3 className="font-heading" style={{
               margin: "18px 0 10px", fontSize: 24, fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
             }}>{title}</h3>
-            <p className="font-body" style={{ fontSize: 15, lineHeight: 1.55, color: wf.n700, margin: 0 }}>{desc}</p>
+            <p className="font-body" style={{ fontSize: 15, lineHeight: 1.5, color: wf.n700, margin: 0 }}>{desc}</p>
           </div>
         ))}
       </div>

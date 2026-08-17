@@ -223,7 +223,7 @@ export default function ContactForm() {
                     const v = e.currentTarget.value.trim();
                     setMsgWords(v ? v.split(/\s+/).filter(Boolean).length : 0);
                   }}
-                  style={{ ...inputStyle(field, !!err), resize: "vertical", lineHeight: 1.65 }}
+                  style={{ ...inputStyle(field, !!err), resize: "vertical", lineHeight: 1.6 }}
                 />
               ) : (
                 <input

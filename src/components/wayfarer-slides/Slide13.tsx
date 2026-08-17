@@ -48,7 +48,7 @@ export default function Slide13() {
       </div>
 
       <p className="font-body" style={{
-        margin: "24px 0 0", fontSize: 15, lineHeight: 1.55, color: wf.n500, maxWidth: 1100,
+        margin: "24px 0 0", fontSize: 15, lineHeight: 1.5, color: wf.n500, maxWidth: 1100,
       }}>
         Orient → Browse / Explore → Evaluate → Plan → Personalize. Users don’t have to follow this linearly (globe and grid are parallel entry points into the same content), but the architecture supports the natural discovery sequence without forcing it.
       </p>

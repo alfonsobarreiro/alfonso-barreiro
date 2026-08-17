@@ -146,7 +146,7 @@ function Callout({
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
     fontSize:   "15px",
-    lineHeight: 1.7,
+    lineHeight: 1.6,
     color:      c.ink2,
     margin:     0,
   };
@@ -177,7 +177,7 @@ function Callout({
         color:         c.ink,
         margin:        "0 0 28px",
         letterSpacing: "-0.015em",
-        lineHeight:    1.25,
+        lineHeight:    1.15,
       }}>
         {decision}
       </p>
@@ -514,7 +514,7 @@ export default function MSRv2() {
             fontWeight:    400,
             color:         c.ink,
             margin:        0,
-            lineHeight:    1.18,
+            lineHeight:    1.15,
             letterSpacing: "-0.03em",
             maxWidth:      "22ch",
           }}>
@@ -615,7 +615,7 @@ export default function MSRv2() {
                 <p style={{
                   fontFamily: font.sans,
                   fontSize:   "clamp(16px, 1.6vw, 18px)",
-                  lineHeight: 1.75,
+                  lineHeight: 1.6,
                   color:      c.ink2,
                   margin:     0,
                   maxWidth:   PROSE_MAX,
@@ -676,7 +676,7 @@ export default function MSRv2() {
                     color:         "#C4703A",
                     fontStyle: "normal",
                     margin:        "24px 0 0",
-                    lineHeight:    1.45,
+                    lineHeight:    1.5,
                     letterSpacing: "-0.005em",
                     maxWidth:      "32ch",
                   }}>
@@ -723,7 +723,7 @@ export default function MSRv2() {
                 <p style={{
                   fontFamily: font.sans,
                   fontSize:   "clamp(16px, 1.6vw, 18px)",
-                  lineHeight: 1.75,
+                  lineHeight: 1.6,
                   color:      c.ink2,
                   margin:     0,
                   maxWidth:   PROSE_MAX,
@@ -779,7 +779,7 @@ export default function MSRv2() {
                 <p style={{
                   fontFamily: font.sans,
                   fontSize:   "clamp(16px, 1.6vw, 18px)",
-                  lineHeight: 1.75,
+                  lineHeight: 1.6,
                   color:      c.ink2,
                   margin:     0,
                   maxWidth:   PROSE_MAX,
@@ -833,7 +833,7 @@ export default function MSRv2() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "clamp(16px, 1.6vw, 18px)",
-                lineHeight: 1.75,
+                lineHeight: 1.6,
                 color:      c.ink2,
                 margin:     0,
                 maxWidth:   PROSE_MAX,
@@ -888,7 +888,7 @@ export default function MSRv2() {
                       fontSize:      "12px",
                       color:         c.muted,
                       margin:        "12px 0 0",
-                      lineHeight:    1.55,
+                      lineHeight:    1.5,
                     }}>
                       <strong style={{ color: c.ink, fontWeight: 500 }}>Triage:</strong> select-all-that-apply across five symptom areas. Routes you only to the sections that apply.
                     </figcaption>
@@ -909,7 +909,7 @@ export default function MSRv2() {
                       fontSize:      "12px",
                       color:         c.muted,
                       margin:        "12px 0 0",
-                      lineHeight:    1.55,
+                      lineHeight:    1.5,
                     }}>
                       <strong style={{ color: c.ink, fontWeight: 500 }}>Section:</strong> symptom checklist with prevalence stat + peer-reviewed source. Threshold copy explains what the count means.
                     </figcaption>
@@ -919,7 +919,7 @@ export default function MSRv2() {
                   fontFamily:    font.sans,
                   fontSize:      "12px",
                   color:         c.muted,
-                  lineHeight:    1.55,
+                  lineHeight:    1.5,
                   margin:        "0",
                   letterSpacing: "0.01em",
                 }}>
@@ -1094,7 +1094,7 @@ export default function MSRv2() {
               color:         c.ink,
               margin:        "0 0 48px",
               letterSpacing: "-0.01em",
-              lineHeight:    1.4,
+              lineHeight:    1.35,
               maxWidth:      PROSE_MAX,
             }}>
               The mobile read is the dominant one. Pillar articles, assessment, and reviews all designed mobile-first.
@@ -1316,7 +1316,7 @@ function BigThree({
             <p style={{
               fontFamily: font.sans,
               fontSize:   "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75,
+              lineHeight: 1.6,
               color:      c.ink2,
               margin:     0,
               maxWidth:   PROSE_MAX,
@@ -1466,7 +1466,7 @@ function PivotInfographic() {
               margin:      0,
               maxWidth:    "180px",
               textAlign:   "center",
-              lineHeight:  1.55,
+              lineHeight:  1.5,
               letterSpacing: "0.01em",
             }}>
               Margin modeling kept pointing at information, not products.
@@ -1514,7 +1514,7 @@ function ResearchStrip() {
   const stepNote: React.CSSProperties = {
     fontFamily: font.sans,
     fontSize:   "13px",
-    lineHeight: 1.55,
+    lineHeight: 1.5,
     color:      c.ink2,
     margin:     "10px 0 0",
   };
@@ -1570,7 +1570,7 @@ function WhatICut() {
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
     fontSize:   "15px",
-    lineHeight: 1.7,
+    lineHeight: 1.6,
     color:      c.ink2,
     margin:     0,
   };
@@ -1652,7 +1652,7 @@ function EarlyOutcomes() {
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
     fontSize:   "15px",
-    lineHeight: 1.7,
+    lineHeight: 1.6,
     color:      c.ink2,
     margin:     "0 0 12px",
   };
@@ -1699,7 +1699,7 @@ function HonestRisks() {
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
     fontSize:   "15px",
-    lineHeight: 1.7,
+    lineHeight: 1.6,
     color:      c.ink2,
     margin:     "0 0 12px",
   };
@@ -1747,7 +1747,7 @@ function UserResearch() {
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
     fontSize:   "15px",
-    lineHeight: 1.7,
+    lineHeight: 1.6,
     color:      c.ink2,
     margin:     "0 0 12px",
   };
@@ -1790,7 +1790,7 @@ function UserResearch() {
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "12px",
-              lineHeight:    1.45,
+              lineHeight:    1.5,
               color:         c.ink2,
               margin:        0,
               letterSpacing: "0.01em",
@@ -2192,14 +2192,14 @@ function DSPanelType() {
             fontSize:   "17px",
             color:      "var(--color-text)",
             margin:     "0 0 6px",
-            lineHeight: 1.55,
+            lineHeight: 1.5,
           }}>Long-form reading sits in Lora. Italic for citations and callouts.</p>
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize:   "15px",
             color:      "var(--color-neutral-700)",
             margin:     "0 0 10px",
-            lineHeight: 1.55,
+            lineHeight: 1.5,
             fontStyle: "normal",
           }}>&ldquo;After years of neglect, men over 40 finally have a place to start.&rdquo;</p>
           <p style={{
@@ -2278,7 +2278,7 @@ function DSPanelComponents() {
                 fontSize:   "12px",
                 color:      c.muted,
                 margin:     0,
-                lineHeight: 1.45,
+                lineHeight: 1.5,
               }}>{it.role}</p>
             </div>
           </div>
@@ -2416,7 +2416,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
       <p style={{
         fontFamily: font.sans,
         fontSize:   "14px",
-        lineHeight: 1.55,
+        lineHeight: 1.5,
         color:      c.ink,
         margin:     0,
       }}>

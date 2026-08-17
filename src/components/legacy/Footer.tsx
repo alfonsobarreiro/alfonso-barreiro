@@ -63,14 +63,14 @@ export default function Footer() {
               color:         ink,
               margin:        "0 0 8px",
               letterSpacing: "-0.015em",
-              lineHeight:    1.25,
+              lineHeight:    1.15,
             }}>
               Let&apos;s work <span style={{ color: brand }}>together.</span>
             </p>
             <p style={{
               fontFamily: font,
               fontSize:   "13px",
-              lineHeight: 1.55,
+              lineHeight: 1.5,
               color:      ink2,
               margin:     0,
             }}>

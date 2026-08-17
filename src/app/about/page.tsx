@@ -241,7 +241,7 @@ export default function AboutPage() {
                     fontWeight:    500,
                     color:         "var(--color-brand)",
                     margin:        "24px 0 0",
-                    lineHeight:    1.4,
+                    lineHeight:    1.35,
                   }}
                 >
                   <span
@@ -667,7 +667,7 @@ function RemoteTimeline() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 fontSize:   "12px",
                 fontWeight: 500,
-                lineHeight: 1.4,
+                lineHeight: 1.35,
                 color:      "var(--color-neutral-600)",
                 margin:     0,
               }}>

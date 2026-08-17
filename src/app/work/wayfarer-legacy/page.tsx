@@ -434,7 +434,7 @@ export default function WayfarerCaseStudyLegacy() {
                   <span className="cs-problem-label" style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: c.navy, minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
                     {label}
                   </span>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                     {text}
                   </p>
                 </div>
@@ -529,13 +529,13 @@ export default function WayfarerCaseStudyLegacy() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", margin: "16px 0 24px" }}>
               <div style={{ padding: "20px 24px", background: c.bgSection, border: `1px solid ${c.border}` }}>
                 <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>Before</p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                   One long form. All fields visible at once. Repetitive labels. No sense of progression. Users dropped out before reaching the personalization fields.
                 </p>
               </div>
               <div style={{ padding: "20px 24px", background: "rgba(62,60,120,0.06)", border: `1px solid #8E8AD9` }}>
                 <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.navy, margin: "0 0 8px" }}>After</p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                   Five steps, each collecting a different type of preference. Light commitment first; personalization later. The form mirrors the discovery experience the rest of the product asks the user to follow.
                 </p>
               </div>
@@ -564,7 +564,7 @@ export default function WayfarerCaseStudyLegacy() {
                   </span>
                   <div>
                     <p style={{ fontFamily: font.sans, fontSize: "14px", fontWeight: 500, color: c.ink, margin: "0 0 4px" }}>{name}</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>{detail}</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>{detail}</p>
                   </div>
                 </div>
               ))}
@@ -616,7 +616,7 @@ export default function WayfarerCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "16px",
-                lineHeight: 1.7,
+                lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     0,
               }}>
@@ -638,7 +638,7 @@ export default function WayfarerCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "15px",
-                lineHeight: 1.7,
+                lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -713,7 +713,7 @@ export default function WayfarerCaseStudyLegacy() {
                         <p style={{
                           fontFamily: font.sans,
                           fontSize:   "14px",
-                          lineHeight: 1.7,
+                          lineHeight: 1.6,
                           color:      c.onNavyMuted,
                           margin:     0,
                         }}>{caption}</p>
@@ -761,7 +761,7 @@ export default function WayfarerCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "15px",
-                lineHeight: 1.7,
+                lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -822,7 +822,7 @@ export default function WayfarerCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "15px",
-                lineHeight: 1.7,
+                lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -987,7 +987,7 @@ export default function WayfarerCaseStudyLegacy() {
                 }}>
                   Display · 700 · -2% tracking
                 </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Geometric sans with strong personality. Sized 60 / 48 / 32 / 24 px across H1 to H4 for editorial display moments.
                 </p>
               </div>
@@ -998,7 +998,7 @@ export default function WayfarerCaseStudyLegacy() {
                   fontFamily:    "var(--font-inter), Inter, system-ui, sans-serif",
                   fontSize:      "clamp(16px, 2vw, 20px)",
                   fontWeight:    400,
-                  lineHeight:    1.55,
+                  lineHeight:    1.5,
                   color:         c.ink,
                   margin:        "0 0 12px",
                   maxWidth:      "640px",
@@ -1016,7 +1016,7 @@ export default function WayfarerCaseStudyLegacy() {
                 }}>
                   Sans · 400 · body
                 </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Body, UI, and form labels. Sized 20 / 18 / 16 px. The workhorse, used everywhere outside the display layer.
                 </p>
               </div>
@@ -1286,7 +1286,7 @@ export default function WayfarerCaseStudyLegacy() {
                       style={{ objectFit: "contain", objectPosition: "top" }}
                     />
                   </div>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.55, margin: "10px 0 0", maxWidth: "780px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.5, margin: "10px 0 0", maxWidth: "780px" }}>
                     {caption}
                   </p>
                 </div>
@@ -1450,7 +1450,7 @@ export default function WayfarerCaseStudyLegacy() {
                           fontFamily: font.sans,
                           fontSize:   "12px",
                           color:      c.muted,
-                          lineHeight: 1.45,
+                          lineHeight: 1.5,
                           margin:     0,
                         }}>{where}</p>
                       </div>
@@ -1458,7 +1458,7 @@ export default function WayfarerCaseStudyLegacy() {
                   </div>
                 </div>
 
-                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.55, margin: "10px 0 0", maxWidth: "780px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.5, margin: "10px 0 0", maxWidth: "780px" }}>
                   Six routes, two flows, one discovery loop. The site map shows every route, modal, and overlay; the user flow tracks the path from curiosity at step one to commitment at step six. Rendered in code at native text size so every label stays legible at every width.
                 </p>
               </div>
@@ -1541,7 +1541,7 @@ export default function WayfarerCaseStudyLegacy() {
                 color:         c.muted,
                 margin:        "0 0 12px",
               }}>Test Protocol</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 Moderated usability test. 5&ndash;6 participants matching the target persona (adventurous travelers 21&ndash;30, travel research behavior in the last 6 months). Three task scenarios: discover a destination using the globe, complete the signup flow, and build a 3-day itinerary. Think-aloud protocol. 40 minutes per session.
               </p>
             </div>
@@ -1616,10 +1616,10 @@ export default function WayfarerCaseStudyLegacy() {
               <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#D27A5E", margin: "0 0 12px" }}>
                 Source
               </p>
-              <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 500, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+              <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 500, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 The whole project lives in Figma.
               </p>
-              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.onNavyMuted, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.onNavyMuted, margin: 0 }}>
                 Style guide, IA, signup flow, destination templates, and the design system tokens. The file is the source of truth; this case study is the editorial cut.
               </p>
             </div>
@@ -1806,7 +1806,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
 const bodyText: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:   "16px",
-  lineHeight: 1.75,
+  lineHeight: 1.6,
   color:      "#3D4440",
   margin:     "0 0 20px",
   maxWidth:   "780px",

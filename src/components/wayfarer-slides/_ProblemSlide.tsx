@@ -35,7 +35,7 @@ export default function ProblemSlide({
         {/* Right — lead quote + paragraphs */}
         <div style={{ flex: 1, paddingTop: 56 }}>
           <p className="font-heading" style={{
-            margin: 0, fontSize: 28, fontWeight: 500, lineHeight: 1.3,
+            margin: 0, fontSize: 28, fontWeight: 500, lineHeight: 1.35,
             letterSpacing: "-0.01em", color: wf.n900, maxWidth: 700,
           }}>
             {lead}
@@ -44,7 +44,7 @@ export default function ProblemSlide({
           {paragraphs.map((p, i) => (
             <p key={i} className="font-body" style={{
               margin: i === 0 ? 0 : "16px 0 0",
-              fontSize: 18, lineHeight: 1.55, color: wf.n700, maxWidth: 700,
+              fontSize: 18, lineHeight: 1.5, color: wf.n700, maxWidth: 700,
             }}>{p}</p>
           ))}
         </div>

@@ -33,7 +33,7 @@ const sectionH2: React.CSSProperties = {
 const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
   fontSize:   "17px",
-  lineHeight: 1.75,
+  lineHeight: 1.6,
   color:      "var(--color-text-muted)",
   margin:     "0 0 20px",
   maxWidth:   "680px",
@@ -53,7 +53,7 @@ const innerWrapper: React.CSSProperties = {
 const stackRow: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
   fontSize: "15px",
-  lineHeight:    1.7,
+  lineHeight:    1.6,
   color:         "var(--color-text-muted)",
   margin:        "0 0 8px",
   paddingLeft:   "18px",
@@ -113,7 +113,7 @@ function ArtifactStep({ heading, caption, src, width, height }: {
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize:   "15px",
-            lineHeight: 1.65,
+            lineHeight: 1.6,
             color:      "var(--color-text-muted)",
             margin:     0,
           }}>

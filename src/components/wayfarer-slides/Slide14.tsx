@@ -14,7 +14,7 @@ export default function Slide14() {
       <Eyebrow>07 · Evaluation Plan</Eyebrow>
       <h2 className="font-display" style={{
         margin: "16px 0 12px",
-        fontSize: 44, fontWeight: 500, lineHeight: 1.12, letterSpacing: "-0.015em",
+        fontSize: 44, fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.015em",
         color: wf.n900, maxWidth: 1200,
       }}>
         Concept project. No live traffic. Here’s how I’d test it.

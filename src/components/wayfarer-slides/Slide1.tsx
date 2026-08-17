@@ -20,7 +20,7 @@ export default function Slide1() {
 
             <h1 className="font-display" style={{
               margin: "24px 0 0",
-              fontSize: 60, fontWeight: 500, lineHeight: 1.08, letterSpacing: "-0.02em",
+              fontSize: 60, fontWeight: 500, lineHeight: 1.05, letterSpacing: "-0.02em",
               color: wf.n900, maxWidth: 1080,
             }}>
               The brief said discovery.<br />
@@ -30,7 +30,7 @@ export default function Slide1() {
 
             <p className="font-body" style={{
               margin: "28px 0 0", maxWidth: 820,
-              fontSize: 18, lineHeight: 1.55, color: wf.n700,
+              fontSize: 18, lineHeight: 1.5, color: wf.n700,
             }}>
               A concept travel discovery platform for DesignLab. AI-assisted development
               made it possible to build far beyond the brief. The real design work was

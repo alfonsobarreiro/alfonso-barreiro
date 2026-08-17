@@ -550,14 +550,14 @@ export default function DiagnosticFlowDemo() {
                   color:         c.ink,
                   margin:        "0 0 8px",
                   letterSpacing: "-0.01em",
-                  lineHeight:    1.3,
+                  lineHeight:    1.35,
                 }}>
                   {card.title}
                 </h4>
                 <p style={{
                   fontFamily: font.sans,
                   fontSize:   "14px",
-                  lineHeight: 1.55,
+                  lineHeight: 1.5,
                   color:      c.ink2,
                   margin:     0,
                 }}>
@@ -651,7 +651,7 @@ export default function DiagnosticFlowDemo() {
           <p style={{
             fontFamily: font.sans,
             fontSize:   "13px",
-            lineHeight: 1.55,
+            lineHeight: 1.5,
             color:      c.muted,
             margin:     "0 0 24px",
             maxWidth:   "56ch",

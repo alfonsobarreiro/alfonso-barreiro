@@ -40,7 +40,7 @@ function List({ variant, heading, items }: { variant: "cut" | "kept"; heading: s
       {items.map((text) => (
         <div key={text} style={{ display: "flex", gap: 12, margin: "10px 0", alignItems: "flex-start" }}>
           <span style={{ width: 8, height: 8, borderRadius: 4, background: dot, flexShrink: 0, marginTop: 8 }} />
-          <p className="font-body" style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: wf.n700 }}>{text}</p>
+          <p className="font-body" style={{ margin: 0, fontSize: 15, lineHeight: 1.5, color: wf.n700 }}>{text}</p>
         </div>
       ))}
     </div>

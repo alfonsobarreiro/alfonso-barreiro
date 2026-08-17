@@ -124,7 +124,7 @@ export default function MSRCaseStudyLegacy() {
             <p style={{
               fontFamily:  font.sans,
               fontSize:    "clamp(16px, 2.2vw, 20px)",
-              lineHeight:  1.55,
+              lineHeight:  1.5,
               color:       "rgba(245,243,239,0.65)",
               margin:      "0 0 40px",
               maxWidth:    "640px",
@@ -645,7 +645,7 @@ export default function MSRCaseStudyLegacy() {
                   background: c.accent, flexShrink: 0, marginTop: "9px",
                 }} />
                 <p style={{
-                  fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+                  fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
                   color: c.body, margin: 0,
                 }}>
                   <span style={{ color: c.ink, fontWeight: 500 }}>Symptoms live in a tag rail, not the nav</span>
@@ -741,7 +741,7 @@ export default function MSRCaseStudyLegacy() {
                     background: c.accent, flexShrink: 0, marginTop: "9px",
                   }} />
                   <p style={{
-                    fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+                    fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
                     color: c.body, margin: 0,
                   }}>
                     <span style={{ color: c.ink, fontWeight: 500 }}>{detail}</span>
@@ -954,7 +954,7 @@ export default function MSRCaseStudyLegacy() {
                   }}>
                     {name} · {status}
                   </span>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                     {reason}
                   </p>
                 </div>
@@ -1050,7 +1050,7 @@ export default function MSRCaseStudyLegacy() {
                       }}>
                         {name} &middot; {verdict}
                       </p>
-                      <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55, color: c.body, margin: 0 }} dangerouslySetInnerHTML={{ __html: desc }} />
+                      <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5, color: c.body, margin: 0 }} dangerouslySetInnerHTML={{ __html: desc }} />
                     </div>
                   ))}
                 </div>
@@ -1130,7 +1130,7 @@ export default function MSRCaseStudyLegacy() {
                     <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
                       {typeface}
                     </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                       {reason}
                     </p>
                   </div>
@@ -1229,7 +1229,7 @@ export default function MSRCaseStudyLegacy() {
                     <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
                       {area}
                     </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.4 }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.35 }}>
                       {decision}
                     </p>
                     <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0 }}>
@@ -1274,7 +1274,7 @@ export default function MSRCaseStudyLegacy() {
                 }}>
                   Display · 600 · uppercase
                 </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Authority and presence. Used at the largest scale where a headline has to land in a glance.
                 </p>
               </div>
@@ -1304,7 +1304,7 @@ export default function MSRCaseStudyLegacy() {
                 }}>
                   Serif · 400 italic · sub-display
                 </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Readable and approachable. Used for pull quotes, editorial subheads, and decision-note bodies.
                 </p>
               </div>
@@ -1315,7 +1315,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    "var(--font-dm-sans), DM Sans, system-ui, sans-serif",
                   fontSize:      "clamp(16px, 2vw, 20px)",
                   fontWeight:    400,
-                  lineHeight:    1.55,
+                  lineHeight:    1.5,
                   color:         c.ink,
                   margin:        "0 0 12px",
                   maxWidth:      "640px",
@@ -1333,7 +1333,7 @@ export default function MSRCaseStudyLegacy() {
                 }}>
                   Sans · 400 · body
                 </p>
-                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0, maxWidth: "640px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Body and UI. The workhorse. Used for everything that is not a headline or a quote.
                 </p>
               </div>
@@ -1458,7 +1458,7 @@ export default function MSRCaseStudyLegacy() {
                       style={{ objectFit: "contain", objectPosition: "top" }}
                     />
                   </div>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.55, margin: "10px 0 0", maxWidth: "780px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.5, margin: "10px 0 0", maxWidth: "780px" }}>
                     {caption}
                   </p>
                 </div>
@@ -1504,7 +1504,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "15px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     0,
               }}>
@@ -1526,7 +1526,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "14px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -1561,7 +1561,7 @@ export default function MSRCaseStudyLegacy() {
                       background: c.accent, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.5,
                       color: "rgba(245,243,239,0.4)", margin: 0,
                     }}>
                       <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 500 }}>{detail}</span>
@@ -1586,7 +1586,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "14px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -1621,7 +1621,7 @@ export default function MSRCaseStudyLegacy() {
                       background: c.accent, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.5,
                       color: "rgba(245,243,239,0.4)", margin: 0,
                     }}>
                       <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 500 }}>{detail}</span>
@@ -1646,7 +1646,7 @@ export default function MSRCaseStudyLegacy() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize:   "14px",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -1681,7 +1681,7 @@ export default function MSRCaseStudyLegacy() {
                       background: c.accent, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                      fontFamily: font.sans, fontSize: "12px", lineHeight: 1.5,
                       color: "rgba(245,243,239,0.4)", margin: 0,
                     }}>
                       <span style={{ color: "rgba(245,243,239,0.65)", fontWeight: 500 }}>{detail}</span>
@@ -1721,13 +1721,13 @@ export default function MSRCaseStudyLegacy() {
                 color:         c.accent,
                 margin:        "0 0 10px",
               }}>Early outcomes &middot; first 9 weeks live (GA4, Apr&ndash;Jun 2026)</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: "0 0 8px" }}>
                 <strong style={{ color: c.ink }}>4m 53s average engaged time per session.</strong> High for a content site, and the exact signal MSR was built to produce: visitors stay to read, they don&apos;t bounce.
               </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: "0 0 8px" }}>
                 <strong style={{ color: c.ink }}>~3.2 sessions per user</strong> across 33 early visitors in 6 countries, with zero paid promotion. Early readers come back.
               </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 <strong style={{ color: c.ink }}>The honest gap:</strong> traffic is almost entirely direct; organic search is just beginning. SEO is the clear next lever, and the phased plan below is how I&apos;ll measure whether engaged time holds as the audience grows.
               </p>
             </div>
@@ -1749,13 +1749,13 @@ export default function MSRCaseStudyLegacy() {
                 color:         c.accent,
                 margin:        "0 0 10px",
               }}>Validation approach</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: "0 0 8px" }}>
                 <strong style={{ color: c.ink }}>Phase 1 (0&ndash;3 months):</strong> Content publishing cadence, organic search impressions, Reddit community engagement. Signal: is anyone finding this?
               </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: "0 0 8px" }}>
                 <strong style={{ color: c.ink }}>Phase 2 (3&ndash;6 months):</strong> Time on page for reviews vs. articles, email signup rate, return visitor ratio. Signal: does the content structure match user intent?
               </p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 <strong style={{ color: c.ink }}>Phase 3 (6&ndash;12 months):</strong> Affiliate click-through rates, brand partnership response rate, SEO keyword rankings. Signal: is this a viable business?
               </p>
             </div>
@@ -1810,7 +1810,7 @@ export default function MSRCaseStudyLegacy() {
                 color:         c.muted,
                 margin:        "0 0 10px",
               }}>Decision criteria</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 If Phase 1 signals are flat after 3 months of consistent publishing, the content strategy hypothesis is wrong. Revisit topic selection, distribution channels, and SEO targeting before investing in Phase 2 metrics. If review page time-on-page is below threshold, the e-commerce layout assumption needs usability testing. The plan is designed to fail fast and fail specifically.
               </p>
             </div>
@@ -1893,10 +1893,10 @@ export default function MSRCaseStudyLegacy() {
               <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent, margin: "0 0 12px" }}>
                 Source
               </p>
-              <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 400, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+              <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 400, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 The whole project lives in Figma.
               </p>
-              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.65, color: "rgba(245,243,239,0.65)", margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: "rgba(245,243,239,0.65)", margin: 0 }}>
                 Every artifact above comes from the file. Research briefs, IA, the assessment redesign 03a&ndash;03i, brand identity, design system, website pages, and the directions explored before the pivot. Eight sections, ten artifacts, thirteen component sets.
               </p>
             </div>
@@ -2083,7 +2083,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
 const bodyText: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:   "16px",
-  lineHeight: 1.75,
+  lineHeight: 1.6,
   color:      "#3D4440",
   margin:     "0 0 20px",
 };

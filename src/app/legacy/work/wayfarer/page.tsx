@@ -124,7 +124,7 @@ function Callout({
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
     fontSize:   "15px",
-    lineHeight: 1.7,
+    lineHeight: 1.6,
     color:      c.ink2,
     margin:     0,
   };
@@ -145,7 +145,7 @@ function Callout({
         color:         c.brand,
         margin:        "0 0 24px",
         letterSpacing: "-0.01em",
-        lineHeight:    1.3,
+        lineHeight:    1.35,
       }}>
         {decision}
       </p>
@@ -227,7 +227,7 @@ function BigThree({
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               {body}
             </p>
@@ -248,7 +248,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
         color: c.accent, margin: "0 0 8px",
       }}>{label}</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.55,
+        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.5,
         color: c.ink, margin: 0,
       }}>{value}</p>
     </div>
@@ -295,7 +295,7 @@ export default function WayfarerV2() {
           </h1>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 26px)",
-            lineHeight: 1.45, fontWeight: 400, color: c.ink2,
+            lineHeight: 1.5, fontWeight: 400, color: c.ink2,
             maxWidth: "640px", margin: "0 0 40px", letterSpacing: "-0.005em",
           }}>
             A discovery-first travel platform with an interactive globe and a 40-destination library. Four-week DesignLab brief expanded into a working product with a documented design system.
@@ -353,7 +353,7 @@ export default function WayfarerV2() {
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 500, color: c.brand, margin: 0,
-            lineHeight: 1.25, letterSpacing: "-0.015em", maxWidth: "900px",
+            lineHeight: 1.15, letterSpacing: "-0.015em", maxWidth: "900px",
           }}>
             &ldquo;Travel content is invitation, not data. The original site treated it like data.&rdquo;
           </p>
@@ -454,7 +454,7 @@ export default function WayfarerV2() {
               <div>
                 <p style={{
                   fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-                  lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+                  lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
                 }}>
                   Four weeks into building with AI-assisted development, I had a working booking interface. Hotels, cars, full detail pages with pricing. The tools made it trivial to go from concept to functional UI in hours. The brief said discovery, not booking. I scaled it back. Removed hotel and car booking from destination pages. Kept the globe explorer, the trip planner, and the multi-step signup as the center of gravity. AI tools expanded what was possible to build. The discipline was deciding what not to build.
                 </p>
@@ -504,13 +504,13 @@ export default function WayfarerV2() {
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(20px, 2vw, 24px)",
               fontWeight: 500, color: c.ink, margin: "0 0 48px",
-              letterSpacing: "-0.01em", lineHeight: 1.4, maxWidth: PROSE_MAX,
+              letterSpacing: "-0.01em", lineHeight: 1.35, maxWidth: PROSE_MAX,
             }}>
               Discovery has to survive the phone. Hierarchy holds, the globe reduces to a continent grid, and the signup keeps its progress meter.
             </p>
             <p style={{
               fontFamily: font.sans, fontSize: "12px", color: c.muted,
-              lineHeight: 1.55, margin: 0, letterSpacing: "0.01em",
+              lineHeight: 1.5, margin: 0, letterSpacing: "0.01em",
             }}>
               Mobile screen captures from the live site at wayfarer.barreiro.com pending. Wireframe source in the Figma file (Responsive · Mobile Breakpoints page).
             </p>
@@ -753,7 +753,7 @@ function BrandIdentitySection() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Navy + coral on paper. Globe wordmark anchors the brand. Voice borrows from National Geographic and Apartamento more than from Expedia. The token names matter: every brand color in the system maps directly to a CSS variable in production. The Figma file IS the source of truth; this case study is the editorial cut.
             </p>
@@ -787,7 +787,7 @@ function DesignSystemSection() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Four color ramps, nine type styles, eighteen documented components. Every component in the Figma source carries a &lsquo;MATCHES src/...&rsquo; cross-reference to the production file it ships from. Design system coherence isn&rsquo;t a claim; it&rsquo;s a paper trail.
             </p>
@@ -858,7 +858,7 @@ function TokenCrossProjectTable() {
         <div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(15px, 1.4vw, 17px)",
-            lineHeight: 1.7, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+            lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
           }}>
             Same token names, different values per project. Wayfarer ships navy + coral. The portfolio system (AB Core) and Men&rsquo;s Sole Revival share the same primitives at different points on the ramp. The naming convention is the contract; values are the variable.
           </p>
@@ -909,7 +909,7 @@ function TokenCrossProjectTable() {
       </div>
       <p style={{
         fontFamily: font.sans, fontSize: "12px",
-        color: c.muted, lineHeight: 1.55, margin: "12px 0 0",
+        color: c.muted, lineHeight: 1.5, margin: "12px 0 0",
         letterSpacing: "0.01em",
       }}>
         Token table excerpted from the AB Core Library. Same naming convention across all three projects.
@@ -1021,7 +1021,7 @@ function ShippedSection() {
           </div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-            lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+            lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
           }}>
             wayfarer.barreiro.com is live. Homepage, globe explorer, destinations grid, destination detail templates, trip planner, 5-step signup. Six-page IA mapped to user verbs: orient, browse, explore, evaluate, plan, personalize. Eighty-seven destinations live on the globe. Full design system documented and code-cross-referenced.
           </p>
@@ -1040,7 +1040,7 @@ function ShippedSection() {
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.6vw, 30px)",
             fontWeight: 500, color: c.ink, margin: "0 0 24px",
-            letterSpacing: "-0.02em", lineHeight: 1.2,
+            letterSpacing: "-0.02em", lineHeight: 1.15,
           }}>
             One template, eighty-seven destinations.
           </h3>
@@ -1077,7 +1077,7 @@ function ShippedSection() {
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 26px)",
             fontWeight: 500, color: c.ink, margin: "0 0 20px",
-            letterSpacing: "-0.015em", lineHeight: 1.25,
+            letterSpacing: "-0.015em", lineHeight: 1.15,
           }}>
             Two more states. From blank to a real plan.
           </h3>
@@ -1375,7 +1375,7 @@ function PersonasGrid() {
           <h4 style={{
             fontFamily: font.sans, fontSize: "clamp(18px, 1.8vw, 22px)",
             fontWeight: 500, color: c.ink, margin: 0,
-            letterSpacing: "-0.015em", lineHeight: 1.2,
+            letterSpacing: "-0.015em", lineHeight: 1.15,
           }}>
             {p.name} <span style={{ fontWeight: 400, color: c.ink2 }}>· {p.meta}</span>
           </h4>
@@ -1407,7 +1407,7 @@ function PersonasGrid() {
               Want / friction
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+              fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink, fontWeight: 500 }}>Wants:</strong>{" "}
@@ -1506,14 +1506,14 @@ function CompetitorAudit() {
               <div>
                 <p style={{ ...labelMicro, color: c.accent }}>Lift</p>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                  fontFamily: font.sans, fontSize: "12px", lineHeight: 1.5,
                   color: c.ink, margin: 0,
                 }}>{r.lift}</p>
               </div>
               <div>
                 <p style={{ ...labelMicro, color: c.brand }}>Skip</p>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", lineHeight: 1.55,
+                  fontFamily: font.sans, fontSize: "12px", lineHeight: 1.5,
                   color: c.ink, margin: 0,
                 }}>{r.skip}</p>
               </div>
@@ -1558,7 +1558,7 @@ function InformationArchitecture() {
   const subhead: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
     fontWeight: 500, color: c.ink, margin: "0 0 24px",
-    letterSpacing: "-0.02em", lineHeight: 1.2,
+    letterSpacing: "-0.02em", lineHeight: 1.15,
   };
   const chipBase: React.CSSProperties = {
     fontFamily:    font.sans,
@@ -1597,7 +1597,7 @@ function InformationArchitecture() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Wayfarer&rsquo;s IA is intentionally shallow. Every primary destination is reachable in one click from the navbar. The deeper structure is the discovery loop: Home &rarr; Discover (or Destinations) &rarr; Detail &rarr; Planner &rarr; back. Each route in the map corresponds to a file at <code style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "0.92em", background: c.callout, padding: "1px 6px", border: `1px solid ${c.border}` }}>src/app/&#123;slug&#125;/page.tsx</code>. Modals and overlays are separated from the route layer because they sit above route state, not within it.
             </p>
@@ -1667,7 +1667,7 @@ function InformationArchitecture() {
                   }}>{s.label}</p>
                   <p style={{
                     fontFamily: font.sans, fontSize: "12px",
-                    color:      c.muted, margin: 0, lineHeight: 1.45,
+                    color:      c.muted, margin: 0, lineHeight: 1.5,
                   }}>{s.sub}</p>
                   {/* Arrow that overlaps to next card on desktop */}
                   {i < steps.length - 1 && (
@@ -1729,7 +1729,7 @@ function ProcessGallery() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               The Figma source carries the full design history. Research clusters became personas. Personas became an IA. The IA became wireframes. Wireframes became hi-fi explorations. Hi-fi became code. Three phases below. The shipped product is the last frame in the chain.
             </p>
@@ -1787,12 +1787,12 @@ function ProcessGallery() {
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 500, color: c.ink, margin: "0 0 8px",
-                letterSpacing: "-0.015em", lineHeight: 1.3,
+                letterSpacing: "-0.015em", lineHeight: 1.35,
               }}>
                 Personas and competitor audit.
               </h3>
               <p style={{
-                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
                 color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
               }}>
                 Three personas synthesized from interviews. A heuristic audit of direct and adjacent travel platforms across discovery, planning, and booking. Together they answered two questions: who is this for, and what is already broken in the category. The site map and user flow that came out of this work get their own section below.
@@ -1816,12 +1816,12 @@ function ProcessGallery() {
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 500, color: c.ink, margin: "0 0 8px",
-                letterSpacing: "-0.015em", lineHeight: 1.3,
+                letterSpacing: "-0.015em", lineHeight: 1.35,
               }}>
                 Paper, then pixels.
               </h3>
               <p style={{
-                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
                 color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
               }}>
                 Every screen started as a paper sketch. Seven hand drafts mapped the signup flow before a single Figma frame. Below: Step 1 in its original sketch and its v.4 hi-fi, then the iteration trail (seven mobile homepage versions, four signup versions) kept in the Figma source as proof of the work.
@@ -1927,12 +1927,12 @@ function ProcessGallery() {
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(20px, 2.2vw, 24px)",
                 fontWeight: 500, color: c.ink, margin: "0 0 8px",
-                letterSpacing: "-0.015em", lineHeight: 1.3,
+                letterSpacing: "-0.015em", lineHeight: 1.35,
               }}>
                 Mid-fi wireframes.
               </h3>
               <p style={{
-                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+                fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
                 color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
               }}>
                 Four key surfaces wireframed before the hi-fi: homepage as editorial cover, globe as discovery surface, trip planner with the three primitives, and the multi-page signup. Each ships in the live product.
@@ -1981,7 +1981,7 @@ function WhatICut() {
     color: c.accent, margin: "0 0 8px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7,
+    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
     color: c.ink2, margin: 0,
   };
   return (
@@ -2033,7 +2033,7 @@ function SignupFunnelFlow() {
       <h3 style={{
         fontFamily: font.sans, fontSize: "clamp(22px, 2.6vw, 30px)",
         fontWeight: 500, color: c.ink, margin: "0 0 12px",
-        letterSpacing: "-0.02em", lineHeight: 1.2,
+        letterSpacing: "-0.02em", lineHeight: 1.15,
       }}>
         Five steps, then welcome.
       </h3>
@@ -2076,7 +2076,7 @@ function SignupFunnelFlow() {
               <p style={{
                 fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
                 color: c.ink, margin: 0, letterSpacing: "-0.005em",
-                lineHeight: 1.25,
+                lineHeight: 1.15,
               }}>{s.label}</p>
             </label>
           ))}
@@ -2160,7 +2160,7 @@ function BriefVsDelivered() {
     width: "30%",
   };
   const tdDeliveredStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "14px", lineHeight: 1.55,
+    fontFamily: font.sans, fontSize: "14px", lineHeight: 1.5,
     padding: "14px 18px", verticalAlign: "middle",
     color: c.ink, borderBottom: `1px solid ${c.border}`,
   };
@@ -2176,12 +2176,12 @@ function BriefVsDelivered() {
       <h3 style={{
         fontFamily: font.sans, fontSize: "clamp(22px, 2.6vw, 30px)",
         fontWeight: 500, color: c.ink, margin: "0 0 12px",
-        letterSpacing: "-0.02em", lineHeight: 1.2,
+        letterSpacing: "-0.02em", lineHeight: 1.15,
       }}>
         Two things asked for. Seven shipped.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
         color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
       }}>
         The brief asked for a homepage and an onboarding fix. The build expanded around both without breaking either. The expansion isn&rsquo;t scope creep. &sect;02 The Bet shows what got cut to make room for it.
@@ -2219,7 +2219,7 @@ function BriefVsDelivered() {
       </div>
       <p style={{
         fontFamily: font.sans, fontSize: "12px",
-        color: c.muted, lineHeight: 1.55, margin: "12px 0 0",
+        color: c.muted, lineHeight: 1.5, margin: "12px 0 0",
       }}>
         Two rows hit the brief. Five rows expanded it. The build held discipline against what was cut, not against what was added.
       </p>
@@ -2234,7 +2234,7 @@ function EvaluationPlan() {
     color: c.accent, margin: "0 0 14px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7,
+    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
     color: c.ink2, margin: "0 0 12px",
   };
   return (
@@ -2268,7 +2268,7 @@ function HonestRisks() {
     color: c.accent, margin: "0 0 14px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7,
+    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
     color: c.ink2, margin: "0 0 12px",
   };
   return (
@@ -2303,7 +2303,7 @@ function ResearchEvidence() {
     color: c.accent, margin: "0 0 14px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7,
+    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
     color: c.ink2, margin: "0 0 12px",
   };
   return (
@@ -2349,7 +2349,7 @@ function AccessibilitySection() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Dedicated A11y system audit page in the Figma source. Contrast ratios for every color pairing (the warm off-white over navy pair clears 15:1; the muted variant clears 10.5:1). Focus orders documented per page. Keyboard nav patterns for the globe (continent-grid fallback). Screen-reader labels on every icon button. The artifact is the receipt.
             </p>

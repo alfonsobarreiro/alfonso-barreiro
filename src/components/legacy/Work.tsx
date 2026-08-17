@@ -198,7 +198,7 @@ export default function Work() {
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
                 fontSize:     "clamp(15px, 1.5vw, 17px)",
-                lineHeight:   1.65,
+                lineHeight:   1.6,
                 color:        "#3D4440",
                 margin:       "20px 0 0",
                 maxWidth:     "640px",
@@ -381,7 +381,7 @@ function ProjectCard({
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
         fontSize:   "clamp(15px, 1.4vw, 17px)",
-        lineHeight: 1.7,
+        lineHeight: 1.6,
         color:      "#3D4440",
         margin:     "0 0 18px",
         maxWidth:   "640px",
@@ -393,7 +393,7 @@ function ProjectCard({
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
         fontSize:      "14px",
-        lineHeight:    1.55,
+        lineHeight:    1.5,
         color:         "var(--color-accent)",
         fontStyle:     "italic",
         margin:        "0 0 28px",

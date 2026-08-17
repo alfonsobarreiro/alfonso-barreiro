@@ -133,7 +133,7 @@ export default function Contact() {
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
               fontSize:     "16px",
-              lineHeight:   1.7,
+              lineHeight:   1.6,
               color:        "rgba(245,243,239,0.55)",
               marginBottom: "40px",
               maxWidth:     "380px",
@@ -242,7 +242,7 @@ export default function Contact() {
                     style={{
                       ...inputStyle("message"),
                       resize:     "vertical",
-                      lineHeight: 1.65,
+                      lineHeight: 1.6,
                     }}
                     onFocus={() => setFocusedField("message")}
                     onBlur={() => setFocusedField(null)}

@@ -113,7 +113,7 @@ function Callout({ decision, why, cost }: { decision: string; why: string; cost:
     color: c.accent, margin: "0 0 8px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.7, color: c.ink2, margin: 0,
+    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.ink2, margin: 0,
   };
   return (
     <aside style={{
@@ -124,7 +124,7 @@ function Callout({ decision, why, cost }: { decision: string; why: string; cost:
       <p style={labelStyle}>Decision</p>
       <p style={{
         fontFamily: font.sans, fontSize: "20px", fontWeight: 500,
-        color: c.brand, margin: "0 0 24px", letterSpacing: "-0.01em", lineHeight: 1.3,
+        color: c.brand, margin: "0 0 24px", letterSpacing: "-0.01em", lineHeight: 1.35,
       }}>{decision}</p>
       <p style={labelStyle}>Why</p>
       <p style={{ ...bodyStyle, margin: "0 0 24px" }}>{why}</p>
@@ -189,7 +189,7 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>{body}</p>
             <Callout {...callout} />
           </div>
@@ -208,7 +208,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
         color: c.accent, margin: "0 0 8px",
       }}>{label}</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.55,
+        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.5,
         color: c.ink, margin: 0,
       }}>{value}</p>
     </div>
@@ -245,7 +245,7 @@ export default function SpotifyV2() {
           </h1>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(20px, 2.4vw, 28px)",
-            lineHeight: 1.4, color: c.ink2, margin: "0 0 40px",
+            lineHeight: 1.35, color: c.ink2, margin: "0 0 40px",
             maxWidth: "780px", letterSpacing: "-0.01em",
           }}>
             Three reversible controls for Spotify&rsquo;s Recently Played shelf. Each one completes in one or two taps. None touch the recommendation engine.
@@ -275,7 +275,7 @@ export default function SpotifyV2() {
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 500, color: c.ink, margin: 0,
-            lineHeight: 1.25, letterSpacing: "-0.015em", maxWidth: "900px",
+            lineHeight: 1.15, letterSpacing: "-0.015em", maxWidth: "900px",
           }}>
             &ldquo;The shelf records every play and orders by recency. That&rsquo;s the entire interaction model. People are reaching for affordances that don&rsquo;t exist yet.&rdquo;
           </p>
@@ -362,7 +362,7 @@ export default function SpotifyV2() {
             </h2>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: "0 0 32px", maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: "0 0 32px", maxWidth: PROSE_MAX,
             }}>
               Mobile uses long-press to open the action sheet. Desktop uses a right-click context menu. The three controls and their state machines are identical. Only the affordance changes.
             </p>
@@ -518,7 +518,7 @@ function ResearchStrip() {
                 color: c.ink, margin: "0 0 8px", letterSpacing: "-0.01em",
               }}>{p.name}</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "13px", lineHeight: 1.55,
+                fontFamily: font.sans, fontSize: "13px", lineHeight: 1.5,
                 color: c.ink2, margin: 0,
               }}>{p.tension}</p>
             </div>
@@ -550,7 +550,7 @@ function SketchesAndMidfi() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Five interaction directions sketched on paper before any Figma frame. The winning direction survived three tests: does it preserve discovery, is it reversible, does it sit native to the shelf. Mid-fi mocked the answer on both surfaces (mobile + desktop) before any hi-fi work.
             </p>
@@ -567,7 +567,7 @@ function SketchesAndMidfi() {
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
             fontWeight: 500, color: c.ink, margin: "0 0 20px",
-            letterSpacing: "-0.02em", lineHeight: 1.2,
+            letterSpacing: "-0.02em", lineHeight: 1.15,
           }}>
             Five directions on paper.
           </h3>
@@ -592,12 +592,12 @@ function SketchesAndMidfi() {
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
             fontWeight: 500, color: c.ink, margin: "0 0 12px",
-            letterSpacing: "-0.02em", lineHeight: 1.2,
+            letterSpacing: "-0.02em", lineHeight: 1.15,
           }}>
             Two surfaces, before the annotation.
           </h3>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.55,
+            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
             color: c.muted, margin: "0 0 32px", maxWidth: "560px",
           }}>
             The wireframes the annotated walkthrough below refers to. Worth
@@ -762,7 +762,7 @@ function DecisionLogic() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Each control gets the same editorial treatment: title, the annotated wireframe broken into individual frames so each step reads, then three paragraphs naming the problem, the trade-off, and who wins. The looping prototypes live in their own tabbed section below.
             </p>
@@ -852,7 +852,7 @@ function DecisionLogic() {
               {f.dossier.map((d) => (
                 <p key={d.lead} style={{
                   fontFamily: font.sans, fontSize: "16px",
-                  lineHeight: 1.7, color: c.ink2,
+                  lineHeight: 1.6, color: c.ink2,
                   margin: "0 0 22px", letterSpacing: "-0.003em",
                 }}>
                   <strong style={{ color: c.ink, fontWeight: 500 }}>{d.lead}</strong>{" "}
@@ -920,7 +920,7 @@ function Prototypes() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Three short prototypes built in Principle and exported as looping web video. Each one shows the design&rsquo;s tightest signal: the timing, the confirmation, the reverse. If the interaction reads in three seconds with no caption, the design works.
             </p>
@@ -1020,7 +1020,7 @@ function Prototypes() {
                     }}>{l.title}.</h3>
                     <p style={{
                       fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-                      lineHeight: 1.65, color: c.ink2, margin: 0,
+                      lineHeight: 1.6, color: c.ink2, margin: 0,
                       maxWidth: "520px",
                     }}>{l.body}</p>
                   </div>
@@ -1062,7 +1062,7 @@ function ShippedSection() {
           </div>
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-            lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+            lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
           }}>
             Three controls, two affordances (mobile long-press, desktop right-click), one state machine. Below: the Pause state diagram that locks the time-boxed behavior, then the honest scope of what wasn&rsquo;t tested.
           </p>
@@ -1080,7 +1080,7 @@ function ShippedSection() {
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
             fontWeight: 500, color: c.ink, margin: "0 0 24px",
-            letterSpacing: "-0.02em", lineHeight: 1.2,
+            letterSpacing: "-0.02em", lineHeight: 1.15,
           }}>
             Time-boxed, four states, every transition reversible.
           </h3>
@@ -1115,19 +1115,19 @@ function ShippedSection() {
               color: c.accent, margin: "0 0 14px",
             }}>What could still go wrong</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Discoverability of long-press.</strong> The gesture is common on iOS but invisible. First-run education or a contextual hint may be needed.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Pin&rsquo;s 4-item cap may frustrate power users.</strong> The cap protects the shelf&rsquo;s discovery role. A &ldquo;Show all pins&rdquo; affordance could relieve pressure if testing shows the limit hits often.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink }}>Pause without a visible timer reads as &ldquo;permanent&rdquo;.</strong> The paused state has to show its end-time clearly. If the user can&rsquo;t see when logging resumes, the time-box defeats itself.
@@ -1144,25 +1144,25 @@ function ShippedSection() {
               color: c.accent, margin: "0 0 14px",
             }}>Validation plan</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Discoverability.</strong> Time to first long-press without onboarding. Target under 8 seconds for at least 60% of first-time users.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Reversibility comprehension.</strong> After Removing an item, can the user describe what happened in one sentence? Target above 80%.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>ML signal integrity.</strong> Are Pause sessions adopted at rates that materially change recommendation quality? If yes, consider auto-resume rules.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+              fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink }}>The honest scope:</strong> no users tested this. Concept project. Hypotheses are reasoned from public signals and the stakeholder map, not from behavior.
@@ -1183,19 +1183,19 @@ function ShippedSection() {
             color: c.green, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
           <p style={{
-            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
             color: c.ink2, margin: "0 0 14px",
           }}>
             <strong style={{ color: c.ink }}>The long-press discoverability.</strong> If I had one round of usability, this is where it goes. The whole interaction model rests on a gesture the user has to find without being told. A first-run hint or a one-time pulse animation on the shelf header could carry the cost, but I&rsquo;d want to see the unguided number first.
           </p>
           <p style={{
-            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
             color: c.ink2, margin: "0 0 14px",
           }}>
             <strong style={{ color: c.ink }}>The cap&rsquo;s breaking point.</strong> Pin holds four. If the test surfaces frustration at item three or item four, the cap design is right. If frustration shows up at item five (when the swap modal appears), the modal is the problem, not the cap. Two failure modes, two fixes.
           </p>
           <p style={{
-            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+            fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
             color: c.ink2, margin: 0,
           }}>
             <strong style={{ color: c.ink }}>Pause comprehension.</strong> The riskiest copy is the paused state. If a user looks at the shelf and can&rsquo;t describe when logging resumes in one sentence, the timer affordance failed and the time-box reads as permanent. That&rsquo;s the design&rsquo;s primary promise. The test catches it.
@@ -1243,7 +1243,7 @@ function FrictionList() {
         </h2>
         <p style={{
           fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-          lineHeight: 1.75, color: c.ink2, margin: "0 0 28px",
+          lineHeight: 1.6, color: c.ink2, margin: "0 0 28px",
           maxWidth: PROSE_MAX,
         }}>
           Four predictable pain points that show up when Recently Played
@@ -1339,7 +1339,7 @@ function ActionSheetHero() {
             </h2>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(15px, 1.5vw, 17px)",
-              lineHeight: 1.7, color: "rgba(250, 250, 249, 0.82)",
+              lineHeight: 1.6, color: "rgba(250, 250, 249, 0.82)",
               margin: "0 0 36px", maxWidth: "560px",
             }}>
               Spotify&rsquo;s Recently Played is one of the best surfaces in
@@ -1485,7 +1485,7 @@ function UserVoices() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               No internal data, no brief. The research layer was built from public sources: Spotify Community threads, App Store reviews, Reddit, UX forum posts. AI-assisted clustering on 200+ posts surfaced six quotes that made the design unavoidable.
             </p>
@@ -1571,7 +1571,7 @@ function CompetitiveAudit() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Heuristic audit across seven listening platforms. Apple Music, Amazon Music, and YouTube Music all ship at least one shelf-level control. TikTok and YouTube treat the feed as inline-editable by default. Spotify ships none. The pattern is in the open.
             </p>
@@ -1654,7 +1654,7 @@ function CompetitiveAudit() {
         </div>
         <p style={{
           fontFamily: font.sans, fontSize: "12px",
-          color: c.muted, lineHeight: 1.55, margin: "12px 0 0",
+          color: c.muted, lineHeight: 1.5, margin: "12px 0 0",
         }}>
           Spotify today: no per-item control of any kind. The proposed row shows the three new controls (plus a settings-level Clear All, scoped out of this case study).
         </p>
@@ -1694,12 +1694,12 @@ function OutOfScope() {
       <h3 style={{
         fontFamily: font.sans, fontSize: "clamp(22px, 2.6vw, 30px)",
         fontWeight: 500, color: c.ink, margin: "0 0 12px",
-        letterSpacing: "-0.02em", lineHeight: 1.2,
+        letterSpacing: "-0.02em", lineHeight: 1.15,
       }}>
         Four things that got named, defended, and skipped.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65,
+        fontFamily: font.sans, fontSize: "14px", lineHeight: 1.6,
         color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
       }}>
         Knowing what not to design is the same skill as knowing what to design. Each item below was raised, considered, and deliberately left for a different surface or a different team.
@@ -1757,7 +1757,7 @@ function UserJourney() {
           <div>
             <p style={{
               fontFamily: font.sans, fontSize: "clamp(16px, 1.6vw, 18px)",
-              lineHeight: 1.75, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
+              lineHeight: 1.6, color: c.ink2, margin: 0, maxWidth: PROSE_MAX,
             }}>
               One-frame journey across the Recently Played shelf. Peaks and valleys mapped against the three opportunity points where Pin, Remove, and Pause each earn their slot.
             </p>

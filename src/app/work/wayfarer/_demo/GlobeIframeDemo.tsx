@@ -85,7 +85,7 @@ export default function GlobeIframeDemo() {
         <p style={{
           fontFamily: font.sans,
           fontSize:   "15px",
-          lineHeight: 1.55,
+          lineHeight: 1.5,
           color:      c.ink2,
           margin:     0,
           maxWidth:   "60ch",
