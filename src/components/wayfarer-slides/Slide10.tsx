@@ -14,7 +14,7 @@ export default function Slide10() {
       <Eyebrow>04 · Design Decisions</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 36px",
-        fontSize: 60, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
+        fontSize: "var(--text-display)", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1100,
       }}>
         Five steps. Each narrows personalization without feeling like a form.
@@ -37,14 +37,14 @@ export default function Slide10() {
               ))}
             </div>
             <div className="font-body" style={{
-              fontSize: 12, fontWeight: 500, letterSpacing: "0.01em",
+              fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em",
               color: wf.accent700, marginBottom: 6,
             }}>STEP {n}</div>
             <div className="font-heading" style={{
-              fontSize: 17, fontWeight: 500, color: wf.n900, marginBottom: 8, letterSpacing: "-0.01em",
+              fontSize: "var(--text-article)", fontWeight: 500, color: wf.n900, marginBottom: 8, letterSpacing: "-0.01em",
             }}>{t}</div>
             <div className="font-body" style={{
-              fontSize: 15, lineHeight: 1.5, color: wf.n700,
+              fontSize: "var(--text-body)", lineHeight: 1.5, color: wf.n700,
             }}>{d}</div>
           </div>
         ))}
@@ -52,7 +52,7 @@ export default function Slide10() {
 
       <p className="font-body" style={{
         margin: "44px 0 0", maxWidth: 980,
-        fontSize: 17, lineHeight: 1.5, color: wf.n700,
+        fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n700,
       }}>
         Step 2 establishes context. Step 3 maps interests. Step 4 anchors aspiration. The review screen lets users correct before committing. Each step earns its place. When the framing works, users finish because they want their result.
       </p>

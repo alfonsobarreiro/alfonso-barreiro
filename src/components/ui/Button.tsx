@@ -55,9 +55,9 @@ type ButtonishProps = CommonProps & {
 type ButtonProps = LinkishProps | ButtonishProps;
 
 const SIZE_MAP: Record<ButtonSize, CSSProperties> = {
-  sm: { padding: "10px 18px", fontSize: "12px" },
-  md: { padding: "12px 24px", fontSize: "12px" },
-  lg: { padding: "14px 32px", fontSize: "15px" },
+  sm: { padding: "10px 18px", fontSize: "var(--text-small)" },
+  md: { padding: "12px 24px", fontSize: "var(--text-small)" },
+  lg: { padding: "14px 32px", fontSize: "var(--text-body)" },
 };
 
 const CIRCLE_SIZE_MAP: Record<ButtonSize, CSSProperties> = {

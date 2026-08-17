@@ -20,7 +20,7 @@ export default function Slide1() {
 
             <h1 className="font-display" style={{
               margin: "24px 0 0",
-              fontSize: 60, fontWeight: 500, lineHeight: 1.05, letterSpacing: "-0.02em",
+              fontSize: "var(--text-display)", fontWeight: 500, lineHeight: 1.05, letterSpacing: "-0.02em",
               color: wf.n900, maxWidth: 1080,
             }}>
               The brief said discovery.<br />
@@ -30,7 +30,7 @@ export default function Slide1() {
 
             <p className="font-body" style={{
               margin: "28px 0 0", maxWidth: 820,
-              fontSize: 17, lineHeight: 1.5, color: wf.n700,
+              fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n700,
             }}>
               A concept travel discovery platform for DesignLab. AI-assisted development
               made it possible to build far beyond the brief. The real design work was
@@ -54,12 +54,12 @@ export default function Slide1() {
           ].map(([label, value]) => (
             <div key={label}>
               <div className="font-body" style={{
-                fontSize: 12, fontWeight: 500, letterSpacing: "0.01em",
+                fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em",
                 color: wf.n500, marginBottom: 6, textTransform: "uppercase",
               }}>
                 {label}
               </div>
-              <div className="font-body" style={{ fontSize: 15, color: wf.n900 }}>
+              <div className="font-body" style={{ fontSize: "var(--text-body)", color: wf.n900 }}>
                 {value}
               </div>
             </div>

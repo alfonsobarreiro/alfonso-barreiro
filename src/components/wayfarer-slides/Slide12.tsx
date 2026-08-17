@@ -16,7 +16,7 @@ function Cell({ hex, emphasis }: { hex: string; emphasis?: boolean }) {
         background: hex, border: `1px solid ${wf.n200}`,
       }} />
       <span className="font-body" style={{
-        fontSize: 15, fontFamily: "monospace",
+        fontSize: "var(--text-body)", fontFamily: "monospace",
         color: emphasis ? wf.n900 : wf.n500,
         fontWeight: emphasis ? 600 : 400,
       }}>{hex}</span>
@@ -30,14 +30,14 @@ export default function Slide12() {
       <Eyebrow>05 · Design System</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 16px",
-        fontSize: 60, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
+        fontSize: "var(--text-display)", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
         color: wf.n900, maxWidth: 1100,
       }}>
         One vocabulary. Different values per project.
       </h2>
       <p className="font-body" style={{
         margin: "0 0 36px", maxWidth: 1000,
-        fontSize: 17, lineHeight: 1.5, color: wf.n700,
+        fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n700,
       }}>
         Three-tier token architecture shared across Wayfarer, the portfolio, and MSR: CSS custom properties as the source of truth, TypeScript semantic aliases for components, Tailwind utilities for development. Same names, different values. The same token role carries three different brands without refactoring.
       </p>
@@ -51,7 +51,7 @@ export default function Slide12() {
         }}>
           {["TOKEN","WAYFARER","PORTFOLIO","MSR"].map((h) => (
             <div key={h} className="font-body" style={{
-              fontSize: 12, fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
+              fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
             }}>{h}</div>
           ))}
         </div>
@@ -61,7 +61,7 @@ export default function Slide12() {
             padding: "16px 20px", alignItems: "center",
             borderBottom: i < rows.length - 1 ? `1px solid ${wf.n200}` : "none",
           }}>
-            <div className="font-body" style={{ fontSize: 15, fontFamily: "monospace", color: wf.n900, fontWeight: 500 }}>{r.token}</div>
+            <div className="font-body" style={{ fontSize: "var(--text-body)", fontFamily: "monospace", color: wf.n900, fontWeight: 500 }}>{r.token}</div>
             <Cell hex={r.wayfarer} emphasis />
             <Cell hex={r.portfolio} />
             <Cell hex={r.msr} />

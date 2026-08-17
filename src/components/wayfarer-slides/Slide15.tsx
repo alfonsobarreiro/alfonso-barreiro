@@ -21,7 +21,7 @@ export default function Slide15() {
       <Eyebrow>08 · Reflection</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 40px",
-        fontSize: 60, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
+        fontSize: "var(--text-display)", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1100,
       }}>
         Three reflections on a four-week sprint.
@@ -36,9 +36,9 @@ export default function Slide15() {
             <div style={{ width: 40, height: 4, background: wf.accent500, borderRadius: 2, marginBottom: 20 }} />
             <h3 className="font-heading" style={{
               margin: "0 0 12px",
-              fontSize: 20, fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
+              fontSize: "var(--text-h3)", fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
             }}>{c.title}</h3>
-            <p className="font-body" style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: wf.n700 }}>{c.body}</p>
+            <p className="font-body" style={{ margin: 0, fontSize: "var(--text-body)", lineHeight: 1.6, color: wf.n700 }}>{c.body}</p>
           </div>
         ))}
       </div>

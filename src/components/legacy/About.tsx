@@ -36,7 +36,7 @@ const pillBase: React.CSSProperties = {
   gap:            "8px",
   padding:        "10px 20px",
   borderRadius:   0,
-  fontSize:       "12px",
+  fontSize:       "var(--text-small)",
   fontWeight:     500,
   fontFamily:     "var(--font-dm-sans), sans-serif",
   letterSpacing:  "0.01em",
@@ -48,7 +48,7 @@ const pillBase: React.CSSProperties = {
 const pillPrimary: React.CSSProperties = {
   ...pillBase,
   padding:    "12px 24px",
-  fontSize:   "12px",
+  fontSize:   "var(--text-small)",
   background: "var(--color-brand)",
   border:     "1px solid var(--color-brand)",
   color:      "#FFFFFF",
@@ -174,7 +174,7 @@ export default function About() {
               />
               <p
                 style={{
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -241,7 +241,7 @@ export default function About() {
               <span
                 style={{
                   fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -270,7 +270,7 @@ export default function About() {
             <p
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "15px",
+                fontSize:     "var(--text-body)",
                 lineHeight:   1.6,
                 color:        "#3D4440",
                 marginBottom: "20px",
@@ -285,7 +285,7 @@ export default function About() {
             <p
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "15px",
+                fontSize:     "var(--text-body)",
                 lineHeight:   1.6,
                 color:        "#3D4440",
                 marginBottom: "40px",
@@ -336,7 +336,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize:   "15px",
+                fontSize:   "var(--text-body)",
                 color:      "#8A8680",
                 margin:     "18px 0 0",
                 lineHeight: 1.5,
@@ -389,7 +389,7 @@ export default function About() {
                 <p
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -419,7 +419,7 @@ export default function About() {
                       key={skill}
                       style={{
                         fontFamily:   "var(--font-dm-sans), sans-serif",
-                        fontSize:     "15px",
+                        fontSize:     "var(--text-body)",
                         padding:      "6px 14px",
                         borderRadius: 0,
                         background:   "#F5F5F4",
@@ -452,7 +452,7 @@ export default function About() {
                   alignItems:     "center",
                   gap:            "8px",
                   fontFamily:     "var(--font-dm-sans), sans-serif",
-                  fontSize:       "15px",
+                  fontSize:       "var(--text-body)",
                   fontWeight:     500,
                   letterSpacing:  "0.01em",
                   color:          "var(--color-brand)",
@@ -506,7 +506,7 @@ export default function About() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",

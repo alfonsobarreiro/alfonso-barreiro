@@ -14,7 +14,7 @@ export default function Slide9() {
         <h1 className="font-display leading-[1.1] tracking-tight" style={{ color: "#13100C", fontSize: 72, fontWeight: 500, maxWidth: 800, margin: "0 0 24px" }}>
           Thank you.
         </h1>
-        <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: 20, maxWidth: 560, margin: "0 0 56px" }}>
+        <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: "var(--text-h3)", maxWidth: 560, margin: "0 0 56px" }}>
           Content as the product. Design as the argument.
         </p>
         <div className="w-16 h-px mb-12" style={{ background: "linear-gradient(90deg, transparent, #C4703A, transparent)" }} />
@@ -25,14 +25,14 @@ export default function Slide9() {
             { label: "LinkedIn",  value: "/in/alfonsobarreiro" },
           ].map(({ label, value }) => (
             <div key={label} className="text-center">
-              <p className="font-display uppercase tracking-[0.2em] mb-1" style={{ color: "#6B6560", fontSize: 12, fontWeight: 500 }}>{label}</p>
-              <p className="font-body" style={{ color: "#6B6560", fontSize: 15 }}>{value}</p>
+              <p className="font-display uppercase tracking-[0.2em] mb-1" style={{ color: "#6B6560", fontSize: "var(--text-small)", fontWeight: 500 }}>{label}</p>
+              <p className="font-body" style={{ color: "#6B6560", fontSize: "var(--text-body)" }}>{value}</p>
             </div>
           ))}
         </div>
         <div className="mt-14 flex flex-col items-center gap-1">
-          <p className="font-body font-medium" style={{ color: "#6B6560", fontSize: 15, letterSpacing: "0.01em" }}>Alfonso Barreiro &middot; UX/UI Designer</p>
-          <p className="font-body" style={{ color: "#6B6560", fontSize: 12, letterSpacing: "0.01em" }}>Production design system audited against the live codebase</p>
+          <p className="font-body font-medium" style={{ color: "#6B6560", fontSize: "var(--text-body)", letterSpacing: "0.01em" }}>Alfonso Barreiro &middot; UX/UI Designer</p>
+          <p className="font-body" style={{ color: "#6B6560", fontSize: "var(--text-small)", letterSpacing: "0.01em" }}>Production design system audited against the live codebase</p>
         </div>
       </div>
     </div>

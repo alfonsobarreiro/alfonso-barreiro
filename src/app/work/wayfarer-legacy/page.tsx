@@ -74,7 +74,7 @@ export default function WayfarerCaseStudyLegacy() {
             href="/#work"
             style={{
               fontFamily:     font.sans,
-              fontSize:       "15px",
+              fontSize:       "var(--text-body)",
               fontWeight:     500,
               color:          c.body,
               textDecoration: "none",
@@ -111,7 +111,7 @@ export default function WayfarerCaseStudyLegacy() {
               <span style={{ width: "24px", height: "1px", background: c.navy }} />
               <span style={{
                 fontFamily:    font.sans,
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -161,10 +161,10 @@ export default function WayfarerCaseStudyLegacy() {
                 { label: "Outcome",  value: "Discovery-first platform shipped. Trip planner architecture defined." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onNavyMuted, margin: "0 0 4px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onNavyMuted, margin: "0 0 4px" }}>
                     {label}
                   </p>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", color: c.onNavy, margin: 0 }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: c.onNavy, margin: 0 }}>
                     {value}
                   </p>
                 </div>
@@ -181,7 +181,7 @@ export default function WayfarerCaseStudyLegacy() {
                 <span style={{ width: "24px", height: "1px", background: c.navy }} />
                 <p style={{
                   fontFamily:    font.sans,
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -233,7 +233,7 @@ export default function WayfarerCaseStudyLegacy() {
                     </div>
                     <p style={{
                       fontFamily:    font.sans,
-                      fontSize:      "12px",
+                      fontSize:      "var(--text-small)",
                       fontWeight:    500,
                       letterSpacing: "0.01em",
                       textTransform: "uppercase",
@@ -254,7 +254,7 @@ export default function WayfarerCaseStudyLegacy() {
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <p style={{
               fontFamily:    font.sans,
-              fontSize:      "12px",
+              fontSize:      "var(--text-small)",
               fontWeight:    500,
               letterSpacing: "0.01em",
               textTransform: "uppercase",
@@ -289,7 +289,7 @@ export default function WayfarerCaseStudyLegacy() {
                       borderRadius:   "6px",
                       color:          isPrimary ? "#F5F5F4"    : c.ink,
                       fontFamily:     font.sans,
-                      fontSize:       "15px",
+                      fontSize:       "var(--text-body)",
                       fontWeight:     500,
                       letterSpacing:  "0.01em",
                       textDecoration: "none",
@@ -385,10 +385,10 @@ export default function WayfarerCaseStudyLegacy() {
               marginTop:     "12px",
               borderTop:     `1px solid ${c.border}`,
               fontFamily:    font.sans,
-              fontSize:      "15px",
+              fontSize:      "var(--text-body)",
               color:         c.body,
             }}>
-              <span style={{ color: c.muted, textTransform: "uppercase", letterSpacing: "0.01em", fontSize: "12px", fontWeight: 500 }}>
+              <span style={{ color: c.muted, textTransform: "uppercase", letterSpacing: "0.01em", fontSize: "var(--text-small)", fontWeight: 500 }}>
                 Style guide
               </span>
               <span>
@@ -431,10 +431,10 @@ export default function WayfarerCaseStudyLegacy() {
                     border:       `1px solid ${c.border}`,
                   }}
                 >
-                  <span className="cs-problem-label" style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.navy, minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
+                  <span className="cs-problem-label" style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.navy, minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
                     {label}
                   </span>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                     {text}
                   </p>
                 </div>
@@ -528,14 +528,14 @@ export default function WayfarerCaseStudyLegacy() {
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", margin: "16px 0 24px" }}>
               <div style={{ padding: "20px 24px", background: c.bgSection, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>Before</p>
-                <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
+                <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>Before</p>
+                <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                   One long form. All fields visible at once. Repetitive labels. No sense of progression. Users dropped out before reaching the personalization fields.
                 </p>
               </div>
               <div style={{ padding: "20px 24px", background: "rgba(62,60,120,0.06)", border: `1px solid #8E8AD9` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.navy, margin: "0 0 8px" }}>After</p>
-                <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
+                <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.navy, margin: "0 0 8px" }}>After</p>
+                <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                   Five steps, each collecting a different type of preference. Light commitment first; personalization later. The form mirrors the discovery experience the rest of the product asks the user to follow.
                 </p>
               </div>
@@ -553,7 +553,7 @@ export default function WayfarerCaseStudyLegacy() {
                 <div key={step} style={{ display: "flex", gap: "16px", padding: "16px 20px", background: c.surface, border: `1px solid ${c.border}` }}>
                   <span style={{
                     fontFamily:    font.sans,
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     color:         c.navy,
@@ -563,8 +563,8 @@ export default function WayfarerCaseStudyLegacy() {
                     {step}
                   </span>
                   <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "15px", fontWeight: 500, color: c.ink, margin: "0 0 4px" }}>{name}</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>{detail}</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500, color: c.ink, margin: "0 0 4px" }}>{name}</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>{detail}</p>
                   </div>
                 </div>
               ))}
@@ -596,7 +596,7 @@ export default function WayfarerCaseStudyLegacy() {
                 <span style={{ width: "20px", height: "1px", background: c.navy }} />
                 <span style={{
                   fontFamily:    font.sans,
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -615,7 +615,7 @@ export default function WayfarerCaseStudyLegacy() {
               </h2>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "15px",
+                fontSize:   "var(--text-body)",
                 lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     0,
@@ -628,7 +628,7 @@ export default function WayfarerCaseStudyLegacy() {
             <div id="walkthrough-globe" style={{ marginBottom: "64px", scrollMarginTop: "96px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
-                fontSize:      "15px",
+                fontSize:      "var(--text-h4)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -637,7 +637,7 @@ export default function WayfarerCaseStudyLegacy() {
               }}>Globe Explorer</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "15px",
+                fontSize:   "var(--text-body)",
                 lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     "0 0 24px",
@@ -694,7 +694,7 @@ export default function WayfarerCaseStudyLegacy() {
                     <div style={{ marginTop: "16px", display: "flex", gap: "12px", alignItems: "flex-start" }}>
                       <span style={{
                         fontFamily:    font.sans,
-                        fontSize:      "12px",
+                        fontSize:      "var(--text-small)",
                         fontWeight:    500,
                         letterSpacing: "0.01em",
                         color:         c.onNavyMuted,
@@ -704,7 +704,7 @@ export default function WayfarerCaseStudyLegacy() {
                       <div>
                         <p style={{
                           fontFamily:    font.sans,
-                          fontSize:      "12px",
+                          fontSize:      "var(--text-small)",
                           fontWeight:    500,
                           letterSpacing: "0.01em",
                           color:         "#F5F5F4",
@@ -712,7 +712,7 @@ export default function WayfarerCaseStudyLegacy() {
                         }}>{decision}</p>
                         <p style={{
                           fontFamily: font.sans,
-                          fontSize:   "15px",
+                          fontSize:   "var(--text-body)",
                           lineHeight: 1.6,
                           color:      c.onNavyMuted,
                           margin:     0,
@@ -736,7 +736,7 @@ export default function WayfarerCaseStudyLegacy() {
                       background: c.onNavyMuted, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+                      fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
                       color: c.onNavySoft, margin: 0,
                     }}>
                       <span style={{ color: c.onNavy, fontWeight: 500 }}>{detail}</span>
@@ -751,7 +751,7 @@ export default function WayfarerCaseStudyLegacy() {
             <div id="walkthrough-grid" style={{ marginBottom: "64px", scrollMarginTop: "96px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
-                fontSize:      "15px",
+                fontSize:      "var(--text-h4)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -760,7 +760,7 @@ export default function WayfarerCaseStudyLegacy() {
               }}>Parallel Entry · Destinations Grid</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "15px",
+                fontSize:   "var(--text-body)",
                 lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     "0 0 24px",
@@ -797,7 +797,7 @@ export default function WayfarerCaseStudyLegacy() {
                       background: c.onNavyMuted, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+                      fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
                       color: c.onNavySoft, margin: 0,
                     }}>
                       <span style={{ color: c.onNavy, fontWeight: 500 }}>{detail}</span>
@@ -812,7 +812,7 @@ export default function WayfarerCaseStudyLegacy() {
             <div id="walkthrough-signup" style={{ scrollMarginTop: "96px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
-                fontSize:      "15px",
+                fontSize:      "var(--text-h4)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -821,7 +821,7 @@ export default function WayfarerCaseStudyLegacy() {
               }}>Multi-Step Signup</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "15px",
+                fontSize:   "var(--text-body)",
                 lineHeight: 1.6,
                 color:      c.onNavyMuted,
                 margin:     "0 0 24px",
@@ -871,7 +871,7 @@ export default function WayfarerCaseStudyLegacy() {
                       background: c.onNavyMuted, flexShrink: 0, marginTop: "7px",
                     }} />
                     <p style={{
-                      fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+                      fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
                       color: c.onNavySoft, margin: 0,
                     }}>
                       <span style={{ color: c.onNavy, fontWeight: 500 }}>{detail}</span>
@@ -929,7 +929,7 @@ export default function WayfarerCaseStudyLegacy() {
                     { route: "Modal",              type: "Sign-up Form",   task: "Personalize",  purpose: "Create an account with preference data for tailored discovery." },
                   ].map(({ route, type, task, purpose }, i) => (
                     <tr key={route} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "15px", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "var(--text-body)", color: c.muted, overflowWrap: "anywhere" }}>{route}</td>
                       <td style={{ ...tdStyle, fontWeight: 500, color: c.ink }}>{type}</td>
                       <td style={{ ...tdStyle, fontWeight: 500, color: c.navy }}>{task}</td>
                       <td style={tdStyle}>{purpose}</td>
@@ -978,7 +978,7 @@ export default function WayfarerCaseStudyLegacy() {
                 </p>
                 <p style={{
                   fontFamily:    font.sans,
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -987,7 +987,7 @@ export default function WayfarerCaseStudyLegacy() {
                 }}>
                   Display · 700 · -2% tracking
                 </p>
-                <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Geometric sans with strong personality. Sized 60 / 48 / 32 / 24 px across H1 to H4 for editorial display moments.
                 </p>
               </div>
@@ -1007,7 +1007,7 @@ export default function WayfarerCaseStudyLegacy() {
                 </p>
                 <p style={{
                   fontFamily:    font.sans,
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -1016,7 +1016,7 @@ export default function WayfarerCaseStudyLegacy() {
                 }}>
                   Sans · 400 · body
                 </p>
-                <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Body, UI, and form labels. Sized 20 / 18 / 16 px. The workhorse, used everywhere outside the display layer.
                 </p>
               </div>
@@ -1055,7 +1055,7 @@ export default function WayfarerCaseStudyLegacy() {
                 },
               ].map(({ label, colors }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 10px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 10px" }}>
                     {label}
                   </p>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "10px" }}>
@@ -1063,8 +1063,8 @@ export default function WayfarerCaseStudyLegacy() {
                       <div key={name} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 14px", background: c.surface, border: `1px solid ${c.border}` }}>
                         <span style={{ width: 32, height: 32, background: hex, border: "1px solid rgba(0,0,0,0.08)", borderRadius: 4, flexShrink: 0 }} />
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <p style={{ fontFamily: font.sans, fontSize: "15px", fontWeight: 500, color: c.ink, margin: 0 }}>{name}</p>
-                          <p style={{ fontFamily: "monospace", fontSize: "12px", color: c.muted, margin: 0 }}>{hex}</p>
+                          <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500, color: c.ink, margin: 0 }}>{name}</p>
+                          <p style={{ fontFamily: "monospace", fontSize: "var(--text-small)", color: c.muted, margin: 0 }}>{hex}</p>
                         </div>
                       </div>
                     ))}
@@ -1129,8 +1129,8 @@ export default function WayfarerCaseStudyLegacy() {
                 { rule: "Positioning", spec: "Top-left across all viewports" },
               ].map(({ rule, spec }) => (
                 <div key={rule}>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
                 </div>
               ))}
             </div>
@@ -1148,8 +1148,8 @@ export default function WayfarerCaseStudyLegacy() {
                 { rule: "Icons",              spec: "Secondary icons in terra cotta (#D27A5E)" },
               ].map(({ rule, spec }) => (
                 <div key={rule}>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
-                  <p style={{ fontFamily: font.sans, fontSize: "15px", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
                 </div>
               ))}
             </div>
@@ -1184,23 +1184,23 @@ export default function WayfarerCaseStudyLegacy() {
                     { token: "neutral-500", wayfarer: "#6B6560", brand: "#6B6560", msr: "#6B6560" },
                   ].map(({ token, wayfarer, brand, msr }, i) => (
                     <tr key={token} style={{ background: i % 2 === 0 ? c.surface : c.bg }}>
-                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "15px", color: c.muted }}>{token}</td>
+                      <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: "var(--text-body)", color: c.muted }}>{token}</td>
                       <td style={tdStyle}>
                         <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
                           <span style={{ width: 14, height: 14, background: wayfarer, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "15px", color: c.ink, fontWeight: 500 }}>{wayfarer}</span>
+                          <span style={{ fontFamily: "monospace", fontSize: "var(--text-body)", color: c.ink, fontWeight: 500 }}>{wayfarer}</span>
                         </span>
                       </td>
                       <td style={tdStyle}>
                         <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
                           <span style={{ width: 14, height: 14, background: brand, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "15px", color: c.muted }}>{brand}</span>
+                          <span style={{ fontFamily: "monospace", fontSize: "var(--text-body)", color: c.muted }}>{brand}</span>
                         </span>
                       </td>
                       <td style={tdStyle}>
                         <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
                           <span style={{ width: 14, height: 14, background: msr, border: "1px solid rgba(0,0,0,0.08)", display: "inline-block", borderRadius: 2 }} />
-                          <span style={{ fontFamily: "monospace", fontSize: "15px", color: c.muted }}>{msr}</span>
+                          <span style={{ fontFamily: "monospace", fontSize: "var(--text-body)", color: c.muted }}>{msr}</span>
                         </span>
                       </td>
                     </tr>
@@ -1208,7 +1208,7 @@ export default function WayfarerCaseStudyLegacy() {
                 </tbody>
               </table>
             </div>
-            <p style={{ ...bodyText, marginTop: "10px", fontSize: "15px", color: c.muted }}>
+            <p style={{ ...bodyText, marginTop: "10px", fontSize: "var(--text-body)", color: c.muted }}>
               Same naming convention, different values per project. The AB Core Library holds primitives for all three properties.
             </p>
 
@@ -1256,7 +1256,7 @@ export default function WayfarerCaseStudyLegacy() {
                   <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
                     <span style={{
                       fontFamily:    font.sans,
-                      fontSize:      "12px",
+                      fontSize:      "var(--text-small)",
                       fontWeight:    500,
                       letterSpacing: "0.01em",
                       textTransform: "uppercase",
@@ -1264,7 +1264,7 @@ export default function WayfarerCaseStudyLegacy() {
                     }}>{number}</span>
                     <span style={{
                       fontFamily:    font.sans,
-                      fontSize:      "12px",
+                      fontSize:      "var(--text-small)",
                       fontWeight:    500,
                       letterSpacing: "0.01em",
                       textTransform: "uppercase",
@@ -1286,7 +1286,7 @@ export default function WayfarerCaseStudyLegacy() {
                       style={{ objectFit: "contain", objectPosition: "top" }}
                     />
                   </div>
-                  <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.5, margin: "10px 0 0", maxWidth: "780px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", color: c.muted, lineHeight: 1.5, margin: "10px 0 0", maxWidth: "780px" }}>
                     {caption}
                   </p>
                 </div>
@@ -1306,7 +1306,7 @@ export default function WayfarerCaseStudyLegacy() {
                 <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
                   <span style={{
                     fontFamily:    font.sans,
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -1314,7 +1314,7 @@ export default function WayfarerCaseStudyLegacy() {
                   }}>05</span>
                   <span style={{
                     fontFamily:    font.sans,
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -1330,7 +1330,7 @@ export default function WayfarerCaseStudyLegacy() {
                   {/* SITE MAP */}
                   <p style={{
                     fontFamily:    font.sans,
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -1372,7 +1372,7 @@ export default function WayfarerCaseStudyLegacy() {
                               alignItems:    "center",
                               padding:       "3px 9px",
                               fontFamily:    font.sans,
-                              fontSize:      "12px",
+                              fontSize:      "var(--text-small)",
                               fontWeight:    500,
                               letterSpacing: "0.01em",
                               textTransform: "uppercase",
@@ -1382,7 +1382,7 @@ export default function WayfarerCaseStudyLegacy() {
                             }}>{kind}</span>
                             <span style={{
                               fontFamily:   "ui-monospace, 'SF Mono', Menlo, monospace",
-                              fontSize:     "15px",
+                              fontSize:     "var(--text-body)",
                               fontWeight:   500,
                               color:        c.ink,
                               overflowWrap: "anywhere",
@@ -1390,7 +1390,7 @@ export default function WayfarerCaseStudyLegacy() {
                           </div>
                           <p style={{
                             fontFamily: font.sans,
-                            fontSize:   "15px",
+                            fontSize:   "var(--text-body)",
                             color:      c.body,
                             lineHeight: 1.5,
                             margin:     0,
@@ -1403,7 +1403,7 @@ export default function WayfarerCaseStudyLegacy() {
                   {/* PRIMARY USER FLOW */}
                   <p style={{
                     fontFamily:    font.sans,
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -1431,7 +1431,7 @@ export default function WayfarerCaseStudyLegacy() {
                       }}>
                         <p style={{
                           fontFamily:    font.sans,
-                          fontSize:      "12px",
+                          fontSize:      "var(--text-small)",
                           fontWeight:    500,
                           letterSpacing: "0.01em",
                           textTransform: "uppercase",
@@ -1440,7 +1440,7 @@ export default function WayfarerCaseStudyLegacy() {
                         }}>Step {step}</p>
                         <p style={{
                           fontFamily:    font.sans,
-                          fontSize:      "17px",
+                          fontSize:      "var(--text-article)",
                           fontWeight:    500,
                           color:         c.ink,
                           letterSpacing: "-0.01em",
@@ -1448,7 +1448,7 @@ export default function WayfarerCaseStudyLegacy() {
                         }}>{verb}</p>
                         <p style={{
                           fontFamily: font.sans,
-                          fontSize:   "12px",
+                          fontSize:   "var(--text-small)",
                           color:      c.muted,
                           lineHeight: 1.5,
                           margin:     0,
@@ -1458,7 +1458,7 @@ export default function WayfarerCaseStudyLegacy() {
                   </div>
                 </div>
 
-                <p style={{ fontFamily: font.sans, fontSize: "12px", color: c.muted, lineHeight: 1.5, margin: "10px 0 0", maxWidth: "780px" }}>
+                <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", color: c.muted, lineHeight: 1.5, margin: "10px 0 0", maxWidth: "780px" }}>
                   Six routes, two flows, one discovery loop. The site map shows every route, modal, and overlay; the user flow tracks the path from curiosity at step one to commitment at step six. Rendered in code at native text size so every label stays legible at every width.
                 </p>
               </div>
@@ -1534,20 +1534,20 @@ export default function WayfarerCaseStudyLegacy() {
             }}>
               <p style={{
                 fontFamily:    font.sans,
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 12px",
               }}>Test Protocol</p>
-              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 Moderated usability test. 5&ndash;6 participants matching the target persona (adventurous travelers 21&ndash;30, travel research behavior in the last 6 months). Three task scenarios: discover a destination using the globe, complete the signup flow, and build a 3-day itinerary. Think-aloud protocol. 40 minutes per session.
               </p>
             </div>
 
             <details style={{ marginTop: "8px" }}>
-              <summary style={{ fontFamily: font.sans, fontSize: "15px", fontWeight: 500, color: c.navy, cursor: "pointer", padding: "12px 0", letterSpacing: "0.01em" }}>
+              <summary style={{ fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500, color: c.navy, cursor: "pointer", padding: "12px 0", letterSpacing: "0.01em" }}>
                 Show metrics + thresholds
               </summary>
               {/* Threshold table */}
@@ -1577,7 +1577,7 @@ export default function WayfarerCaseStudyLegacy() {
                         <td style={{ ...tdStyle, fontWeight: 500, color: c.ink }}>{hypothesis}</td>
                         <td style={tdStyle}>{metric}</td>
                         <td style={{ ...tdStyle, fontWeight: 500, color: c.navy }}>{threshold}</td>
-                        <td style={{ ...tdStyle, fontSize: "12px", color: c.muted }}>{rationale}</td>
+                        <td style={{ ...tdStyle, fontSize: "var(--text-small)", color: c.muted }}>{rationale}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1613,13 +1613,13 @@ export default function WayfarerCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
             <div style={{ maxWidth: "640px" }}>
-              <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: "#D27A5E", margin: "0 0 12px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: "#D27A5E", margin: "0 0 12px" }}>
                 Source
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px,3vw,28px)", fontWeight: 500, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 The whole project lives in Figma.
               </p>
-              <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.onNavyMuted, margin: 0 }}>
+              <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.onNavyMuted, margin: 0 }}>
                 Style guide, IA, signup flow, destination templates, and the design system tokens. The file is the source of truth; this case study is the editorial cut.
               </p>
             </div>
@@ -1636,7 +1636,7 @@ export default function WayfarerCaseStudyLegacy() {
                 borderRadius:   0,
                 color:          "#F5F5F4",
                 fontFamily:     font.sans,
-                fontSize:       "15px",
+                fontSize:       "var(--text-body)",
                 fontWeight:     500,
                 letterSpacing:  "0.01em",
                 textDecoration: "none",
@@ -1662,7 +1662,7 @@ export default function WayfarerCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
-              <p style={{ fontFamily: font.sans, fontSize: "12px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px,3vw,28px)", color: c.ink, margin: 0 }}>
@@ -1680,7 +1680,7 @@ export default function WayfarerCaseStudyLegacy() {
                 borderRadius:   0,
                 color:          "#F5F5F4",
                 fontFamily:     font.sans,
-                fontSize:       "15px",
+                fontSize:       "var(--text-body)",
                 fontWeight:     500,
                 letterSpacing:  "0.01em",
                 textDecoration: "none",
@@ -1738,7 +1738,7 @@ function Section({ label, title, children }: { label: string; title: string; chi
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", marginBottom: "32px" }}>
         <span style={{
           fontFamily:    f.sans,
-          fontSize:      "12px",
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -1775,7 +1775,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
       {label && (
         <p style={{
           fontFamily:    f.sans,
-          fontSize:      "12px",
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase" as const,
@@ -1805,7 +1805,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
 
 const bodyText: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:   "15px",
+  fontSize:   "var(--text-body)",
   lineHeight: 1.6,
   color:      "#3D4440",
   margin:     "0 0 20px",
@@ -1814,7 +1814,7 @@ const bodyText: React.CSSProperties = {
 
 const subheading: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:      "20px",
+  fontSize:      "var(--text-h3)",
   fontWeight:    500,
   color:         "#252B28",
   margin:        "40px 0 16px",
@@ -1823,7 +1823,7 @@ const subheading: React.CSSProperties = {
 
 const thStyle: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:      "12px",
+  fontSize:      "var(--text-small)",
   fontWeight:    500,
   letterSpacing: "0.01em",
   textTransform: "uppercase",
@@ -1835,7 +1835,7 @@ const thStyle: React.CSSProperties = {
 
 const tdStyle: React.CSSProperties = {
   fontFamily:   "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:     "15px",
+  fontSize:     "var(--text-body)",
   color:        "#3D4440",
   padding:      "14px 16px",
   borderBottom: "1px solid #A8A39A",

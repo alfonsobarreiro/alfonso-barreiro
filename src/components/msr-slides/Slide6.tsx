@@ -24,7 +24,7 @@ function TokenCell({ hex, highlight }: { hex: string; highlight?: boolean }) {
   return (
     <div className="flex items-center gap-2">
       <div className="rounded-sm flex-shrink-0" style={{ width: 14, height: 14, background: hex, border: "1px solid rgba(0,0,0,0.08)" }} />
-      <code className="font-body" style={{ fontSize: 12, color: highlight ? "#13100C" : "#938C86", fontWeight: highlight ? 600 : 400 }}>{hex}</code>
+      <code className="font-body" style={{ fontSize: "var(--text-small)", color: highlight ? "#13100C" : "#938C86", fontWeight: highlight ? 600 : 400 }}>{hex}</code>
     </div>
   );
 }
@@ -40,7 +40,7 @@ export default function Slide6() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Typography + Token Architecture</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 28, fontWeight: 500, maxWidth: 900 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: "var(--text-h2)", fontWeight: 500, maxWidth: 900 }}>
           Three typefaces, each with a job.{" "}
           <span style={{ color: "#C4703A" }}>One token system, zero drift.</span>
         </h1>
@@ -48,32 +48,32 @@ export default function Slide6() {
         <div className="grid grid-cols-3 gap-5 mb-4">
           {typefaces.map((tf) => (
             <div key={tf.family} className="rounded-lg p-5 relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
-              <div className={tf.cssClass} style={{ fontSize: 60, fontWeight: tf.weight, fontStyle: tf.italic ? "italic" : "normal", color: "#13100C", lineHeight: 1, marginBottom: 12 }}>{tf.specimen}</div>
+              <div className={tf.cssClass} style={{ fontSize: "var(--text-display)", fontWeight: tf.weight, fontStyle: tf.italic ? "italic" : "normal", color: "#13100C", lineHeight: 1, marginBottom: 12 }}>{tf.specimen}</div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="font-body font-semibold" style={{ color: "#13100C", fontSize: 15 }}>{tf.family}</span>
-                <span className="font-body rounded-full px-2 py-0.5" style={{ fontSize: 12, fontWeight: 500, color: "#C4703A", background: "rgba(196,112,58,0.08)", border: "1px solid rgba(196,112,58,0.2)" }}>{tf.role}</span>
+                <span className="font-body font-semibold" style={{ color: "#13100C", fontSize: "var(--text-body)" }}>{tf.family}</span>
+                <span className="font-body rounded-full px-2 py-0.5" style={{ fontSize: "var(--text-small)", fontWeight: 500, color: "#C4703A", background: "rgba(196,112,58,0.08)", border: "1px solid rgba(196,112,58,0.2)" }}>{tf.role}</span>
               </div>
-              <p className="font-body leading-snug" style={{ color: "#6B6560", fontSize: 12 }}>{tf.usage}</p>
-              <p className="font-body mt-1.5" style={{ color: "#6B6560", fontSize: 12 }}>Weights: {tf.weights}</p>
+              <p className="font-body leading-snug" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>{tf.usage}</p>
+              <p className="font-body mt-1.5" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>Weights: {tf.weights}</p>
             </div>
           ))}
         </div>
 
-        <p className="font-heading italic leading-relaxed mb-5" style={{ color: "#C4703A", fontSize: 15 }}>&ldquo;The roles are explicit, not decorative. Each typeface was chosen for what it does in context, not how it looks next to the others.&rdquo;</p>
+        <p className="font-heading italic leading-relaxed mb-5" style={{ color: "#C4703A", fontSize: "var(--text-body)" }}>&ldquo;The roles are explicit, not decorative. Each typeface was chosen for what it does in context, not how it looks next to the others.&rdquo;</p>
 
         <div className="flex gap-5">
           {/* Left: Token tiers */}
           <div className="flex flex-col" style={{ flex: "1 1 0" }}>
-            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#13100C", fontSize: 15, fontWeight: 500 }}>3-Tier Token System</h2>
+            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#13100C", fontSize: "var(--text-h4)", fontWeight: 500 }}>3-Tier Token System</h2>
             <div className="flex items-center gap-0">
               {tiers.map((tier, i) => (
                 <div key={tier.label} className="flex items-center flex-1 min-w-0">
                   <div className="rounded-lg p-3 flex flex-col w-full" style={{ background: i === 0 ? "linear-gradient(135deg, rgba(196,112,58,0.08) 0%, rgba(196,112,58,0.02) 100%)" : "#FFFFFF", border: i === 0 ? "1px solid rgba(196,112,58,0.25)" : "1px solid #EEEDEC" }}>
-                    <span className="font-display" style={{ fontSize: 12, fontWeight: 500, color: i === 0 ? "#C4703A" : "#B7B2AE", letterSpacing: "0.01em" }}>TIER {i + 1}</span>
-                    <span className="font-body font-semibold mt-1" style={{ color: "#13100C", fontSize: 12, lineHeight: 1.35 }}>{tier.label}</span>
-                    <p className="font-body mt-1" style={{ color: "#6B6560", fontSize: 12, lineHeight: 1.35 }}>{tier.desc}</p>
+                    <span className="font-display" style={{ fontSize: "var(--text-small)", fontWeight: 500, color: i === 0 ? "#C4703A" : "#B7B2AE", letterSpacing: "0.01em" }}>TIER {i + 1}</span>
+                    <span className="font-body font-semibold mt-1" style={{ color: "#13100C", fontSize: "var(--text-small)", lineHeight: 1.35 }}>{tier.label}</span>
+                    <p className="font-body mt-1" style={{ color: "#6B6560", fontSize: "var(--text-small)", lineHeight: 1.35 }}>{tier.desc}</p>
                     <div className="rounded px-2 py-0.5 mt-2" style={{ background: "#F8F7F7", border: "1px solid #EEEDEC" }}>
-                      <code className="font-body" style={{ fontSize: 12, color: "#C4703A" }}>{tier.example}</code>
+                      <code className="font-body" style={{ fontSize: "var(--text-small)", color: "#C4703A" }}>{tier.example}</code>
                     </div>
                   </div>
                   {i < tiers.length - 1 && (
@@ -88,36 +88,36 @@ export default function Slide6() {
 
           {/* Right: Token table */}
           <div className="flex flex-col" style={{ flex: "1.1 1 0" }}>
-            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#13100C", fontSize: 15, fontWeight: 500 }}>AB Core Library Variables</h2>
+            <h2 className="font-display uppercase tracking-tight mb-3" style={{ color: "#13100C", fontSize: "var(--text-h4)", fontWeight: 500 }}>AB Core Library Variables</h2>
             <div className="rounded-lg overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
               <div className="grid px-4 py-1.5" style={{ gridTemplateColumns: "100px 1fr 1fr 1fr", background: "#F8F7F7", borderBottom: "1px solid #EEEDEC" }}>
                 {["Token","Brand","Wayfarer","Men\u2019s Sole Revival"].map((h, i) => (
-                  <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ fontSize: 12, color: i === 3 ? "#C4703A" : "#938C86", fontWeight: i === 3 ? 700 : 500 }}>{h}</span>
+                  <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ fontSize: "var(--text-small)", color: i === 3 ? "#C4703A" : "#938C86", fontWeight: i === 3 ? 700 : 500 }}>{h}</span>
                 ))}
               </div>
               {tokenRows.map((row, i) => (
                 <div key={row.token} className="grid px-4 py-1 items-center" style={{ gridTemplateColumns: "100px 1fr 1fr 1fr", background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < tokenRows.length - 1 ? "1px solid #EEEDEC" : "none" }}>
-                  <code className="font-body" style={{ fontSize: 12, color: "#6B6560" }}>{row.token}</code>
+                  <code className="font-body" style={{ fontSize: "var(--text-small)", color: "#6B6560" }}>{row.token}</code>
                   <TokenCell hex={row.brand} />
                   <TokenCell hex={row.wayfarer} />
                   <TokenCell hex={row.msr} highlight />
                 </div>
               ))}
             </div>
-            <p className="font-body leading-snug mt-2" style={{ color: "#6B6560", fontSize: 12 }}>Same naming convention, different values per project. The AB Core Library holds primitives for Brand, Wayfarer, and Men&rsquo;s Sole Revival.</p>
+            <p className="font-body leading-snug mt-2" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>Same naming convention, different values per project. The AB Core Library holds primitives for Brand, Wayfarer, and Men&rsquo;s Sole Revival.</p>
           </div>
         </div>
 
         <div className="mt-4 rounded-lg px-6 py-3 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(196,112,58,0.06) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.2)" }}>
-          <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: 15 }}>&ldquo;Token parity between Figma and code, verified by audit. One file change propagates everywhere.&rdquo;</p>
+          <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: "var(--text-body)" }}>&ldquo;Token parity between Figma and code, verified by audit. One file change propagates everywhere.&rdquo;</p>
         </div>
 
         {/* What ships — audit callout */}
         <div className="mt-3 rounded-lg flex items-center gap-4 px-5 py-3" style={{ background: "#FFFFFF", border: "1px solid rgba(196,112,58,0.25)" }}>
           <div style={{ width: 3, height: 28, background: "#C4703A", flexShrink: 0 }} />
           <div className="flex flex-col gap-1 flex-1 min-w-0">
-            <span className="font-display tracking-[0.14em] uppercase" style={{ fontSize: 12, color: "#C4703A", fontWeight: 500 }}>What ships</span>
-            <p className="font-body leading-snug" style={{ fontSize: 12, color: "#13100C" }}>167 color tokens · 25 spacings · 8 radii · 19 type styles · Light + Dark · 13 component sets. Reconciled against the production codebase.</p>
+            <span className="font-display tracking-[0.14em] uppercase" style={{ fontSize: "var(--text-small)", color: "#C4703A", fontWeight: 500 }}>What ships</span>
+            <p className="font-body leading-snug" style={{ fontSize: "var(--text-small)", color: "#13100C" }}>167 color tokens · 25 spacings · 8 radii · 19 type styles · Light + Dark · 13 component sets. Reconciled against the production codebase.</p>
           </div>
         </div>
       </div>

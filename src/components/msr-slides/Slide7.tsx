@@ -29,7 +29,7 @@ export default function Slide7() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Site Architecture</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 28, fontWeight: 500, maxWidth: 900 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: "var(--text-h2)", fontWeight: 500, maxWidth: 900 }}>
           Eight page types, each designed for{" "}
           <span style={{ color: "#C4703A" }}>a different user task.</span>
         </h1>
@@ -37,15 +37,15 @@ export default function Slide7() {
         <div className="rounded-lg overflow-hidden mb-5" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
           <div className="grid px-5 py-2" style={{ gridTemplateColumns: "160px 130px 80px 1fr", background: "#F8F7F7", borderBottom: "1px solid #EEEDEC" }}>
             {["Route","Type","User Task","Purpose"].map((h) => (
-              <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ color: h === "User Task" ? "#C4703A" : "#938C86", fontSize: 12, fontWeight: h === "User Task" ? 700 : 500 }}>{h}</span>
+              <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ color: h === "User Task" ? "#C4703A" : "#938C86", fontSize: "var(--text-small)", fontWeight: h === "User Task" ? 700 : 500 }}>{h}</span>
             ))}
           </div>
           {routes.map((r, i) => (
             <div key={r.route} className="grid px-5 py-[7px] items-center" style={{ gridTemplateColumns: "160px 130px 80px 1fr", background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < routes.length - 1 ? "1px solid #EEEDEC" : "none" }}>
-              <code className="font-body" style={{ fontSize: 12, color: "#6B6560" }}>{r.route}</code>
-              <span className="font-body font-medium" style={{ fontSize: 12, color: "#13100C" }}>{r.type}</span>
-              <span className="font-body font-semibold" style={{ fontSize: 12, color: "#C4703A" }}>{r.task}</span>
-              <span className="font-body" style={{ fontSize: 12, color: "#6B6560" }}>{r.desc}</span>
+              <code className="font-body" style={{ fontSize: "var(--text-small)", color: "#6B6560" }}>{r.route}</code>
+              <span className="font-body font-medium" style={{ fontSize: "var(--text-small)", color: "#13100C" }}>{r.type}</span>
+              <span className="font-body font-semibold" style={{ fontSize: "var(--text-small)", color: "#C4703A" }}>{r.task}</span>
+              <span className="font-body" style={{ fontSize: "var(--text-small)", color: "#6B6560" }}>{r.desc}</span>
             </div>
           ))}
         </div>
@@ -55,19 +55,19 @@ export default function Slide7() {
             <div key={s.label} className="flex flex-col">
               <div className="flex items-center gap-2 mb-2">
                 <div className="rounded-full" style={{ width: 6, height: 6, background: "#C4703A" }} />
-                <span className="font-body font-semibold" style={{ fontSize: 12, color: "#13100C" }}>{s.label}</span>
+                <span className="font-body font-semibold" style={{ fontSize: "var(--text-small)", color: "#13100C" }}>{s.label}</span>
               </div>
               <div className="rounded-lg overflow-hidden relative" style={{ height: 200, border: "1px solid #EEEDEC", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={s.image} alt={s.label} style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
-              <p className="font-body leading-snug mt-2" style={{ color: "#6B6560", fontSize: 12 }}>{s.caption}</p>
+              <p className="font-body leading-snug mt-2" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>{s.caption}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-4 rounded-lg px-6 py-3 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(196,112,58,0.06) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.2)" }}>
-          <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: 15 }}>&ldquo;Every page type maps to a user intent. The IA is the product strategy made navigable.&rdquo;</p>
+          <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: "var(--text-body)" }}>&ldquo;Every page type maps to a user intent. The IA is the product strategy made navigable.&rdquo;</p>
         </div>
       </div>
     </div>

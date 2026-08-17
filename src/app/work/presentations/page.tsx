@@ -96,7 +96,7 @@ export default function PresentationsIndex() {
               <span style={{ display: "inline-block", width: "24px", height: "1px", background: c.accent }} />
               <p style={{
                 fontFamily: font.sans,
-                fontSize: "12px",
+                fontSize: "var(--text-small)",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -119,7 +119,7 @@ export default function PresentationsIndex() {
             </h1>
             <p style={{
               fontFamily: font.sans,
-              fontSize: "17px",
+              fontSize: "var(--text-article)",
               lineHeight: 1.6,
               color: c.body,
               margin: 0,
@@ -169,7 +169,7 @@ export default function PresentationsIndex() {
                 <div style={{ padding: "24px 24px 28px" }}>
                   <p style={{
                     fontFamily: font.sans,
-                    fontSize: "12px",
+                    fontSize: "var(--text-small)",
                     fontWeight: 500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -180,7 +180,7 @@ export default function PresentationsIndex() {
                   </p>
                   <h2 style={{
                     fontFamily: font.display,
-                    fontSize: "20px",
+                    fontSize: "var(--text-h3)",
                     fontWeight: 500,
                     lineHeight: 1.15,
                     color: c.ink,
@@ -191,7 +191,7 @@ export default function PresentationsIndex() {
                   </h2>
                   <p style={{
                     fontFamily: font.sans,
-                    fontSize: "15px",
+                    fontSize: "var(--text-body)",
                     lineHeight: 1.6,
                     color: c.body,
                     margin: "0 0 16px",
@@ -200,7 +200,7 @@ export default function PresentationsIndex() {
                   </p>
                   <span style={{
                     fontFamily: font.sans,
-                    fontSize: "15px",
+                    fontSize: "var(--text-body)",
                     fontWeight: 500,
                     color: c.accent,
                   }}>

@@ -32,7 +32,7 @@ const sectionH2: React.CSSProperties = {
 
 const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
-  fontSize:   "17px",
+  fontSize:   "var(--text-article)",
   lineHeight: 1.6,
   color:      "var(--color-text-muted)",
   margin:     "0 0 20px",
@@ -52,7 +52,7 @@ const innerWrapper: React.CSSProperties = {
 
 const stackRow: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize: "15px",
+  fontSize: "var(--text-body)",
   lineHeight:    1.6,
   color:         "var(--color-text-muted)",
   margin:        "0 0 8px",
@@ -74,7 +74,7 @@ const tokenChip: React.CSSProperties = {
   border:        "1px solid var(--color-neutral-400)",
   borderRadius: 0,
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "12px",
+  fontSize:      "var(--text-small)",
   fontWeight:    500,
   color:         "var(--color-text)",
   letterSpacing: "0.01em",
@@ -112,7 +112,7 @@ function ArtifactStep({ heading, caption, src, width, height }: {
         {caption && (
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
-            fontSize:   "15px",
+            fontSize:   "var(--text-body)",
             lineHeight: 1.6,
             color:      "var(--color-text-muted)",
             margin:     0,
@@ -539,7 +539,7 @@ export default function BehindThisSitePage() {
             </p>
             <p style={{
               fontFamily: "var(--font-dm-sans), sans-serif",
-              fontSize:   "15px",
+              fontSize:   "var(--text-body)",
               fontWeight: 400,
               color:      "var(--color-neutral-600)",
               margin:     "16px 0 0",

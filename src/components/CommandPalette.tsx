@@ -130,7 +130,7 @@ export default function CommandPalette() {
               padding: "20px 0",
               border: "none",
               outline: "none",
-              fontSize: "15px",
+              fontSize: "var(--text-body)",
               fontFamily: "var(--font-dm-sans), sans-serif",
               color: "var(--color-text)",
               background: "transparent",
@@ -144,7 +144,7 @@ export default function CommandPalette() {
             <p style={{
               padding: "32px 20px",
               fontFamily: "var(--font-dm-sans), sans-serif",
-              fontSize: "15px",
+              fontSize: "var(--text-body)",
               color: "var(--color-text-muted)",
               textAlign: "center",
               margin: 0,
@@ -201,7 +201,7 @@ function ResultRow({
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize: "15px",
+          fontSize: "var(--text-body)",
           fontWeight: 500,
           color: "var(--color-text)",
           margin: 0,
@@ -214,7 +214,7 @@ function ResultRow({
         {entry.subtitle && (
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
-            fontSize: "12px",
+            fontSize: "var(--text-small)",
             color: "var(--color-text-muted)",
             margin: "2px 0 0",
             overflow: "hidden",
@@ -227,7 +227,7 @@ function ResultRow({
       </div>
       <span style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize: "12px",
+        fontSize: "var(--text-small)",
         color: "var(--color-neutral-400)",
         opacity: selected ? 1 : 0,
         transition: "opacity 0.15s",
@@ -257,7 +257,7 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
       background: bg,
       color,
       fontFamily: "var(--font-dm-sans), sans-serif",
-      fontSize: "12px",
+      fontSize: "var(--text-small)",
       fontWeight: 500,
       letterSpacing: "0.01em",
       flexShrink: 0,

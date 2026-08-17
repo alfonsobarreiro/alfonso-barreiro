@@ -144,7 +144,7 @@ export default function RelatedCaseStudies({ current }: Props) {
               <p
                 style={{
                   fontFamily: "var(--font-dm-sans), sans-serif",
-                  fontSize:   "15px",
+                  fontSize:   "var(--text-body)",
                   lineHeight: 1.5,
                   color:      "var(--color-text)",
                   margin:     "0 0 20px",
@@ -159,7 +159,7 @@ export default function RelatedCaseStudies({ current }: Props) {
                   alignItems:     "center",
                   gap:            "8px",
                   color:          "var(--color-text-link)",
-                  fontSize:       "15px",
+                  fontSize:       "var(--text-body)",
                   fontWeight:     500,
                   fontFamily:     "var(--font-dm-sans), sans-serif",
                   letterSpacing:  0,

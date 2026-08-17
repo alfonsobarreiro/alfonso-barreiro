@@ -245,7 +245,7 @@ export default function MSRSlideViewer() {
             cursor:      current === 0 ? "default" : "pointer",
             padding:     "6px 0",
             color:       current === 0 ? "#7E715F" : "#6B6560",
-            fontSize:    "12px",
+            fontSize:    "var(--text-small)",
             fontFamily:  "var(--font-dm-sans), sans-serif",
             fontWeight:  500,
             transition:  "color 0.15s",
@@ -296,7 +296,7 @@ export default function MSRSlideViewer() {
             cursor:      current === slides.length - 1 ? "default" : "pointer",
             padding:     "6px 0",
             color:       current === slides.length - 1 ? "#7E715F" : "#6B6560",
-            fontSize:    "12px",
+            fontSize:    "var(--text-small)",
             fontFamily:  "var(--font-dm-sans), sans-serif",
             fontWeight:  500,
             transition:  "color 0.15s",
@@ -315,7 +315,7 @@ export default function MSRSlideViewer() {
         aria-hidden="true"
         style={{
           textAlign:     "center",
-          fontSize:      "12px",
+          fontSize:      "var(--text-small)",
           color:         "#6B6560",
           margin:        "6px 0 0",
           fontFamily:    "var(--font-dm-sans), sans-serif",

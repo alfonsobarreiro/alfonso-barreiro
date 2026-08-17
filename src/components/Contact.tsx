@@ -50,7 +50,7 @@ export default function Contact() {
     borderRadius:    0,
     padding:         "12px 0",
     color:           "#F5F5F4",
-    fontSize:        "15px",
+    fontSize:        "var(--text-body)",
     fontFamily:      "var(--font-dm-sans), sans-serif",
     fontWeight:      400,
     outline:         "none",
@@ -60,7 +60,7 @@ export default function Contact() {
 
   const labelStyle = {
     display:       "block",
-    fontSize:      "12px",
+    fontSize:      "var(--text-small)",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase" as const,
@@ -101,7 +101,7 @@ export default function Contact() {
           >
             <p
               style={{
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -132,7 +132,7 @@ export default function Contact() {
           <p
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
-              fontSize:     "15px",
+              fontSize:     "var(--text-body)",
               lineHeight:   1.6,
               color:        "rgba(245,243,239,0.55)",
               marginBottom: "40px",
@@ -150,7 +150,7 @@ export default function Contact() {
               alignItems:    "center",
               gap:           "8px",
               color:         "rgba(245,243,239,0.5)",
-              fontSize:      "15px",
+              fontSize:      "var(--text-body)",
               fontWeight:    400,
               fontFamily:    "var(--font-dm-sans), sans-serif",
               letterSpacing: "0.01em",
@@ -177,7 +177,7 @@ export default function Contact() {
               <p
                 style={{
                   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-                  fontSize:      "20px",
+                  fontSize:      "var(--text-h3)",
                   color:         "#F5F5F4",
                   marginBottom:  "12px",
                   letterSpacing: "-0.02em",
@@ -188,7 +188,7 @@ export default function Contact() {
               <p
                 style={{
                   fontFamily: "var(--font-dm-sans), sans-serif",
-                  fontSize:   "15px",
+                  fontSize:   "var(--text-body)",
                   color:      "rgba(245,243,239,0.5)",
                   margin:     0,
                 }}
@@ -254,7 +254,7 @@ export default function Contact() {
                   <p
                     style={{
                       fontFamily: "var(--font-dm-sans), sans-serif",
-                      fontSize:   "15px",
+                      fontSize:   "var(--text-body)",
                       color:      "#E07070",
                       margin:     0,
                     }}
@@ -273,7 +273,7 @@ export default function Contact() {
                     color:         "#F5F5F4",
                     border:        "none",
                     borderRadius:  4,
-                    fontSize:      "15px",
+                    fontSize:      "var(--text-body)",
                     fontWeight:    500,
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     letterSpacing: "0.01em",

@@ -30,7 +30,7 @@ export function LinkArrow({ href, tone = "on-light", size = 14, className, style
     alignItems:     "center",
     gap:            "8px",
     fontFamily:     "var(--font-dm-sans), -apple-system, sans-serif",
-    fontSize:       "15px",
+    fontSize:       "var(--text-body)",
     fontWeight:     500,
     letterSpacing:  0,
     color,

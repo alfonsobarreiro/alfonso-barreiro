@@ -97,7 +97,7 @@ export default function ContactForm() {
     borderRadius: 4,
     padding:      "12px 14px",
     color:        "#252B28",
-    fontSize:     "15px",
+    fontSize:     "var(--text-body)",
     fontFamily:   font,
     fontWeight:   400,
     outline:      "none",
@@ -108,7 +108,7 @@ export default function ContactForm() {
 
   const labelStyle: React.CSSProperties = {
     display:       "block",
-    fontSize:      "12px",
+    fontSize:      "var(--text-small)",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -119,7 +119,7 @@ export default function ContactForm() {
 
   const errorTextStyle: React.CSSProperties = {
     fontFamily: font,
-    fontSize:   "12px",
+    fontSize:   "var(--text-small)",
     color:      "#B91C1C",
     margin:     "6px 0 0",
   };
@@ -137,10 +137,10 @@ export default function ContactForm() {
         tabIndex={-1}
         style={{ padding: "48px", border: "1px solid var(--color-accent)", textAlign: "center", background: "#F4F6F7", outline: "none" }}
       >
-        <p style={{ fontFamily: font, fontSize: "20px", fontWeight: 500, color: "#252B28", marginBottom: "12px", letterSpacing: "-0.02em" }}>
+        <p style={{ fontFamily: font, fontSize: "var(--text-h3)", fontWeight: 500, color: "#252B28", marginBottom: "12px", letterSpacing: "-0.02em" }}>
           Message sent.
         </p>
-        <p style={{ fontFamily: font, fontSize: "15px", color: "#5A5752", margin: 0 }}>
+        <p style={{ fontFamily: font, fontSize: "var(--text-body)", color: "#5A5752", margin: 0 }}>
           I&apos;ll get back to you within a day or two.
         </p>
       </div>
@@ -201,7 +201,7 @@ export default function ContactForm() {
                     style={{
                       fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
                       fontStyle:     "italic",
-                      fontSize:      "15px",
+                      fontSize:      "var(--text-body)",
                       color:         "#6B6E6A",
                       letterSpacing: "0",
                       transition:    "opacity 200ms ease",
@@ -248,7 +248,7 @@ export default function ContactForm() {
           aria-live="polite"
           style={{
             fontFamily: font,
-            fontSize: "15px",
+            fontSize: "var(--text-body)",
             color: formState === "error" ? "#B91C1C" : "#5A5752",
             margin: 0,
             minHeight: liveMessage ? "20px" : 0,
@@ -265,7 +265,7 @@ export default function ContactForm() {
             padding: "15px 36px",
             background: isSubmitting ? "rgba(140,26,26,0.6)" : "var(--color-brand)",
             color: "#FFFFFF", border: "none", borderRadius: 4,
-            fontSize: "15px", fontWeight: 500, fontFamily: font,
+            fontSize: "var(--text-body)", fontWeight: 500, fontFamily: font,
             letterSpacing: "0.01em", textTransform: "uppercase",
             cursor: isSubmitting ? "not-allowed" : "pointer",
             alignSelf: "flex-start", transition: "opacity 0.2s",

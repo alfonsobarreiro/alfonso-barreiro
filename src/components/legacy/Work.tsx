@@ -169,7 +169,7 @@ export default function Work() {
               />
               <p
                 style={{
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   fontWeight:    500,
                   letterSpacing: "0.01em",
                   textTransform: "uppercase",
@@ -323,7 +323,7 @@ function ProjectCard({
       >
         <p style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "12px",
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -366,7 +366,7 @@ function ProjectCard({
       {/* Subtitle + year — quiet editorial eyebrow */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "15px",
+        fontSize:      "var(--text-body)",
         color:         "#8A8680",
         margin:        "0 0 24px",
         fontWeight:    500,
@@ -392,7 +392,7 @@ function ProjectCard({
       {/* Thesis — italic accent line */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "15px",
+        fontSize:      "var(--text-body)",
         lineHeight:    1.5,
         color:         "var(--color-accent)",
         fontStyle:     "italic",
@@ -408,7 +408,7 @@ function ProjectCard({
         {project.tags.map((tag) => (
           <span key={tag} style={{
             fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "12px",
+            fontSize:     "var(--text-small)",
             padding:      "4px 12px",
             background:   "#F5F5F4",
             color:        "#3D4440",
@@ -427,7 +427,7 @@ function ProjectCard({
           alignItems:    "center",
           gap:           "8px",
           color:         "var(--color-brand)",
-          fontSize:      "15px",
+          fontSize:      "var(--text-body)",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -445,7 +445,7 @@ function ProjectCard({
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "15px",
+          fontSize:   "var(--text-body)",
           color:      "#8A8680",
           margin:     0,
           fontStyle:  "italic",

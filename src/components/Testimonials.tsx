@@ -210,7 +210,7 @@ export default function Testimonials() {
             <h2
               id="testimonials-h2"
               style={{
-                fontFamily: font.sans, fontSize: "28px",
+                fontFamily: font.sans, fontSize: "var(--text-h2)",
                 fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em",
                 color: c.ink, margin: 0, maxWidth: "640px",
               }}
@@ -232,7 +232,7 @@ export default function Testimonials() {
             <span
               aria-live="polite"
               style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em",
                 color: c.muted,
                 fontVariantNumeric: "tabular-nums",
@@ -310,7 +310,7 @@ export default function Testimonials() {
                   {/* Pull-quote */}
                   <p style={{
                     fontFamily:    font.sans,
-                    fontSize:      "28px",
+                    fontSize:      "var(--text-h2)",
                     fontWeight:    400,
                     lineHeight:    1.15,
                     letterSpacing: "-0.01em",
@@ -323,7 +323,7 @@ export default function Testimonials() {
                   {/* Full body */}
                   <p style={{
                     fontFamily: font.sans,
-                    fontSize:   "15px",
+                    fontSize:   "var(--text-body)",
                     lineHeight: 1.5,
                     color:      c.body,
                     margin:     "0 0 28px",
@@ -344,7 +344,7 @@ export default function Testimonials() {
                         alignItems:     "center",
                         gap:            "10px",
                         fontFamily:     font.sans,
-                        fontSize:       "15px",
+                        fontSize:       "var(--text-body)",
                         fontWeight:     500,
                         color:          c.ink,
                         letterSpacing:  "0.01em",
@@ -357,14 +357,14 @@ export default function Testimonials() {
                     </a>
                   ) : (
                     <span style={{
-                      fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+                      fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
                       color: c.ink, letterSpacing: "0.01em",
                     }}>
                       {t.name}
                     </span>
                   )}
                   <span style={{
-                    fontFamily: font.sans, fontSize: "12px",
+                    fontFamily: font.sans, fontSize: "var(--text-small)",
                     color: c.muted, letterSpacing: "0.01em",
                   }}>
                     {t.role}

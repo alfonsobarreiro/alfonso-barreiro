@@ -102,7 +102,7 @@ export default function Hero() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "15px",
+                fontSize:      "var(--text-body)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -161,7 +161,7 @@ export default function Hero() {
                 background:    "var(--color-brand)",
                 color:         "#FAFAF9",
                 borderRadius:  0,
-                fontSize:      "15px",
+                fontSize:      "var(--text-body)",
                 fontWeight:    500,
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 letterSpacing: "0.01em",
@@ -186,7 +186,7 @@ export default function Hero() {
                 color:          "#252B28",
                 border:         "1px solid #252B28",
                 borderRadius:   0,
-                fontSize:       "15px",
+                fontSize:       "var(--text-body)",
                 fontWeight:     500,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 display:        "inline-flex",
@@ -229,7 +229,7 @@ export default function Hero() {
           alignItems:    "center",
           gap:           "10px",
           color:         "#6E6E6A",
-          fontSize:      "12px",
+          fontSize:      "var(--text-small)",
           letterSpacing: "0.01em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -395,7 +395,7 @@ function HeroResultPanel() {
           <span
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "12px",
+              fontSize:      "var(--text-small)",
               fontWeight:    500,
               letterSpacing: "0.01em",
               color:         "#3D4440",
@@ -456,7 +456,7 @@ function HeroResultPanel() {
           right:         "clamp(20px, 3vw, 36px)",
           zIndex:        3,
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "12px",
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
           letterSpacing: "0.01em",
           textTransform: "uppercase",
@@ -515,7 +515,7 @@ function HeroResultPanel() {
         <p
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "15px",
+            fontSize:      "var(--text-body)",
             lineHeight:    1.5,
             fontWeight:    500,
             color:         "#FAFAF9",
@@ -535,7 +535,7 @@ function HeroResultPanel() {
             alignItems:      "center",
             gap:             "10px",
             color:           "#FAFAF9",
-            fontSize:        "15px",
+            fontSize:        "var(--text-body)",
             fontWeight:      500,
             fontFamily:      "var(--font-dm-sans), sans-serif",
             letterSpacing:   "0.01em",

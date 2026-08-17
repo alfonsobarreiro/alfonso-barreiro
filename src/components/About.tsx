@@ -74,7 +74,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize:   "15px",
+                fontSize:   "var(--text-body)",
                 lineHeight: 1.5,
                 color:      "var(--color-text)",
                 margin:     "0 0 32px",

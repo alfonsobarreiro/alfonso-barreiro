@@ -116,7 +116,7 @@ export default function SpotifyPrototypeWalkthroughs() {
         <p
           style={{
             fontFamily:    font.sans,
-            fontSize:      "12px",
+            fontSize:      "var(--text-small)",
             fontWeight:    500,
             letterSpacing: "0.01em",
             textTransform: "uppercase",
@@ -173,7 +173,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                 <span
                   style={{
                     fontFamily:    font.sans,
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
                     letterSpacing: "0.01em",
                     textTransform: "uppercase",
@@ -205,7 +205,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                 <span
                   style={{
                     fontFamily:    font.sans,
-                    fontSize:      "15px",
+                    fontSize:      "var(--text-body)",
                     fontWeight:    500,
                     fontVariantNumeric: "tabular-nums",
                     color:         c.muted,
@@ -301,7 +301,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                     <span
                       style={{
                         fontFamily:    font.sans,
-                        fontSize:      "12px",
+                        fontSize:      "var(--text-small)",
                         fontWeight:    500,
                         letterSpacing: "0.01em",
                         textTransform: "uppercase",
@@ -313,7 +313,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                     <span
                       style={{
                         fontFamily: font.sans,
-                        fontSize:   "15px",
+                        fontSize:   "var(--text-body)",
                         lineHeight: 1.5,
                         color:      c.body,
                         maxWidth:   "320px",
@@ -329,7 +329,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                   <p
                     style={{
                       fontFamily:    font.sans,
-                      fontSize:      "12px",
+                      fontSize:      "var(--text-small)",
                       fontWeight:    500,
                       letterSpacing: "0.01em",
                       textTransform: "uppercase",
@@ -363,7 +363,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                         <span
                           style={{
                             fontFamily:    font.sans,
-                            fontSize:      "12px",
+                            fontSize:      "var(--text-small)",
                             fontWeight:    500,
                             fontVariantNumeric: "tabular-nums",
                             color:         flow.accent.ts,
@@ -375,7 +375,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                         <span
                           style={{
                             fontFamily: font.sans,
-                            fontSize:   "15px",
+                            fontSize:   "var(--text-body)",
                             lineHeight: 1.5,
                             color:      c.body,
                           }}

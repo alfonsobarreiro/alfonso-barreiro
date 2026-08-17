@@ -31,7 +31,7 @@ const TONE_COLOR: Record<EyebrowTone, string> = {
 export function Eyebrow({ tone = "muted", as: Tag = "p", className, style, children }: EyebrowProps) {
   const base: CSSProperties = {
     fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-    fontSize:      "12px",
+    fontSize:      "var(--text-small)",
     fontWeight:    500,
     letterSpacing: "0.01em",
     color:         TONE_COLOR[tone],

@@ -69,7 +69,7 @@ export default function Footer() {
             </p>
             <p style={{
               fontFamily: font,
-              fontSize:   "15px",
+              fontSize:   "var(--text-body)",
               lineHeight: 1.5,
               color:      ink2,
               margin:     0,
@@ -121,7 +121,7 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               <span style={{
                 fontFamily:    font,
-                fontSize:      "15px",
+                fontSize:      "var(--text-body)",
                 fontWeight:    500,
                 color:         ink2,
                 letterSpacing: "-0.01em",
@@ -131,7 +131,7 @@ export default function Footer() {
               </span>
               <span style={{
                 fontFamily:    font,
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 fontWeight:    500,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
@@ -145,7 +145,7 @@ export default function Footer() {
 
           <p style={{
             fontFamily: font,
-            fontSize:   "12px",
+            fontSize:   "var(--text-small)",
             color:      muted,
             margin:     0,
           }}>

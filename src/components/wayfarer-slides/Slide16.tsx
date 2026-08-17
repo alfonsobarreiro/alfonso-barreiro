@@ -21,7 +21,7 @@ export default function Slide16() {
 
         <p className="font-body" style={{
           margin: "32px 0 0",
-          fontSize: 17, color: "rgba(255,255,255,0.65)",
+          fontSize: "var(--text-article)", color: "rgba(255,255,255,0.65)",
           letterSpacing: "0.01em",
         }}>
           Alfonso Barreiro &nbsp;·&nbsp; UX/UI Designer &nbsp;·&nbsp; alfonso@barreiro.com

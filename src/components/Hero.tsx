@@ -49,7 +49,7 @@ export default function Hero() {
           <p
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "17px",
+              fontSize:      "var(--text-article)",
               lineHeight:    1.6,
               fontWeight:    400,
               letterSpacing: 0,

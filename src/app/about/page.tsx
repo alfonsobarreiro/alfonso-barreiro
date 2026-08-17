@@ -48,7 +48,7 @@ const eyebrowDash: React.CSSProperties = {
 
 const eyebrowLabel: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "12px",
+  fontSize:      "var(--text-small)",
   fontWeight:    500,
   letterSpacing: "0.01em",
   color:         "var(--color-brand)",
@@ -67,7 +67,7 @@ const sectionH2: React.CSSProperties = {
 
 const body: React.CSSProperties = {
   fontFamily:   "var(--font-dm-sans), sans-serif",
-  fontSize:     "17px",
+  fontSize:     "var(--text-article)",
   lineHeight:   1.6,
   color:        "var(--color-text)",
   margin:       "0 0 24px",
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 <p
                   style={{
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "17px",
+                    fontSize:      "var(--text-article)",
                     fontWeight:    400,
                     color:         "var(--color-text)",
                     margin:        0,
@@ -237,7 +237,7 @@ export default function AboutPage() {
                     alignItems:    "center",
                     gap:           "10px",
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "15px",
+                    fontSize:      "var(--text-body)",
                     fontWeight:    500,
                     color:         "var(--color-brand)",
                     margin:        "24px 0 0",
@@ -493,7 +493,7 @@ function RemoteTimeline() {
     <div className="rt-outer" style={{ width: "100%" }}>
       <h3 style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "20px",
+        fontSize:      "var(--text-h3)",
         fontWeight:    500,
         color:         "var(--color-text)",
         margin:        "0 0 32px",
@@ -520,7 +520,7 @@ function RemoteTimeline() {
                 top:           0,
                 transform:     "translateX(-50%)",
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 fontWeight:    500,
                 color:         "var(--color-text-muted)",
                 letterSpacing: "0.01em",
@@ -597,7 +597,7 @@ function RemoteTimeline() {
             top:           0,
             transform:     "translateX(-50%)",
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "12px",
+            fontSize:      "var(--text-small)",
             fontWeight:    500,
             letterSpacing: "0.01em",
             textTransform: "none",
@@ -616,11 +616,11 @@ function RemoteTimeline() {
         flexWrap: "wrap",
         marginBottom: "40px",
       }}>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.01em" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "var(--text-small)", color: "var(--color-text-muted)", letterSpacing: "0.01em" }}>
           <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-neutral-500)" }} aria-hidden />
           In-office · 2010–2019, 2022–2024
         </span>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.01em" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "var(--text-small)", color: "var(--color-text-muted)", letterSpacing: "0.01em" }}>
           <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-brand)" }} aria-hidden />
           Remote · 2019–2021, 2024–now
         </span>
@@ -648,7 +648,7 @@ function RemoteTimeline() {
             >
               <p style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "20px",
+                fontSize:      "var(--text-h3)",
                 fontWeight:    500,
                 color:         "var(--color-text)",
                 margin:        "0 0 8px",
@@ -657,7 +657,7 @@ function RemoteTimeline() {
               }}>{ch.name}</p>
               <p style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize:   "15px",
+                fontSize:   "var(--text-body)",
                 fontWeight: 400,
                 lineHeight: 1.5,
                 color:      "var(--color-text)",
@@ -665,7 +665,7 @@ function RemoteTimeline() {
               }}>{ch.note}</p>
               <p style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize:   "12px",
+                fontSize:   "var(--text-small)",
                 fontWeight: 500,
                 lineHeight: 1.35,
                 color:      "var(--color-neutral-600)",

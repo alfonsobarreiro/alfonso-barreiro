@@ -94,7 +94,7 @@ export default function SpotifyQuoteRotator({
         <p
           style={{
             fontFamily:    fontSans,
-            fontSize:      "12px",
+            fontSize:      "var(--text-small)",
             color:         mutedColor,
             margin:        0,
             letterSpacing: "0.01em",

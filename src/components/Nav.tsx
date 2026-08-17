@@ -139,7 +139,7 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "20px",
+                fontSize:      "var(--text-h3)",
                 fontWeight:    500,
                 letterSpacing: "-0.03em",
                 color:         menuOpen ? "var(--color-inverse)" : "var(--color-text)",
@@ -160,7 +160,7 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "20px",
+                fontSize:      "var(--text-h3)",
                 fontWeight:    500,
                 letterSpacing: "-0.03em",
                 color:         menuOpen ? "var(--color-inverse)" : "var(--color-text)",
@@ -355,7 +355,7 @@ export default function Nav() {
           flexDirection:"column",
           gap:          "14px",
         }}>
-          <Eyebrow tone="inverse" style={{ fontSize: "12px", marginBottom: "2px" }}>Case studies</Eyebrow>
+          <Eyebrow tone="inverse" style={{ fontSize: "var(--text-small)", marginBottom: "2px" }}>Case studies</Eyebrow>
           {[
             { href: "/work/spotify",            label: "Spotify"            },
             { href: "/work/wayfarer",           label: "Wayfarer"           },
@@ -368,7 +368,7 @@ export default function Nav() {
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily:     "var(--font-dm-sans), sans-serif",
-                fontSize:       "20px",
+                fontSize:       "var(--text-h3)",
                 fontWeight:     500,
                 color:          "var(--color-inverse)",
                 letterSpacing:  "-0.01em",
@@ -389,7 +389,7 @@ export default function Nav() {
           bottom:     "40px",
           left:       "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "12px",
+          fontSize:   "var(--text-small)",
           color:      "var(--color-inverse-body)",
           margin:     0,
         }}>
@@ -420,7 +420,7 @@ function SearchTrigger() {
         cursor:        "pointer",
         color:         "var(--color-text-muted)",
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "15px",
+        fontSize:      "var(--text-body)",
         fontWeight:    500,
         transition:    "color 0.2s",
       }}
@@ -452,7 +452,7 @@ function NavLink({
     border:        "none",
     cursor:        "pointer",
     color:         "var(--color-neutral-700)",
-    fontSize:      "15px",
+    fontSize:      "var(--text-body)",
     fontWeight:    500,
     letterSpacing: "0.01em",
     /* Padded to clear WCAG 2.5.8 Target Size (Minimum) — 24x24 floor.

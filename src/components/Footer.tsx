@@ -26,7 +26,7 @@ export default function Footer() {
         >
           <p style={{
             fontFamily: font,
-            fontSize:   "15px",
+            fontSize:   "var(--text-body)",
             fontWeight: 400,
             color:      muted,
             margin:     0,
@@ -41,7 +41,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               style={{
                 fontFamily:          font,
-                fontSize:            "15px",
+                fontSize:            "var(--text-body)",
                 fontWeight:          500,
                 color:               ink,
                 textDecoration:      "underline",
@@ -55,7 +55,7 @@ export default function Footer() {
               href="mailto:alfonso@barreiro.com"
               style={{
                 fontFamily:          font,
-                fontSize:            "15px",
+                fontSize:            "var(--text-body)",
                 fontWeight:          500,
                 color:               ink,
                 textDecoration:      "underline",

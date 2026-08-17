@@ -458,7 +458,7 @@ function ProjectCard({
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "12px",
+          fontSize:   "var(--text-small)",
           color:      "var(--color-inverse-muted)",
           margin:     0,
         }}>

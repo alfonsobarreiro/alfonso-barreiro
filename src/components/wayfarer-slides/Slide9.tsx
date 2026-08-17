@@ -6,14 +6,14 @@ export default function Slide9() {
       <Eyebrow>04 · Design Decisions</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 0",
-        fontSize: 60, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
+        fontSize: "var(--text-display)", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1150,
       }}>
         40+ destinations, two entry points, one discovery path.
       </h2>
       <p className="font-body" style={{
         margin: "20px 0 40px", maxWidth: 980,
-        fontSize: 17, lineHeight: 1.5, color: wf.n700,
+        fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n700,
       }}>
         The globe is the primary entry. Click a region, fly to the continent, hover a pin, open the detail page. The destinations grid is the parallel fallback: same content, filtered by continent, matched to users who already know what region they want.
       </p>
@@ -60,7 +60,7 @@ export default function Slide9() {
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {["All 87","Africa 10","Asia 29","Europe 25","N. America 9","S. America 10","Oceania 6"].map((c, i) => (
                 <span key={c} style={{
-                  padding: "3px 9px", borderRadius: 999, fontSize: 12, fontWeight: 500,
+                  padding: "3px 9px", borderRadius: 999, fontSize: "var(--text-small)", fontWeight: 500,
                   background: i === 2 ? wf.brand500 : wf.white,
                   color: i === 2 ? wf.white : wf.n700,
                   border: `1px solid ${i === 2 ? wf.brand500 : wf.n200}`,

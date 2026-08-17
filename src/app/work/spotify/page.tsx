@@ -106,7 +106,7 @@ function ArcDivider({ arc: _arc }: { arc: string }) {
 function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
-      fontFamily:    font.sans, fontSize: "12px", fontWeight: 500,
+      fontFamily:    font.sans, fontSize: "var(--text-small)", fontWeight: 500,
       letterSpacing: "0.01em", textTransform: "none",
       color: c.ink2, padding: "6px 14px",
       border: `1px solid ${c.borderStrong}`,
@@ -121,11 +121,11 @@ function Tag({ children }: { children: React.ReactNode }) {
    reads as one thought, not two paragraphs. */
 function Callout({ decision, why, cost }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     color: c.muted, margin: "0 0 8px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5, color: c.ink, margin: 0,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5, color: c.ink, margin: 0,
   };
   return (
     <aside className="sp2-callout" style={{
@@ -222,7 +222,7 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
 function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <p style={{
-      fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+      fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
       color: c.ink, margin: 0,
     }}>
       <span style={{ color: c.muted }}>{label}: </span>
@@ -264,7 +264,7 @@ export default function SpotifyV2() {
               Pin. Remove. Pause.
             </h1>
             <p style={{
-              fontFamily: font.sans, fontSize: "17px",
+              fontFamily: font.sans, fontSize: "var(--text-article)",
               lineHeight: 1.6, color: c.ink, margin: "0 0 32px",
               maxWidth: "680px",
             }}>
@@ -315,7 +315,7 @@ export default function SpotifyV2() {
                   suppressHydrationWarning
                   style={{
                     fontFamily:     font.sans,
-                    fontSize:       "15px",
+                    fontSize:       "var(--text-body)",
                     fontWeight:     500,
                     letterSpacing:  0,
                     color:          c.ink2,
@@ -609,7 +609,7 @@ export default function SpotifyV2() {
                  contrast on the white surface (bright #1ED760 fails). */}
               <p style={{
                 fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 letterSpacing: "0.01em",
                 color:         "var(--color-accent)",
                 background:    "rgba(30,215,96,0.10)",
@@ -643,7 +643,7 @@ export default function SpotifyV2() {
             }}>
               <span style={{
                 fontFamily:    font.sans,
-                fontSize:      "12px",
+                fontSize:      "var(--text-small)",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
                 textTransform: "none",
@@ -664,14 +664,14 @@ export default function SpotifyV2() {
                     gap:            "8px",
                     padding:        "8px 4px",
                     fontFamily:     font.sans,
-                    fontSize:       "12px",
+                    fontSize:       "var(--text-small)",
                     color:          c.ink2,
                     letterSpacing:  "0.01em",
                   }}
                 >
                   <kbd style={{
                     fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    fontSize:      "12px",
+                    fontSize:      "var(--text-small)",
                     fontWeight: 500,
                     padding:       "3px 8px",
                     background:    "rgba(30,215,96,0.12)",
@@ -805,7 +805,7 @@ export default function SpotifyV2() {
                         alignItems:    "center",
                         justifyContent:"center",
                         fontFamily:    font.sans,
-                        fontSize:      "12px",
+                        fontSize:      "var(--text-small)",
                         fontWeight: 500,
                         letterSpacing: "0.01em",
                         border:        "2px solid #FFFFFF",
@@ -837,7 +837,7 @@ export default function SpotifyV2() {
                 ].map((a) => (
                   <li key={a.n} style={{
                     display: "flex", gap: "10px", alignItems: "flex-start",
-                    fontFamily: font.sans, fontSize: "15px",
+                    fontFamily: font.sans, fontSize: "var(--text-body)",
                     lineHeight: 1.35, color: c.ink,
                   }}>
                     <span aria-hidden="true" style={{
@@ -849,7 +849,7 @@ export default function SpotifyV2() {
                       borderRadius:  "50%",
                       background:    c.accent,
                       color: "var(--color-inverse)",
-                      fontSize:      "12px",
+                      fontSize:      "var(--text-small)",
                       fontWeight: 500,
                       flexShrink:    0,
                       marginTop:     "1px",
@@ -858,14 +858,14 @@ export default function SpotifyV2() {
                     <span>
                       <strong style={{ fontWeight: 500, letterSpacing: "0" }}>{a.label}</strong>
                       <br />
-                      <span style={{ fontSize: "12px", color: c.muted, letterSpacing: "0.01em" }}>{a.sub}</span>
+                      <span style={{ fontSize: "var(--text-small)", color: c.muted, letterSpacing: "0.01em" }}>{a.sub}</span>
                     </span>
                   </li>
                 ))}
               </ol>
 
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "clamp(20px, 2.5vw, 32px) 0 0",
               }}>
@@ -930,12 +930,12 @@ export default function SpotifyV2() {
               ].map((m) => (
                 <div key={m.label}>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                     letterSpacing: "0.01em", textTransform: "none",
                     color: c.muted, margin: "0 0 4px",
                   }}>{m.label}</p>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "12px",
+                    fontFamily: font.sans, fontSize: "var(--text-small)",
                     color: c.ink2, margin: 0, lineHeight: 1.5,
                   }}>{m.value}</p>
                 </div>
@@ -970,7 +970,7 @@ export default function SpotifyV2() {
                 }}>
                   <span style={{
                     fontFamily:         "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    fontSize:           "12px",
+                    fontSize:           "var(--text-small)",
                     fontWeight: 500,
                     letterSpacing:      "0.01em",
                     color:              c.accent,
@@ -1373,16 +1373,16 @@ function ResearchStrip() {
             />
             <div>
               <p style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em", color: p.type === "Negative" ? c.muted : c.accent,
                 textTransform: "none", margin: "0 0 4px",
               }}>{p.type} persona</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
                 color: c.ink, margin: "0 0 8px", letterSpacing: "-0.01em",
               }}>{p.name}</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+                fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
                 color: c.ink2, margin: 0,
               }}>{p.tension}</p>
             </div>
@@ -1426,14 +1426,14 @@ function SketchesAndMidfi() {
             344:246, 344:248) on 2026-07-03. */}
         <div style={{ marginBottom: "48px" }}>
           <h3 style={{
-            fontFamily: font.sans, fontSize: "20px",
+            fontFamily: font.sans, fontSize: "var(--text-h3)",
             fontWeight: 500, color: c.ink, margin: "0 0 8px",
             letterSpacing: "-0.01em", lineHeight: 1.35,
           }}>
             Three directions on paper.
           </h3>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
             color: c.muted, margin: "0 0 32px", maxWidth: "780px",
           }}>
             Each direction tests a different affordance for the same shelf. Lightweight, reversible, native to the surface the control lives on.
@@ -1476,7 +1476,7 @@ function SketchesAndMidfi() {
             ].map(s => (
               <figure key={s.key} style={{ margin: 0 }}>
                 <h4 style={{
-                  fontFamily: font.sans, fontSize: "20px",
+                  fontFamily: font.sans, fontSize: "var(--text-h3)",
                   fontWeight: 500, color: c.ink, margin: "0 0 16px",
                   letterSpacing: "-0.01em", lineHeight: 1.35,
                 }}>{s.title}</h4>
@@ -1499,7 +1499,7 @@ function SketchesAndMidfi() {
                   />
                 </div>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+                  fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
                   color: c.ink2, margin: 0,
                 }}>{s.body}</p>
               </figure>
@@ -1512,14 +1512,14 @@ function SketchesAndMidfi() {
             artifact. Same wireframes the annotated walkthrough below refers to. */}
         <div style={{ marginBottom: "48px" }}>
           <h3 style={{
-            fontFamily: font.sans, fontSize: "20px",
+            fontFamily: font.sans, fontSize: "var(--text-h3)",
             fontWeight: 500, color: c.ink, margin: "0 0 12px",
             letterSpacing: "-0.01em", lineHeight: 1.35,
           }}>
             Two surfaces, before the annotation.
           </h3>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
             color: c.muted, margin: "0 0 32px", maxWidth: "560px",
           }}>
             The wireframes the annotated walkthrough below refers to. Worth
@@ -1549,7 +1549,7 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Desktop &middot; mid-fi</figcaption>
@@ -1571,7 +1571,7 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Mobile &middot; mid-fi</figcaption>
@@ -1749,7 +1749,7 @@ function DecisionLogic() {
                   {...(i === 0 ? { "data-active": "true", "aria-current": "location" as const } : {})}
                   style={{
                     fontFamily:     font.sans,
-                    fontSize:       "15px",
+                    fontSize:       "var(--text-body)",
                     fontWeight: 500,
                     letterSpacing:  "0.01em",
                     textTransform: "none",
@@ -1935,7 +1935,7 @@ function DecisionLogic() {
                       gap:        "16px",
                       alignItems: "baseline",
                       fontFamily: font.sans,
-                      fontSize:   "15px",
+                      fontSize:   "var(--text-body)",
                       lineHeight: 1.5,
                     }}>
                       <span style={{
@@ -1960,7 +1960,7 @@ function DecisionLogic() {
             <div style={{ maxWidth: "880px" }}>
               {f.dossier.map((d) => (
                 <p key={d.lead} style={{
-                  fontFamily: font.sans, fontSize: "15px",
+                  fontFamily: font.sans, fontSize: "var(--text-body)",
                   lineHeight: 1.6, color: c.ink2,
                   margin: "0 0 22px", letterSpacing: "0",
                 }}>
@@ -2078,7 +2078,7 @@ function Prototypes() {
                 {/* Numeral removed — Pin / Remove / Pause titles read on
                     their own and free up horizontal room on mobile. */}
                 <span style={{
-                  fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
                   color: c.ink, letterSpacing: "-0.01em",
                 }}>{l.title}</span>
               </label>
@@ -2173,7 +2173,7 @@ function Prototypes() {
                   {/* Body copy on the right */}
                   <div>
                     <p style={{
-                      fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                      fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                       letterSpacing: "0.01em", color: c.accent,
                       textTransform: "none", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
@@ -2270,24 +2270,24 @@ function ShippedSection() {
             borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>What could still go wrong</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Discoverability of long-press.</strong> The gesture is common on iOS but invisible. First-run education or a contextual hint may be needed.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Pin&rsquo;s 4-item cap may frustrate power users.</strong> The cap protects the shelf&rsquo;s discovery role. A &ldquo;Show all pins&rdquo; affordance could relieve pressure if testing shows the limit hits often.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink }}>Pause without a visible timer reads as &ldquo;permanent&rdquo;.</strong> The paused state has to show its end-time clearly. If the user can&rsquo;t see when logging resumes, the time-box defeats itself.
@@ -2299,30 +2299,30 @@ function ShippedSection() {
             borderLeft: `4px solid ${c.accent}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>Validation plan</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Discoverability.</strong> Time to first long-press without onboarding. Target under 8 seconds for at least 60% of first-time users.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>Reversibility comprehension.</strong> After Removing an item, can the user describe what happened in one sentence? Target above 80%.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 14px",
             }}>
               <strong style={{ color: c.ink }}>ML signal integrity.</strong> Are Pause sessions adopted at rates that materially change recommendation quality? If yes, consider auto-resume rules.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink }}>The honest scope:</strong> no users tested this. Concept project. Hypotheses are reasoned from public signals and the stakeholder map, not from behavior.
@@ -2338,24 +2338,24 @@ function ShippedSection() {
           marginTop: "32px",
         }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+            fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
             letterSpacing: "0.01em", textTransform: "none",
             color: c.accent, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
             color: c.ink2, margin: "0 0 14px",
           }}>
             <strong style={{ color: c.ink }}>The long-press discoverability.</strong> If I had one round of usability, this is where it goes. The whole interaction model rests on a gesture the user has to find without being told. A first-run hint or a one-time pulse animation on the shelf header could carry the cost, but I&rsquo;d want to see the unguided number first.
           </p>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
             color: c.ink2, margin: "0 0 14px",
           }}>
             <strong style={{ color: c.ink }}>The cap&rsquo;s breaking point.</strong> Pin holds four. If the test surfaces frustration at item three or item four, the cap design is right. If frustration shows up at item five (when the swap modal appears), the modal is the problem, not the cap. Two failure modes, two fixes.
           </p>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
             color: c.ink2, margin: 0,
           }}>
             <strong style={{ color: c.ink }}>Pause comprehension.</strong> The riskiest copy is the paused state. If a user looks at the shelf and can&rsquo;t describe when logging resumes in one sentence, the timer affordance failed and the time-box reads as permanent. That&rsquo;s the design&rsquo;s primary promise. The test catches it.
@@ -2408,7 +2408,7 @@ function FrictionList() {
         }} className="sp2-friction-grid">
           {points.map((p, i) => (
             <li key={i} style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, display: "flex", alignItems: "flex-start",
               gap: "12px",
             }}>
@@ -2524,7 +2524,7 @@ function ActionSheetHero() {
           {/* Caption + icon cells */}
           <div style={{ color: "var(--color-inverse)" }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.green, margin: "0 0 14px",
             }}>
@@ -2594,11 +2594,11 @@ function IconCell({ color, glyph, name, note }: {
       </div>
       <div>
         <p style={{
-          fontFamily: font.sans, fontSize: "17px", fontWeight: 500,
+          fontFamily: font.sans, fontSize: "var(--text-article)", fontWeight: 500,
           color: "var(--color-inverse)", margin: "0 0 4px", letterSpacing: "-0.01em",
         }}>{name}</p>
         <p style={{
-          fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+          fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
           color: "rgba(255, 255, 255, 0.88)", margin: 0,
         }}>{note}</p>
       </div>
@@ -2706,12 +2706,12 @@ function UserVoices() {
               minHeight: "180px",
             }}>
               <p style={{
-                fontFamily: font.sans, fontSize: "15px",
+                fontFamily: font.sans, fontSize: "var(--text-body)",
                 fontWeight: 500, color: c.ink, margin: 0,
                 lineHeight: 1.5, letterSpacing: "-0.01em",
               }}>&ldquo;{q.text}&rdquo;</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "12px",
+                fontFamily: font.sans, fontSize: "var(--text-small)",
                 fontWeight: 500, letterSpacing: "0.01em",
                 textTransform: "none", color: c.muted,
                 margin: "auto 0 0",
@@ -2737,13 +2737,13 @@ function CompetitiveAudit() {
     { name: "Spotify (proposed)",    vals: ["✓", "✓", "✓", "✓", "✓"],       proposed: true },
   ];
   const thStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "none",
     textAlign: "left", padding: "14px 18px", color: c.muted,
     borderBottom: `1px solid ${c.border}`,
   };
   const tdBase: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px",
+    fontFamily: font.sans, fontSize: "var(--text-body)",
     padding: "14px 18px", verticalAlign: "middle",
     borderBottom: `1px solid ${c.border}`,
   };
@@ -2776,14 +2776,14 @@ function CompetitiveAudit() {
               Heuristic audit across seven listening platforms. Apple Music, Amazon Music, and YouTube Music all ship at least one shelf-level control. TikTok and YouTube treat the feed as inline-editable by default. Spotify ships none. The pattern is in the open.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.muted, margin: "0 0 8px",
             }}>
               The five categories
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px",
+              fontFamily: font.sans, fontSize: "var(--text-body)",
               lineHeight: 1.6, color: c.ink, margin: 0, maxWidth: PROSE_MAX,
             }}>
               Clear all · Pause history · Remove single · Inline controls · Reversible.
@@ -2815,7 +2815,7 @@ function CompetitiveAudit() {
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
               />
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>{it.name}</figcaption>
@@ -2874,7 +2874,7 @@ function CompetitiveAudit() {
         </div>
         <p className="sp2-scroll-after">Swipe to see more &rarr;</p>
         <p style={{
-          fontFamily: font.sans, fontSize: "12px",
+          fontFamily: font.sans, fontSize: "var(--text-small)",
           color: c.muted, lineHeight: 1.5, margin: "12px 0 0",
         }}>
           Spotify today: no per-item control of any kind. The proposed row shows the three new controls (plus a settings-level Clear All, scoped out of this case study).
@@ -2908,7 +2908,7 @@ function OutOfScope() {
   return (
     <div style={{ margin: "0 0 56px" }}>
       <p style={{
-        fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+        fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
         letterSpacing: "0.01em", textTransform: "none",
         color: c.accent, margin: "0 0 12px",
       }}>Out of scope</p>
@@ -2920,7 +2920,7 @@ function OutOfScope() {
         Four things that got named, defended, and skipped.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+        fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
         color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
       }}>
         Knowing what not to design is the same skill as knowing what to design. Each item below was raised, considered, and deliberately left for a different surface or a different team.
@@ -2935,16 +2935,16 @@ function OutOfScope() {
             padding: "24px 28px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "none",
               color: c.muted, margin: "0 0 8px",
             }}>Skipped</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
               color: c.ink, margin: "0 0 10px", letterSpacing: "-0.01em",
             }}>{it.title}</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: 0,
             }}>{it.reason}</p>
           </div>
@@ -3116,12 +3116,12 @@ function JourneyVerticalMobile() {
   ];
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "none",
     color: c.muted, margin: "0 0 6px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
     color: c.ink, margin: 0,
   };
 
@@ -3138,7 +3138,7 @@ function JourneyVerticalMobile() {
           <div style={{
             background: c.jet, color: "var(--color-inverse)",
             borderLeft: `3px solid ${c.green}`,
-            fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+            fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
             letterSpacing: "0.01em", textTransform: "none",
             padding: "8px 12px", margin: "-20px -18px 16px",
             display: "flex", justifyContent: "space-between", alignItems: "baseline",

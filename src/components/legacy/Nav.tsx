@@ -84,7 +84,7 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "17px",
+                fontSize:      "var(--text-article)",
                 fontWeight:    500,
                 letterSpacing: "-0.01em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
@@ -105,7 +105,7 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "17px",
+                fontSize:      "var(--text-article)",
                 fontWeight:    500,
                 letterSpacing: "-0.01em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
@@ -139,7 +139,7 @@ export default function Nav() {
               border:         "none",
               borderRadius:   0,
               color:          "#FFFFFF",
-              fontSize:       "15px",
+              fontSize:       "var(--text-body)",
               fontWeight:     500,
               letterSpacing:  "0.01em",
               cursor:         "pointer",
@@ -230,7 +230,7 @@ export default function Nav() {
           <span style={{ width: "20px", height: "1px", background: "var(--color-accent)" }} />
           <span style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "12px",
+            fontSize:      "var(--text-small)",
             fontWeight:    500,
             letterSpacing: "0.01em",
             textTransform: "uppercase",
@@ -314,7 +314,7 @@ export default function Nav() {
             border:         "none",
             borderRadius:   0,
             color:          "#FFFFFF",
-            fontSize:       "15px",
+            fontSize:       "var(--text-body)",
             fontWeight:     500,
             letterSpacing:  "0.01em",
             textTransform:  "uppercase",
@@ -334,7 +334,7 @@ export default function Nav() {
           bottom:     "40px",
           left:       "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "12px",
+          fontSize:   "var(--text-small)",
           color:      "rgba(245,243,239,0.25)",
           margin:     0,
         }}>
@@ -364,7 +364,7 @@ function SearchTrigger() {
         cursor:        "pointer",
         color:         "#8A8680",
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "12px",
+        fontSize:      "var(--text-small)",
         transition:    "color 0.2s, border-color 0.2s, background 0.2s",
       }}
       onMouseEnter={(e) => {
@@ -385,7 +385,7 @@ function SearchTrigger() {
       <span>Search</span>
       <kbd style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "12px",
+        fontSize:   "var(--text-small)",
         padding:    "2px 5px",
         background: "#FAFAF9",
         border:     "1px solid #E8E4DE",
@@ -416,7 +416,7 @@ function NavLink({
     border:        "none",
     cursor:        "pointer",
     color:         "#8A8680",
-    fontSize:      "15px",
+    fontSize:      "var(--text-body)",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",

@@ -24,13 +24,13 @@ export default function Slide7() {
         </h2>
 
         <div style={{ marginTop: 44, maxWidth: 900 }}>
-          <p className="font-body" style={{ margin: 0, fontSize: 17, lineHeight: 1.5, color: wf.n200 }}>
+          <p className="font-body" style={{ margin: 0, fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n200 }}>
             Four weeks in, I had a working booking interface. Hotels, cars, detail pages. The tools made it possible to go from concept to functional UI in hours.
           </p>
-          <p className="font-body" style={{ margin: "18px 0 0", fontSize: 17, lineHeight: 1.5, color: wf.n100 }}>
+          <p className="font-body" style={{ margin: "18px 0 0", fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n100 }}>
             The brief said discovery, not booking. The booking UI was good work. It just wasn’t right work.
           </p>
-          <p className="font-body" style={{ margin: "18px 0 0", fontSize: 20, lineHeight: 1.5, color: wf.white, fontWeight: 500 }}>
+          <p className="font-body" style={{ margin: "18px 0 0", fontSize: "var(--text-h3)", lineHeight: 1.5, color: wf.white, fontWeight: 500 }}>
             When the tools make everything buildable, the design discipline shifts from “can we?” to “should we?” That’s a harder question, and it’s the one that matters.
           </p>
         </div>

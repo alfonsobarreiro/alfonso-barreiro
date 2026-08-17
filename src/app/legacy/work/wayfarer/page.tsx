@@ -80,7 +80,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
       <span style={{ display: "inline-block", width: "32px", height: "1px", background: c.accent }} />
       <span style={{
         fontFamily:    font.sans,
-        fontSize:      "12px",
+        fontSize:      "var(--text-small)",
         fontWeight:    500,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
@@ -96,7 +96,7 @@ function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
       fontFamily:    font.sans,
-      fontSize:      "12px",
+      fontSize:      "var(--text-small)",
       fontWeight:    500,
       letterSpacing: "0.01em",
       textTransform: "uppercase",
@@ -114,7 +114,7 @@ function Callout({
 }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "12px",
+    fontSize:      "var(--text-small)",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -123,7 +123,7 @@ function Callout({
   };
   const bodyStyle: React.CSSProperties = {
     fontFamily: font.sans,
-    fontSize:   "15px",
+    fontSize:   "var(--text-body)",
     lineHeight: 1.6,
     color:      c.ink2,
     margin:     0,
@@ -140,7 +140,7 @@ function Callout({
       <p style={labelStyle}>Decision</p>
       <p style={{
         fontFamily:    font.sans,
-        fontSize:      "20px",
+        fontSize:      "var(--text-h3)",
         fontWeight:    500,
         color:         c.brand,
         margin:        "0 0 24px",
@@ -212,7 +212,7 @@ function BigThree({
         }} className="wf2-row">
           <div>
             <span style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", color: c.accent,
               display: "block", marginBottom: "12px",
             }}>{number}</span>
@@ -243,12 +243,12 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
       <p style={{
-        fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+        fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
         letterSpacing: "0.01em", textTransform: "uppercase",
         color: c.accent, margin: "0 0 8px",
       }}>{label}</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+        fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
         color: c.ink, margin: 0,
       }}>{value}</p>
     </div>
@@ -268,7 +268,7 @@ export default function WayfarerV2() {
         {/* Back link */}
         <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `24px ${SECTION_X} 0` }}>
           <Link href="/#work" style={{
-            fontFamily: font.sans, fontSize: "15px",
+            fontFamily: font.sans, fontSize: "var(--text-body)",
             color: c.muted, textDecoration: "none",
           }}>
             ← Back to work
@@ -311,7 +311,7 @@ export default function WayfarerV2() {
             target="_blank" rel="noopener noreferrer"
             style={{
               display: "inline-flex", alignItems: "center", gap: "10px",
-              fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.accent2, textDecoration: "none",
               borderBottom: `1px solid ${c.accent}`, paddingBottom: "2px",
@@ -337,7 +337,7 @@ export default function WayfarerV2() {
               style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
             />
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.muted, margin: "16px 0 0", textAlign: "center",
             }}>
@@ -418,7 +418,7 @@ export default function WayfarerV2() {
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
               />
               <p style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "uppercase",
                 color: c.muted, margin: "16px 0 0", textAlign: "center",
               }}>
@@ -439,7 +439,7 @@ export default function WayfarerV2() {
             }} className="wf2-row">
               <div>
                 <span style={{
-                  fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                   letterSpacing: "0.01em", color: c.accent,
                   display: "block", marginBottom: "12px",
                 }}>02</span>
@@ -509,7 +509,7 @@ export default function WayfarerV2() {
               Discovery has to survive the phone. Hierarchy holds, the globe reduces to a continent grid, and the signup keeps its progress meter.
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", color: c.muted,
+              fontFamily: font.sans, fontSize: "var(--text-small)", color: c.muted,
               lineHeight: 1.5, margin: 0, letterSpacing: "0.01em",
             }}>
               Mobile screen captures from the live site at wayfarer.barreiro.com pending. Wireframe source in the Figma file (Responsive · Mobile Breakpoints page).
@@ -639,12 +639,12 @@ export default function WayfarerV2() {
 /* Research strip — 3-beat horizontal: Card Sort, Personas, Site Audits */
 function ResearchStrip() {
   const stepLabel: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     color: c.accent, letterSpacing: "0.01em",
     textTransform: "uppercase", margin: "0 0 6px",
   };
   const stepBody: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", color: c.ink,
+    fontFamily: font.sans, fontSize: "var(--text-body)", color: c.ink,
     fontWeight: 500, margin: 0, letterSpacing: "0",
   };
   return (
@@ -797,7 +797,7 @@ function DesignSystemSection() {
 
       <div style={{ padding: `0 ${SECTION_X}` }}>
         <p style={{
-          fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+          fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
           letterSpacing: "0.01em", textTransform: "uppercase",
           color: c.muted, margin: "0 0 16px",
           maxWidth: CONTENT_MAX, marginInline: "auto",
@@ -829,13 +829,13 @@ function TokenCrossProjectTable() {
     { token: "neutral-500", wayfarer: "#6B6560", brand: "#6B6560", msr: "#6B6560" },
   ];
   const thStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     textAlign: "left", padding: "14px 16px",
     borderBottom: `1px solid ${c.border}`,
   };
   const tdStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px",
+    fontFamily: font.sans, fontSize: "var(--text-body)",
     padding: "14px 16px", verticalAlign: "middle",
     borderBottom: `1px solid ${c.border}`,
   };
@@ -881,25 +881,25 @@ function TokenCrossProjectTable() {
           <tbody>
             {rows.map((r, i) => (
               <tr key={r.token} style={{ background: i % 2 === 0 ? "#FFFFFF" : c.callout }}>
-                <td style={{ ...tdStyle, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "15px", color: c.muted }}>
+                <td style={{ ...tdStyle, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "var(--text-body)", color: c.muted }}>
                   {r.token}
                 </td>
                 <td style={tdStyle}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
                     <span style={{ width: 16, height: 16, background: r.wayfarer, border: "1px solid rgba(0,0,0,0.10)", display: "inline-block" }} />
-                    <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "15px", color: c.ink, fontWeight: 500 }}>{r.wayfarer}</span>
+                    <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "var(--text-body)", color: c.ink, fontWeight: 500 }}>{r.wayfarer}</span>
                   </span>
                 </td>
                 <td style={tdStyle}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
                     <span style={{ width: 16, height: 16, background: r.brand, border: "1px solid rgba(0,0,0,0.10)", display: "inline-block" }} />
-                    <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "15px", color: c.ink2 }}>{r.brand}</span>
+                    <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "var(--text-body)", color: c.ink2 }}>{r.brand}</span>
                   </span>
                 </td>
                 <td style={tdStyle}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
                     <span style={{ width: 16, height: 16, background: r.msr, border: "1px solid rgba(0,0,0,0.10)", display: "inline-block" }} />
-                    <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "15px", color: c.ink2 }}>{r.msr}</span>
+                    <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: "var(--text-body)", color: c.ink2 }}>{r.msr}</span>
                   </span>
                 </td>
               </tr>
@@ -908,7 +908,7 @@ function TokenCrossProjectTable() {
         </table>
       </div>
       <p style={{
-        fontFamily: font.sans, fontSize: "12px",
+        fontFamily: font.sans, fontSize: "var(--text-small)",
         color: c.muted, lineHeight: 1.5, margin: "12px 0 0",
         letterSpacing: "0.01em",
       }}>
@@ -944,11 +944,11 @@ function DesignSystemCarousel() {
               }}
             >
               <span style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 color: c.accent, letterSpacing: "0.01em",
               }}>{tab.num}</span>
               <span style={{
-                fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
                 color: c.ink, letterSpacing: "0",
               }}>{tab.label}</span>
             </label>
@@ -976,7 +976,7 @@ function DesignSystemCarousel() {
           </div>
           <div className="wf2-ds-panel" data-panel="3">
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 24px", maxWidth: PROSE_MAX,
             }}>
               Eighteen documented sections in the Figma source: Color, Typography, Button, Icon Button, Link, Search Pill, Kbd, Eyebrow Label, Badge, Text Input, Destination Card, Section Header, Navbar, Footer, Map, Mobile Nav, Sign In Modal, Destination Image. Each one carries a code cross-reference. The Destination Card (Section 11) is shown.
@@ -1007,7 +1007,7 @@ function ShippedSection() {
         }} className="wf2-row">
           <div>
             <span style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", color: c.accent,
               display: "block", marginBottom: "12px",
             }}>03</span>
@@ -1031,7 +1031,7 @@ function ShippedSection() {
             Editorial pattern: hero photo, about, gallery, highlights, location, quick-info side rail. */}
         <div style={{ marginBottom: "56px" }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+            fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
             letterSpacing: "0.01em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>
@@ -1052,7 +1052,7 @@ function ShippedSection() {
             style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
           />
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
             color: c.muted, margin: "16px 0 0", maxWidth: "780px",
           }}>
             Every destination ships through the same six-block template: hero, about, gallery, highlights, location, quick info. The template is the contract; content is the variable.
@@ -1068,7 +1068,7 @@ function ShippedSection() {
             takes from blank canvas to populated plan. */}
         <div style={{ marginTop: "56px", marginBottom: "40px" }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+            fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
             letterSpacing: "0.01em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>
@@ -1094,7 +1094,7 @@ function ShippedSection() {
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
               />
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "12px", margin: "10px 0 0",
+                fontFamily: font.sans, fontSize: "var(--text-small)", margin: "10px 0 0",
                 display: "flex", gap: "8px", alignItems: "baseline",
               }}>
                 <span style={{ fontWeight: 500, letterSpacing: "0.01em", color: c.accent }}>01</span>
@@ -1110,7 +1110,7 @@ function ShippedSection() {
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
               />
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "12px", margin: "10px 0 0",
+                fontFamily: font.sans, fontSize: "var(--text-small)", margin: "10px 0 0",
                 display: "flex", gap: "8px", alignItems: "baseline",
               }}>
                 <span style={{ fontWeight: 500, letterSpacing: "0.01em", color: c.accent }}>02</span>
@@ -1160,7 +1160,7 @@ function AnnotatedTripPlanner() {
   ];
 
   const eyebrowStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.accent, margin: "0 0 12px",
   };
@@ -1170,18 +1170,18 @@ function AnnotatedTripPlanner() {
     letterSpacing: "-0.01em", lineHeight: 1.35,
   };
   const itemTitle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
     color: c.ink, margin: "0 0 6px",
     letterSpacing: "0", lineHeight: 1.35,
   };
   const itemBody: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
     color: c.ink2, margin: 0,
   };
   const badge: React.CSSProperties = {
     display: "inline-flex", width: "28px", height: "28px",
     borderRadius: "50%", background: "var(--color-brand)",
-    color: "#FFFFFF", fontFamily: font.sans, fontSize: "12px",
+    color: "#FFFFFF", fontFamily: font.sans, fontSize: "var(--text-small)",
     fontWeight: 500, alignItems: "center", justifyContent: "center",
     flexShrink: 0,
   };
@@ -1250,16 +1250,16 @@ function CutVsKept() {
     "Continent-based filtering and search",
   ];
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     margin: "0 0 14px",
   };
   const headStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "17px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-article)", fontWeight: 500,
     color: c.ink, margin: "0 0 18px", letterSpacing: "-0.01em",
   };
   const itemStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
     color: c.ink2, padding: "10px 0", borderTop: `1px solid ${c.border}`,
   };
   return (
@@ -1366,7 +1366,7 @@ function PersonasGrid() {
           }}
         >
           <p style={{
-            fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+            fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
             letterSpacing: "0.01em", textTransform: "uppercase",
             color: c.brand, margin: 0,
           }}>
@@ -1380,13 +1380,13 @@ function PersonasGrid() {
             {p.name} <span style={{ fontWeight: 400, color: c.ink2 }}>· {p.meta}</span>
           </h4>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
             color: c.ink, margin: 0, fontWeight: 500,
           }}>
             {p.bio}
           </p>
           <p style={{
-            fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+            fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
             color: c.ink2, margin: 0,
           }}>
             {p.notes}
@@ -1400,14 +1400,14 @@ function PersonasGrid() {
             padding:     "14px 16px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+              fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
               letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.accent, margin: "0 0 6px",
             }}>
               Want / friction
             </p>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
               color: c.ink2, margin: 0,
             }}>
               <strong style={{ color: c.ink, fontWeight: 500 }}>Wants:</strong>{" "}
@@ -1453,7 +1453,7 @@ function CompetitorAudit() {
     },
   ];
   const labelMicro: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     margin: "0 0 6px",
   };
@@ -1489,31 +1489,31 @@ function CompetitorAudit() {
           <div style={{ padding: "24px 28px" }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
               <h4 style={{
-                fontFamily: font.sans, fontSize: "17px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-article)", fontWeight: 500,
                 color: c.ink, margin: 0, letterSpacing: "-0.01em",
               }}>{r.name}</h4>
               <span style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 letterSpacing: "0.01em", textTransform: "uppercase",
                 color: c.muted,
               }}>{r.tag}</span>
             </div>
             <p style={{
-              fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+              fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
               color: c.ink2, margin: "0 0 16px",
             }}>{r.finding}</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
               <div>
                 <p style={{ ...labelMicro, color: c.accent }}>Lift</p>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", lineHeight: 1.5,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", lineHeight: 1.5,
                   color: c.ink, margin: 0,
                 }}>{r.lift}</p>
               </div>
               <div>
                 <p style={{ ...labelMicro, color: c.brand }}>Skip</p>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", lineHeight: 1.5,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", lineHeight: 1.5,
                   color: c.ink, margin: 0,
                 }}>{r.skip}</p>
               </div>
@@ -1551,7 +1551,7 @@ function InformationArchitecture() {
   ];
 
   const eyebrowMicro: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.muted, margin: "0 0 14px",
   };
@@ -1562,7 +1562,7 @@ function InformationArchitecture() {
   };
   const chipBase: React.CSSProperties = {
     fontFamily:    font.sans,
-    fontSize:      "12px",
+    fontSize:      "var(--text-small)",
     fontWeight:    500,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -1624,11 +1624,11 @@ function InformationArchitecture() {
                 <span style={chipStyle(r.kind)}>{r.kind}</span>
                 <span style={{
                   fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
-                  fontSize:      "15px", fontWeight: 500,
+                  fontSize:      "var(--text-body)", fontWeight: 500,
                   color:         c.ink, letterSpacing: "0",
                 }}>{r.path}</span>
                 <span style={{
-                  fontFamily:    font.sans, fontSize: "15px",
+                  fontFamily:    font.sans, fontSize: "var(--text-body)",
                   color:         c.ink2, lineHeight: 1.5,
                   textAlign:     "right",
                 }} className="wf2-ia-note">{r.note}</span>
@@ -1655,18 +1655,18 @@ function InformationArchitecture() {
                   position:   "relative",
                 }}>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "12px",
+                    fontFamily: font.sans, fontSize: "var(--text-small)",
                     fontWeight: 500, letterSpacing: "0.01em",
                     color:      c.coral, textTransform: "uppercase",
                     margin:     "0 0 10px",
                   }}>{s.num}</p>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "17px",
+                    fontFamily: font.sans, fontSize: "var(--text-article)",
                     fontWeight: 500, color: c.ink, margin: "0 0 8px",
                     letterSpacing: "-0.01em",
                   }}>{s.label}</p>
                   <p style={{
-                    fontFamily: font.sans, fontSize: "12px",
+                    fontFamily: font.sans, fontSize: "var(--text-small)",
                     color:      c.muted, margin: 0, lineHeight: 1.5,
                   }}>{s.sub}</p>
                   {/* Arrow that overlaps to next card on desktop */}
@@ -1675,7 +1675,7 @@ function InformationArchitecture() {
                       position: "absolute",
                       right: "-14px", top: "50%",
                       transform: "translateY(-50%)",
-                      fontFamily: font.sans, fontSize: "17px",
+                      fontFamily: font.sans, fontSize: "var(--text-article)",
                       color: c.accent, fontWeight: 500,
                       background: c.surface, padding: "0 4px",
                       zIndex: 1,
@@ -1686,7 +1686,7 @@ function InformationArchitecture() {
             ))}
           </div>
           <p style={{
-            fontFamily: font.sans, fontSize: "12px",
+            fontFamily: font.sans, fontSize: "var(--text-small)",
             color: c.muted, margin: "16px 0 0", letterSpacing: "0.01em",
           }}>
             Six steps. Each step maps to a route or a state. No skip from Land to Commit; saving precedes committing on purpose.
@@ -1705,7 +1705,7 @@ function ProcessGallery() {
     { label: "Multi-page signup", src: "/images/work/wayfarer/v2/figma-wireframe-multipage-form.png" },
   ];
   const wireframeCardLabel: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.muted, margin: "10px 0 0",
   };
@@ -1737,7 +1737,7 @@ function ProcessGallery() {
         </div>
 
         <p style={{
-          fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+          fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
           letterSpacing: "0.01em", textTransform: "uppercase",
           color: c.muted, margin: "0 0 16px",
         }}>
@@ -1768,11 +1768,11 @@ function ProcessGallery() {
                 }}
               >
                 <span style={{
-                  fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                   color: c.accent, letterSpacing: "0.01em",
                 }}>{tab.num}</span>
                 <span style={{
-                  fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
                   color: c.ink, letterSpacing: "0",
                 }}>{tab.label}</span>
               </label>
@@ -1792,7 +1792,7 @@ function ProcessGallery() {
                 Personas and competitor audit.
               </h3>
               <p style={{
-                fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+                fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
                 color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
               }}>
                 Three personas synthesized from interviews. A heuristic audit of direct and adjacent travel platforms across discovery, planning, and booking. Together they answered two questions: who is this for, and what is already broken in the category. The site map and user flow that came out of this work get their own section below.
@@ -1821,7 +1821,7 @@ function ProcessGallery() {
                 Paper, then pixels.
               </h3>
               <p style={{
-                fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+                fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
                 color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
               }}>
                 Every screen started as a paper sketch. Seven hand drafts mapped the signup flow before a single Figma frame. Below: Step 1 in its original sketch and its v.4 hi-fi, then the iteration trail (seven mobile homepage versions, four signup versions) kept in the Figma source as proof of the work.
@@ -1830,7 +1830,7 @@ function ProcessGallery() {
               {/* Paper sketch + hi-fi pair — the SLUX moment */}
               <div style={{ marginBottom: "32px" }}>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                   letterSpacing: "0.01em", textTransform: "uppercase",
                   color: c.accent, margin: "0 0 12px",
                 }}>
@@ -1844,7 +1844,7 @@ function ProcessGallery() {
                   style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
                 />
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                   letterSpacing: "0.01em", textTransform: "uppercase",
                   color: c.muted, margin: "10px 0 0",
                 }}>
@@ -1854,7 +1854,7 @@ function ProcessGallery() {
 
               <div style={{ marginBottom: "28px" }}>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                   letterSpacing: "0.01em", textTransform: "uppercase",
                   color: c.accent, margin: "0 0 12px",
                 }}>
@@ -1888,7 +1888,7 @@ function ProcessGallery() {
               </div>
               <div>
                 <p style={{
-                  fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                  fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                   letterSpacing: "0.01em", textTransform: "uppercase",
                   color: c.accent, margin: "0 0 12px",
                 }}>
@@ -1932,7 +1932,7 @@ function ProcessGallery() {
                 Mid-fi wireframes.
               </h3>
               <p style={{
-                fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+                fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
                 color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
               }}>
                 Four key surfaces wireframed before the hi-fi: homepage as editorial cover, globe as discovery surface, trip planner with the three primitives, and the multi-page signup. Each ships in the live product.
@@ -1976,12 +1976,12 @@ function ProcessGallery() {
 /* "What I cut" callout */
 function WhatICut() {
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.accent, margin: "0 0 8px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
     color: c.ink2, margin: 0,
   };
   return (
@@ -2024,7 +2024,7 @@ function SignupFunnelFlow() {
   return (
     <div style={{ marginTop: "32px" }}>
       <p style={{
-        fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+        fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
         letterSpacing: "0.01em", textTransform: "uppercase",
         color: c.accent, margin: "0 0 8px",
       }}>
@@ -2038,7 +2038,7 @@ function SignupFunnelFlow() {
         Five steps, then welcome.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "15px", fontWeight: 500,
+        fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500,
         letterSpacing: "0.01em", textTransform: "uppercase",
         color: c.muted, margin: "0 0 24px",
       }}>
@@ -2070,11 +2070,11 @@ function SignupFunnelFlow() {
               }}
             >
               <p style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 color: c.accent, letterSpacing: "0.01em", margin: "0 0 4px",
               }}>{s.num}</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+                fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
                 color: c.ink, margin: 0, letterSpacing: "0",
                 lineHeight: 1.15,
               }}>{s.label}</p>
@@ -2109,7 +2109,7 @@ function SignupFunnelFlow() {
                 />
               </div>
               <p style={{
-                fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+                fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
                 color: c.ink2, margin: "20px 0 0", maxWidth: "780px",
               }}>
                 <span style={{ fontWeight: 500, color: c.ink }}>Step {s.num} &middot; {s.label}.</span> {s.note}
@@ -2120,7 +2120,7 @@ function SignupFunnelFlow() {
       </div>
 
       <p style={{
-        fontFamily: font.sans, fontSize: "15px",
+        fontFamily: font.sans, fontSize: "var(--text-body)",
         color: c.muted, lineHeight: 1.6,
         margin: "20px 0 0", maxWidth: "780px",
       }}>
@@ -2147,27 +2147,27 @@ function BriefVsDelivered() {
     { brief: "(beyond brief)",    delivered: "Full design system (tokens, type, components) cross-referenced to production code", beyond: true  },
   ];
   const thStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     textAlign: "left", padding: "14px 18px",
     color: c.muted,
     borderBottom: `1px solid ${c.border}`,
   };
   const tdBriefStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px",
+    fontFamily: font.sans, fontSize: "var(--text-body)",
     padding: "14px 18px", verticalAlign: "middle",
     borderBottom: `1px solid ${c.border}`,
     width: "30%",
   };
   const tdDeliveredStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.5,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5,
     padding: "14px 18px", verticalAlign: "middle",
     color: c.ink, borderBottom: `1px solid ${c.border}`,
   };
   return (
     <div style={{ marginTop: "56px", marginBottom: "40px" }}>
       <p style={{
-        fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+        fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
         letterSpacing: "0.01em", textTransform: "uppercase",
         color: c.accent, margin: "0 0 12px",
       }}>
@@ -2181,7 +2181,7 @@ function BriefVsDelivered() {
         Two things asked for. Seven shipped.
       </h3>
       <p style={{
-        fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+        fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
         color: c.ink2, margin: "0 0 24px", maxWidth: "780px",
       }}>
         The brief asked for a homepage and an onboarding fix. The build expanded around both without breaking either. The expansion isn&rsquo;t scope creep. &sect;02 The Bet shows what got cut to make room for it.
@@ -2218,7 +2218,7 @@ function BriefVsDelivered() {
         </table>
       </div>
       <p style={{
-        fontFamily: font.sans, fontSize: "12px",
+        fontFamily: font.sans, fontSize: "var(--text-small)",
         color: c.muted, lineHeight: 1.5, margin: "12px 0 0",
       }}>
         Two rows hit the brief. Five rows expanded it. The build held discipline against what was cut, not against what was added.
@@ -2229,12 +2229,12 @@ function BriefVsDelivered() {
 
 function EvaluationPlan() {
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.accent, margin: "0 0 14px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
     color: c.ink2, margin: "0 0 12px",
   };
   return (
@@ -2263,12 +2263,12 @@ function EvaluationPlan() {
 /* Honest Risks — same pattern as MSR */
 function HonestRisks() {
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.accent, margin: "0 0 14px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
     color: c.ink2, margin: "0 0 12px",
   };
   return (
@@ -2298,12 +2298,12 @@ function HonestRisks() {
    Uses Card Sort + Personas instead of GA4 behavior. */
 function ResearchEvidence() {
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
+    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500,
     letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.accent, margin: "0 0 14px",
   };
   const bodyStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6,
+    fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6,
     color: c.ink2, margin: "0 0 12px",
   };
   return (

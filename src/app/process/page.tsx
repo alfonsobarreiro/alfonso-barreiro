@@ -41,7 +41,7 @@ const sectionH2: React.CSSProperties = {
 
 const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
-  fontSize:   "17px",
+  fontSize:   "var(--text-article)",
   lineHeight: 1.6,
   color:      "var(--color-text)",
   margin:     "0 0 24px",

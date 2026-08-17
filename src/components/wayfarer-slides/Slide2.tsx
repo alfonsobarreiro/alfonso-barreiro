@@ -7,7 +7,7 @@ export default function Slide2() {
 
       <h2 className="font-display" style={{
         margin: "24px 0 0",
-        fontSize: 60, fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em",
+        fontSize: "var(--text-display)", fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1100,
       }}>
         A concept travel platform, designed around one constraint.
@@ -16,13 +16,13 @@ export default function Slide2() {
       <div style={{ display: "flex", gap: 64, marginTop: 40 }}>
         <div style={{ flex: 1 }}>
           <Eyebrow>The assignment</Eyebrow>
-          <p className="font-body" style={{ marginTop: 14, fontSize: 17, lineHeight: 1.5, color: wf.n700 }}>
+          <p className="font-body" style={{ marginTop: 14, fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n700 }}>
             DesignLab assigned me Wayfarer, a travel discovery platform. The brief was specific: redesign the homepage, fix the onboarding flow. Users found the existing multi-step signup confusing and repetitive. The visual language didn’t match the audience.
           </p>
         </div>
         <div style={{ flex: 1 }}>
           <Eyebrow>The audience</Eyebrow>
-          <p className="font-body" style={{ marginTop: 14, fontSize: 17, lineHeight: 1.5, color: wf.n700 }}>
+          <p className="font-body" style={{ marginTop: 14, fontSize: "var(--text-article)", lineHeight: 1.5, color: wf.n700 }}>
             Adventurous travelers aged 21–30. Digitally native, mobile-first. More interested in authentic cultural experiences than resort packages. They research before they commit. They browse before they plan.
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function Slide2() {
         background: wf.brand50, borderLeft: `4px solid ${wf.brand500}`,
       }}>
         <Eyebrow tone="muted">The constraint</Eyebrow>
-        <p className="font-body" style={{ margin: "10px 0 0", fontSize: 20, lineHeight: 1.5, color: wf.brand900 }}>
+        <p className="font-body" style={{ margin: "10px 0 0", fontSize: "var(--text-h3)", lineHeight: 1.5, color: wf.brand900 }}>
           Wayfarer is a discovery tool, not a booking platform. The brief said so explicitly. Everything I built had to survive that filter.
         </p>
       </div>

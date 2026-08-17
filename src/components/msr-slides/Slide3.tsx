@@ -18,7 +18,7 @@ export default function Slide3() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>The Pivot</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.05] tracking-tight mb-14" style={{ color: "#091016", fontSize: 40, fontWeight: 500, maxWidth: 720 }}>
+        <h1 className="font-display uppercase leading-[1.05] tracking-tight mb-14" style={{ color: "#091016", fontSize: "var(--text-h1)", fontWeight: 500, maxWidth: 720 }}>
           The numbers kept breaking.<br /><span style={{ color: "#C4703A" }}>That was the signal.</span>
         </h1>
 
@@ -27,7 +27,7 @@ export default function Slide3() {
           <div className="flex-1 flex flex-col gap-8">
             <div className="rounded-xl p-6" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
               <span className="font-display text-[10px] tracking-[0.25em] uppercase block mb-4" style={{ color: "#6B6560" }}>The original plan</span>
-              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 15 }}>Build a premium men&rsquo;s foot care e-commerce site. Curated product kits: antifungal treatment, toe separators, insoles, foot cream. Headless Shopify setup, Next.js frontend, dark editorial brand.</p>
+              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: "var(--text-body)" }}>Build a premium men&rsquo;s foot care e-commerce site. Curated product kits: antifungal treatment, toe separators, insoles, foot cream. Headless Shopify setup, Next.js frontend, dark editorial brand.</p>
             </div>
 
             <div className="flex items-center gap-3 px-2">
@@ -40,8 +40,8 @@ export default function Slide3() {
 
             <div className="rounded-xl p-8 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(196,112,58,0.06) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.25)" }}>
               <div className="absolute -top-16 -left-16 w-48 h-48 rounded-full blur-3xl" style={{ background: "rgba(196,112,58,0.06)" }} />
-              <p className="font-heading italic leading-relaxed relative z-10" style={{ color: "#C4703A", fontSize: 20 }}>&ldquo;I was modeling margin math. The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. I kept trying to make it work and it kept not working.&rdquo;</p>
-              <p className="font-body leading-relaxed mt-5 relative z-10" style={{ color: "#6B6560", fontSize: 15 }}>The margin issue wasn&rsquo;t a business execution problem. It was a signal I was starting in the wrong place.</p>
+              <p className="font-heading italic leading-relaxed relative z-10" style={{ color: "#C4703A", fontSize: "var(--text-h3)" }}>&ldquo;I was modeling margin math. The numbers kept breaking. Commodity products with thin margins, fulfillment costs, customer acquisition on a cold audience. I kept trying to make it work and it kept not working.&rdquo;</p>
+              <p className="font-body leading-relaxed mt-5 relative z-10" style={{ color: "#6B6560", fontSize: "var(--text-body)" }}>The margin issue wasn&rsquo;t a business execution problem. It was a signal I was starting in the wrong place.</p>
             </div>
           </div>
 
@@ -56,15 +56,15 @@ export default function Slide3() {
               </div>
               {comparisons.map((row, i) => (
                 <div key={row.dimension} className="grid grid-cols-[140px_1fr_1fr] px-6 py-4 items-start" style={{ background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < comparisons.length - 1 ? "1px solid #EEEDEC" : "none" }}>
-                  <span className="font-body font-medium" style={{ color: "#6B6560", fontSize: 15 }}>{row.dimension}</span>
-                  <span className="font-body" style={{ color: "#534F4B", fontSize: 15 }}>{row.before}</span>
-                  <span className="font-body font-medium" style={{ color: "#091016", fontSize: 15 }}>{row.after}</span>
+                  <span className="font-body font-medium" style={{ color: "#6B6560", fontSize: "var(--text-body)" }}>{row.dimension}</span>
+                  <span className="font-body" style={{ color: "#534F4B", fontSize: "var(--text-body)" }}>{row.before}</span>
+                  <span className="font-body font-medium" style={{ color: "#091016", fontSize: "var(--text-body)" }}>{row.after}</span>
                 </div>
               ))}
             </div>
             <div className="mt-5 rounded-lg px-5 py-4 flex items-start gap-3" style={{ background: "rgba(196,112,58,0.05)", border: "1px solid rgba(196,112,58,0.15)" }}>
-              <span className="font-display block mt-0.5" style={{ color: "#C4703A", fontSize: 15 }}>&#x2192;</span>
-              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 15 }}>The pivot wasn&rsquo;t away from e-commerce. It was toward <span style={{ color: "#C4703A", fontWeight: 500 }}>content as the product</span>, using e-commerce UX patterns to frame editorial decisions.</p>
+              <span className="font-display block mt-0.5" style={{ color: "#C4703A", fontSize: "var(--text-body)" }}>&#x2192;</span>
+              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: "var(--text-body)" }}>The pivot wasn&rsquo;t away from e-commerce. It was toward <span style={{ color: "#C4703A", fontWeight: 500 }}>content as the product</span>, using e-commerce UX patterns to frame editorial decisions.</p>
             </div>
           </div>
         </div>
