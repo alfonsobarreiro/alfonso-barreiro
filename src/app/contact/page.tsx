@@ -73,7 +73,7 @@ export default function ContactPage() {
               <h1 id="contact-heading" style={{
                 fontFamily:    font,
                 fontSize:      "clamp(32px, 5vw, 64px)",
-                fontWeight:    600,
+                fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 28px",
                 letterSpacing: "-0.025em",

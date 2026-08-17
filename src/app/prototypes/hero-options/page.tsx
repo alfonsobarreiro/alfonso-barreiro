@@ -50,7 +50,7 @@ function PrototypeNav() {
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "11px",
-          fontWeight:    700,
+          fontWeight:    500,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
           color:         "#6E6E6A",
@@ -64,7 +64,7 @@ function PrototypeNav() {
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "11px",
-          fontWeight:    600,
+          fontWeight:    500,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
           color:         "var(--color-brand)",
@@ -218,7 +218,7 @@ function VariantA() {
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "11px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 color:         "var(--color-accent)",
@@ -231,14 +231,14 @@ function VariantA() {
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "clamp(96px, 11vw, 156px)",
-                fontWeight:    300,
+                fontWeight:    400,
                 lineHeight:    0.85,
                 letterSpacing: "-0.05em",
                 color:         "#FAFAF9",
                 margin:        "0 0 14px",
               }}
             >
-              13<span style={{ fontWeight: 200, opacity: 0.75 }}>×</span>
+              13<span style={{ fontWeight: 400, opacity: 0.75 }}>×</span>
             </p>
             <p
               style={{
@@ -261,7 +261,7 @@ function VariantA() {
                 gap:            "8px",
                 color:          "var(--color-accent)",
                 fontSize:       "11px",
-                fontWeight:     600,
+                fontWeight:     500,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 letterSpacing:  "0.14em",
                 textTransform:  "uppercase",
@@ -330,7 +330,7 @@ function HeroName() {
       style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
         fontSize:      "clamp(48px, 7.5vw, 96px)",
-        fontWeight:    300,
+        fontWeight:    400,
         lineHeight:    0.95,
         letterSpacing: "-0.025em",
         color:         "#252B28",

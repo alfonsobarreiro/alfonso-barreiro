@@ -109,7 +109,7 @@ export default function ContactForm() {
   const labelStyle: React.CSSProperties = {
     display:       "block",
     fontSize:      "11px",
-    fontWeight:    600,
+    fontWeight:    500,
     letterSpacing: "0.13em",
     textTransform: "uppercase",
     color:         "var(--color-accent)",
@@ -137,7 +137,7 @@ export default function ContactForm() {
         tabIndex={-1}
         style={{ padding: "48px", border: "1px solid var(--color-accent)", textAlign: "center", background: "#F4F6F7", outline: "none" }}
       >
-        <p style={{ fontFamily: font, fontSize: "24px", fontWeight: 600, color: "#252B28", marginBottom: "12px", letterSpacing: "-0.02em" }}>
+        <p style={{ fontFamily: font, fontSize: "24px", fontWeight: 500, color: "#252B28", marginBottom: "12px", letterSpacing: "-0.02em" }}>
           Message sent.
         </p>
         <p style={{ fontFamily: font, fontSize: "15px", color: "#5A5752", margin: 0 }}>
@@ -199,7 +199,7 @@ export default function ContactForm() {
                   <span
                     aria-hidden="true"
                     style={{
-                      fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                      fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
                       fontStyle:     "italic",
                       fontSize:      "13px",
                       color:         "#6B6E6A",
@@ -207,7 +207,7 @@ export default function ContactForm() {
                       transition:    "opacity 200ms ease",
                     }}
                   >
-                    <span style={{ fontVariantNumeric: "tabular-nums", color: "var(--color-brand)", fontStyle: "normal", fontFamily: font, fontWeight: 600, marginRight: 6 }}>
+                    <span style={{ fontVariantNumeric: "tabular-nums", color: "var(--color-brand)", fontStyle: "normal", fontFamily: font, fontWeight: 500, marginRight: 6 }}>
                       {msgWords}
                     </span>
                     {msgWords === 1 ? "word" : "words"}
@@ -265,7 +265,7 @@ export default function ContactForm() {
             padding: "15px 36px",
             background: isSubmitting ? "rgba(140,26,26,0.6)" : "var(--color-brand)",
             color: "#FFFFFF", border: "none", borderRadius: 4,
-            fontSize: "13px", fontWeight: 600, fontFamily: font,
+            fontSize: "13px", fontWeight: 500, fontFamily: font,
             letterSpacing: "0.07em", textTransform: "uppercase",
             cursor: isSubmitting ? "not-allowed" : "pointer",
             alignSelf: "flex-start", transition: "opacity 0.2s",

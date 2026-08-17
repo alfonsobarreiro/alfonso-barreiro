@@ -20,7 +20,7 @@ export default function Slide1() {
 
             <h1 className="font-display" style={{
               margin: "24px 0 0",
-              fontSize: 60, fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.02em",
+              fontSize: 60, fontWeight: 500, lineHeight: 1.08, letterSpacing: "-0.02em",
               color: wf.n900, maxWidth: 1080,
             }}>
               The brief said discovery.<br />
@@ -54,7 +54,7 @@ export default function Slide1() {
           ].map(([label, value]) => (
             <div key={label}>
               <div className="font-body" style={{
-                fontSize: 11, fontWeight: 600, letterSpacing: "0.14em",
+                fontSize: 11, fontWeight: 500, letterSpacing: "0.14em",
                 color: wf.n500, marginBottom: 6, textTransform: "uppercase",
               }}>
                 {label}

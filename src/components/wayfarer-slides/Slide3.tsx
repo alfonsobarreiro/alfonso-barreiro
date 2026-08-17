@@ -13,7 +13,7 @@ export default function Slide3() {
 
       <h2 className="font-display" style={{
         margin: "24px 0 0",
-        fontSize: 64, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em",
+        fontSize: 64, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
         color: wf.n900, maxWidth: 1150,
       }}>
         Three problems sat inside the brief.
@@ -31,10 +31,10 @@ export default function Slide3() {
             background: wf.n100, border: `1px solid ${wf.n200}`,
           }}>
             <div className="font-display" style={{
-              fontSize: 56, fontWeight: 700, color: wf.accent500, lineHeight: 1,
+              fontSize: 56, fontWeight: 500, color: wf.accent500, lineHeight: 1,
             }}>{n}</div>
             <h3 className="font-heading" style={{
-              margin: "18px 0 10px", fontSize: 24, fontWeight: 700, color: wf.n900, letterSpacing: "-0.01em",
+              margin: "18px 0 10px", fontSize: 24, fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
             }}>{title}</h3>
             <p className="font-body" style={{ fontSize: 15, lineHeight: 1.55, color: wf.n700, margin: 0 }}>{desc}</p>
           </div>

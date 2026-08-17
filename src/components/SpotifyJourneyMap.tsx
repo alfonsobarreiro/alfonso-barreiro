@@ -12,7 +12,7 @@ const c = {
 };
 
 const font = {
-  display: "var(--font-dm-serif-display), Georgia, serif",
+  display: "var(--font-dm-sans), -apple-system, sans-serif",
   sans:    "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
@@ -36,7 +36,7 @@ export default function SpotifyJourneyMap() {
             style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
-              fontWeight:    600,
+              fontWeight:    500,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               color:         c.muted,

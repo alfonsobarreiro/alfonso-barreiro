@@ -63,7 +63,7 @@ export default function GlobeIframeDemo() {
         <span style={{
           fontFamily:    font.sans,
           fontSize:      "11px",
-          fontWeight:    700,
+          fontWeight:    500,
           letterSpacing: "0.2em",
           color:         c.coral,
           textTransform: "uppercase",
@@ -75,7 +75,7 @@ export default function GlobeIframeDemo() {
         <h3 style={{
           fontFamily:    font.sans,
           fontSize:      "clamp(20px, 2.4vw, 26px)",
-          fontWeight:    600,
+          fontWeight:    500,
           color:         c.navy,
           margin:        "0 0 8px",
           letterSpacing: "-0.015em",
@@ -159,7 +159,7 @@ export default function GlobeIframeDemo() {
             <p style={{
               fontFamily: font.sans,
               fontSize:   "16px",
-              fontWeight: 600,
+              fontWeight: 500,
               margin:     0,
               maxWidth:   "44ch",
             }}>
@@ -185,7 +185,7 @@ export default function GlobeIframeDemo() {
                 padding:         "12px 22px",
                 fontFamily:      font.sans,
                 fontSize:        "13px",
-                fontWeight:      600,
+                fontWeight:      500,
                 letterSpacing:   "0.04em",
                 textTransform:   "uppercase",
                 textDecoration:  "none",
@@ -228,7 +228,7 @@ export default function GlobeIframeDemo() {
           style={{
             fontFamily:     font.sans,
             fontSize:       "13px",
-            fontWeight:     600,
+            fontWeight:     500,
             color:          c.accent,
             textDecoration: "none",
             borderBottom:   `1px solid ${c.accent}`,

@@ -1390,7 +1390,7 @@ function TokenCrossProjectTable() {
           <thead>
             <tr style={{ background: c.callout }}>
               <th style={{ ...thStyle, width: "22%", color: c.muted }}>Token</th>
-              <th style={{ ...thStyle, width: "26%", color: c.brand, fontWeight: 800 }}>Wayfarer</th>
+              <th style={{ ...thStyle, width: "26%", color: c.brand, fontWeight: 500 }}>Wayfarer</th>
               <th style={{ ...thStyle, width: "26%", color: c.muted }}>AB Core</th>
               <th style={{ ...thStyle, width: "26%", color: c.muted }}>MSR</th>
             </tr>

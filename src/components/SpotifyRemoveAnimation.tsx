@@ -324,7 +324,7 @@ export default function SpotifyRemoveAnimation({ variant = "full" }: Props) {
           margin-bottom: 8px;
         }
         .spra-ann-title {
-          font-family: var(--font-dm-serif-display), Georgia, serif;
+          font-family: var(--font-dm-sans), -apple-system, sans-serif;
           font-size: clamp(17px, 2.2vw, 22px);
           line-height: 1.3;
           color: #F5F5F4;

@@ -59,7 +59,7 @@ export default function Footer() {
             <p style={{
               fontFamily:    font,
               fontSize:      "clamp(18px, 2vw, 22px)",
-              fontWeight:    600,
+              fontWeight:    500,
               color:         ink,
               margin:        "0 0 8px",
               letterSpacing: "-0.015em",
@@ -122,7 +122,7 @@ export default function Footer() {
               <span style={{
                 fontFamily:    font,
                 fontSize:      "14px",
-                fontWeight:    600,
+                fontWeight:    500,
                 color:         ink2,
                 letterSpacing: "-0.015em",
                 lineHeight:    1,

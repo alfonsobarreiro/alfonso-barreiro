@@ -120,7 +120,7 @@ export default function Hero() {
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
               fontSize:      "clamp(48px, 7.5vw, 96px)",
-              fontWeight:    300,
+              fontWeight:    400,
               lineHeight:    0.95,
               letterSpacing: "-0.025em",
               color:         "#252B28",
@@ -457,7 +457,7 @@ function HeroResultPanel() {
           zIndex:        3,
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "11px",
-          fontWeight:    700,
+          fontWeight:    500,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
           color:         "#FAFAF9",
@@ -485,7 +485,7 @@ function HeroResultPanel() {
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "clamp(22px, 2.2vw, 28px)",
-            fontWeight:    600,
+            fontWeight:    500,
             lineHeight:    1.15,
             letterSpacing: "-0.015em",
             color:         "#FAFAF9",
@@ -500,7 +500,7 @@ function HeroResultPanel() {
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "clamp(88px, 10vw, 140px)",
-            fontWeight:    300,
+            fontWeight:    400,
             lineHeight:    0.85,
             letterSpacing: "-0.05em",
             color:         "#FAFAF9",
@@ -508,7 +508,7 @@ function HeroResultPanel() {
             fontVariantNumeric: "tabular-nums",
           }}
         >
-          {Math.round(n)}<span style={{ fontWeight: 200, opacity: 0.75 }}>×</span>
+          {Math.round(n)}<span style={{ fontWeight: 400, opacity: 0.75 }}>×</span>
         </p>
 
         {/* What the number means */}
@@ -536,7 +536,7 @@ function HeroResultPanel() {
             gap:             "10px",
             color:           "#FAFAF9",
             fontSize:        "13px",
-            fontWeight:      600,
+            fontWeight:      500,
             fontFamily:      "var(--font-dm-sans), sans-serif",
             letterSpacing:   "0.05em",
             padding:         "12px 18px",

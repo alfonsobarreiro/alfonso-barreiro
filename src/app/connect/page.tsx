@@ -405,7 +405,7 @@ export default function ConnectPage() {
               <span style={{
                 width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0, backgroundColor: "var(--color-accent)", color: "#FFFFFF",
-                fontWeight: 700, fontSize: 12, letterSpacing: "-0.02em",
+                fontWeight: 500, fontSize: 12, letterSpacing: "-0.02em",
               }}>
                 AB
               </span>

@@ -18,7 +18,7 @@ export default function Slide3() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>The Pivot</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.05] tracking-tight mb-14" style={{ color: "#091016", fontSize: 44, fontWeight: 800, maxWidth: 720 }}>
+        <h1 className="font-display uppercase leading-[1.05] tracking-tight mb-14" style={{ color: "#091016", fontSize: 44, fontWeight: 500, maxWidth: 720 }}>
           The numbers kept breaking.<br /><span style={{ color: "#C4703A" }}>That was the signal.</span>
         </h1>
 
@@ -64,7 +64,7 @@ export default function Slide3() {
             </div>
             <div className="mt-5 rounded-lg px-5 py-4 flex items-start gap-3" style={{ background: "rgba(196,112,58,0.05)", border: "1px solid rgba(196,112,58,0.15)" }}>
               <span className="font-display block mt-0.5" style={{ color: "#C4703A", fontSize: 16 }}>&#x2192;</span>
-              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 13 }}>The pivot wasn&rsquo;t away from e-commerce. It was toward <span style={{ color: "#C4703A", fontWeight: 600 }}>content as the product</span>, using e-commerce UX patterns to frame editorial decisions.</p>
+              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 13 }}>The pivot wasn&rsquo;t away from e-commerce. It was toward <span style={{ color: "#C4703A", fontWeight: 500 }}>content as the product</span>, using e-commerce UX patterns to frame editorial decisions.</p>
             </div>
           </div>
         </div>

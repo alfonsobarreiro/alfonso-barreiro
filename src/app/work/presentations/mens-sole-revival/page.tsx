@@ -80,7 +80,7 @@ export default function MSRDeckPage() {
               <h1 style={{
                 fontFamily: font.sans,
                 fontSize: "14px",
-                fontWeight: 600,
+                fontWeight: 500,
                 color: c.ink,
                 margin: 0,
               }}>
@@ -125,7 +125,7 @@ export default function MSRDeckPage() {
               <p style={{
                 fontFamily: font.sans,
                 fontSize: "11px",
-                fontWeight: 600,
+                fontWeight: 500,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 color: c.muted,

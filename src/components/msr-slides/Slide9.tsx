@@ -11,7 +11,7 @@ export default function Slide9() {
         <div className="mb-10">
           <Image src="/images/work/msr/msr-logo-m01-navy.png" alt="Men\u2019s Sole Revival" width={160} height={193} />
         </div>
-        <h1 className="font-display leading-[1.1] tracking-tight" style={{ color: "#13100C", fontSize: 72, fontWeight: 800, maxWidth: 800, margin: "0 0 24px" }}>
+        <h1 className="font-display leading-[1.1] tracking-tight" style={{ color: "#13100C", fontSize: 72, fontWeight: 500, maxWidth: 800, margin: "0 0 24px" }}>
           Thank you.
         </h1>
         <p className="font-heading italic leading-relaxed" style={{ color: "#C4703A", fontSize: 22, maxWidth: 560, margin: "0 0 56px" }}>
@@ -25,7 +25,7 @@ export default function Slide9() {
             { label: "LinkedIn",  value: "/in/alfonsobarreiro" },
           ].map(({ label, value }) => (
             <div key={label} className="text-center">
-              <p className="font-display uppercase tracking-[0.2em] mb-1" style={{ color: "#6B6560", fontSize: 9, fontWeight: 600 }}>{label}</p>
+              <p className="font-display uppercase tracking-[0.2em] mb-1" style={{ color: "#6B6560", fontSize: 9, fontWeight: 500 }}>{label}</p>
               <p className="font-body" style={{ color: "#6B6560", fontSize: 14 }}>{value}</p>
             </div>
           ))}

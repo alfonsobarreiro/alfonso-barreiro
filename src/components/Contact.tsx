@@ -61,7 +61,7 @@ export default function Contact() {
   const labelStyle = {
     display:       "block",
     fontSize:      "11px",
-    fontWeight:    600,
+    fontWeight:    500,
     letterSpacing: "0.13em",
     textTransform: "uppercase" as const,
     color:         "var(--color-accent)",
@@ -116,7 +116,7 @@ export default function Contact() {
 
           <h2
             style={{
-              fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+              fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
               fontSize:      "clamp(28px, 4vw, 52px)",
               fontWeight:    400,
               color:         "#F5F5F4",
@@ -176,7 +176,7 @@ export default function Contact() {
             >
               <p
                 style={{
-                  fontFamily:    "var(--font-dm-serif-display), Georgia, serif",
+                  fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
                   fontSize:      "24px",
                   color:         "#F5F5F4",
                   marginBottom:  "12px",
@@ -274,7 +274,7 @@ export default function Contact() {
                     border:        "none",
                     borderRadius:  4,
                     fontSize:      "13px",
-                    fontWeight:    600,
+                    fontWeight:    500,
                     fontFamily:    "var(--font-dm-sans), sans-serif",
                     letterSpacing: "0.07em",
                     textTransform: "uppercase",

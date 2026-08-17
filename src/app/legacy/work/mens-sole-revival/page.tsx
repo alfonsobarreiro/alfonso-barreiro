@@ -80,7 +80,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
       <span style={{
         fontFamily:    font.sans,
         fontSize:      "11px",
-        fontWeight:    600,
+        fontWeight:    500,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
         color:         c.accent,
@@ -114,7 +114,7 @@ function Callout({
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "10px",
-    fontWeight:    700,
+    fontWeight:    500,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
@@ -139,7 +139,7 @@ function Callout({
       <p style={{
         fontFamily:    font.sans,
         fontSize:      "20px",
-        fontWeight:    600,
+        fontWeight:    500,
         color:         c.brand,
         margin:        "0 0 24px",
         letterSpacing: "-0.01em",
@@ -286,7 +286,7 @@ export default function MSRv2() {
               gap:            "10px",
               fontFamily:     font.sans,
               fontSize:       "13px",
-              fontWeight:     600,
+              fontWeight:     500,
               letterSpacing:  "0.10em",
               textTransform:  "uppercase",
               color:          c.accent2,
@@ -388,7 +388,7 @@ export default function MSRv2() {
                 <span style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
-                  fontWeight:    700,
+                  fontWeight:    500,
                   letterSpacing: "0.20em",
                   color:         c.accent,
                   display:       "block",
@@ -397,7 +397,7 @@ export default function MSRv2() {
                 <h2 style={{
                   fontFamily:    font.sans,
                   fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
                   letterSpacing: "-0.025em",
@@ -453,7 +453,7 @@ export default function MSRv2() {
                   <h3 style={{
                     fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
                     fontSize:      "clamp(56px, 7vw, 96px)",
-                    fontWeight:    800,
+                    fontWeight:    500,
                     color:         "#F5F0E8",
                     margin:        0,
                     letterSpacing: "0.01em",
@@ -502,7 +502,7 @@ export default function MSRv2() {
                 <h2 style={{
                   fontFamily:    font.sans,
                   fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
                   letterSpacing: "-0.025em",
@@ -550,7 +550,7 @@ export default function MSRv2() {
                 <h2 style={{
                   fontFamily:    font.sans,
                   fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
                   letterSpacing: "-0.025em",
@@ -579,7 +579,7 @@ export default function MSRv2() {
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
-              fontWeight:    600,
+              fontWeight:    500,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color:         c.muted,
@@ -606,7 +606,7 @@ export default function MSRv2() {
                 <span style={{
                   fontFamily:    font.sans,
                   fontSize:      "11px",
-                  fontWeight:    700,
+                  fontWeight:    500,
                   letterSpacing: "0.20em",
                   color:         c.accent,
                   display:       "block",
@@ -615,7 +615,7 @@ export default function MSRv2() {
                 <h2 style={{
                   fontFamily:    font.sans,
                   fontSize:      "clamp(32px, 4vw, 48px)",
-                  fontWeight:    600,
+                  fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
                   letterSpacing: "-0.025em",
@@ -684,7 +684,7 @@ export default function MSRv2() {
                         padding:       "5px 12px",
                         fontFamily:    font.sans,
                         fontSize:      "10px",
-                        fontWeight:    700,
+                        fontWeight:    500,
                         letterSpacing: "0.18em",
                         color:         c.ink,
                       }}>02</span>
@@ -696,7 +696,7 @@ export default function MSRv2() {
                       margin:        "12px 0 0",
                       lineHeight:    1.55,
                     }}>
-                      <strong style={{ color: c.ink, fontWeight: 600 }}>Triage:</strong> select-all-that-apply across five symptom areas. Routes you only to the sections that apply.
+                      <strong style={{ color: c.ink, fontWeight: 500 }}>Triage:</strong> select-all-that-apply across five symptom areas. Routes you only to the sections that apply.
                     </figcaption>
                   </figure>
                   <figure style={{ margin: 0 }}>
@@ -717,7 +717,7 @@ export default function MSRv2() {
                         padding:       "5px 12px",
                         fontFamily:    font.sans,
                         fontSize:      "10px",
-                        fontWeight:    700,
+                        fontWeight:    500,
                         letterSpacing: "0.18em",
                         color:         c.ink,
                       }}>03</span>
@@ -729,7 +729,7 @@ export default function MSRv2() {
                       margin:        "12px 0 0",
                       lineHeight:    1.55,
                     }}>
-                      <strong style={{ color: c.ink, fontWeight: 600 }}>Section:</strong> symptom checklist with prevalence stat + peer-reviewed source. Threshold copy explains what the count means.
+                      <strong style={{ color: c.ink, fontWeight: 500 }}>Section:</strong> symptom checklist with prevalence stat + peer-reviewed source. Threshold copy explains what the count means.
                     </figcaption>
                   </figure>
                 </div>
@@ -837,7 +837,7 @@ export default function MSRv2() {
                   <figcaption style={{
                     fontFamily:    font.sans,
                     fontSize:      "11px",
-                    fontWeight:    600,
+                    fontWeight:    500,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
                     color:         c.muted,
@@ -975,7 +975,7 @@ function BigThree({
             <span style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
-              fontWeight:    700,
+              fontWeight:    500,
               letterSpacing: "0.20em",
               color:         c.accent,
               display:       "block",
@@ -986,7 +986,7 @@ function BigThree({
             <h2 style={{
               fontFamily:    font.sans,
               fontSize:      "clamp(32px, 4vw, 48px)",
-              fontWeight:    600,
+              fontWeight:    500,
               color:         c.ink,
               margin:        0,
               letterSpacing: "-0.025em",
@@ -1045,7 +1045,7 @@ function PivotInfographic() {
   const colLabel: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "10px",
-    fontWeight:    700,
+    fontWeight:    500,
     color:         muted,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
@@ -1054,7 +1054,7 @@ function PivotInfographic() {
   const colDisplay: React.CSSProperties = {
     fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
     fontSize:      "clamp(34px, 4.5vw, 52px)",
-    fontWeight:    800,
+    fontWeight:    500,
     color:         paper,
     letterSpacing: "0.01em",
     textTransform: "uppercase",
@@ -1080,7 +1080,7 @@ function PivotInfographic() {
         <p style={{
           fontFamily:    font.sans,
           fontSize:      "11px",
-          fontWeight:    600,
+          fontWeight:    500,
           color:         muted,
           letterSpacing: "0.20em",
           textTransform: "uppercase",
@@ -1131,7 +1131,7 @@ function PivotInfographic() {
             <p style={{
               fontFamily:    font.sans,
               fontSize:      "11px",
-              fontWeight:    700,
+              fontWeight:    500,
               color:         cognac,
               letterSpacing: "0.20em",
               textTransform: "uppercase",
@@ -1179,7 +1179,7 @@ function ResearchStrip() {
   const stepLabel: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "10px",
-    fontWeight:    700,
+    fontWeight:    500,
     color:         c.accent,
     letterSpacing: "0.20em",
     textTransform: "uppercase",
@@ -1227,7 +1227,7 @@ function WhatICut() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "10px",
-    fontWeight:    700,
+    fontWeight:    500,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
@@ -1267,7 +1267,7 @@ function EarlyOutcomes() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "10px",
-    fontWeight:    700,
+    fontWeight:    500,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
@@ -1314,7 +1314,7 @@ function HonestRisks() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "10px",
-    fontWeight:    700,
+    fontWeight:    500,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
@@ -1362,7 +1362,7 @@ function UserResearch() {
   const labelStyle: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "10px",
-    fontWeight:    700,
+    fontWeight:    500,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
@@ -1405,7 +1405,7 @@ function UserResearch() {
             <p style={{
               fontFamily:    "var(--font-barlow-condensed), sans-serif",
               fontSize:      "clamp(36px, 4vw, 56px)",
-              fontWeight:    600,
+              fontWeight:    500,
               color:         c.brand,
               margin:        "0 0 6px",
               letterSpacing: "-0.02em",
@@ -1477,7 +1477,7 @@ function AnnotatedAssessment() {
   const eyebrowStyle: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "11px",
-    fontWeight:    700,
+    fontWeight:    500,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color:         c.accent,
@@ -1495,7 +1495,7 @@ function AnnotatedAssessment() {
   const itemTitle: React.CSSProperties = {
     fontFamily:    font.sans,
     fontSize:      "15px",
-    fontWeight:    600,
+    fontWeight:    500,
     color:         c.ink,
     margin:        "0 0 6px",
     letterSpacing: "-0.005em",
@@ -1517,7 +1517,7 @@ function AnnotatedAssessment() {
     color:          "#FFFFFF",
     fontFamily:     font.sans,
     fontSize:       "11px",
-    fontWeight:     700,
+    fontWeight:     500,
     alignItems:     "center",
     justifyContent: "center",
     flexShrink:     0,
@@ -1607,7 +1607,7 @@ function AssessmentFunnelFlow() {
       <p style={{
         fontFamily:    font.sans,
         fontSize:      "10px",
-        fontWeight:    700,
+        fontWeight:    500,
         letterSpacing: "0.18em",
         textTransform: "uppercase",
         color:         c.accent,
@@ -1634,7 +1634,7 @@ function AssessmentFunnelFlow() {
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "10px",
-                fontWeight:    700,
+                fontWeight:    500,
                 letterSpacing: "0.15em",
                 color:         c.accent,
                 margin:        "0 0 6px",
@@ -1650,7 +1650,7 @@ function AssessmentFunnelFlow() {
               <p style={{
                 fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
                 fontSize:      "clamp(28px, 3.6vw, 40px)",
-                fontWeight:    800,
+                fontWeight:    500,
                 color:         c.ink,
                 margin:        0,
                 lineHeight:    1,
@@ -1721,7 +1721,7 @@ function DSPanelColor() {
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "13px",
-                fontWeight:    600,
+                fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 4px",
                 letterSpacing: "-0.005em",
@@ -1771,7 +1771,7 @@ function DSPanelType() {
           <p style={{
             fontFamily:    font.sans,
             fontSize:      "10px",
-            fontWeight:    700,
+            fontWeight:    500,
             color:         c.accent,
             letterSpacing: "0.20em",
             textTransform: "uppercase",
@@ -1780,7 +1780,7 @@ function DSPanelType() {
           <p style={{
             fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
             fontSize:      "clamp(72px, 9vw, 120px)",
-            fontWeight:    800,
+            fontWeight:    500,
             color:         "#13100C",
             margin:        "0 0 18px",
             lineHeight:    0.9,
@@ -1789,7 +1789,7 @@ function DSPanelType() {
           <p style={{
             fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
             fontSize:      "22px",
-            fontWeight:    800,
+            fontWeight:    500,
             color:         "#13100C",
             margin:        "0 0 10px",
             textTransform: "uppercase",
@@ -1809,7 +1809,7 @@ function DSPanelType() {
           <p style={{
             fontFamily:    font.sans,
             fontSize:      "10px",
-            fontWeight:    700,
+            fontWeight:    500,
             color:         c.accent,
             letterSpacing: "0.20em",
             textTransform: "uppercase",
@@ -1894,7 +1894,7 @@ function DSPanelComponents() {
             <span style={{
               fontFamily:    font.sans,
               fontSize:      "10px",
-              fontWeight:    700,
+              fontWeight:    500,
               color:         c.accent,
               letterSpacing: "0.15em",
               minWidth:      "20px",
@@ -1963,7 +1963,7 @@ function DesignSystemCarousel() {
               <span style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
-                fontWeight:    700,
+                fontWeight:    500,
                 color:         c.accent,
                 letterSpacing: "0.18em",
               }}>{tab.num}</span>
@@ -2004,7 +2004,7 @@ function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; te
       <span style={{
         fontFamily:    font.sans,
         fontSize:      "10px",
-        fontWeight:    700,
+        fontWeight:    500,
         letterSpacing: "0.18em",
         textTransform: "uppercase",
         color:         textColor,
@@ -2055,7 +2055,7 @@ function AssessmentThumb({ src, alt, number }: { src: string; alt: string; numbe
         padding:       "4px 10px",
         fontFamily:    font.sans,
         fontSize:      "10px",
-        fontWeight:    700,
+        fontWeight:    500,
         letterSpacing: "0.18em",
         color:         c.ink,
       }}>
@@ -2073,7 +2073,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
       <p style={{
         fontFamily:    font.sans,
         fontSize:      "10px",
-        fontWeight:    700,
+        fontWeight:    500,
         letterSpacing: "0.18em",
         textTransform: "uppercase",
         color:         c.accent,

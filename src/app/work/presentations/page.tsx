@@ -109,7 +109,7 @@ export default function PresentationsIndex() {
             <h1 style={{
               fontFamily: font.display,
               fontSize: "clamp(32px, 5vw, 56px)",
-              fontWeight: 600,
+              fontWeight: 500,
               lineHeight: 1.1,
               color: c.ink,
               margin: "0 0 20px",
@@ -170,7 +170,7 @@ export default function PresentationsIndex() {
                   <p style={{
                     fontFamily: font.sans,
                     fontSize: "11px",
-                    fontWeight: 600,
+                    fontWeight: 500,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
                     color: c.muted,
@@ -181,7 +181,7 @@ export default function PresentationsIndex() {
                   <h2 style={{
                     fontFamily: font.display,
                     fontSize: "24px",
-                    fontWeight: 600,
+                    fontWeight: 500,
                     lineHeight: 1.2,
                     color: c.ink,
                     margin: "0 0 10px",

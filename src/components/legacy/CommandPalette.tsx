@@ -172,7 +172,7 @@ export default function CommandPalette() {
                 padding: "8px 20px 4px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 fontSize: "11px",
-                fontWeight: 600,
+                fontWeight: 500,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 color: "#8A8680",
@@ -303,7 +303,7 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
       color,
       fontFamily: "var(--font-dm-sans), sans-serif",
       fontSize: "10px",
-      fontWeight: 700,
+      fontWeight: 500,
       letterSpacing: "0.06em",
       flexShrink: 0,
     }}>

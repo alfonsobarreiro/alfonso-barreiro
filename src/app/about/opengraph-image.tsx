@@ -29,7 +29,7 @@ export default async function Image() {
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#8C1A1A",
-            fontWeight: 600,
+            fontWeight: 500,
           }}
         >
           About · Alfonso Barreiro

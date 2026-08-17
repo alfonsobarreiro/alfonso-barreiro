@@ -86,7 +86,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
       <span style={{
         fontFamily:    font.sans,
         fontSize:      "11px",
-        fontWeight:    600,
+        fontWeight:    500,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
         color:         c.accent,
@@ -108,7 +108,7 @@ function Tag({ children }: { children: React.ReactNode }) {
 
 function Callout({ decision, why, cost }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+    fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
     letterSpacing: "0.18em", textTransform: "uppercase",
     color: c.accent, margin: "0 0 8px",
   };
@@ -123,7 +123,7 @@ function Callout({ decision, why, cost }: { decision: string; why: string; cost:
     }}>
       <p style={labelStyle}>Decision</p>
       <p style={{
-        fontFamily: font.sans, fontSize: "20px", fontWeight: 600,
+        fontFamily: font.sans, fontSize: "20px", fontWeight: 500,
         color: c.brand, margin: "0 0 24px", letterSpacing: "-0.01em", lineHeight: 1.3,
       }}>{decision}</p>
       <p style={labelStyle}>Why</p>
@@ -176,13 +176,13 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
         }} className="sp2-row">
           <div>
             <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
               letterSpacing: "0.20em", color: c.accent,
               display: "block", marginBottom: "12px",
             }}>{number}</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>{heading}.</h2>
           </div>
@@ -203,7 +203,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
       <p style={{
-        fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+        fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
         letterSpacing: "0.18em", textTransform: "uppercase",
         color: c.accent, margin: "0 0 8px",
       }}>{label}</p>
@@ -355,7 +355,7 @@ export default function SpotifyV2() {
             <Eyebrow>Desktop parity</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: "0 0 24px",
+              fontWeight: 500, color: c.ink, margin: "0 0 24px",
               letterSpacing: "-0.025em", lineHeight: 1.05, maxWidth: "780px",
             }}>
               Same logic, native shell.
@@ -509,12 +509,12 @@ function ResearchStrip() {
             />
             <div>
               <p style={{
-                fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+                fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
                 letterSpacing: "0.20em", color: p.type === "Negative" ? c.muted : c.accent,
                 textTransform: "uppercase", margin: "0 0 4px",
               }}>{p.type} persona</p>
               <p style={{
-                fontFamily: font.sans, fontSize: "16px", fontWeight: 600,
+                fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
                 color: c.ink, margin: "0 0 8px", letterSpacing: "-0.01em",
               }}>{p.name}</p>
               <p style={{
@@ -541,7 +541,7 @@ function SketchesAndMidfi() {
             <Eyebrow>Sketches &amp; mid-fi</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               From paper to pixels.
@@ -560,13 +560,13 @@ function SketchesAndMidfi() {
         {/* Paper sketches — landscape Figma slide */}
         <div style={{ marginBottom: "48px" }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
             letterSpacing: "0.20em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>Slide 20 &middot; sketches</p>
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 20px",
+            fontWeight: 500, color: c.ink, margin: "0 0 20px",
             letterSpacing: "-0.02em", lineHeight: 1.2,
           }}>
             Five directions on paper.
@@ -585,13 +585,13 @@ function SketchesAndMidfi() {
             artifact. Same wireframes the annotated walkthrough below refers to. */}
         <div style={{ marginBottom: "48px" }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
             letterSpacing: "0.20em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>Mid-fi &middot; desktop + mobile</p>
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 12px",
+            fontWeight: 500, color: c.ink, margin: "0 0 12px",
             letterSpacing: "-0.02em", lineHeight: 1.2,
           }}>
             Two surfaces, before the annotation.
@@ -627,7 +627,7 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Desktop &middot; mid-fi</figcaption>
@@ -649,7 +649,7 @@ function SketchesAndMidfi() {
                 />
               </div>
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Mobile &middot; mid-fi</figcaption>
@@ -753,7 +753,7 @@ function DecisionLogic() {
             <Eyebrow>Three controls, decoded</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Pin. Remove. Pause.
@@ -777,13 +777,13 @@ function DecisionLogic() {
           }}>
             <header style={{ marginBottom: "40px" }}>
               <p style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
                 letterSpacing: "0.20em", color: c.green,
                 textTransform: "uppercase", margin: "0 0 14px",
               }}>{f.key.toUpperCase()} &middot; {f.surface}</p>
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(56px, 8vw, 112px)",
-                fontWeight: 700, color: c.ink, margin: "0 0 16px",
+                fontWeight: 500, color: c.ink, margin: "0 0 16px",
                 letterSpacing: "-0.04em", lineHeight: 0.9,
               }}>{f.title}.</h3>
               <p style={{
@@ -838,7 +838,7 @@ function DecisionLogic() {
                       margin: "12px 0 0", display: "flex", gap: "10px", alignItems: "baseline",
                       lineHeight: 1.5,
                     }}>
-                      <span style={{ fontWeight: 700, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
+                      <span style={{ fontWeight: 500, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
                         {String(idx + 1).padStart(2, "0")}
                       </span>
                       <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>{frame.label}</span>
@@ -855,7 +855,7 @@ function DecisionLogic() {
                   lineHeight: 1.7, color: c.ink2,
                   margin: "0 0 22px", letterSpacing: "-0.003em",
                 }}>
-                  <strong style={{ color: c.ink, fontWeight: 700 }}>{d.lead}</strong>{" "}
+                  <strong style={{ color: c.ink, fontWeight: 500 }}>{d.lead}</strong>{" "}
                   {d.body}
                 </p>
               ))}
@@ -911,7 +911,7 @@ function Prototypes() {
             <Eyebrow>Prototypes</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               The loops.
@@ -928,7 +928,7 @@ function Prototypes() {
         </div>
 
         <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+          fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
           letterSpacing: "0.18em", textTransform: "uppercase",
           color: c.muted, margin: "0 0 16px",
         }}>
@@ -959,11 +959,11 @@ function Prototypes() {
                   transition: "background 0.2s, color 0.2s",
                 }}>
                 <span style={{
-                  fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                  fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
                   color: c.green, letterSpacing: "0.18em",
                 }}>{String(i + 1).padStart(2, "0")}</span>
                 <span style={{
-                  fontFamily: font.sans, fontSize: "16px", fontWeight: 600,
+                  fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
                   color: c.ink, letterSpacing: "-0.01em",
                 }}>{l.title}</span>
               </label>
@@ -1009,13 +1009,13 @@ function Prototypes() {
                   {/* Body copy on the right */}
                   <div>
                     <p style={{
-                      fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+                      fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
                       letterSpacing: "0.20em", color: c.green,
                       textTransform: "uppercase", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
                     <h3 style={{
                       fontFamily: font.sans, fontSize: "clamp(40px, 5vw, 64px)",
-                      fontWeight: 700, color: c.ink, margin: "0 0 24px",
+                      fontWeight: 500, color: c.ink, margin: "0 0 24px",
                       letterSpacing: "-0.03em", lineHeight: 1.0,
                     }}>{l.title}.</h3>
                     <p style={{
@@ -1048,13 +1048,13 @@ function ShippedSection() {
         }} className="sp2-row">
           <div>
             <span style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
               letterSpacing: "0.20em", color: c.accent,
               display: "block", marginBottom: "12px",
             }}>03</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Shipped, with receipts.
@@ -1071,7 +1071,7 @@ function ShippedSection() {
         {/* Pause state diagram */}
         <div style={{ marginBottom: "64px" }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+            fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
             letterSpacing: "0.20em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>
@@ -1079,7 +1079,7 @@ function ShippedSection() {
           </p>
           <h3 style={{
             fontFamily: font.sans, fontSize: "clamp(22px, 2.4vw, 28px)",
-            fontWeight: 600, color: c.ink, margin: "0 0 24px",
+            fontWeight: 500, color: c.ink, margin: "0 0 24px",
             letterSpacing: "-0.02em", lineHeight: 1.2,
           }}>
             Time-boxed, four states, every transition reversible.
@@ -1110,7 +1110,7 @@ function ShippedSection() {
             borderLeft: `4px solid ${c.brand}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: c.accent, margin: "0 0 14px",
             }}>What could still go wrong</p>
@@ -1139,7 +1139,7 @@ function ShippedSection() {
             borderLeft: `4px solid ${c.brand}`, padding: "28px 32px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: c.accent, margin: "0 0 14px",
             }}>Validation plan</p>
@@ -1178,7 +1178,7 @@ function ShippedSection() {
           marginTop: "32px",
         }}>
           <p style={{
-            fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+            fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: c.green, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
@@ -1227,7 +1227,7 @@ function FrictionList() {
     <section style={{ padding: `0 ${SECTION_X} 80px` }}>
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <p style={{
-          fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+          fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
           letterSpacing: "0.20em", textTransform: "uppercase",
           color: c.accent, margin: "0 0 12px",
         }}>
@@ -1235,7 +1235,7 @@ function FrictionList() {
         </p>
         <h2 style={{
           fontFamily: font.sans, fontSize: "clamp(28px, 3.4vw, 40px)",
-          fontWeight: 600, color: c.ink, margin: "0 0 24px",
+          fontWeight: 500, color: c.ink, margin: "0 0 24px",
           letterSpacing: "-0.02em", lineHeight: 1.15,
           maxWidth: "780px",
         }}>
@@ -1323,7 +1323,7 @@ function ActionSheetHero() {
           {/* Caption + icon cells */}
           <div style={{ color: "#FAFAF9" }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+              fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
               letterSpacing: "0.20em", textTransform: "uppercase",
               color: c.green, margin: "0 0 14px",
             }}>
@@ -1331,7 +1331,7 @@ function ActionSheetHero() {
             </p>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(28px, 3vw, 38px)",
-              fontWeight: 600, color: "#FAFAF9", margin: "0 0 18px",
+              fontWeight: 500, color: "#FAFAF9", margin: "0 0 18px",
               letterSpacing: "-0.02em", lineHeight: 1.15,
               maxWidth: "560px",
             }}>
@@ -1392,7 +1392,7 @@ function IconCell({ color, glyph, name, note }: {
       </div>
       <div>
         <p style={{
-          fontFamily: font.sans, fontSize: "17px", fontWeight: 700,
+          fontFamily: font.sans, fontSize: "17px", fontWeight: 500,
           color: "#FAFAF9", margin: "0 0 4px", letterSpacing: "-0.01em",
         }}>{name}</p>
         <p style={{
@@ -1476,7 +1476,7 @@ function UserVoices() {
             <Eyebrow>What users said</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               The signal was in the open.
@@ -1511,7 +1511,7 @@ function UserVoices() {
               }}>&ldquo;{q.text}&rdquo;</p>
               <p style={{
                 fontFamily: font.sans, fontSize: "11px",
-                fontWeight: 600, letterSpacing: "0.12em",
+                fontWeight: 500, letterSpacing: "0.12em",
                 textTransform: "uppercase", color: c.muted,
                 margin: "auto 0 0",
               }}>{q.source}</p>
@@ -1536,7 +1536,7 @@ function CompetitiveAudit() {
     { name: "Spotify (proposed)",    vals: ["✓", "✓", "✓", "✓", "✓"],       proposed: true },
   ];
   const thStyle: React.CSSProperties = {
-    fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+    fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
     letterSpacing: "0.18em", textTransform: "uppercase",
     textAlign: "left", padding: "14px 18px", color: c.muted,
     borderBottom: `1px solid ${c.border}`,
@@ -1562,7 +1562,7 @@ function CompetitiveAudit() {
             <Eyebrow>Competitive audit</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Five categories.<br />One open slot.
@@ -1602,7 +1602,7 @@ function CompetitiveAudit() {
                 style={{ width: "100%", height: "auto", display: "block", border: `1px solid ${c.border}` }}
               />
               <figcaption style={{
-                fontFamily: font.sans, fontSize: "11px", fontWeight: 600,
+                fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>{it.name}</figcaption>
@@ -1687,13 +1687,13 @@ function OutOfScope() {
   return (
     <div style={{ margin: "0 0 56px" }}>
       <p style={{
-        fontFamily: font.sans, fontSize: "11px", fontWeight: 700,
+        fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
         letterSpacing: "0.20em", textTransform: "uppercase",
         color: c.accent, margin: "0 0 12px",
       }}>Out of scope</p>
       <h3 style={{
         fontFamily: font.sans, fontSize: "clamp(22px, 2.6vw, 30px)",
-        fontWeight: 600, color: c.ink, margin: "0 0 12px",
+        fontWeight: 500, color: c.ink, margin: "0 0 12px",
         letterSpacing: "-0.02em", lineHeight: 1.2,
       }}>
         Four things that got named, defended, and skipped.
@@ -1714,12 +1714,12 @@ function OutOfScope() {
             padding: "24px 28px",
           }}>
             <p style={{
-              fontFamily: font.sans, fontSize: "10px", fontWeight: 700,
+              fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: c.muted, margin: "0 0 8px",
             }}>Skipped</p>
             <p style={{
-              fontFamily: font.sans, fontSize: "16px", fontWeight: 600,
+              fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
               color: c.ink, margin: "0 0 10px", letterSpacing: "-0.01em",
             }}>{it.title}</p>
             <p style={{
@@ -1748,7 +1748,7 @@ function UserJourney() {
             <Eyebrow>User journey</Eyebrow>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 600, color: c.ink, margin: 0,
+              fontWeight: 500, color: c.ink, margin: 0,
               letterSpacing: "-0.025em", lineHeight: 1.05,
             }}>
               Where the controls land.
