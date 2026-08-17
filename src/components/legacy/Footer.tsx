@@ -62,7 +62,7 @@ export default function Footer() {
               fontWeight:    500,
               color:         ink,
               margin:        "0 0 8px",
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.01em",
               lineHeight:    1.15,
             }}>
               Let&apos;s work <span style={{ color: brand }}>together.</span>
@@ -124,7 +124,7 @@ export default function Footer() {
                 fontSize:      "14px",
                 fontWeight:    500,
                 color:         ink2,
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.01em",
                 lineHeight:    1,
               }}>
                 Alfonso <span style={{ color: brand }}>Barreiro</span>
@@ -133,7 +133,7 @@ export default function Footer() {
                 fontFamily:    font,
                 fontSize:      "10px",
                 fontWeight:    500,
-                letterSpacing: "0.08em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         muted,
                 lineHeight:    1,

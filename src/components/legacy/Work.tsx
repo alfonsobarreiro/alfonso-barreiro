@@ -171,7 +171,7 @@ export default function Work() {
                 style={{
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         "#8A8680",
                   margin:        0,
@@ -188,7 +188,7 @@ export default function Work() {
                 fontWeight:    500,
                 color:         "#252B28",
                 margin:        0,
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
                 lineHeight:    1.1,
               }}
             >
@@ -325,7 +325,7 @@ function ProjectCard({
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "11px",
           fontWeight:    500,
-          letterSpacing: "0.18em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         "var(--color-accent)",
           margin:        "0 0 6px",
@@ -337,7 +337,7 @@ function ProjectCard({
           fontSize:      "clamp(15px, 1.4vw, 18px)",
           fontWeight:    500,
           lineHeight:    1.35,
-          letterSpacing: "-0.005em",
+          letterSpacing: "0",
           color:         "#FAFAF9",
           margin:        0,
         }}>
@@ -357,7 +357,7 @@ function ProjectCard({
         fontWeight:    500,
         color:         "#252B28",
         margin:        "0 0 10px",
-        letterSpacing: "-0.025em",
+        letterSpacing: "-0.02em",
         lineHeight:    1.05,
       }}>
         {project.title}
@@ -370,7 +370,7 @@ function ProjectCard({
         color:         "#8A8680",
         margin:        "0 0 24px",
         fontWeight:    500,
-        letterSpacing: "0.02em",
+        letterSpacing: "0.01em",
       }}>
         {project.subtitle} · {project.year}
       </p>
@@ -397,7 +397,7 @@ function ProjectCard({
         color:         "var(--color-accent)",
         fontStyle:     "italic",
         margin:        "0 0 28px",
-        letterSpacing: "-0.005em",
+        letterSpacing: "0",
         maxWidth:      "640px",
       }}>
         {project.thesis}
@@ -429,7 +429,7 @@ function ProjectCard({
           color:         "var(--color-brand)",
           fontSize:      "13px",
           fontWeight:    500,
-          letterSpacing: "0.08em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
           opacity:       hovered ? 1 : 0.75,

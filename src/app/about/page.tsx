@@ -523,7 +523,7 @@ function RemoteTimeline() {
                 fontSize:      "11px",
                 fontWeight:    500,
                 color:         "var(--color-text-muted)",
-                letterSpacing: "0.06em",
+                letterSpacing: "0.01em",
               }}>{y}</span>
             );
           })}
@@ -599,7 +599,7 @@ function RemoteTimeline() {
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "10px",
             fontWeight:    500,
-            letterSpacing: "0.18em",
+            letterSpacing: "0.01em",
             textTransform: "none",
             color:         "var(--color-brand)",
             whiteSpace:    "nowrap",
@@ -616,11 +616,11 @@ function RemoteTimeline() {
         flexWrap: "wrap",
         marginBottom: "40px",
       }}>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.02em" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.01em" }}>
           <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-neutral-500)" }} aria-hidden />
           In-office · 2010–2019, 2022–2024
         </span>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.02em" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "12px", color: "var(--color-text-muted)", letterSpacing: "0.01em" }}>
           <span style={{ display: "inline-block", width: "14px", height: "10px", background: "var(--color-brand)" }} aria-hidden />
           Remote · 2019–2021, 2024–now
         </span>

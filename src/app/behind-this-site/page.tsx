@@ -77,7 +77,7 @@ const tokenChip: React.CSSProperties = {
   fontSize:      "12px",
   fontWeight:    500,
   color:         "var(--color-text)",
-  letterSpacing: "0.02em",
+  letterSpacing: "0.01em",
 };
 
 const swatch: React.CSSProperties = {

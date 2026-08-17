@@ -435,7 +435,7 @@ function ProjectCard({
             fontWeight:    400,
             color:         "var(--color-inverse-body)",
             margin:        "0 0 32px",
-            letterSpacing: "0em",
+            letterSpacing: "0",
             lineHeight:    1.5,
             maxWidth:      "560px",
           }}

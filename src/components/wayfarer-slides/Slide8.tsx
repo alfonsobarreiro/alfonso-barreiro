@@ -28,7 +28,7 @@ function List({ variant, heading, items }: { variant: "cut" | "kept"; heading: s
       <div style={{
         display: "inline-block", padding: "3px 10px",
         borderRadius: 999, background: chipBg, color: wf.white,
-        fontSize: 11, fontWeight: 500, letterSpacing: "0.14em",
+        fontSize: 11, fontWeight: 500, letterSpacing: "0.01em",
         fontFamily: "var(--font-inter), Inter, sans-serif",
       }}>
         {isCut ? "CUT" : "KEPT"}

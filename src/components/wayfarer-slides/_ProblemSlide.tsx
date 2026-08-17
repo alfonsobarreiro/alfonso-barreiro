@@ -19,7 +19,7 @@ export default function ProblemSlide({
           <div className="font-display" style={{
             marginTop: 32,
             fontSize: 220, fontWeight: 500, color: wf.accent500,
-            lineHeight: 0.9, letterSpacing: "-0.04em",
+            lineHeight: 0.9, letterSpacing: "-0.03em",
           }}>
             {number}
           </div>

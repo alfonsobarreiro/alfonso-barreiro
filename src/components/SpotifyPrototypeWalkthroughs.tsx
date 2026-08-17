@@ -118,7 +118,7 @@ export default function SpotifyPrototypeWalkthroughs() {
             fontFamily:    font.sans,
             fontSize:      "11px",
             fontWeight:    500,
-            letterSpacing: "0.14em",
+            letterSpacing: "0.01em",
             textTransform: "uppercase",
             color:         c.muted,
             margin:        "0 0 16px",
@@ -135,7 +135,7 @@ export default function SpotifyPrototypeWalkthroughs() {
             fontWeight:    400,
             color:         c.ink,
             margin:        "0 0 48px",
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.02em",
             lineHeight:    1.15,
             maxWidth:      "720px",
           }}
@@ -175,7 +175,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                     fontFamily:    font.sans,
                     fontSize:      "11px",
                     fontWeight:    500,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "0.01em",
                     textTransform: "uppercase",
                     color:         flow.accent.chipText,
                     background:    flow.accent.chipBg,
@@ -209,7 +209,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                     fontWeight:    500,
                     fontVariantNumeric: "tabular-nums",
                     color:         c.muted,
-                    letterSpacing: "0.04em",
+                    letterSpacing: "0.01em",
                   }}
                   aria-label={`Runtime ${flow.duration}`}
                 >
@@ -303,7 +303,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                         fontFamily:    font.sans,
                         fontSize:      "11px",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         textTransform: "uppercase",
                         color:         c.muted,
                       }}
@@ -331,7 +331,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                       fontFamily:    font.sans,
                       fontSize:      "11px",
                       fontWeight:    500,
-                      letterSpacing: "0.14em",
+                      letterSpacing: "0.01em",
                       textTransform: "uppercase",
                       color:         c.muted,
                       margin:        "0 0 16px",
@@ -367,7 +367,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                             fontWeight:    500,
                             fontVariantNumeric: "tabular-nums",
                             color:         flow.accent.ts,
-                            letterSpacing: "0.02em",
+                            letterSpacing: "0.01em",
                           }}
                         >
                           {step.t}

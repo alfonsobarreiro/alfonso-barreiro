@@ -97,7 +97,7 @@ export default function SpotifyQuoteRotator({
             fontSize:      "12px",
             color:         mutedColor,
             margin:        0,
-            letterSpacing: "0.04em",
+            letterSpacing: "0.01em",
           }}
         >
           {quote.source}

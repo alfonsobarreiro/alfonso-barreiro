@@ -25,7 +25,7 @@ export default async function Image() {
           style={{
             fontSize: 28,
             opacity: 0.6,
-            letterSpacing: "0.05em",
+            letterSpacing: "0.01em",
             textTransform: "uppercase",
           }}
         >

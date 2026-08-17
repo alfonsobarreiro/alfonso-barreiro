@@ -98,7 +98,7 @@ export default function PresentationsIndex() {
                 fontFamily: font.sans,
                 fontSize: "11px",
                 fontWeight: 500,
-                letterSpacing: "0.14em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color: c.muted,
                 margin: 0,
@@ -113,7 +113,7 @@ export default function PresentationsIndex() {
               lineHeight: 1.1,
               color: c.ink,
               margin: "0 0 20px",
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
             }}>
               Slide decks for each <span style={{ color: c.accent }}>case study.</span>
             </h1>
@@ -171,7 +171,7 @@ export default function PresentationsIndex() {
                     fontFamily: font.sans,
                     fontSize: "11px",
                     fontWeight: 500,
-                    letterSpacing: "0.12em",
+                    letterSpacing: "0.01em",
                     textTransform: "uppercase",
                     color: c.muted,
                     margin: "0 0 10px",
@@ -185,7 +185,7 @@ export default function PresentationsIndex() {
                     lineHeight: 1.15,
                     color: c.ink,
                     margin: "0 0 10px",
-                    letterSpacing: "-0.015em",
+                    letterSpacing: "-0.01em",
                   }}>
                     {d.title}
                   </h2>

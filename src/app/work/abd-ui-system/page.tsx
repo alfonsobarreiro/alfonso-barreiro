@@ -115,7 +115,7 @@ export default function Page() {
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.accent }} />
-              <span style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: c.onDarkMut }}>
+              <span style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut }}>
                 Alpha Beta Design &middot; UX Case Study
               </span>
             </div>
@@ -131,7 +131,7 @@ export default function Page() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: "32px", paddingTop: "32px", borderTop: "1px solid rgba(245,243,239,0.1)" }}>
               {META.map(({ label, value }) => (
                 <div key={label} style={{ maxWidth: "260px" }}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c.onDarkMut, margin: "0 0 4px" }}>{label}</p>
+                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut, margin: "0 0 4px" }}>{label}</p>
                   <p style={{ fontFamily: font.sans, fontSize: "14px", color: c.onDark, margin: 0 }}>{value}</p>
                 </div>
               ))}
@@ -141,7 +141,7 @@ export default function Page() {
             <div style={{ marginTop: "56px", paddingTop: "32px", borderTop: "1px solid rgba(245,243,239,0.1)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "24px", height: "1px", background: c.accent }} />
-                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: c.onDarkMut, margin: 0 }}>
+                <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut, margin: 0 }}>
                   What&apos;s downstream
                 </p>
               </div>
@@ -158,7 +158,7 @@ export default function Page() {
                     <div style={{ position: "relative", aspectRatio: "16 / 11", overflow: "hidden", background: "#0F161D", border: "1px solid rgba(245,243,239,0.22)" }}>
                       <Image src={src} alt="" fill sizes="(max-width: 767px) 50vw, 220px" style={{ objectFit: "cover", objectPosition: "center top" }} />
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", color: c.onDarkMut, margin: "8px 0 0" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut, margin: "8px 0 0" }}>
                       <span aria-hidden="true" style={{ marginRight: "6px" }}>{glyph}</span>{label}
                     </p>
                   </Link>
@@ -173,7 +173,7 @@ export default function Page() {
 
           {/* TL;DR */}
           <div style={{ background: c.bgSection, border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.accent}`, padding: "clamp(24px, 4vw, 40px)", marginBottom: "64px" }}>
-            <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent, margin: "0 0 16px" }}>TL;DR</p>
+            <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 16px" }}>TL;DR</p>
             <dl style={{ margin: 0 }}>
               {[
                 ["The problem", "As a one-person studio, I rebuild the same buttons, inputs, and tokens on every client project. Done by hand, they drift: a spacing value here, a hard-coded hex there, and consistency erodes as the work scales."],
@@ -291,8 +291,8 @@ function Section({ id, label, title, children }: { id?: string; label: string; t
   return (
     <section id={id} aria-labelledby={headingId} style={{ paddingBottom: "16px", borderTop: `1px solid ${c.border}`, marginTop: "48px", scrollMarginTop: "96px" }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", margin: "32px 0" }}>
-        <span style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent }}>{label}</span>
-        <h2 id={headingId} style={{ fontFamily: font.display, fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 500, color: c.ink, margin: 0, letterSpacing: "-0.025em" }}>
+        <span style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent }}>{label}</span>
+        <h2 id={headingId} style={{ fontFamily: font.display, fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 500, color: c.ink, margin: 0, letterSpacing: "-0.02em" }}>
           {title}
         </h2>
       </div>
@@ -316,7 +316,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
   return (
     <blockquote style={{ margin: "32px 0", padding: "24px 28px", background: c.surface, border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.accent}` }}>
       {label && (
-        <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent, margin: "0 0 10px" }}>{label}</p>
+        <p style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 10px" }}>{label}</p>
       )}
       <p style={{ fontFamily: font.display, fontSize: "clamp(17px, 2.2vw, 20px)", lineHeight: 1.5, color: c.ink, fontStyle: "italic", margin: 0 }}>{children}</p>
     </blockquote>
@@ -326,7 +326,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
 function NextCase() {
   return (
     <section style={{ borderTop: `1px solid ${c.border}`, marginTop: "64px", paddingTop: "40px" }}>
-      <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 12px" }}>Next case study</p>
+      <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 12px" }}>Next case study</p>
       <Link href="/work/mens-sole-revival" style={{ fontFamily: font.display, fontSize: "clamp(22px, 3.5vw, 32px)", fontWeight: 500, color: c.ink, textDecoration: "none", letterSpacing: "-0.02em" }}>
         Men&apos;s Sole Revival: a foot health resource for men over 40. &rarr;
       </Link>
@@ -341,7 +341,7 @@ const bodyText: React.CSSProperties = {
 const subheading: React.CSSProperties = {
   // Dropped from 20px to 18px so the H3 sits clearly below the
   // parent H2 (clamp 26-36px) at every viewport.
-  fontFamily: font.sans, fontSize: "18px", fontWeight: 500, color: c.ink, margin: "40px 0 16px", letterSpacing: "-0.015em",
+  fontFamily: font.sans, fontSize: "18px", fontWeight: 500, color: c.ink, margin: "40px 0 16px", letterSpacing: "-0.01em",
 };
 const listStyle: React.CSSProperties = { margin: "0 0 20px", paddingLeft: "20px", maxWidth: "780px" };
 const liStyle: React.CSSProperties = { fontFamily: font.sans, fontSize: "16px", lineHeight: 1.6, color: c.body, marginBottom: "10px" };

@@ -81,7 +81,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
         fontFamily:    font.sans,
         fontSize:      "11px",
         fontWeight:    500,
-        letterSpacing: "0.16em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         c.accent,
       }}>
@@ -97,7 +97,7 @@ function Tag({ children }: { children: React.ReactNode }) {
       fontFamily:    font.sans,
       fontSize:      "11px",
       fontWeight:    500,
-      letterSpacing: "0.10em",
+      letterSpacing: "0.01em",
       textTransform: "uppercase",
       color:         c.ink2,
       padding:       "6px 14px",
@@ -115,7 +115,7 @@ function Callout({
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight:    500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     color:         c.accent,
     margin:        "0 0 8px",
@@ -264,7 +264,7 @@ export default function MSRv2() {
             color:         c.ink2,
             maxWidth:      "640px",
             margin:        "0 0 40px",
-            letterSpacing: "-0.005em",
+            letterSpacing: "0",
           }}>
             A diagnostic-first foot-health resource for men over 40. Research, assessment redesign, brand identity, and a production design system.
           </p>
@@ -287,7 +287,7 @@ export default function MSRv2() {
               fontFamily:     font.sans,
               fontSize:       "13px",
               fontWeight:     500,
-              letterSpacing:  "0.10em",
+              letterSpacing:  "0.01em",
               textTransform:  "uppercase",
               color:          c.accent2,
               textDecoration: "none",
@@ -327,7 +327,7 @@ export default function MSRv2() {
             color:         c.brand,
             margin:        0,
             lineHeight:    1.15,
-            letterSpacing: "-0.015em",
+            letterSpacing: "-0.01em",
             maxWidth:      "900px",
           }}>
             &ldquo;The middle, where someone could teach men what&rsquo;s happening to their feet and what to do about it, didn&rsquo;t exist.&rdquo;
@@ -389,7 +389,7 @@ export default function MSRv2() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.20em",
+                  letterSpacing: "0.01em",
                   color:         c.accent,
                   display:       "block",
                   marginBottom:  "12px",
@@ -400,7 +400,7 @@ export default function MSRv2() {
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
-                  letterSpacing: "-0.025em",
+                  letterSpacing: "-0.02em",
                   lineHeight:    1.05,
                 }}>
                   The bet.
@@ -469,7 +469,7 @@ export default function MSRv2() {
                     fontStyle:     "italic",
                     margin:        "24px 0 0",
                     lineHeight:    1.5,
-                    letterSpacing: "-0.005em",
+                    letterSpacing: "0",
                     maxWidth:      "32ch",
                   }}>
                     &ldquo;After years of neglect, men over 40 finally have a place to start.&rdquo;
@@ -505,7 +505,7 @@ export default function MSRv2() {
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
-                  letterSpacing: "-0.025em",
+                  letterSpacing: "-0.02em",
                   lineHeight:    1.05,
                 }}>
                   A brand that&rsquo;s actually for men.
@@ -553,7 +553,7 @@ export default function MSRv2() {
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
-                  letterSpacing: "-0.025em",
+                  letterSpacing: "-0.02em",
                   lineHeight:    1.05,
                 }}>
                   Built once.<br/>Used everywhere.
@@ -580,7 +580,7 @@ export default function MSRv2() {
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight:    500,
-              letterSpacing: "0.18em",
+              letterSpacing: "0.01em",
               textTransform: "uppercase",
               color:         c.muted,
               margin:        "0 0 16px",
@@ -607,7 +607,7 @@ export default function MSRv2() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.20em",
+                  letterSpacing: "0.01em",
                   color:         c.accent,
                   display:       "block",
                   marginBottom:  "12px",
@@ -618,7 +618,7 @@ export default function MSRv2() {
                   fontWeight:    500,
                   color:         c.ink,
                   margin:        0,
-                  letterSpacing: "-0.025em",
+                  letterSpacing: "-0.02em",
                   lineHeight:    1.05,
                 }}>
                   Shipped.
@@ -685,7 +685,7 @@ export default function MSRv2() {
                         fontFamily:    font.sans,
                         fontSize:      "10px",
                         fontWeight:    500,
-                        letterSpacing: "0.18em",
+                        letterSpacing: "0.01em",
                         color:         c.ink,
                       }}>02</span>
                     </div>
@@ -718,7 +718,7 @@ export default function MSRv2() {
                         fontFamily:    font.sans,
                         fontSize:      "10px",
                         fontWeight:    500,
-                        letterSpacing: "0.18em",
+                        letterSpacing: "0.01em",
                         color:         c.ink,
                       }}>03</span>
                     </div>
@@ -838,7 +838,7 @@ export default function MSRv2() {
                     fontFamily:    font.sans,
                     fontSize:      "11px",
                     fontWeight:    500,
-                    letterSpacing: "0.15em",
+                    letterSpacing: "0.01em",
                     textTransform: "uppercase",
                     color:         c.muted,
                     margin:        "12px 0 0",
@@ -976,7 +976,7 @@ function BigThree({
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight:    500,
-              letterSpacing: "0.20em",
+              letterSpacing: "0.01em",
               color:         c.accent,
               display:       "block",
               marginBottom:  "12px",
@@ -989,7 +989,7 @@ function BigThree({
               fontWeight:    500,
               color:         c.ink,
               margin:        0,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
               lineHeight:    1.05,
             }}>
               {heading}.
@@ -1047,7 +1047,7 @@ function PivotInfographic() {
     fontSize:      "10px",
     fontWeight:    500,
     color:         muted,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     margin:        "0 0 10px",
   };
@@ -1082,7 +1082,7 @@ function PivotInfographic() {
           fontSize:      "11px",
           fontWeight:    500,
           color:         muted,
-          letterSpacing: "0.20em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           margin:        "0 0 40px",
           textAlign:     "center",
@@ -1133,7 +1133,7 @@ function PivotInfographic() {
               fontSize:      "11px",
               fontWeight:    500,
               color:         cognac,
-              letterSpacing: "0.20em",
+              letterSpacing: "0.01em",
               textTransform: "uppercase",
               margin:        "20px 0 10px",
               textAlign:     "center",
@@ -1181,7 +1181,7 @@ function ResearchStrip() {
     fontSize:      "10px",
     fontWeight:    500,
     color:         c.accent,
-    letterSpacing: "0.20em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     margin:        "0 0 6px",
   };
@@ -1191,7 +1191,7 @@ function ResearchStrip() {
     color:         c.ink,
     fontWeight:    500,
     margin:        0,
-    letterSpacing: "-0.005em",
+    letterSpacing: "0",
   };
 
   return (
@@ -1228,7 +1228,7 @@ function WhatICut() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight:    500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     color:         c.accent,
     margin:        "0 0 8px",
@@ -1268,7 +1268,7 @@ function EarlyOutcomes() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight:    500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     color:         c.accent,
     margin:        "0 0 10px",
@@ -1315,7 +1315,7 @@ function HonestRisks() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight:    500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     color:         c.accent,
     margin:        "0 0 14px",
@@ -1363,7 +1363,7 @@ function UserResearch() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight:    500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     color:         c.accent,
     margin:        "0 0 14px",
@@ -1425,7 +1425,7 @@ function UserResearch() {
       <p style={{
         fontFamily:    font.sans,
         fontSize:      "11px",
-        letterSpacing: "0.10em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         c.muted,
         margin:        "0 0 16px",
@@ -1478,7 +1478,7 @@ function AnnotatedAssessment() {
     fontFamily:    font.sans,
     fontSize:      "11px",
     fontWeight:    500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     color:         c.accent,
     margin:        "0 0 12px",
@@ -1498,7 +1498,7 @@ function AnnotatedAssessment() {
     fontWeight:    500,
     color:         c.ink,
     margin:        "0 0 6px",
-    letterSpacing: "-0.005em",
+    letterSpacing: "0",
     lineHeight:    1.35,
   };
   const itemBody: React.CSSProperties = {
@@ -1608,7 +1608,7 @@ function AssessmentFunnelFlow() {
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight:    500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         c.accent,
         margin:        "0 0 18px",
@@ -1635,7 +1635,7 @@ function AssessmentFunnelFlow() {
                 fontFamily:    font.sans,
                 fontSize:      "10px",
                 fontWeight:    500,
-                letterSpacing: "0.15em",
+                letterSpacing: "0.01em",
                 color:         c.accent,
                 margin:        "0 0 6px",
               }}>{s.num}</p>
@@ -1645,7 +1645,7 @@ function AssessmentFunnelFlow() {
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 10px",
-                letterSpacing: "-0.005em",
+                letterSpacing: "0",
               }}>{s.label}</p>
               <p style={{
                 fontFamily:    "var(--font-barlow-condensed), 'Barlow Condensed', Impact, sans-serif",
@@ -1724,14 +1724,14 @@ function DSPanelColor() {
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 4px",
-                letterSpacing: "-0.005em",
+                letterSpacing: "0",
               }}>{t.label}</p>
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 color:         c.muted,
                 margin:        "0 0 6px",
-                letterSpacing: "0.04em",
+                letterSpacing: "0.01em",
               }}>{t.hex}</p>
               <p style={{
                 fontFamily: font.sans,
@@ -1773,7 +1773,7 @@ function DSPanelType() {
             fontSize:      "10px",
             fontWeight:    500,
             color:         c.accent,
-            letterSpacing: "0.20em",
+            letterSpacing: "0.01em",
             textTransform: "uppercase",
             margin:        "0 0 16px",
           }}>Display · Barlow Condensed</p>
@@ -1800,7 +1800,7 @@ function DSPanelType() {
             fontSize:   "11px",
             color:      c.muted,
             margin:     0,
-            letterSpacing: "0.05em",
+            letterSpacing: "0.01em",
           }}>700, 800 weights · uppercase displays + section labels</p>
         </div>
 
@@ -1811,7 +1811,7 @@ function DSPanelType() {
             fontSize:      "10px",
             fontWeight:    500,
             color:         c.accent,
-            letterSpacing: "0.20em",
+            letterSpacing: "0.01em",
             textTransform: "uppercase",
             margin:        "0 0 16px",
           }}>Long-form · Lora</p>
@@ -1842,7 +1842,7 @@ function DSPanelType() {
             fontSize:   "11px",
             color:      c.muted,
             margin:     0,
-            letterSpacing: "0.05em",
+            letterSpacing: "0.01em",
           }}>400, 500, 600, 700 weights · roman + italic</p>
         </div>
       </div>
@@ -1896,7 +1896,7 @@ function DSPanelComponents() {
               fontSize:      "10px",
               fontWeight:    500,
               color:         c.accent,
-              letterSpacing: "0.15em",
+              letterSpacing: "0.01em",
               minWidth:      "20px",
             }}>{it.num}</span>
             <div style={{ flex: 1 }}>
@@ -1906,7 +1906,7 @@ function DSPanelComponents() {
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 2px",
-                letterSpacing: "-0.005em",
+                letterSpacing: "0",
               }}>{it.name}</p>
               <p style={{
                 fontFamily: font.sans,
@@ -1965,14 +1965,14 @@ function DesignSystemCarousel() {
                 fontSize:      "11px",
                 fontWeight:    500,
                 color:         c.accent,
-                letterSpacing: "0.18em",
+                letterSpacing: "0.01em",
               }}>{tab.num}</span>
               <span style={{
                 fontFamily:    font.sans,
                 fontSize:      "14px",
                 fontWeight:    500,
                 color:         c.ink,
-                letterSpacing: "-0.005em",
+                letterSpacing: "0",
               }}>{tab.label}</span>
             </label>
           ))}
@@ -2005,7 +2005,7 @@ function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; te
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight:    500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         textColor,
       }}>
@@ -2016,7 +2016,7 @@ function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; te
         fontSize:      "11px",
         color:         textColor,
         opacity:       0.65,
-        letterSpacing: "0.04em",
+        letterSpacing: "0.01em",
       }}>
         {hex}
       </span>
@@ -2056,7 +2056,7 @@ function AssessmentThumb({ src, alt, number }: { src: string; alt: string; numbe
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight:    500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         color:         c.ink,
       }}>
         {number}
@@ -2074,7 +2074,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight:    500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         c.accent,
         margin:        "0 0 8px",

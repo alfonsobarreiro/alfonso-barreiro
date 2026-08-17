@@ -64,7 +64,7 @@ export default function GlobeIframeDemo() {
           fontFamily:    font.sans,
           fontSize:      "11px",
           fontWeight:    500,
-          letterSpacing: "0.2em",
+          letterSpacing: "0.01em",
           color:         c.coral,
           textTransform: "uppercase",
           display:       "block",
@@ -78,7 +78,7 @@ export default function GlobeIframeDemo() {
           fontWeight:    500,
           color:         c.navy,
           margin:        "0 0 8px",
-          letterSpacing: "-0.015em",
+          letterSpacing: "-0.01em",
         }}>
           Try it yourself.
         </h3>
@@ -130,7 +130,7 @@ export default function GlobeIframeDemo() {
               fontFamily:     font.sans,
               fontSize:       "14px",
               fontWeight:     500,
-              letterSpacing:  "0.02em",
+              letterSpacing:  "0.01em",
               pointerEvents:  "none",
             }}
           >
@@ -186,7 +186,7 @@ export default function GlobeIframeDemo() {
                 fontFamily:      font.sans,
                 fontSize:        "13px",
                 fontWeight:      500,
-                letterSpacing:   "0.04em",
+                letterSpacing:   "0.01em",
                 textTransform:   "uppercase",
                 textDecoration:  "none",
                 minHeight:       "44px",
@@ -214,7 +214,7 @@ export default function GlobeIframeDemo() {
           fontFamily:    font.sans,
           fontSize:      "12px",
           fontWeight:    500,
-          letterSpacing: "0.08em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         c.muted,
           margin:        0,

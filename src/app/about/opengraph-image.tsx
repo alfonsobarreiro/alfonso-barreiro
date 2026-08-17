@@ -26,7 +26,7 @@ export default async function Image() {
         <div
           style={{
             fontSize: 24,
-            letterSpacing: "0.18em",
+            letterSpacing: "0.01em",
             textTransform: "uppercase",
             color: "#8C1A1A",
             fontWeight: 500,

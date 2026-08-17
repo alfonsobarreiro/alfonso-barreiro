@@ -102,7 +102,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.16em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.green,
               }}>
@@ -149,7 +149,7 @@ export default function SpotifyCaseStudyLegacy() {
                 { label: "Outcome",  value: "Three-sprint concept plan with decisions log + hypothetical test synthesis." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c.green, margin: "0 0 4px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.green, margin: "0 0 4px" }}>
                     {label}
                   </p>
                   <p style={{ fontFamily: font.sans, fontSize: "14px", color: "rgba(245,243,239,0.75)", margin: 0 }}>
@@ -171,7 +171,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.green,
                   margin:        0,
@@ -223,7 +223,7 @@ export default function SpotifyCaseStudyLegacy() {
                       fontFamily:    font.sans,
                       fontSize:      "11px",
                       fontWeight:    500,
-                      letterSpacing: "0.10em",
+                      letterSpacing: "0.01em",
                       textTransform: "uppercase",
                       color:         "rgba(245,243,239,0.75)",
                       margin:        "10px 0 0",
@@ -247,7 +247,7 @@ export default function SpotifyCaseStudyLegacy() {
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight:    500,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.01em",
               textTransform: "uppercase",
               color:         c.muted,
               margin:        "0 0 16px",
@@ -269,7 +269,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:     font.sans,
                   fontSize:       "13px",
                   fontWeight:     500,
-                  letterSpacing:  "0.02em",
+                  letterSpacing:  "0.01em",
                   textDecoration: "none",
                 }}
               >
@@ -312,7 +312,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.accent,
                   margin:        "0 0 20px",
@@ -393,7 +393,7 @@ export default function SpotifyCaseStudyLegacy() {
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight:    500,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.01em",
               textTransform: "uppercase",
               color:         c.accent,
               margin:        "0 0 16px",
@@ -466,7 +466,7 @@ export default function SpotifyCaseStudyLegacy() {
                     <div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "4px" }}>
                         <p style={{ fontFamily: font.sans, fontSize: "16px", fontWeight: 500, color: c.ink, margin: 0 }}>{name}</p>
-                        <span style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: type === "Negative Persona" ? c.muted : c.accent }}>{type}</span>
+                        <span style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase" as const, color: type === "Negative Persona" ? c.muted : c.accent }}>{type}</span>
                       </div>
                       <p style={{ fontFamily: font.display, fontSize: "15px", fontStyle: "italic", color: c.muted, margin: 0, lineHeight: 1.35 }}>
                         &ldquo;{quote}&rdquo;
@@ -550,7 +550,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 12px",
@@ -607,7 +607,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.muted,
                   margin:        0,
@@ -631,7 +631,7 @@ export default function SpotifyCaseStudyLegacy() {
                       borderTop:    "none",
                     }}
                   >
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
                       {team}
                     </p>
                     <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.35 }}>
@@ -667,7 +667,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.green,
                 }}>The Design</span>
@@ -678,7 +678,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontWeight:    400,
                 color:         "#F5F5F4",
                 margin:        "0 0 16px",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
               }}>
                 Three controls, one surface
               </h2>
@@ -699,7 +699,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "13px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.green,
                 margin:        "0 0 12px",
@@ -764,7 +764,7 @@ export default function SpotifyCaseStudyLegacy() {
                         fontFamily:    font.sans,
                         fontSize:      "10px",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         color:         c.green,
                         paddingTop:    "2px",
                         flexShrink:    0,
@@ -816,7 +816,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "13px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.green,
                 margin:        "0 0 12px",
@@ -861,7 +861,7 @@ export default function SpotifyCaseStudyLegacy() {
                         fontFamily:    font.sans,
                         fontSize:      "10px",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         color:         c.green,
                         paddingTop:    "2px",
                         flexShrink:    0,
@@ -918,7 +918,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "13px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.green,
                 margin:        "0 0 12px",
@@ -983,7 +983,7 @@ export default function SpotifyCaseStudyLegacy() {
                         fontFamily:    font.sans,
                         fontSize:      "10px",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         color:         c.green,
                         paddingTop:    "2px",
                         flexShrink:    0,
@@ -1046,7 +1046,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.green,
                 }}>System Model</span>
@@ -1057,7 +1057,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontWeight:    400,
                 color:         "#F5F5F4",
                 margin:        "0 0 12px",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
               }}>
                 Every state is reachable and reversible
               </h2>
@@ -1098,7 +1098,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "10px",
                   fontWeight:    500,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.green,
                 }}>States covered, states deferred</span>
@@ -1248,7 +1248,7 @@ export default function SpotifyCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.accent,
                   margin:        "0 0 6px",
@@ -1308,7 +1308,7 @@ export default function SpotifyCaseStudyLegacy() {
                     fontFamily:    font.sans,
                     fontSize:      "10px",
                     fontWeight:    500,
-                    letterSpacing: "0.1em",
+                    letterSpacing: "0.01em",
                     textTransform: "uppercase",
                     color:         type === "Out of scope" ? c.muted : c.accent,
                     minWidth:      "88px",
@@ -1342,7 +1342,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 12px",
@@ -1398,7 +1398,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 12px",
@@ -1476,7 +1476,7 @@ export default function SpotifyCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
@@ -1496,7 +1496,7 @@ export default function SpotifyCaseStudyLegacy() {
                 fontFamily:     font.sans,
                 fontSize:       "13px",
                 fontWeight:     500,
-                letterSpacing:  "0.06em",
+                letterSpacing:  "0.01em",
                 textDecoration: "none",
                 transition:     "opacity 0.2s",
               }}
@@ -1553,7 +1553,7 @@ function Section({ label, title, children }: { label: string; title: string; chi
           fontFamily:    f.sans,
           fontSize:      "11px",
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         c2.accent,
         }}>
@@ -1566,7 +1566,7 @@ function Section({ label, title, children }: { label: string; title: string; chi
             fontWeight:    400,
             color:         c2.ink,
             margin:        0,
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.02em",
           }}
           dangerouslySetInnerHTML={{ __html: title }}
         />
@@ -1590,7 +1590,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
           fontFamily:    f.sans,
           fontSize:      "10px",
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase" as const,
           color:         c2.accent,
           margin:        "0 0 10px",
@@ -1632,7 +1632,7 @@ function FeatureCard({
         background:     c2.bgSection,
         borderBottom:   `1px solid ${c2.border}`,
       }}>
-        <span style={{ fontFamily: f.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c2.accent }}>{number}</span>
+        <span style={{ fontFamily: f.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c2.accent }}>{number}</span>
         <div>
           <h3 style={{ fontFamily: f.display, fontSize: "22px", fontWeight: 400, color: c2.ink, margin: "0 0 2px" }}>{name}</h3>
           <p style={{ fontFamily: f.sans, fontSize: "13px", color: c2.muted, margin: 0 }}>{tagline}</p>
@@ -1641,7 +1641,7 @@ function FeatureCard({
       {/* Body */}
       <div style={{ padding: "28px" }}>
         <p style={{ fontFamily: f.sans, fontSize: "15px", lineHeight: 1.6, color: c2.body, margin: "0 0 24px" }}>{body}</p>
-        <p style={{ fontFamily: f.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c2.muted, margin: "0 0 12px" }}>
+        <p style={{ fontFamily: f.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c2.muted, margin: "0 0 12px" }}>
           Key Decisions
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -1660,7 +1660,7 @@ function FeatureCard({
 function Detail({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p style={{ fontFamily: f.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c2.muted, margin: "0 0 4px" }}>{label}</p>
+      <p style={{ fontFamily: f.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c2.muted, margin: "0 0 4px" }}>{label}</p>
       <p style={{ fontFamily: f.sans, fontSize: "13px", lineHeight: 1.5, color: c2.body, margin: 0 }}>{value}</p>
     </div>
   );
@@ -1684,14 +1684,14 @@ const subheading: React.CSSProperties = {
   fontWeight:    500,
   color:         "#252B28",
   margin:        "40px 0 16px",
-  letterSpacing: "-0.015em",
+  letterSpacing: "-0.01em",
 };
 
 const thStyle: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:      "11px",
   fontWeight:    500,
-  letterSpacing: "0.1em",
+  letterSpacing: "0.01em",
   textTransform: "uppercase",
   color:         "#8A8680",
   padding:       "12px 16px",

@@ -210,7 +210,7 @@ export default function SignupSlider({ steps, autoAdvanceMs = 4500 }: Props) {
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "11px",
           fontWeight:    500,
-          letterSpacing: "0.12em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           backdropFilter: "blur(6px)",
           WebkitBackdropFilter: "blur(6px)",

@@ -401,7 +401,7 @@ export default function SpotifySlideViewer() {
         color:         "#8A8680",
         margin:        "6px 0 0",
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        letterSpacing: "0.05em",
+        letterSpacing: "0.01em",
       }}>
         {current + 1} / {slides.length} · Use ← → arrow keys to advance
       </p>

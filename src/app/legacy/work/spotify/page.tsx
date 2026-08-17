@@ -87,7 +87,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
         fontFamily:    font.sans,
         fontSize:      "11px",
         fontWeight:    500,
-        letterSpacing: "0.16em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         c.accent,
       }}>{children}</span>
@@ -99,7 +99,7 @@ function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
       fontFamily:    font.sans, fontSize: "11px", fontWeight: 500,
-      letterSpacing: "0.10em", textTransform: "uppercase",
+      letterSpacing: "0.01em", textTransform: "uppercase",
       color: c.ink2, padding: "6px 14px",
       border: `1px solid ${c.borderStrong}`,
     }}>{children}</span>
@@ -109,7 +109,7 @@ function Tag({ children }: { children: React.ReactNode }) {
 function Callout({ decision, why, cost }: { decision: string; why: string; cost: string }) {
   const labelStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-    letterSpacing: "0.18em", textTransform: "uppercase",
+    letterSpacing: "0.01em", textTransform: "uppercase",
     color: c.accent, margin: "0 0 8px",
   };
   const bodyStyle: React.CSSProperties = {
@@ -177,13 +177,13 @@ function BigThree({ number, heading, image, imageAlt, body, callout, w, h }: {
           <div>
             <span style={{
               fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-              letterSpacing: "0.20em", color: c.accent,
+              letterSpacing: "0.01em", color: c.accent,
               display: "block", marginBottom: "12px",
             }}>{number}</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>{heading}.</h2>
           </div>
           <div>
@@ -204,7 +204,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
     <div>
       <p style={{
         fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-        letterSpacing: "0.18em", textTransform: "uppercase",
+        letterSpacing: "0.01em", textTransform: "uppercase",
         color: c.accent, margin: "0 0 8px",
       }}>{label}</p>
       <p style={{
@@ -239,7 +239,7 @@ export default function SpotifyV2() {
           <h1 style={{
             fontFamily: font.sans, fontSize: "clamp(48px, 8vw, 96px)",
             fontWeight: 500, color: c.ink, margin: "0 0 32px",
-            letterSpacing: "-0.035em", lineHeight: 1.0,
+            letterSpacing: "-0.03em", lineHeight: 1.0,
           }}>
             Pin. Remove. <span style={{ color: c.green }}>Pause.</span>
           </h1>
@@ -275,7 +275,7 @@ export default function SpotifyV2() {
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 500, color: c.ink, margin: 0,
-            lineHeight: 1.15, letterSpacing: "-0.015em", maxWidth: "900px",
+            lineHeight: 1.15, letterSpacing: "-0.01em", maxWidth: "900px",
           }}>
             &ldquo;The shelf records every play and orders by recency. That&rsquo;s the entire interaction model. People are reaching for affordances that don&rsquo;t exist yet.&rdquo;
           </p>
@@ -356,7 +356,7 @@ export default function SpotifyV2() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: "0 0 24px",
-              letterSpacing: "-0.025em", lineHeight: 1.05, maxWidth: "780px",
+              letterSpacing: "-0.02em", lineHeight: 1.05, maxWidth: "780px",
             }}>
               Same logic, native shell.
             </h2>
@@ -375,7 +375,7 @@ export default function SpotifyV2() {
             />
             <p style={{
               fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-              letterSpacing: "0.08em", textTransform: "uppercase",
+              letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.muted, margin: "16px 0 0", textAlign: "center",
             }}>
               Desktop right-click menu &middot; same actions, native pattern
@@ -510,7 +510,7 @@ function ResearchStrip() {
             <div>
               <p style={{
                 fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-                letterSpacing: "0.20em", color: p.type === "Negative" ? c.muted : c.accent,
+                letterSpacing: "0.01em", color: p.type === "Negative" ? c.muted : c.accent,
                 textTransform: "uppercase", margin: "0 0 4px",
               }}>{p.type} persona</p>
               <p style={{
@@ -542,7 +542,7 @@ function SketchesAndMidfi() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               From paper to pixels.
             </h2>
@@ -561,7 +561,7 @@ function SketchesAndMidfi() {
         <div style={{ marginBottom: "48px" }}>
           <p style={{
             fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-            letterSpacing: "0.20em", textTransform: "uppercase",
+            letterSpacing: "0.01em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>Slide 20 &middot; sketches</p>
           <h3 style={{
@@ -586,7 +586,7 @@ function SketchesAndMidfi() {
         <div style={{ marginBottom: "48px" }}>
           <p style={{
             fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-            letterSpacing: "0.20em", textTransform: "uppercase",
+            letterSpacing: "0.01em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>Mid-fi &middot; desktop + mobile</p>
           <h3 style={{
@@ -628,7 +628,7 @@ function SketchesAndMidfi() {
               </div>
               <figcaption style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.12em", textTransform: "uppercase",
+                letterSpacing: "0.01em", textTransform: "uppercase",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Desktop &middot; mid-fi</figcaption>
             </figure>
@@ -650,7 +650,7 @@ function SketchesAndMidfi() {
               </div>
               <figcaption style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.12em", textTransform: "uppercase",
+                letterSpacing: "0.01em", textTransform: "uppercase",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Mobile &middot; mid-fi</figcaption>
             </figure>
@@ -754,7 +754,7 @@ function DecisionLogic() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               Pin. Remove. Pause.
             </h2>
@@ -778,18 +778,18 @@ function DecisionLogic() {
             <header style={{ marginBottom: "40px" }}>
               <p style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.20em", color: c.green,
+                letterSpacing: "0.01em", color: c.green,
                 textTransform: "uppercase", margin: "0 0 14px",
               }}>{f.key.toUpperCase()} &middot; {f.surface}</p>
               <h3 style={{
                 fontFamily: font.sans, fontSize: "clamp(56px, 8vw, 112px)",
                 fontWeight: 500, color: c.ink, margin: "0 0 16px",
-                letterSpacing: "-0.04em", lineHeight: 0.9,
+                letterSpacing: "-0.03em", lineHeight: 0.9,
               }}>{f.title}.</h3>
               <p style={{
                 fontFamily: font.sans, fontSize: "clamp(18px, 2vw, 24px)",
                 fontWeight: 500, color: c.ink2, margin: 0, lineHeight: 1.35,
-                letterSpacing: "-0.012em", maxWidth: "780px",
+                letterSpacing: "-0.01em", maxWidth: "780px",
               }}>{f.tagline}</p>
             </header>
 
@@ -838,10 +838,10 @@ function DecisionLogic() {
                       margin: "12px 0 0", display: "flex", gap: "10px", alignItems: "baseline",
                       lineHeight: 1.5,
                     }}>
-                      <span style={{ fontWeight: 500, letterSpacing: "0.14em", color: c.green, flexShrink: 0 }}>
+                      <span style={{ fontWeight: 500, letterSpacing: "0.01em", color: c.green, flexShrink: 0 }}>
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <span style={{ color: "#FAFAF9", letterSpacing: "-0.005em" }}>{frame.label}</span>
+                      <span style={{ color: "#FAFAF9", letterSpacing: "0" }}>{frame.label}</span>
                     </figcaption>
                   </figure>
                 ))}
@@ -853,7 +853,7 @@ function DecisionLogic() {
                 <p key={d.lead} style={{
                   fontFamily: font.sans, fontSize: "16px",
                   lineHeight: 1.6, color: c.ink2,
-                  margin: "0 0 22px", letterSpacing: "-0.003em",
+                  margin: "0 0 22px", letterSpacing: "0",
                 }}>
                   <strong style={{ color: c.ink, fontWeight: 500 }}>{d.lead}</strong>{" "}
                   {d.body}
@@ -912,7 +912,7 @@ function Prototypes() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               The loops.
             </h2>
@@ -929,7 +929,7 @@ function Prototypes() {
 
         <p style={{
           fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-          letterSpacing: "0.18em", textTransform: "uppercase",
+          letterSpacing: "0.01em", textTransform: "uppercase",
           color: c.muted, margin: "0 0 16px",
         }}>
           <span style={{ color: c.green }}>&rarr; </span>
@@ -960,7 +960,7 @@ function Prototypes() {
                 }}>
                 <span style={{
                   fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                  color: c.green, letterSpacing: "0.18em",
+                  color: c.green, letterSpacing: "0.01em",
                 }}>{String(i + 1).padStart(2, "0")}</span>
                 <span style={{
                   fontFamily: font.sans, fontSize: "16px", fontWeight: 500,
@@ -1010,7 +1010,7 @@ function Prototypes() {
                   <div>
                     <p style={{
                       fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                      letterSpacing: "0.20em", color: c.green,
+                      letterSpacing: "0.01em", color: c.green,
                       textTransform: "uppercase", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
                     <h3 style={{
@@ -1049,13 +1049,13 @@ function ShippedSection() {
           <div>
             <span style={{
               fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-              letterSpacing: "0.20em", color: c.accent,
+              letterSpacing: "0.01em", color: c.accent,
               display: "block", marginBottom: "12px",
             }}>03</span>
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               Shipped, with receipts.
             </h2>
@@ -1072,7 +1072,7 @@ function ShippedSection() {
         <div style={{ marginBottom: "64px" }}>
           <p style={{
             fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-            letterSpacing: "0.20em", textTransform: "uppercase",
+            letterSpacing: "0.01em", textTransform: "uppercase",
             color: c.accent, margin: "0 0 12px",
           }}>
             State diagram &middot; Pause
@@ -1111,7 +1111,7 @@ function ShippedSection() {
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.accent, margin: "0 0 14px",
             }}>What could still go wrong</p>
             <p style={{
@@ -1140,7 +1140,7 @@ function ShippedSection() {
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.accent, margin: "0 0 14px",
             }}>Validation plan</p>
             <p style={{
@@ -1179,7 +1179,7 @@ function ShippedSection() {
         }}>
           <p style={{
             fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-            letterSpacing: "0.18em", textTransform: "uppercase",
+            letterSpacing: "0.01em", textTransform: "uppercase",
             color: c.green, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
           <p style={{
@@ -1228,7 +1228,7 @@ function FrictionList() {
       <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
         <p style={{
           fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-          letterSpacing: "0.20em", textTransform: "uppercase",
+          letterSpacing: "0.01em", textTransform: "uppercase",
           color: c.accent, margin: "0 0 12px",
         }}>
           Contextual friction
@@ -1324,7 +1324,7 @@ function ActionSheetHero() {
           <div style={{ color: "#FAFAF9" }}>
             <p style={{
               fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-              letterSpacing: "0.20em", textTransform: "uppercase",
+              letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.green, margin: "0 0 14px",
             }}>
               For power users · additive · reversible
@@ -1477,7 +1477,7 @@ function UserVoices() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               The signal was in the open.
             </h2>
@@ -1511,7 +1511,7 @@ function UserVoices() {
               }}>&ldquo;{q.text}&rdquo;</p>
               <p style={{
                 fontFamily: font.sans, fontSize: "11px",
-                fontWeight: 500, letterSpacing: "0.12em",
+                fontWeight: 500, letterSpacing: "0.01em",
                 textTransform: "uppercase", color: c.muted,
                 margin: "auto 0 0",
               }}>{q.source}</p>
@@ -1537,7 +1537,7 @@ function CompetitiveAudit() {
   ];
   const thStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-    letterSpacing: "0.18em", textTransform: "uppercase",
+    letterSpacing: "0.01em", textTransform: "uppercase",
     textAlign: "left", padding: "14px 18px", color: c.muted,
     borderBottom: `1px solid ${c.border}`,
   };
@@ -1563,7 +1563,7 @@ function CompetitiveAudit() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               Five categories.<br />One open slot.
             </h2>
@@ -1603,7 +1603,7 @@ function CompetitiveAudit() {
               />
               <figcaption style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.12em", textTransform: "uppercase",
+                letterSpacing: "0.01em", textTransform: "uppercase",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>{it.name}</figcaption>
             </figure>
@@ -1688,7 +1688,7 @@ function OutOfScope() {
     <div style={{ margin: "0 0 56px" }}>
       <p style={{
         fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-        letterSpacing: "0.20em", textTransform: "uppercase",
+        letterSpacing: "0.01em", textTransform: "uppercase",
         color: c.accent, margin: "0 0 12px",
       }}>Out of scope</p>
       <h3 style={{
@@ -1715,7 +1715,7 @@ function OutOfScope() {
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              letterSpacing: "0.01em", textTransform: "uppercase",
               color: c.muted, margin: "0 0 8px",
             }}>Skipped</p>
             <p style={{
@@ -1749,7 +1749,7 @@ function UserJourney() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               Where the controls land.
             </h2>

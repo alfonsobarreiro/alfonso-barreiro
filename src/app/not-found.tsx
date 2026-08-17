@@ -46,7 +46,7 @@ export default function NotFound() {
             fontSize:      "clamp(280px, 38vw, 560px)",
             fontWeight:    400,
             lineHeight:    0.8,
-            letterSpacing: "-0.06em",
+            letterSpacing: "-0.03em",
             color:         "#F1EFEB",
             userSelect:    "none",
             pointerEvents: "none",
@@ -87,7 +87,7 @@ export default function NotFound() {
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "13px",
                 fontWeight:    500,
-                letterSpacing: "0.10em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         "#3D4440",
                 margin:        0,
@@ -104,7 +104,7 @@ export default function NotFound() {
               fontSize:      "clamp(40px, 6vw, 80px)",
               fontWeight:    400,
               lineHeight:    0.98,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
               color:         "#252B28",
               margin:        "0 0 32px",
               maxWidth:      "640px",
@@ -184,7 +184,7 @@ export default function NotFound() {
                     fontSize:      "12px",
                     color:         "#6E6E6A",
                     margin:        0,
-                    letterSpacing: "0.04em",
+                    letterSpacing: "0.01em",
                   }}
                 >
                   {d.meta}
@@ -206,7 +206,7 @@ export default function NotFound() {
               fontSize:       "14px",
               fontWeight:     500,
               fontFamily:     "var(--font-dm-sans), sans-serif",
-              letterSpacing:  "0.03em",
+              letterSpacing:  "0.01em",
               textDecoration: "none",
               transition:     "transform 0.25s ease",
             }}

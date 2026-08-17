@@ -107,7 +107,7 @@ function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
       fontFamily:    font.sans, fontSize: "11px", fontWeight: 500,
-      letterSpacing: "0.10em", textTransform: "none",
+      letterSpacing: "0.01em", textTransform: "none",
       color: c.ink2, padding: "6px 14px",
       border: `1px solid ${c.borderStrong}`,
     }}>{children}</span>
@@ -416,7 +416,7 @@ export default function SpotifyV2() {
           <p style={{
             fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 500, color: c.ink, margin: 0,
-            lineHeight: 1.15, letterSpacing: "-0.015em", maxWidth: "900px",
+            lineHeight: 1.15, letterSpacing: "-0.01em", maxWidth: "900px",
           }}>
             &ldquo;Workarounds documented in community forums are signal. People are reaching for affordances that don&rsquo;t exist yet.&rdquo;
           </p>
@@ -518,7 +518,7 @@ export default function SpotifyV2() {
               fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 32px",
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
               lineHeight:    1.1,
               maxWidth:      "780px",
             }}>
@@ -610,7 +610,7 @@ export default function SpotifyV2() {
               <p style={{
                 fontFamily:    "ui-monospace, SFMono-Regular, Menlo, monospace",
                 fontSize:      "12px",
-                letterSpacing: "0.02em",
+                letterSpacing: "0.01em",
                 color:         "var(--color-accent)",
                 background:    "rgba(30,215,96,0.10)",
                 border:        `1px solid rgba(30,215,96,0.55)`,
@@ -645,7 +645,7 @@ export default function SpotifyV2() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight: 500,
-                letterSpacing: "0.20em",
+                letterSpacing: "0.01em",
                 textTransform: "none",
                 color:         c.muted,
                 marginRight:   "8px",
@@ -666,7 +666,7 @@ export default function SpotifyV2() {
                     fontFamily:     font.sans,
                     fontSize:       "12px",
                     color:          c.ink2,
-                    letterSpacing:  "0.02em",
+                    letterSpacing:  "0.01em",
                   }}
                 >
                   <kbd style={{
@@ -726,7 +726,7 @@ export default function SpotifyV2() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(28px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: "0 0 24px",
-              letterSpacing: "-0.025em", lineHeight: 1.05, maxWidth: "780px",
+              letterSpacing: "-0.02em", lineHeight: 1.05, maxWidth: "780px",
             }}>
               Same logic, native shell.
             </h2><p style={{
@@ -807,7 +807,7 @@ export default function SpotifyV2() {
                         fontFamily:    font.sans,
                         fontSize:      "11px",
                         fontWeight: 500,
-                        letterSpacing: "0.02em",
+                        letterSpacing: "0.01em",
                         border:        "2px solid #FFFFFF",
                         boxShadow:     "0 2px 6px rgba(0,0,0,0.35)",
                         fontVariantNumeric: "tabular-nums",
@@ -856,7 +856,7 @@ export default function SpotifyV2() {
                       fontVariantNumeric: "tabular-nums",
                     }}>{a.n}</span>
                     <span>
-                      <strong style={{ fontWeight: 500, letterSpacing: "-0.005em" }}>{a.label}</strong>
+                      <strong style={{ fontWeight: 500, letterSpacing: "0" }}>{a.label}</strong>
                       <br />
                       <span style={{ fontSize: "12px", color: c.muted, letterSpacing: "0.01em" }}>{a.sub}</span>
                     </span>
@@ -866,7 +866,7 @@ export default function SpotifyV2() {
 
               <figcaption style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.12em", textTransform: "none",
+                letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "clamp(20px, 2.5vw, 32px) 0 0",
               }}>
                 Desktop right-click menu &middot; same actions, native pattern
@@ -890,7 +890,7 @@ export default function SpotifyV2() {
               fontWeight: 500,
               color:         c.ink,
               margin:        "0 0 32px",
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
               lineHeight:    1.1,
               maxWidth:      "780px",
             }}>
@@ -931,7 +931,7 @@ export default function SpotifyV2() {
                 <div key={m.label}>
                   <p style={{
                     fontFamily: font.sans, fontSize: "9px", fontWeight: 500,
-                    letterSpacing: "0.20em", textTransform: "none",
+                    letterSpacing: "0.01em", textTransform: "none",
                     color: c.muted, margin: "0 0 4px",
                   }}>{m.label}</p>
                   <p style={{
@@ -972,7 +972,7 @@ export default function SpotifyV2() {
                     fontFamily:         "ui-monospace, SFMono-Regular, Menlo, monospace",
                     fontSize:           "12px",
                     fontWeight: 500,
-                    letterSpacing:      "0.02em",
+                    letterSpacing:      "0.01em",
                     color:              c.accent,
                     fontVariantNumeric: "tabular-nums",
                     textTransform: "none",
@@ -1374,7 +1374,7 @@ function ResearchStrip() {
             <div>
               <p style={{
                 fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-                letterSpacing: "0.20em", color: p.type === "Negative" ? c.muted : c.accent,
+                letterSpacing: "0.01em", color: p.type === "Negative" ? c.muted : c.accent,
                 textTransform: "none", margin: "0 0 4px",
               }}>{p.type} persona</p>
               <p style={{
@@ -1550,7 +1550,7 @@ function SketchesAndMidfi() {
               </div>
               <figcaption style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.12em", textTransform: "none",
+                letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Desktop &middot; mid-fi</figcaption>
             </figure>
@@ -1572,7 +1572,7 @@ function SketchesAndMidfi() {
               </div>
               <figcaption style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.12em", textTransform: "none",
+                letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>Mobile &middot; mid-fi</figcaption>
             </figure>
@@ -1701,7 +1701,7 @@ function DecisionLogic() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               Pin. Remove. Pause.
             </h2></div>
@@ -1751,7 +1751,7 @@ function DecisionLogic() {
                     fontFamily:     font.sans,
                     fontSize:       "13px",
                     fontWeight: 500,
-                    letterSpacing:  "0.08em",
+                    letterSpacing:  "0.01em",
                     textTransform: "none",
                     color:          c.ink2,
                     textDecoration: "none",
@@ -1801,7 +1801,7 @@ function DecisionLogic() {
               <p style={{
                 fontFamily: font.sans, fontSize: "clamp(18px, 2vw, 24px)",
                 fontWeight: 500, color: c.ink2, margin: 0, lineHeight: 1.35,
-                letterSpacing: "-0.012em", maxWidth: "780px",
+                letterSpacing: "-0.01em", maxWidth: "780px",
               }}>{f.tagline}</p>
             </header>
 
@@ -1940,7 +1940,7 @@ function DecisionLogic() {
                     }}>
                       <span style={{
                         fontWeight: 500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         color:         c.accent,
                         flexShrink:    0,
                         fontVariantNumeric: "tabular-nums",
@@ -1948,7 +1948,7 @@ function DecisionLogic() {
                       }}>
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <span style={{ color: c.ink2, letterSpacing: "-0.005em" }}>
+                      <span style={{ color: c.ink2, letterSpacing: "0" }}>
                         <strong style={{ fontWeight: 500, color: c.ink }}>{frame.beat}</strong>{" "}{frame.body}
                       </span>
                     </li>
@@ -1962,7 +1962,7 @@ function DecisionLogic() {
                 <p key={d.lead} style={{
                   fontFamily: font.sans, fontSize: "16px",
                   lineHeight: 1.6, color: c.ink2,
-                  margin: "0 0 22px", letterSpacing: "-0.003em",
+                  margin: "0 0 22px", letterSpacing: "0",
                 }}>
                   <strong style={{ color: c.ink, fontWeight: 500 }}>{d.lead}</strong>{" "}
                   {d.body}
@@ -2039,7 +2039,7 @@ function Prototypes() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               The loops.
             </h2></div>
@@ -2174,7 +2174,7 @@ function Prototypes() {
                   <div>
                     <p style={{
                       fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                      letterSpacing: "0.20em", color: c.accent,
+                      letterSpacing: "0.01em", color: c.accent,
                       textTransform: "none", margin: "0 0 16px",
                     }}>{l.eyebrow}</p>
                     <h3 style={{
@@ -2271,7 +2271,7 @@ function ShippedSection() {
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-              letterSpacing: "0.18em", textTransform: "none",
+              letterSpacing: "0.01em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>What could still go wrong</p>
             <p style={{
@@ -2300,7 +2300,7 @@ function ShippedSection() {
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-              letterSpacing: "0.18em", textTransform: "none",
+              letterSpacing: "0.01em", textTransform: "none",
               color: c.accent, margin: "0 0 14px",
             }}>Validation plan</p>
             <p style={{
@@ -2339,7 +2339,7 @@ function ShippedSection() {
         }}>
           <p style={{
             fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-            letterSpacing: "0.18em", textTransform: "none",
+            letterSpacing: "0.01em", textTransform: "none",
             color: c.accent, margin: "0 0 14px",
           }}>What I&rsquo;d test next</p>
           <p style={{
@@ -2525,7 +2525,7 @@ function ActionSheetHero() {
           <div style={{ color: "var(--color-inverse)" }}>
             <p style={{
               fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-              letterSpacing: "0.20em", textTransform: "none",
+              letterSpacing: "0.01em", textTransform: "none",
               color: c.green, margin: "0 0 14px",
             }}>
               For power users · additive · reversible
@@ -2679,7 +2679,7 @@ function UserVoices() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               The signal was in the open.
             </h2></div>
@@ -2712,7 +2712,7 @@ function UserVoices() {
               }}>&ldquo;{q.text}&rdquo;</p>
               <p style={{
                 fontFamily: font.sans, fontSize: "11px",
-                fontWeight: 500, letterSpacing: "0.12em",
+                fontWeight: 500, letterSpacing: "0.01em",
                 textTransform: "none", color: c.muted,
                 margin: "auto 0 0",
               }}>{q.source}</p>
@@ -2738,7 +2738,7 @@ function CompetitiveAudit() {
   ];
   const thStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-    letterSpacing: "0.18em", textTransform: "none",
+    letterSpacing: "0.01em", textTransform: "none",
     textAlign: "left", padding: "14px 18px", color: c.muted,
     borderBottom: `1px solid ${c.border}`,
   };
@@ -2764,7 +2764,7 @@ function CompetitiveAudit() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               Five categories.<br />One open slot.
             </h2></div>
@@ -2777,7 +2777,7 @@ function CompetitiveAudit() {
             </p>
             <p style={{
               fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-              letterSpacing: "0.18em", textTransform: "none",
+              letterSpacing: "0.01em", textTransform: "none",
               color: c.muted, margin: "0 0 8px",
             }}>
               The five categories
@@ -2816,7 +2816,7 @@ function CompetitiveAudit() {
               />
               <figcaption style={{
                 fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-                letterSpacing: "0.12em", textTransform: "none",
+                letterSpacing: "0.01em", textTransform: "none",
                 color: c.muted, margin: "10px 0 0", textAlign: "center",
               }}>{it.name}</figcaption>
             </figure>
@@ -2909,7 +2909,7 @@ function OutOfScope() {
     <div style={{ margin: "0 0 56px" }}>
       <p style={{
         fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-        letterSpacing: "0.20em", textTransform: "none",
+        letterSpacing: "0.01em", textTransform: "none",
         color: c.accent, margin: "0 0 12px",
       }}>Out of scope</p>
       <h3 style={{
@@ -2936,7 +2936,7 @@ function OutOfScope() {
           }}>
             <p style={{
               fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-              letterSpacing: "0.18em", textTransform: "none",
+              letterSpacing: "0.01em", textTransform: "none",
               color: c.muted, margin: "0 0 8px",
             }}>Skipped</p>
             <p style={{
@@ -2970,7 +2970,7 @@ function UserJourney() {
             <h2 style={{
               fontFamily: font.sans, fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 500, color: c.ink, margin: 0,
-              letterSpacing: "-0.025em", lineHeight: 1.05,
+              letterSpacing: "-0.02em", lineHeight: 1.05,
             }}>
               Where the controls land.
             </h2></div>
@@ -3117,7 +3117,7 @@ function JourneyVerticalMobile() {
 
   const labelStyle: React.CSSProperties = {
     fontFamily: font.sans, fontSize: "10px", fontWeight: 500,
-    letterSpacing: "0.16em", textTransform: "none",
+    letterSpacing: "0.01em", textTransform: "none",
     color: c.muted, margin: "0 0 6px",
   };
   const bodyStyle: React.CSSProperties = {
@@ -3139,7 +3139,7 @@ function JourneyVerticalMobile() {
             background: c.jet, color: "var(--color-inverse)",
             borderLeft: `3px solid ${c.green}`,
             fontFamily: font.sans, fontSize: "12px", fontWeight: 500,
-            letterSpacing: "0.10em", textTransform: "none",
+            letterSpacing: "0.01em", textTransform: "none",
             padding: "8px 12px", margin: "-20px -18px 16px",
             display: "flex", justifyContent: "space-between", alignItems: "baseline",
           }}>

@@ -31,8 +31,8 @@ export default function Slide9() {
           ))}
         </div>
         <div className="mt-14 flex flex-col items-center gap-1">
-          <p className="font-body font-medium" style={{ color: "#6B6560", fontSize: 13, letterSpacing: "0.06em" }}>Alfonso Barreiro &middot; UX/UI Designer</p>
-          <p className="font-body" style={{ color: "#6B6560", fontSize: 12, letterSpacing: "0.04em" }}>Production design system audited against the live codebase</p>
+          <p className="font-body font-medium" style={{ color: "#6B6560", fontSize: 13, letterSpacing: "0.01em" }}>Alfonso Barreiro &middot; UX/UI Designer</p>
+          <p className="font-body" style={{ color: "#6B6560", fontSize: 12, letterSpacing: "0.01em" }}>Production design system audited against the live codebase</p>
         </div>
       </div>
     </div>

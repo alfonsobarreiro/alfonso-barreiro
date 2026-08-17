@@ -69,7 +69,7 @@ export default function Slide6() {
               {tiers.map((tier, i) => (
                 <div key={tier.label} className="flex items-center flex-1 min-w-0">
                   <div className="rounded-lg p-3 flex flex-col w-full" style={{ background: i === 0 ? "linear-gradient(135deg, rgba(196,112,58,0.08) 0%, rgba(196,112,58,0.02) 100%)" : "#FFFFFF", border: i === 0 ? "1px solid rgba(196,112,58,0.25)" : "1px solid #EEEDEC" }}>
-                    <span className="font-display" style={{ fontSize: 8, fontWeight: 500, color: i === 0 ? "#C4703A" : "#B7B2AE", letterSpacing: "0.15em" }}>TIER {i + 1}</span>
+                    <span className="font-display" style={{ fontSize: 8, fontWeight: 500, color: i === 0 ? "#C4703A" : "#B7B2AE", letterSpacing: "0.01em" }}>TIER {i + 1}</span>
                     <span className="font-body font-semibold mt-1" style={{ color: "#13100C", fontSize: 10, lineHeight: 1.35 }}>{tier.label}</span>
                     <p className="font-body mt-1" style={{ color: "#6B6560", fontSize: 9, lineHeight: 1.35 }}>{tier.desc}</p>
                     <div className="rounded px-2 py-0.5 mt-2" style={{ background: "#F8F7F7", border: "1px solid #EEEDEC" }}>

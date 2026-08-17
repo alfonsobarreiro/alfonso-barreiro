@@ -71,7 +71,7 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
         fontFamily:    "var(--font-inter), Inter, sans-serif",
         fontSize:      14,
         fontWeight:    500,
-        letterSpacing: "0.12em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         fgText,
       }}>
@@ -91,7 +91,7 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
           fontFamily:    "var(--font-inter), Inter, sans-serif",
           fontSize:      11,
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         mutedText,
         }}>
@@ -102,7 +102,7 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
           fontFamily:    "var(--font-inter), Inter, sans-serif",
           fontSize:      11,
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         mutedText,
         }}>
@@ -132,7 +132,7 @@ export function Eyebrow({ children, tone = "accent" }: { children: ReactNode; to
       fontFamily:    "var(--font-inter), Inter, sans-serif",
       fontSize:      12,
       fontWeight:    500,
-      letterSpacing: "0.16em",
+      letterSpacing: "0.01em",
       textTransform: "uppercase",
       color,
     }}>

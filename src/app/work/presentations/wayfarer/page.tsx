@@ -124,7 +124,7 @@ export default function WayfarerDeckPage() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.14em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 8px",
@@ -137,7 +137,7 @@ export default function WayfarerDeckPage() {
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        0,
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.01em",
               }}>
                 Read the full written case study
               </p>
@@ -155,7 +155,7 @@ export default function WayfarerDeckPage() {
                 fontFamily:     font.sans,
                 fontSize:       "13px",
                 fontWeight:     500,
-                letterSpacing:  "0.06em",
+                letterSpacing:  "0.01em",
                 textDecoration: "none",
               }}
             >

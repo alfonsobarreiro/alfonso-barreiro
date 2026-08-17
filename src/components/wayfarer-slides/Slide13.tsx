@@ -15,7 +15,7 @@ export default function Slide13() {
       <Eyebrow>06 · Site Architecture</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 32px",
-        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.015em",
+        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1100,
       }}>
         Six page types. Each designed for a different user task.
@@ -29,7 +29,7 @@ export default function Slide13() {
         }}>
           {["ROUTE","TYPE","USER TASK","PURPOSE"].map((h) => (
             <div key={h} className="font-body" style={{
-              fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", color: wf.n500,
+              fontSize: 11, fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
             }}>{h}</div>
           ))}
         </div>

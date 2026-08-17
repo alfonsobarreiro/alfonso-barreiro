@@ -37,7 +37,7 @@ export default function SpotifyJourneyMap() {
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight:    500,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.01em",
               textTransform: "uppercase",
               color:         c.muted,
               margin:        0,

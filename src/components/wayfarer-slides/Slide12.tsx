@@ -51,7 +51,7 @@ export default function Slide12() {
         }}>
           {["TOKEN","WAYFARER","PORTFOLIO","MSR"].map((h) => (
             <div key={h} className="font-body" style={{
-              fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", color: wf.n500,
+              fontSize: 11, fontWeight: 500, letterSpacing: "0.01em", color: wf.n500,
             }}>{h}</div>
           ))}
         </div>

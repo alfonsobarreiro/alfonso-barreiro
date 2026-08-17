@@ -21,7 +21,7 @@ export default function Slide15() {
       <Eyebrow>08 · Reflection</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 40px",
-        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.015em",
+        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1100,
       }}>
         Three reflections on a four-week sprint.

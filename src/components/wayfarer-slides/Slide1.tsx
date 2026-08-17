@@ -54,7 +54,7 @@ export default function Slide1() {
           ].map(([label, value]) => (
             <div key={label}>
               <div className="font-body" style={{
-                fontSize: 11, fontWeight: 500, letterSpacing: "0.14em",
+                fontSize: 11, fontWeight: 500, letterSpacing: "0.01em",
                 color: wf.n500, marginBottom: 6, textTransform: "uppercase",
               }}>
                 {label}

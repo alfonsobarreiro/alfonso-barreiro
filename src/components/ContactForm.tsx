@@ -110,7 +110,7 @@ export default function ContactForm() {
     display:       "block",
     fontSize:      "11px",
     fontWeight:    500,
-    letterSpacing: "0.13em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     color:         "var(--color-accent)",
     fontFamily:    font,
@@ -203,7 +203,7 @@ export default function ContactForm() {
                       fontStyle:     "italic",
                       fontSize:      "13px",
                       color:         "#6B6E6A",
-                      letterSpacing: "-0.005em",
+                      letterSpacing: "0",
                       transition:    "opacity 200ms ease",
                     }}
                   >
@@ -266,7 +266,7 @@ export default function ContactForm() {
             background: isSubmitting ? "rgba(140,26,26,0.6)" : "var(--color-brand)",
             color: "#FFFFFF", border: "none", borderRadius: 4,
             fontSize: "13px", fontWeight: 500, fontFamily: font,
-            letterSpacing: "0.07em", textTransform: "uppercase",
+            letterSpacing: "0.01em", textTransform: "uppercase",
             cursor: isSubmitting ? "not-allowed" : "pointer",
             alignSelf: "flex-start", transition: "opacity 0.2s",
             minHeight: "44px",

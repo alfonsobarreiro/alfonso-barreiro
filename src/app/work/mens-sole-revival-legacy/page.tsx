@@ -101,7 +101,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.16em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.accent,
               }}>
@@ -149,7 +149,7 @@ export default function MSRCaseStudyLegacy() {
                 { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c.accent, margin: "0 0 4px" }}>
+                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 4px" }}>
                     {label}
                   </p>
                   <p style={{ fontFamily: font.sans, fontSize: "14px", color: "rgba(245,243,239,0.75)", margin: 0 }}>
@@ -171,7 +171,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.accent,
                   margin:        0,
@@ -222,7 +222,7 @@ export default function MSRCaseStudyLegacy() {
                       fontFamily:    font.sans,
                       fontSize:      "11px",
                       fontWeight:    500,
-                      letterSpacing: "0.10em",
+                      letterSpacing: "0.01em",
                       textTransform: "uppercase",
                       color:         "rgba(245,243,239,0.75)",
                       margin:        "10px 0 0",
@@ -243,7 +243,7 @@ export default function MSRCaseStudyLegacy() {
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight:    500,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.01em",
               textTransform: "uppercase",
               color:         c.muted,
               margin:        "0 0 16px",
@@ -276,7 +276,7 @@ export default function MSRCaseStudyLegacy() {
                       fontFamily:     font.sans,
                       fontSize:       "13px",
                       fontWeight:     500,
-                      letterSpacing:  "0.02em",
+                      letterSpacing:  "0.01em",
                       textDecoration: "none",
                     }}
                   >
@@ -359,7 +359,7 @@ export default function MSRCaseStudyLegacy() {
                     fontFamily:    font.sans,
                     fontSize:      "10px",
                     fontWeight:    500,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "0.01em",
                     textTransform: "uppercase",
                     color:         c.accent,
                     margin:        "0 0 12px",
@@ -948,7 +948,7 @@ export default function MSRCaseStudyLegacy() {
                   }}
                 >
                   <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase",
+                    fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase",
                     color: status === "Chosen" ? c.accent : status === "Rejected" ? c.muted : c.accent,
                     minWidth: "160px", flexShrink: 0, paddingTop: "2px",
                   }}>
@@ -967,7 +967,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 12px",
@@ -1009,7 +1009,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.muted,
                   margin:        "0 0 12px",
@@ -1043,7 +1043,7 @@ export default function MSRCaseStudyLegacy() {
                         fontFamily:    font.sans,
                         fontSize:      "10px",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         textTransform: "uppercase",
                         color:         verdict === "Chosen" ? c.accent : c.muted,
                         margin:        "0 0 8px",
@@ -1120,14 +1120,14 @@ export default function MSRCaseStudyLegacy() {
                   }}
                 >
                   <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase",
+                    fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase",
                     color: status === "Chosen" ? c.accent : c.muted,
                     minWidth: "200px", flexShrink: 0, paddingTop: "2px",
                   }}>
                     {name} · {status}
                   </span>
                   <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
                       {typeface}
                     </p>
                     <p style={{ fontFamily: font.sans, fontSize: "15px", lineHeight: 1.6, color: c.body, margin: 0 }}>
@@ -1144,7 +1144,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 12px",
@@ -1173,7 +1173,7 @@ export default function MSRCaseStudyLegacy() {
                         style={{ objectFit: "cover" }}
                       />
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: c.ink, margin: "8px 0 2px" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.ink, margin: "8px 0 2px" }}>
                       {name}
                     </p>
                     <p style={{ fontFamily: "monospace", fontSize: "11px", color: c.muted, margin: 0 }}>
@@ -1203,7 +1203,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.muted,
                   margin:        0,
@@ -1226,7 +1226,7 @@ export default function MSRCaseStudyLegacy() {
                       borderRight: i < 3 ? `1px solid ${c.border}` : "none",
                     }}
                   >
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
                       {area}
                     </p>
                     <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.35 }}>
@@ -1256,7 +1256,7 @@ export default function MSRCaseStudyLegacy() {
                   fontSize:      "clamp(28px, 5vw, 48px)",
                   fontWeight:    500,
                   textTransform: "uppercase",
-                  letterSpacing: "0.02em",
+                  letterSpacing: "0.01em",
                   lineHeight:    1.05,
                   color:         c.ink,
                   margin:        "0 0 12px",
@@ -1267,7 +1267,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "12px",
                   fontWeight:    500,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.muted,
                   margin:        "0 0 8px",
@@ -1289,7 +1289,7 @@ export default function MSRCaseStudyLegacy() {
                   lineHeight:    1.35,
                   color:         c.ink,
                   margin:        "0 0 12px",
-                  letterSpacing: "-0.005em",
+                  letterSpacing: "0",
                 }}>
                   &ldquo;Lora for editorial subheads and quotes.&rdquo;
                 </p>
@@ -1297,7 +1297,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "12px",
                   fontWeight:    500,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.muted,
                   margin:        "0 0 8px",
@@ -1326,7 +1326,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "12px",
                   fontWeight:    500,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.muted,
                   margin:        "0 0 8px",
@@ -1430,7 +1430,7 @@ export default function MSRCaseStudyLegacy() {
                       fontFamily:    font.sans,
                       fontSize:      "11px",
                       fontWeight:    500,
-                      letterSpacing: "0.14em",
+                      letterSpacing: "0.01em",
                       textTransform: "uppercase",
                       color:         c.accent,
                     }}>{number}</span>
@@ -1438,7 +1438,7 @@ export default function MSRCaseStudyLegacy() {
                       fontFamily:    font.sans,
                       fontSize:      "11px",
                       fontWeight:    500,
-                      letterSpacing: "0.14em",
+                      letterSpacing: "0.01em",
                       textTransform: "uppercase",
                       color:         c.ink,
                     }}>{label}</span>
@@ -1486,7 +1486,7 @@ export default function MSRCaseStudyLegacy() {
                   fontFamily:    font.sans,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.accent,
                 }}>The Product</span>
@@ -1497,7 +1497,7 @@ export default function MSRCaseStudyLegacy() {
                 fontWeight:    400,
                 color:         "#F5F5F4",
                 margin:        "0 0 16px",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
               }}>
                 Every page serves a task, not a template
               </h2>
@@ -1518,7 +1518,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "13px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.accent,
                 margin:        "0 0 12px",
@@ -1578,7 +1578,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "13px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.accent,
                 margin:        "0 0 12px",
@@ -1638,7 +1638,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "13px",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.accent,
                 margin:        "0 0 12px",
@@ -1716,7 +1716,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "10px",
                 fontWeight:    500,
-                letterSpacing: "0.14em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.accent,
                 margin:        "0 0 10px",
@@ -1744,7 +1744,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "10px",
                 fontWeight:    500,
-                letterSpacing: "0.14em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.accent,
                 margin:        "0 0 10px",
@@ -1805,7 +1805,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:    font.sans,
                 fontSize:      "10px",
                 fontWeight:    500,
-                letterSpacing: "0.14em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.muted,
                 margin:        "0 0 10px",
@@ -1890,7 +1890,7 @@ export default function MSRCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
             <div style={{ maxWidth: "640px" }}>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.accent, margin: "0 0 12px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 12px" }}>
                 Source
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 400, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
@@ -1915,7 +1915,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:     font.sans,
                 fontSize:       "13px",
                 fontWeight:     500,
-                letterSpacing:  "0.06em",
+                letterSpacing:  "0.01em",
                 textDecoration: "none",
                 transition:     "opacity 0.2s",
               }}
@@ -1938,7 +1938,7 @@ export default function MSRCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
+              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
                 Next Case Study
               </p>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
@@ -1958,7 +1958,7 @@ export default function MSRCaseStudyLegacy() {
                 fontFamily:     font.sans,
                 fontSize:       "13px",
                 fontWeight:     500,
-                letterSpacing:  "0.06em",
+                letterSpacing:  "0.01em",
                 textDecoration: "none",
                 transition:     "opacity 0.2s",
               }}
@@ -2017,7 +2017,7 @@ function Section({ label, title, children }: { label: string; title: string; chi
           fontFamily:    f.sans,
           fontSize:      "11px",
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         c2.accent,
         }}>
@@ -2030,7 +2030,7 @@ function Section({ label, title, children }: { label: string; title: string; chi
             fontWeight:    400,
             color:         c2.ink,
             margin:        0,
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.02em",
           }}
           dangerouslySetInnerHTML={{ __html: title }}
         />
@@ -2054,7 +2054,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
           fontFamily:    f.sans,
           fontSize:      "10px",
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase" as const,
           color:         c2.accent,
           margin:        "0 0 10px",
@@ -2094,14 +2094,14 @@ const subheading: React.CSSProperties = {
   fontWeight:    500,
   color:         "#252B28",
   margin:        "40px 0 16px",
-  letterSpacing: "-0.015em",
+  letterSpacing: "-0.01em",
 };
 
 const thStyle: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
   fontSize:      "11px",
   fontWeight:    500,
-  letterSpacing: "0.1em",
+  letterSpacing: "0.01em",
   textTransform: "uppercase",
   color:         "#8A8680",
   padding:       "12px 16px",

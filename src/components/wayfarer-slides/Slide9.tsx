@@ -6,7 +6,7 @@ export default function Slide9() {
       <Eyebrow>04 · Design Decisions</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 0",
-        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.015em",
+        fontSize: 48, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.01em",
         color: wf.n900, maxWidth: 1150,
       }}>
         40+ destinations, two entry points, one discovery path.

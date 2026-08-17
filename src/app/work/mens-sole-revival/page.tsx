@@ -78,7 +78,7 @@ function Tag({ children }: { children: React.ReactNode }) {
       fontFamily:    font.sans,
       fontSize:      "11px",
       fontWeight:    500,
-      letterSpacing: "0.10em",
+      letterSpacing: "0.01em",
       textTransform: "none",
       color:         c.ink2,
       padding:       "6px 14px",
@@ -138,7 +138,7 @@ function Callout({
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight: 500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     color:         c.accent,
     margin:        "0 0 10px",
@@ -176,7 +176,7 @@ function Callout({
         fontWeight: 500,
         color:         c.ink,
         margin:        "0 0 28px",
-        letterSpacing: "-0.015em",
+        letterSpacing: "-0.01em",
         lineHeight:    1.15,
       }}>
         {decision}
@@ -677,7 +677,7 @@ export default function MSRv2() {
                     fontStyle: "normal",
                     margin:        "24px 0 0",
                     lineHeight:    1.5,
-                    letterSpacing: "-0.005em",
+                    letterSpacing: "0",
                     maxWidth:      "32ch",
                   }}>
                     &ldquo;After years of neglect, men over 40 finally have a place to start.&rdquo;
@@ -714,7 +714,7 @@ export default function MSRv2() {
                   textTransform: "none",
                   color:          c.ink,
                   margin:         0,
-                  letterSpacing:  "-0.005em",
+                  letterSpacing:  "0",
                   lineHeight:     0.95,
                 }}>
                   A brand that&rsquo;s actually for men.
@@ -770,7 +770,7 @@ export default function MSRv2() {
                   textTransform: "none",
                   color:          c.ink,
                   margin:         0,
-                  letterSpacing:  "-0.005em",
+                  letterSpacing:  "0",
                   lineHeight:     0.95,
                 }}>
                   Built once.<br/>Used everywhere.
@@ -796,7 +796,7 @@ export default function MSRv2() {
               fontFamily:    font.sans,
               fontSize:      "11px",
               fontWeight: 500,
-              letterSpacing: "0.18em",
+              letterSpacing: "0.01em",
               textTransform: "none",
               color:         c.muted,
               margin:        "0 0 16px",
@@ -1132,7 +1132,7 @@ export default function MSRv2() {
                     fontFamily:    font.sans,
                     fontSize:      "11px",
                     fontWeight: 500,
-                    letterSpacing: "0.15em",
+                    letterSpacing: "0.01em",
                     textTransform: "none",
                     color:         c.muted,
                     margin:        "12px 0 0",
@@ -1365,7 +1365,7 @@ function PivotInfographic() {
     fontSize:      "10px",
     fontWeight: 500,
     color:         muted,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     margin:        "0 0 10px",
   };
@@ -1400,7 +1400,7 @@ function PivotInfographic() {
           fontSize:      "11px",
           fontWeight: 500,
           color:         muted,
-          letterSpacing: "0.20em",
+          letterSpacing: "0.01em",
           textTransform: "none",
           margin:        "0 0 40px",
           textAlign:     "center",
@@ -1451,7 +1451,7 @@ function PivotInfographic() {
               fontSize:      "11px",
               fontWeight: 500,
               color:         cognac,
-              letterSpacing: "0.20em",
+              letterSpacing: "0.01em",
               textTransform: "none",
               margin:        "20px 0 10px",
               textAlign:     "center",
@@ -1499,7 +1499,7 @@ function ResearchStrip() {
     fontSize:      "10px",
     fontWeight: 500,
     color:         c.accent,
-    letterSpacing: "0.20em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     margin:        "0 0 6px",
   };
@@ -1509,7 +1509,7 @@ function ResearchStrip() {
     color:         c.ink,
     fontWeight:    500,
     margin:        0,
-    letterSpacing: "-0.005em",
+    letterSpacing: "0",
   };
   const stepNote: React.CSSProperties = {
     fontFamily: font.sans,
@@ -1562,7 +1562,7 @@ function WhatICut() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight: 500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     color:         c.accent,
     margin:        "0 0 8px",
@@ -1644,7 +1644,7 @@ function EarlyOutcomes() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight: 500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     color:         c.accent,
     margin:        "0 0 10px",
@@ -1691,7 +1691,7 @@ function HonestRisks() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight: 500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     color:         c.accent,
     margin:        "0 0 14px",
@@ -1739,7 +1739,7 @@ function UserResearch() {
     fontFamily:    font.sans,
     fontSize:      "10px",
     fontWeight: 500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     color:         c.accent,
     margin:        "0 0 14px",
@@ -1801,7 +1801,7 @@ function UserResearch() {
       <p style={{
         fontFamily:    font.sans,
         fontSize:      "11px",
-        letterSpacing: "0.10em",
+        letterSpacing: "0.01em",
         textTransform: "none",
         color:         c.muted,
         margin:        "0 0 16px",
@@ -1854,7 +1854,7 @@ function AnnotatedAssessment() {
     fontFamily:    font.sans,
     fontSize:      "11px",
     fontWeight: 500,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.01em",
     textTransform: "none",
     color:         c.accent,
     margin:        "0 0 12px",
@@ -1874,7 +1874,7 @@ function AnnotatedAssessment() {
     fontWeight: 500,
     color:         c.ink,
     margin:        "0 0 6px",
-    letterSpacing: "-0.005em",
+    letterSpacing: "0",
     lineHeight:    1.35,
   };
   const itemBody: React.CSSProperties = {
@@ -1981,7 +1981,7 @@ function AssessmentFunnelFlow() {
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight: 500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         textTransform: "none",
         color:         c.accent,
         margin:        "0 0 18px",
@@ -2089,14 +2089,14 @@ function DSPanelColor() {
                 fontWeight: 500,
                 color:         c.ink,
                 margin:        "0 0 4px",
-                letterSpacing: "-0.005em",
+                letterSpacing: "0",
               }}>{t.label}</p>
               <p style={{
                 fontFamily:    font.sans,
                 fontSize:      "11px",
                 color:         c.muted,
                 margin:        "0 0 6px",
-                letterSpacing: "0.04em",
+                letterSpacing: "0.01em",
               }}>{t.hex}</p>
               <p style={{
                 fontFamily: font.sans,
@@ -2138,7 +2138,7 @@ function DSPanelType() {
             fontSize:      "10px",
             fontWeight: 500,
             color:         c.accent,
-            letterSpacing: "0.20em",
+            letterSpacing: "0.01em",
             textTransform: "none",
             margin:        "0 0 16px",
           }}>Display · Barlow Condensed</p>
@@ -2165,7 +2165,7 @@ function DSPanelType() {
             fontSize:   "11px",
             color:      c.muted,
             margin:     0,
-            letterSpacing: "0.05em",
+            letterSpacing: "0.01em",
           }}>700, 800 weights · uppercase displays + section labels</p>
         </div>
 
@@ -2176,7 +2176,7 @@ function DSPanelType() {
             fontSize:      "10px",
             fontWeight: 500,
             color:         c.accent,
-            letterSpacing: "0.20em",
+            letterSpacing: "0.01em",
             textTransform: "none",
             margin:        "0 0 16px",
           }}>Long-form · Lora</p>
@@ -2207,7 +2207,7 @@ function DSPanelType() {
             fontSize:   "11px",
             color:      c.muted,
             margin:     0,
-            letterSpacing: "0.05em",
+            letterSpacing: "0.01em",
           }}>400, 500, 600, 700 weights · roman + italic</p>
         </div>
       </div>
@@ -2261,7 +2261,7 @@ function DSPanelComponents() {
               fontSize:      "10px",
               fontWeight: 500,
               color:         c.accent,
-              letterSpacing: "0.15em",
+              letterSpacing: "0.01em",
               minWidth:      "20px",
             }}>{it.num}</span>
             <div style={{ flex: 1 }}>
@@ -2271,7 +2271,7 @@ function DSPanelComponents() {
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 2px",
-                letterSpacing: "-0.005em",
+                letterSpacing: "0",
               }}>{it.name}</p>
               <p style={{
                 fontFamily: font.sans,
@@ -2298,7 +2298,7 @@ function DesignSystemCarousel() {
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
       <p style={{
         fontFamily: font.sans, fontSize: "11px", fontWeight: 500,
-        letterSpacing: "0.18em", textTransform: "none",
+        letterSpacing: "0.01em", textTransform: "none",
         color: c.muted, margin: "0 0 16px",
       }}>
         <span aria-hidden="true" style={{ color: c.accent }}>&rarr; </span>
@@ -2337,7 +2337,7 @@ function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; te
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight: 500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         textTransform: "none",
         color:         textColor,
       }}>
@@ -2348,7 +2348,7 @@ function SwatchBlock({ label, hex, textColor }: { label: string; hex: string; te
         fontSize:      "11px",
         color:         textColor,
         opacity:       0.65,
-        letterSpacing: "0.04em",
+        letterSpacing: "0.01em",
       }}>
         {hex}
       </span>
@@ -2388,7 +2388,7 @@ function AssessmentThumb({ src, alt, number }: { src: string; alt: string; numbe
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight: 500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         color:         c.ink,
       }}>
         {number}
@@ -2406,7 +2406,7 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
         fontFamily:    font.sans,
         fontSize:      "10px",
         fontWeight: 500,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.01em",
         textTransform: "none",
         color:         c.accent,
         margin:        "0 0 8px",

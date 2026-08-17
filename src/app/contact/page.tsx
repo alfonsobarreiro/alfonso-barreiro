@@ -62,7 +62,7 @@ export default function ContactPage() {
                   fontFamily:    font,
                   fontSize:      "11px",
                   fontWeight:    500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "0.01em",
                   textTransform: "uppercase",
                   color:         c.muted,
                   margin:        0,
@@ -76,7 +76,7 @@ export default function ContactPage() {
                 fontWeight:    500,
                 color:         c.ink,
                 margin:        "0 0 28px",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
                 lineHeight:    1.05,
               }}>
                 Say hello.
