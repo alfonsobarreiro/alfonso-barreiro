@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /* Stagger delays for about section elements */
 const ABOUT_DELAYS = ["0s", "0.12s", "0.24s", "0.36s"];
@@ -172,19 +173,9 @@ export default function About() {
                   background: "var(--color-accent)",
                 }}
               />
-              <p
-                style={{
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         "#8A8680",
-                  margin:        0,
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                }}
-              >
+              <Eyebrow style={{ margin: 0 }}>
                 About
-              </p>
+              </Eyebrow>
             </div>
 
             {/* Photo — editorial portrait crop at the source's native 3:4
@@ -238,18 +229,9 @@ export default function About() {
                   animation:    "pulse 2.2s ease-in-out infinite",
                 }}
               />
-              <span
-                style={{
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         "#3D4440",
-                }}
-              >
+              <Eyebrow as="span">
                 Open to full-time UX/UI roles and selective contract work. Portland, OR or remote.
-              </span>
+              </Eyebrow>
             </div>
 
             <h2
@@ -386,19 +368,9 @@ export default function About() {
                   borderBottom:  i < skillGroups.length - 1 ? "1px solid #A8A39A" : "none",
                 }}
               >
-                <p
-                  style={{
-                    fontFamily:    "var(--font-dm-sans), sans-serif",
-                    fontSize:      "var(--text-small)",
-                    fontWeight:    500,
-                    letterSpacing: "0.01em",
-                    textTransform: "uppercase",
-                    color:         "var(--color-accent-hover)",
-                    marginBottom:  "10px",
-                  }}
-                >
+                <Eyebrow tone="accent" style={{ marginBottom: "10px" }}>
                   {group.category}
-                </p>
+                </Eyebrow>
                 {/* Business-value paragraph — converts the skill pills below
                     from a capability list into a value statement. */}
                 <p
@@ -503,19 +475,9 @@ export default function About() {
                 flexShrink: 0,
               }}
             />
-            <p
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         "var(--color-accent-hover)",
-                margin:        0,
-              }}
-            >
+            <Eyebrow tone="accent" style={{ margin: 0 }}>
               How I work
-            </p>
+            </Eyebrow>
           </div>
           <p
             style={{

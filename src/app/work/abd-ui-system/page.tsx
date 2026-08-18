@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
 import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /* Page is authoring-only. Do not deploy — SLUX audit 2026-07-03 flagged
    it as templated and off-brand (ABD cyan instead of house palette,
@@ -115,9 +116,9 @@ export default function Page() {
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.accent }} />
-              <span style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut }}>
+              <Eyebrow tone="inverse" as="span">
                 Alpha Beta Design &middot; UX Case Study
-              </span>
+              </Eyebrow>
             </div>
 
             <h1 id="cs-abd-hero-h1" style={{ fontFamily: font.display, fontSize: "clamp(28px,6vw,64px)", fontWeight: 500, color: c.onDark, margin: "0 0 16px", letterSpacing: "-0.03em", lineHeight: 1.05, maxWidth: "900px" }}>
@@ -131,7 +132,7 @@ export default function Page() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: "32px", paddingTop: "32px", borderTop: "1px solid rgba(245,243,239,0.1)" }}>
               {META.map(({ label, value }) => (
                 <div key={label} style={{ maxWidth: "260px" }}>
-                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut, margin: "0 0 4px" }}>{label}</p>
+                  <Eyebrow tone="inverse" style={{ margin: "0 0 4px" }}>{label}</Eyebrow>
                   <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: c.onDark, margin: 0 }}>{value}</p>
                 </div>
               ))}
@@ -141,9 +142,9 @@ export default function Page() {
             <div style={{ marginTop: "56px", paddingTop: "32px", borderTop: "1px solid rgba(245,243,239,0.1)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "24px", height: "1px", background: c.accent }} />
-                <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut, margin: 0 }}>
+                <Eyebrow tone="inverse" style={{ margin: 0 }}>
                   What&apos;s downstream
-                </p>
+                </Eyebrow>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px" }}>
                 {DOWNSTREAM.map(({ glyph, label, src, href, external }) => (
@@ -158,9 +159,9 @@ export default function Page() {
                     <div style={{ position: "relative", aspectRatio: "16 / 11", overflow: "hidden", background: "#0F161D", border: "1px solid rgba(245,243,239,0.22)" }}>
                       <Image src={src} alt="" fill sizes="(max-width: 767px) 50vw, 220px" style={{ objectFit: "cover", objectPosition: "center top" }} />
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onDarkMut, margin: "8px 0 0" }}>
+                    <Eyebrow tone="inverse" style={{ margin: "8px 0 0" }}>
                       <span aria-hidden="true" style={{ marginRight: "6px" }}>{glyph}</span>{label}
-                    </p>
+                    </Eyebrow>
                   </Link>
                 ))}
               </div>
@@ -173,7 +174,7 @@ export default function Page() {
 
           {/* TL;DR */}
           <div style={{ background: c.bgSection, border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.accent}`, padding: "clamp(24px, 4vw, 40px)", marginBottom: "64px" }}>
-            <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 16px" }}>TL;DR</p>
+            <Eyebrow tone="accent" style={{ margin: "0 0 16px" }}>TL;DR</Eyebrow>
             <dl style={{ margin: 0 }}>
               {[
                 ["The problem", "As a one-person studio, I rebuild the same buttons, inputs, and tokens on every client project. Done by hand, they drift: a spacing value here, a hard-coded hex there, and consistency erodes as the work scales."],
@@ -291,7 +292,7 @@ function Section({ id, label, title, children }: { id?: string; label: string; t
   return (
     <section id={id} aria-labelledby={headingId} style={{ paddingBottom: "16px", borderTop: `1px solid ${c.border}`, marginTop: "48px", scrollMarginTop: "96px" }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", margin: "32px 0" }}>
-        <span style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent }}>{label}</span>
+        <Eyebrow tone="accent" as="span">{label}</Eyebrow>
         <h2 id={headingId} style={{ fontFamily: font.display, fontSize: "clamp(28px,3.5vw,40px)", fontWeight: 500, color: c.ink, margin: 0, letterSpacing: "-0.02em" }}>
           {title}
         </h2>
@@ -316,7 +317,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
   return (
     <blockquote style={{ margin: "32px 0", padding: "24px 28px", background: c.surface, border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.accent}` }}>
       {label && (
-        <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 10px" }}>{label}</p>
+        <Eyebrow tone="accent" style={{ margin: "0 0 10px" }}>{label}</Eyebrow>
       )}
       <p style={{ fontFamily: font.display, fontSize: "clamp(17px,2.2vw,20px)", lineHeight: 1.5, color: c.ink, fontStyle: "italic", margin: 0 }}>{children}</p>
     </blockquote>
@@ -326,7 +327,7 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
 function NextCase() {
   return (
     <section style={{ borderTop: `1px solid ${c.border}`, marginTop: "64px", paddingTop: "40px" }}>
-      <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 12px" }}>Next case study</p>
+      <Eyebrow style={{ margin: "0 0 12px" }}>Next case study</Eyebrow>
       <Link href="/work/mens-sole-revival" style={{ fontFamily: font.display, fontSize: "clamp(20px,3.5vw,28px)", fontWeight: 500, color: c.ink, textDecoration: "none", letterSpacing: "-0.02em" }}>
         Men&apos;s Sole Revival: a foot health resource for men over 40. &rarr;
       </Link>

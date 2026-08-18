@@ -3,6 +3,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MSRSlideViewer from "@/components/MSRSlideViewer";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export const metadata: Metadata = {
   title: "Men's Sole Revival · Slide Deck · Alfonso Barreiro",
@@ -122,17 +123,9 @@ export default function MSRDeckPage() {
             gap: "24px",
           }}>
             <div>
-              <p style={{
-                fontFamily: font.sans,
-                fontSize: "var(--text-small)",
-                fontWeight: 500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color: c.muted,
-                margin: "0 0 8px",
-              }}>
+              <Eyebrow style={{ margin: "0 0 8px" }}>
                 Go deeper
-              </p>
+              </Eyebrow>
               <p style={{
                 fontFamily: font.display,
                 fontSize: "clamp(20px,3vw,28px)",

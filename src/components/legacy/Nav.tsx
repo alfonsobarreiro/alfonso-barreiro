@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
 import CommandPalette, { openCommandPalette } from "./CommandPalette";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 const navLinks = ["work", "about"] as const;
 
@@ -228,16 +229,9 @@ export default function Nav() {
         {/* Eyebrow */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "48px" }}>
           <span style={{ width: "20px", height: "1px", background: "var(--color-accent)" }} />
-          <span style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "var(--text-small)",
-            fontWeight:    500,
-            letterSpacing: "0.01em",
-            textTransform: "uppercase",
-            color:         "var(--color-accent)",
-          }}>
+          <Eyebrow tone="accent" as="span">
             Navigation
-          </span>
+          </Eyebrow>
         </div>
 
         {/* Nav links */}

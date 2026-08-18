@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SignupSlider from "./SignupSlider";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /* Legacy Wayfarer case study (v1). v2 is now the canonical version at
    /work/wayfarer. This route exists for local-only reference and is
@@ -109,16 +110,9 @@ export default function WayfarerCaseStudyLegacy() {
             {/* Eyebrow */}
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.navy }} />
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.onNavyMuted,
-              }}>
+              <Eyebrow tone="inverse" as="span">
                 Wayfarer &middot; UX Case Study
-              </span>
+              </Eyebrow>
             </div>
 
             <h1 id="cs-wayfarer-hero-h1" style={{
@@ -161,9 +155,9 @@ export default function WayfarerCaseStudyLegacy() {
                 { label: "Outcome",  value: "Discovery-first platform shipped. Trip planner architecture defined." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.onNavyMuted, margin: "0 0 4px" }}>
+                  <Eyebrow tone="inverse" style={{ margin: "0 0 4px" }}>
                     {label}
-                  </p>
+                  </Eyebrow>
                   <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: c.onNavy, margin: 0 }}>
                     {value}
                   </p>
@@ -179,17 +173,9 @@ export default function WayfarerCaseStudyLegacy() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "24px", height: "1px", background: c.navy }} />
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.onNavyMuted,
-                  margin:        0,
-                }}>
+                <Eyebrow tone="inverse" style={{ margin: 0 }}>
                   What&apos;s downstream
-                </p>
+                </Eyebrow>
               </div>
 
               <div style={{
@@ -231,17 +217,9 @@ export default function WayfarerCaseStudyLegacy() {
                         style={{ objectFit: "cover", objectPosition: "center" }}
                       />
                     </div>
-                    <p style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "var(--text-small)",
-                      fontWeight:    500,
-                      letterSpacing: "0.01em",
-                      textTransform: "uppercase",
-                      color:         c.onNavy,
-                      margin:        "10px 0 0",
-                    }}>
+                    <Eyebrow tone="inverse" style={{ margin: "10px 0 0" }}>
                       {label}
-                    </p>
+                    </Eyebrow>
                   </Link>
                 ))}
               </div>
@@ -252,17 +230,9 @@ export default function WayfarerCaseStudyLegacy() {
         {/* -- Links ---------------------------------------- */}
         <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <p style={{
-              fontFamily:    font.sans,
-              fontSize:      "var(--text-small)",
-              fontWeight:    500,
-              letterSpacing: "0.01em",
-              textTransform: "uppercase",
-              color:         c.muted,
-              margin:        "0 0 16px",
-            }}>
+            <Eyebrow style={{ margin: "0 0 16px" }}>
               Links
-            </p>
+            </Eyebrow>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
               {[
                 // Primary CTA — the live, deployed Wayfarer app (strongest proof of work)
@@ -388,9 +358,9 @@ export default function WayfarerCaseStudyLegacy() {
               fontSize:      "var(--text-body)",
               color:         c.body,
             }}>
-              <span style={{ color: c.muted, textTransform: "uppercase", letterSpacing: "0.01em", fontSize: "var(--text-small)", fontWeight: 500 }}>
+              <Eyebrow as="span">
                 Style guide
-              </span>
+              </Eyebrow>
               <span>
                 <span style={{ color: c.muted }}>Type · </span>Space Grotesk &middot; Inter
               </span>
@@ -431,9 +401,9 @@ export default function WayfarerCaseStudyLegacy() {
                     border:       `1px solid ${c.border}`,
                   }}
                 >
-                  <span className="cs-problem-label" style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.navy, minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
+                  <Eyebrow tone="accent" as="span" className="cs-problem-label" style={{ minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
                     {label}
-                  </span>
+                  </Eyebrow>
                   <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                     {text}
                   </p>
@@ -528,13 +498,13 @@ export default function WayfarerCaseStudyLegacy() {
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", margin: "16px 0 24px" }}>
               <div style={{ padding: "20px 24px", background: c.bgSection, border: `1px solid ${c.border}` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>Before</p>
+                <Eyebrow style={{ margin: "0 0 8px" }}>Before</Eyebrow>
                 <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                   One long form. All fields visible at once. Repetitive labels. No sense of progression. Users dropped out before reaching the personalization fields.
                 </p>
               </div>
               <div style={{ padding: "20px 24px", background: "rgba(62,60,120,0.06)", border: `1px solid #8E8AD9` }}>
-                <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.navy, margin: "0 0 8px" }}>After</p>
+                <Eyebrow tone="accent" style={{ margin: "0 0 8px" }}>After</Eyebrow>
                 <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                   Five steps, each collecting a different type of preference. Light commitment first; personalization later. The form mirrors the discovery experience the rest of the product asks the user to follow.
                 </p>
@@ -594,14 +564,7 @@ export default function WayfarerCaseStudyLegacy() {
             <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "20px", height: "1px", background: c.navy }} />
-                <span style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.onNavyMuted,
-                }}>The Product</span>
+                <Eyebrow tone="inverse" as="span">The Product</Eyebrow>
               </div>
               <h2 style={{
                 fontFamily:    font.display,
@@ -976,17 +939,9 @@ export default function WayfarerCaseStudyLegacy() {
                 }}>
                   Space Grotesk for headings.
                 </p>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
+                <Eyebrow style={{ margin: "0 0 8px" }}>
                   Display · 700 · -2% tracking
-                </p>
+                </Eyebrow>
                 <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Geometric sans with strong personality. Sized 60 / 48 / 32 / 24 px across H1 to H4 for editorial display moments.
                 </p>
@@ -1005,17 +960,9 @@ export default function WayfarerCaseStudyLegacy() {
                 }}>
                   Inter for body and UI. Legibility at scale, optimized for screen reading at small sizes and for predictable rhythm in long-form content.
                 </p>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
+                <Eyebrow style={{ margin: "0 0 8px" }}>
                   Sans · 400 · body
-                </p>
+                </Eyebrow>
                 <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Body, UI, and form labels. Sized 20 / 18 / 16 px. The workhorse, used everywhere outside the display layer.
                 </p>
@@ -1055,9 +1002,9 @@ export default function WayfarerCaseStudyLegacy() {
                 },
               ].map(({ label, colors }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 10px" }}>
+                  <Eyebrow style={{ margin: "0 0 10px" }}>
                     {label}
-                  </p>
+                  </Eyebrow>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "10px" }}>
                     {colors.map(({ name, hex }) => (
                       <div key={name} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 14px", background: c.surface, border: `1px solid ${c.border}` }}>
@@ -1129,7 +1076,7 @@ export default function WayfarerCaseStudyLegacy() {
                 { rule: "Positioning", spec: "Top-left across all viewports" },
               ].map(({ rule, spec }) => (
                 <div key={rule}>
-                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                  <Eyebrow style={{ margin: "0 0 4px" }}>{rule}</Eyebrow>
                   <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
                 </div>
               ))}
@@ -1148,7 +1095,7 @@ export default function WayfarerCaseStudyLegacy() {
                 { rule: "Icons",              spec: "Secondary icons in terra cotta (#D27A5E)" },
               ].map(({ rule, spec }) => (
                 <div key={rule}>
-                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 4px" }}>{rule}</p>
+                  <Eyebrow style={{ margin: "0 0 4px" }}>{rule}</Eyebrow>
                   <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: c.ink, margin: 0, lineHeight: 1.5 }}>{spec}</p>
                 </div>
               ))}
@@ -1254,22 +1201,8 @@ export default function WayfarerCaseStudyLegacy() {
               ].map(({ src, aspect, number, label, caption }) => (
                 <div key={src}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
-                    <span style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "var(--text-small)",
-                      fontWeight:    500,
-                      letterSpacing: "0.01em",
-                      textTransform: "uppercase",
-                      color:         c.accent,
-                    }}>{number}</span>
-                    <span style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "var(--text-small)",
-                      fontWeight:    500,
-                      letterSpacing: "0.01em",
-                      textTransform: "uppercase",
-                      color:         c.ink,
-                    }}>{label}</span>
+                    <Eyebrow tone="accent" as="span">{number}</Eyebrow>
+                    <Eyebrow tone="accent" as="span">{label}</Eyebrow>
                   </div>
                   <div style={{
                     position:    "relative",
@@ -1304,22 +1237,8 @@ export default function WayfarerCaseStudyLegacy() {
                   visual diagram + flow). */}
               <div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
-                  <span style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "var(--text-small)",
-                    fontWeight:    500,
-                    letterSpacing: "0.01em",
-                    textTransform: "uppercase",
-                    color:         c.accent,
-                  }}>05</span>
-                  <span style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "var(--text-small)",
-                    fontWeight:    500,
-                    letterSpacing: "0.01em",
-                    textTransform: "uppercase",
-                    color:         c.ink,
-                  }}>SITE MAP &amp; USER FLOW</span>
+                  <Eyebrow tone="accent" as="span">05</Eyebrow>
+                  <Eyebrow tone="accent" as="span">SITE MAP &amp; USER FLOW</Eyebrow>
                 </div>
 
                 <div style={{
@@ -1328,15 +1247,7 @@ export default function WayfarerCaseStudyLegacy() {
                   padding:    "clamp(24px, 3.5vw, 44px)",
                 }}>
                   {/* SITE MAP */}
-                  <p style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "var(--text-small)",
-                    fontWeight:    500,
-                    letterSpacing: "0.01em",
-                    textTransform: "uppercase",
-                    color:         c.muted,
-                    margin:        "0 0 14px",
-                  }}>Site Map</p>
+                  <Eyebrow style={{ margin: "0 0 14px" }}>Site Map</Eyebrow>
 
                   <div style={{
                     background: c.surface,
@@ -1401,15 +1312,7 @@ export default function WayfarerCaseStudyLegacy() {
                   </div>
 
                   {/* PRIMARY USER FLOW */}
-                  <p style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "var(--text-small)",
-                    fontWeight:    500,
-                    letterSpacing: "0.01em",
-                    textTransform: "uppercase",
-                    color:         c.muted,
-                    margin:        "32px 0 14px",
-                  }}>Primary User Flow &middot; Curiosity to Commitment</p>
+                  <Eyebrow style={{ margin: "32px 0 14px" }}>Primary User Flow &middot; Curiosity to Commitment</Eyebrow>
 
                   <div style={{
                     display:             "grid",
@@ -1429,15 +1332,7 @@ export default function WayfarerCaseStudyLegacy() {
                         border:     `1px solid ${c.border}`,
                         padding:    "14px",
                       }}>
-                        <p style={{
-                          fontFamily:    font.sans,
-                          fontSize:      "var(--text-small)",
-                          fontWeight:    500,
-                          letterSpacing: "0.01em",
-                          textTransform: "uppercase",
-                          color:         c.accent,
-                          margin:        "0 0 6px",
-                        }}>Step {step}</p>
+                        <Eyebrow tone="accent" style={{ margin: "0 0 6px" }}>Step {step}</Eyebrow>
                         <p style={{
                           fontFamily:    font.sans,
                           fontSize:      "var(--text-article)",
@@ -1532,15 +1427,7 @@ export default function WayfarerCaseStudyLegacy() {
               background: c.bgSection,
               border:     `1px solid ${c.border}`,
             }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>Test Protocol</p>
+              <Eyebrow style={{ margin: "0 0 12px" }}>Test Protocol</Eyebrow>
               <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 Moderated usability test. 5&ndash;6 participants matching the target persona (adventurous travelers 21&ndash;30, travel research behavior in the last 6 months). Three task scenarios: discover a destination using the globe, complete the signup flow, and build a 3-day itinerary. Think-aloud protocol. 40 minutes per session.
               </p>
@@ -1613,9 +1500,9 @@ export default function WayfarerCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
             <div style={{ maxWidth: "640px" }}>
-              <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: "#D27A5E", margin: "0 0 12px" }}>
+              <Eyebrow tone="accent" style={{ margin: "0 0 12px" }}>
                 Source
-              </p>
+              </Eyebrow>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px,3vw,28px)", fontWeight: 500, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 The whole project lives in Figma.
               </p>
@@ -1662,9 +1549,9 @@ export default function WayfarerCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
-              <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
+              <Eyebrow style={{ margin: "0 0 8px" }}>
                 Next Case Study
-              </p>
+              </Eyebrow>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px,3vw,28px)", color: c.ink, margin: 0 }}>
                 Men&apos;s Sole Revival
               </p>
@@ -1736,16 +1623,9 @@ function Section({ label, title, children }: { label: string; title: string; chi
       }}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", marginBottom: "32px" }}>
-        <span style={{
-          fontFamily:    f.sans,
-          fontSize:      "var(--text-small)",
-          fontWeight:    500,
-          letterSpacing: "0.01em",
-          textTransform: "uppercase",
-          color:         c2.accent,
-        }}>
+        <Eyebrow tone="accent" as="span">
           {label}
-        </span>
+        </Eyebrow>
         <h2
           style={{
             fontFamily:    f.display,
@@ -1773,17 +1653,9 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
       borderLeft:  `3px solid ${c2.navy}`,
     }}>
       {label && (
-        <p style={{
-          fontFamily:    f.sans,
-          fontSize:      "var(--text-small)",
-          fontWeight:    500,
-          letterSpacing: "0.01em",
-          textTransform: "uppercase" as const,
-          color:         c2.navy,
-          margin:        "0 0 10px",
-        }}>
+        <Eyebrow style={{ margin: "0 0 10px" }}>
           {label}
-        </p>
+        </Eyebrow>
       )}
       <p style={{
         fontFamily:  f.display,

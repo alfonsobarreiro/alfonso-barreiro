@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LogoMark from "./LogoMark";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /* ─────────────────────────────────────────────
    Tokens — cream footer, aubergine ink
@@ -129,17 +130,9 @@ export default function Footer() {
               }}>
                 Alfonso <span style={{ color: brand }}>Barreiro</span>
               </span>
-              <span style={{
-                fontFamily:    font,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         muted,
-                lineHeight:    1,
-              }}>
+              <Eyebrow as="span">
                 UX / UI Designer · Portland, OR
-              </span>
+              </Eyebrow>
             </div>
           </div>
 

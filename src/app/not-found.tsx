@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export const metadata: Metadata = {
   title: "Lost · Alfonso Barreiro",
@@ -82,19 +83,9 @@ export default function NotFound() {
                 flexShrink: 0,
               }}
             />
-            <p
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         "#3D4440",
-                margin:        0,
-              }}
-            >
+            <Eyebrow style={{ margin: 0 }}>
               That page isn&apos;t here · 404
-            </p>
+            </Eyebrow>
           </div>
 
           {/* Editorial headline */}

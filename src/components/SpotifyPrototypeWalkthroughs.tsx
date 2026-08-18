@@ -1,3 +1,4 @@
+import { Eyebrow } from '@/components/ui/Eyebrow';
 const c = {
   ink:         "#252B28",
   body:        "#3D4440",
@@ -113,19 +114,9 @@ export default function SpotifyPrototypeWalkthroughs() {
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
         {/* Eyebrow */}
-        <p
-          style={{
-            fontFamily:    font.sans,
-            fontSize:      "var(--text-small)",
-            fontWeight:    500,
-            letterSpacing: "0.01em",
-            textTransform: "uppercase",
-            color:         c.muted,
-            margin:        "0 0 16px",
-          }}
-        >
+        <Eyebrow style={{ margin: "0 0 16px" }}>
           Prototype Walkthroughs
-        </p>
+        </Eyebrow>
 
         {/* Section title */}
         <h2
@@ -298,18 +289,9 @@ export default function SpotifyPrototypeWalkthroughs() {
                     role="img"
                     aria-label={`Prototype recording placeholder for ${flow.chip.toLowerCase()} flow`}
                   >
-                    <span
-                      style={{
-                        fontFamily:    font.sans,
-                        fontSize:      "var(--text-small)",
-                        fontWeight:    500,
-                        letterSpacing: "0.01em",
-                        textTransform: "uppercase",
-                        color:         c.muted,
-                      }}
-                    >
+                    <Eyebrow as="span">
                       Prototype Recording
-                    </span>
+                    </Eyebrow>
                     <span
                       style={{
                         fontFamily: font.sans,
@@ -326,19 +308,9 @@ export default function SpotifyPrototypeWalkthroughs() {
 
                 {/* Annotations */}
                 <div>
-                  <p
-                    style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "var(--text-small)",
-                      fontWeight:    500,
-                      letterSpacing: "0.01em",
-                      textTransform: "uppercase",
-                      color:         c.muted,
-                      margin:        "0 0 16px",
-                    }}
-                  >
+                  <Eyebrow style={{ margin: "0 0 16px" }}>
                     What the walkthrough shows
-                  </p>
+                  </Eyebrow>
 
                   <ol
                     style={{

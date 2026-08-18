@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MSRPagePeek from "@/components/MSRPagePeek";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /* Legacy MSR case study (v1). v2 is now the canonical version at
    /work/mens-sole-revival. This route exists for local-only reference
@@ -97,16 +98,9 @@ export default function MSRCaseStudyLegacy() {
             {/* Eyebrow */}
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.accent }} />
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.accent,
-              }}>
+              <Eyebrow tone="accent" as="span">
                 Men&apos;s Sole Revival &middot; UX Case Study
-              </span>
+              </Eyebrow>
             </div>
 
             <h1 style={{
@@ -149,9 +143,9 @@ export default function MSRCaseStudyLegacy() {
                 { label: "Outcome",  value: "Research-driven pivot from e-commerce to content authority." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 4px" }}>
+                  <Eyebrow tone="accent" style={{ margin: "0 0 4px" }}>
                     {label}
-                  </p>
+                  </Eyebrow>
                   <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: "rgba(245,243,239,0.75)", margin: 0 }}>
                     {value}
                   </p>
@@ -167,17 +161,9 @@ export default function MSRCaseStudyLegacy() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "24px", height: "1px", background: c.accent }} />
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.accent,
-                  margin:        0,
-                }}>
+                <Eyebrow tone="accent" style={{ margin: 0 }}>
                   What&apos;s downstream
-                </p>
+                </Eyebrow>
               </div>
 
               <div style={{
@@ -218,17 +204,9 @@ export default function MSRCaseStudyLegacy() {
                         style={{ objectFit: external ? "cover" : "contain", objectPosition: "center" }}
                       />
                     </div>
-                    <p style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "var(--text-small)",
-                      fontWeight:    500,
-                      letterSpacing: "0.01em",
-                      textTransform: "uppercase",
-                      color:         "rgba(245,243,239,0.75)",
-                      margin:        "10px 0 0",
-                    }}>
+                    <Eyebrow tone="inverse" style={{ margin: "10px 0 0" }}>
                       {label}
-                    </p>
+                    </Eyebrow>
                   </Link>
                 ))}
               </div>
@@ -239,17 +217,9 @@ export default function MSRCaseStudyLegacy() {
         {/* -- Links ---------------------------------------- */}
         <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <p style={{
-              fontFamily:    font.sans,
-              fontSize:      "var(--text-small)",
-              fontWeight:    500,
-              letterSpacing: "0.01em",
-              textTransform: "uppercase",
-              color:         c.muted,
-              margin:        "0 0 16px",
-            }}>
+            <Eyebrow style={{ margin: "0 0 16px" }}>
               Links
-            </p>
+            </Eyebrow>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
               {[
                 // Primary CTA — the live, deployed product (strongest proof of work)
@@ -355,15 +325,7 @@ export default function MSRCaseStudyLegacy() {
                   background:  c.surface,
                   borderRight: i < arr.length - 1 ? `1px solid ${c.border}` : "none",
                 }}>
-                  <p style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "var(--text-small)",
-                    fontWeight:    500,
-                    letterSpacing: "0.01em",
-                    textTransform: "uppercase",
-                    color:         c.accent,
-                    margin:        "0 0 12px",
-                  }}>{caption}</p>
+                  <Eyebrow tone="accent" style={{ margin: "0 0 12px" }}>{caption}</Eyebrow>
                   <p style={{
                     fontFamily:    font.display,
                     fontSize:      "clamp(28px,4vw,40px)",
@@ -947,13 +909,9 @@ export default function MSRCaseStudyLegacy() {
                     border:     status === "Chosen" ? `1px solid rgba(196,112,58,0.25)` : `1px solid ${c.border}`,
                   }}
                 >
-                  <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase",
-                    color: status === "Chosen" ? c.accent : status === "Rejected" ? c.muted : c.accent,
-                    minWidth: "160px", flexShrink: 0, paddingTop: "2px",
-                  }}>
+                  <Eyebrow as="span" className="cs-problem-label" style={{ minWidth: "160px", flexShrink: 0, paddingTop: "2px" }}>
                     {name} · {status}
-                  </span>
+                  </Eyebrow>
                   <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                     {reason}
                   </p>
@@ -963,17 +921,9 @@ export default function MSRCaseStudyLegacy() {
 
             {/* Brand screenshots */}
             <div style={{ marginTop: "32px" }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>
+              <Eyebrow style={{ margin: "0 0 12px" }}>
                 Visual Directions Explored
-              </p>
+              </Eyebrow>
               {/* Row 1: Rejected directions — half-width, paired, with REJECTED overlay */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
                 {[
@@ -1005,17 +955,9 @@ export default function MSRCaseStudyLegacy() {
 
               {/* Row 2: Wireframe explorations — three directions, the chosen one wins on bottom */}
               <div style={{ marginTop: "16px" }}>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 12px",
-                }}>
+                <Eyebrow style={{ margin: "0 0 12px" }}>
                   Wireframe Explorations
-                </p>
+                </Eyebrow>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
                   {[
                     {
@@ -1039,17 +981,9 @@ export default function MSRCaseStudyLegacy() {
                       border:     verdict === "Chosen" ? `2px solid ${c.accent}` : `1px solid ${c.border}`,
                       background: verdict === "Chosen" ? "rgba(196,112,58,0.04)" : c.surface,
                     }}>
-                      <p style={{
-                        fontFamily:    font.sans,
-                        fontSize:      "var(--text-small)",
-                        fontWeight:    500,
-                        letterSpacing: "0.01em",
-                        textTransform: "uppercase",
-                        color:         verdict === "Chosen" ? c.accent : c.muted,
-                        margin:        "0 0 8px",
-                      }}>
+                      <Eyebrow style={{ margin: "0 0 8px" }}>
                         {name} &middot; {verdict}
-                      </p>
+                      </Eyebrow>
                       <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.5, color: c.body, margin: 0 }} dangerouslySetInnerHTML={{ __html: desc }} />
                     </div>
                   ))}
@@ -1119,17 +1053,13 @@ export default function MSRCaseStudyLegacy() {
                     border:     status === "Chosen" ? `1px solid rgba(196,112,58,0.25)` : `1px solid ${c.border}`,
                   }}
                 >
-                  <span className="cs-problem-label" style={{
-                    fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase",
-                    color: status === "Chosen" ? c.accent : c.muted,
-                    minWidth: "200px", flexShrink: 0, paddingTop: "2px",
-                  }}>
+                  <Eyebrow as="span" className="cs-problem-label" style={{ minWidth: "200px", flexShrink: 0, paddingTop: "2px" }}>
                     {name} · {status}
-                  </span>
+                  </Eyebrow>
                   <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 6px" }}>
+                    <Eyebrow style={{ margin: "0 0 6px" }}>
                       {typeface}
-                    </p>
+                    </Eyebrow>
                     <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                       {reason}
                     </p>
@@ -1140,17 +1070,9 @@ export default function MSRCaseStudyLegacy() {
 
             {/* M01 chosen mark in 4 colorways */}
             <div style={{ marginTop: "32px" }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>
+              <Eyebrow style={{ margin: "0 0 12px" }}>
                 Chosen mark · four colorways
-              </p>
+              </Eyebrow>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px" }}>
                 {[
                   { name: "Navy",     hex: "#1C3F5E" },
@@ -1173,9 +1095,9 @@ export default function MSRCaseStudyLegacy() {
                         style={{ objectFit: "cover" }}
                       />
                     </div>
-                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.ink, margin: "8px 0 2px" }}>
+                    <Eyebrow tone="accent" style={{ margin: "8px 0 2px" }}>
                       {name}
-                    </p>
+                    </Eyebrow>
                     <p style={{ fontFamily: "monospace", fontSize: "var(--text-small)", color: c.muted, margin: 0 }}>
                       {hex}
                     </p>
@@ -1199,17 +1121,9 @@ export default function MSRCaseStudyLegacy() {
                 background:   c.bgSection,
                 borderBottom: `1px solid ${c.border}`,
               }}>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        0,
-                }}>
+                <Eyebrow style={{ margin: 0 }}>
                   Key Design Decisions
-                </p>
+                </Eyebrow>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
                 {[
@@ -1226,9 +1140,9 @@ export default function MSRCaseStudyLegacy() {
                       borderRight: i < 3 ? `1px solid ${c.border}` : "none",
                     }}
                   >
-                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
+                    <Eyebrow tone="accent" style={{ margin: "0 0 8px" }}>
                       {area}
-                    </p>
+                    </Eyebrow>
                     <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.35 }}>
                       {decision}
                     </p>
@@ -1263,17 +1177,9 @@ export default function MSRCaseStudyLegacy() {
                 }}>
                   Barlow Condensed for display headlines
                 </p>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
+                <Eyebrow style={{ margin: "0 0 8px" }}>
                   Display · 600 · uppercase
-                </p>
+                </Eyebrow>
                 <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Authority and presence. Used at the largest scale where a headline has to land in a glance.
                 </p>
@@ -1293,17 +1199,9 @@ export default function MSRCaseStudyLegacy() {
                 }}>
                   &ldquo;Lora for editorial subheads and quotes.&rdquo;
                 </p>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
+                <Eyebrow style={{ margin: "0 0 8px" }}>
                   Serif · 400 italic · sub-display
-                </p>
+                </Eyebrow>
                 <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Readable and approachable. Used for pull quotes, editorial subheads, and decision-note bodies.
                 </p>
@@ -1322,17 +1220,9 @@ export default function MSRCaseStudyLegacy() {
                 }}>
                   DM Sans for body copy and UI. Legibility at scale, optimized for screen reading at small sizes and for predictable rhythm in long-form content.
                 </p>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        "0 0 8px",
-                }}>
+                <Eyebrow style={{ margin: "0 0 8px" }}>
                   Sans · 400 · body
-                </p>
+                </Eyebrow>
                 <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0, maxWidth: "640px" }}>
                   Body and UI. The workhorse. Used for everything that is not a headline or a quote.
                 </p>
@@ -1426,22 +1316,8 @@ export default function MSRCaseStudyLegacy() {
               ].map(({ src, aspect, number, label, caption }) => (
                 <div key={src}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
-                    <span style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "var(--text-small)",
-                      fontWeight:    500,
-                      letterSpacing: "0.01em",
-                      textTransform: "uppercase",
-                      color:         c.accent,
-                    }}>{number}</span>
-                    <span style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "var(--text-small)",
-                      fontWeight:    500,
-                      letterSpacing: "0.01em",
-                      textTransform: "uppercase",
-                      color:         c.ink,
-                    }}>{label}</span>
+                    <Eyebrow tone="accent" as="span">{number}</Eyebrow>
+                    <Eyebrow tone="accent" as="span">{label}</Eyebrow>
                   </div>
                   <div style={{
                     position:    "relative",
@@ -1482,14 +1358,7 @@ export default function MSRCaseStudyLegacy() {
             <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "20px", height: "1px", background: c.accent }} />
-                <span style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.accent,
-                }}>The Product</span>
+                <Eyebrow tone="accent" as="span">The Product</Eyebrow>
               </div>
               <h2 style={{
                 fontFamily:    font.display,
@@ -1712,15 +1581,7 @@ export default function MSRCaseStudyLegacy() {
               border:     `1px solid ${c.border}`,
               borderLeft: `3px solid ${c.brand}`,
             }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.accent,
-                margin:        "0 0 10px",
-              }}>Early outcomes &middot; first 9 weeks live (GA4, Apr&ndash;Jun 2026)</p>
+              <Eyebrow tone="accent" style={{ margin: "0 0 10px" }}>Early outcomes &middot; first 9 weeks live (GA4, Apr&ndash;Jun 2026)</Eyebrow>
               <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: "0 0 8px" }}>
                 <strong style={{ color: c.ink }}>4m 53s average engaged time per session.</strong> High for a content site, and the exact signal MSR was built to produce: visitors stay to read, they don&apos;t bounce.
               </p>
@@ -1740,15 +1601,7 @@ export default function MSRCaseStudyLegacy() {
               border:     `1px solid ${c.border}`,
               borderLeft: `3px solid ${c.brand}`,
             }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.accent,
-                margin:        "0 0 10px",
-              }}>Validation approach</p>
+              <Eyebrow tone="accent" style={{ margin: "0 0 10px" }}>Validation approach</Eyebrow>
               <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: "0 0 8px" }}>
                 <strong style={{ color: c.ink }}>Phase 1 (0&ndash;3 months):</strong> Content publishing cadence, organic search impressions, Reddit community engagement. Signal: is anyone finding this?
               </p>
@@ -1801,15 +1654,7 @@ export default function MSRCaseStudyLegacy() {
               background: c.bgSection,
               border:     `1px solid ${c.border}`,
             }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 10px",
-              }}>Decision criteria</p>
+              <Eyebrow style={{ margin: "0 0 10px" }}>Decision criteria</Eyebrow>
               <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 If Phase 1 signals are flat after 3 months of consistent publishing, the content strategy hypothesis is wrong. Revisit topic selection, distribution channels, and SEO targeting before investing in Phase 2 metrics. If review page time-on-page is below threshold, the e-commerce layout assumption needs usability testing. The plan is designed to fail fast and fail specifically.
               </p>
@@ -1890,9 +1735,9 @@ export default function MSRCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "32px" }}>
             <div style={{ maxWidth: "640px" }}>
-              <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.accent, margin: "0 0 12px" }}>
+              <Eyebrow tone="accent" style={{ margin: "0 0 12px" }}>
                 Source
-              </p>
+              </Eyebrow>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px,3vw,28px)", fontWeight: 400, color: "#F5F5F4", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 The whole project lives in Figma.
               </p>
@@ -1938,9 +1783,9 @@ export default function MSRCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
-              <p style={{ fontFamily: font.sans, fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
+              <Eyebrow style={{ margin: "0 0 8px" }}>
                 Next Case Study
-              </p>
+              </Eyebrow>
               <p style={{ fontFamily: font.display, fontSize: "clamp(20px,3vw,28px)", color: c.ink, margin: 0 }}>
                 Spotify: Recently Played Controls
               </p>
@@ -2013,16 +1858,9 @@ function Section({ label, title, children }: { label: string; title: string; chi
       }}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", marginBottom: "32px" }}>
-        <span style={{
-          fontFamily:    f.sans,
-          fontSize:      "var(--text-small)",
-          fontWeight:    500,
-          letterSpacing: "0.01em",
-          textTransform: "uppercase",
-          color:         c2.accent,
-        }}>
+        <Eyebrow tone="accent" as="span">
           {label}
-        </span>
+        </Eyebrow>
         <h2
           style={{
             fontFamily:    f.display,
@@ -2050,17 +1888,9 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
       borderLeft:  `3px solid ${c2.brand}`,
     }}>
       {label && (
-        <p style={{
-          fontFamily:    f.sans,
-          fontSize:      "var(--text-small)",
-          fontWeight:    500,
-          letterSpacing: "0.01em",
-          textTransform: "uppercase" as const,
-          color:         c2.accent,
-          margin:        "0 0 10px",
-        }}>
+        <Eyebrow tone="accent" style={{ margin: "0 0 10px" }}>
           {label}
-        </p>
+        </Eyebrow>
       )}
       <p style={{
         fontFamily:  f.display,

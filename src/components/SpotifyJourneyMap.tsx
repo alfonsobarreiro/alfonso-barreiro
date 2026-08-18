@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 const c = {
   ink:         "#252B28",
@@ -32,19 +33,9 @@ export default function SpotifyJourneyMap() {
         {/* ── Eyebrow ── */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
           <span style={{ width: "24px", height: "1px", background: c.muted }} />
-          <p
-            style={{
-              fontFamily:    font.sans,
-              fontSize:      "var(--text-small)",
-              fontWeight:    500,
-              letterSpacing: "0.01em",
-              textTransform: "uppercase",
-              color:         c.muted,
-              margin:        0,
-            }}
-          >
+          <Eyebrow style={{ margin: 0 }}>
             User Journey Map · Ranger Dave · 7 Stages
-          </p>
+          </Eyebrow>
         </div>
 
         {/* ── Full map, section width ── */}

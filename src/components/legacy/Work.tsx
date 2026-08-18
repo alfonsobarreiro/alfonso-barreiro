@@ -6,6 +6,7 @@ import Image from "next/image";
 import MSRPagePeek from "@/components/legacy/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/legacy/WayfarerGlobePeek";
 import SpotifyFramedAnimation from "@/components/legacy/SpotifyFramedAnimation";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 interface Project {
   title:       string;
@@ -167,19 +168,9 @@ export default function Work() {
                   background: "var(--color-accent)",
                 }}
               />
-              <p
-                style={{
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         "#8A8680",
-                  margin:        0,
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                }}
-              >
+              <Eyebrow style={{ margin: 0 }}>
                 Selected Work · 2026
-              </p>
+              </Eyebrow>
             </div>
             <h2
               style={{
@@ -321,17 +312,9 @@ function ProjectCard({
           zIndex:         5,
         }}
       >
-        <p style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "var(--text-small)",
-          fontWeight:    500,
-          letterSpacing: "0.01em",
-          textTransform: "uppercase",
-          color:         "var(--color-accent)",
-          margin:        "0 0 6px",
-        }}>
+        <Eyebrow tone="accent" style={{ margin: "0 0 6px" }}>
           {project.tags[0]} · {project.meta.split(" · ").pop()}
-        </p>
+        </Eyebrow>
         <p style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "clamp(15px,1.4vw,17px)",

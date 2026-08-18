@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -99,19 +100,9 @@ export default function Contact() {
               marginBottom: "28px",
             }}
           >
-            <p
-              style={{
-                fontSize:      "var(--text-small)",
-                fontWeight:    500,
-                letterSpacing: "0.01em",
-                textTransform: "uppercase",
-                color:         "rgba(245,243,239,0.45)",
-                margin:        0,
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-              }}
-            >
+            <Eyebrow tone="inverse" style={{ margin: 0 }}>
               Contact
-            </p>
+            </Eyebrow>
           </div>
 
           <h2

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -58,17 +59,9 @@ export default function ContactPage() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
                 <span style={{ display: "inline-block", width: "24px", height: "1px", background: c.accent }} />
-                <p style={{
-                  fontFamily:    font,
-                  fontSize:      "var(--text-small)",
-                  fontWeight:    500,
-                  letterSpacing: "0.01em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        0,
-                }}>
+                <Eyebrow style={{ margin: 0 }}>
                   Contact
-                </p>
+                </Eyebrow>
               </div>
               <h1 id="contact-heading" style={{
                 fontFamily:    font,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 const c = {
   ink:     "#1A2236",
@@ -60,18 +61,9 @@ export default function GlobeIframeDemo() {
       }}
     >
       <header style={{ marginBottom: "20px" }}>
-        <span style={{
-          fontFamily:    font.sans,
-          fontSize:      "var(--text-small)",
-          fontWeight:    500,
-          letterSpacing: "0.01em",
-          color:         c.coral,
-          textTransform: "uppercase",
-          display:       "block",
-          marginBottom:  "10px",
-        }}>
+        <Eyebrow tone="accent" as="span" style={{ marginBottom: "10px" }}>
           Live · embedded
-        </span>
+        </Eyebrow>
         <h3 style={{
           fontFamily:    font.sans,
           fontSize:      "clamp(20px,2.4vw,28px)",
@@ -210,17 +202,9 @@ export default function GlobeIframeDemo() {
           marginTop:      "16px",
         }}
       >
-        <p style={{
-          fontFamily:    font.sans,
-          fontSize:      "var(--text-small)",
-          fontWeight:    500,
-          letterSpacing: "0.01em",
-          textTransform: "uppercase",
-          color:         c.muted,
-          margin:        0,
-        }}>
+        <Eyebrow style={{ margin: 0 }}>
           Click any pin · sticky card opens on the right
-        </p>
+        </Eyebrow>
         <a
           href={LIVE_ROOT_URL}
           target="_blank"
