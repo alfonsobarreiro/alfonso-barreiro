@@ -154,6 +154,19 @@ export default function Work() {
             >
               Work
             </h2>
+            <p
+              style={{
+                fontFamily:    "var(--font-dm-sans), sans-serif",
+                fontSize:      "17px",
+                lineHeight:    1.5,
+                fontWeight:    400,
+                color:         "var(--color-neutral-600)",
+                margin:        "12px 0 0",
+                maxWidth:      "640px",
+              }}
+            >
+              Three products. Concept, live, and shipped since 2025.
+            </p>
           </div>
         </div>
 
