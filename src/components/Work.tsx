@@ -122,7 +122,7 @@ export default function Work() {
       ref={sectionRef}
       className="work-section"
       style={{
-        padding:    "clamp(48px, 6vw, 80px) clamp(32px, 6vw, 80px) clamp(80px, 9vw, 128px)",
+        padding:    "clamp(24px, 4vw, 56px) clamp(32px, 6vw, 80px) clamp(80px, 9vw, 128px)",
         background: "var(--color-paper)",
         borderTop:  "none",
         overflowX:  "clip",
@@ -170,7 +170,7 @@ export default function Work() {
         >
           {projects.map((project, idx) => (
             <div key={project.title} className="scroll-reveal">
-              <ProjectCard project={project} index={idx} imageOnRight={idx % 2 === 1} />
+              <ProjectCard project={project} index={idx} imageOnRight={idx % 2 === 0} />
             </div>
           ))}
         </div>
