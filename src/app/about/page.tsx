@@ -270,12 +270,12 @@ export default function AboutPage() {
                   }}
                 >
                   <Image
-                    src="/about-hero.jpg"
-                    alt="A designer's hand sketching lettering in a notebook on a warm wooden desk, wristwatch visible, DSLR and laptop in the frame."
+                    src="/Alfonso-Barreiro-outdoors.png"
+                    alt="Alfonso Barreiro outdoors in Portland."
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 540px"
-                    style={{ objectFit: "cover", objectPosition: "35% center" }}
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                   />
                 </div>
               </div>

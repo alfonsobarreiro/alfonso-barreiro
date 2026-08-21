@@ -141,9 +141,12 @@ export default function NotFound() {
             {[
               { label: "Three case studies",  href: "/#work",  meta: "MSR · Spotify · Wayfarer" },
               { label: "How I work",          href: "/about",  meta: "About · 15-year arc"     },
-              { label: "Get in touch",        href: "/contact",meta: "Coffee in Portland?"     },
-            ].map((d) => (
-              <Link
+              { label: "Get in touch",        href: "mailto:alfonso@barreiro.com", meta: "Coffee in Portland?"     },
+            ].map((d) => {
+              const isExternal = d.href.startsWith("mailto:") || d.href.startsWith("http");
+              const Tag: React.ElementType = isExternal ? "a" : Link;
+              return (
+              <Tag
                 key={d.href}
                 href={d.href}
                 style={{
@@ -180,8 +183,9 @@ export default function NotFound() {
                 >
                   {d.meta}
                 </p>
-              </Link>
-            ))}
+              </Tag>
+              );
+            })}
           </div>
 
           {/* Primary CTA */}
