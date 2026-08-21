@@ -50,7 +50,7 @@ export function AvailabilityBadge({ variant = "inline", style }: AvailabilityBad
         <span
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "12px",
+            fontSize:      "var(--text-small)",
             fontWeight:    500,
             letterSpacing: "0.01em",
             color:         "var(--color-text)",
@@ -68,7 +68,7 @@ export function AvailabilityBadge({ variant = "inline", style }: AvailabilityBad
     <p
       style={{
         fontFamily:  "var(--font-dm-sans), sans-serif",
-        fontSize:    "15px",
+        fontSize:    "var(--text-body)",
         lineHeight:  1.5,
         color:       "var(--color-text)",
         margin:      0,

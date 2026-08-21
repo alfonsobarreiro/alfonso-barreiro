@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 const c = {
   ink:         "#252B28",
@@ -32,19 +33,9 @@ export default function SpotifyJourneyMap() {
         {/* ── Eyebrow ── */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
           <span style={{ width: "24px", height: "1px", background: c.muted }} />
-          <p
-            style={{
-              fontFamily:    font.sans,
-              fontSize:      "11px",
-              fontWeight:    500,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color:         c.muted,
-              margin:        0,
-            }}
-          >
+          <Eyebrow style={{ margin: 0 }}>
             User Journey Map · Ranger Dave · 7 Stages
-          </p>
+          </Eyebrow>
         </div>
 
         {/* ── Full map, section width ── */}
@@ -78,12 +69,12 @@ export default function SpotifyJourneyMap() {
           <h3
             style={{
               fontFamily:    font.display,
-              fontSize:      "clamp(20px, 2.4vw, 28px)",
+              fontSize:      "clamp(20px,2.4vw,28px)",
               fontWeight:    400,
               color:         c.ink,
               margin:        "0 0 12px",
               letterSpacing: "-0.02em",
-              lineHeight:    1.2,
+              lineHeight:    1.15,
             }}
           >
             The gap between seeing a control and trusting it.
@@ -91,8 +82,8 @@ export default function SpotifyJourneyMap() {
           <p
             style={{
               fontFamily: font.sans,
-              fontSize:   "15px",
-              lineHeight: 1.7,
+              fontSize:   "var(--text-body)",
+              lineHeight: 1.6,
               color:      c.body,
               margin:     0,
             }}

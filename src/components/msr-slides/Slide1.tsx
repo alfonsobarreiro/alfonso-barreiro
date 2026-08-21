@@ -27,14 +27,14 @@ export default function Slide1() {
           </div>
           <div className="flex-1 flex flex-col justify-center -mt-4">
             <div className="w-1 h-16 rounded-full mb-7" style={{ background: "#C4703A" }} />
-            <p className="font-heading italic leading-relaxed mb-6" style={{ color: "#6B6560", fontSize: 19 }}>
+            <p className="font-heading italic leading-relaxed mb-6" style={{ color: "#6B6560", fontSize: "var(--text-article)" }}>
               The right research question is worth more than the right Shopify plugin.
             </p>
-            <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 14 }}>
+            <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: "var(--text-body)" }}>
               63% of Americans report foot pain. 12% see a doctor. I built the resource that should exist between those two numbers.
             </p>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 font-body" style={{ color: "#6B6560", fontSize: 11 }}>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 font-body" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>
             <span><span style={{ color: "#534F4B" }}>Role:</span> UX/UI Design, Product Strategy</span>
             <span style={{ color: "#C4703A" }}>&middot;</span>
             <span><span style={{ color: "#534F4B" }}>Type:</span> Self-initiated</span>
@@ -51,10 +51,10 @@ export default function Slide1() {
           <div className="flex items-center justify-between px-8 py-3" style={{ background: "#0C1A26", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
             <div className="flex items-center gap-6">
               {["Home","Guides","Reviews","Routines","Assessment"].map((item, i) => (
-                <span key={item} className="font-body" style={{ color: i === 0 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.4)", fontSize: 11, fontWeight: i === 0 ? 500 : 400 }}>{item}</span>
+                <span key={item} className="font-body" style={{ color: i === 0 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.4)", fontSize: "var(--text-small)", fontWeight: i === 0 ? 500 : 400 }}>{item}</span>
               ))}
             </div>
-            <div className="rounded-sm px-3 py-1 font-body font-medium" style={{ background: "#C4703A", color: "#FFFFFF", fontSize: 10 }}>Take Assessment</div>
+            <div className="rounded-sm px-3 py-1 font-body font-medium" style={{ background: "#C4703A", color: "#FFFFFF", fontSize: "var(--text-small)" }}>Take Assessment</div>
           </div>
 
           {/* Hero */}
@@ -65,18 +65,18 @@ export default function Slide1() {
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #13100C 0%, transparent 50%)" }} />
             </div>
             <div className="relative z-10 flex-1 flex flex-col justify-center px-10 py-10">
-              <p className="font-body font-semibold uppercase tracking-widest mb-3" style={{ color: "#C4703A", fontSize: 9 }}>For men over 40 who are finally paying attention.</p>
-              <h2 className="font-display uppercase leading-[0.95] tracking-tight" style={{ color: "#FFFFFF", fontSize: 42, fontWeight: 500 }}>Fix your feet.<br />Keep up with<br />everything else.</h2>
-              <p className="font-body leading-relaxed mt-5 max-w-[380px]" style={{ color: "rgba(255,255,255,0.6)", fontSize: 11 }}>Foot problems don&rsquo;t stay in your feet. They change how your knees load, how your hips move, and how your back feels by evening.</p>
+              <p className="font-body font-semibold uppercase tracking-widest mb-3" style={{ color: "#C4703A", fontSize: "var(--text-small)" }}>For men over 40 who are finally paying attention.</p>
+              <h2 className="font-display uppercase leading-[0.95] tracking-tight" style={{ color: "#FFFFFF", fontSize: "var(--text-h1)", fontWeight: 500 }}>Fix your feet.<br />Keep up with<br />everything else.</h2>
+              <p className="font-body leading-relaxed mt-5 max-w-[380px]" style={{ color: "rgba(255,255,255,0.6)", fontSize: "var(--text-small)" }}>Foot problems don&rsquo;t stay in your feet. They change how your knees load, how your hips move, and how your back feels by evening.</p>
               <div className="flex gap-2 mt-5">
-                <div className="rounded-sm px-4 py-2 font-body font-semibold" style={{ background: "#C4703A", color: "#FFFFFF", fontSize: 10 }}>Take the Assessment</div>
-                <div className="rounded-sm px-4 py-2 font-body font-semibold" style={{ border: "1px solid rgba(255,255,255,0.4)", color: "rgba(255,255,255,0.7)", fontSize: 10 }}>Browse Guides</div>
+                <div className="rounded-sm px-4 py-2 font-body font-semibold" style={{ background: "#C4703A", color: "#FFFFFF", fontSize: "var(--text-small)" }}>Take the Assessment</div>
+                <div className="rounded-sm px-4 py-2 font-body font-semibold" style={{ border: "1px solid rgba(255,255,255,0.4)", color: "rgba(255,255,255,0.7)", fontSize: "var(--text-small)" }}>Browse Guides</div>
               </div>
             </div>
             <div className="relative z-10 flex items-center px-4 py-2" style={{ background: "rgba(19,16,12,0.7)", borderTop: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(8px)" }}>
-              <span className="font-body font-bold uppercase tracking-widest mr-4 pr-4" style={{ color: "rgba(255,255,255,0.25)", fontSize: 8, borderRight: "1px solid rgba(255,255,255,0.1)" }}>Browse topics</span>
+              <span className="font-body font-bold uppercase tracking-widest mr-4 pr-4" style={{ color: "rgba(255,255,255,0.25)", fontSize: "var(--text-small)", borderRight: "1px solid rgba(255,255,255,0.1)" }}>Browse topics</span>
               {["Nails","Alignment","Routine","Foot Health","Fit","Pain","Evidence-Based"].map((t) => (
-                <span key={t} className="font-body font-semibold uppercase tracking-widest mx-2" style={{ color: "rgba(255,255,255,0.35)", fontSize: 8 }}>{t}<span className="ml-2" style={{ color: "#C4703A" }}>&middot;</span></span>
+                <span key={t} className="font-body font-semibold uppercase tracking-widest mx-2" style={{ color: "rgba(255,255,255,0.35)", fontSize: "var(--text-small)" }}>{t}<span className="ml-2" style={{ color: "#C4703A" }}>&middot;</span></span>
               ))}
             </div>
           </div>
@@ -84,14 +84,14 @@ export default function Slide1() {
           {/* Stats */}
           <div className="grid grid-cols-2 px-10 py-6" style={{ background: "#F8F7F7" }}>
             <div className="pr-6" style={{ borderRight: "1px solid #EEEDEC" }}>
-              <span className="font-body uppercase tracking-widest block mb-3" style={{ color: "#6B6560", fontSize: 8 }}>The numbers most men ignore</span>
+              <span className="font-body uppercase tracking-widest block mb-3" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>The numbers most men ignore</span>
             </div>
             <div className="pl-6" />
             {stats.map((s, i) => (
               <div key={s.value} className={i === 0 ? "pr-6 pt-1" : "pl-6 pt-1"} style={i === 0 ? { borderRight: "1px solid #EEEDEC" } : undefined}>
-                <span className="font-display block leading-none" style={{ color: "#13100C", fontSize: 32, fontWeight: 500 }}>{s.value}</span>
-                <span className="font-body block mt-1 leading-snug" style={{ color: "#6B6560", fontSize: 10 }}>{s.label}</span>
-                <span className="font-body block mt-1 font-semibold" style={{ color: "#C4703A", fontSize: 9 }}>{s.context}</span>
+                <span className="font-display block leading-none" style={{ color: "#13100C", fontSize: "var(--text-h2)", fontWeight: 500 }}>{s.value}</span>
+                <span className="font-body block mt-1 leading-snug" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>{s.label}</span>
+                <span className="font-body block mt-1 font-semibold" style={{ color: "#C4703A", fontSize: "var(--text-small)" }}>{s.context}</span>
               </div>
             ))}
           </div>
@@ -99,7 +99,7 @@ export default function Slide1() {
           {/* From the Guides */}
           <div className="grid grid-cols-2" style={{ background: "#FFFFFF", borderTop: "1px solid #EEEDEC", minHeight: 180 }}>
             <div className="flex flex-col justify-between p-8">
-              <p className="font-display uppercase leading-[0.9]" style={{ color: "#13100C", fontSize: 36, fontWeight: 500 }}>From<br />The<br /><span style={{ color: "#C4703A" }}>*</span>Guides.</p>
+              <p className="font-display uppercase leading-[0.9]" style={{ color: "#13100C", fontSize: "var(--text-h1)", fontWeight: 500 }}>From<br />The<br /><span style={{ color: "#C4703A" }}>*</span>Guides.</p>
             </div>
             <div className="flex flex-col">
               {articles.map((a) => (
@@ -108,8 +108,8 @@ export default function Slide1() {
                     <Image src={a.image} alt={a.title} fill className="object-cover" />
                   </div>
                   <div className="flex flex-col justify-center min-w-0">
-                    <span className="font-body font-semibold uppercase tracking-wider" style={{ color: "#C4703A", fontSize: 8 }}>{a.category} &middot; {a.readTime} read</span>
-                    <span className="font-display uppercase leading-tight mt-0.5" style={{ color: "#13100C", fontSize: 11, fontWeight: 500 }}>{a.title}</span>
+                    <span className="font-body font-semibold uppercase tracking-wider" style={{ color: "#C4703A", fontSize: "var(--text-small)" }}>{a.category} &middot; {a.readTime} read</span>
+                    <span className="font-display uppercase leading-tight mt-0.5" style={{ color: "#13100C", fontSize: "var(--text-small)", fontWeight: 500 }}>{a.title}</span>
                   </div>
                 </div>
               ))}

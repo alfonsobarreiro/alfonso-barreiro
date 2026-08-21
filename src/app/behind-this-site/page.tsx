@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontSize:      "clamp(28px,3.5vw,40px)",
   fontWeight:    500,
   color:         "var(--color-text)",
   margin:        "0 0 24px",
@@ -32,8 +32,8 @@ const sectionH2: React.CSSProperties = {
 
 const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
-  fontSize:   "17px",
-  lineHeight: 1.75,
+  fontSize:   "var(--text-article)",
+  lineHeight: 1.6,
   color:      "var(--color-text-muted)",
   margin:     "0 0 20px",
   maxWidth:   "680px",
@@ -52,8 +52,8 @@ const innerWrapper: React.CSSProperties = {
 
 const stackRow: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize: "15px",
-  lineHeight:    1.7,
+  fontSize: "var(--text-body)",
+  lineHeight:    1.6,
   color:         "var(--color-text-muted)",
   margin:        "0 0 8px",
   paddingLeft:   "18px",
@@ -74,10 +74,10 @@ const tokenChip: React.CSSProperties = {
   border:        "1px solid var(--color-neutral-400)",
   borderRadius: 0,
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "12px",
+  fontSize:      "var(--text-small)",
   fontWeight:    500,
   color:         "var(--color-text)",
-  letterSpacing: "0.02em",
+  letterSpacing: "0.01em",
 };
 
 const swatch: React.CSSProperties = {
@@ -100,7 +100,7 @@ function ArtifactStep({ heading, caption, src, width, height }: {
       <div style={{ marginBottom: "clamp(20px, 3vw, 28px)", maxWidth: "780px" }}>
         <h3 style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(28px, 3.6vw, 44px)",
+          fontSize:      "clamp(28px,3.6vw,40px)",
           fontWeight: 500,
           color:         "var(--color-text)",
           margin:        "0 0 16px",
@@ -112,8 +112,8 @@ function ArtifactStep({ heading, caption, src, width, height }: {
         {caption && (
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
-            fontSize:   "15px",
-            lineHeight: 1.65,
+            fontSize:   "var(--text-body)",
+            lineHeight: 1.6,
             color:      "var(--color-text-muted)",
             margin:     0,
           }}>
@@ -329,7 +329,7 @@ export default function BehindThisSitePage() {
           <div style={innerWrapper}>
             <h1 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(40px, 4.8vw, 60px)",
+              fontSize:      "clamp(40px,4.8vw,60px)",
               fontWeight:    500,
               color:         "var(--color-text)",
               margin:        "0 0 24px",
@@ -342,7 +342,7 @@ export default function BehindThisSitePage() {
 
             <p style={{
               ...body,
-              fontSize: "clamp(18px, 1.6vw, 21px)",
+              fontSize: "clamp(17px,1.6vw,20px)",
               maxWidth: "720px",
               margin:   0,
             }}>
@@ -364,7 +364,7 @@ export default function BehindThisSitePage() {
           <div style={innerWrapper}>
             <h2 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(28px, 3.5vw, 40px)",
+              fontSize:      "clamp(28px,3.5vw,40px)",
               fontWeight:    500,
               color:         "var(--color-text)",
               margin:        "0 0 24px",
@@ -530,7 +530,7 @@ export default function BehindThisSitePage() {
           <div style={innerWrapper}>
             <p style={{
               ...body,
-              fontSize: "clamp(18px, 1.5vw, 20px)",
+              fontSize: "clamp(17px,1.5vw,20px)",
               maxWidth: "620px",
               margin:   0,
               color:    "var(--color-text)",
@@ -539,7 +539,7 @@ export default function BehindThisSitePage() {
             </p>
             <p style={{
               fontFamily: "var(--font-dm-sans), sans-serif",
-              fontSize:   "15px",
+              fontSize:   "var(--text-body)",
               fontWeight: 400,
               color:      "var(--color-neutral-600)",
               margin:     "16px 0 0",

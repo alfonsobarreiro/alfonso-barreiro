@@ -47,13 +47,13 @@ export default function Slide7a() {
         </div>
 
         {/* Headline */}
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: 30, fontWeight: 500, maxWidth: 1100 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-3" style={{ color: "#13100C", fontSize: "var(--text-h2)", fontWeight: 500, maxWidth: 1100 }}>
           Six artifacts.{" "}
           <span style={{ color: "#C4703A" }}>One diagnostic redesign.</span>
         </h1>
 
         {/* Sub */}
-        <p className="font-body leading-relaxed mb-6" style={{ color: "#6B6560", fontSize: 13, maxWidth: 900 }}>
+        <p className="font-body leading-relaxed mb-6" style={{ color: "#6B6560", fontSize: "var(--text-body)", maxWidth: 900 }}>
           The original assessment ends in a tier label. The redesign ends in a specific next step.
         </p>
 
@@ -61,16 +61,16 @@ export default function Slide7a() {
         <div className="grid grid-cols-3 gap-5 flex-1">
           {artifacts.map((a) => (
             <div key={a.label} className="rounded-lg p-5 flex flex-col" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
-              <span className="font-display tracking-[0.14em] uppercase mb-2" style={{ fontSize: 10, color: "#C4703A", fontWeight: 500 }}>{a.label}</span>
-              <h2 className="font-body font-semibold leading-tight mb-2" style={{ fontSize: 16, color: "#13100C" }}>{a.title}</h2>
-              <p className="font-body leading-snug" style={{ fontSize: 11, color: "#6B6560" }}>{a.body}</p>
+              <span className="font-display tracking-[0.14em] uppercase mb-2" style={{ fontSize: "var(--text-small)", color: "#C4703A", fontWeight: 500 }}>{a.label}</span>
+              <h2 className="font-body font-semibold leading-tight mb-2" style={{ fontSize: "var(--text-h4)", color: "#13100C" }}>{a.title}</h2>
+              <p className="font-body leading-snug" style={{ fontSize: "var(--text-small)", color: "#6B6560" }}>{a.body}</p>
             </div>
           ))}
         </div>
 
         {/* Closing argument quote */}
         <div className="mt-5 rounded-lg px-6 py-3 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(196,112,58,0.06) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.2)" }}>
-          <p className="font-heading italic leading-relaxed text-center" style={{ color: "#C4703A", fontSize: 14 }}>&ldquo;Personalization, re-engagement, and first-party data can be earned without trading the editorial trust the audience came for.&rdquo;</p>
+          <p className="font-heading italic leading-relaxed text-center" style={{ color: "#C4703A", fontSize: "var(--text-body)" }}>&ldquo;Personalization, re-engagement, and first-party data can be earned without trading the editorial trust the audience came for.&rdquo;</p>
         </div>
 
       </div>

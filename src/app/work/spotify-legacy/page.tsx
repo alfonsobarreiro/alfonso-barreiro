@@ -9,6 +9,7 @@ import SpotifyPrototypeWalkthroughs from "@/components/SpotifyPrototypeWalkthrou
 import SpotifyQuoteRotator from "@/components/SpotifyQuoteRotator";
 import SpotifyRemoveAnimation from "@/components/SpotifyRemoveAnimation";
 import { CaseStudySchema } from "@/components/structured-data/CaseStudySchema";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /* Legacy Spotify case study (v1). v2 is now the canonical version at
    /work/spotify. This route exists for local-only reference and is
@@ -65,7 +66,7 @@ export default function SpotifyCaseStudyLegacy() {
             href="/#work"
             style={{
               fontFamily:     font.sans,
-              fontSize:       "13px",
+              fontSize:       "var(--text-body)",
               color:          c.muted,
               textDecoration: "none",
               display:        "inline-block",
@@ -98,21 +99,14 @@ export default function SpotifyCaseStudyLegacy() {
             {/* Eyebrow */}
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
               <span style={{ width: "24px", height: "1px", background: c.green }} />
-              <span style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    500,
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color:         c.green,
-              }}>
+              <Eyebrow tone="accent" as="span">
                 Spotify · UX Case Study
-              </span>
+              </Eyebrow>
             </div>
 
             <h1 style={{
               fontFamily:    font.display,
-              fontSize:      "clamp(32px, 6vw, 64px)",
+              fontSize:      "clamp(28px,6vw,64px)",
               fontWeight:    400,
               color:         "#F5F5F4",
               margin:        "0 0 16px",
@@ -124,8 +118,8 @@ export default function SpotifyCaseStudyLegacy() {
 
             <p style={{
               fontFamily:  font.sans,
-              fontSize:    "clamp(16px, 2.2vw, 20px)",
-              lineHeight:  1.55,
+              fontSize:    "clamp(15px,2.2vw,20px)",
+              lineHeight:  1.5,
               color:       "rgba(245,243,239,0.65)",
               margin:      "0 0 40px",
               maxWidth:    "640px",
@@ -149,10 +143,10 @@ export default function SpotifyCaseStudyLegacy() {
                 { label: "Outcome",  value: "Three-sprint concept plan with decisions log + hypothetical test synthesis." },
               ].map(({ label, value }) => (
                 <div key={label}>
-                  <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c.green, margin: "0 0 4px" }}>
+                  <Eyebrow tone="accent" style={{ margin: "0 0 4px" }}>
                     {label}
-                  </p>
-                  <p style={{ fontFamily: font.sans, fontSize: "14px", color: "rgba(245,243,239,0.75)", margin: 0 }}>
+                  </Eyebrow>
+                  <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", color: "rgba(245,243,239,0.75)", margin: 0 }}>
                     {value}
                   </p>
                 </div>
@@ -167,17 +161,9 @@ export default function SpotifyCaseStudyLegacy() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "24px", height: "1px", background: c.green }} />
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    500,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color:         c.green,
-                  margin:        0,
-                }}>
+                <Eyebrow tone="accent" style={{ margin: 0 }}>
                   What&apos;s downstream
-                </p>
+                </Eyebrow>
               </div>
 
               <div style={{
@@ -219,17 +205,9 @@ export default function SpotifyCaseStudyLegacy() {
                         }}
                       />
                     </div>
-                    <p style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "11px",
-                      fontWeight:    500,
-                      letterSpacing: "0.10em",
-                      textTransform: "uppercase",
-                      color:         "rgba(245,243,239,0.75)",
-                      margin:        "10px 0 0",
-                    }}>
+                    <Eyebrow tone="inverse" style={{ margin: "10px 0 0" }}>
                       {label}
-                    </p>
+                    </Eyebrow>
                   </Link>
                 ))}
               </div>
@@ -243,17 +221,9 @@ export default function SpotifyCaseStudyLegacy() {
             so the deck is the primary action. */}
         <div style={{ background: c.bgSection, padding: "40px clamp(24px, 5vw, 80px) 0" }}>
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
-            <p style={{
-              fontFamily:    font.sans,
-              fontSize:      "11px",
-              fontWeight:    500,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color:         c.muted,
-              margin:        "0 0 16px",
-            }}>
+            <Eyebrow style={{ margin: "0 0 16px" }}>
               Links
-            </p>
+            </Eyebrow>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 12px" }}>
               <Link
                 href="/work/presentations/spotify"
@@ -267,9 +237,9 @@ export default function SpotifyCaseStudyLegacy() {
                   borderRadius:   "6px",
                   color:          "#F5F5F4",
                   fontFamily:     font.sans,
-                  fontSize:       "13px",
+                  fontSize:       "var(--text-body)",
                   fontWeight:     500,
-                  letterSpacing:  "0.02em",
+                  letterSpacing:  "0.01em",
                   textDecoration: "none",
                 }}
               >
@@ -308,17 +278,9 @@ export default function SpotifyCaseStudyLegacy() {
                 padding:      "32px 24px",
                 border:       `1px solid ${c.border}`,
               }}>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    500,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color:         c.accent,
-                  margin:        "0 0 20px",
-                }}>
+                <Eyebrow tone="accent" style={{ margin: "0 0 20px" }}>
                   The system at a glance
-                </p>
+                </Eyebrow>
                 <div style={{ position: "relative", width: "100%" }}>
                   <Image
                     src="/images/work/spotify/spotify-overview-three-controls-cropped.webp"
@@ -331,7 +293,7 @@ export default function SpotifyCaseStudyLegacy() {
                 </div>
                 <p style={{
                   fontFamily:    font.sans,
-                  fontSize:      "12px",
+                  fontSize:      "var(--text-small)",
                   lineHeight:    1.5,
                   color:         c.muted,
                   margin:        "20px 0 0",
@@ -389,17 +351,9 @@ export default function SpotifyCaseStudyLegacy() {
 
           {/* ── Quote rotator ───────────────────────── */}
           <div style={{ width: "100%", marginTop: "48px", borderTop: `1px solid ${c.border}`, paddingTop: "32px" }}>
-            <p style={{
-              fontFamily:    font.sans,
-              fontSize:      "11px",
-              fontWeight:    500,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color:         c.accent,
-              margin:        "0 0 16px",
-            }}>
+            <Eyebrow tone="accent" style={{ margin: "0 0 16px" }}>
               What users said
-            </p>
+            </Eyebrow>
             <SpotifyQuoteRotator />
           </div>
 
@@ -465,10 +419,10 @@ export default function SpotifyCaseStudyLegacy() {
                     />
                     <div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "4px" }}>
-                        <p style={{ fontFamily: font.sans, fontSize: "16px", fontWeight: 500, color: c.ink, margin: 0 }}>{name}</p>
-                        <span style={{ fontFamily: font.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: type === "Negative Persona" ? c.muted : c.accent }}>{type}</span>
+                        <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500, color: c.ink, margin: 0 }}>{name}</p>
+                        <Eyebrow as="span">{type}</Eyebrow>
                       </div>
-                      <p style={{ fontFamily: font.display, fontSize: "15px", fontStyle: "italic", color: c.muted, margin: 0, lineHeight: 1.4 }}>
+                      <p style={{ fontFamily: font.display, fontSize: "var(--text-body)", fontStyle: "italic", color: c.muted, margin: 0, lineHeight: 1.35 }}>
                         &ldquo;{quote}&rdquo;
                       </p>
                     </div>
@@ -479,7 +433,7 @@ export default function SpotifyCaseStudyLegacy() {
                     <Detail label="What they need from this design" value={needs} />
                   </div>
                   <div style={{ paddingTop: "12px", borderTop: `1px solid ${c.border}` }}>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.muted, margin: 0 }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.muted, margin: 0 }}>
                       <span style={{ fontWeight: 500, color: c.body }}>Design tension:</span> {tension}
                     </p>
                   </div>
@@ -546,17 +500,9 @@ export default function SpotifyCaseStudyLegacy() {
 
             {/* Point of Reference image */}
             <div style={{ marginTop: "32px" }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    500,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>
+              <Eyebrow style={{ margin: "0 0 12px" }}>
                 Point of Reference
-              </p>
+              </Eyebrow>
               <div style={{ border: `1px solid ${c.border}`, overflow: "hidden" }}>
                 <Image
                   src="/images/work/spotify/spotify-competitive-ref.webp"
@@ -603,17 +549,9 @@ export default function SpotifyCaseStudyLegacy() {
                 background: c.bgSection,
                 borderBottom: `1px solid ${c.border}`,
               }}>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    500,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         c.muted,
-                  margin:        0,
-                }}>
+                <Eyebrow style={{ margin: 0 }}>
                   Stakeholder Priorities: Mapped Before Any Decision
-                </p>
+                </Eyebrow>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
                 {[
@@ -631,13 +569,13 @@ export default function SpotifyCaseStudyLegacy() {
                       borderTop:    "none",
                     }}
                   >
-                    <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: c.accent, margin: "0 0 8px" }}>
+                    <Eyebrow tone="accent" style={{ margin: "0 0 8px" }}>
                       {team}
-                    </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.4 }}>
+                    </Eyebrow>
+                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500, color: c.ink, margin: "0 0 6px", lineHeight: 1.35 }}>
                       {concern}
                     </p>
-                    <p style={{ fontFamily: font.sans, fontSize: "13px", lineHeight: 1.6, color: c.body, margin: 0 }}>
+                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                       {impact}
                     </p>
                   </div>
@@ -663,29 +601,22 @@ export default function SpotifyCaseStudyLegacy() {
             <div style={{ marginBottom: "48px", maxWidth: "560px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "20px", height: "1px", background: c.green }} />
-                <span style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    500,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color:         c.green,
-                }}>The Design</span>
+                <Eyebrow tone="accent" as="span">The Design</Eyebrow>
               </div>
               <h2 style={{
                 fontFamily:    font.display,
-                fontSize:      "clamp(22px, 3.5vw, 36px)",
+                fontSize:      "clamp(20px,3.5vw,40px)",
                 fontWeight:    400,
                 color:         "#F5F5F4",
                 margin:        "0 0 16px",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
               }}>
                 Three controls, one surface
               </h2>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "15px",
-                lineHeight: 1.65,
+                fontSize:   "var(--text-body)",
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     0,
               }}>
@@ -697,17 +628,17 @@ export default function SpotifyCaseStudyLegacy() {
             <div style={{ marginBottom: "64px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
-                fontSize:      "13px",
+                fontSize:      "var(--text-h4)",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.green,
                 margin:        "0 0 12px",
               }}>Pin</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
+                fontSize:   "var(--text-body)",
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -762,17 +693,17 @@ export default function SpotifyCaseStudyLegacy() {
                     <div style={{ marginTop: "16px", display: "flex", gap: "12px", alignItems: "flex-start" }}>
                       <span style={{
                         fontFamily:    font.sans,
-                        fontSize:      "10px",
+                        fontSize:      "var(--text-small)",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         color:         c.green,
                         paddingTop:    "2px",
                         flexShrink:    0,
                       }}>{label}</span>
                       <p style={{
                         fontFamily: font.sans,
-                        fontSize:   "13px",
-                        lineHeight: 1.65,
+                        fontSize:   "var(--text-body)",
+                        lineHeight: 1.6,
                         color:      "rgba(245,243,239,0.5)",
                         margin:     0,
                       }}>{caption}</p>
@@ -797,8 +728,8 @@ export default function SpotifyCaseStudyLegacy() {
                     }} />
                     <p style={{
                       fontFamily: font.sans,
-                      fontSize:   "12px",
-                      lineHeight: 1.55,
+                      fontSize:   "var(--text-small)",
+                      lineHeight: 1.5,
                       color:      "rgba(245,243,239,0.4)",
                       margin:     0,
                     }}>
@@ -814,17 +745,17 @@ export default function SpotifyCaseStudyLegacy() {
             <div style={{ marginBottom: "64px" }}>
               <h3 style={{
                 fontFamily:    font.sans,
-                fontSize:      "13px",
+                fontSize:      "var(--text-h4)",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.green,
                 margin:        "0 0 12px",
               }}>Remove</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
+                fontSize:   "var(--text-body)",
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -859,17 +790,17 @@ export default function SpotifyCaseStudyLegacy() {
                     <div key={`remove-${label}`} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                       <span style={{
                         fontFamily:    font.sans,
-                        fontSize:      "10px",
+                        fontSize:      "var(--text-small)",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         color:         c.green,
                         paddingTop:    "2px",
                         flexShrink:    0,
                       }}>{label}</span>
                       <p style={{
                         fontFamily: font.sans,
-                        fontSize:   "13px",
-                        lineHeight: 1.65,
+                        fontSize:   "var(--text-body)",
+                        lineHeight: 1.6,
                         color:      "rgba(245,243,239,0.55)",
                         margin:     0,
                       }}>{caption}</p>
@@ -898,8 +829,8 @@ export default function SpotifyCaseStudyLegacy() {
                       }} />
                       <p style={{
                         fontFamily: font.sans,
-                        fontSize:   "12px",
-                        lineHeight: 1.55,
+                        fontSize:   "var(--text-small)",
+                        lineHeight: 1.5,
                         color:      "rgba(245,243,239,0.4)",
                         margin:     0,
                       }}>
@@ -916,17 +847,17 @@ export default function SpotifyCaseStudyLegacy() {
             <div>
               <h3 style={{
                 fontFamily:    font.sans,
-                fontSize:      "13px",
+                fontSize:      "var(--text-h4)",
                 fontWeight:    500,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         c.green,
                 margin:        "0 0 12px",
               }}>Pause</h3>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.65,
+                fontSize:   "var(--text-body)",
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     "0 0 24px",
                 maxWidth:   "560px",
@@ -981,17 +912,17 @@ export default function SpotifyCaseStudyLegacy() {
                     <div style={{ marginTop: "16px", display: "flex", gap: "12px", alignItems: "flex-start" }}>
                       <span style={{
                         fontFamily:    font.sans,
-                        fontSize:      "10px",
+                        fontSize:      "var(--text-small)",
                         fontWeight:    500,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "0.01em",
                         color:         c.green,
                         paddingTop:    "2px",
                         flexShrink:    0,
                       }}>{label}</span>
                       <p style={{
                         fontFamily: font.sans,
-                        fontSize:   "13px",
-                        lineHeight: 1.65,
+                        fontSize:   "var(--text-body)",
+                        lineHeight: 1.6,
                         color:      "rgba(245,243,239,0.5)",
                         margin:     0,
                       }}>{caption}</p>
@@ -1016,8 +947,8 @@ export default function SpotifyCaseStudyLegacy() {
                     }} />
                     <p style={{
                       fontFamily: font.sans,
-                      fontSize:   "12px",
-                      lineHeight: 1.55,
+                      fontSize:   "var(--text-small)",
+                      lineHeight: 1.5,
                       color:      "rgba(245,243,239,0.4)",
                       margin:     0,
                     }}>
@@ -1042,29 +973,22 @@ export default function SpotifyCaseStudyLegacy() {
             <div style={{ marginBottom: "32px", maxWidth: "560px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                 <span style={{ width: "20px", height: "1px", background: c.green }} />
-                <span style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    500,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color:         c.green,
-                }}>System Model</span>
+                <Eyebrow tone="accent" as="span">System Model</Eyebrow>
               </div>
               <h2 style={{
                 fontFamily:    font.display,
-                fontSize:      "clamp(22px, 3.5vw, 36px)",
+                fontSize:      "clamp(20px,3.5vw,40px)",
                 fontWeight:    400,
                 color:         "#F5F5F4",
                 margin:        "0 0 12px",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
               }}>
                 Every state is reachable and reversible
               </h2>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "15px",
-                lineHeight: 1.65,
+                fontSize:   "var(--text-body)",
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.5)",
                 margin:     0,
               }}>
@@ -1094,19 +1018,12 @@ export default function SpotifyCaseStudyLegacy() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
                 <span style={{ width: "16px", height: "1px", background: c.green }} />
-                <span style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "10px",
-                  fontWeight:    500,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color:         c.green,
-                }}>States covered, states deferred</span>
+                <Eyebrow tone="accent" as="span">States covered, states deferred</Eyebrow>
               </div>
               <p style={{
                 fontFamily: font.sans,
-                fontSize:   "14px",
-                lineHeight: 1.7,
+                fontSize:   "var(--text-body)",
+                lineHeight: 1.6,
                 color:      "rgba(245,243,239,0.7)",
                 margin:     "0 0 20px",
               }}>
@@ -1139,7 +1056,7 @@ export default function SpotifyCaseStudyLegacy() {
                   <div key={label}>
                     <dt style={{
                       fontFamily: font.sans,
-                      fontSize:   "13px",
+                      fontSize:   "var(--text-body)",
                       fontWeight: 500,
                       color:      "#F5F5F4",
                       margin:     "0 0 4px",
@@ -1148,8 +1065,8 @@ export default function SpotifyCaseStudyLegacy() {
                     </dt>
                     <dd style={{
                       fontFamily: font.sans,
-                      fontSize:   "13px",
-                      lineHeight: 1.65,
+                      fontSize:   "var(--text-body)",
+                      lineHeight: 1.6,
                       color:      "rgba(245,243,239,0.55)",
                       margin:     0,
                     }}>
@@ -1244,18 +1161,10 @@ export default function SpotifyCaseStudyLegacy() {
                 />
               </div>
               <div style={{ padding: "16px 24px 20px" }}>
-                <p style={{
-                  fontFamily:    font.sans,
-                  fontSize:      "11px",
-                  fontWeight:    500,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color:         c.accent,
-                  margin:        "0 0 6px",
-                }}>Cross-platform</p>
+                <Eyebrow tone="accent" style={{ margin: "0 0 6px" }}>Cross-platform</Eyebrow>
                 <p style={{
                   fontFamily: font.sans,
-                  fontSize:   "13px",
+                  fontSize:   "var(--text-body)",
                   lineHeight: 1.6,
                   color:      c.body,
                   margin:     0,
@@ -1304,21 +1213,12 @@ export default function SpotifyCaseStudyLegacy() {
                 },
               ].map(({ type, item, reason }) => (
                 <div key={item} style={{ display: "flex", gap: "16px", padding: "20px 24px", background: c.surface, border: `1px solid ${c.border}` }}>
-                  <span style={{
-                    fontFamily:    font.sans,
-                    fontSize:      "10px",
-                    fontWeight:    500,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color:         type === "Out of scope" ? c.muted : c.accent,
-                    minWidth:      "88px",
-                    paddingTop:    "2px",
-                  }}>
+                  <Eyebrow as="span" style={{ minWidth: "88px", paddingTop: "2px" }}>
                     {type}
-                  </span>
+                  </Eyebrow>
                   <div>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", fontWeight: 500, color: c.ink, margin: "0 0 6px" }}>{item}</p>
-                    <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>{reason}</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", fontWeight: 500, color: c.ink, margin: "0 0 6px" }}>{item}</p>
+                    <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>{reason}</p>
                   </div>
                 </div>
               ))}
@@ -1338,16 +1238,8 @@ export default function SpotifyCaseStudyLegacy() {
               background: c.bgSection,
               border:     `1px solid ${c.border}`,
             }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    500,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>Test Protocol</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <Eyebrow style={{ margin: "0 0 12px" }}>Test Protocol</Eyebrow>
+              <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 Moderated usability test. 6 participants across the four archetypes (Social Curator, Commuter, Parent on shared device, Explorer). Each participant completes three task scenarios: pin a specific item, remove an accidental or contextual listen, and pause history before handing the phone to a friend. Sessions recorded. Think-aloud protocol. 45 minutes per session.
               </p>
             </div>
@@ -1380,7 +1272,7 @@ export default function SpotifyCaseStudyLegacy() {
                       <td style={tdStyle}>{feature}</td>
                       <td style={tdStyle}>{metric}</td>
                       <td style={{ ...tdStyle, fontWeight: 500, color: c.accent }}>{threshold}</td>
-                      <td style={{ ...tdStyle, fontSize: "12px", color: c.muted }}>{rationale}</td>
+                      <td style={{ ...tdStyle, fontSize: "var(--text-small)", color: c.muted }}>{rationale}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1394,16 +1286,8 @@ export default function SpotifyCaseStudyLegacy() {
               background: c.surface,
               border:     `1px solid ${c.border}`,
             }}>
-              <p style={{
-                fontFamily:    font.sans,
-                fontSize:      "11px",
-                fontWeight:    500,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color:         c.muted,
-                margin:        "0 0 12px",
-              }}>Decision Criteria</p>
-              <p style={{ fontFamily: font.sans, fontSize: "14px", lineHeight: 1.65, color: c.body, margin: 0 }}>
+              <Eyebrow style={{ margin: "0 0 12px" }}>Decision Criteria</Eyebrow>
+              <p style={{ fontFamily: font.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c.body, margin: 0 }}>
                 All feature-specific thresholds must pass for that feature to ship. If error rate or CSAT fails on a single feature, that feature gets a redesign cycle before re-test. UMUX-Lite is a directional signal, not a gate: if task metrics pass but UMUX-Lite is flat, the features ship and the team investigates perception gap in follow-up research.
               </p>
             </div>
@@ -1439,7 +1323,7 @@ export default function SpotifyCaseStudyLegacy() {
           }}>
             <p style={{
               fontFamily: font.sans,
-              fontSize:   "14px",
+              fontSize:   "var(--text-body)",
               color:      c.muted,
               margin:     0,
             }}>
@@ -1449,7 +1333,7 @@ export default function SpotifyCaseStudyLegacy() {
               href="/work/presentations/spotify"
               style={{
                 fontFamily:     font.sans,
-                fontSize:       "14px",
+                fontSize:       "var(--text-body)",
                 fontWeight:     500,
                 color:          c.ink,
                 textDecoration: "none",
@@ -1476,10 +1360,10 @@ export default function SpotifyCaseStudyLegacy() {
         >
           <div style={{ maxWidth: "none", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px" }}>
             <div>
-              <p style={{ fontFamily: font.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted, margin: "0 0 8px" }}>
+              <Eyebrow style={{ margin: "0 0 8px" }}>
                 Next Case Study
-              </p>
-              <p style={{ fontFamily: font.display, fontSize: "clamp(20px, 3vw, 28px)", color: c.ink, margin: 0 }}>
+              </Eyebrow>
+              <p style={{ fontFamily: font.display, fontSize: "clamp(20px,3vw,28px)", color: c.ink, margin: 0 }}>
                 Wayfarer
               </p>
             </div>
@@ -1494,9 +1378,9 @@ export default function SpotifyCaseStudyLegacy() {
                 borderRadius:   0,
                 color:          "#F5F5F4",
                 fontFamily:     font.sans,
-                fontSize:       "13px",
+                fontSize:       "var(--text-body)",
                 fontWeight:     500,
-                letterSpacing:  "0.06em",
+                letterSpacing:  "0.01em",
                 textDecoration: "none",
                 transition:     "opacity 0.2s",
               }}
@@ -1549,24 +1433,17 @@ function Section({ label, title, children }: { label: string; title: string; chi
       }}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: "16px", marginBottom: "32px" }}>
-        <span style={{
-          fontFamily:    f.sans,
-          fontSize:      "11px",
-          fontWeight:    500,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color:         c2.accent,
-        }}>
+        <Eyebrow tone="accent" as="span">
           {label}
-        </span>
+        </Eyebrow>
         <h2
           style={{
             fontFamily:    f.display,
-            fontSize:      "clamp(22px, 3.5vw, 36px)",
+            fontSize:      "clamp(20px,3.5vw,40px)",
             fontWeight:    400,
             color:         c2.ink,
             margin:        0,
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.02em",
           }}
           dangerouslySetInnerHTML={{ __html: title }}
         />
@@ -1586,21 +1463,13 @@ function Callout({ children, label }: { children: React.ReactNode; label?: strin
       borderLeft:  `3px solid ${c2.accent}`,
     }}>
       {label && (
-        <p style={{
-          fontFamily:    f.sans,
-          fontSize:      "10px",
-          fontWeight:    500,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase" as const,
-          color:         c2.accent,
-          margin:        "0 0 10px",
-        }}>
+        <Eyebrow tone="accent" style={{ margin: "0 0 10px" }}>
           {label}
-        </p>
+        </Eyebrow>
       )}
       <p style={{
         fontFamily:  f.display,
-        fontSize:    "clamp(17px, 2.2vw, 20px)",
+        fontSize:    "clamp(17px,2.2vw,20px)",
         lineHeight:  1.5,
         color:       c2.ink,
         fontStyle:   "italic",
@@ -1632,23 +1501,23 @@ function FeatureCard({
         background:     c2.bgSection,
         borderBottom:   `1px solid ${c2.border}`,
       }}>
-        <span style={{ fontFamily: f.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: c2.accent }}>{number}</span>
+        <Eyebrow tone="accent" as="span">{number}</Eyebrow>
         <div>
-          <h3 style={{ fontFamily: f.display, fontSize: "22px", fontWeight: 400, color: c2.ink, margin: "0 0 2px" }}>{name}</h3>
-          <p style={{ fontFamily: f.sans, fontSize: "13px", color: c2.muted, margin: 0 }}>{tagline}</p>
+          <h3 style={{ fontFamily: f.display, fontSize: "var(--text-h3)", fontWeight: 400, color: c2.ink, margin: "0 0 2px" }}>{name}</h3>
+          <p style={{ fontFamily: f.sans, fontSize: "var(--text-body)", color: c2.muted, margin: 0 }}>{tagline}</p>
         </div>
       </div>
       {/* Body */}
       <div style={{ padding: "28px" }}>
-        <p style={{ fontFamily: f.sans, fontSize: "15px", lineHeight: 1.7, color: c2.body, margin: "0 0 24px" }}>{body}</p>
-        <p style={{ fontFamily: f.sans, fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c2.muted, margin: "0 0 12px" }}>
+        <p style={{ fontFamily: f.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c2.body, margin: "0 0 24px" }}>{body}</p>
+        <Eyebrow style={{ margin: "0 0 12px" }}>
           Key Decisions
-        </p>
+        </Eyebrow>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {decisions.map((d, i) => (
             <div key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
               <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: c2.accent, marginTop: "8px", flexShrink: 0 }} />
-              <p style={{ fontFamily: f.sans, fontSize: "14px", lineHeight: 1.65, color: c2.body, margin: 0 }}>{d}</p>
+              <p style={{ fontFamily: f.sans, fontSize: "var(--text-body)", lineHeight: 1.6, color: c2.body, margin: 0 }}>{d}</p>
             </div>
           ))}
         </div>
@@ -1660,8 +1529,8 @@ function FeatureCard({
 function Detail({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p style={{ fontFamily: f.sans, fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: c2.muted, margin: "0 0 4px" }}>{label}</p>
-      <p style={{ fontFamily: f.sans, fontSize: "13px", lineHeight: 1.55, color: c2.body, margin: 0 }}>{value}</p>
+      <Eyebrow style={{ margin: "0 0 4px" }}>{label}</Eyebrow>
+      <p style={{ fontFamily: f.sans, fontSize: "var(--text-body)", lineHeight: 1.5, color: c2.body, margin: 0 }}>{value}</p>
     </div>
   );
 }
@@ -1672,26 +1541,26 @@ function Detail({ label, value }: { label: string; value: string }) {
 
 const bodyText: React.CSSProperties = {
   fontFamily:  "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:    "16px",
-  lineHeight:  1.75,
+  fontSize:    "var(--text-body)",
+  lineHeight:  1.6,
   color:       "#3D4440",
   margin:      "0 0 20px",
 };
 
 const subheading: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:      "20px",
+  fontSize:      "var(--text-h3)",
   fontWeight:    500,
   color:         "#252B28",
   margin:        "40px 0 16px",
-  letterSpacing: "-0.015em",
+  letterSpacing: "-0.01em",
 };
 
 const thStyle: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:      "11px",
+  fontSize:      "var(--text-small)",
   fontWeight:    500,
-  letterSpacing: "0.1em",
+  letterSpacing: "0.01em",
   textTransform: "uppercase",
   color:         "#8A8680",
   padding:       "12px 16px",
@@ -1701,7 +1570,7 @@ const thStyle: React.CSSProperties = {
 
 const tdStyle: React.CSSProperties = {
   fontFamily:  "var(--font-dm-sans), -apple-system, sans-serif",
-  fontSize:    "14px",
+  fontSize:    "var(--text-body)",
   color:       "#3D4440",
   padding:     "14px 16px",
   borderBottom: "1px solid #A8A39A",

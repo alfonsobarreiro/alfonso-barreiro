@@ -6,6 +6,7 @@ import Image from "next/image";
 import MSRPagePeek from "@/components/legacy/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/legacy/WayfarerGlobePeek";
 import SpotifyFramedAnimation from "@/components/legacy/SpotifyFramedAnimation";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 interface Project {
   title:       string;
@@ -167,28 +168,18 @@ export default function Work() {
                   background: "var(--color-accent)",
                 }}
               />
-              <p
-                style={{
-                  fontSize:      "11px",
-                  fontWeight:    500,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color:         "#8A8680",
-                  margin:        0,
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                }}
-              >
+              <Eyebrow style={{ margin: 0 }}>
                 Selected Work · 2026
-              </p>
+              </Eyebrow>
             </div>
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(28px, 4vw, 48px)",
+                fontSize:      "clamp(28px,4vw,60px)",
                 fontWeight:    500,
                 color:         "#252B28",
                 margin:        0,
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.02em",
                 lineHeight:    1.1,
               }}
             >
@@ -197,8 +188,8 @@ export default function Work() {
             <p
               style={{
                 fontFamily:   "var(--font-dm-sans), sans-serif",
-                fontSize:     "clamp(15px, 1.5vw, 17px)",
-                lineHeight:   1.65,
+                fontSize:     "clamp(15px,1.5vw,17px)",
+                lineHeight:   1.6,
                 color:        "#3D4440",
                 margin:       "20px 0 0",
                 maxWidth:     "640px",
@@ -321,23 +312,15 @@ function ProjectCard({
           zIndex:         5,
         }}
       >
-        <p style={{
-          fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
-          fontWeight:    500,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color:         "var(--color-accent)",
-          margin:        "0 0 6px",
-        }}>
+        <Eyebrow tone="accent" style={{ margin: "0 0 6px" }}>
           {project.tags[0]} · {project.meta.split(" · ").pop()}
-        </p>
+        </Eyebrow>
         <p style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(15px, 1.4vw, 18px)",
+          fontSize:      "clamp(15px,1.4vw,17px)",
           fontWeight:    500,
           lineHeight:    1.35,
-          letterSpacing: "-0.005em",
+          letterSpacing: "0",
           color:         "#FAFAF9",
           margin:        0,
         }}>
@@ -353,11 +336,11 @@ function ProjectCard({
       {/* Title — display weight, room to breathe now. */}
       <h3 style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "clamp(34px, 4.5vw, 56px)",
+        fontSize:      "clamp(40px,4.5vw,60px)",
         fontWeight:    500,
         color:         "#252B28",
         margin:        "0 0 10px",
-        letterSpacing: "-0.025em",
+        letterSpacing: "-0.02em",
         lineHeight:    1.05,
       }}>
         {project.title}
@@ -366,11 +349,11 @@ function ProjectCard({
       {/* Subtitle + year — quiet editorial eyebrow */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "14px",
+        fontSize:      "var(--text-body)",
         color:         "#8A8680",
         margin:        "0 0 24px",
         fontWeight:    500,
-        letterSpacing: "0.02em",
+        letterSpacing: "0.01em",
       }}>
         {project.subtitle} · {project.year}
       </p>
@@ -380,8 +363,8 @@ function ProjectCard({
           single column and the content cell suddenly becomes full-width. */}
       <p style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "clamp(15px, 1.4vw, 17px)",
-        lineHeight: 1.7,
+        fontSize:   "clamp(15px,1.4vw,17px)",
+        lineHeight: 1.6,
         color:      "#3D4440",
         margin:     "0 0 18px",
         maxWidth:   "640px",
@@ -392,12 +375,12 @@ function ProjectCard({
       {/* Thesis — italic accent line */}
       <p style={{
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "14px",
-        lineHeight:    1.55,
+        fontSize:      "var(--text-body)",
+        lineHeight:    1.5,
         color:         "var(--color-accent)",
         fontStyle:     "italic",
         margin:        "0 0 28px",
-        letterSpacing: "-0.005em",
+        letterSpacing: "0",
         maxWidth:      "640px",
       }}>
         {project.thesis}
@@ -408,7 +391,7 @@ function ProjectCard({
         {project.tags.map((tag) => (
           <span key={tag} style={{
             fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "11px",
+            fontSize:     "var(--text-small)",
             padding:      "4px 12px",
             background:   "#F5F5F4",
             color:        "#3D4440",
@@ -427,9 +410,9 @@ function ProjectCard({
           alignItems:    "center",
           gap:           "8px",
           color:         "var(--color-brand)",
-          fontSize:      "13px",
+          fontSize:      "var(--text-body)",
           fontWeight:    500,
-          letterSpacing: "0.08em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
           opacity:       hovered ? 1 : 0.75,
@@ -445,7 +428,7 @@ function ProjectCard({
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "13px",
+          fontSize:   "var(--text-body)",
           color:      "#8A8680",
           margin:     0,
           fontStyle:  "italic",

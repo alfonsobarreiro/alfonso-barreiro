@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
 import CommandPalette, { openCommandPalette } from "./CommandPalette";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 const navLinks = ["work", "about"] as const;
 
@@ -84,9 +85,9 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "18px",
+                fontSize:      "var(--text-article)",
                 fontWeight:    500,
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.01em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
                 transition:    "color 0.25s ease",
                 lineHeight:    1,
@@ -105,9 +106,9 @@ export default function Nav() {
               className="nav-wordmark"
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "18px",
+                fontSize:      "var(--text-article)",
                 fontWeight:    500,
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.01em",
                 color:         menuOpen ? "#F5F5F4" : "#252B28",
                 transition:    "color 0.25s ease",
                 lineHeight:    1,
@@ -139,9 +140,9 @@ export default function Nav() {
               border:         "none",
               borderRadius:   0,
               color:          "#FFFFFF",
-              fontSize:       "13px",
+              fontSize:       "var(--text-body)",
               fontWeight:     500,
-              letterSpacing:  "0.04em",
+              letterSpacing:  "0.01em",
               cursor:         "pointer",
               transition:     "transform 0.25s ease, box-shadow 0.25s ease",
               textDecoration: "none",
@@ -228,26 +229,19 @@ export default function Nav() {
         {/* Eyebrow */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "48px" }}>
           <span style={{ width: "20px", height: "1px", background: "var(--color-accent)" }} />
-          <span style={{
-            fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "11px",
-            fontWeight:    500,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color:         "var(--color-accent)",
-          }}>
+          <Eyebrow tone="accent" as="span">
             Navigation
-          </span>
+          </Eyebrow>
         </div>
 
         {/* Nav links */}
         {navLinks.map((link) => {
           const overlayLinkStyle: React.CSSProperties = {
             fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "clamp(42px, 12vw, 72px)",
+            fontSize:       "clamp(40px,12vw,72px)",
             fontWeight:     500,
             color:          "rgba(245,243,239,0.85)",
-            letterSpacing:  "-0.025em",
+            letterSpacing:  "-0.02em",
             lineHeight:     1.1,
             background:     "none",
             border:         "none",
@@ -314,9 +308,9 @@ export default function Nav() {
             border:         "none",
             borderRadius:   0,
             color:          "#FFFFFF",
-            fontSize:       "13px",
+            fontSize:       "var(--text-body)",
             fontWeight:     500,
-            letterSpacing:  "0.07em",
+            letterSpacing:  "0.01em",
             textTransform:  "uppercase",
             fontFamily:     "var(--font-dm-sans), sans-serif",
             cursor:         "pointer",
@@ -334,7 +328,7 @@ export default function Nav() {
           bottom:     "40px",
           left:       "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "12px",
+          fontSize:   "var(--text-small)",
           color:      "rgba(245,243,239,0.25)",
           margin:     0,
         }}>
@@ -364,7 +358,7 @@ function SearchTrigger() {
         cursor:        "pointer",
         color:         "#8A8680",
         fontFamily:    "var(--font-dm-sans), sans-serif",
-        fontSize:      "12px",
+        fontSize:      "var(--text-small)",
         transition:    "color 0.2s, border-color 0.2s, background 0.2s",
       }}
       onMouseEnter={(e) => {
@@ -385,7 +379,7 @@ function SearchTrigger() {
       <span>Search</span>
       <kbd style={{
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "10px",
+        fontSize:   "var(--text-small)",
         padding:    "2px 5px",
         background: "#FAFAF9",
         border:     "1px solid #E8E4DE",
@@ -416,9 +410,9 @@ function NavLink({
     border:        "none",
     cursor:        "pointer",
     color:         "#8A8680",
-    fontSize:      "13px",
+    fontSize:      "var(--text-body)",
     fontWeight:    500,
-    letterSpacing: "0.08em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase",
     padding:       "4px 0",
     transition:    "color 0.2s",

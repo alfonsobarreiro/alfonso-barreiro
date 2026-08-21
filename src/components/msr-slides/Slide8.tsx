@@ -25,7 +25,7 @@ export default function Slide8() {
           <span className="font-display text-xs tracking-[0.25em] uppercase" style={{ color: "#C4703A" }}>Evaluation Plan</span>
         </div>
 
-        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: 28, fontWeight: 500, maxWidth: 1000 }}>
+        <h1 className="font-display uppercase leading-[1.08] tracking-tight mb-6" style={{ color: "#13100C", fontSize: "var(--text-h2)", fontWeight: 500, maxWidth: 1000 }}>
           Reasoned, not tested.{" "}
           <span style={{ color: "#C4703A" }}>Here&rsquo;s how I&rsquo;ll find out if the reasoning holds.</span>
         </h1>
@@ -34,14 +34,14 @@ export default function Slide8() {
         <div className="rounded-lg overflow-hidden mb-5" style={{ background: "#FFFFFF", border: "1px solid #EEEDEC" }}>
           <div className="grid px-5 py-2" style={{ gridTemplateColumns: "200px 240px 1fr", background: "#F8F7F7", borderBottom: "1px solid #EEEDEC" }}>
             {["What to Measure","Metric","Why It Matters"].map((h) => (
-              <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ color: h === "Why It Matters" ? "#C4703A" : "#938C86", fontSize: 8, fontWeight: h === "Why It Matters" ? 700 : 500 }}>{h}</span>
+              <span key={h} className="font-display uppercase tracking-[0.15em]" style={{ color: h === "Why It Matters" ? "#C4703A" : "#938C86", fontSize: "var(--text-small)", fontWeight: h === "Why It Matters" ? 700 : 500 }}>{h}</span>
             ))}
           </div>
           {criteria.map((c, i) => (
             <div key={c.measure} className="grid px-5 py-[7px] items-start" style={{ gridTemplateColumns: "200px 240px 1fr", background: i % 2 === 0 ? "#FFFFFF" : "#FAFAF9", borderBottom: i < criteria.length - 1 ? "1px solid #EEEDEC" : "none" }}>
-              <span className="font-body font-medium" style={{ fontSize: 11, color: "#13100C" }}>{c.measure}</span>
-              <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{c.metric}</span>
-              <span className="font-body" style={{ fontSize: 10, color: "#6B6560" }}>{c.why}</span>
+              <span className="font-body font-medium" style={{ fontSize: "var(--text-small)", color: "#13100C" }}>{c.measure}</span>
+              <span className="font-body" style={{ fontSize: "var(--text-small)", color: "#6B6560" }}>{c.metric}</span>
+              <span className="font-body" style={{ fontSize: "var(--text-small)", color: "#6B6560" }}>{c.why}</span>
             </div>
           ))}
         </div>
@@ -51,22 +51,22 @@ export default function Slide8() {
           <div className="rounded-lg p-5 relative overflow-hidden" style={{ flex: "1 1 0", background: "#FFFFFF", border: "1px solid #D6D3D1" }}>
             <div className="absolute top-0 left-0 bottom-0 w-[3px]" style={{ background: "linear-gradient(180deg, #938C86 0%, rgba(147,140,134,0.2) 100%)" }} />
             <div className="pl-3">
-              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#6B6560", fontSize: 9, fontWeight: 500 }}>What Wasn&rsquo;t Done</span>
-              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 11 }}>I didn&rsquo;t conduct user interviews before building. I didn&rsquo;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.</p>
+              <span className="font-display uppercase tracking-[0.2em] block mb-2" style={{ color: "#6B6560", fontSize: "var(--text-small)", fontWeight: 500 }}>What Wasn&rsquo;t Done</span>
+              <p className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>I didn&rsquo;t conduct user interviews before building. I didn&rsquo;t run usability tests on the review page layout. The e-commerce UX pattern is based on competitive analysis and reasoning about mental models, not observed behavior with real users. Self-initiated, no research budget. The decisions are reasoned, not tested.</p>
             </div>
           </div>
           {/* Reflection */}
           <div className="rounded-lg p-5 flex flex-col gap-3" style={{ flex: "1 1 0", background: "linear-gradient(135deg, rgba(196,112,58,0.04) 0%, rgba(196,112,58,0.01) 100%)", border: "1px solid rgba(196,112,58,0.15)" }}>
-            <span className="font-display uppercase tracking-[0.2em] block" style={{ color: "#C4703A", fontSize: 9, fontWeight: 500 }}>Reflection</span>
+            <span className="font-display uppercase tracking-[0.2em] block" style={{ color: "#C4703A", fontSize: "var(--text-small)", fontWeight: 500 }}>Reflection</span>
             {reflections.map((r, i) => (
-              <p key={i} className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: 11 }}>{r}</p>
+              <p key={i} className="font-body leading-relaxed" style={{ color: "#6B6560", fontSize: "var(--text-small)" }}>{r}</p>
             ))}
           </div>
         </div>
 
         <div className="mt-5 rounded-lg px-8 py-5 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(196,112,58,0.08) 0%, rgba(196,112,58,0.02) 100%)", border: "1px solid rgba(196,112,58,0.25)" }}>
           <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl" style={{ background: "rgba(196,112,58,0.06)" }} />
-          <p className="font-heading italic leading-relaxed relative z-10" style={{ color: "#C4703A", fontSize: 17 }}>&ldquo;Design thinking is not something you perform for a case study. It is something you reveal through it.&rdquo;</p>
+          <p className="font-heading italic leading-relaxed relative z-10" style={{ color: "#C4703A", fontSize: "var(--text-article)" }}>&ldquo;Design thinking is not something you perform for a case study. It is something you reveal through it.&rdquo;</p>
         </div>
       </div>
     </div>

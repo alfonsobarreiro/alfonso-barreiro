@@ -69,9 +69,9 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
         top:           56,
         left:          96,
         fontFamily:    "var(--font-inter), Inter, sans-serif",
-        fontSize:      14,
+        fontSize:      "var(--text-body)",
         fontWeight:    500,
-        letterSpacing: "0.12em",
+        letterSpacing: "0.01em",
         textTransform: "uppercase",
         color:         fgText,
       }}>
@@ -89,9 +89,9 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
       }}>
         <span style={{
           fontFamily:    "var(--font-inter), Inter, sans-serif",
-          fontSize:      11,
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         mutedText,
         }}>
@@ -100,9 +100,9 @@ export function SlideFrame({ index, title, variant = "light", children }: SlideF
         <span style={{ width: 1, height: 12, background: border }} />
         <span style={{
           fontFamily:    "var(--font-inter), Inter, sans-serif",
-          fontSize:      11,
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         mutedText,
         }}>
@@ -130,9 +130,9 @@ export function Eyebrow({ children, tone = "accent" }: { children: ReactNode; to
   return (
     <div style={{
       fontFamily:    "var(--font-inter), Inter, sans-serif",
-      fontSize:      12,
+      fontSize:      "var(--text-small)",
       fontWeight:    500,
-      letterSpacing: "0.16em",
+      letterSpacing: "0.01em",
       textTransform: "uppercase",
       color,
     }}>

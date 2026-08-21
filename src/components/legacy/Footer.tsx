@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LogoMark from "./LogoMark";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /* ─────────────────────────────────────────────
    Tokens — cream footer, aubergine ink
@@ -58,19 +59,19 @@ export default function Footer() {
           <div style={{ maxWidth: "480px" }}>
             <p style={{
               fontFamily:    font,
-              fontSize:      "clamp(18px, 2vw, 22px)",
+              fontSize:      "clamp(17px,2vw,20px)",
               fontWeight:    500,
               color:         ink,
               margin:        "0 0 8px",
-              letterSpacing: "-0.015em",
-              lineHeight:    1.25,
+              letterSpacing: "-0.01em",
+              lineHeight:    1.15,
             }}>
               Let&apos;s work <span style={{ color: brand }}>together.</span>
             </p>
             <p style={{
               fontFamily: font,
-              fontSize:   "13px",
-              lineHeight: 1.55,
+              fontSize:   "var(--text-body)",
+              lineHeight: 1.5,
               color:      ink2,
               margin:     0,
             }}>
@@ -121,31 +122,23 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               <span style={{
                 fontFamily:    font,
-                fontSize:      "14px",
+                fontSize:      "var(--text-body)",
                 fontWeight:    500,
                 color:         ink2,
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.01em",
                 lineHeight:    1,
               }}>
                 Alfonso <span style={{ color: brand }}>Barreiro</span>
               </span>
-              <span style={{
-                fontFamily:    font,
-                fontSize:      "10px",
-                fontWeight:    500,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color:         muted,
-                lineHeight:    1,
-              }}>
+              <Eyebrow as="span">
                 UX / UI Designer · Portland, OR
-              </span>
+              </Eyebrow>
             </div>
           </div>
 
           <p style={{
             fontFamily: font,
-            fontSize:   "12px",
+            fontSize:   "var(--text-small)",
             color:      muted,
             margin:     0,
           }}>

@@ -28,7 +28,7 @@ export default async function Image() {
             justifyContent: "space-between",
             fontSize: 24,
             opacity: 0.6,
-            letterSpacing: "0.05em",
+            letterSpacing: "0.01em",
             textTransform: "uppercase",
           }}
         >
@@ -51,7 +51,7 @@ export default async function Image() {
             style={{
               fontSize: 28,
               opacity: 0.7,
-              lineHeight: 1.4,
+              lineHeight: 1.35,
               maxWidth: 900,
             }}
           >

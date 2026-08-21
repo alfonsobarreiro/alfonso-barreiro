@@ -28,19 +28,19 @@ function List({ variant, heading, items }: { variant: "cut" | "kept"; heading: s
       <div style={{
         display: "inline-block", padding: "3px 10px",
         borderRadius: 999, background: chipBg, color: wf.white,
-        fontSize: 11, fontWeight: 500, letterSpacing: "0.14em",
+        fontSize: "var(--text-small)", fontWeight: 500, letterSpacing: "0.01em",
         fontFamily: "var(--font-inter), Inter, sans-serif",
       }}>
         {isCut ? "CUT" : "KEPT"}
       </div>
       <h3 className="font-heading" style={{
         margin: "16px 0 14px",
-        fontSize: 24, fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
+        fontSize: "var(--text-h3)", fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
       }}>{heading}</h3>
       {items.map((text) => (
         <div key={text} style={{ display: "flex", gap: 12, margin: "10px 0", alignItems: "flex-start" }}>
           <span style={{ width: 8, height: 8, borderRadius: 4, background: dot, flexShrink: 0, marginTop: 8 }} />
-          <p className="font-body" style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: wf.n700 }}>{text}</p>
+          <p className="font-body" style={{ margin: 0, fontSize: "var(--text-body)", lineHeight: 1.5, color: wf.n700 }}>{text}</p>
         </div>
       ))}
     </div>
@@ -53,12 +53,12 @@ export default function Slide8() {
       <Eyebrow>03 · What Not to Build</Eyebrow>
       <h2 className="font-display" style={{
         margin: "20px 0 10px",
-        fontSize: 52, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
+        fontSize: "var(--text-display)", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.02em",
         color: wf.n900,
       }}>
         I scaled it back.
       </h2>
-      <p className="font-body" style={{ margin: "0 0 32px", fontSize: 20, color: wf.n500 }}>
+      <p className="font-body" style={{ margin: "0 0 32px", fontSize: "var(--text-h3)", color: wf.n500 }}>
         Removed booking UI. Kept discovery as the center of gravity.
       </p>
 

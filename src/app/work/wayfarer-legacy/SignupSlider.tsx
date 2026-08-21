@@ -208,9 +208,9 @@ export default function SignupSlider({ steps, autoAdvanceMs = 4500 }: Props) {
           border:        "1px solid rgba(245,243,239,0.18)",
           borderRadius:  "999px",
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
-          letterSpacing: "0.12em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           backdropFilter: "blur(6px)",
           WebkitBackdropFilter: "blur(6px)",
@@ -288,8 +288,8 @@ export default function SignupSlider({ steps, autoAdvanceMs = 4500 }: Props) {
         {/* Caption */}
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "13px",
-          lineHeight: 1.55,
+          fontSize:   "var(--text-body)",
+          lineHeight: 1.5,
           color:      "rgba(245,243,239,0.55)",
           margin:     0,
           flex:       "1 1 auto",

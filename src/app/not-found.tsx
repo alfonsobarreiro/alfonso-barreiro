@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export const metadata: Metadata = {
   title: "Lost · Alfonso Barreiro",
@@ -46,7 +47,7 @@ export default function NotFound() {
             fontSize:      "clamp(280px, 38vw, 560px)",
             fontWeight:    400,
             lineHeight:    0.8,
-            letterSpacing: "-0.06em",
+            letterSpacing: "-0.03em",
             color:         "#F1EFEB",
             userSelect:    "none",
             pointerEvents: "none",
@@ -82,19 +83,9 @@ export default function NotFound() {
                 flexShrink: 0,
               }}
             />
-            <p
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
-                fontWeight:    500,
-                letterSpacing: "0.10em",
-                textTransform: "uppercase",
-                color:         "#3D4440",
-                margin:        0,
-              }}
-            >
+            <Eyebrow style={{ margin: 0 }}>
               That page isn&apos;t here · 404
-            </p>
+            </Eyebrow>
           </div>
 
           {/* Editorial headline */}
@@ -104,7 +95,7 @@ export default function NotFound() {
               fontSize:      "clamp(40px, 6vw, 80px)",
               fontWeight:    400,
               lineHeight:    0.98,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
               color:         "#252B28",
               margin:        "0 0 32px",
               maxWidth:      "640px",
@@ -126,7 +117,7 @@ export default function NotFound() {
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
               fontSize:     "clamp(16px, 1.6vw, 18px)",
-              lineHeight:   1.65,
+              lineHeight:   1.6,
               color:        "#3D4440",
               maxWidth:     "480px",
               marginBottom: "44px",
@@ -150,9 +141,12 @@ export default function NotFound() {
             {[
               { label: "Three case studies",  href: "/#work",  meta: "MSR · Spotify · Wayfarer" },
               { label: "How I work",          href: "/about",  meta: "About · 15-year arc"     },
-              { label: "Get in touch",        href: "/contact",meta: "Coffee in Portland?"     },
-            ].map((d) => (
-              <Link
+              { label: "Get in touch",        href: "mailto:alfonso@barreiro.com", meta: "Coffee in Portland?"     },
+            ].map((d) => {
+              const isExternal = d.href.startsWith("mailto:") || d.href.startsWith("http");
+              const Tag: React.ElementType = isExternal ? "a" : Link;
+              return (
+              <Tag
                 key={d.href}
                 href={d.href}
                 style={{
@@ -184,13 +178,14 @@ export default function NotFound() {
                     fontSize:      "12px",
                     color:         "#6E6E6A",
                     margin:        0,
-                    letterSpacing: "0.04em",
+                    letterSpacing: "0.01em",
                   }}
                 >
                   {d.meta}
                 </p>
-              </Link>
-            ))}
+              </Tag>
+              );
+            })}
           </div>
 
           {/* Primary CTA */}
@@ -206,7 +201,7 @@ export default function NotFound() {
               fontSize:       "14px",
               fontWeight:     500,
               fontFamily:     "var(--font-dm-sans), sans-serif",
-              letterSpacing:  "0.03em",
+              letterSpacing:  "0.01em",
               textDecoration: "none",
               transition:     "transform 0.25s ease",
             }}

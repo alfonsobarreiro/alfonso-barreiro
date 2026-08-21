@@ -18,6 +18,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/work/presentations/spotify`,        lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE}/work/presentations/wayfarer`,       lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE}/work/presentations/mens-sole-revival`, lastModified, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/contact`,                           lastModified, changeFrequency: "yearly",  priority: 0.5 },
   ];
 }

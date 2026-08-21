@@ -353,7 +353,7 @@ export default function RecentlyPlayedDemo() {
             padding:    "32px",
             textAlign:  "center",
             color:      "rgba(255,255,255,0.55)",
-            fontSize:   "14px",
+            fontSize:   "var(--text-body)",
             border:     "1px dashed rgba(255,255,255,0.18)",
           }}>
             Shelf empty. Click Reset to restore all artists.
@@ -417,10 +417,10 @@ export default function RecentlyPlayedDemo() {
                   flex:           1,
                 }}>
                   <span style={{
-                    fontSize:       "14px",
+                    fontSize:       "var(--text-body)",
                     fontWeight: 500,
                     color:          "#FFFFFF",
-                    letterSpacing:  "-0.005em",
+                    letterSpacing:  "0",
                     overflow:       "hidden",
                     textOverflow:   "ellipsis",
                     whiteSpace:     "nowrap",
@@ -428,7 +428,7 @@ export default function RecentlyPlayedDemo() {
                     {artist.name}
                   </span>
                   <span style={{
-                    fontSize:       "12px",
+                    fontSize:       "var(--text-small)",
                     color:          "rgba(255,255,255,0.55)",
                     marginTop:      "2px",
                     overflow:       "hidden",
@@ -467,8 +467,8 @@ export default function RecentlyPlayedDemo() {
         marginBottom: "10px",
         maxWidth:   "720px",
         fontFamily: "var(--font-dm-sans), sans-serif",
-        fontSize:   "12px",
-        letterSpacing: "0.16em",
+        fontSize:   "var(--text-small)",
+        letterSpacing: "0.01em",
         textTransform: "none",
         color:      canAct ? SPOTIFY_GREEN : "rgba(255,255,255,0.55)",
         fontWeight: 500,
@@ -530,9 +530,9 @@ export default function RecentlyPlayedDemo() {
             padding:        "8px 14px",
             minHeight:      "44px",
             fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "11px",
+            fontSize:       "var(--text-small)",
             fontWeight: 500,
-            letterSpacing:  "0.12em",
+            letterSpacing:  "0.01em",
             textTransform: "none",
             cursor:         "pointer",
             transition:     "color 0.15s, border-color 0.15s",
@@ -556,7 +556,7 @@ export default function RecentlyPlayedDemo() {
           marginTop:    "16px",
           color:        "#FFFFFF",
           fontFamily:   "var(--font-dm-sans), sans-serif",
-          fontSize:     "13px",
+          fontSize:     "var(--text-body)",
         }}>
           <PauseIcon />
           <span>Listening history paused. Resumes in <strong style={{ color: SPOTIFY_GREEN, fontVariantNumeric: "tabular-nums" }}>{pausedAt}s</strong>.</span>
@@ -586,7 +586,7 @@ export default function RecentlyPlayedDemo() {
             borderRadius: "6px",
             boxShadow:    "0 10px 28px rgba(0,0,0,0.45)",
             fontFamily:   "var(--font-dm-sans), sans-serif",
-            fontSize:     "13px",
+            fontSize:     "var(--text-body)",
             transition:   reducedMotion ? "none" : "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
@@ -600,9 +600,9 @@ export default function RecentlyPlayedDemo() {
                 border:         "none",
                 color:          SPOTIFY_JET,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
-                fontSize:       "12px",
+                fontSize:       "var(--text-small)",
                 fontWeight: 500,
-                letterSpacing:  "0.12em",
+                letterSpacing:  "0.01em",
                 textTransform: "none",
                 cursor:         "pointer",
                 padding:        "8px 4px",
@@ -689,9 +689,9 @@ function ActionChip({
         border:         pressed ? `1px solid ${SPOTIFY_GREEN}` : "1px solid rgba(255,255,255,0.28)",
         color:          disabled ? "rgba(255,255,255,0.36)" : pressed ? SPOTIFY_GREEN : "#FFFFFF",
         fontFamily:     "var(--font-dm-sans), sans-serif",
-        fontSize:       "12px",
+        fontSize:       "var(--text-small)",
         fontWeight: 500,
-        letterSpacing:  "0.12em",
+        letterSpacing:  "0.01em",
         textTransform: "none",
         cursor:         disabled ? "not-allowed" : "pointer",
         transition:     "background 0.15s, border-color 0.15s, color 0.15s",
@@ -711,12 +711,12 @@ function ActionChip({
         <span aria-hidden="true" style={{
           marginLeft:     "6px",
           fontFamily:     "ui-monospace, SFMono-Regular, Menlo, monospace",
-          fontSize:       "10px",
+          fontSize:       "var(--text-small)",
           fontWeight: 500,
           padding:        "2px 6px",
           background:     "rgba(255,255,255,0.08)",
           color:          "rgba(255,255,255,0.65)",
-          letterSpacing:  "0.06em",
+          letterSpacing:  "0.01em",
         }}>{shortcut}</span>
       )}
     </button>

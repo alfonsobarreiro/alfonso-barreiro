@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export const metadata: Metadata = {
   title: "Presentations · Case Study Slide Decks · Alfonso Barreiro",
@@ -94,32 +95,24 @@ export default function PresentationsIndex() {
           <div style={{ maxWidth: "none", margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
               <span style={{ display: "inline-block", width: "24px", height: "1px", background: c.accent }} />
-              <p style={{
-                fontFamily: font.sans,
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: c.muted,
-                margin: 0,
-              }}>
+              <Eyebrow style={{ margin: 0 }}>
                 Presentations
-              </p>
+              </Eyebrow>
             </div>
             <h1 style={{
               fontFamily: font.display,
-              fontSize: "clamp(32px, 5vw, 56px)",
+              fontSize: "clamp(28px,5vw,60px)",
               fontWeight: 500,
               lineHeight: 1.1,
               color: c.ink,
               margin: "0 0 20px",
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
             }}>
               Slide decks for each <span style={{ color: c.accent }}>case study.</span>
             </h1>
             <p style={{
               fontFamily: font.sans,
-              fontSize: "18px",
+              fontSize: "var(--text-article)",
               lineHeight: 1.6,
               color: c.body,
               margin: 0,
@@ -167,31 +160,23 @@ export default function PresentationsIndex() {
                   />
                 </div>
                 <div style={{ padding: "24px 24px 28px" }}>
-                  <p style={{
-                    fontFamily: font.sans,
-                    fontSize: "11px",
-                    fontWeight: 500,
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: c.muted,
-                    margin: "0 0 10px",
-                  }}>
+                  <Eyebrow style={{ margin: "0 0 10px" }}>
                     {d.meta}
-                  </p>
+                  </Eyebrow>
                   <h2 style={{
                     fontFamily: font.display,
-                    fontSize: "24px",
+                    fontSize: "var(--text-h3)",
                     fontWeight: 500,
-                    lineHeight: 1.2,
+                    lineHeight: 1.15,
                     color: c.ink,
                     margin: "0 0 10px",
-                    letterSpacing: "-0.015em",
+                    letterSpacing: "-0.01em",
                   }}>
                     {d.title}
                   </h2>
                   <p style={{
                     fontFamily: font.sans,
-                    fontSize: "14px",
+                    fontSize: "var(--text-body)",
                     lineHeight: 1.6,
                     color: c.body,
                     margin: "0 0 16px",
@@ -200,7 +185,7 @@ export default function PresentationsIndex() {
                   </p>
                   <span style={{
                     fontFamily: font.sans,
-                    fontSize: "13px",
+                    fontSize: "var(--text-body)",
                     fontWeight: 500,
                     color: c.accent,
                   }}>

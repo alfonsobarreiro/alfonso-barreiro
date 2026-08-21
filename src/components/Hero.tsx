@@ -34,7 +34,7 @@ export default function Hero() {
           <h1
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(40px, 4vw, 60px)",
+              fontSize:      "clamp(40px,4vw,60px)",
               fontWeight:    500,
               lineHeight:    1.1,
               letterSpacing: "-0.02em",
@@ -49,7 +49,7 @@ export default function Hero() {
           <p
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "17px",
+              fontSize:      "var(--text-article)",
               lineHeight:    1.6,
               fontWeight:    400,
               letterSpacing: 0,

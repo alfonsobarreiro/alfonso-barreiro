@@ -1,3 +1,4 @@
+import { Eyebrow } from '@/components/ui/Eyebrow';
 const c = {
   ink:         "#252B28",
   body:        "#3D4440",
@@ -113,29 +114,19 @@ export default function SpotifyPrototypeWalkthroughs() {
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
         {/* Eyebrow */}
-        <p
-          style={{
-            fontFamily:    font.sans,
-            fontSize:      "11px",
-            fontWeight:    500,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color:         c.muted,
-            margin:        "0 0 16px",
-          }}
-        >
+        <Eyebrow style={{ margin: "0 0 16px" }}>
           Prototype Walkthroughs
-        </p>
+        </Eyebrow>
 
         {/* Section title */}
         <h2
           style={{
             fontFamily:    font.display,
-            fontSize:      "clamp(28px, 4vw, 44px)",
+            fontSize:      "clamp(28px,4vw,40px)",
             fontWeight:    400,
             color:         c.ink,
             margin:        "0 0 48px",
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.02em",
             lineHeight:    1.15,
             maxWidth:      "720px",
           }}
@@ -173,9 +164,9 @@ export default function SpotifyPrototypeWalkthroughs() {
                 <span
                   style={{
                     fontFamily:    font.sans,
-                    fontSize:      "11px",
+                    fontSize:      "var(--text-small)",
                     fontWeight:    500,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "0.01em",
                     textTransform: "uppercase",
                     color:         flow.accent.chipText,
                     background:    flow.accent.chipBg,
@@ -190,7 +181,7 @@ export default function SpotifyPrototypeWalkthroughs() {
                   id={`walkthrough-${flow.id}-title`}
                   style={{
                     fontFamily:    font.display,
-                    fontSize:      "clamp(22px, 2.6vw, 30px)",
+                    fontSize:      "clamp(20px,2.6vw,28px)",
                     fontWeight:    400,
                     color:         c.ink,
                     margin:        0,
@@ -205,11 +196,11 @@ export default function SpotifyPrototypeWalkthroughs() {
                 <span
                   style={{
                     fontFamily:    font.sans,
-                    fontSize:      "13px",
+                    fontSize:      "var(--text-body)",
                     fontWeight:    500,
                     fontVariantNumeric: "tabular-nums",
                     color:         c.muted,
-                    letterSpacing: "0.04em",
+                    letterSpacing: "0.01em",
                   }}
                   aria-label={`Runtime ${flow.duration}`}
                 >
@@ -298,22 +289,13 @@ export default function SpotifyPrototypeWalkthroughs() {
                     role="img"
                     aria-label={`Prototype recording placeholder for ${flow.chip.toLowerCase()} flow`}
                   >
-                    <span
-                      style={{
-                        fontFamily:    font.sans,
-                        fontSize:      "11px",
-                        fontWeight:    500,
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color:         c.muted,
-                      }}
-                    >
+                    <Eyebrow as="span">
                       Prototype Recording
-                    </span>
+                    </Eyebrow>
                     <span
                       style={{
                         fontFamily: font.sans,
-                        fontSize:   "13px",
+                        fontSize:   "var(--text-body)",
                         lineHeight: 1.5,
                         color:      c.body,
                         maxWidth:   "320px",
@@ -326,19 +308,9 @@ export default function SpotifyPrototypeWalkthroughs() {
 
                 {/* Annotations */}
                 <div>
-                  <p
-                    style={{
-                      fontFamily:    font.sans,
-                      fontSize:      "11px",
-                      fontWeight:    500,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color:         c.muted,
-                      margin:        "0 0 16px",
-                    }}
-                  >
+                  <Eyebrow style={{ margin: "0 0 16px" }}>
                     What the walkthrough shows
-                  </p>
+                  </Eyebrow>
 
                   <ol
                     style={{
@@ -363,11 +335,11 @@ export default function SpotifyPrototypeWalkthroughs() {
                         <span
                           style={{
                             fontFamily:    font.sans,
-                            fontSize:      "12px",
+                            fontSize:      "var(--text-small)",
                             fontWeight:    500,
                             fontVariantNumeric: "tabular-nums",
                             color:         flow.accent.ts,
-                            letterSpacing: "0.02em",
+                            letterSpacing: "0.01em",
                           }}
                         >
                           {step.t}
@@ -375,8 +347,8 @@ export default function SpotifyPrototypeWalkthroughs() {
                         <span
                           style={{
                             fontFamily: font.sans,
-                            fontSize:   "14px",
-                            lineHeight: 1.55,
+                            fontSize:   "var(--text-body)",
+                            lineHeight: 1.5,
                             color:      c.body,
                           }}
                         >

@@ -1,7 +1,7 @@
 /* Footer — strict SPD-restraint per the 20-portfolio calibration.
    No availability pill, no CTA cluster, no split-color wordmark.
    Just brand strip + minimal reach-out links + copyright.
-   Contact CTA lives in the Nav; email lives on /contact. */
+   No CTA in the Nav; email lives right here and on the About page. */
 
 const font  = "var(--font-dm-sans), -apple-system, sans-serif";
 const bg    = "var(--color-bg-elevated)";
@@ -26,7 +26,7 @@ export default function Footer() {
         >
           <p style={{
             fontFamily: font,
-            fontSize:   "15px",
+            fontSize:   "var(--text-body)",
             fontWeight: 400,
             color:      muted,
             margin:     0,
@@ -41,7 +41,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               style={{
                 fontFamily:          font,
-                fontSize:            "15px",
+                fontSize:            "var(--text-body)",
                 fontWeight:          500,
                 color:               ink,
                 textDecoration:      "underline",
@@ -55,7 +55,7 @@ export default function Footer() {
               href="mailto:alfonso@barreiro.com"
               style={{
                 fontFamily:          font,
-                fontSize:            "15px",
+                fontSize:            "var(--text-body)",
                 fontWeight:          500,
                 color:               ink,
                 textDecoration:      "underline",

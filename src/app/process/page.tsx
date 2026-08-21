@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import HoursRibbon from "./_components/HoursRibbon";
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
 
 const sectionH2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize:      "clamp(28px, 3.5vw, 40px)",
+  fontSize:      "clamp(28px,3.5vw,40px)",
   fontWeight:    500,
   color:         "var(--color-text)",
   margin:        "0 0 24px",
@@ -41,7 +40,7 @@ const sectionH2: React.CSSProperties = {
 
 const body: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), sans-serif",
-  fontSize:   "17px",
+  fontSize:   "var(--text-article)",
   lineHeight: 1.6,
   color:      "var(--color-text)",
   margin:     "0 0 24px",
@@ -162,7 +161,7 @@ export default function ProcessPage() {
           <div style={innerWrapper}>
             <h1 style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(40px, 4.8vw, 60px)",
+              fontSize:      "clamp(40px,4.8vw,60px)",
               fontWeight:    500,
               color:         "var(--color-text)",
               margin:        "0 0 24px",
@@ -284,14 +283,14 @@ export default function ProcessPage() {
         <section aria-label="Next step" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <p style={{ ...body, maxWidth: "620px", marginBottom: "24px" }}>
-              If any of this reads like the seat you&rsquo;re trying to fill, the case studies show it running in the artifact. The contact page is the shortest way to start.
+              If any of this reads like the seat you&rsquo;re trying to fill, the case studies show it running in the artifact. An email is the shortest way to start.
             </p>
-            <Link href="/contact" className="process-cta-primary">
+            <a href="mailto:alfonso@barreiro.com" className="process-cta-primary">
               Get in touch
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </Link>
+            </a>
           </div>
         </section>
       </main>

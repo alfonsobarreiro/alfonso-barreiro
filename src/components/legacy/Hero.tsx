@@ -102,9 +102,9 @@ export default function Hero() {
             <p
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "13px",
+                fontSize:      "var(--text-body)",
                 fontWeight:    500,
-                letterSpacing: "0.10em",
+                letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color:         "#3D4440",
                 margin:        0,
@@ -119,10 +119,10 @@ export default function Hero() {
             className="hero-reveal"
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(48px, 7.5vw, 96px)",
+              fontSize:      "clamp(60px,7.5vw,96px)",
               fontWeight:    400,
               lineHeight:    0.95,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.02em",
               color:         "#252B28",
               margin:        "0 0 36px",
             }}
@@ -137,8 +137,8 @@ export default function Hero() {
             className="hero-reveal"
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
-              fontSize:     "clamp(16px, 1.7vw, 19px)",
-              lineHeight:   1.65,
+              fontSize:     "clamp(15px,1.7vw,17px)",
+              lineHeight:   1.6,
               color:        "#3D4440",
               maxWidth:     "480px",
               marginBottom: "44px",
@@ -161,10 +161,10 @@ export default function Hero() {
                 background:    "var(--color-brand)",
                 color:         "#FAFAF9",
                 borderRadius:  0,
-                fontSize:      "14px",
+                fontSize:      "var(--text-body)",
                 fontWeight:    500,
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                letterSpacing: "0.03em",
+                letterSpacing: "0.01em",
                 display:       "inline-flex",
                 alignItems:    "center",
                 transition:    "transform 0.25s ease",
@@ -186,7 +186,7 @@ export default function Hero() {
                 color:          "#252B28",
                 border:         "1px solid #252B28",
                 borderRadius:   0,
-                fontSize:       "14px",
+                fontSize:       "var(--text-body)",
                 fontWeight:     500,
                 fontFamily:     "var(--font-dm-sans), sans-serif",
                 display:        "inline-flex",
@@ -229,8 +229,8 @@ export default function Hero() {
           alignItems:    "center",
           gap:           "10px",
           color:         "#6E6E6A",
-          fontSize:      "11px",
-          letterSpacing: "0.12em",
+          fontSize:      "var(--text-small)",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           fontFamily:    "var(--font-dm-sans), sans-serif",
           animation:     "scrollBounce 2s ease-in-out 1.2s 3, scrollFadeOut 0.5s ease-out 7.2s forwards",
@@ -395,7 +395,7 @@ function HeroResultPanel() {
           <span
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "11px",
+              fontSize:      "var(--text-small)",
               fontWeight:    500,
               letterSpacing: "0.01em",
               color:         "#3D4440",
@@ -456,9 +456,9 @@ function HeroResultPanel() {
           right:         "clamp(20px, 3vw, 36px)",
           zIndex:        3,
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "11px",
+          fontSize:      "var(--text-small)",
           fontWeight:    500,
-          letterSpacing: "0.18em",
+          letterSpacing: "0.01em",
           textTransform: "uppercase",
           color:         "#FAFAF9",
           background:    "rgba(15,15,15,0.88)",
@@ -484,10 +484,10 @@ function HeroResultPanel() {
         <p
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(22px, 2.2vw, 28px)",
+            fontSize:      "clamp(20px,2.2vw,28px)",
             fontWeight:    500,
             lineHeight:    1.15,
-            letterSpacing: "-0.015em",
+            letterSpacing: "-0.01em",
             color:         "#FAFAF9",
             margin:        "0 0 18px",
           }}
@@ -499,10 +499,10 @@ function HeroResultPanel() {
         <p
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(88px, 10vw, 140px)",
+            fontSize:      "clamp(88px,10vw,140px)",
             fontWeight:    400,
             lineHeight:    0.85,
-            letterSpacing: "-0.05em",
+            letterSpacing: "-0.03em",
             color:         "#FAFAF9",
             margin:        "0 0 10px",
             fontVariantNumeric: "tabular-nums",
@@ -515,7 +515,7 @@ function HeroResultPanel() {
         <p
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "15px",
+            fontSize:      "var(--text-body)",
             lineHeight:    1.5,
             fontWeight:    500,
             color:         "#FAFAF9",
@@ -535,10 +535,10 @@ function HeroResultPanel() {
             alignItems:      "center",
             gap:             "10px",
             color:           "#FAFAF9",
-            fontSize:        "13px",
+            fontSize:        "var(--text-body)",
             fontWeight:      500,
             fontFamily:      "var(--font-dm-sans), sans-serif",
-            letterSpacing:   "0.05em",
+            letterSpacing:   "0.01em",
             padding:         "12px 18px",
             background:      "var(--color-brand)",
             transition:      "transform 0.25s ease, background 0.25s ease",

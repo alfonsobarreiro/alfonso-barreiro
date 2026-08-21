@@ -19,7 +19,7 @@ export default function Slide3() {
         Three problems sat inside the brief.
       </h2>
       <p className="font-body" style={{
-        margin: "12px 0 0", fontSize: 20, lineHeight: 1.5, color: wf.n500,
+        margin: "12px 0 0", fontSize: "var(--text-h3)", lineHeight: 1.5, color: wf.n500,
       }}>
         Each pointed to a different kind of design work.
       </p>
@@ -31,12 +31,12 @@ export default function Slide3() {
             background: wf.n100, border: `1px solid ${wf.n200}`,
           }}>
             <div className="font-display" style={{
-              fontSize: 56, fontWeight: 500, color: wf.accent500, lineHeight: 1,
+              fontSize: "var(--text-display)", fontWeight: 500, color: wf.accent500, lineHeight: 1,
             }}>{n}</div>
             <h3 className="font-heading" style={{
-              margin: "18px 0 10px", fontSize: 24, fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
+              margin: "18px 0 10px", fontSize: "var(--text-h3)", fontWeight: 500, color: wf.n900, letterSpacing: "-0.01em",
             }}>{title}</h3>
-            <p className="font-body" style={{ fontSize: 15, lineHeight: 1.55, color: wf.n700, margin: 0 }}>{desc}</p>
+            <p className="font-body" style={{ fontSize: "var(--text-body)", lineHeight: 1.5, color: wf.n700, margin: 0 }}>{desc}</p>
           </div>
         ))}
       </div>

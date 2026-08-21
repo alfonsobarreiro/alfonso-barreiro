@@ -3,6 +3,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MSRSlideViewer from "@/components/MSRSlideViewer";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export const metadata: Metadata = {
   title: "Men's Sole Revival · Slide Deck · Alfonso Barreiro",
@@ -63,7 +64,7 @@ export default function MSRDeckPage() {
                 href="/work/presentations"
                 style={{
                   fontFamily: font.sans,
-                  fontSize: "13px",
+                  fontSize: "var(--text-body)",
                   color: c.muted,
                   textDecoration: "none",
                 }}
@@ -72,14 +73,14 @@ export default function MSRDeckPage() {
               </Link>
               <span style={{
                 fontFamily: font.sans,
-                fontSize: "13px",
+                fontSize: "var(--text-body)",
                 color: c.border,
               }}>
                 /
               </span>
               <h1 style={{
                 fontFamily: font.sans,
-                fontSize: "14px",
+                fontSize: "var(--text-h4)",
                 fontWeight: 500,
                 color: c.ink,
                 margin: 0,
@@ -89,7 +90,7 @@ export default function MSRDeckPage() {
             </div>
             <p style={{
               fontFamily: font.sans,
-              fontSize: "12px",
+              fontSize: "var(--text-small)",
               color: c.muted,
               margin: 0,
             }}>
@@ -122,24 +123,16 @@ export default function MSRDeckPage() {
             gap: "24px",
           }}>
             <div>
-              <p style={{
-                fontFamily: font.sans,
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: c.muted,
-                margin: "0 0 8px",
-              }}>
+              <Eyebrow style={{ margin: "0 0 8px" }}>
                 Go deeper
-              </p>
+              </Eyebrow>
               <p style={{
                 fontFamily: font.display,
-                fontSize: "clamp(20px, 3vw, 28px)",
+                fontSize: "clamp(20px,3vw,28px)",
                 fontWeight: 500,
                 color: c.ink,
                 margin: 0,
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.01em",
               }}>
                 Read the full written case study
               </p>
@@ -155,9 +148,9 @@ export default function MSRDeckPage() {
                 borderRadius: "8px",
                 color: "#F5F5F4",
                 fontFamily: font.sans,
-                fontSize: "13px",
+                fontSize: "var(--text-body)",
                 fontWeight: 500,
-                letterSpacing: "0.06em",
+                letterSpacing: "0.01em",
                 textDecoration: "none",
               }}
             >

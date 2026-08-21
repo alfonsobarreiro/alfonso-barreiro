@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -50,7 +51,7 @@ export default function Contact() {
     borderRadius:    0,
     padding:         "12px 0",
     color:           "#F5F5F4",
-    fontSize:        "15px",
+    fontSize:        "var(--text-body)",
     fontFamily:      "var(--font-dm-sans), sans-serif",
     fontWeight:      400,
     outline:         "none",
@@ -60,9 +61,9 @@ export default function Contact() {
 
   const labelStyle = {
     display:       "block",
-    fontSize:      "11px",
+    fontSize:      "var(--text-small)",
     fontWeight:    500,
-    letterSpacing: "0.13em",
+    letterSpacing: "0.01em",
     textTransform: "uppercase" as const,
     color:         "var(--color-accent)",
     fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -99,25 +100,15 @@ export default function Contact() {
               marginBottom: "28px",
             }}
           >
-            <p
-              style={{
-                fontSize:      "11px",
-                fontWeight:    500,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color:         "rgba(245,243,239,0.45)",
-                margin:        0,
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-              }}
-            >
+            <Eyebrow tone="inverse" style={{ margin: 0 }}>
               Contact
-            </p>
+            </Eyebrow>
           </div>
 
           <h2
             style={{
               fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-              fontSize:      "clamp(28px, 4vw, 52px)",
+              fontSize:      "clamp(28px,4vw,60px)",
               fontWeight:    400,
               color:         "#F5F5F4",
               margin:        "0 0 24px",
@@ -132,8 +123,8 @@ export default function Contact() {
           <p
             style={{
               fontFamily:   "var(--font-dm-sans), sans-serif",
-              fontSize:     "16px",
-              lineHeight:   1.7,
+              fontSize:     "var(--text-body)",
+              lineHeight:   1.6,
               color:        "rgba(245,243,239,0.55)",
               marginBottom: "40px",
               maxWidth:     "380px",
@@ -150,10 +141,10 @@ export default function Contact() {
               alignItems:    "center",
               gap:           "8px",
               color:         "rgba(245,243,239,0.5)",
-              fontSize:      "13px",
+              fontSize:      "var(--text-body)",
               fontWeight:    400,
               fontFamily:    "var(--font-dm-sans), sans-serif",
-              letterSpacing: "0.02em",
+              letterSpacing: "0.01em",
               transition:    "color 0.2s",
               textDecoration: "none",
             }}
@@ -177,7 +168,7 @@ export default function Contact() {
               <p
                 style={{
                   fontFamily:    "var(--font-dm-sans), -apple-system, sans-serif",
-                  fontSize:      "24px",
+                  fontSize:      "var(--text-h3)",
                   color:         "#F5F5F4",
                   marginBottom:  "12px",
                   letterSpacing: "-0.02em",
@@ -188,7 +179,7 @@ export default function Contact() {
               <p
                 style={{
                   fontFamily: "var(--font-dm-sans), sans-serif",
-                  fontSize:   "15px",
+                  fontSize:   "var(--text-body)",
                   color:      "rgba(245,243,239,0.5)",
                   margin:     0,
                 }}
@@ -242,7 +233,7 @@ export default function Contact() {
                     style={{
                       ...inputStyle("message"),
                       resize:     "vertical",
-                      lineHeight: 1.65,
+                      lineHeight: 1.6,
                     }}
                     onFocus={() => setFocusedField("message")}
                     onBlur={() => setFocusedField(null)}
@@ -254,7 +245,7 @@ export default function Contact() {
                   <p
                     style={{
                       fontFamily: "var(--font-dm-sans), sans-serif",
-                      fontSize:   "13px",
+                      fontSize:   "var(--text-body)",
                       color:      "#E07070",
                       margin:     0,
                     }}
@@ -273,10 +264,10 @@ export default function Contact() {
                     color:         "#F5F5F4",
                     border:        "none",
                     borderRadius:  4,
-                    fontSize:      "13px",
+                    fontSize:      "var(--text-body)",
                     fontWeight:    500,
                     fontFamily:    "var(--font-dm-sans), sans-serif",
-                    letterSpacing: "0.07em",
+                    letterSpacing: "0.01em",
                     textTransform: "uppercase",
                     cursor:        formState === "submitting" ? "not-allowed" : "pointer",
                     alignSelf:     "flex-start",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 const c = {
   ink:     "#1A2236",
@@ -60,32 +61,23 @@ export default function GlobeIframeDemo() {
       }}
     >
       <header style={{ marginBottom: "20px" }}>
-        <span style={{
-          fontFamily:    font.sans,
-          fontSize:      "11px",
-          fontWeight:    500,
-          letterSpacing: "0.2em",
-          color:         c.coral,
-          textTransform: "uppercase",
-          display:       "block",
-          marginBottom:  "10px",
-        }}>
+        <Eyebrow tone="accent" as="span" style={{ marginBottom: "10px" }}>
           Live · embedded
-        </span>
+        </Eyebrow>
         <h3 style={{
           fontFamily:    font.sans,
-          fontSize:      "clamp(20px, 2.4vw, 26px)",
+          fontSize:      "clamp(20px,2.4vw,28px)",
           fontWeight:    500,
           color:         c.navy,
           margin:        "0 0 8px",
-          letterSpacing: "-0.015em",
+          letterSpacing: "-0.01em",
         }}>
           Try it yourself.
         </h3>
         <p style={{
           fontFamily: font.sans,
-          fontSize:   "15px",
-          lineHeight: 1.55,
+          fontSize:   "var(--text-body)",
+          lineHeight: 1.5,
           color:      c.ink2,
           margin:     0,
           maxWidth:   "60ch",
@@ -128,9 +120,9 @@ export default function GlobeIframeDemo() {
               background:     "rgba(26,34,54,0.92)",
               color:          "#F4F6F7",
               fontFamily:     font.sans,
-              fontSize:       "14px",
+              fontSize:       "var(--text-body)",
               fontWeight:     500,
-              letterSpacing:  "0.02em",
+              letterSpacing:  "0.01em",
               pointerEvents:  "none",
             }}
           >
@@ -158,7 +150,7 @@ export default function GlobeIframeDemo() {
           >
             <p style={{
               fontFamily: font.sans,
-              fontSize:   "16px",
+              fontSize:   "var(--text-body)",
               fontWeight: 500,
               margin:     0,
               maxWidth:   "44ch",
@@ -167,7 +159,7 @@ export default function GlobeIframeDemo() {
             </p>
             <p style={{
               fontFamily: font.sans,
-              fontSize:   "14px",
+              fontSize:   "var(--text-body)",
               color:      "rgba(244,246,247,0.78)",
               margin:     0,
               maxWidth:   "44ch",
@@ -184,9 +176,9 @@ export default function GlobeIframeDemo() {
                 color:           "#FFFFFF",
                 padding:         "12px 22px",
                 fontFamily:      font.sans,
-                fontSize:        "13px",
+                fontSize:        "var(--text-body)",
                 fontWeight:      500,
-                letterSpacing:   "0.04em",
+                letterSpacing:   "0.01em",
                 textTransform:   "uppercase",
                 textDecoration:  "none",
                 minHeight:       "44px",
@@ -210,24 +202,16 @@ export default function GlobeIframeDemo() {
           marginTop:      "16px",
         }}
       >
-        <p style={{
-          fontFamily:    font.sans,
-          fontSize:      "12px",
-          fontWeight:    500,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          color:         c.muted,
-          margin:        0,
-        }}>
+        <Eyebrow style={{ margin: 0 }}>
           Click any pin · sticky card opens on the right
-        </p>
+        </Eyebrow>
         <a
           href={LIVE_ROOT_URL}
           target="_blank"
           rel="noopener noreferrer"
           style={{
             fontFamily:     font.sans,
-            fontSize:       "13px",
+            fontSize:       "var(--text-body)",
             fontWeight:     500,
             color:          c.accent,
             textDecoration: "none",

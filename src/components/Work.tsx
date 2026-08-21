@@ -62,11 +62,6 @@ const projects: Project[] = [
     href:        "/work/spotify",
     image:       "/cs-spotify-preview.png",
     interactive: true,
-    atmosphere: {
-      /* Spotify Jet, radial-anchored slightly-high-center. Raw hex is a
-         per-case brand nod intentionally kept outside the token layer. */
-      shellBg: "radial-gradient(ellipse 80% 60% at 50% 35%, #2E2E2E 0%, #181818 60%, #0A0A0A 100%)",
-    },
   },
   {
     title:       "Wayfarer",
@@ -81,14 +76,6 @@ const projects: Project[] = [
     status:      "live",
     href:        "/work/wayfarer",
     image:       "/cs-wayfarer-preview.jpg",
-    atmosphere: {
-      /* Wayfarer row: darker cool ground-navy so the iPad sits on a
-         distinct atmosphere rather than the video's baked navy filling
-         the whole panel. WayfarerGlobePeek masks the video's baked
-         #1F1C3B edges via a radial mask, so this ground shows through
-         the video's periphery. */
-      shellBg: "var(--color-bg-inverse)",
-    },
   },
   {
     title:       "Men's Sole Revival",
@@ -103,12 +90,6 @@ const projects: Project[] = [
     status:      "live",
     href:        "/work/mens-sole-revival",
     image:       "/cs-msr-preview.jpg",
-    atmosphere: {
-      /* MSR row: dark neutral gray gradient so the MacBook Pro's Space
-         Black chassis reads cleanly (warm ink #13100C was swallowing
-         the silhouette). Keeps the radial rhythm the Spotify row uses. */
-      shellBg: "radial-gradient(ellipse 80% 60% at 50% 35%, #4A4A4A 0%, #333333 60%, #262626 100%)",
-    },
   },
   // ABD UI hidden 2026-07-01 pending case-study rework to match the
   // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
@@ -163,7 +144,7 @@ export default function Work() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(28px, 4vw, 40px)",
+                fontSize:      "clamp(28px,4vw,40px)",
                 fontWeight:    500,
                 color:         "var(--color-text)",
                 margin:        0,
@@ -184,7 +165,7 @@ export default function Work() {
           style={{
             display:        "flex",
             flexDirection:  "column",
-            gap:            0,
+            gap:            "clamp(48px, 6vw, 96px)",
           }}
         >
           {projects.map((project, idx) => (
@@ -263,80 +244,60 @@ function ProjectCard({
                   : isABD      ? "16 / 10"
                   : "16 / 10";
 
-  /* MSR gets ~10% more vertical padding so the MBP has extra breathing room
-     top and bottom inside the gray showroom. Horizontal stays the same so
-     the gray still hugs the laptop on the sides. */
-  const shellPadding = isMSR
-    ? "clamp(20px, 2.4vw, 40px) clamp(6px, 0.6vw, 10px)"
-    : isWayfarer
-    /* Asymmetric padding: extra top/bottom so the iPad shell matches the
-       iPhone shell's overall height, even sides for visible dark breathing
-       around the chrome. */
-    ? "clamp(34px, 3.2vw, 41px) clamp(20px, 2.4vw, 30px)"
-    : "clamp(6px, 0.6vw, 10px)";
+  /* Plate hugs the device tighter so the text column has more room —
+     the "bounce" is now a thin gray border rather than a wide field.
+     Combined with the reduced shell widths below, the device inside
+     stays the same size while the surrounding plate shrinks. */
+  const shellPadding = "clamp(18px, 2.2vw, 28px) clamp(20px, 2.5vw, 32px)";
 
-  /* Per-project brand-anchored backdrop. Each row gets its own
-     atmosphere so the section reads as three editorial spreads instead
-     of three template instances. Palettes stay brand-anchored
-     (Spotify Jet, Wayfarer navy, MSR neutral gray, ABD slate) and are
-     declared on each project entry via `atmosphere.shellBg` — see the
-     per-project data at the top of the file. Falls back to per-case
-     ternaries (kept for the commented-out ABD entry) then neutral-100
-     for any future entry that ships without an atmosphere. */
+  /* Contained-with-bounce field. All rows share one whisper-quiet neutral
+     radial (Comeau pattern) so each case study's palette carries through
+     the image itself rather than through a brand-tinted panel. The field
+     is barely perceptible against the page — its job is to give the
+     device peek a plate to bounce off, not to compete with it. Sharp
+     corners per DS default. Falls back to the neutral radial for any
+     project that ships without an explicit atmosphere override. */
   const shellBg = project.atmosphere?.shellBg
-    ?? (isABD
-      /* ABD UI: dark slate ground with cyan-ink center so the system
-         screenshot reads as software-on-display, not a fourth case-
-         study template instance. Raw hex is a per-case brand nod. */
-      ? "radial-gradient(ellipse 80% 60% at 50% 35%, #1B2228 0%, #14181A 60%, #0F1316 100%)"
-      : "var(--color-neutral-100)");
+    ?? "var(--color-bg-inverse)";
 
-  /* Full-bleed editorial row (Option B) — each project becomes its own
-     cinematic 100vw panel. The row escapes the section's horizontal
-     padding via calc(50% - 50vw) negative margins, and the per-project
-     brand-anchored gradient (previously on the device shell only) now
-     paints the entire panel. Zigzag alternation is preserved through
-     justifyContent driven by imageOnRight. */
-  /* MSR row hugs its content: the landscape MacBook is already the widest
-     shell in the section, so the panel tightens (padding, min-height, and
-     the image↔text gap) to close the inner spacing toward the margins. */
+  /* Contained editorial row — sits inside the section's --content-max
+     wrapper (no 100vw bleed). The row itself is transparent; only the
+     device shell carries the neutral field. Text sits on the page's
+     warm-white so the words never touch the plate. Zigzag alternation
+     preserved via justifyContent. */
   const rowStyle: React.CSSProperties = {
     display:        "flex",
     alignItems:     "center",
     gap:            isMSR ? "clamp(32px, 4vw, 64px)" : "clamp(40px, 6vw, 100px)",
     justifyContent: imageOnRight ? "flex-end" : "flex-start",
-    background:     shellBg,
-    minHeight:      isMSR ? "clamp(560px, 62vh, 760px)" : "clamp(720px, 80vh, 960px)",
-    padding:        isMSR
-      ? "clamp(48px, 6vw, 88px) max(clamp(40px, 5vw, 80px), calc((100vw - var(--content-max)) / 2))"
-      : "clamp(80px, 10vw, 160px) max(clamp(48px, 8vw, 120px), calc((100vw - var(--content-max)) / 2))",
-    marginLeft:     "calc(50% - 50vw)",
-    marginRight:    "calc(50% - 50vw)",
+    background:     "transparent",
+    padding:        0,
     textDecoration: "none",
     color:          "inherit",
     cursor:         "default",
   };
 
-  /* The shell background is now transparent — the row's shellBg paints
-     the whole panel, so the shell only carries its per-device padding
-     for chrome breathing room. flex:0 0 auto keeps the shell at its
-     declared width; maxWidth caps it at ~45–50vw so the content column
-     always has room to breathe on wide viewports. */
+  /* The shell now carries the neutral field — the "plate" behind the
+     device. Sharp corners, generous padding so the field shows around
+     the device chrome (that visible margin IS the bounce). Device stays
+     its declared width via box-sizing:content-box so the plate grows
+     around it rather than compressing it. */
   const shellStyle: React.CSSProperties = {
     display:      "block",
-    background:   "transparent",
+    background:   shellBg,
     padding:      shellPadding,
     borderRadius: 0,
+    boxSizing:    "content-box",
     order:        imageOnRight ? 2 : 0,
     textDecoration: "none",
     color:        "inherit",
     transition:   "transform 0.3s ease",
     transform:    hovered && isLive ? "translateY(-3px)" : "translateY(0)",
     flex:         "0 0 auto",
-    ...(isSpotify  && { width: "460px", maxWidth: "45vw" }),
-    ...(isWayfarer && { width: "440px", maxWidth: "40vw" }),
-    ...(isMSR      && { width: "720px", maxWidth: "58vw" }),
-    ...(isABD      && { width: "540px", maxWidth: "50vw" }),
+    ...(isSpotify  && { width: "360px", maxWidth: "34vw" }),
+    ...(isWayfarer && { width: "340px", maxWidth: "30vw" }),
+    ...(isMSR      && { width: "620px", maxWidth: "50vw" }),
+    ...(isABD      && { width: "440px", maxWidth: "42vw" }),
   };
 
   const imgBox: React.CSSProperties = {
@@ -412,9 +373,9 @@ function ProjectCard({
         className="work-row-thesis"
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(28px, 3vw, 40px)",
+          fontSize:      "clamp(28px,3vw,40px)",
           fontWeight:    500,
-          color:         "var(--color-inverse)",
+          color:         "var(--color-navy)",
           margin:        "0 0 24px",
           letterSpacing: "-0.02em",
           lineHeight:    1.05,
@@ -431,11 +392,11 @@ function ProjectCard({
           className="work-row-deck"
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(15px, 1.6vw, 20px)",
+            fontSize:      "clamp(15px,1.6vw,20px)",
             fontWeight:    400,
-            color:         "var(--color-inverse-body)",
+            color:         "var(--color-neutral-600)",
             margin:        "0 0 32px",
-            letterSpacing: "0em",
+            letterSpacing: "0",
             lineHeight:    1.5,
             maxWidth:      "560px",
           }}
@@ -452,14 +413,14 @@ function ProjectCard({
            comes from its children ("View case study"). The image above
            already carries a project-specific aria-label, so assistive
            tech can still land on the correct case study by link. */
-        <LinkArrow href={project.href!} tone="on-dark">
+        <LinkArrow href={project.href!} tone="on-light">
           View case study
         </LinkArrow>
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "12px",
-          color:      "var(--color-inverse-muted)",
+          fontSize:   "var(--text-small)",
+          color:      "var(--color-neutral-500)",
           margin:     0,
         }}>
           Case study in progress
