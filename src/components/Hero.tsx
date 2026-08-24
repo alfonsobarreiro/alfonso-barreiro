@@ -43,7 +43,7 @@ export default function Hero() {
               maxWidth:      "18ch",
             }}
           >
-            I find the problem, then I design the fix.
+            Design isn&rsquo;t heroism. It&rsquo;s chaos reduction.
           </h1>
 
           <p
@@ -57,7 +57,7 @@ export default function Hero() {
               margin:        "0",
             }}
           >
-            Fifteen years in agency, in-house, and product. Now, a Product Designer.<br />100+ sites shipped.
+            Product Designer, fifteen years. 100+ sites shipped across agency, in-house, and product.<br />AI is the second pair of hands. Every design call is still mine.
           </p>
 
           {/* Visually-hidden H2 — keyword phrase absent from the H1. */}

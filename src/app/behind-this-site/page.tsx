@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -6,14 +7,14 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Behind this site",
   description:
-    "How this site is built. The palette decision, the design system underneath it, and the stack that ships it.",
+    "How this site is built. The mark, the design system underneath it, the stack that ships it, and the eight elements that came off in the twenty-portfolio calibration.",
   alternates: { canonical: "https://www.barreiro.com/behind-this-site" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/behind-this-site",
     title: "Behind this site · Alfonso Barreiro",
     description:
-      "How this site is built. The palette decision, the design system underneath it, and the stack that ships it.",
+      "How this site is built. The mark, the design system underneath it, the stack that ships it, and the eight elements that came off in the twenty-portfolio calibration.",
   },
 };
 
@@ -50,22 +51,6 @@ const innerWrapper: React.CSSProperties = {
   margin:   "0 auto",
 };
 
-const stackRow: React.CSSProperties = {
-  fontFamily:    "var(--font-dm-sans), sans-serif",
-  fontSize: "var(--text-body)",
-  lineHeight:    1.6,
-  color:         "var(--color-text-muted)",
-  margin:        "0 0 8px",
-  paddingLeft:   "18px",
-  position:      "relative",
-};
-
-const stackLabel: React.CSSProperties = {
-  fontWeight: 500,
-  color:         "var(--color-text)",
-  letterSpacing: "0.01em",
-};
-
 const tokenChip: React.CSSProperties = {
   display:       "inline-flex",
   alignItems:    "center",
@@ -88,10 +73,16 @@ const swatch: React.CSSProperties = {
   border:       "1px solid var(--color-neutral-400)",
 };
 
-/* One step in the decision chronology. Numbered label + editorial
-   caption above; Figma-exported artifact below. The caption sits
-   ABOVE the image so the reader knows what they're about to see
-   before they see it — reads as an editorial decision log. */
+const codeInline: React.CSSProperties = {
+  fontFamily: "ui-monospace, SFMono-Regular, monospace",
+  fontSize:   "0.9em",
+  background: "var(--color-neutral-100)",
+  padding:    "1px 6px",
+  color:      "var(--color-text)",
+};
+
+/* One artifact step from the Figma brand book. Caption sits above so
+   the reader knows what they're about to see before they see it. */
 function ArtifactStep({ heading, caption, src, width, height }: {
   heading: string; caption?: string; src: string; width: number; height: number;
 }) {
@@ -100,8 +91,8 @@ function ArtifactStep({ heading, caption, src, width, height }: {
       <div style={{ marginBottom: "clamp(20px, 3vw, 28px)", maxWidth: "780px" }}>
         <h3 style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
-          fontSize:      "clamp(28px,3.6vw,40px)",
-          fontWeight: 500,
+          fontSize:      "clamp(24px,3vw,32px)",
+          fontWeight:    500,
           color:         "var(--color-text)",
           margin:        "0 0 16px",
           letterSpacing: "-0.02em",
@@ -139,11 +130,8 @@ function ArtifactStep({ heading, caption, src, width, height }: {
   );
 }
 
-/* ── Visual stack explainer ─────────────────────────────────────────
-   Seven stack layers rendered as a grid of tiles: small SVG glyph
-   top-left, uppercase label, body copy. Left rail on each tile in
-   Terracotta reinforces the "layer stripe" reading. Highest layer
-   (Analytics) sits top-left; lowest (Framework) bottom-right. */
+/* Seven stack layers rendered as a compact grid of tiles. Highest
+   layer (AI) sits last as the payoff; lowest (Framework) sits first. */
 
 type StackLayer = {
   n:      string;
@@ -167,7 +155,7 @@ const stackLayers: StackLayer[] = [
   {
     n:     "02",
     label: "Hosting",
-    body:  <><code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>main</code> ships to barreiro.com. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>staging</code> ships to staging.barreiro.com. Vercel + GitHub auto-deploy.</>,
+    body:  <><code style={codeInline}>main</code> ships to barreiro.com. <code style={codeInline}>staging</code> ships to staging.barreiro.com. Vercel + GitHub auto-deploy.</>,
     icon:  (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 4L21 20H3L12 4Z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -177,7 +165,7 @@ const stackLayers: StackLayer[] = [
   {
     n:     "03",
     label: "Design source",
-    body:  "Figma. Every screen begins there and gets translated to code by hand.",
+    body:  "Figma. Seventeen-page brand book. Every screen begins there and gets translated to code by hand.",
     icon:  (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="9"  cy="6"  r="3" stroke="currentColor" strokeWidth="1.75" />
@@ -189,7 +177,7 @@ const stackLayers: StackLayer[] = [
   {
     n:     "04",
     label: "Typography",
-    body:  "DM Sans for the interface. Lora for editorial pull quotes. Barlow Condensed for section §-headings on case studies.",
+    body:  "DM Sans only. One family, two weights (400 and 500). Barlow Condensed and Lora got swept when the DS unified this month.",
     icon:  (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <text x="4" y="18" fontFamily="var(--font-dm-sans), sans-serif" fontSize="17" fontWeight="500" fill="currentColor">Aa</text>
@@ -218,12 +206,11 @@ const stackLayers: StackLayer[] = [
   },
   {
     n:     "07",
-    label: "Analytics",
-    body:  "None. If you're here, you're here.",
+    label: "AI",
+    body:  <>Claude in the loop for research clustering, case-study drafts, and voice-tuned copy against the profile in layer 06. Design decisions stayed with me. Full stance on <Link href="/process" style={{ color: "inherit", textDecoration: "none", borderBottom: "1px solid var(--color-neutral-400)" }}>/process</Link>.</>,
     icon:  (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="8"  stroke="currentColor" strokeWidth="1.75" />
-        <path d="M6 6L18 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+        <path d="M12 4L14 10L20 12L14 14L12 20L10 14L4 12L10 10L12 4Z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -301,8 +288,8 @@ function StackVisual() {
           color: var(--color-text-muted);
           margin: 4px 0 0;
         }
-        /* Layer 07 (Analytics) reads as the punchline — span both
-           columns on desktop for editorial breath. */
+        /* Layer 07 (AI) spans both columns on desktop for editorial
+           breath — it is the payoff, not one more line item. */
         .bts-stack-tile-wide {
           grid-column: 1 / -1;
         }
@@ -311,6 +298,55 @@ function StackVisual() {
           .bts-stack-tile-wide { grid-column: 1; }
         }
       `}</style>
+    </div>
+  );
+}
+
+/* Rule row for "The rules." section — one editorial claim per line,
+   hairline between. Matches the DS pattern used on Figma page 04. */
+function RuleRow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="bts-rule" style={{
+      fontFamily:  "var(--font-dm-sans), sans-serif",
+      fontSize:    "var(--text-article)",
+      lineHeight:  1.6,
+      color:       "var(--color-text)",
+      margin:      0,
+      padding:     "16px 0",
+      borderBottom: "1px solid var(--color-neutral-200)",
+    }}>
+      {children}
+    </p>
+  );
+}
+
+/* Cut row for "What was cut." — element name, then the pattern that
+   asked for its removal. Same hairline treatment as rules. */
+function CutRow({ label, note }: { label: string; note: string }) {
+  return (
+    <div style={{
+      display:       "grid",
+      gridTemplateColumns: "minmax(180px, 220px) 1fr",
+      gap:           "clamp(16px, 3vw, 32px)",
+      padding:       "16px 0",
+      borderBottom:  "1px solid var(--color-neutral-200)",
+      alignItems:    "baseline",
+    }} className="bts-cut">
+      <p style={{
+        fontFamily:  "var(--font-dm-sans), sans-serif",
+        fontSize:    "var(--text-body)",
+        fontWeight:  500,
+        color:       "var(--color-text)",
+        margin:      0,
+        letterSpacing: "-0.01em",
+      }}>{label}</p>
+      <p style={{
+        fontFamily:  "var(--font-dm-sans), sans-serif",
+        fontSize:    "var(--text-body)",
+        lineHeight:  1.6,
+        color:       "var(--color-text-muted)",
+        margin:      0,
+      }}>{note}</p>
     </div>
   );
 }
@@ -346,148 +382,47 @@ export default function BehindThisSitePage() {
               maxWidth: "720px",
               margin:   0,
             }}>
-              The palette decision, the design system underneath it, and the stack that ships it. Written for the people who look at the source view for fun.
+              The mark, the design system underneath it, the stack that ships it, and the eight elements that came off in a twenty-portfolio audit. Written for the people who look at the source view for fun.
             </p>
           </div>
         </section>
 
-        {/* ── The mark and how it works — brand book expansion pulled
-             from the Barreiro.com Figma foundation artifact (page 01)
-             on 2026-07-03. Five modules stacked under one editorial
-             section: The Mark, Size Scale, Four Surfaces, Wordmark, and
-             Applications. Rendered in code (LogoMark component) so every
-             glyph stays vector-crisp. */}
-        <section aria-label="The mark and how it works" style={{
+        {/* ── The mark ─────────────────────────────────────────────────── */}
+        <section aria-label="The mark" style={{
           padding:    "48px clamp(32px, 6vw, 80px)",
           background: "var(--color-paper)",
         }}>
           <div style={innerWrapper}>
-            <h2 style={{
-              fontFamily:    "var(--font-dm-sans), sans-serif",
-              fontSize:      "clamp(28px,3.5vw,40px)",
-              fontWeight:    500,
-              color:         "var(--color-text)",
-              margin:        "0 0 24px",
-              letterSpacing: "-0.01em",
-              lineHeight:    1.15,
-              maxWidth:      "820px",
-            }}>
-              An infinity-A into B monogram, Alfonso Barreiro, and alpha beta design.
-            </h2>
+            <h2 style={sectionH2}>The mark.</h2>
 
-            <p style={{ ...body, maxWidth: "620px", margin: "0 0 clamp(64px, 8vw, 96px)" }}>
-              An infinity-A monogram, dual-purpose. The loop is Alpha + Beta (the studio). The A-arrow is the designer. Used at 24 px in nav today; here it sits back up to its proper role as the anchor of the brand.
+            <p style={{ ...body, maxWidth: "620px" }}>
+              Infinity, an A, and a closed system in one glyph. The loop is Alpha and Beta, the design studio behind the client work. The A-arrow inside is the designer. Used at 24 px in the nav, and specified end-to-end in the Figma brand book.
             </p>
 
-            {/* Six real Figma artifacts pulled from six different pages
-                of the Barreiro.com working file. Reads as a decision
-                chronology — the mark, the color exploration, the type
-                pairings tried, the systems tested, the runner-up
-                (Aubergine) that got ruled out, and the direction that
-                actually shipped. Replaces both the previous code
-                recreations AND the standalone "palette decision" image
-                (Alfonso 2026-07-03: "there is a lot in there"). */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px, 7vw, 96px)" }}>
-
+            <div style={{ marginTop: "clamp(40px, 5vw, 64px)" }}>
               <ArtifactStep
-                heading="Infinity, an A, and a closed system in one glyph."
-                src="/images/behind-this-site/mark-hero.png"
-                width={1536}
-                height={500}
+                heading="Sizes, variants, and rules — the spec."
+                caption="Five test sizes on paper ground, minimum 16 px. Two color variants: dark on light, white on dark. One aspect: 2:1, always. PNGs are the mark; never redrawn from vectors."
+                src="/images/behind-this-site/mark-spec-v2.png"
+                width={1200}
+                height={2265}
               />
-
-              <ArtifactStep
-                heading="Where the brand went warm."
-                caption="Cognac, Burnt Sienna, and other warm-editorial candidates the mark tried on before Crimson locked. The register was always warm; the specific hue took iterations."
-                src="/images/behind-this-site/color-exploration.png"
-                width={1680}
-                height={2120}
-              />
-
-              <ArtifactStep
-                heading="How Alfonso Barreiro reads."
-                caption="Three type pairings tested against the wordmark: DM Serif Display + DM Sans, Fraunces + DM Sans, Newsreader + Inter. The specimen block underneath shows editorial + running text together — the two registers the site needs to hold."
-                src="/images/behind-this-site/typography-exploration.png"
-                width={1680}
-                height={2120}
-              />
-
-              <ArtifactStep
-                heading="Tokens graded against real UI, not swatches."
-                caption="Surface / Brand / Accent / Ink token quartets across the shortlist. Each row also carries a live preview so the tokens are graded against real UI, not swatches in isolation."
-                src="/images/behind-this-site/brand-systems.png"
-                width={1768}
-                height={1640}
-              />
-
-              <ArtifactStep
-                heading="The Aubergine detour."
-                caption="Applied to a full homepage before the direction pivoted. The runner-up that got the shipping palette its confidence: I ruled Aubergine out only after seeing it at production scale."
-                src="/images/behind-this-site/aubergine-locked-v2.png"
-                width={1440}
-                height={2874}
-              />
-
-              <ArtifactStep
-                heading="Homepage C · Light with Conviction."
-                caption="The wireframe of the site you're reading right now, locked 2026-06-16. Terracotta on Navy. Deep Teal as the second voice. Same DM Sans running text as the Aubergine detour above."
-                src="/images/behind-this-site/homepage-c-shipped-v3.png"
-                width={1440}
-                height={3400}
-              />
-
             </div>
-
           </div>
-
-          {/* Responsive: stack sub-grids on narrow viewports */}
-          <style>{`
-            @media (max-width: 720px) {
-              .bts-surfaces,
-              .bts-wordmarks,
-              .bts-applications {
-                grid-template-columns: 1fr !important;
-              }
-              .bts-size-scale {
-                justify-content: flex-start !important;
-                gap: 16px !important;
-              }
-            }
-
-          `}</style>
         </section>
 
-        {/* "The palette decision" section removed 2026-07-03 — the six-
-             artifact chronology above ends on the same "shipped design"
-             beat with a higher-fidelity Figma export (Alfonso hated the
-             prior C-vs-E composite image). */}
-
-        {/* ── The system underneath it — Alpha Beta Design ────────────── */}
+        {/* ── The system underneath it ─────────────────────────────────── */}
         <section aria-label="The design system underneath" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>The system underneath it.</h2>
             <p style={body}>
-              Barreiro.com runs on{" "}
-              <a
-                href="https://alphabeta.design/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color:           "var(--color-text)",
-                  textDecoration:  "none",
-                  fontWeight:      500,
-                  borderBottom:    "1px solid var(--color-neutral-400)",
-                }}
-              >
-                Alpha Beta Design
-              </a>
-              , a portable design system I maintain for client work. Same tokens, same components, same layout scaffolding that powers Men&apos;s Sole Revival and Wayfarer. The brand swap between projects is a variable change, not a rebuild.
+              I built a portable design system I maintain for client work. Barreiro.com runs on it. So do Men&apos;s Sole Revival and Wayfarer. Same tokens, same components, same layout scaffolding. The brand swap between projects is a variable change, not a rebuild.
             </p>
             <p style={body}>
-              Roles instead of literal names. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--color-brand</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--crimson</code>. <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--color-accent</code> instead of <code style={{ fontFamily: "ui-monospace, SFMono-Regular, monospace", fontSize: "0.9em", background: "var(--color-neutral-100)", padding: "1px 6px", color: "var(--color-text)" }}>--deep-teal</code>. Each project points those variables at its own hexes and the system does the rest.
+              Roles instead of literal names. <code style={codeInline}>--color-brand</code> instead of <code style={codeInline}>--crimson</code>. <code style={codeInline}>--color-accent</code> instead of <code style={codeInline}>--deep-teal</code>. Each project points those variables at its own hexes and the system does the rest.
             </p>
 
-            <div style={{ marginTop: "32px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
+            <div style={{ marginTop: "8px", marginBottom: "32px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
               <span style={tokenChip}>
                 <span style={{ ...swatch, background: "#CF5B48" }} aria-hidden="true" />
                 --color-brand · #CF5B48
@@ -505,15 +440,32 @@ export default function BehindThisSitePage() {
                 --color-ink · #0F283D
               </span>
             </div>
+
+            <p style={body}>
+              The Figma brand book runs seventeen pages: README, Landing, Home, Buttons, Cards, Dialog, Forms, Navigation, Colors, Fonts, Wordmark, Mark, Logo, Icons, Imagery, Spacing, and Parameters. Every rule that ships in the code lives there first.
+            </p>
+
+            <div style={{ marginTop: "clamp(40px, 5vw, 64px)", display: "flex", flexDirection: "column", gap: "clamp(48px, 6vw, 80px)" }}>
+              <ArtifactStep
+                heading="The palette — role tokens, not literal names."
+                caption="Brand, accent, sage, neutrals, plus semantic bindings for background, text, and border. Same file every client project reads."
+                src="/images/behind-this-site/colors-spec.png"
+                width={715}
+                height={2400}
+              />
+
+              <ArtifactStep
+                heading="The type ramp — one family, two weights."
+                caption="DM Sans at 400 and 500. Eight sizes on the ramp (60 / 40 / 28 / 20 / 17 / 15 / 12 / 11). No other family ships. Barlow Condensed and Lora were swept when the DS unified this month."
+                src="/images/behind-this-site/fonts-spec.png"
+                width={743}
+                height={2400}
+              />
+            </div>
           </div>
         </section>
 
-        {/* ── The stack — visual explainer ────────────────────────────
-             Seven layers as a visual stack, top-down (highest = closest
-             to the reader, lowest = closest to metal). Each layer has
-             a small SVG glyph, an uppercase label, and one line of body
-             copy. Compact 2-column grid on desktop, single column on
-             mobile (2026-07-03 Alfonso ask). */}
+        {/* ── The stack ────────────────────────────────────────────────── */}
         <section aria-label="Stack" style={sectionWrapper()}>
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Stack.</h2>
@@ -522,6 +474,46 @@ export default function BehindThisSitePage() {
             </p>
 
             <StackVisual />
+          </div>
+        </section>
+
+        {/* ── The rules ────────────────────────────────────────────────── */}
+        <section aria-label="The rules" style={sectionWrapper()}>
+          <div style={innerWrapper}>
+            <h2 style={sectionH2}>The rules.</h2>
+            <p style={{ ...body, marginBottom: "clamp(16px, 2vw, 24px)" }}>
+              Five constraints govern everything the DS ships. Every screen on this site, every case study, every artifact in the Figma book obeys them.
+            </p>
+            <div style={{ borderTop: "1px solid var(--color-neutral-200)" }}>
+              <RuleRow>Title Case for button labels only. Every other label stays sentence case.</RuleRow>
+              <RuleRow>Radius 0 for rectangles. 999 for pills and circles. No mid values.</RuleRow>
+              <RuleRow>Terracotta is the only accent. A second accent breaks the ground, ink, accent triad.</RuleRow>
+              <RuleRow>No shadows on any button state. Depth is not a button affordance.</RuleRow>
+              <RuleRow>DM Sans only. One family, two weights.</RuleRow>
+            </div>
+          </div>
+        </section>
+
+        {/* ── What was cut ─────────────────────────────────────────────── */}
+        <section aria-label="What was cut" style={sectionWrapper()}>
+          <div style={innerWrapper}>
+            <h2 style={sectionH2}>What was cut.</h2>
+            <p style={body}>
+              In August 2026, I audited barreiro.com against twenty senior product-design portfolios. Every one of those twenty rejected the same eight elements. Six of the eight were shipping here. This is what came off.
+            </p>
+            <div style={{ marginTop: "clamp(24px, 3vw, 40px)", borderTop: "1px solid var(--color-neutral-200)" }}>
+              <CutRow label="Hero device peek"       note="A MacBook with the 86% stat overlay in the top-right. Twenty of twenty senior portfolios ship no hero image." />
+              <CutRow label="Testimonials"           note="A quote carousel with attributed praise. Twenty of twenty ship none." />
+              <CutRow label="Metrics on the fold"    note="The 86% completion stat was a hero callout. It lives inside the Men’s Sole Revival case study now, where the reader can see the receipt." />
+              <CutRow label="/contact route"         note="A dedicated page with a mailto link. Twenty of twenty use email, calendar, or newsletter — not a route. The email lives in the footer and on the About page." />
+              <CutRow label="About preview on home"  note="A duplicate of the /about narrative. The full page still ships from the nav." />
+              <CutRow label="Downloadable résumé"    note="Twenty of twenty do not offer a résumé file. LinkedIn is the primary reference now." />
+              <CutRow label="Dark mode toggle"       note="Never shipped. Twenty of twenty do not have one." />
+              <CutRow label="Heavy hero motion"      note="Framer Motion staggered entrance animation. The library came out with it — the site now transitions with native CSS only." />
+            </div>
+            <p style={{ ...body, marginTop: "clamp(24px, 3vw, 40px)" }}>
+              Six of the eight universal rejects came off. The site got quieter. Fewer decisions for the reader to make before they hit the case studies.
+            </p>
           </div>
         </section>
 

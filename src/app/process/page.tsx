@@ -210,13 +210,8 @@ export default function ProcessPage() {
             </p>
 
             <p style={beliefClaim} className="value-claim">I talk fluently with PMs, engineers, and stakeholders.</p>
-            <p style={beliefBody}>
-              Fifteen years across marketing, operations, and product mean I can hold a technical review, a stakeholder briefing, and a research synthesis without translation cost. Less translation, fewer meetings, fewer surprises.
-            </p>
-
-            <p style={beliefClaim} className="value-claim">I run AI-augmented research and synthesis.</p>
             <p style={{ ...beliefBody, marginBottom: 0 }}>
-              Claude for clustering 200-plus community posts. AI-assisted competitive audits. AI-augmented production workflows that cut a creative team&rsquo;s timelines twenty percent at VARA without dropping quality. The model is the second pair of hands, not the designer.
+              Fifteen years across marketing, operations, and product mean I can hold a technical review, a stakeholder briefing, and a research synthesis without translation cost. Less translation, fewer meetings, fewer surprises.
             </p>
           </div>
         </section>
@@ -276,6 +271,25 @@ export default function ProcessPage() {
                 Designers, PMs, and engineers each carry a dialect. The team that doesn&rsquo;t need a translator between them ships faster. Fifteen years across marketing, operations, and product mean I can hold all three conversations without the relay.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* ── How I use AI ── */}
+        <section aria-label="How I use AI" style={sectionWrapper()}>
+          <div style={innerWrapper}>
+            <h2 style={sectionH2}>How I use AI</h2>
+            <p style={{ ...body, fontWeight: 500, marginBottom: "32px", maxWidth: "720px" }}>
+              AI holds the complexity so I can hold the craft.
+            </p>
+            <p style={body}>
+              Every project passes through a stack I&rsquo;ve built inside Claude Code. Twenty-plus custom skills automate design-system audits, voice reviews, brand-token checks, competitive scans. A dozen subagents handle research, critique, and copy sweeps in parallel. A vault holds every design decision, every review, every project log, so context survives between sessions.
+            </p>
+            <p style={body}>
+              The point isn&rsquo;t speed. It&rsquo;s holding more without dropping. Eighteen concurrent projects instead of three. Every case study checked against Designing with Intention, Refactoring UI, NN/g, and the twenty senior portfolios I calibrate against. The review happens automatically. Every deliverable filtered for AI-tell vocabulary against my own voice profile. The edit pass is scripted.
+            </p>
+            <p style={{ ...body, margin: 0 }}>
+              What AI doesn&rsquo;t do: pick the direction, make the taste calls, decide what to refuse. Those stay mine.
+            </p>
           </div>
         </section>
 
