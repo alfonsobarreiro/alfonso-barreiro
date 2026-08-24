@@ -165,7 +165,7 @@ export default function Work() {
                 maxWidth:      "640px",
               }}
             >
-              Three products. Concept, live, and shipped since 2025.
+              Three case studies. One shipped and running. Two concepts that argue from evidence, not opinion.
             </p>
           </div>
         </div>
@@ -206,6 +206,7 @@ export default function Work() {
             order: 0 !important;
             width: 100% !important;
             max-width: 100% !important;
+            box-sizing: border-box !important;
           }
           .work-row .work-row-content {
             order: 1 !important;
