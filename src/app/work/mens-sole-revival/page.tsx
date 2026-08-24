@@ -469,7 +469,6 @@ export default function MSRv2() {
               gap: 0 !important;
               min-height: 40px !important;
             }
-            .msr2-arc-nav a span:first-child { display: none !important; }
             .msr2-arc-label {
               font-size: 10px !important;
               letter-spacing: 0.04em !important;

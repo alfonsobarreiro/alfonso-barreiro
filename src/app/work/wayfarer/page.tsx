@@ -484,7 +484,6 @@ export default function WayfarerV2() {
              Alfonso 2026-07-04: "All the mobile navs should be
              words, not numbers." */
           @media (max-width: 480px) {
-            .wf2-arc-nav a span:first-child { display: none !important; }
             .wf2-arc-nav a {
               gap: 0 !important;
               padding: 12px 3px !important;
