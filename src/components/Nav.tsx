@@ -273,12 +273,6 @@ export default function Nav() {
           pointerEvents:   menuOpen ? "auto" : "none",
         }}
       >
-        {/* Eyebrow */}
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "48px" }}>
-          <span style={{ width: "20px", height: "1px", background: "var(--color-inverse-caption)" }} />
-          <Eyebrow tone="inverse">Navigation</Eyebrow>
-        </div>
-
         {/* Nav links */}
         {navLinks.map((link) => {
           const overlayLinkStyle: React.CSSProperties = {
@@ -360,6 +354,7 @@ export default function Nav() {
             { href: "/work/spotify",            label: "Spotify"            },
             { href: "/work/wayfarer",           label: "Wayfarer"           },
             { href: "/work/mens-sole-revival",  label: "Men's Sole Revival" },
+            { href: "/work/aiga-portland",      label: "AIGA PDX"           },
             // { href: "/work/abd-ui-system",      label: "ABD UI System"      }, // hidden 2026-07-01 — rework pending
           ].map((cs) => (
             <Link
