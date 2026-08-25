@@ -310,6 +310,13 @@ export default function WayfarerV2() {
             }}>
               Wayfarer treats travel content as a front door, not a spreadsheet. Interactive globe, forty destinations across seven continents, one editorial cover in place of the catalog the original brief asked for.
             </p>
+            <p style={{
+              fontFamily: font.sans, fontSize: "var(--text-article)",
+              lineHeight: 1.5, fontWeight: 500, color: c.ink,
+              maxWidth: "680px", margin: "0 0 32px",
+            }}>
+              Claude and I ran the user-research pass and built the trip planner around duration, not dates.
+            </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "40px" }}>
             <Tag>Information Architecture</Tag>
             <Tag>Design System</Tag>

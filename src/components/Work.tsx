@@ -91,6 +91,20 @@ const projects: Project[] = [
     href:        "/work/mens-sole-revival",
     image:       "/cs-msr-preview.jpg",
   },
+  {
+    title:       "AIGA Portland",
+    subtitle:    "Portland Design Month 2026",
+    description:
+      "Volunteer landing-page build for AIGA Portland's Design Month 2026. Squarespace 7.1 with a brand system that fought every platform default. Custom CSS and page-scoped JS closed the gap.",
+    thesis:      "The artist's brand shipped intact past Squarespace's defaults.",
+    deck:        "Team of four. PM on final calls, artist on this year's brand system, peer designer on the map, me on the Squarespace build and custom code.",
+    meta:        "Volunteer · 2026 · Live",
+    tags:        ["Editorial", "Brand", "Volunteer"],
+    year:        "2026",
+    status:      "live",
+    href:        "/work/aiga-portland",
+    image:       "/images/work/aiga-portland/then-2026-cropped.jpg",
+  },
   // ABD UI hidden 2026-07-01 pending case-study rework to match the
   // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
   // rework ships.
@@ -245,6 +259,7 @@ function ProjectCard({
   const isMSR      = project.title === "Men's Sole Revival";
   const isWayfarer = project.title === "Wayfarer";
   const isSpotify  = project.title === "Spotify";
+  const isAiga     = project.title === "AIGA Portland";
   const isABD      = project.title === "ABD UI";
 
   /* Per-project aspect ratio: MSR (landscape MacBook) stays 16:10 so the
@@ -255,6 +270,7 @@ function ProjectCard({
   const imgAspect = isMSR     ? "4 / 3"
                   : isWayfarer ? "3 / 4"
                   : isSpotify  ? "2 / 3"
+                  : isAiga     ? "1431 / 1877"
                   : isABD      ? "16 / 10"
                   : "16 / 10";
 
@@ -310,7 +326,8 @@ function ProjectCard({
     flex:         "0 0 auto",
     ...(isSpotify  && { width: "360px", maxWidth: "34vw" }),
     ...(isWayfarer && { width: "340px", maxWidth: "30vw" }),
-    ...(isMSR      && { width: "620px", maxWidth: "50vw" }),
+    ...(isMSR      && { width: "620px", maxWidth: "50vw", padding: "clamp(6px, 0.8vw, 10px) clamp(6px, 0.8vw, 10px)" }),
+    ...(isAiga     && { width: "400px", maxWidth: "34vw" }),
     ...(isABD      && { width: "440px", maxWidth: "42vw" }),
   };
 
