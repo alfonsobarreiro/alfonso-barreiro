@@ -179,7 +179,7 @@ export default function Work() {
                 maxWidth:      "640px",
               }}
             >
-              Three case studies. One shipped and running. Two concepts that argue from evidence, not opinion.
+              Four case studies. Two shipped and running. Two concepts that argue from evidence, not opinion.
             </p>
           </div>
         </div>
