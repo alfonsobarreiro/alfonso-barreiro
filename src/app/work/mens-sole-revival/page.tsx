@@ -306,6 +306,18 @@ export default function MSRv2() {
               A diagnostic-first foot-health resource for men over 40. Research, assessment redesign, brand identity, and a production design system.
             </p>
 
+            <p style={{
+              fontFamily:    font.sans,
+              fontSize:      "var(--text-article)",
+              lineHeight:    1.5,
+              fontWeight:    500,
+              color:         c.ink,
+              maxWidth:      "680px",
+              margin:        "0 0 32px",
+            }}>
+              Claude and I margin-modeled the e-commerce plan for three weeks, ruled it out, and pivoted to editorial in week three.
+            </p>
+
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "40px" }}>
               <Tag>Brand Identity</Tag>
               <Tag>Content UX</Tag>

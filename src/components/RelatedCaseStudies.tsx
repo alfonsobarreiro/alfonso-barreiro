@@ -13,7 +13,7 @@ import Link from "next/link";
  * MSR), so coming off Spotify you see Wayfarer then MSR.
  */
 
-type Slug = "spotify" | "wayfarer" | "mens-sole-revival";
+type Slug = "spotify" | "wayfarer" | "mens-sole-revival" | "aiga-portland";
 
 interface Card {
   slug:    Slug;
@@ -48,6 +48,14 @@ const ALL: Card[] = [
     meta:    "Foot Health Content Platform · 2026",
     image:   "/cs-msr-preview.jpg",
     href:    "/work/mens-sole-revival",
+  },
+  {
+    slug:    "aiga-portland",
+    title:   "AIGA Portland",
+    tagline: "The artist's brand shipped intact past Squarespace's defaults.",
+    meta:    "Portland Design Month 2026 · Volunteer",
+    image:   "/images/work/aiga-portland/hero-live-page-v3-3625.jpg",
+    href:    "/work/aiga-portland",
   },
 ];
 

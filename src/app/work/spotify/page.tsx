@@ -268,7 +268,14 @@ export default function SpotifyV2() {
               lineHeight: 1.6, color: c.ink, margin: "0 0 32px",
               maxWidth: "680px",
             }}>
-              Three reversible controls for Spotify&rsquo;s Recently Played shelf. Each one completes in one or two taps. Self-directed concept — Recently Played is one of Spotify&rsquo;s highest-traffic surfaces and one of its least controllable. Three additive, reversible controls without rebuilding the shelf or breaking the recommendation engine.
+              Three reversible controls for Spotify&rsquo;s Recently Played shelf. Each one completes in one or two taps. Self-directed concept. Recently Played is one of Spotify&rsquo;s highest-traffic surfaces and one of its least controllable. Three additive, reversible controls without rebuilding the shelf or breaking the recommendation engine.
+            </p>
+            <p style={{
+              fontFamily: font.sans, fontSize: "var(--text-article)",
+              lineHeight: 1.5, fontWeight: 500, color: c.ink, margin: "0 0 32px",
+              maxWidth: "680px",
+            }}>
+              Claude and I clustered 200+ community posts and shipped three reversible shelf controls that don&rsquo;t touch the recommendation engine.
             </p>
           </div>
         </header>
