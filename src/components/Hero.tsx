@@ -1,11 +1,9 @@
-"use client";
-
-import { Button } from "@/components/ui/Button";
-
 /**
  * Hero — text-only. Right column (MSR iPad + 86% stat) removed per the
  * 20-portfolio reference calibration: 20 of 20 senior portfolios ship
- * no hero image, no metrics block, no entrance animation.
+ * no hero image, no metrics block, no entrance animation. Hero CTA
+ * button also removed for the same reason — the nav has Work, natural
+ * scroll gets you there, and the paragraph is a stronger last beat.
  * Right-column slot reserved for a portrait when shot.
  */
 export default function Hero() {
@@ -43,7 +41,7 @@ export default function Hero() {
               maxWidth:      "18ch",
             }}
           >
-            Design isn&rsquo;t heroism. It&rsquo;s chaos reduction.
+            Design isn&rsquo;t taste. It&rsquo;s chaos reduction.
           </h1>
 
           <p
@@ -75,11 +73,6 @@ export default function Hero() {
             Alfonso Barreiro, Product Designer in Portland, Oregon.
           </h2>
 
-          <div className="hero-cta-row" style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "32px" }}>
-            <Button variant="primary" size="lg" href="#work">
-              View Work
-            </Button>
-          </div>
         </div>
       </div>
     </section>
