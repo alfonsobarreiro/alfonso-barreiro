@@ -12,9 +12,6 @@ export default function Hero() {
       id="hero"
       className="hero-section"
       style={{
-        minHeight:  "65vh",
-        display:    "flex",
-        alignItems: "center",
         padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
         position:   "relative",
         overflow:   "hidden",
@@ -56,6 +53,36 @@ export default function Hero() {
             }}
           >
             Product Designer, fifteen years. 100+ sites shipped across agency, in-house, and product. AI is the second pair of hands. Every design call is still mine.
+          </p>
+
+          {/* Open-for-work signal. Same treatment as the About page chip
+              (dot + brand-colored label) so the availability status reads
+              consistent across the two surfaces a recruiter is most likely
+              to land on. */}
+          <p
+            style={{
+              display:    "inline-flex",
+              alignItems: "center",
+              gap:        "10px",
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontSize:   "var(--text-body)",
+              fontWeight: 500,
+              color:      "var(--color-brand)",
+              margin:     "24px 0 0",
+              lineHeight: 1.35,
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                display:      "inline-block",
+                width:        "8px",
+                height:       "8px",
+                borderRadius: "50%",
+                background:   "var(--color-brand)",
+              }}
+            />
+            Open for work
           </p>
 
           {/* Visually-hidden H2 — keyword phrase absent from the H1. */}

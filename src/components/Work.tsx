@@ -158,7 +158,7 @@ export default function Work() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(28px,4vw,40px)",
+                fontSize:      "clamp(32px,4.5vw,48px)",
                 fontWeight:    500,
                 color:         "var(--color-text)",
                 margin:        0,
@@ -400,7 +400,7 @@ function ProjectCard({
         maxWidth: "640px",
       }}
     >
-      <h2
+      <h3
         className="work-row-thesis"
         style={{
           fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -413,7 +413,7 @@ function ProjectCard({
         }}
       >
         {project.thesis}
-      </h2>
+      </h3>
 
       {/* Deck — magazine-style subhead carrying the constraint or method
           beneath the thesis. The thesis is the insight; the deck is what
