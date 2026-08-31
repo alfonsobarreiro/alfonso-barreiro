@@ -25,21 +25,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: { absolute: "Portland Design Month 2026 · AIGA Portland · Alfonso Barreiro" },
   description:
-    "Case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults.",
+    "Volunteer case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults.",
   alternates: { canonical: "https://www.barreiro.com/work/aiga-portland" },
   openGraph: {
     type: "article",
     url: "https://www.barreiro.com/work/aiga-portland",
     title: "Portland Design Month 2026 · AIGA Portland",
     description:
-      "A volunteer landing-page build for AIGA Portland's three-week October festival. Squarespace as the platform. Custom CSS and JS carried the artist's brand past the defaults.",
+      "Volunteer case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults.",
     images: ["/work/aiga-portland/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Portland Design Month 2026 · AIGA Portland",
     description:
-      "A volunteer landing-page build for AIGA Portland. Custom CSS and JS carried the artist's brand past Squarespace's defaults.",
+      "Volunteer case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults.",
     images: ["/work/aiga-portland/opengraph-image"],
   },
 };
@@ -692,7 +692,7 @@ export default function AIGAPortland() {
     <>
       <Nav />
       <CaseStudySchema
-        name="AIGA Portland · Portland Design Month 2026"
+        name="Portland Design Month 2026 · AIGA Portland"
         description="Volunteer case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults."
         slug="aiga-portland"
         dateCreated="2026-08"
@@ -701,7 +701,7 @@ export default function AIGAPortland() {
         items={[
           { name: "Home", url: "https://www.barreiro.com/" },
           { name: "Work", url: "https://www.barreiro.com/#work" },
-          { name: "AIGA Portland", url: "https://www.barreiro.com/work/aiga-portland" },
+          { name: "Portland Design Month 2026 · AIGA Portland", url: "https://www.barreiro.com/work/aiga-portland" },
         ]}
       />
 

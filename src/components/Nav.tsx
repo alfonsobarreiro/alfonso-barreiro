@@ -7,12 +7,13 @@ import LogoMark from "./LogoMark";
 import CommandPalette, { openCommandPalette } from "./CommandPalette";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
-const navLinks = ["work", "process", "about", "behind"] as const;
+const navLinks = ["work", "process", "about", "behind", "resume"] as const;
 
 const NAV_ROUTES: Partial<Record<(typeof navLinks)[number], { href: string; label: string }>> = {
   about:   { href: "/about",             label: "About" },
   process: { href: "/process",           label: "Process" },
   behind:  { href: "/behind-this-site",  label: "Behind this site" },
+  resume:  { href: "/resume",            label: "Resume" },
 };
 
 function scrollTo(id: string) {

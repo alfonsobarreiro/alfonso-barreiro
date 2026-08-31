@@ -8,7 +8,7 @@ Alfonso's personal portfolio site. Next.js + TypeScript.
 
 Two environments, both Vercel + GitHub auto-deploy:
 
-- `main` → Production → https://barreiro.com
+- `main` → Production → https://www.barreiro.com
 - `staging` → Preview → https://staging.barreiro.com
 
 Push to `staging` first. Merge to `main` only when staging looks good.

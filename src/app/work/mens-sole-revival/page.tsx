@@ -12,35 +12,33 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 import DiagnosticFlowDemo from "./_demo/DiagnosticFlowDemo";
 
 /* ---------------------------------------------------------------------------
-   /work/mens-sole-revival-v2
+   /work/mens-sole-revival
 
-   Pentagram-inspired rebuild of the MSR case study. Image-first, big-three
-   structure (Problem / Bet / Shipped) with decision callouts. Lives at /v2
-   while in flight; current /work/mens-sole-revival stays untouched. Swap
-   when signed off.
+   Pentagram-inspired MSR case study. Image-first, big-three structure
+   (Problem / Bet / Shipped) with decision callouts.
 
    Voice: all body + callout copy ran through the voice-writing skill before
    landing here (see Voice Profile · 2026-06-16).
 --------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
-  title: { absolute: "Men’s Sole Revival · Foot Health · Alfonso Barreiro" },
+  title: { absolute: "Men’s Sole Revival · Foot Health Editorial · Alfonso Barreiro" },
   description:
-    "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
+    "Client case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week three. Live since April 2026 at menssolerevival.com.",
   alternates: { canonical: "https://www.barreiro.com/work/mens-sole-revival" },
   openGraph: {
     type: "article",
     url: "https://www.barreiro.com/work/mens-sole-revival",
     title: "Men’s Sole Revival · Foot Health Editorial",
     description:
-      "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
+      "Client case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week three. Live since April 2026 at menssolerevival.com.",
     images: ["/work/mens-sole-revival/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Men’s Sole Revival · Foot Health Editorial",
     description:
-      "Case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week 3. Live since April 2026 at menssolerevival.com.",
+      "Client case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week three. Live since April 2026 at menssolerevival.com.",
     images: ["/work/mens-sole-revival/opengraph-image"],
   },
 };
@@ -259,7 +257,7 @@ export default function MSRv2() {
     <>
       <Nav />
       <CaseStudySchema
-        name="Men's Sole Revival · Foot Health Content Platform"
+        name="Men’s Sole Revival · Foot Health Editorial"
         description="Client case study: a male-specific foot-health editorial resource. Pivoted from e-commerce to content authority in week three. Live since April 2026 at menssolerevival.com."
         slug="mens-sole-revival"
         dateCreated="2026-04"
@@ -268,7 +266,7 @@ export default function MSRv2() {
         items={[
           { name: "Home", url: "https://www.barreiro.com/" },
           { name: "Work", url: "https://www.barreiro.com/#work" },
-          { name: "Men's Sole Revival", url: "https://www.barreiro.com/work/mens-sole-revival" },
+          { name: "Men’s Sole Revival · Foot Health Editorial", url: "https://www.barreiro.com/work/mens-sole-revival" },
         ]}
       />
 

@@ -29,23 +29,23 @@ import SpotifyControlsInit from "./_client/SpotifyControlsInit";
 --------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
-  title: "Spotify · Recently Played Controls",
+  title: { absolute: "Spotify · Recently Played Controls · Alfonso Barreiro" },
   description:
-    "Case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
+    "Concept case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
   alternates: { canonical: "https://www.barreiro.com/work/spotify" },
   openGraph: {
     type: "article",
     url: "https://www.barreiro.com/work/spotify",
     title: "Spotify · Recently Played Controls",
     description:
-      "Case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
+      "Concept case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
     images: ["/work/spotify/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Spotify · Recently Played Controls",
     description:
-      "Case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
+      "Concept case study: Pin, Remove, and Pause. Three reversible controls for Spotify's Recently Played shelf that give users agency without degrading recommendation integrity.",
     images: ["/work/spotify/opengraph-image"],
   },
 };

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import HoursRibbon from "./_components/HoursRibbon";
 import BridgeQuote from "./_components/BridgeQuote";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -81,6 +82,12 @@ export default function ProcessPage() {
   return (
     <>
       <PersonSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "Process", url: "https://www.barreiro.com/process" },
+        ]}
+      />
       <Nav />
       <main id="main-content" style={{ background: "var(--color-paper)" }}>
         <style>{`

@@ -26,23 +26,23 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 --------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
-  title: "Wayfarer · Travel Discovery Platform",
+  title: { absolute: "Wayfarer · Travel Discovery Platform · Alfonso Barreiro" },
   description:
-    "Case study: a concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build.",
+    "Concept case study: a travel discovery platform with an interactive globe of forty destinations and a trip planner built around duration, not dates. Live at wayfarer.barreiro.com.",
   alternates: { canonical: "https://www.barreiro.com/work/wayfarer" },
   openGraph: {
     type: "article",
     url: "https://www.barreiro.com/work/wayfarer",
     title: "Wayfarer · Travel Discovery Platform",
     description:
-      "Case study: a concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build.",
+      "Concept case study: a travel discovery platform with an interactive globe of forty destinations and a trip planner built around duration, not dates. Live at wayfarer.barreiro.com.",
     images: ["/work/wayfarer/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Wayfarer · Travel Discovery Platform",
     description:
-      "Case study: a concept travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build.",
+      "Concept case study: a travel discovery platform with an interactive globe of forty destinations and a trip planner built around duration, not dates. Live at wayfarer.barreiro.com.",
     images: ["/work/wayfarer/opengraph-image"],
   },
 };
@@ -272,7 +272,7 @@ export default function WayfarerV2() {
       <Nav />
       <CaseStudySchema
         name="Wayfarer · Travel Discovery Platform"
-        description="Concept case study: a travel discovery platform designed for DesignLab. AI tools expanded what was possible to build. The discipline was deciding what not to build."
+        description="Concept case study: a travel discovery platform with an interactive globe of forty destinations and a trip planner built around duration, not dates. Live at wayfarer.barreiro.com."
         slug="wayfarer"
         dateCreated="2026-05"
       />

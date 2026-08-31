@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import BrandSwitch from "@/components/BrandSwitch";
 import KeyboardModality from "@/components/KeyboardModality";
 import ScrollToTopOnRoute from "@/components/ScrollToTopOnRoute";
+import { WebSiteSchema } from "@/components/structured-data/WebSiteSchema";
 import "./globals.css";
 
 // GA4 measurement ID for barreiro.com. Reads NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
     template: "%s · Alfonso Barreiro",
   },
   description:
-    "Product Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+    "Product Designer in Portland, OR. Fifteen years in design. Four case studies: Spotify, Wayfarer, Men's Sole Revival, AIGA Portland.",
   authors: [{ name: "Alfonso Barreiro", url: "https://www.barreiro.com" }],
   creator: "Alfonso Barreiro",
   openGraph: {
@@ -86,7 +87,7 @@ export const metadata: Metadata = {
     siteName: "Alfonso Barreiro",
     title: "Alfonso Barreiro · Product Designer",
     description:
-      "Product Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+      "Product Designer in Portland, OR. Fifteen years in design. Four case studies: Spotify, Wayfarer, Men's Sole Revival, AIGA Portland.",
     images: [
       {
         url: "/opengraph-image",
@@ -100,7 +101,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alfonso Barreiro · Product Designer",
     description:
-      "Product Designer in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+      "Product Designer in Portland, OR. Fifteen years in design. Four case studies: Spotify, Wayfarer, Men's Sole Revival, AIGA Portland.",
     images: ["/opengraph-image"],
     creator: "@alfbarreiro",
   },
@@ -150,6 +151,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: BRAND_BOOT_SCRIPT }} />
       </head>
       <body className="antialiased" suppressHydrationWarning>
+        <WebSiteSchema />
         <Suspense fallback={null}>
           <BrandSwitch />
         </Suspense>

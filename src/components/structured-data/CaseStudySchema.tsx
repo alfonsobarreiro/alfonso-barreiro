@@ -3,13 +3,29 @@ type Props = {
   description: string;
   slug: string;
   dateCreated: string;
+  dateModified?: string;
+  headline?: string;
+  keywords?: string | string[];
+  about?: string | string[];
 };
 
-export function CaseStudySchema({ name, description, slug, dateCreated }: Props) {
-  const schema = {
+export function CaseStudySchema({
+  name,
+  description,
+  slug,
+  dateCreated,
+  dateModified,
+  headline,
+  keywords,
+  about,
+}: Props) {
+  const keywordsValue = Array.isArray(keywords) ? keywords.join(", ") : keywords;
+
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name,
+    headline: headline ?? name,
     description,
     creator: {
       "@type": "Person",
@@ -21,6 +37,18 @@ export function CaseStudySchema({ name, description, slug, dateCreated }: Props)
     dateCreated,
     inLanguage: "en-US",
   };
+
+  if (dateModified) {
+    schema.dateModified = dateModified;
+  }
+
+  if (keywordsValue) {
+    schema.keywords = keywordsValue;
+  }
+
+  if (about) {
+    schema.about = about;
+  }
 
   return (
     <script
