@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Connect",
@@ -95,6 +96,12 @@ export default function ConnectPage() {
   return (
     <>
       <PersonSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "Connect", url: "https://www.barreiro.com/connect" },
+        ]}
+      />
       <main className="connect-page">
       <style>{`
         /* ── Page ─────────────────────────────────────── */

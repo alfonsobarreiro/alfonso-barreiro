@@ -4,6 +4,8 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
+import { ProfilePageSchema } from "@/components/structured-data/ProfilePageSchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "About",
@@ -108,7 +110,14 @@ const pullQuoteText: React.CSSProperties = {
 export default function AboutPage() {
   return (
     <>
+      <ProfilePageSchema url="https://www.barreiro.com/about" />
       <PersonSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "About", url: "https://www.barreiro.com/about" },
+        ]}
+      />
       <Nav />
       <main id="main-content" style={{ background: "var(--color-paper)" }}>
         <style>{`

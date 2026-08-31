@@ -52,6 +52,20 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
+              href="/resume"
+              style={{
+                fontFamily:          font,
+                fontSize:            "var(--text-body)",
+                fontWeight:          500,
+                color:               ink,
+                textDecoration:      "underline",
+                textDecorationColor: muted,
+                textUnderlineOffset: "3px",
+              }}
+            >
+              Resume
+            </a>
+            <a
               href="mailto:alfonso@barreiro.com"
               style={{
                 fontFamily:          font,

@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { PersonSchema } from "@/components/structured-data/PersonSchema";
+import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Behind this site",
@@ -354,6 +356,13 @@ function CutRow({ label, note }: { label: string; note: string }) {
 export default function BehindThisSitePage() {
   return (
     <>
+      <PersonSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.barreiro.com/" },
+          { name: "Behind this site", url: "https://www.barreiro.com/behind-this-site" },
+        ]}
+      />
       <Nav />
       <main id="main-content" style={{ background: "var(--color-paper)" }}>
 
