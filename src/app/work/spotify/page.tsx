@@ -586,10 +586,12 @@ export default function SpotifyV2() {
             marginRight:     "calc(50% - 50vw)",
             /* Deep-link target from the homepage Work-card badge
                ("INTERACTIVE PROTOTYPE" → /work/spotify#try-it).
-               scrollMarginTop just clears the sticky nav (72px main +
-               42px arc = 114px) with a tight 26px clearance, so the
-               H2 tucks right under the nav on landing. */
-            scrollMarginTop: "140px",
+               Tight offset — the H2 lands 40px from viewport top,
+               which is behind the 114px sticky nav. The section body
+               starts visible right under the nav; the H2 tucks up
+               against it (or partially behind depending on nav
+               background). */
+            scrollMarginTop: "40px",
           }}
         >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
