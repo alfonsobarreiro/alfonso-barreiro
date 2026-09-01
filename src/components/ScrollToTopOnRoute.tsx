@@ -30,18 +30,20 @@ export default function ScrollToTopOnRoute() {
     if (hash) {
       const scrollToHash = () => {
         const target = document.getElementById(hash);
-        if (target) target.scrollIntoView();
+        if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
       };
       // First attempt after this render pass. If the target is still not
       // in the DOM (deferred section rendering, lazy content), retry on
       // the next frame so slow-hydrating pages still land right.
       scrollToHash();
-      requestAnimationFrame(scrollToHash);
+      requestAnimationFrame(() => {
+        scrollToHash();
+        html.style.scrollBehavior = prev;
+      });
     } else {
       window.scrollTo(0, 0);
+      html.style.scrollBehavior = prev;
     }
-
-    html.style.scrollBehavior = prev;
   }, [pathname]);
 
   return null;
