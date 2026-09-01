@@ -586,10 +586,10 @@ export default function SpotifyV2() {
             marginRight:     "calc(50% - 50vw)",
             /* Deep-link target from the homepage Work-card badge
                ("INTERACTIVE PROTOTYPE" → /work/spotify#try-it).
-               scrollMarginTop clears the sticky nav (72px main + 42px
-               arc = 114px) with extra headroom so the section reads
-               with breathing room above it, not flush with the nav. */
-            scrollMarginTop: "240px",
+               scrollMarginTop just clears the sticky nav (72px main +
+               42px arc = 114px) with a tight 26px clearance, so the
+               H2 tucks right under the nav on landing. */
+            scrollMarginTop: "140px",
           }}
         >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
