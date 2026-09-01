@@ -586,9 +586,10 @@ export default function SpotifyV2() {
             marginRight:     "calc(50% - 50vw)",
             /* Deep-link target from the homepage Work-card badge
                ("INTERACTIVE PROTOTYPE" → /work/spotify#try-it).
-               scrollMarginTop matches the arc-tint divs so the
-               sticky nav (72px + arc nav) doesn't overlap the top. */
-            scrollMarginTop: "140px",
+               scrollMarginTop clears the sticky nav (72px main + 42px
+               arc = 114px) with extra headroom so the section reads
+               with breathing room above it, not flush with the nav. */
+            scrollMarginTop: "240px",
           }}
         >
           <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
