@@ -66,7 +66,7 @@ export default function Hero() {
         /* Base graph-paper dot grid. Femke pattern, using existing
            tokens. The overlay ::before layer adds the cursor-follows
            spotlight (see the <style> block below). */
-        backgroundImage:      "radial-gradient(circle, var(--color-terracotta-200) 1px, transparent 1px)",
+        backgroundImage:      "radial-gradient(circle, var(--color-terracotta-300) 1px, transparent 1px)",
         backgroundSize:       "24px 24px",
         backgroundPosition:   "0 0",
       }}
@@ -115,7 +115,7 @@ export default function Hero() {
                 style={{
                   fontFamily:    "var(--font-dm-sans), sans-serif",
                   fontSize:      "var(--text-article)",
-                  lineHeight:    1.35,
+                  lineHeight:    1.4,
                   fontWeight:    400,
                   letterSpacing: 0,
                   color:         "var(--color-text)",

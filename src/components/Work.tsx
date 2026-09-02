@@ -172,7 +172,7 @@ export default function Work() {
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "17px",
-                lineHeight:    1.5,
+                lineHeight:    1.4,
                 fontWeight:    400,
                 color:         "var(--color-neutral-600)",
                 margin:        "12px 0 0",
@@ -428,7 +428,7 @@ function ProjectCard({
             color:         "var(--color-neutral-600)",
             margin:        "0 0 32px",
             letterSpacing: "0",
-            lineHeight:    1.5,
+            lineHeight:    1.4,
             maxWidth:      "560px",
           }}
         >
