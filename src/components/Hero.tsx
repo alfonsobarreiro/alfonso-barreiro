@@ -1,18 +1,18 @@
 import Image from "next/image";
-import HeroEmailChip from "./HeroEmailChip";
 
 /**
- * Hero — text + portrait, two-column on desktop, stacked on mobile.
+ * Hero — text + compact portrait, two-column on desktop, stacked on mobile.
  * Composition after the 2026-08-25 reference-site synthesis:
  *
  * - Status chip promoted above the H1 as top-of-page anchor (Albera pattern)
  * - Location merged into chip: "Portland, OR · Open for work"
- * - Click-to-copy email chip as a peer to the status chip (Rauno pattern) —
- *   one micro-interaction, no CTA button
- * - Subhead broken into four stacked mechanic clauses (Rauno's form, no
- *   aphorism content)
- * - Portrait ships in the right column, sharp corners, no rotation, no
- *   sticker (Femke's move stripped to Alfonso's rules)
+ * - Subhead broken into four stacked mechanic clauses (Rauno's form)
+ * - Portrait sized to match the copy block's vertical extent (Femke's move
+ *   stripped to Alfonso's rules: sharp corners, no rotation, no sticker)
+ *
+ * Type stack: DM Sans only, weights 400 + 500.
+ * Colors: --color-brand (terracotta chip), --color-text (navy H1 + body),
+ * --color-neutral-100 (portrait placeholder background). Nothing else.
  */
 export default function Hero() {
   return (
@@ -33,62 +33,39 @@ export default function Hero() {
           margin:   "0 auto",
           width:    "100%",
           display:              "grid",
-          gridTemplateColumns:  "minmax(0, 1.4fr) minmax(0, 1fr)",
+          gridTemplateColumns:  "minmax(0, 1fr) auto",
           gap:                  "clamp(40px, 6vw, 96px)",
           alignItems:           "center",
         }}
       >
         <div className="hero-text-col" style={{ maxWidth: "720px" }}>
-          {/* Chip row — status + email as peer chips, separated by a middle
-              dot. Same left edge as the H1. */}
-          <div
-            className="hero-chip-row"
+          {/* Status chip promoted above the H1 — Albera-pattern top-of-page
+              anchor. Location merged into the label. */}
+          <p
             style={{
-              display:    "flex",
+              display:    "inline-flex",
               alignItems: "center",
-              gap:        "14px",
-              flexWrap:   "wrap",
+              gap:        "10px",
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontSize:   "var(--text-body)",
+              fontWeight: 500,
+              color:      "var(--color-brand)",
               margin:     "0 0 28px",
+              lineHeight: 1.35,
             }}
           >
-            <p
-              style={{
-                display:    "inline-flex",
-                alignItems: "center",
-                gap:        "10px",
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize:   "var(--text-body)",
-                fontWeight: 500,
-                color:      "var(--color-brand)",
-                margin:     0,
-                lineHeight: 1.35,
-              }}
-            >
-              <span
-                aria-hidden="true"
-                style={{
-                  display:      "inline-block",
-                  width:        "8px",
-                  height:       "8px",
-                  borderRadius: "50%",
-                  background:   "var(--color-brand)",
-                }}
-              />
-              Portland, OR · Open for work
-            </p>
             <span
               aria-hidden="true"
               style={{
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                fontSize:   "var(--text-body)",
-                color:      "var(--color-neutral-500)",
-                lineHeight: 1.35,
+                display:      "inline-block",
+                width:        "8px",
+                height:       "8px",
+                borderRadius: "50%",
+                background:   "var(--color-brand)",
               }}
-            >
-              ·
-            </span>
-            <HeroEmailChip />
-          </div>
+            />
+            Portland, OR · Open for work
+          </p>
 
           <h1
             style={{
@@ -106,10 +83,8 @@ export default function Hero() {
           </h1>
 
           {/* Subhead — four stacked mechanic clauses, each on its own line.
-              Rauno's form: short imperatives stacked as the fold's second
-              block of visual weight. Each line names a concrete mechanic
-              (tenure, project count, tool, ownership) to stay clear of the
-              aphorism trap. */}
+              Each names a concrete mechanic (tenure, project count, tool,
+              ownership) to stay clear of the aphorism trap. */}
           <div className="hero-subhead-stack">
             {[
               "Product Designer, fifteen years.",
@@ -150,15 +125,13 @@ export default function Hero() {
           </h2>
         </div>
 
-        {/* Portrait column — sharp corners, no rotation, no sticker.
-            Femke's move (a human face on the fold) stripped to Alfonso's
-            radius-0 no-chrome ruleset. Fills the right-column slot the
-            hero has been reserving. */}
+        {/* Portrait column — compact, sized to match the copy's vertical
+            extent. Sharp corners, no rotation, no sticker. */}
         <div
           className="hero-image-col"
           style={{
             position:    "relative",
-            width:       "100%",
+            width:       "260px",
             aspectRatio: "3 / 4",
             overflow:    "hidden",
             background:  "var(--color-neutral-100)",
@@ -169,24 +142,24 @@ export default function Hero() {
             alt="Alfonso Barreiro outdoors in Portland."
             fill
             priority
-            sizes="(max-width: 900px) 100vw, 40vw"
+            sizes="260px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
       </div>
 
-      {/* Mobile: stack the two columns and shrink the portrait so text
-          stays the anchor of the fold. */}
+      {/* Mobile: stack columns, portrait above the text, sized down further
+          so the text stays the anchor of the fold. */}
       <style>{`
         @media (max-width: 899px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            gap: clamp(32px, 6vw, 48px) !important;
+            gap: clamp(24px, 5vw, 40px) !important;
           }
           .hero-image-col {
             order: -1;
-            aspect-ratio: 4 / 3 !important;
-            max-height: 60vh;
+            width: 200px !important;
+            aspect-ratio: 3 / 4 !important;
           }
         }
       `}</style>
