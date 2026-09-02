@@ -35,7 +35,7 @@ export default function Hero() {
           display:              "grid",
           gridTemplateColumns:  "minmax(0, 1fr) auto",
           gap:                  "clamp(40px, 6vw, 96px)",
-          alignItems:           "center",
+          alignItems:           "start",
         }}
       >
         <div className="hero-text-col" style={{ maxWidth: "720px" }}>
@@ -131,7 +131,7 @@ export default function Hero() {
           className="hero-image-col"
           style={{
             position:    "relative",
-            width:       "260px",
+            width:       "340px",
             aspectRatio: "3 / 4",
             overflow:    "hidden",
             background:  "var(--color-neutral-100)",
@@ -142,7 +142,7 @@ export default function Hero() {
             alt="Alfonso Barreiro outdoors in Portland."
             fill
             priority
-            sizes="260px"
+            sizes="340px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
