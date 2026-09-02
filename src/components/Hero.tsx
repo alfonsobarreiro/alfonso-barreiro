@@ -149,7 +149,7 @@ export default function Hero() {
           className="hero-image-col"
           style={{
             position:    "relative",
-            width:       "380px",
+            width:       "440px",
             aspectRatio: "3 / 4",
             overflow:    "hidden",
             background:  "var(--color-neutral-100)",
@@ -160,7 +160,7 @@ export default function Hero() {
             alt="Alfonso Barreiro outdoors in Portland."
             fill
             priority
-            sizes="380px"
+            sizes="440px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
