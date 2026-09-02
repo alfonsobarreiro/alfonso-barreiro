@@ -26,6 +26,35 @@ export default function Hero() {
         }}
       >
         <div className="hero-text-col" style={{ maxWidth: "720px" }}>
+          {/* Status chip promoted above the H1 — Albera-pattern top-of-page
+              anchor. Merges location + availability into one line so the
+              fold has a masthead signal before the argument starts. */}
+          <p
+            style={{
+              display:    "inline-flex",
+              alignItems: "center",
+              gap:        "10px",
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontSize:   "var(--text-body)",
+              fontWeight: 500,
+              color:      "var(--color-brand)",
+              margin:     "0 0 28px",
+              lineHeight: 1.35,
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                display:      "inline-block",
+                width:        "8px",
+                height:       "8px",
+                borderRadius: "50%",
+                background:   "var(--color-brand)",
+              }}
+            />
+            Portland, OR · Open for work
+          </p>
+
           <h1
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -33,7 +62,7 @@ export default function Hero() {
               fontWeight:    500,
               lineHeight:    1.1,
               letterSpacing: "-0.02em",
-              color:         "var(--color-text)",
+              color:         "var(--color-deep-teal)",
               margin:        "0 0 32px",
               maxWidth:      "18ch",
             }}
@@ -53,36 +82,6 @@ export default function Hero() {
             }}
           >
             Product Designer, fifteen years. 100+ sites shipped across agency, in-house, and product. AI is the second pair of hands. Every design call is still mine.
-          </p>
-
-          {/* Open-for-work signal. Same treatment as the About page chip
-              (dot + brand-colored label) so the availability status reads
-              consistent across the two surfaces a recruiter is most likely
-              to land on. */}
-          <p
-            style={{
-              display:    "inline-flex",
-              alignItems: "center",
-              gap:        "10px",
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              fontSize:   "var(--text-body)",
-              fontWeight: 500,
-              color:      "var(--color-brand)",
-              margin:     "24px 0 0",
-              lineHeight: 1.35,
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                display:      "inline-block",
-                width:        "8px",
-                height:       "8px",
-                borderRadius: "50%",
-                background:   "var(--color-brand)",
-              }}
-            />
-            Open for work
           </p>
 
           {/* Visually-hidden H2 — keyword phrase absent from the H1. */}

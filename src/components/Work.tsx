@@ -137,7 +137,7 @@ export default function Work() {
       className="work-section"
       style={{
         padding:    "clamp(24px, 4vw, 56px) clamp(32px, 6vw, 80px) clamp(80px, 9vw, 128px)",
-        background: "var(--color-paper)",
+        background: "var(--color-deep-teal)",
         borderTop:  "none",
         overflowX:  "clip",
       }}
@@ -160,7 +160,7 @@ export default function Work() {
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "clamp(32px,4.5vw,48px)",
                 fontWeight:    500,
-                color:         "var(--color-text)",
+                color:         "var(--color-inverse)",
                 margin:        0,
                 letterSpacing: "-0.01em",
                 lineHeight:    1.1,
@@ -174,7 +174,7 @@ export default function Work() {
                 fontSize:      "17px",
                 lineHeight:    1.5,
                 fontWeight:    400,
-                color:         "var(--color-neutral-600)",
+                color:         "var(--color-inverse-body)",
                 margin:        "12px 0 0",
                 maxWidth:      "640px",
               }}
@@ -406,7 +406,7 @@ function ProjectCard({
           fontFamily:    "var(--font-dm-sans), sans-serif",
           fontSize:      "clamp(28px,3vw,40px)",
           fontWeight:    500,
-          color:         "var(--color-navy)",
+          color:         "var(--color-inverse)",
           margin:        "0 0 24px",
           letterSpacing: "-0.02em",
           lineHeight:    1.05,
@@ -425,7 +425,7 @@ function ProjectCard({
             fontFamily:    "var(--font-dm-sans), sans-serif",
             fontSize:      "clamp(15px,1.6vw,20px)",
             fontWeight:    400,
-            color:         "var(--color-neutral-600)",
+            color:         "var(--color-inverse-body)",
             margin:        "0 0 32px",
             letterSpacing: "0",
             lineHeight:    1.5,
@@ -444,14 +444,14 @@ function ProjectCard({
            comes from its children ("View case study"). The image above
            already carries a project-specific aria-label, so assistive
            tech can still land on the correct case study by link. */
-        <LinkArrow href={project.href!} tone="on-light">
+        <LinkArrow href={project.href!} tone="on-dark">
           View case study
         </LinkArrow>
       ) : (
         <p style={{
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "var(--text-small)",
-          color:      "var(--color-neutral-500)",
+          color:      "var(--color-inverse-caption)",
           margin:     0,
         }}>
           Case study in progress
