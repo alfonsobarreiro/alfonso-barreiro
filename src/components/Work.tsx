@@ -138,7 +138,7 @@ export default function Work() {
       style={{
         padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px) clamp(80px, 9vw, 128px)",
         background: "var(--color-paper)",
-        borderTop:  "1px solid var(--color-neutral-300)",
+        borderTop:  "none",
         overflowX:  "clip",
       }}
     >
@@ -158,12 +158,12 @@ export default function Work() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(32px,4.5vw,48px)",
+                fontSize:      "clamp(48px,6vw,72px)",
                 fontWeight:    500,
                 color:         "var(--color-text)",
                 margin:        0,
-                letterSpacing: "-0.01em",
-                lineHeight:    1.1,
+                letterSpacing: "-0.02em",
+                lineHeight:    1.05,
               }}
             >
               Work

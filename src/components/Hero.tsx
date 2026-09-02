@@ -78,8 +78,9 @@ export default function Hero() {
           margin:   "0 auto",
           width:    "100%",
           display:              "grid",
-          gridTemplateColumns:  "minmax(0, 1fr) auto",
-          gap:                  "clamp(40px, 6vw, 96px)",
+          gridTemplateColumns:  "auto auto",
+          gap:                  "clamp(40px, 5vw, 80px)",
+          justifyContent:       "start",
           alignItems:           "start",
           position:             "relative",
           zIndex:               1,
@@ -118,7 +119,7 @@ export default function Hero() {
                   fontWeight:    400,
                   letterSpacing: 0,
                   color:         "var(--color-text)",
-                  margin:        i === 0 ? "0" : "6px 0 0",
+                  margin:        i === 0 ? "0" : i === 3 ? "18px 0 0" : "6px 0 0",
                 }}
               >
                 {line}
