@@ -66,7 +66,7 @@ export default function Hero() {
         /* Base graph-paper dot grid. Femke pattern, using existing
            tokens. The overlay ::before layer adds the cursor-follows
            spotlight (see the <style> block below). */
-        backgroundImage:      "radial-gradient(circle, var(--color-neutral-300) 1px, transparent 1px)",
+        backgroundImage:      "radial-gradient(circle, var(--color-terracotta-200) 1px, transparent 1px)",
         backgroundSize:       "24px 24px",
         backgroundPosition:   "0 0",
       }}
@@ -176,7 +176,7 @@ export default function Hero() {
           className="hero-image-col"
           style={{
             position:    "relative",
-            width:       "340px",
+            width:       "380px",
             aspectRatio: "3 / 4",
             overflow:    "hidden",
             background:  "var(--color-neutral-100)",
@@ -187,7 +187,7 @@ export default function Hero() {
             alt="Alfonso Barreiro outdoors in Portland."
             fill
             priority
-            sizes="340px"
+            sizes="380px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
@@ -205,7 +205,7 @@ export default function Hero() {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          background-image: radial-gradient(circle, var(--color-neutral-500) 1px, transparent 1px);
+          background-image: radial-gradient(circle, var(--color-terracotta-500) 1px, transparent 1px);
           background-size: 24px 24px;
           background-position: 0 0;
           opacity: var(--spotlight-opacity, 0);
