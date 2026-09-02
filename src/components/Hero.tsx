@@ -102,12 +102,15 @@ export default function Hero() {
             Design isn&rsquo;t taste. It&rsquo;s chaos reduction.
           </h1>
 
-          {/* Subhead — four stacked mechanic clauses, each on its own line. */}
+          {/* Subhead — three stacked mechanic clauses. Consolidated the
+              "100+ sites" and "AI" facts into a single line so the stack
+              reads as three claims (identity, method, ownership) rather
+              than a four-fact bio card. Extra top-margin on the last line
+              so the summary claim breathes. */}
           <div className="hero-subhead-stack">
             {[
               "Product Designer, fifteen years.",
-              "100+ sites shipped across agency, in-house, and product.",
-              "AI is the second pair of hands.",
+              "100+ sites shipped across agency, in-house, and product, with AI as the second pair of hands.",
               "Every design call is still mine.",
             ].map((line, i) => (
               <p
@@ -119,7 +122,7 @@ export default function Hero() {
                   fontWeight:    400,
                   letterSpacing: 0,
                   color:         "var(--color-text)",
-                  margin:        i === 0 ? "0" : i === 3 ? "18px 0 0" : "6px 0 0",
+                  margin:        i === 0 ? "0" : i === 2 ? "18px 0 0" : "6px 0 0",
                 }}
               >
                 {line}

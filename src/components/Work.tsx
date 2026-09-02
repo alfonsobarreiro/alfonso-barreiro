@@ -423,7 +423,7 @@ function ProjectCard({
           className="work-row-deck"
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(15px,1.6vw,20px)",
+            fontSize:      "17px",
             fontWeight:    400,
             color:         "var(--color-neutral-600)",
             margin:        "0 0 32px",
