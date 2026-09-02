@@ -136,9 +136,9 @@ export default function Work() {
       ref={sectionRef}
       className="work-section"
       style={{
-        padding:    "clamp(24px, 4vw, 56px) clamp(32px, 6vw, 80px) clamp(80px, 9vw, 128px)",
+        padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px) clamp(80px, 9vw, 128px)",
         background: "var(--color-paper)",
-        borderTop:  "1px solid var(--color-neutral-300)",
+        borderTop:  "none",
         overflowX:  "clip",
       }}
     >
@@ -158,12 +158,12 @@ export default function Work() {
             <h2
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(32px,4.5vw,48px)",
+                fontSize:      "clamp(48px,6vw,72px)",
                 fontWeight:    500,
                 color:         "var(--color-text)",
                 margin:        0,
-                letterSpacing: "-0.01em",
-                lineHeight:    1.1,
+                letterSpacing: "-0.02em",
+                lineHeight:    1.05,
               }}
             >
               Work
@@ -172,7 +172,7 @@ export default function Work() {
               style={{
                 fontFamily:    "var(--font-dm-sans), sans-serif",
                 fontSize:      "17px",
-                lineHeight:    1.5,
+                lineHeight:    1.4,
                 fontWeight:    400,
                 color:         "var(--color-neutral-600)",
                 margin:        "12px 0 0",
@@ -299,7 +299,7 @@ function ProjectCard({
     display:        "flex",
     alignItems:     "center",
     gap:            isMSR ? "clamp(32px, 4vw, 64px)" : "clamp(40px, 6vw, 100px)",
-    justifyContent: imageOnRight ? "flex-end" : "flex-start",
+    justifyContent: "space-between",
     background:     "transparent",
     padding:        0,
     textDecoration: "none",
@@ -423,12 +423,12 @@ function ProjectCard({
           className="work-row-deck"
           style={{
             fontFamily:    "var(--font-dm-sans), sans-serif",
-            fontSize:      "clamp(15px,1.6vw,20px)",
+            fontSize:      "17px",
             fontWeight:    400,
             color:         "var(--color-neutral-600)",
             margin:        "0 0 32px",
             letterSpacing: "0",
-            lineHeight:    1.5,
+            lineHeight:    1.4,
             maxWidth:      "560px",
           }}
         >
