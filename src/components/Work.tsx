@@ -299,7 +299,7 @@ function ProjectCard({
     display:        "flex",
     alignItems:     "center",
     gap:            isMSR ? "clamp(32px, 4vw, 64px)" : "clamp(40px, 6vw, 100px)",
-    justifyContent: imageOnRight ? "flex-end" : "flex-start",
+    justifyContent: "space-between",
     background:     "transparent",
     padding:        0,
     textDecoration: "none",
