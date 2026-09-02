@@ -117,11 +117,17 @@ export default function Nav() {
               : "var(--color-paper)",
           backdropFilter: !menuOpen && scrolled ? "blur(12px)" : "none",
           WebkitBackdropFilter: !menuOpen && scrolled ? "blur(12px)" : "none",
+          /* Border always renders at 1px so the color transition can
+             animate cleanly. Using "none" for the unscrolled state made
+             the browser interpolate from the default (dark) border-color
+             on the first scroll, producing a dark flash before settling
+             on --color-neutral-200. Transparent → neutral-200 fades in
+             quietly without the flash. */
           borderBottom:   menuOpen
             ? "1px solid var(--color-inverse-hairline)"
             : scrolled
               ? "1px solid var(--color-neutral-200)"
-              : "none",
+              : "1px solid transparent",
           transition:     "background 0.3s, border-color 0.3s, backdrop-filter 0.3s",
         }}
       >
