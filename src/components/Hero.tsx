@@ -66,7 +66,7 @@ export default function Hero() {
         /* Base graph-paper dot grid. Femke pattern, using existing
            tokens. The overlay ::before layer adds the cursor-follows
            spotlight (see the <style> block below). */
-        backgroundImage:      "radial-gradient(circle, var(--color-terracotta-200) 1px, transparent 1px)",
+        backgroundImage:      "radial-gradient(circle, var(--color-neutral-400) 1px, transparent 1px)",
         backgroundSize:       "24px 24px",
         backgroundPosition:   "0 0",
       }}
@@ -86,34 +86,6 @@ export default function Hero() {
         }}
       >
         <div className="hero-text-col" style={{ maxWidth: "720px" }}>
-          {/* Status chip promoted above the H1 — Albera-pattern top-of-page
-              anchor. Location merged into the label. */}
-          <p
-            style={{
-              display:    "inline-flex",
-              alignItems: "center",
-              gap:        "10px",
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              fontSize:   "var(--text-body)",
-              fontWeight: 500,
-              color:      "var(--color-brand)",
-              margin:     "0 0 28px",
-              lineHeight: 1.35,
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                display:      "inline-block",
-                width:        "8px",
-                height:       "8px",
-                borderRadius: "50%",
-                background:   "var(--color-brand)",
-              }}
-            />
-            Portland, OR · Open for work
-          </p>
-
           <h1
             style={{
               fontFamily:    "var(--font-dm-sans), sans-serif",
