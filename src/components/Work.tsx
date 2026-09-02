@@ -138,7 +138,7 @@ export default function Work() {
       style={{
         padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px) clamp(80px, 9vw, 128px)",
         background: "var(--color-paper)",
-        borderTop:  "1px solid var(--color-navy)",
+        borderTop:  "none",
         overflowX:  "clip",
       }}
     >

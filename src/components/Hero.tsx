@@ -20,10 +20,18 @@ export default function Hero() {
       id="hero"
       className="hero-section"
       style={{
-        padding:    "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
-        position:   "relative",
-        overflow:   "hidden",
-        background: "var(--color-paper)",
+        padding:              "clamp(96px, 12vw, 160px) clamp(32px, 6vw, 80px)",
+        position:             "relative",
+        overflow:             "hidden",
+        backgroundColor:      "var(--color-paper)",
+        /* Femke-inspired ambient graph-paper texture. 1px dots at 24px
+           grid using an existing neutral, no new color introduced.
+           The dot pattern is scoped to the hero — Work has plain warm-
+           white — so the hero→Work transition reads as a surface
+           change without needing a dividing line. */
+        backgroundImage:      "radial-gradient(circle, var(--color-neutral-300) 1px, transparent 1px)",
+        backgroundSize:       "24px 24px",
+        backgroundPosition:   "0 0",
       }}
     >
       <div
