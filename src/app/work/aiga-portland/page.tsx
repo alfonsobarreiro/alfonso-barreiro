@@ -540,7 +540,7 @@ function ShippedStack() {
     },
     {
       heading: "Map of events",
-      body: "Leaflet-based venue map with every event pinned across Portland. Click a pin to see the venue detail on the right. Built by another teammate, not me. I tuned only the venue-detail typography so it read against the map tiles.",
+      body: "Leaflet-based venue map with every event pinned across Portland. Click a pin to see the venue detail on the right. Built by the other Web Volunteer on the team, not me. I tuned only the venue-detail typography so it read against the map tiles.",
       platform: "Squarespace has no native venue-map block. The Leaflet embed brought its own tile layer, popover styling, and click-to-detail behavior, all overriding Squarespace's default z-index stack and font cascade.",
       img: "/images/work/aiga-portland/map-v3-3625.jpg",
       alt: "Interactive Leaflet map of Portland with venue pins for Portland Design Month events.",
@@ -981,7 +981,7 @@ export default function AIGAPortland() {
                   margin:     0,
                   maxWidth:   PROSE_MAX,
                 }}>
-                  Four volunteers shipped the page. The AIGA Portland Web Chair set direction, held the final call on every decision that reached the site, and built the hero mosaic with artist flourishes. Another Web Volunteer built the events calendar. The PDM 2026 Featured Artist delivered the full brand system in Figma, source of truth for type, color, and ornament. I owned the Squarespace build and the custom code that translated the brand past the template’s defaults. The four of us collaborated on design and layout.
+                  Four volunteers shipped the page. The AIGA Portland Web Chair set direction, held the final call on every decision that reached the site, and built the hero mosaic with artist flourishes. Another Web Volunteer built the events calendar and the venue map. The PDM 2026 Featured Artist delivered the full brand system in Figma, source of truth for type, color, and ornament. I owned the Squarespace build and the custom code that translated the brand past the template’s defaults. The four of us collaborated on design and layout.
                 </p>
               </div>
             </div>
