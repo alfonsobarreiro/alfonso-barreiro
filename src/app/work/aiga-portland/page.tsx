@@ -526,21 +526,21 @@ function ShippedStack() {
   const items: { heading: string; body: string; platform: string; img: string; alt: string }[] = [
     {
       heading: "Hero mosaic",
-      body: "Three event photos from PDM 2025 in a mosaic on the right side of the purple hero. Each one tilted a few degrees for a snapshot feel.",
+      body: "Three event photos from PDM 2025 in a mosaic on the right side of the purple hero. Each one tilted a few degrees for a snapshot feel. Built by the AIGA Portland Web Chair, not me.",
       platform: "Fluid Engine defaults to a strict grid and rounded corners. Per-block Transform in the editor panel handled the tilts one image at a time. A global sharp-corner rule kept the frames clean.",
       img: "/images/work/aiga-portland/hero-mosaic-3625.jpg",
       alt: "Three tilted event photos from PDM 2025 on the purple hero gradient.",
     },
     {
       heading: "Calendar of events",
-      body: "Hot pink cells on black. IntraNet weekday headers. Event days get a transparent ink overlay with the date pinned top-right in white. A short JS routine auto-advances the calendar to October 2026 on page load.",
+      body: "Hot pink cells on black. IntraNet weekday headers. Event days get a transparent ink overlay with the date pinned top-right in white. A short JS routine auto-advances the calendar to October 2026 on page load. Built by the other Web Volunteer on the team, not me.",
       platform: "The calendar plugin runs on YUI3 with no theming primitives exposed. Every custom style meant tracing DOM classes and pinning them with important.",
       img: "/images/work/aiga-portland/calendar-v3-3625.jpg",
       alt: "October 2026 calendar with hot pink cells and IntraNet weekday headers.",
     },
     {
       heading: "Map of events",
-      body: "Leaflet-based venue map with every event pinned across Portland. Click a pin to see the venue detail on the right. Built by the other designer on the team, not me. I tuned only the venue-detail typography so it read against the map tiles.",
+      body: "Leaflet-based venue map with every event pinned across Portland. Click a pin to see the venue detail on the right. Built by another teammate, not me. I tuned only the venue-detail typography so it read against the map tiles.",
       platform: "Squarespace has no native venue-map block. The Leaflet embed brought its own tile layer, popover styling, and click-to-detail behavior, all overriding Squarespace's default z-index stack and font cascade.",
       img: "/images/work/aiga-portland/map-v3-3625.jpg",
       alt: "Interactive Leaflet map of Portland with venue pins for Portland Design Month events.",
@@ -660,7 +660,7 @@ function ClosingArtifacts() {
         }}>
           <p style={labelStyle}>What I cut</p>
           <p style={bodyStyle}>
-            Cross-page interaction effects. RGB glitch on hover, cursor-following spotlight, image rotation cycles. All tested. All read as designer-showing-off against a volunteer festival page. Cut in favor of the hero mosaic with artist flourishes.
+            Cross-page interaction effects. RGB glitch on hover, cursor-following spotlight, image rotation cycles. All tested. All read as designer-showing-off against a volunteer festival page. Cut in favor of the Web Chair’s hero mosaic with artist flourishes.
           </p>
           <p style={{ ...bodyStyle, margin: 0 }}>
             Custom typography for the map plugin’s own zoom controls. The Leaflet integration renders inside a boundary I couldn’t reach cleanly. Left as-is.
@@ -733,7 +733,7 @@ export default function AIGAPortland() {
               maxWidth:   "680px",
               margin:     "0 0 32px",
             }}>
-              A volunteer landing-page build for AIGA Portland’s three-week October festival, on Squarespace 7.1 with a brand system that fights every platform default. A team of four shipped it: a project manager who owned the final calls, a peer designer, the artist who authored the brand system in Figma, and me on the Squarespace build and custom code.
+              A volunteer landing-page build for AIGA Portland’s three-week October festival, on Squarespace 7.1 with a brand system that fights every platform default. A team of four shipped it: the AIGA Portland Web Chair on final calls, the PDM 2026 Featured Artist on the brand system in Figma, another Web Volunteer alongside me, and me on the Squarespace build and custom code.
             </p>
 
             <p style={{
@@ -745,7 +745,7 @@ export default function AIGAPortland() {
               maxWidth:   "680px",
               margin:     "0 0 32px",
             }}>
-              The PM held the final say on the work. Claude and I paired on the CSS and JS that got the artist’s system past the template.
+              The AIGA Portland Web Chair held the final say on the work. Claude and I paired on the CSS and JS that got the artist’s system past the template.
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "40px" }}>
@@ -981,7 +981,7 @@ export default function AIGAPortland() {
                   margin:     0,
                   maxWidth:   PROSE_MAX,
                 }}>
-                  Four volunteers shipped the page. The project manager set direction and held the final call on every decision that reached the site. A peer designer built the events map. The artist delivered the full brand system in Figma, source of truth for type, color, and ornament. I owned the Squarespace build and the custom code that translated the brand past the template’s defaults.
+                  Four volunteers shipped the page. The AIGA Portland Web Chair set direction, held the final call on every decision that reached the site, and built the hero mosaic with artist flourishes. Another Web Volunteer built the events calendar. The PDM 2026 Featured Artist delivered the full brand system in Figma, source of truth for type, color, and ornament. I owned the Squarespace build and the custom code that translated the brand past the template’s defaults. The four of us collaborated on design and layout.
                 </p>
               </div>
             </div>
