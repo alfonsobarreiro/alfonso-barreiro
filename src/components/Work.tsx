@@ -97,7 +97,7 @@ const projects: Project[] = [
     description:
       "Volunteer landing-page build for AIGA Portland's Design Month 2026. Squarespace 7.1 with a brand system that fought every platform default. Custom CSS and page-scoped JS closed the gap.",
     thesis:      "The artist's brand shipped intact past Squarespace's defaults.",
-    deck:        "Team of four. PM on final calls, artist on this year's brand system, peer designer on the map, me on the Squarespace build and custom code.",
+    deck:        "Team of four. AIGA Portland Web Chair on final calls, PDM 2026 Featured Artist on the brand system, another Web Volunteer alongside me, me on the Squarespace build and custom code.",
     meta:        "Volunteer · 2026 · Live",
     tags:        ["Editorial", "Brand", "Volunteer"],
     year:        "2026",
