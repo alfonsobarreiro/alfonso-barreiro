@@ -10,21 +10,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Fifteen years in design. Product Designer in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
+    "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
+      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
+      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
     images: ["/about/opengraph-image"],
   },
 };

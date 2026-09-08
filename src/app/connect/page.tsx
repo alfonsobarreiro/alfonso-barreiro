@@ -6,12 +6,12 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "Connect",
   description:
-    "Product Designer in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
+    "Product Designer (UX/UI) in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
   alternates: { canonical: "https://www.barreiro.com/connect" },
   openGraph: {
     title: "Connect · Alfonso Barreiro",
     description:
-      "Product Designer in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
+      "Product Designer (UX/UI) in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
     url: "https://www.barreiro.com/connect",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Connect · Alfonso Barreiro",
     description:
-      "Product Designer in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
+      "Product Designer (UX/UI) in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
     images: ["https://www.barreiro.com/og-connect.jpg"],
   },
 };
