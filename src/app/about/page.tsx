@@ -279,8 +279,8 @@ export default function AboutPage() {
                   }}
                 >
                   <Image
-                    src="/Alfonso-Barreiro-outdoors.png"
-                    alt="Alfonso Barreiro outdoors in Portland."
+                    src="/images/portrait/alfonso-portrait-about.jpg"
+                    alt="Alfonso Barreiro, Product Designer, editorial portrait."
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 540px"

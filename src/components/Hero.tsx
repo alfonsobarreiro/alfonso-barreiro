@@ -159,8 +159,8 @@ export default function Hero() {
           }}
         >
           <Image
-            src="/Alfonso-Barreiro-outdoors.png"
-            alt="Alfonso Barreiro outdoors in Portland."
+            src="/images/portrait/alfonso-portrait-home.jpg"
+            alt="Alfonso Barreiro, Product Designer, in a studio portrait."
             fill
             priority
             sizes="440px"
