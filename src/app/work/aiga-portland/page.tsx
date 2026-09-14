@@ -33,14 +33,12 @@ export const metadata: Metadata = {
     title: "Portland Design Month 2026 · AIGA Portland",
     description:
       "Volunteer case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults.",
-    images: ["/work/aiga-portland/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Portland Design Month 2026 · AIGA Portland",
     description:
       "Volunteer case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults.",
-    images: ["/work/aiga-portland/opengraph-image"],
   },
 };
 
