@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export const metadata: Metadata = {
-  title: "Lost · Alfonso Barreiro",
+  title: "Lost",
   description:
     "That page isn't here. Most design problems aren't visual problems though, so let's get you back to one I've actually solved.",
   robots: { index: false, follow: false },
