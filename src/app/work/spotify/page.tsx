@@ -627,7 +627,7 @@ export default function SpotifyV2() {
                 display:       "inline-block",
                 margin:        0,
               }}>
-                PIN_CAP = 4 &nbsp;·&nbsp; UNDO_WINDOW = 3s &nbsp;·&nbsp; PAUSE_PRESETS = [30m, 2h, tomorrow]
+                PIN_CAP = 4 &nbsp;·&nbsp; UNDO_WINDOW = 5s &nbsp;·&nbsp; PAUSE_PRESETS = [30m, 2h, tomorrow]
               </p>
             </div>
 

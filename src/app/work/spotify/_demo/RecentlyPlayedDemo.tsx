@@ -64,11 +64,10 @@ const INITIAL_ARTISTS: Artist[] = [
 
 const PIN_CAP        = 4;
 const PAUSE_SECS     = 30;
-/* Demo ergonomics — snackbar dismisses in 3s so a user exploring the
-   three controls can chain actions without waiting. The shipped spec is
-   5s (see PIN_CAP / UNDO_WINDOW / PAUSE_PRESETS constants line above the
-   widget); the demo intentionally runs shorter for interaction pace. */
-const SNACK_MS       = 3000;
+/* Snackbar (and its Undo) runs the spec's five-second window, matching the
+   UNDO_WINDOW constant shown above the widget. A new action replaces the
+   snackbar and restarts the timer, so chaining controls never waits on it. */
+const SNACK_MS       = 5000;
 const SPOTIFY_GREEN  = "#1ED760";
 const SPOTIFY_JET    = "#121212";
 
