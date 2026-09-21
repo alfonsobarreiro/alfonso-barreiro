@@ -273,8 +273,13 @@ export default function Nav() {
           background:      "var(--color-terracotta)",
           display:         "flex",
           flexDirection:   "column",
-          justifyContent:  "center",
-          padding:         "40px 32px",
+          /* Top-aligned, not centered: centering a block taller than the
+             viewport clips both ends (was cutting "Work" on small screens).
+             Top padding = 72px nav + 16px breathing. overflowY:auto lets
+             the menu scroll on short viewports instead of clipping. */
+          padding:         "88px 32px 40px",
+          overflowY:       "auto",
+          WebkitOverflowScrolling: "touch",
           transform:       menuOpen ? "translateY(0)" : "translateY(-100%)",
           transition:      "transform 0.4s cubic-bezier(0.76, 0, 0.24, 1)",
           pointerEvents:   menuOpen ? "auto" : "none",
@@ -356,7 +361,19 @@ export default function Nav() {
           flexDirection:"column",
           gap:          "14px",
         }}>
-          <Eyebrow tone="inverse" style={{ fontSize: "var(--text-small)", marginBottom: "2px" }}>Case studies</Eyebrow>
+          {/* Eyebrow bumped from tone="inverse" (50% white — read as
+              ghosted against terracotta) to an inline 85%-white color for
+              a legible label. */}
+          <Eyebrow
+            tone="inverse"
+            style={{
+              fontSize:     "var(--text-small)",
+              color:        "rgb(255 255 255 / 0.85)",
+              marginBottom: "4px",
+            }}
+          >
+            Case studies
+          </Eyebrow>
           {[
             { href: "/work/spotify",            label: "Spotify"            },
             { href: "/work/wayfarer",           label: "Wayfarer"           },
@@ -370,12 +387,16 @@ export default function Nav() {
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily:     "var(--font-dm-sans), sans-serif",
-                fontSize:       "var(--text-h3)",
+                /* Bumped from --text-h3 (20px) — was reading as caption
+                   next to the 60px primary nav. This lands the case
+                   studies as a real subordinate level, not a footnote. */
+                fontSize:       "clamp(22px, 5.5vw, 30px)",
                 fontWeight:     500,
                 color:          "var(--color-inverse)",
                 letterSpacing:  "-0.01em",
                 textDecoration: "none",
                 transition:     "opacity 0.2s",
+                lineHeight:     1.2,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.72")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
@@ -385,15 +406,16 @@ export default function Nav() {
           ))}
         </div>
 
-        {/* Footer note */}
+        {/* Footer note — in normal flow with marginTop:auto so it always
+            sits at the bottom of the flex column without colliding with
+            the last case-study link (was absolutely positioned and
+            overlapping "AIGA PDX →"). */}
         <p style={{
-          position:   "absolute",
-          bottom:     "40px",
-          left:       "32px",
+          margin:     "auto 0 0",
+          paddingTop: "32px",
           fontFamily: "var(--font-dm-sans), sans-serif",
           fontSize:   "var(--text-small)",
           color:      "var(--color-inverse-body)",
-          margin:     0,
         }}>
           © 2026 Alfonso Barreiro
         </p>
