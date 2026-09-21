@@ -406,19 +406,6 @@ export default function Nav() {
           ))}
         </div>
 
-        {/* Footer note — in normal flow with marginTop:auto so it always
-            sits at the bottom of the flex column without colliding with
-            the last case-study link (was absolutely positioned and
-            overlapping "AIGA PDX →"). */}
-        <p style={{
-          margin:     "auto 0 0",
-          paddingTop: "32px",
-          fontFamily: "var(--font-dm-sans), sans-serif",
-          fontSize:   "var(--text-small)",
-          color:      "var(--color-inverse-body)",
-        }}>
-          © 2026 Alfonso Barreiro
-        </p>
       </div>
 
       {/* Cmd+K command palette — listens globally, opens on shortcut or via openCommandPalette() */}
