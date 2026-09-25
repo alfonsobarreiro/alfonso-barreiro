@@ -10,21 +10,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
+    "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Four case studies: Spotify controls, Wayfarer travel discovery, Men's Sole Revival, and AIGA Portland Design Month.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
+      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Four case studies: Spotify controls, Wayfarer travel discovery, Men's Sole Revival, and AIGA Portland Design Month.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Three flagship case studies: Spotify controls, Wayfarer travel discovery, and Men's Sole Revival.",
+      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Four case studies: Spotify controls, Wayfarer travel discovery, Men's Sole Revival, and AIGA Portland Design Month.",
     images: ["/about/opengraph-image"],
   },
 };
@@ -358,10 +358,10 @@ export default function AboutPage() {
           <div style={innerWrapper}>
             <h2 style={sectionH2}>How I work</h2>
             <p style={body}>
-              I started in Albuquerque in 2010, as the founder of a small consultancy. Then seven years at CliffDweller Digital. Agency work, hands-on, in-person every day. In 2018 I moved to Boomtime as VP of Operations, same city, same desk, same shared room. That&apos;s where I learned what most designers learn: the desk next to you is half the work.
+              I started in Albuquerque in 2010, as the founder of a small consultancy. Then seven years at CliffDweller Digital. Agency work, hands-on, in-person every day. In 2018 I moved to Boomtime as Lead Graphic Design, same city, same desk, same shared room. That&apos;s where I learned what most designers learn: the desk next to you is half the work.
             </p>
             <p style={body}>
-              I went remote in 2019, about a year and a half into Boomtime. At first the change was mine, not the company&apos;s. Then the rest of the industry caught up. We shipped UX/UI work for a hundred-plus client websites without an office. I held the design quality bar the same way I&apos;d held it in person: tight feedback loops, written critique, fewer meetings, more artifacts. The work didn&apos;t suffer. Some of it got cleaner.
+              I went remote in 2019, about a year and a half into Boomtime, and stepped up to VP of Operations the same year. At first the change was mine, not the company&apos;s. Then the rest of the industry caught up. We shipped UX/UI work for a hundred-plus client websites without an office. I held the design quality bar the same way I&apos;d held it in person: tight feedback loops, written critique, fewer meetings, more artifacts. The work didn&apos;t suffer. Some of it got cleaner.
             </p>
 
             <figure style={pullQuoteWrap}>
@@ -371,10 +371,10 @@ export default function AboutPage() {
             </figure>
 
             <p style={body}>
-              Two-plus years followed at VARA Winery &amp; Distillery as Director of Marketing &amp; DTC. Back in-person in Albuquerque, running the site redesign and the brand identity for a new spirits line. Then in late 2024 I left the director seat to go all-in on UX/UI. The remote chapter resumed in Portland: independent practice, DesignLab UX Academy, three case studies. None of them built from a shared room.
+              Two-plus years followed at VARA Winery &amp; Distillery as Director of Marketing &amp; DTC Operations. Back in-person in Albuquerque, running the site redesign and the brand identity for a new spirits line. Then in late 2024 I left the director seat to go all-in on UX/UI. The remote chapter resumed in Portland: independent practice, DesignLab UX Academy, four case studies. None of them built from a shared room.
             </p>
             <p style={{ ...body, margin: "0 0 64px" }}>
-              Remote isn&apos;t a constraint; it&apos;s a discipline. The three case studies on this site are evidence the model works at the artifact level. Built solo, remote, end to end.
+              Remote isn&apos;t a constraint; it&apos;s a discipline. The four case studies on this site are evidence the model works at the artifact level. Three built solo, one with a volunteer team of four, all remote.
             </p>
 
             <RemoteTimeline />
@@ -488,12 +488,12 @@ function RemoteTimeline() {
     end: number;
     remote: boolean;
   }[] = [
-    { name: "Sola Fide Design",   role: "Founder",                        location: "Albuquerque",        note: "Brand identity, web design, campaign creative for e-commerce and small business.",         start: 2010,    end: 2011,    remote: false },
+    { name: "Sola Fide Design",   role: "Founder & Lead Creative",        location: "Albuquerque",        note: "Brand identity, web design, campaign creative for e-commerce and small business.",         start: 2010,    end: 2011,    remote: false },
     { name: "CliffDweller Digital", role: "Web Designer & Developer",      location: "Albuquerque",        note: "50+ responsive websites. Started running user tests on priority projects.",                start: 2011,    end: 2018,    remote: false },
     { name: "Boomtime",            role: "Lead Graphic Design",            location: "Albuquerque",        note: "Joined as Lead Graphic Design. Set the visual quality bar for client work before going remote and stepping up to VP.",  start: 2018,    end: 2019.5,  remote: false },
-    { name: "Boomtime",            role: "VP of Operations · remote",      location: "Remote · Albuquerque", note: "Promoted to VP and went remote. Same client roster, distributed team, same quality bar.",        start: 2019.5, end: 2021.75, remote: true  },
-    { name: "VARA Winery & Distillery", role: "Director of Marketing & DTC", location: "Albuquerque",          note: "Back in-person at the winery. Redesigned the site and brand identity for a new spirits line. AI-assisted workflows.", start: 2022.25, end: 2024.85, remote: false },
-    { name: "Independent Practice",     role: "UX/UI Designer",             location: "Remote · Portland",    note: "DesignLab UX Academy. Three case studies. Build in Figma, ship in Next.js.",               start: 2024.85, end: 2025.5,  remote: true  },
+    { name: "Boomtime",            role: "UX & Design Lead (VP of Operations)", location: "Remote · Albuquerque", note: "Promoted to VP and went remote. Same client roster, distributed team, same quality bar.",        start: 2019.5, end: 2021.75, remote: true  },
+    { name: "VARA Winery & Distillery", role: "Director of Marketing & DTC Operations", location: "Albuquerque",          note: "Back in-person at the winery. Redesigned the site and brand identity for a new spirits line. AI-assisted workflows.", start: 2022.25, end: 2024.85, remote: false },
+    { name: "Independent Practice",     role: "Product Design Consultant",  location: "Remote · Portland",    note: "DesignLab UX Academy. Four case studies. Build in Figma, ship in Next.js.",               start: 2024.85, end: 2025.5,  remote: true  },
   ];
 
   const yearTicks = [2010, 2014, 2018, 2020, 2024];

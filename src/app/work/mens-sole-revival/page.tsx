@@ -1177,7 +1177,7 @@ export default function MSRv2() {
             gridTemplateColumns: "repeat(4, 1fr)",
             gap:                 "32px",
           }} className="msr2-meta">
-            <MetaCell label="Role"   value="UX/UI Designer · End-to-end · Health editorial" />
+            <MetaCell label="Role"   value="Product Designer · End-to-end · Health editorial" />
             <MetaCell label="Year"   value="2026" />
             <MetaCell label="Stack"  value="Figma · Next.js · Vercel" />
             <MetaCell label="Live"   value={<a href="https://www.menssolerevival.com/" target="_blank" rel="noopener noreferrer" aria-label="menssolerevival.com (opens in new tab)" style={{ color: c.accent2, textDecoration: "none", borderBottom: `1px solid ${c.accent}` }}>menssolerevival.com</a>} />

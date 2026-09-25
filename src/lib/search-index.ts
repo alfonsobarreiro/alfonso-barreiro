@@ -18,7 +18,7 @@ export type SearchEntry = {
 
 export const searchIndex: SearchEntry[] = [
   // ── Top-level pages ──
-  { id: "home", title: "Home", subtitle: "Three case studies", href: "/", kind: "page", keywords: "alfonso barreiro homepage" },
+  { id: "home", title: "Home", subtitle: "Four case studies", href: "/", kind: "page", keywords: "alfonso barreiro homepage" },
   { id: "work", title: "Work", subtitle: "Selected case studies", href: "/#work", kind: "page" },
   { id: "about", title: "About", subtitle: "Origin, process, what I read", href: "/#about", kind: "page", keywords: "bio age hiragana marathon birds research process curiosity portland rush fan site music albuquerque boomtime vara cliffdweller designlab cabana alphabeta figma comes last" },
   { id: "connect", title: "Connect", subtitle: "Get in touch", href: "/connect", kind: "page", keywords: "contact email alphabeta studio" },
