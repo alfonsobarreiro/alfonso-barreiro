@@ -31,8 +31,11 @@ export const metadata: Metadata = {
 
 /* ── Data ─────────────────────────────────────────────────────────────
    Work history is the same data as the RemoteTimeline on /about, kept
-   in the same order and with the same role/company/date facts. The
-   outcome line per role is distilled from the chapter note there. */
+   in the same order and with the same role/company/date facts. Titles
+   and years also match the resume PDF served at
+   /Alfonso_Barreiro_Resume.pdf, which lists Boomtime under the final
+   title. The outcome line per role is distilled from the chapter note
+   on /about. Change all three together. */
 
 type Role = {
   company:  string;
@@ -45,24 +48,24 @@ type Role = {
 const roles: Role[] = [
   {
     company:  "Independent Practice",
-    role:     "UX/UI Designer",
+    role:     "Product Design Consultant",
     location: "Remote, Portland, OR",
     years:    "2024 to now",
-    outcome:  "Four case studies built solo, end to end. Figma to Next.js, shipped on Vercel.",
+    outcome:  "Four case studies: three built solo from Figma to Next.js on Vercel, one shipped with a volunteer team of four.",
   },
   {
     company:  "VARA Winery & Distillery",
-    role:     "Director of Marketing & DTC",
+    role:     "Director of Marketing & DTC Operations",
     location: "Albuquerque, NM",
     years:    "2022 to 2024",
-    outcome:  "Led the site redesign and the brand identity for a new spirits line. Introduced AI-assisted workflows to the team.",
+    outcome:  "Redesigned the website and e-commerce platform end to end, and ran UX and brand identity for a new spirits line. AI-assisted workflows cut production timelines 20%.",
   },
   {
     company:  "Boomtime",
-    role:     "VP of Operations",
+    role:     "UX & Design Lead (VP of Operations)",
     location: "Remote, Albuquerque, NM",
-    years:    "2019 to 2022",
-    outcome:  "Promoted to VP and moved the design practice remote. Held the same quality bar across a distributed team and the same client roster.",
+    years:    "2019 to 2021",
+    outcome:  "Promoted to VP and took the design practice remote. Set the UX, accessibility, and conversion standards 100+ client sites shipped to.",
   },
   {
     company:  "Boomtime",
@@ -80,7 +83,7 @@ const roles: Role[] = [
   },
   {
     company:  "Sola Fide Design",
-    role:     "Founder",
+    role:     "Founder & Lead Creative",
     location: "Albuquerque, NM",
     years:    "2010 to 2011",
     outcome:  "Brand identity, web design, and campaign creative for e-commerce and small business clients.",
@@ -100,10 +103,10 @@ const skills: string[] = [
 ];
 
 const caseStudies: { title: string; href: string; note: string }[] = [
-  { title: "Spotify · Recently Played Controls", href: "/work/spotify",             note: "Product design for an iOS gesture set." },
+  { title: "Spotify · Recently Played Controls", href: "/work/spotify",             note: "Three reversible controls for the Recently Played shelf. Concept with a working demo." },
   { title: "Wayfarer · Travel Discovery",         href: "/work/wayfarer",            note: "Concept product with an interactive globe and a 5-step signup." },
-  { title: "Men's Sole Revival",                  href: "/work/mens-sole-revival",   note: "Editorial e-commerce site for a shoe restoration studio." },
-  { title: "AIGA Portland · Design Month 2026",   href: "/work/aiga-portland",       note: "Volunteer landing page in Squarespace, custom CSS end to end." },
+  { title: "Men's Sole Revival",                  href: "/work/mens-sole-revival",   note: "Diagnostic-first foot-health resource for men over 40. Live since April 2026." },
+  { title: "AIGA Portland · Design Month 2026",   href: "/work/aiga-portland",       note: "Volunteer landing page on Squarespace with a team of four. I owned the build and custom code." },
 ];
 
 /* ── Shared style atoms ───────────────────────────────────────────────

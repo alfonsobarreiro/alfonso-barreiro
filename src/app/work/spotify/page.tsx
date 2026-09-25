@@ -932,7 +932,7 @@ export default function SpotifyV2() {
               borderBottom:        `1px solid ${c.border}`,
             }} className="sp2-meta-caption">
               {[
-                { label: "Role",   value: "UX/UI Designer · End-to-end" },
+                { label: "Role",   value: "Product Designer · End-to-end" },
                 { label: "Year",   value: "2026" },
                 { label: "Stack",  value: "Figma · Principle · After Effects" },
                 { label: "Status", value: "Self-directed concept · not shipped" },

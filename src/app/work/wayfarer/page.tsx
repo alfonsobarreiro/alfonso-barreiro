@@ -788,7 +788,7 @@ export default function WayfarerV2() {
               borderBottom:        `1px solid ${c.border}`,
             }} className="wf2-meta-caption">
               {[
-                { label: "Role",  value: "UX/UI Designer · End-to-end" },
+                { label: "Role",  value: "Product Designer · End-to-end" },
                 { label: "Year",  value: "2026 · DesignLab Concept" },
                 { label: "Stack", value: "Figma · Next.js · Mapbox" },
                 { label: "Live",  value: "wayfarer.barreiro.com" },
