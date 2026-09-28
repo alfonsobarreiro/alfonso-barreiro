@@ -40,13 +40,15 @@ interface Project {
   };
 }
 
-/* Order: Alfred → Spotify → Wayfarer → MSR → AIGA.
-   Alfred leads because the newest, most technically distinct work
-   (retrieval-grounded AI on a shipped site) is what a hiring manager
-   scanning for conversational AI needs above the fold. Spotify then opens
-   the design-craft triad with interaction detail, Wayfarer carries the
-   shipped-product range, MSR closes the triad with the measurable-result
-   case, and AIGA sits last as the volunteer piece. */
+/* Order: Alfred → AIGA → MSR → Wayfarer → Spotify.
+   Newest shipped work above the fold, concept last. Alfred leads because
+   retrieval-grounded AI on a shipped site is what a hiring manager
+   scanning for conversational-AI work needs to see first. AIGA follows
+   as the other Sept-2026 shipped piece, showing team collaboration.
+   MSR completes the "ecosystem" arc where Alfred lives. Wayfarer then
+   carries the shipped-product substance case (IA + design system + trip
+   planner). Spotify closes as the interaction-craft concept — labeled
+   "Concept" so its placement at the end doesn't get read as recency. */
 const projects: Project[] = [
   {
     title:       "Alfred",
@@ -63,33 +65,18 @@ const projects: Project[] = [
     image:       "/images/work/msr-chatbot/homepage-panel-open.png",
   },
   {
-    title:       "Spotify",
-    subtitle:    "Recently Played Controls",
+    title:       "AIGA Portland",
+    subtitle:    "Portland Design Month 2026",
     description:
-      "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
-    thesis:      "Three controls I keep wanting Spotify to add.",
-    deck:        "The shelf 600M+ Spotify users see daily, with no controls. Pin · Remove · Pause, grounded in 200+ user posts.",
-    meta:        "Designer · 2026 · Concept",
-    tags:        ["Feature design", "Interaction model", "Constraint mapping"],
+      "Volunteer landing-page build for AIGA Portland's Design Month 2026. Squarespace 7.1 with a brand system that fought every platform default. Custom CSS and page-scoped JS closed the gap.",
+    thesis:      "The artist's brand shipped intact past Squarespace's defaults.",
+    deck:        "Three-person web team inside a chapter of volunteers. Web Chair leads, Web Designer partners on design, I own the Squarespace build. The Featured Artist delivered the brand system.",
+    meta:        "Volunteer · 2026 · Live",
+    tags:        ["Editorial", "Brand", "Volunteer"],
     year:        "2026",
     status:      "live",
-    href:        "/work/spotify",
-    image:       "/cs-spotify-preview.png",
-    interactive: true,
-  },
-  {
-    title:       "Wayfarer",
-    subtitle:    "Travel Discovery Platform",
-    description:
-      "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
-    thesis:      "Built the trip planner around duration, not dates.",
-    deck:        "Homepage as an editorial cover. Discovery through a globe and curated cards.",
-    meta:        "Designer · 2026 · Live",
-    tags:        ["Information Architecture", "Design System", "Multi-step Form UX"],
-    year:        "2026",
-    status:      "live",
-    href:        "/work/wayfarer",
-    image:       "/cs-wayfarer-preview.jpg",
+    href:        "/work/aiga-portland",
+    image:       "/images/work/aiga-portland/then-2026-cropped.jpg",
   },
   {
     title:       "Men's Sole Revival",
@@ -106,18 +93,33 @@ const projects: Project[] = [
     image:       "/cs-msr-preview.jpg",
   },
   {
-    title:       "AIGA Portland",
-    subtitle:    "Portland Design Month 2026",
+    title:       "Wayfarer",
+    subtitle:    "Travel Discovery Platform",
     description:
-      "Volunteer landing-page build for AIGA Portland's Design Month 2026. Squarespace 7.1 with a brand system that fought every platform default. Custom CSS and page-scoped JS closed the gap.",
-    thesis:      "The artist's brand shipped intact past Squarespace's defaults.",
-    deck:        "Three-person web team inside a chapter of volunteers. Web Chair leads, Web Designer partners on design, I own the Squarespace build. The Featured Artist delivered the brand system.",
-    meta:        "Volunteer · 2026 · Live",
-    tags:        ["Editorial", "Brand", "Volunteer"],
+      "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
+    thesis:      "Built the trip planner around duration, not dates.",
+    deck:        "Homepage as an editorial cover. Discovery through a globe and curated cards.",
+    meta:        "Designer · 2026 · Live",
+    tags:        ["Information Architecture", "Design System", "Multi-step Form UX"],
     year:        "2026",
     status:      "live",
-    href:        "/work/aiga-portland",
-    image:       "/images/work/aiga-portland/then-2026-cropped.jpg",
+    href:        "/work/wayfarer",
+    image:       "/cs-wayfarer-preview.jpg",
+  },
+  {
+    title:       "Spotify",
+    subtitle:    "Recently Played Controls",
+    description:
+      "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
+    thesis:      "Three controls I keep wanting Spotify to add.",
+    deck:        "The shelf 600M+ Spotify users see daily, with no controls. Pin · Remove · Pause, grounded in 200+ user posts.",
+    meta:        "Designer · 2026 · Concept",
+    tags:        ["Feature design", "Interaction model", "Constraint mapping"],
+    year:        "2026",
+    status:      "live",
+    href:        "/work/spotify",
+    image:       "/cs-spotify-preview.png",
+    interactive: true,
   },
   // ABD UI hidden 2026-07-01 pending case-study rework to match the
   // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
