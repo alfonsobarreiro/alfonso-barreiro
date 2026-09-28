@@ -772,6 +772,10 @@ export default function MSRChatbot() {
             .msrbot-results-grid     { grid-template-columns: 1fr !important; gap: 32px !important; }
             .msrbot-failed-row       { grid-template-columns: 40px 1fr !important; gap: 16px !important; }
             .msrbot-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+            .msrbot-guardrails-grid  { grid-template-columns: 1fr !important; gap: 40px !important; }
+          }
+          @media (min-width: 761px) and (max-width: 1000px) {
+            .msrbot-guardrails-grid  { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; }
           }
         `}</style>
 
@@ -1230,6 +1234,164 @@ export default function MSRChatbot() {
                   cost="The server has to open the stream before the model finishes. One extra piece of state to keep straight."
                 />
               </div>
+            </div>
+          </section>
+
+          {/* Guardrails — security layers + spend caps */}
+          <section aria-label="Guardrails" style={{ padding: `0 ${SECTION_X} 120px` }}>
+            <div style={{
+              maxWidth:             CONTENT_MAX,
+              margin:               "0 auto",
+              display:              "grid",
+              gridTemplateColumns:  "1fr 1.6fr",
+              gap:                  "64px",
+              alignItems:           "start",
+              marginBottom:         "48px",
+            }} className="msrbot-row">
+              <div>
+                <h2 style={{
+                  fontFamily:    font.sans,
+                  fontSize:      "clamp(28px,4vw,60px)",
+                  fontWeight:    500,
+                  color:         c.ink,
+                  margin:        0,
+                  letterSpacing: "-0.02em",
+                  lineHeight:    1.1,
+                }}>
+                  Guardrails.
+                </h2>
+              </div>
+              <div>
+                <p style={{
+                  fontFamily: font.sans,
+                  fontSize:   "clamp(15px,1.6vw,17px)",
+                  lineHeight: 1.6,
+                  color:      c.ink2,
+                  margin:     0,
+                  maxWidth:   PROSE_MAX,
+                }}>
+                  Every AI-in-production question is a safety question. What can go wrong. What does it cost when it does. The guardrails are layered, cheapest and safest first, so no single failure produces either a wrong answer or a bill I did not plan for. Below is what runs at each layer, from the browser to the workspace ceiling.
+                </p>
+              </div>
+            </div>
+
+            {/* Layered breakdown */}
+            <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
+              <div className="msrbot-guardrails-grid" style={{
+                display:              "grid",
+                gridTemplateColumns:  "repeat(5, 1fr)",
+                gap:                  "clamp(20px, 2.4vw, 32px)",
+              }}>
+                {[
+                  {
+                    layer: "Browser",
+                    note:  "Before the message leaves the device",
+                    items: [
+                      "Red-flag word search, first thing every message hits",
+                      "500-character input limit",
+                    ],
+                  },
+                  {
+                    layer: "Edge",
+                    note:  "Before the route runs",
+                    items: [
+                      "Vercel BotID invisible challenge",
+                      "Vercel WAF: 10 requests per minute per IP, 40 per 10 minutes",
+                      "Same-site origin check",
+                    ],
+                  },
+                  {
+                    layer: "Route handler",
+                    note:  "Before the model is called",
+                    items: [
+                      "HMAC-signed assistant turns, so history cannot be forged mid-conversation",
+                      "Body-size cap",
+                      "Red-flag check runs again on the server",
+                      "10-turn limit per conversation",
+                    ],
+                  },
+                  {
+                    layer: "Model",
+                    note:  "During and after the call",
+                    items: [
+                      "Prompt-cached system message keeps repeat calls cheap",
+                      "1,024 output tokens",
+                      "Every real answer is written from the retrieved guide passages only",
+                    ],
+                  },
+                  {
+                    layer: "Workspace",
+                    note:  "Spend ceilings on the account itself",
+                    items: [
+                      "Anthropic workspace capped at $25 per month, alerts at $10 and $20",
+                      "Vercel AI Gateway capped at $5 per month",
+                      "$10 of Gateway credits bought, lifts the free-tier five-per-minute cap",
+                    ],
+                  },
+                ].map((col, i) => (
+                  <div key={col.layer} style={{
+                    borderTop: `1px solid ${c.borderStrong}`,
+                    paddingTop: "20px",
+                  }}>
+                    <p style={{
+                      fontFamily:    font.sans,
+                      fontSize:      "var(--text-small)",
+                      fontWeight:    500,
+                      letterSpacing: "0.01em",
+                      color:         c.accent,
+                      margin:        "0 0 4px",
+                    }}>
+                      {String(i + 1).padStart(2, "0")} · {col.layer}
+                    </p>
+                    <p style={{
+                      fontFamily: font.sans,
+                      fontSize:   "var(--text-small)",
+                      color:      c.muted,
+                      margin:     "0 0 16px",
+                      lineHeight: 1.45,
+                    }}>
+                      {col.note}
+                    </p>
+                    <ul style={{
+                      listStyle: "none",
+                      margin:    0,
+                      padding:   0,
+                      display:   "grid",
+                      gap:       "12px",
+                    }}>
+                      {col.items.map((it) => (
+                        <li key={it} style={{
+                          fontFamily: font.sans,
+                          fontSize:   "var(--text-body)",
+                          lineHeight: 1.5,
+                          color:      c.ink2,
+                          paddingLeft: "14px",
+                          position:   "relative",
+                        }}>
+                          <span aria-hidden="true" style={{
+                            position:  "absolute",
+                            left:      0,
+                            top:       "0.7em",
+                            width:     "6px",
+                            height:    "1px",
+                            background: c.brand,
+                          }} />
+                          {it}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Callout closer — the philosophy */}
+            <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", paddingTop: "8px" }}>
+              <Callout
+                decision="Cap the model, cap the account, cap the request rate."
+                why="A safety net is a stack of nets. One will always miss. The BotID silent failure is the working example: the outer net had a hole for a day, and the inner nets kept the site working while I fixed it."
+                cost="Every cap is a decision the person after me has to remember. Documented in the vault and in the environment README so no one lifts a limit by accident."
+              />
             </div>
           </section>
         </div>
