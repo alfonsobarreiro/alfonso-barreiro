@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/work/wayfarer`,                     lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/mens-sole-revival`,            lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/aiga-portland`,                lastModified, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE}/work/msr-chatbot`,                  lastModified, changeFrequency: "monthly", priority: 0.9 },
     /* ABD UI System pulled from sitemap 2026-07-03 — authoring only,
        notFound() guard on the page in production. */
     { url: `${SITE}/about`,                             lastModified, changeFrequency: "monthly", priority: 0.8 },

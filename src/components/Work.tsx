@@ -105,6 +105,20 @@ const projects: Project[] = [
     href:        "/work/aiga-portland",
     image:       "/images/work/aiga-portland/then-2026-cropped.jpg",
   },
+  {
+    title:       "Alfred",
+    subtitle:    "MSR foot-health assistant",
+    description:
+      "A retrieval-grounded assistant on menssolerevival.com/ask. Every real answer written by Claude Haiku 4.5, from the site's own guides only. Red flags stop the conversation. Nothing is stored. Four working days, solo with Claude Code.",
+    thesis:      "A front door to the library, not a general chatbot.",
+    deck:        "17 guides. 973 impressions. Five clicks. The library was invisible from the inside and the outside. Shipped September 2026 as portfolio evidence for AI and conversation-design work.",
+    meta:        "AI · 2026 · Live at /ask",
+    tags:        ["AI conversation design", "Retrieval (RAG)", "Claude Haiku 4.5"],
+    year:        "2026",
+    status:      "live",
+    href:        "/work/msr-chatbot",
+    image:       "/images/work/msr-chatbot/hero-empty.png",
+  },
   // ABD UI hidden 2026-07-01 pending case-study rework to match the
   // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
   // rework ships.
