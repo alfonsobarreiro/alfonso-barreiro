@@ -521,6 +521,7 @@ function ResultsTiles() {
     { stat: "~$0.005",     label: "Cost per answered question",     detail: "Off-topic questions a hundredth of a cent. Red flags free. Whole index built for $0.0012." },
     { stat: "1.2s",        label: "First real word to the screen",  detail: "The loading line names the guide about a second in. The slowest moment says something true." },
     { stat: "0 / 0 / 0",   label: "Em dashes · certainty · brands", detail: "Every live test after the fixes. The one brand named appears three times in the cited guide." },
+    { stat: "17 → 40",     label: "Guides at build start vs. launch", detail: "Eight added Sep 22 from the calibration gaps, fifteen more Sep 23 to 28 from what Alfred surfaced. 228 passages in the search index." },
   ];
   return (
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `0 ${SECTION_X}` }}>
@@ -1391,7 +1392,7 @@ export default function MSRChatbot() {
                   margin:     0,
                   maxWidth:   PROSE_MAX,
                 }}>
-                  Live traffic. The instrumented events are already in place (<code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_panel_open</code>, <code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_answer_shown</code>, <code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_red_flag</code>, <code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_feedback</code>). Two weeks of data will tell me which guide neighborhoods produce &ldquo;not sure&rdquo; answers, which is the list for the next batch of guides. A clinical review of the highest-risk guides sits above that on the list. The batch of eight new guides that shipped alongside launch (gout, athlete&rsquo;s foot, calluses, night cramps, bunions, diabetic foot care, numbness, sprains) was the first cycle of that loop already running: Alfred answered &ldquo;fungus on my big toe&rdquo; from the athlete&rsquo;s-foot guide because the site had one thin fungus guide. The chatbot exposed the content gap.
+                  Live traffic. The instrumented events are already in place (<code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_panel_open</code>, <code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_answer_shown</code>, <code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_red_flag</code>, <code style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95em" }}>ask_feedback</code>). Two weeks of data will tell me which guide neighborhoods produce &ldquo;not sure&rdquo; answers, which is the list for the next batch of guides. A clinical review of the highest-risk guides sits above that on the list. The fifteen guides that shipped alongside launch (a toenail-fungus cluster of five, the old fungus guide rewritten as a hub, and ten from a keyword gap map) were the first cycle of that loop already running: Alfred answered &ldquo;fungus on my big toe&rdquo; from the athlete&rsquo;s-foot guide because the site had one thin fungus guide. The chatbot exposed the content gap.
                 </p>
               </div>
             </div>
