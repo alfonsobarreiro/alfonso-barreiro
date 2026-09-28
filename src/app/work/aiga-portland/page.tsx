@@ -164,6 +164,7 @@ function HeroImage({
         overflow:     "hidden",
         background:   c.ink,
         border:       `1px solid ${c.border}`,
+        borderRadius: "10px",
       }}>
         <Image
           src={src}
@@ -186,10 +187,11 @@ function HeroImage({
         priority={priority}
         sizes="(max-width: 1240px) 100vw, 1240px"
         style={{
-          width:  "100%",
-          height: "auto",
-          display: "block",
-          border:  `1px solid ${c.border}`,
+          width:        "100%",
+          height:       "auto",
+          display:      "block",
+          border:       `1px solid ${c.border}`,
+          borderRadius: "10px",
         }}
       />
     </div>
@@ -440,12 +442,13 @@ function ThenVsNow() {
               src={it.img}
               alt={it.alt}
               style={{
-                display:     "block",
-                width:       "100%",
-                height:      "auto",
-                margin:      0,
-                padding:     0,
-                border:      0,
+                display:      "block",
+                width:        "100%",
+                height:       "auto",
+                margin:       0,
+                padding:      0,
+                border:       0,
+                borderRadius: "10px",
                 verticalAlign: "top",
               }}
             />
@@ -490,11 +493,12 @@ function ResearchStrip() {
     <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `0 ${SECTION_X}` }}>
       <div>
         <div style={{
-          aspectRatio: "16 / 10",
-          border:      `1px solid ${c.border}`,
-          background:  "#101010",
-          overflow:    "hidden",
-          position:    "relative",
+          aspectRatio:  "16 / 10",
+          border:       `1px solid ${c.border}`,
+          borderRadius: "10px",
+          background:   "#101010",
+          overflow:     "hidden",
+          position:     "relative",
           marginBottom: "24px",
         }}>
           <Image
@@ -574,10 +578,11 @@ function ShippedStack() {
               height={1000}
               sizes="(max-width: 1240px) 100vw, 1240px"
               style={{
-                width:  "100%",
-                height: "auto",
-                display: "block",
-                border:  `1px solid ${c.border}`,
+                width:        "100%",
+                height:       "auto",
+                display:      "block",
+                border:       `1px solid ${c.border}`,
+                borderRadius: "10px",
               }}
             />
           </div>
@@ -731,7 +736,7 @@ export default function AIGAPortland() {
               maxWidth:   "680px",
               margin:     "0 0 32px",
             }}>
-              A volunteer landing-page build for AIGA Portland’s three-week October festival, on Squarespace 7.1 with a brand system that fights every platform default. A team of four shipped it: the AIGA Portland Web Chair on final calls, the PDM 2026 Featured Artist on the brand system in Figma, another Web Volunteer alongside me, and me on the Squarespace build and custom code.
+              A volunteer landing-page build for AIGA Portland’s three-week October festival, on Squarespace 7.1 with a brand system that fights every platform default. AIGA Portland runs on volunteers: a board, chapter chairs, and teams that steward each program the chapter puts on. Portland Design Month 2026 is one of those programs. This covers the three-person web team’s slice: the Web Chair on final calls, the Web Designer, and me on the developer role, with the PDM 2026 Featured Artist delivering the brand system every decision served.
             </p>
 
             <p style={{
@@ -979,7 +984,7 @@ export default function AIGAPortland() {
                   margin:     0,
                   maxWidth:   PROSE_MAX,
                 }}>
-                  Four volunteers shipped the page. The AIGA Portland Web Chair set direction, held the final call on every decision that reached the site, and built the hero mosaic with artist flourishes. Another Web Volunteer built the venue map. The PDM 2026 Featured Artist delivered the full brand system in Figma, source of truth for type, color, and ornament. I owned the Squarespace build and the custom code that translated the brand past the template’s defaults. The four of us collaborated on design and layout.
+                  The web team is three volunteers. The Web Chair leads the team, holds the final call on every decision that reaches the site, and built this year’s hero mosaic with artist flourishes above the layout. The Web Designer built the events calendar and the venue map, and drove the layout pass through Figma. I owned the Squarespace build and the custom code that carried the brand past the template’s defaults. The three of us shipped it together. The PDM 2026 Featured Artist delivered the brand system in Figma as our source of truth for type, color, and ornament. Behind the web team sit the AIGA Portland board and chapter chairs setting direction for the year, and the volunteer teams running each of the chapter’s other programs.
                 </p>
               </div>
             </div>
@@ -1111,7 +1116,7 @@ export default function AIGAPortland() {
             borderTop: `1px solid ${c.border}`,
             paddingTop: "40px",
           }} className="aiga2-meta">
-            <MetaCell label="Role"   value="Team of four: PM (final calls), peer designer, brand artist, me (design + code)" />
+            <MetaCell label="Role"   value="Web team of three: Web Chair (final calls), Web Designer, me (developer). Featured Artist delivered the brand system." />
             <MetaCell label="Year"   value="2026" />
             <MetaCell label="Stack"  value="Squarespace 7.1 · Custom CSS · Page-scoped JS" />
             <MetaCell label="Live"   value={

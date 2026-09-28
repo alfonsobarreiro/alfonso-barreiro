@@ -166,6 +166,7 @@ function HeroImage({
         overflow:     "hidden",
         background:   c.ink,
         border:       `1px solid ${c.border}`,
+        borderRadius: "10px",
       }}>
         <Image
           src={src}
@@ -188,10 +189,11 @@ function HeroImage({
         priority={priority}
         sizes="(max-width: 1240px) 100vw, 1240px"
         style={{
-          width:  "100%",
-          height: "auto",
-          display: "block",
-          border:  `1px solid ${c.border}`,
+          width:        "100%",
+          height:       "auto",
+          display:      "block",
+          border:       `1px solid ${c.border}`,
+          borderRadius: "10px",
         }}
       />
     </div>
@@ -385,12 +387,13 @@ function StatesGallery() {
         {items.map((it) => (
           <figure key={it.label} style={{ margin: 0 }}>
             <div style={{
-              position: "relative",
-              width: "100%",
-              aspectRatio: "16 / 10",
-              border: `1px solid ${c.border}`,
-              background: "#FFFFFF",
-              overflow: "hidden",
+              position:     "relative",
+              width:        "100%",
+              aspectRatio:  "16 / 10",
+              border:       `1px solid ${c.border}`,
+              borderRadius: "10px",
+              background:   "#FFFFFF",
+              overflow:     "hidden",
             }}>
               <Image
                 src={it.src}
@@ -853,7 +856,7 @@ export default function MSRChatbot() {
                   Men&rsquo;s Sole Revival exists because men over 40 look after everyone but themselves, and their feet come last. By September 2026 the site had 17 guides and 7 routines and almost no one reading them. The guides answer real questions. The problem is that a man with a hot, swollen big toe at 3 a.m. does not know which of 24 articles answers his. Search on the site is keyword search. Google had not read the sitemap since June. The library was invisible from the inside and the outside.
                 </p>
                 <Callout
-                  decision="Ship a front door to the library, not a general chatbot."
+                  decision="Ship a front door to the library, not a general AI chatbot."
                   why="Every answer is accountable to a guide the reader can open. The model gets no room to invent."
                   cost="Anything the guides do not cover gets an honest &ldquo;I don&rsquo;t cover that yet&rdquo; and a question to bring to a clinician."
                 />
