@@ -62,7 +62,7 @@ const ALL: Card[] = [
     title:   "Alfred, a foot-health assistant",
     tagline: "A retrieval-grounded assistant that only answers from the site's own guides.",
     meta:    "Men's Sole Revival · AI · 2026",
-    image:   "/images/work/msr-chatbot/hero-empty.png",
+    image:   "/images/work/msr-chatbot/homepage-panel-open.png",
     href:    "/work/msr-chatbot",
   },
 ];
