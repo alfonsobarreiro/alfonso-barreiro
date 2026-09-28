@@ -193,7 +193,7 @@ export default function Work() {
                 maxWidth:      "640px",
               }}
             >
-              Four case studies. Two shipped and running. Two concepts that argue from evidence, not opinion.
+              Five case studies. Four shipped and running. One concept that argues from evidence, not opinion.
             </p>
           </div>
         </div>
@@ -275,6 +275,7 @@ function ProjectCard({
   const isSpotify  = project.title === "Spotify";
   const isAiga     = project.title === "AIGA Portland";
   const isABD      = project.title === "ABD UI";
+  const isAlfred   = project.title === "Alfred";
 
   /* Per-project aspect ratio: MSR (landscape MacBook) stays 16:10 so the
      laptop reads landscape; Wayfarer and Spotify use 4:5 so portrait iPad /
@@ -286,6 +287,7 @@ function ProjectCard({
                   : isSpotify  ? "2 / 3"
                   : isAiga     ? "1431 / 1877"
                   : isABD      ? "16 / 10"
+                  : isAlfred   ? "16 / 10"
                   : "16 / 10";
 
   /* Plate hugs the device tighter so the text column has more room —
@@ -343,6 +345,7 @@ function ProjectCard({
     ...(isMSR      && { width: "620px", maxWidth: "50vw", padding: "clamp(6px, 0.8vw, 10px) clamp(6px, 0.8vw, 10px)" }),
     ...(isAiga     && { width: "400px", maxWidth: "34vw" }),
     ...(isABD      && { width: "440px", maxWidth: "42vw" }),
+    ...(isAlfred   && { width: "540px", maxWidth: "46vw" }),
   };
 
   const imgBox: React.CSSProperties = {
