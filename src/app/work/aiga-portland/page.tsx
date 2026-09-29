@@ -985,7 +985,7 @@ export default function AIGAPortland() {
                   margin:     0,
                   maxWidth:   PROSE_MAX,
                 }}>
-                  The web team is three volunteers. The Web Chair leads the team, holds the final call on every decision that reaches the site, and built this year’s hero mosaic with artist flourishes above the layout. The Web Designer built the events calendar and the venue map, and drove the layout pass through Figma. I owned the Squarespace build and the custom code that carried the brand past the template’s defaults. The three of us shipped it together. The PDM 2026 Featured Artist delivered the brand system in Figma as our source of truth for type, color, and ornament. Behind the web team sit the AIGA Portland board and chapter chairs setting direction for the year, and the volunteer teams running each of the chapter’s other programs.
+                  The web team is three volunteers. The Web Chair leads the team, holds the final call on every decision that reaches the site, and built this year’s hero mosaic with artist flourishes above the layout. The Web Designer built the venue map and drove the layout pass through Figma. I built the events calendar, and I owned the Squarespace build and the custom code that carried the brand past the template’s defaults. The three of us shipped it together. The PDM 2026 Featured Artist delivered the brand system in Figma as our source of truth for type, color, and ornament. Behind the web team sit the AIGA Portland board and chapter chairs setting direction for the year, and the volunteer teams running each of the chapter’s other programs.
                 </p>
               </div>
             </div>
