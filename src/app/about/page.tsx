@@ -371,10 +371,10 @@ export default function AboutPage() {
             </figure>
 
             <p style={body}>
-              Two-plus years followed at VARA Winery &amp; Distillery as Director of Marketing &amp; DTC Operations. Back in-person in Albuquerque, running the site redesign and the brand identity for a new spirits line. Then in late 2024 I left the director seat to go all-in on UX/UI. The remote chapter resumed in Portland: independent practice, DesignLab UX Academy, four case studies. None of them built from a shared room.
+              Two-plus years followed at VARA Winery &amp; Distillery as Director of Marketing &amp; DTC Operations. Back in-person in Albuquerque, running the site redesign and the brand identity for a new spirits line. Then in late 2024 I left the director seat to go all-in on UX/UI. The remote chapter resumed in Portland: independent practice, DesignLab UX Academy, five case studies. None of them built from a shared room.
             </p>
             <p style={{ ...body, margin: "0 0 64px" }}>
-              Remote isn&apos;t a constraint; it&apos;s a discipline. The four case studies on this site are evidence the model works at the artifact level. Three built solo, one with a volunteer team of four, all remote.
+              Remote isn&apos;t a constraint; it&apos;s a discipline. The five case studies on this site are evidence the model works at the artifact level. Four built solo, one with a three-person volunteer web team, all remote.
             </p>
 
             <RemoteTimeline />
@@ -493,7 +493,7 @@ function RemoteTimeline() {
     { name: "Boomtime",            role: "Lead Graphic Design",            location: "Albuquerque",        note: "Joined as Lead Graphic Design. Set the visual quality bar for client work before going remote and stepping up to VP.",  start: 2018,    end: 2019.5,  remote: false },
     { name: "Boomtime",            role: "UX & Design Lead (VP of Operations)", location: "Remote · Albuquerque", note: "Promoted to VP and went remote. Same client roster, distributed team, same quality bar.",        start: 2019.5, end: 2021.75, remote: true  },
     { name: "VARA Winery & Distillery", role: "Director of Marketing & DTC Operations", location: "Albuquerque",          note: "Back in-person at the winery. Redesigned the site and brand identity for a new spirits line. AI-assisted workflows.", start: 2022.25, end: 2024.85, remote: false },
-    { name: "Independent Practice",     role: "Product Design Consultant",  location: "Remote · Portland",    note: "DesignLab UX Academy. Four case studies. Build in Figma, ship in Next.js.",               start: 2024.85, end: 2025.5,  remote: true  },
+    { name: "Independent Practice",     role: "Product Design Consultant",  location: "Remote · Portland",    note: "DesignLab UX Academy. Five case studies. Build in Figma, ship in Next.js.",               start: 2024.85, end: 2025.5,  remote: true  },
   ];
 
   const yearTicks = [2010, 2014, 2018, 2020, 2024];
