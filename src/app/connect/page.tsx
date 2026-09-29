@@ -318,7 +318,7 @@ export default function ConnectPage() {
               }}
             >
               <Image
-                src="/images/portrait/alfonso-portrait-home.jpg"
+                src="/images/portrait/alfonso-office.jpg"
                 alt="Alfonso Barreiro"
                 width={112}
                 height={112}
