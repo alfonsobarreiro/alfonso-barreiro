@@ -611,6 +611,7 @@ export default function MSRChatbot() {
         name="Alfred, a foot-health assistant"
         description={DESCRIPTION}
         slug="msr-chatbot"
+        image="https://www.barreiro.com/work/msr-chatbot/opengraph-image.jpg"
         dateCreated="2026-09"
       />
       <BreadcrumbSchema

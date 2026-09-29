@@ -7,6 +7,7 @@ type Props = {
   headline?: string;
   keywords?: string | string[];
   about?: string | string[];
+  image?: string;
 };
 
 export function CaseStudySchema({
@@ -18,6 +19,7 @@ export function CaseStudySchema({
   headline,
   keywords,
   about,
+  image,
 }: Props) {
   const keywordsValue = Array.isArray(keywords) ? keywords.join(", ") : keywords;
 
@@ -33,7 +35,7 @@ export function CaseStudySchema({
       url: "https://www.barreiro.com",
     },
     url: `https://www.barreiro.com/work/${slug}`,
-    image: `https://www.barreiro.com/work/${slug}/opengraph-image`,
+    image: image ?? `https://www.barreiro.com/work/${slug}/opengraph-image`,
     dateCreated,
     inLanguage: "en-US",
   };

@@ -698,6 +698,7 @@ export default function AIGAPortland() {
         name="Portland Design Month 2026 · AIGA Portland"
         description="Volunteer case study: designed and built the AIGA Portland Design Month 2026 landing page in Squarespace. Custom CSS and page-scoped JS carried the artist's brand system past the platform's defaults."
         slug="aiga-portland"
+        image="https://www.barreiro.com/work/aiga-portland/opengraph-image.jpg"
         dateCreated="2026-08"
       />
       <BreadcrumbSchema
