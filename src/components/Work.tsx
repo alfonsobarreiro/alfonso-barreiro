@@ -7,9 +7,12 @@ import MSRPagePeek from "@/components/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
 import SpotifyFramedAnimation from "@/components/SpotifyFramedAnimation";
 import { LinkArrow } from "@/components/ui/LinkArrow";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 interface Project {
   title:       string;
+  /** Rendered above the thesis so each card names its project and status. */
+  label:       string;
   subtitle:    string;
   description: string;
   /** One-line "what I figured out" — signals decision-making depth. Renders italic deep-teal under the description. */
@@ -40,45 +43,49 @@ interface Project {
   };
 }
 
-/* Order: Spotify → Wayfarer → MSR → ABD UI.
-   MSR is already the hero (86% completion stat over the live site), so leading with it again
-   would repeat the same evidence twice. Spotify opens the work section with
-   interaction craft, Wayfarer carries the shipped-product range, MSR closes
-   the project triad with the measurable-result case the hero set up. ABD UI
-   sits last as the operating system behind every client project, the proof
-   that the work scales because the system underneath it does. */
+/* Order: Alfred → AIGA → MSR → Wayfarer → Spotify.
+   Newest shipped work above the fold, concept last. Alfred leads because
+   retrieval-grounded AI on a shipped site is what a hiring manager
+   scanning for conversational-AI work needs to see first. AIGA follows
+   as the other Sept-2026 shipped piece, showing team collaboration.
+   MSR completes the "ecosystem" arc where Alfred lives. Wayfarer then
+   carries the shipped-product substance case (IA + design system + trip
+   planner). Spotify closes as the interaction-craft concept — labeled
+   "Concept" so its placement at the end doesn't get read as recency. */
 const projects: Project[] = [
   {
-    title:       "Spotify",
-    subtitle:    "Recently Played Controls",
+    title:       "Alfred",
+    label:       "Alfred · Men's Sole Revival · Live",
+    subtitle:    "MSR foot-health assistant",
     description:
-      "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
-    thesis:      "Three controls I keep wanting Spotify to add.",
-    deck:        "The shelf 600M+ Spotify users see daily, with no controls. Pin · Remove · Pause, grounded in 200+ user posts.",
-    meta:        "Designer · 2026 · Concept",
-    tags:        ["Feature design", "Interaction model", "Constraint mapping"],
+      "A retrieval-grounded assistant on menssolerevival.com/ask. Every real answer written by Claude Haiku 4.5, from the site's own guides only. Red flags stop the conversation. Nothing is stored. Four working days, solo with Claude Code.",
+    thesis:      "A front door to the library, not a general AI chatbot.",
+    deck:        "Answers men's foot questions from the site's 40 guides only and cites the guide it used. Red flags stop the chat and point to a doctor. Live since September 28, at about half a cent an answer.",
+    meta:        "AI · 2026 · Live at /ask",
+    tags:        ["AI conversation design", "Retrieval (RAG)", "Claude Haiku 4.5"],
     year:        "2026",
     status:      "live",
-    href:        "/work/spotify",
-    image:       "/cs-spotify-preview.png",
-    interactive: true,
+    href:        "/work/msr-chatbot",
+    image:       "/images/work/msr-chatbot/homepage-panel-open.png",
   },
   {
-    title:       "Wayfarer",
-    subtitle:    "Travel Discovery Platform",
+    title:       "AIGA Portland",
+    label:       "AIGA Portland · Volunteer · Live",
+    subtitle:    "Portland Design Month 2026",
     description:
-      "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
-    thesis:      "Built the trip planner around duration, not dates.",
-    deck:        "Homepage as an editorial cover. Discovery through a globe and curated cards.",
-    meta:        "Designer · 2026 · Live",
-    tags:        ["Information Architecture", "Design System", "Multi-step Form UX"],
+      "Volunteer landing-page build for AIGA Portland's Design Month 2026. Squarespace 7.1 with a brand system that fought every platform default. Custom CSS and page-scoped JS closed the gap.",
+    thesis:      "The artist's brand shipped intact past Squarespace's defaults.",
+    deck:        "One Custom CSS file, scoped to the festival page, overrode Squarespace section by section. Built by a three-person volunteer web team: the Web Chair on final calls, a Web Designer, and me on the code.",
+    meta:        "Volunteer · 2026 · Live",
+    tags:        ["Editorial", "Brand", "Volunteer"],
     year:        "2026",
     status:      "live",
-    href:        "/work/wayfarer",
-    image:       "/cs-wayfarer-preview.jpg",
+    href:        "/work/aiga-portland",
+    image:       "/images/work/aiga-portland/then-2026-cropped.jpg",
   },
   {
     title:       "Men's Sole Revival",
+    label:       "Men's Sole Revival · Live",
     subtitle:    "Foot Health Content Platform",
     description:
       "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
@@ -92,18 +99,35 @@ const projects: Project[] = [
     image:       "/cs-msr-preview.jpg",
   },
   {
-    title:       "AIGA Portland",
-    subtitle:    "Portland Design Month 2026",
+    title:       "Wayfarer",
+    label:       "Wayfarer · Concept",
+    subtitle:    "Travel Discovery Platform",
     description:
-      "Volunteer landing-page build for AIGA Portland's Design Month 2026. Squarespace 7.1 with a brand system that fought every platform default. Custom CSS and page-scoped JS closed the gap.",
-    thesis:      "The artist's brand shipped intact past Squarespace's defaults.",
-    deck:        "Team of four. AIGA Portland Web Chair on final calls, PDM 2026 Featured Artist on the brand system, another Web Volunteer alongside me, me on the Squarespace build and custom code.",
-    meta:        "Volunteer · 2026 · Live",
-    tags:        ["Editorial", "Brand", "Volunteer"],
+      "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
+    thesis:      "Built the trip planner around duration, not dates.",
+    deck:        "Homepage as an editorial cover. Discovery through a globe and curated cards.",
+    meta:        "Designer · 2026 · Live",
+    tags:        ["Information Architecture", "Design System", "Multi-step Form UX"],
     year:        "2026",
     status:      "live",
-    href:        "/work/aiga-portland",
-    image:       "/images/work/aiga-portland/then-2026-cropped.jpg",
+    href:        "/work/wayfarer",
+    image:       "/cs-wayfarer-preview.jpg",
+  },
+  {
+    title:       "Spotify",
+    label:       "Spotify · Concept",
+    subtitle:    "Recently Played Controls",
+    description:
+      "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
+    thesis:      "Three controls I keep wanting Spotify to add.",
+    deck:        "The shelf 600M+ Spotify users see daily, with no controls. Pin · Remove · Pause, grounded in 200+ user posts.",
+    meta:        "Designer · 2026 · Concept",
+    tags:        ["Feature design", "Interaction model", "Constraint mapping"],
+    year:        "2026",
+    status:      "live",
+    href:        "/work/spotify",
+    image:       "/cs-spotify-preview.png",
+    interactive: true,
   },
   // ABD UI hidden 2026-07-01 pending case-study rework to match the
   // Spotify/Wayfarer/MSR arc pattern. Restore this entry when the
@@ -179,7 +203,7 @@ export default function Work() {
                 maxWidth:      "640px",
               }}
             >
-              Four case studies. Two shipped and running. Two concepts that argue from evidence, not opinion.
+              Five case studies. Three shipped and running. Two concepts that argue from evidence, not opinion.
             </p>
           </div>
         </div>
@@ -214,7 +238,9 @@ export default function Work() {
             gap: clamp(28px, 6vw, 44px) !important;
             justify-content: flex-start !important;
             min-height: auto !important;
-            padding: clamp(56px, 12vw, 96px) clamp(24px, 6vw, 40px) !important;
+            /* No side padding: cards share the section's left edge with
+               the "Work" heading and the footer. */
+            padding: clamp(12px, 3vw, 24px) 0 !important;
           }
           .work-row .work-row-image {
             order: 0 !important;
@@ -261,6 +287,7 @@ function ProjectCard({
   const isSpotify  = project.title === "Spotify";
   const isAiga     = project.title === "AIGA Portland";
   const isABD      = project.title === "ABD UI";
+  const isAlfred   = project.title === "Alfred";
 
   /* Per-project aspect ratio: MSR (landscape MacBook) stays 16:10 so the
      laptop reads landscape; Wayfarer and Spotify use 4:5 so portrait iPad /
@@ -272,6 +299,7 @@ function ProjectCard({
                   : isSpotify  ? "2 / 3"
                   : isAiga     ? "1431 / 1877"
                   : isABD      ? "16 / 10"
+                  : isAlfred   ? "16 / 10"
                   : "16 / 10";
 
   /* Plate hugs the device tighter so the text column has more room —
@@ -329,6 +357,7 @@ function ProjectCard({
     ...(isMSR      && { width: "620px", maxWidth: "50vw", padding: "clamp(6px, 0.8vw, 10px) clamp(6px, 0.8vw, 10px)" }),
     ...(isAiga     && { width: "400px", maxWidth: "34vw" }),
     ...(isABD      && { width: "440px", maxWidth: "42vw" }),
+    ...(isAlfred   && { width: "540px", maxWidth: "46vw" }),
   };
 
   const imgBox: React.CSSProperties = {
@@ -337,6 +366,12 @@ function ProjectCard({
     aspectRatio:  imgAspect,
     overflow:     "hidden",
     background:   "transparent",
+    /* Browser-window rounding for the two flat web-page screenshots
+       (Alfred + AIGA). Device mockups already read as rounded via their
+       chrome, so leave those sharp. Small radius keeps within the DS
+       "small UI only" rule for rounding — feels like a viewport, not a
+       decorative pill. */
+    ...((isAlfred || isAiga) && { borderRadius: "10px" }),
   };
 
   /* The image gets wrapped in a Link if the project is live, so the
@@ -389,9 +424,10 @@ function ProjectCard({
     </div>
   );
 
-  /* Editorial content block — same shape for every project: thesis
-     (display), deck (body), View Case Study link. No eyebrow, no
-     interactive-prototype pill, no photo credit — restraint per brand. */
+  /* Editorial content block — same shape for every project: project
+     label, thesis (display), deck (body), View Case Study link. The label
+     is the DS Eyebrow so a scanner can tell which project each card is
+     without reading the thesis. No pills, no photo credit. */
   const contentBlock = (
     <div
       className="work-row-content"
@@ -400,6 +436,7 @@ function ProjectCard({
         maxWidth: "640px",
       }}
     >
+      <Eyebrow style={{ marginBottom: "14px" }}>{project.label}</Eyebrow>
       <h3
         className="work-row-thesis"
         style={{

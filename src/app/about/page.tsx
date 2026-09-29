@@ -10,21 +10,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Four case studies: Spotify controls, Wayfarer travel discovery, Men's Sole Revival, and AIGA Portland Design Month.",
+    "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Four case studies: Spotify controls, Wayfarer travel discovery, Men's Sole Revival, and AIGA Portland Design Month.",
+      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Four case studies: Spotify controls, Wayfarer travel discovery, Men's Sole Revival, and AIGA Portland Design Month.",
+      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
     images: ["/about/opengraph-image"],
   },
 };
@@ -279,8 +279,8 @@ export default function AboutPage() {
                   }}
                 >
                   <Image
-                    src="/images/portrait/alfonso-portrait-about.jpg"
-                    alt="Alfonso Barreiro, Product Designer, editorial portrait."
+                    src="/images/portrait/alfonso-waterfall.jpg"
+                    alt="Alfonso Barreiro on a trail in front of a waterfall."
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 540px"

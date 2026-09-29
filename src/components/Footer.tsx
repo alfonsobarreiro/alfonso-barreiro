@@ -8,11 +8,14 @@ const bg    = "var(--color-bg-elevated)";
 const ink   = "var(--color-text)";
 const muted = "var(--color-neutral-600)";
 const brand = "var(--color-brand)";
+// Terracotta-500 text measured 3.67:1 on this footer ground, under AA.
+// 600 keeps the hue and clears 4.5:1; the dot stays 500.
+const brandText = "var(--color-terracotta-600)";
 
 export default function Footer() {
   return (
     <footer style={{ background: bg, borderTop: "none" }}>
-      <div style={{ padding: "40px clamp(32px, 6vw, 80px)" }}>
+      <div className="site-footer-pad" style={{ padding: "40px clamp(32px, 6vw, 80px)" }}>
         <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
           {/* Status chip — same dot + brand-color label treatment as the
               About page chip; anchors the availability signal at the
@@ -26,7 +29,7 @@ export default function Footer() {
               fontFamily: font,
               fontSize:   "var(--text-body)",
               fontWeight: 500,
-              color:      brand,
+              color:      brandText,
               margin:     "0 0 20px",
               lineHeight: 1.35,
             }}

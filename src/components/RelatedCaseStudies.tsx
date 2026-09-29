@@ -5,15 +5,14 @@ import Link from "next/link";
  * RelatedCaseStudies
  * ─────────────────────────────────────────────────────────────────────────────
  * Sits at the bottom of each case study page, above the contact CTA. Shows
- * the other two case studies as wide thumbnails with title + tagline so the
- * reader has an obvious next step. Pentagram-style "Next: X / Then: Y" pattern.
+ * the other case studies as wide thumbnails with title + tagline so the
+ * reader has an obvious next step.
  *
- * Pass `current` to exclude the current case from the list. The order of the
- * displayed pair preserves the Home work-section order (Spotify → Wayfarer →
- * MSR), so coming off Spotify you see Wayfarer then MSR.
+ * Pass `current` to exclude the current case from the list. Order preserves
+ * the homepage Work section order (Alfred → AIGA → MSR → Wayfarer → Spotify).
  */
 
-type Slug = "spotify" | "wayfarer" | "mens-sole-revival" | "aiga-portland";
+type Slug = "spotify" | "wayfarer" | "mens-sole-revival" | "aiga-portland" | "msr-chatbot";
 
 interface Card {
   slug:    Slug;
@@ -26,20 +25,20 @@ interface Card {
 
 const ALL: Card[] = [
   {
-    slug:    "spotify",
-    title:   "Spotify",
-    tagline: "Three controls Spotify should have built already.",
-    meta:    "Recently Played Controls · 2026",
-    image:   "/images/work/spotify/spotify-hero-cover.webp",
-    href:    "/work/spotify",
+    slug:    "msr-chatbot",
+    title:   "Alfred, a foot-health assistant",
+    tagline: "A retrieval-grounded assistant that only answers from the site's own guides.",
+    meta:    "Men's Sole Revival · AI · 2026",
+    image:   "/images/work/msr-chatbot/homepage-panel-open.png",
+    href:    "/work/msr-chatbot",
   },
   {
-    slug:    "wayfarer",
-    title:   "Wayfarer",
-    tagline: "Trip planning without forcing dates that don't exist yet.",
-    meta:    "Travel Discovery Platform · 2026",
-    image:   "/cs-wayfarer-preview.jpg",
-    href:    "/work/wayfarer",
+    slug:    "aiga-portland",
+    title:   "AIGA Portland",
+    tagline: "The artist's brand shipped intact past Squarespace's defaults.",
+    meta:    "Portland Design Month 2026 · Volunteer",
+    image:   "/images/work/aiga-portland/hero-live-page-v3-3625.jpg",
+    href:    "/work/aiga-portland",
   },
   {
     slug:    "mens-sole-revival",
@@ -50,12 +49,20 @@ const ALL: Card[] = [
     href:    "/work/mens-sole-revival",
   },
   {
-    slug:    "aiga-portland",
-    title:   "AIGA Portland",
-    tagline: "The artist's brand shipped intact past Squarespace's defaults.",
-    meta:    "Portland Design Month 2026 · Volunteer",
-    image:   "/images/work/aiga-portland/hero-live-page-v3-3625.jpg",
-    href:    "/work/aiga-portland",
+    slug:    "wayfarer",
+    title:   "Wayfarer",
+    tagline: "Trip planning without forcing dates that don't exist yet.",
+    meta:    "Travel Discovery Platform · 2026",
+    image:   "/cs-wayfarer-preview.jpg",
+    href:    "/work/wayfarer",
+  },
+  {
+    slug:    "spotify",
+    title:   "Spotify",
+    tagline: "Three controls Spotify should have built already.",
+    meta:    "Recently Played Controls · 2026",
+    image:   "/images/work/spotify/spotify-hero-cover.webp",
+    href:    "/work/spotify",
   },
 ];
 
@@ -90,7 +97,7 @@ export default function RelatedCaseStudies({ current }: Props) {
               maxWidth:      "560px",
             }}
           >
-            Two more case studies.
+            More case studies.
           </h2>
         </div>
 

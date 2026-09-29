@@ -413,12 +413,19 @@ button {
 }
 
 /* ── Responsive overrides ── */
-@media (max-width: 767px) {
-  .hero-section    { padding: 100px 24px 60px !important; }
-  .main-nav        { padding: 0 24px !important; }
+/* Menu button takes over below 1024px. Five desktop links plus search
+   and the wordmark need ~1000px; at tablet widths they wrapped onto
+   two and three lines. */
+@media (max-width: 1023px) {
   .nav-links            { display: none !important; }
   .nav-search-mobile    { display: inline-flex !important; }
   .hamburger            { display: flex !important; }
+}
+
+@media (max-width: 767px) {
+  .hero-section    { padding: 100px 24px 60px !important; }
+  .main-nav        { padding: 0 24px !important; }
+  .site-footer-pad { padding: 40px 24px !important; }
   .about-section   { padding: 80px 24px !important; }
   .about-grid      { grid-template-columns: 1fr !important; gap: 40px !important; }
   .process-box     { padding: 32px 24px !important; }
@@ -597,9 +604,11 @@ button {
   .work-row .work-row-content { grid-column: 1 !important; order: 3 !important; }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .hamburger { display: none !important; }
+}
 
+@media (min-width: 768px) {
   /* Spotify case study — Personas: always show all three on desktop, hide the toggle */
   .cs-persona-collapse > .cs-persona-collapse-summary { display: none !important; }
   .cs-persona-collapse > .cs-persona-collapse-body {

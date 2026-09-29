@@ -139,7 +139,7 @@ export default function NotFound() {
             }}
           >
             {[
-              { label: "Four case studies",   href: "/#work",  meta: "MSR · Spotify · Wayfarer · AIGA" },
+              { label: "Five case studies",   href: "/#work",  meta: "Alfred · AIGA · MSR · Wayfarer · Spotify" },
               { label: "How I work",          href: "/about",  meta: "About · 15-year arc"     },
               { label: "Get in touch",        href: "mailto:alfonso@barreiro.com", meta: "Coffee in Portland?"     },
             ].map((d) => {
