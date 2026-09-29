@@ -375,11 +375,11 @@ export default function Nav() {
             Case studies
           </Eyebrow>
           {[
-            { href: "/work/spotify",            label: "Spotify"                    },
-            { href: "/work/wayfarer",           label: "Wayfarer"                   },
-            { href: "/work/mens-sole-revival",  label: "Men's Sole Revival"         },
-            { href: "/work/aiga-portland",      label: "AIGA PDX"                   },
             { href: "/work/msr-chatbot",        label: "Alfred (MSR chatbot)"       },
+            { href: "/work/aiga-portland",      label: "AIGA PDX"                   },
+            { href: "/work/mens-sole-revival",  label: "Men's Sole Revival"         },
+            { href: "/work/wayfarer",           label: "Wayfarer"                   },
+            { href: "/work/spotify",            label: "Spotify"                    },
             // { href: "/work/abd-ui-system",      label: "ABD UI System"      }, // hidden 2026-07-01 — rework pending
           ].map((cs) => (
             <Link

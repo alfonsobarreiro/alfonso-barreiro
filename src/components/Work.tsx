@@ -7,9 +7,12 @@ import MSRPagePeek from "@/components/MSRPagePeek";
 import WayfarerGlobePeek from "@/components/WayfarerGlobePeek";
 import SpotifyFramedAnimation from "@/components/SpotifyFramedAnimation";
 import { LinkArrow } from "@/components/ui/LinkArrow";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 interface Project {
   title:       string;
+  /** Rendered above the thesis so each card names its project and status. */
+  label:       string;
   subtitle:    string;
   description: string;
   /** One-line "what I figured out" — signals decision-making depth. Renders italic deep-teal under the description. */
@@ -52,11 +55,12 @@ interface Project {
 const projects: Project[] = [
   {
     title:       "Alfred",
+    label:       "Alfred · Men's Sole Revival · Live",
     subtitle:    "MSR foot-health assistant",
     description:
       "A retrieval-grounded assistant on menssolerevival.com/ask. Every real answer written by Claude Haiku 4.5, from the site's own guides only. Red flags stop the conversation. Nothing is stored. Four working days, solo with Claude Code.",
     thesis:      "A front door to the library, not a general AI chatbot.",
-    deck:        "17 guides. 973 impressions. Five clicks. The library was invisible from the inside and the outside. Shipped September 2026 as portfolio evidence for AI and conversation-design work.",
+    deck:        "Answers men's foot questions from the site's 40 guides only and cites the guide it used. Red flags stop the chat and point to a doctor. Live since September 28, at about half a cent an answer.",
     meta:        "AI · 2026 · Live at /ask",
     tags:        ["AI conversation design", "Retrieval (RAG)", "Claude Haiku 4.5"],
     year:        "2026",
@@ -66,11 +70,12 @@ const projects: Project[] = [
   },
   {
     title:       "AIGA Portland",
+    label:       "AIGA Portland · Volunteer · Live",
     subtitle:    "Portland Design Month 2026",
     description:
       "Volunteer landing-page build for AIGA Portland's Design Month 2026. Squarespace 7.1 with a brand system that fought every platform default. Custom CSS and page-scoped JS closed the gap.",
     thesis:      "The artist's brand shipped intact past Squarespace's defaults.",
-    deck:        "Three-person web team inside a chapter of volunteers. Web Chair leads, Web Designer partners on design, I own the Squarespace build. The Featured Artist delivered the brand system.",
+    deck:        "One Custom CSS file, scoped to the festival page, overrode Squarespace section by section. Built by a three-person volunteer web team: the Web Chair on final calls, a Web Designer, and me on the code.",
     meta:        "Volunteer · 2026 · Live",
     tags:        ["Editorial", "Brand", "Volunteer"],
     year:        "2026",
@@ -80,6 +85,7 @@ const projects: Project[] = [
   },
   {
     title:       "Men's Sole Revival",
+    label:       "Men's Sole Revival · Live",
     subtitle:    "Foot Health Content Platform",
     description:
       "A foot health resource for men over 40. Pivoted from e-commerce to content authority in week three; live since April 2026.",
@@ -94,6 +100,7 @@ const projects: Project[] = [
   },
   {
     title:       "Wayfarer",
+    label:       "Wayfarer · Concept",
     subtitle:    "Travel Discovery Platform",
     description:
       "A travel discovery platform with an interactive globe and a 40-destination library. For travelers who want to explore before they book. The hard part was the trip planner: modeling day vs. segment vs. saved location without forcing the user to commit to dates that don't exist yet. Duration outranked date; travel-mode logic ran between every segment.",
@@ -108,6 +115,7 @@ const projects: Project[] = [
   },
   {
     title:       "Spotify",
+    label:       "Spotify · Concept",
     subtitle:    "Recently Played Controls",
     description:
       "Three lightweight controls (Pin, Remove, Pause) for Spotify's recently-played shelf. For power users on shared screens who want to manage what's visible without losing convenience. Concept project. The hard part was deciding what to cut: Remove outranked Pin; Pause stayed time-boxed.",
@@ -195,7 +203,7 @@ export default function Work() {
                 maxWidth:      "640px",
               }}
             >
-              Five case studies. Four shipped and running. One concept that argues from evidence, not opinion.
+              Five case studies. Three shipped and running. Two concepts that argue from evidence, not opinion.
             </p>
           </div>
         </div>
@@ -230,7 +238,9 @@ export default function Work() {
             gap: clamp(28px, 6vw, 44px) !important;
             justify-content: flex-start !important;
             min-height: auto !important;
-            padding: clamp(56px, 12vw, 96px) clamp(24px, 6vw, 40px) !important;
+            /* No side padding: cards share the section's left edge with
+               the "Work" heading and the footer. */
+            padding: clamp(12px, 3vw, 24px) 0 !important;
           }
           .work-row .work-row-image {
             order: 0 !important;
@@ -414,9 +424,10 @@ function ProjectCard({
     </div>
   );
 
-  /* Editorial content block — same shape for every project: thesis
-     (display), deck (body), View Case Study link. No eyebrow, no
-     interactive-prototype pill, no photo credit — restraint per brand. */
+  /* Editorial content block — same shape for every project: project
+     label, thesis (display), deck (body), View Case Study link. The label
+     is the DS Eyebrow so a scanner can tell which project each card is
+     without reading the thesis. No pills, no photo credit. */
   const contentBlock = (
     <div
       className="work-row-content"
@@ -425,6 +436,7 @@ function ProjectCard({
         maxWidth: "640px",
       }}
     >
+      <Eyebrow style={{ marginBottom: "14px" }}>{project.label}</Eyebrow>
       <h3
         className="work-row-thesis"
         style={{
