@@ -152,7 +152,7 @@ export default function Hero() {
           className="hero-image-col"
           style={{
             position:    "relative",
-            width:       "360px",
+            width:       "320px",
             aspectRatio: "3 / 4",
             overflow:    "hidden",
             background:  "var(--color-neutral-100)",
@@ -163,7 +163,7 @@ export default function Hero() {
             alt="Alfonso Barreiro, Product Designer, in an office."
             fill
             priority
-            sizes="(max-width: 899px) 168px, 360px"
+            sizes="(max-width: 899px) 168px, 320px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
