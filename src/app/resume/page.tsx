@@ -51,7 +51,7 @@ const roles: Role[] = [
     role:     "Product Design Consultant",
     location: "Remote, Portland, OR",
     years:    "2024 to now",
-    outcome:  "Four case studies: three built solo from Figma to Next.js on Vercel, one shipped with a volunteer team of four.",
+    outcome:  "Five case studies: four built solo and shipped in Next.js on Vercel, one shipped with a three-person volunteer web team.",
   },
   {
     company:  "VARA Winery & Distillery",
@@ -103,10 +103,11 @@ const skills: string[] = [
 ];
 
 const caseStudies: { title: string; href: string; note: string }[] = [
-  { title: "Spotify · Recently Played Controls", href: "/work/spotify",             note: "Three reversible controls for the Recently Played shelf. Concept with a working demo." },
-  { title: "Wayfarer · Travel Discovery",         href: "/work/wayfarer",            note: "Concept product with an interactive globe and a 5-step signup." },
+  { title: "Alfred · Men's Sole Revival",        href: "/work/msr-chatbot",         note: "AI assistant that answers men's foot questions from the site's 40 guides only and cites the guide it used. Live since September 2026." },
+  { title: "AIGA Portland · Design Month 2026",   href: "/work/aiga-portland",       note: "Volunteer landing page on Squarespace with a three-person web team. I owned the build and custom code." },
   { title: "Men's Sole Revival",                  href: "/work/mens-sole-revival",   note: "Diagnostic-first foot-health resource for men over 40. Live since April 2026." },
-  { title: "AIGA Portland · Design Month 2026",   href: "/work/aiga-portland",       note: "Volunteer landing page on Squarespace with a team of four. I owned the build and custom code." },
+  { title: "Wayfarer · Travel Discovery",         href: "/work/wayfarer",            note: "Concept product with an interactive globe and a 5-step signup." },
+  { title: "Spotify · Recently Played Controls", href: "/work/spotify",             note: "Three reversible controls for the Recently Played shelf. Concept with a working demo." },
 ];
 
 /* ── Shared style atoms ───────────────────────────────────────────────
@@ -418,7 +419,7 @@ export default function ResumePage() {
               <span aria-hidden="true" style={eyebrowDash} />
               <p style={eyebrowLabel}>Selected work</p>
             </div>
-            <h2 style={sectionH2}>Four case studies on this site</h2>
+            <h2 style={sectionH2}>Five case studies on this site</h2>
             <p style={bodyIntro}>
               Each one covers the research, the decision, and the build. Live links follow.
             </p>

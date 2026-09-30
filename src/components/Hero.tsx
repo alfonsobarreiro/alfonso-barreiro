@@ -80,7 +80,7 @@ export default function Hero() {
           display:              "grid",
           gridTemplateColumns:  "auto auto",
           gap:                  "clamp(40px, 5vw, 80px)",
-          justifyContent:       "start",
+          justifyContent:       "space-between",
           alignItems:           "start",
           position:             "relative",
           zIndex:               1,
@@ -152,7 +152,7 @@ export default function Hero() {
           className="hero-image-col"
           style={{
             position:    "relative",
-            width:       "440px",
+            width:       "320px",
             aspectRatio: "3 / 4",
             overflow:    "hidden",
             background:  "var(--color-neutral-100)",
@@ -163,7 +163,7 @@ export default function Hero() {
             alt="Alfonso Barreiro, Product Designer, in an office."
             fill
             priority
-            sizes="440px"
+            sizes="(max-width: 899px) 168px, 320px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
@@ -201,7 +201,7 @@ export default function Hero() {
           }
           .hero-image-col {
             order: -1;
-            width: 200px !important;
+            width: 168px !important;
             aspect-ratio: 3 / 4 !important;
           }
         }
