@@ -1,22 +1,20 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 
 /**
- * Hero — text + compact portrait, two-column on desktop, stacked on mobile.
+ * Hero — text only. The portrait column was removed on 2026-10-08.
  * Composition after the 2026-08-25 reference-site synthesis:
  *
  * - Status chip promoted above the H1 as top-of-page anchor (Albera pattern)
  * - Subhead broken into four stacked mechanic clauses (Rauno's form)
- * - Portrait sized to match the copy block's vertical extent (Femke)
  * - Ambient graph-paper dot grid across the hero background (Femke)
  * - Cursor-follows spotlight brightens the dots near the pointer (Femke)
  *
  * Type stack: DM Sans only, weights 400 + 500.
  * Colors: --color-brand (chip), --color-text (H1 + body),
- * --color-neutral-100 (portrait placeholder), --color-neutral-300 (base
- * dots), --color-neutral-500 (spotlight dots). Nothing else.
+ * --color-neutral-300 (base dots), --color-neutral-500 (spotlight dots).
+ * Nothing else.
  */
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -78,7 +76,7 @@ export default function Hero() {
           margin:   "0 auto",
           width:    "100%",
           display:              "grid",
-          gridTemplateColumns:  "auto auto",
+          gridTemplateColumns:  "1fr",
           gap:                  "clamp(40px, 5vw, 80px)",
           justifyContent:       "space-between",
           alignItems:           "start",
@@ -146,27 +144,6 @@ export default function Hero() {
           </h2>
         </div>
 
-        {/* Portrait column — compact, sized to match the copy's vertical
-            extent. Sharp corners, no rotation, no sticker. */}
-        <div
-          className="hero-image-col"
-          style={{
-            position:    "relative",
-            width:       "320px",
-            aspectRatio: "3 / 4",
-            overflow:    "hidden",
-            background:  "var(--color-neutral-100)",
-          }}
-        >
-          <Image
-            src="/images/portrait/alfonso-office-chest.jpg"
-            alt="Alfonso Barreiro, Product Designer, in an office."
-            fill
-            priority
-            sizes="(max-width: 899px) 168px, 320px"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-          />
-        </div>
       </div>
 
       {/* Mobile stacking + cursor spotlight overlay */}
@@ -198,11 +175,6 @@ export default function Hero() {
           .hero-grid {
             grid-template-columns: 1fr !important;
             gap: clamp(24px, 5vw, 40px) !important;
-          }
-          .hero-image-col {
-            order: -1;
-            width: 168px !important;
-            aspect-ratio: 3 / 4 !important;
           }
         }
       `}</style>
