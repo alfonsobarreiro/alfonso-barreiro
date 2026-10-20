@@ -99,7 +99,7 @@ export default function Hero() {
               maxWidth:      "18ch",
             }}
           >
-            Design isn&rsquo;t taste. It&rsquo;s chaos reduction.
+            I cut scope, then build what&rsquo;s left.
           </h1>
 
           {/* Subhead — three stacked mechanic clauses. Consolidated the
