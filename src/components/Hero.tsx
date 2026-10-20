@@ -159,8 +159,8 @@ export default function Hero() {
           }}
         >
           <Image
-            src="/images/portrait/alfonso-office-green.jpg"
-            alt="Alfonso Barreiro, Product Designer, in a green-walled office."
+            src="/images/portrait/alfonso-office-plaid.jpg"
+            alt="Alfonso Barreiro, Product Designer, in a plaid shirt in an office hallway."
             fill
             priority
             sizes="(max-width: 899px) 168px, 320px"
