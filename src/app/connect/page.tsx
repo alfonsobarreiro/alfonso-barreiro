@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: "https://www.barreiro.com/connect",
     images: [
       {
-        url: "https://www.barreiro.com/og-connect-v2.jpg",
+        url: "https://www.barreiro.com/og-connect-v3.jpg",
         width: 1200,
         height: 630,
         alt: "Alfonso Barreiro, Product Designer. Research. Decide. Ship.",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Connect · Alfonso Barreiro",
     description:
       "Product Designer (UX/UI) in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
-    images: ["https://www.barreiro.com/og-connect-v2.jpg"],
+    images: ["https://www.barreiro.com/og-connect-v3.jpg"],
   },
 };
 
@@ -315,7 +315,7 @@ export default function ConnectPage() {
               }}
             >
               <Image
-                src="/images/portrait/alfonso-office-chest.jpg"
+                src="/images/portrait/alfonso-avatar.jpg"
                 alt="Alfonso Barreiro"
                 width={112}
                 height={112}
@@ -323,7 +323,7 @@ export default function ConnectPage() {
                 priority
                 style={{
                   objectFit: "cover",
-                  objectPosition: "center top",
+                  objectPosition: "center",
                   width: "100%",
                   height: "100%",
                 }}
