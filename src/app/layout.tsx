@@ -73,11 +73,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.barreiro.com"),
   title: {
-    default: "Alfonso Barreiro · Product Designer",
+    default: "Alfonso Barreiro · Designer and web developer",
     template: "%s · Alfonso Barreiro",
   },
   description:
-    "Product Designer (UX/UI) in Portland, OR. Fifteen years in design. Five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
+    "Designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
   authors: [{ name: "Alfonso Barreiro", url: "https://www.barreiro.com" }],
   creator: "Alfonso Barreiro",
   openGraph: {
@@ -85,23 +85,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.barreiro.com",
     siteName: "Alfonso Barreiro",
-    title: "Alfonso Barreiro · Product Designer",
+    title: "Alfonso Barreiro · Designer and web developer",
     description:
-      "Product Designer (UX/UI) in Portland, OR. Fifteen years in design. Five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
+      "Designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Alfonso Barreiro · Product Designer",
+        alt: "Alfonso Barreiro · Designer and web developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alfonso Barreiro · Product Designer",
+    title: "Alfonso Barreiro · Designer and web developer",
     description:
-      "Product Designer (UX/UI) in Portland, OR. Fifteen years in design. Five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
+      "Designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
     images: ["/opengraph-image"],
     creator: "@alfbarreiro",
   },

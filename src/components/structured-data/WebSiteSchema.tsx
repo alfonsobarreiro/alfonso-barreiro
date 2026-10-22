@@ -6,7 +6,7 @@ export function WebSiteSchema() {
     url: "https://www.barreiro.com",
     name: "Alfonso Barreiro",
     description:
-      "Product Designer (UX/UI) in Portland, OR. Research through prototype: clear problem framing, evidence-based decisions, design that holds up under real constraints.",
+      "Designer and web developer in Portland, OR. Websites, logos, ad campaigns, print, and five case studies.",
     inLanguage: "en-US",
     publisher: { "@id": "https://www.barreiro.com/#person" },
   };

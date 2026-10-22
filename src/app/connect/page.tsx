@@ -6,19 +6,19 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "Connect",
   description:
-    "Product Designer (UX/UI) in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
+    "Designer and web developer in Portland, OR. See my work, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
   alternates: { canonical: "https://www.barreiro.com/connect" },
   openGraph: {
     title: "Connect · Alfonso Barreiro",
     description:
-      "Product Designer (UX/UI) in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
+      "Designer and web developer in Portland, OR. See my work, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
     url: "https://www.barreiro.com/connect",
     images: [
       {
-        url: "https://www.barreiro.com/og-connect-v3.jpg",
+        url: "https://www.barreiro.com/og-connect-v4.jpg",
         width: 1200,
         height: 630,
-        alt: "Alfonso Barreiro, Product Designer. Research. Decide. Ship.",
+        alt: "Alfonso Barreiro, designer and web developer. Research. Decide. Ship.",
       },
     ],
   },
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Connect · Alfonso Barreiro",
     description:
-      "Product Designer (UX/UI) in Portland, OR. View my case studies, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
-    images: ["https://www.barreiro.com/og-connect-v3.jpg"],
+      "Designer and web developer in Portland, OR. See my work, grab my resume, or book a coffee chat. Fifteen years across agency, in-house, and product work.",
+    images: ["https://www.barreiro.com/og-connect-v4.jpg"],
   },
 };
 
@@ -333,7 +333,7 @@ export default function ConnectPage() {
             <div className="connect-info">
               <h1>Alfonso Barreiro</h1>
               <p className="connect-tagline">
-                Product Designer &middot; Research. Decide. Ship.
+                Designer and web developer &middot; Research. Decide. Ship.
               </p>
               <p className="connect-location">Portland, OR</p>
             </div>
@@ -528,7 +528,7 @@ export default function ConnectPage() {
           <div className="connect-availability">
             <span className="connect-availability-dot" aria-hidden="true" />
             <span className="connect-availability-text">
-              Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.
+              Open to design and web development roles, contract or full-time. Portland, OR or remote.
             </span>
           </div>
         </div>

@@ -64,7 +64,7 @@ export default function Footer() {
             color:      muted,
             margin:     0,
           }}>
-            © 2026 Alfonso Barreiro · Product Designer
+            © 2026 Alfonso Barreiro · Designer and web developer
           </p>
 
           <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", alignItems: "center" }}>

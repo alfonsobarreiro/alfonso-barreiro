@@ -10,21 +10,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume for Alfonso Barreiro. Product Designer (UX/UI) in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
+    "Resume for Alfonso Barreiro. Designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
   alternates: { canonical: "https://www.barreiro.com/resume" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/resume",
     title: "Resume · Alfonso Barreiro",
     description:
-      "Resume for Alfonso Barreiro. Product Designer (UX/UI) in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
+      "Resume for Alfonso Barreiro. Designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
     images: ["/resume/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Resume · Alfonso Barreiro",
     description:
-      "Resume for Alfonso Barreiro. Product Designer (UX/UI) in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
+      "Resume for Alfonso Barreiro. Designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
     images: ["/resume/opengraph-image"],
   },
 };
@@ -92,12 +92,24 @@ const roles: Role[] = [
 
 const skills: string[] = [
   "Product Design",
-  "UX/UI",
+  "UX Research",
   "Design Systems",
+  "UX/UI",
   "Prototyping",
   "Figma",
   "Next.js",
+  "React",
+  "Framer",
   "TypeScript",
+  "WordPress",
+  "Shopify",
+  "WooCommerce",
+  "SEO",
+  "Email Marketing",
+  "AI and Chatbots",
+  "Brand Identity",
+  "Print",
+  "Site Audits",
   "Accessibility",
   "Content UX",
 ];
@@ -347,7 +359,7 @@ export default function ResumePage() {
                 lineHeight:    1.4,
               }}
             >
-              Product Designer · Portland, OR
+              Designer and web developer · Portland, OR
             </p>
             <p
               style={{
@@ -444,7 +456,7 @@ export default function ResumePage() {
             </div>
             <h2 style={sectionH2}>Practice areas</h2>
             <p style={bodyIntro}>
-              The tools and disciplines used across the case studies on this site.
+              The tools and disciplines I work in.
             </p>
 
             <ul className="resume-skills" style={{ listStyle: "none", padding: 0, margin: 0 }}>

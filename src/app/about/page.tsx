@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -10,21 +9,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
+    "Fifteen years in design. Designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
+      "Fifteen years in design. Designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Product Designer (UX/UI) in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
+      "Fifteen years in design. Designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
     images: ["/about/opengraph-image"],
   },
 };
@@ -389,7 +388,7 @@ export default function AboutPage() {
           <div style={innerWrapper}>
             <h2 style={sectionH2}>Alpha Beta Design</h2>
             <p style={{ ...body, margin: 0 }}>
-              On the side, I run a small studio called{" "}
+              I run a small studio called{" "}
               <a
                 href="https://alphabeta.design/"
                 target="_blank"
@@ -398,10 +397,8 @@ export default function AboutPage() {
               >
                 Alpha Beta Design
               </a>
-              . It&apos;s a portable design system and a set of microsite templates I
-              use for client work. The portfolio site you&apos;re on is built on it.{" "}
-              <Link href="/work/wayfarer" className="about-studio-link">Wayfarer</Link> and{" "}
-              <Link href="/work/mens-sole-revival" className="about-studio-link">Men&apos;s Sole Revival</Link> are too.
+              . It sells fixed-price sites, landing pages, brand identity, and website
+              teardowns to small businesses, with every price on the page.
             </p>
           </div>
         </section>
