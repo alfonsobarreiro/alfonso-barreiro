@@ -8,7 +8,7 @@ const SERVICES = [
   {
     title: "UX research and design",
     body:  "UX research, design systems, and UX/UI, from the first question to the shipped screen.",
-    href:  "/work?d=product",
+    href:  "/work#work-case-studies",
     link:  "See the case studies",
   },
   {
@@ -27,11 +27,11 @@ const SERVICES = [
     title: "SEO and email marketing",
     body:  "Search setup, email capture, and the campaigns that run on them.",
     href:  "/work?d=social",
-    link:  "See marketing work",
+    link:  "See campaign work",
   },
   {
     title: "AI and chatbots",
-    body:  "Assistants that answer from your own content, cite their source, and know when to stop.",
+    body:  "Assistants that answer from your own content, cite their source, and send red-flag questions to a professional instead of answering.",
     href:  "/work/msr-chatbot",
     link:  "See Alfred",
   },
@@ -59,14 +59,14 @@ export default function WhatIDo() {
       id="what-i-do"
       aria-labelledby="what-i-do-title"
       style={{
-        padding:    "clamp(80px, 9vw, 128px) clamp(32px, 6vw, 80px)",
+        padding:    "clamp(72px, 8vw, 112px) clamp(24px, 6vw, 80px)",
         background: "var(--color-neutral-100)",
       }}
     >
       <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
         <h2
           id="what-i-do-title"
-          style={{ fontFamily: font, fontSize: "clamp(48px, 6vw, 72px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 clamp(40px, 5vw, 64px)", letterSpacing: "-0.02em", lineHeight: 1.05 }}
+          style={{ fontFamily: font, fontSize: "clamp(40px, 5vw, 60px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 clamp(40px, 5vw, 56px)", letterSpacing: "-0.02em", lineHeight: 1.05 }}
         >
           What I do
         </h2>
@@ -103,12 +103,12 @@ export default function WhatIDo() {
               Alpha Beta Design
             </p>
             <p style={{ fontFamily: font, fontSize: "clamp(22px, 2.2vw, 28px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 16px", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
-              I sell this work as fixed-price packages through my studio.
+              Sites, landing pages, brand identity, and teardowns are fixed-price packages at my studio.
             </p>
             <p style={{ fontFamily: font, fontSize: "var(--text-body)", lineHeight: 1.55, color: "var(--color-neutral-700)", margin: "0 0 24px" }}>
-              Every price is on the page, every project starts with research, and the code and hosting are yours at launch.
+              Prices are on the page and research comes before design. On a site build, the code and hosting move to your accounts at launch.
             </p>
-            <LinkArrow href="https://www.alphabeta.design/services">Packages and prices at alphabeta.design</LinkArrow>
+            <LinkArrow href="https://www.alphabeta.design/services">Packages and prices</LinkArrow>
           </div>
           <ul aria-label="Packages" style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {PACKAGES.map((p, i) => (

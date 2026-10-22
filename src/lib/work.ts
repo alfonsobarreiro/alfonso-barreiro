@@ -21,8 +21,8 @@ export const DISCIPLINES: { key: Discipline; label: string }[] = [
   { key: "product", label: "Product" },
 ];
 
-/** Shipped client and volunteer work first, then own ventures and in-house work, then concepts. */
-export const STATUS_ORDER: Status[] = ["Client", "Volunteer", "Own venture", "In-house", "Concept"];
+/** Client and volunteer work first, then in-house work, then own ventures, then concepts. */
+export const STATUS_ORDER: Status[] = ["Client", "Volunteer", "In-house", "Own venture", "Concept"];
 
 /** A filter stays hidden until it has at least this many entries. */
 export const MIN_PER_FILTER = 3;
@@ -57,6 +57,8 @@ export interface WorkItem {
   /** Disclosure line under the H1. */
   note?: string;
   gallery?: WorkImage[];
+  /** Single-image entries like logos: cap the gallery width so the mark fits on screen. */
+  narrow?: boolean;
 }
 
 const CONCEPT_NOTE =
@@ -139,6 +141,7 @@ export const WORK: WorkItem[] = [
   /* ── Brand: logos ─────────────────────────────────────────────────── */
   {
     slug: "sky-valley-comm",
+    narrow: true,
     title: "Sky Valley Comm",
     org: "Logo",
     status: "Client",
@@ -153,6 +156,7 @@ export const WORK: WorkItem[] = [
   },
   {
     slug: "nq-zebraworks",
+    narrow: true,
     title: "nQ Zebraworks",
     org: "Logo",
     status: "Client",
@@ -167,6 +171,7 @@ export const WORK: WorkItem[] = [
   },
   {
     slug: "becourageous-leadership",
+    narrow: true,
     title: "BeCourageous Leadership",
     org: "Logo",
     status: "Client",
@@ -181,6 +186,7 @@ export const WORK: WorkItem[] = [
   },
   {
     slug: "alpha-beta-mark",
+    narrow: true,
     title: "Alpha Beta mark",
     org: "Logo",
     status: "Own venture",
@@ -196,6 +202,7 @@ export const WORK: WorkItem[] = [
   },
   {
     slug: "mens-sole-revival-shield",
+    narrow: true,
     title: "Men's Sole Revival shield",
     org: "Logo",
     status: "Own venture",
@@ -222,16 +229,59 @@ export const WORK: WorkItem[] = [
     summary: "Sale, holiday, event, and product posts for a winery and distillery, built from one layout system.",
     cover: board("/images/work/vara/00-vara-social-cover.jpg", "A grid of VARA social posts: sale countdowns, holiday promos, flamenco nights, and bottle shots."),
     brief: "Keep VARA's tasting rooms and online store in front of followers through sales, holidays, live music, and new releases.",
-    shows: "One layout system reused across countdown, announcement, and day-of posts, plus event and product posts.",
+    shows: "One layout system reused across a sale's announcement and day-of posts, plus countdown, event, and product posts.",
     builtWith: "Photoshop.",
     role: "Director of Marketing and DTC Operations",
     note: VARA_NOTE,
     gallery: [
-      board("/images/work/vara/01-vara-social-campaign-system.jpg", "Six Appreciation Day posts sharing one layout: countdown, announcement, and day-of versions.", "Appreciation Day: one sale, many formats."),
+      board("/images/work/vara/01-vara-social-campaign-system.jpg", "Four Appreciation Day sale posts on one layout, a Warehouse Sale post, and a countdown to merging the @VARAwine and @VARAvinoteca accounts.", "Appreciation Day: one sale, many formats."),
       board("/images/work/vara/02-vara-social-holiday.jpg", "Six holiday posts from Black Friday through Cyber Monday.", "Black Friday through Cyber Monday. The offer first, the bottles second."),
       board("/images/work/vara/03-vara-social-events.jpg", "Six event posts for flamenco nights, live music, and wine holidays.", "Live music and tasting-room events."),
       board("/images/work/vara/04-vara-social-product.jpg", "Six product posts: bottle features, bottling news, tasting-room hours, and shipping offers.", "Product posts and online-store promos."),
-      img("/images/work/vara/09-vara-ads-contact-sheet.jpg", "A contact sheet of 82 VARA posts and ads: sales, holidays, events, awards, the tasting rooms, and the online store.", "All 82 pieces from 2022 and 2023.", 1600, 1558),
+      img("/images/work/vara/09-vara-ads-contact-sheet.jpg", "A contact sheet of 82 VARA posts and ads: sales, holidays, events, awards, the tasting rooms, and the online store.", "All 82 pieces from my time at VARA.", 1600, 1558),
+    ],
+  },
+  {
+    slug: "vara-somos-unidos",
+    title: "VARA Somos Unidos gin and rum",
+    org: "VARA Winery & Distillery",
+    status: "In-house",
+    year: "2024",
+    depth: "Sample",
+    disciplines: ["brand", "print"],
+    summary: "Co-branded gin and rum labels for VARA and New Mexico United, in the club's yellow and black.",
+    cover: img("/images/work/vara-somos-unidos/00-vara-somos-unidos-cover.jpg", "The Somos Unidos Rum bottle beside the rum and gin labels laid flat."),
+    brief: "Relabel VARA's High Desert Gin and Estrella Blanca Rum for a partnership with New Mexico United, with $1 from every bottle sold going to the Somos Unidos Foundation.",
+    shows: "Two labels in the club's yellow and black: smoke graphics behind torn-paper bands, the club crest, a Zia seal, and a back panel with the $1 pledge. The rum is yellow with gray smoke, and the gin flips it to black with yellow smoke.",
+    role: "Director of Marketing and DTC Operations",
+    note: VARA_NOTE,
+    gallery: [
+      img("/images/work/vara-somos-unidos/01-vara-somos-unidos-rum-label.jpg", "The Somos Unidos Rum label laid flat: yellow, with gray smoke behind torn black bands, the New Mexico United crest, and a First Press Light Cane Molasses seal.", "The rum label. The back panel carries the $1 pledge to the Somos Unidos Foundation.", 1600, 898),
+      img("/images/work/vara-somos-unidos/02-vara-somos-unidos-gin-label.jpg", "The Somos Unidos Gin label laid flat, black with yellow smoke and a Southwest Style Gin seal, below a black VARA neck band.", "The gin label and neck band from the production file.", 1600, 1163),
+      img("/images/work/vara-somos-unidos/04-vara-somos-unidos-label-detail.jpg", "A close-up of the printed gin and rum labels on their bottles, showing the paper's texture.", "The printed labels up close, on a textured stock.", 1600, 1600),
+    ],
+  },
+  {
+    slug: "vara-magazine-ads",
+    title: "VARA magazine and event ads",
+    org: "VARA Winery & Distillery",
+    status: "In-house",
+    year: "2023 to 2024",
+    depth: "Sample",
+    disciplines: ["print", "social"],
+    summary: "Full-page ads for Albuquerque The Magazine and Edible New Mexico, with the same layout resized for event ads.",
+    cover: img("/images/work/vara-magazine-ads/00-vara-magazine-ads-cover.jpg", "Two VARA full-page ads side by side: Albuquerque The Magazine, June 2023, and Edible New Mexico, September/October 2023, each pairing a rosé bottle shot with photos of VARA's tasting rooms and guests."),
+    brief: "Bring local magazine readers and event guests to VARA's Albuquerque tasting room and Santa Fe Vinoteca.",
+    shows: "One layout reused across publications: the Silverhead Brut Rosado bottle on the right, and a headline, selling points, and photos on the left, rewritten for each location and issue.",
+    builtWith: "Illustrator.",
+    role: "Director of Marketing and DTC Operations",
+    note: VARA_NOTE,
+    gallery: [
+      img("/images/work/vara-magazine-ads/01-abq-the-magazine-june-2023.jpg", "VARA's full-page ad for Albuquerque The Magazine: a Silverhead Brut Rosado bottle and glass, a tasting-room photo, a photo of a group toasting outdoors, and the headline Experience the spirit of Albuquerque at our VARA Tasting Room.", "Albuquerque The Magazine, June 2023 issue. A full page for the Albuquerque tasting room.", 1600, 1200),
+      img("/images/work/vara-magazine-ads/02-edible-new-mexico-july-august-2023.jpg", "VARA's full-page ad for Edible New Mexico: the same bottle shot beside photos of a group toasting outdoors and a dining room with a beamed ceiling, under the headline Experience the spirit of New Mexico at our Tasting Rooms.", "Edible New Mexico, July/August 2023 issue. The same layout, rewritten for both tasting rooms.", 1600, 1200),
+      img("/images/work/vara-magazine-ads/03-edible-new-mexico-september-october-2023.jpg", "VARA's full-page ad for Edible New Mexico: the bottle shot beside two photos of the Santa Fe Vinoteca, a starred list of features, and the new Tuesday to Saturday hours.", "Edible New Mexico, September/October 2023 issue. Rewritten around the Santa Fe Vinoteca and its new hours.", 1600, 1200),
+      img("/images/work/vara-magazine-ads/04-new-mexico-jazz-workshop-season-32.jpg", "Two VARA ads for the New Mexico Jazz Workshop shown at the same scale: a horizontal ad with lifestyle photos and both addresses, and a narrow vertical ad with the bottle shot and logo.", "New Mexico Jazz Workshop, Season 32, 2023. The layout cut down to a horizontal ad and a narrow vertical ad. A proof of the 2023 Under the Stars program shows the vertical version on the sponsor page."),
+      img("/images/work/vara-magazine-ads/05-artspring-gala-2024.jpg", "VARA's letter-size ArtSpring Gala ad: the bottle shot beside photos of the Santa Fe tasting room lounge and a row of VARA wines, under the headline Make a visit to our tasting room part of your Santa Fe experience.", "ArtSpring Gala, 2024. A letter-size version for the Santa Fe tasting room.", 1600, 1200),
     ],
   },
   {
@@ -284,6 +334,28 @@ export const WORK: WorkItem[] = [
     gallery: [board("/images/work/vara/08-vara-rack-card-tasting-cards.jpg", "The Santa Fe rack card, front and back, beside three shelf tasting cards for VARA brandies.")],
   },
 
+  {
+    slug: "kendra-toth-brochure",
+    title: "Kendra Toth Consulting brochure",
+    org: "Racial equity consulting",
+    status: "Client",
+    year: "2025",
+    depth: "Sample",
+    disciplines: ["print", "brand"],
+    summary: "A four-page digital brochure for an antiracist consulting practice, built on a brand plan I wrote first.",
+    cover: img("/images/work/kendra-toth-brochure/00-kendra-toth-brochure-cover.jpg", "The brochure cover with the name, tagline, and Kendra Toth's portrait inside blue arcs, beside the What you need page."),
+    brief: "Kendra Toth asked me to define a brand for her consulting practice and a way to market it. After she reviewed the brand plan, we decided a digital brochure would present the practice best.",
+    shows: "Four pages: the cover with the name and tagline, what clients need with her value proposition, her story and services, and testimonials. Behind it is a brand plan with positioning, name and tagline options, mission, vision, values, personas, and a visual direction.",
+    builtWith: "InDesign, set in Merriweather and Avenir Next. The brand plan was a Gamma presentation, and the logo comp was drawn in Illustrator.",
+    role: "Brand strategy and brochure design",
+    note: "Client work. I blurred the testimonials and removed her email from these images.",
+    gallery: [
+      img("/images/work/kendra-toth-brochure/01-kendra-toth-brochure-all-pages.jpg", "All four pages of the brochure in a row: the cover, What you need, Who I am and What I offer, and a testimonials page with the quotes blurred.", "All four pages. I blurred the testimonials.", 1600, 640),
+      img("/images/work/kendra-toth-brochure/02-kendra-toth-brochure-services.jpg", "Pages two and three: client needs with her value proposition in a blue box, then her story and a list of services.", "What you need, Who I am, and What I offer.", 1600, 1067),
+      img("/images/work/kendra-toth-brochure/03-kendra-toth-logo-comp.jpg", "Logo comp: teal arcs forming a bridge over the Kendra Toth Consulting wordmark and the tagline Transforming Whiteness, Cultivating Equity.", "A logo comp from the brand plan, December 2024. The brochure cover sets the name in type without the mark."),
+    ],
+  },
+
   /* ── Print: Boomtime ──────────────────────────────────────────────── */
   {
     slug: "boomtime-one-pager",
@@ -330,6 +402,29 @@ export const WORK: WorkItem[] = [
     builtWith: "InDesign.",
     note: BOOMTIME_NOTE,
     gallery: [board("/images/work/boomtime/03-boomtime-recession-playbook.jpg", "The cover and three interior spreads of B2B Marketing in a Recession.")],
+  },
+
+  {
+    slug: "spotify-deck",
+    title: "Spotify Recently Played Controls deck",
+    org: "Not affiliated with Spotify",
+    status: "Concept",
+    year: "2025",
+    depth: "Sample",
+    disciplines: ["product"],
+    summary: "A 29-slide concept deck proposing three controls for Spotify's Recently Played shelf: Pin, Remove, and a time-boxed Pause.",
+    cover: img("/images/work/spotify-deck/00-cover.jpg", "The Recently Played Controls title slide, with the line Give listeners agency without breaking discovery over two desktop Home screens."),
+    brief: "A solo portfolio project with no Spotify brief or data. The goal was to let listeners curate the Recently Played shelf on Home without weakening discovery and recommendations.",
+    shows: "Quotes from public Reddit and Spotify Community threads, a competitor scan, three hypothetical personas, and a journey map, then three controls: pin up to four items, remove one item from the shelf, and pause history for a set time on one device.",
+    builtWith: "Screens and tables in Figma, presented in Google Slides.",
+    role: "Solo UX/UI designer",
+    note: "Concept work, not affiliated with Spotify. I made this deck on my own as a portfolio project. No users tested these controls, and none of them shipped. The case study has since changed the Pause presets to 30 minutes, 2 hours, and until tomorrow.",
+    gallery: [
+      img("/images/work/spotify-deck/01-title.jpg", "Title slide: Recently Played Controls, with the line Give listeners agency without breaking discovery over two desktop Home screens.", "The title slide.", 1600, 900),
+      img("/images/work/spotify-deck/02-listener-quotes.jpg", "Three listener quotes from community threads about not being able to remove items from Recently Played.", "Listener complaints from public community threads.", 1600, 900),
+      img("/images/work/spotify-deck/03-problem.jpg", "The problem slide: context, problem, and goals for listeners and the business, beside the labels Pin, Remove, and Pause listening history.", "The problem, with goals for listeners and for the business.", 1600, 900),
+      img("/images/work/spotify-deck/04-three-controls.jpg", "The 3 Controls slide: Pin with a four-item cap, per-item Remove, and time-boxed Pause, each next to a screen.", "Pin, Remove, and Pause, with the rules for each.", 1600, 900),
+    ],
   },
 
   /* ── Web: studio and sample sites ─────────────────────────────────── */
@@ -387,9 +482,9 @@ export const WORK: WorkItem[] = [
     depth: "Sample",
     disciplines: ["web"],
     summary: "A single-shop roaster: the menu, a single-origin story, and visit hours, in English and Spanish.",
-    cover: img("/images/work/samples/emblem-coffee/01-hero.jpg", "Emblem's homepage hero: a bowl of roasted beans and the line Roasted here. Poured slow."),
+    cover: img("/images/work/samples/emblem-coffee/01-hero.jpg", "Emblem's homepage hero: espresso portafilters of grounds and whole beans, and the line Roasted here. Poured slow."),
     brief: "A sample site for a single-shop coffee roaster.",
-    shows: "An espresso and pour-over menu, a single-origin story, an about page, and visit hours, with a full Spanish version.",
+    shows: "An espresso and pour-over menu, a single-origin story, an about section, and visit hours, with a full Spanish version.",
     builtWith: SAMPLE_STACK,
     live: { href: "https://coffee.alphabeta.design", label: "coffee.alphabeta.design" },
     note: CONCEPT_NOTE,
@@ -409,7 +504,7 @@ export const WORK: WorkItem[] = [
     year: "2026",
     depth: "Sample",
     disciplines: ["web"],
-    summary: "A daily-menu sandwich shop: the walk-up in one screen, then a bread story and a pickup flow.",
+    summary: "A daily-menu sandwich shop: the walk-up in one screen, then a bread story, call-ahead pickup, and catering.",
     cover: img("/images/work/samples/sandwich-shop/01-hero.jpg", "Halverson's homepage hero with a sandwich photo and the shop name.", undefined, 1600, 974),
     brief: "A sample site for a neighborhood sandwich shop that bakes its bread each morning.",
     shows: "A menu board, a featured sandwich, the bread story, and catering.",
@@ -432,7 +527,7 @@ export const WORK: WorkItem[] = [
     year: "2026",
     depth: "Sample",
     disciplines: ["web"],
-    summary: "Staff picks with handwritten notes, a rare books room, an events calendar, and four ways to browse.",
+    summary: "Staff picks with a note on each, a rare books room, an events calendar, and four ways to browse.",
     cover: img("/images/work/samples/bookstore/01-hero.jpg", "Foxglove & Co.'s homepage hero: Reading, well kept, beside a photo of bookshelves."),
     brief: "A sample site for an independent bookstore in Hudson, New York.",
     shows: "Staff picks with notes, a rare books room, four ways to browse the catalog, and an events calendar.",
@@ -455,10 +550,10 @@ export const WORK: WorkItem[] = [
     year: "2026",
     depth: "Sample",
     disciplines: ["web"],
-    summary: "Class styles, teacher bios, a week-view schedule, and a membership offer.",
+    summary: "Class styles, teacher bios, a week-view schedule, and an intro offer.",
     cover: img("/images/work/samples/yoga-studio/01-hero.jpg", "Northbrook Yoga's homepage hero: a student in a sunlit studio and the line Slow practice. Long savasana."),
     brief: "A sample site for a neighborhood yoga studio.",
-    shows: "Four class styles, teacher bios, a week-view schedule, and an intro membership offer.",
+    shows: "Five class styles, teacher bios, a week-view schedule, and a three-week intro offer.",
     builtWith: SAMPLE_STACK,
     live: { href: "https://yoga.alphabeta.design", label: "yoga.alphabeta.design" },
     note: CONCEPT_NOTE,
@@ -480,7 +575,7 @@ export const WORK: WorkItem[] = [
     summary: "A fine-line artist's portfolio, a featured piece with a process note, and a brief-first booking form.",
     cover: img("/images/work/samples/tattoo/02-featured.jpg", "A featured tattoo piece, a rose on an arm, on a dark page."),
     brief: "A sample site for a fine-line tattoo artist.",
-    shows: "A portfolio grid, a featured piece with the artist's process note, a bio, and a booking form that asks for the idea first.",
+    shows: "A portfolio grid, a featured piece with the artist's process note, a bio, and a booking form that takes the brief (style, placement, size, the idea) before availability.",
     builtWith: SAMPLE_STACK,
     live: { href: "https://tattoo.alphabeta.design", label: "tattoo.alphabeta.design" },
     note: CONCEPT_NOTE,
@@ -527,8 +622,8 @@ export const WORK: WorkItem[] = [
     brief: "A reusable kit for small churches, shown with three sample congregations.",
     shows: "Three content spines on one template, including a Spanish-first site with an English version.",
     builtWith: "Designed in Figma, built in Next.js on Vercel, with a Sanity content editor.",
-    live: { href: "https://abd-church-sites.vercel.app/el-valle", label: "The Spanish-first sample" },
-    note: "Concept congregations, real code. I built this kit for Alpha Beta Design, my studio. The churches are fictional.",
+    live: { href: "https://abd-church-sites.vercel.app/el-valle", label: "the Spanish-first site" },
+    note: "Concept congregations, real code. I built this kit for Alpha Beta Design, my studio. The churches are fictional and the photos are stock.",
     gallery: [
       img("/images/work/samples/church-sites/06-high-country-hero.jpg", "The mountain-town church homepage.", "Mountain-town church."),
       img("/images/work/samples/church-sites/02-rio-pecos-hero.jpg", "The rural parish homepage.", "Rural parish."),

@@ -7,9 +7,10 @@ import Footer from "@/components/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { LinkArrow } from "@/components/ui/LinkArrow";
 import { WorkCard } from "@/components/work/WorkCard";
-import { WORK, bySlug, eyebrowFor, sortByStatus } from "@/lib/work";
+import { WorkStyles } from "@/components/work/WorkStyles";
+import { WORK, bySlug, eyebrowFor, sortByStatus, type WorkImage } from "@/lib/work";
 
-const SECTION_X = "clamp(32px, 6vw, 80px)";
+const SECTION_X = "clamp(24px, 6vw, 80px)";
 const PROSE_MAX = "680px";
 
 export const dynamicParams = false;
@@ -22,11 +23,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const item = bySlug(slug);
   if (!item) return {};
+  // Concept samples say so in search results and link previews, not only on the page.
+  const title = item.status === "Concept" ? `${item.title} (concept site)` : item.title;
+  const description = item.status === "Concept" ? `Concept site, real code. ${item.summary}` : item.summary;
+  const url = `https://www.barreiro.com/work/samples/${item.slug}`;
+  const image = { url: item.cover.src, width: item.cover.width, height: item.cover.height, alt: item.cover.alt };
   return {
-    title: item.title,
-    description: item.summary,
-    alternates: { canonical: `https://www.barreiro.com/work/samples/${item.slug}` },
-    openGraph: { title: `${item.title} · Alfonso Barreiro`, description: item.summary, images: [item.cover.src] },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      url,
+      siteName: "Alfonso Barreiro",
+      locale: "en_US",
+      title: `${title} · Alfonso Barreiro`,
+      description,
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} · Alfonso Barreiro`,
+      description,
+      images: [item.cover.src],
+    },
   };
 }
 
@@ -41,6 +61,8 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
     ["Built with", item.builtWith],
     ["My role", item.role],
   ];
+  const [first, ...rest] = item.gallery ?? [];
+  const figMax = item.narrow ? "820px" : "100%";
   const related = sortByStatus(
     WORK.filter((w) => w.slug !== item.slug && w.disciplines.includes(item.disciplines[0])),
   ).slice(0, 3);
@@ -49,6 +71,7 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
     <>
       <Nav />
       <main id="main-content" style={{ background: "var(--color-paper)", paddingTop: "72px" }}>
+        <WorkStyles />
         <header style={{ padding: `clamp(40px, 7vw, 80px) ${SECTION_X} clamp(32px, 4vw, 48px)` }}>
           <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
             <Link
@@ -100,7 +123,20 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
               </p>
             )}
 
-            <dl style={{ margin: "0 0 32px", padding: 0, display: "grid", gap: "16px", maxWidth: "820px" }}>
+          </div>
+        </header>
+
+        {first && (
+          <section aria-label={`${item.title} images`} style={{ padding: `0 ${SECTION_X}` }}>
+            <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
+              <Figure g={first} priority max={figMax} />
+            </div>
+          </section>
+        )}
+
+        <section aria-label="About this piece" style={{ padding: `clamp(40px, 5vw, 64px) ${SECTION_X} clamp(40px, 5vw, 64px)` }}>
+          <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
+            <dl style={{ margin: "0 0 28px", padding: 0, display: "grid", gap: "16px", maxWidth: "820px" }}>
               {facts.filter(([, v]) => v).map(([label, value]) => (
                 <div
                   key={label}
@@ -119,31 +155,12 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
 
             {item.live && <LinkArrow href={item.live.href}>Open {item.live.label}</LinkArrow>}
           </div>
-        </header>
+        </section>
 
-        {item.gallery && item.gallery.length > 0 && (
-          <section aria-label="Images" style={{ padding: `clamp(16px, 2vw, 24px) ${SECTION_X} clamp(64px, 8vw, 112px)` }}>
+        {rest.length > 0 && (
+          <section aria-label={`More ${item.title} images`} style={{ padding: `0 ${SECTION_X} clamp(64px, 8vw, 112px)` }}>
             <div style={{ maxWidth: "var(--content-max)", margin: "0 auto", display: "grid", gap: "clamp(32px, 4vw, 56px)" }}>
-              {item.gallery.map((g, i) => (
-                <figure key={g.src} style={{ margin: 0 }}>
-                  <div style={{ borderRadius: "10px", overflow: "hidden", border: "1px solid var(--color-neutral-200)", background: "var(--color-neutral-100)" }}>
-                    <Image
-                      src={g.src}
-                      alt={g.alt}
-                      width={g.width}
-                      height={g.height}
-                      priority={i === 0}
-                      sizes="(max-width: 1320px) 100vw, 1240px"
-                      style={{ width: "100%", height: "auto", display: "block" }}
-                    />
-                  </div>
-                  {g.caption && (
-                    <figcaption style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "var(--text-body)", color: "var(--color-neutral-600)", marginTop: "12px" }}>
-                      {g.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
+              {rest.map((g) => <Figure key={g.src} g={g} max={figMax} />)}
             </div>
           </section>
         )}
@@ -183,5 +200,28 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
       </main>
       <Footer />
     </>
+  );
+}
+
+function Figure({ g, priority = false, max = "100%" }: { g: WorkImage; priority?: boolean; max?: string }) {
+  return (
+    <figure style={{ margin: 0, maxWidth: max }}>
+      <div style={{ borderRadius: "10px", overflow: "hidden", border: "1px solid var(--color-neutral-200)", background: "var(--color-neutral-100)" }}>
+        <Image
+          src={g.src}
+          alt={g.alt}
+          width={g.width}
+          height={g.height}
+          priority={priority}
+          sizes={max === "100%" ? "(max-width: 1320px) 100vw, 1240px" : `(max-width: 900px) 100vw, ${max}`}
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
+      </div>
+      {g.caption && (
+        <figcaption style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "var(--text-body)", color: "var(--color-neutral-600)", marginTop: "12px" }}>
+          {g.caption}
+        </figcaption>
+      )}
+    </figure>
   );
 }

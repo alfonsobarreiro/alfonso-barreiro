@@ -11,7 +11,7 @@ export default function HomeAbout() {
       id="about"
       aria-labelledby="home-about-title"
       style={{
-        padding:   "clamp(72px, 8vw, 112px) clamp(32px, 6vw, 80px)",
+        padding:   "clamp(72px, 8vw, 112px) clamp(24px, 6vw, 80px)",
         background: "var(--color-paper)",
         borderTop: "1px solid var(--color-neutral-200)",
       }}

@@ -4,16 +4,34 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { WorkCard } from "@/components/work/WorkCard";
 import { LinkArrow } from "@/components/ui/LinkArrow";
+import { WorkStyles } from "@/components/work/WorkStyles";
 import { WORK, sortByStatus, visibleFilters, type Discipline } from "@/lib/work";
+
+const DESCRIPTION =
+  "Case studies, sample websites, logos, social campaigns, and print by Alfonso Barreiro, designer and web developer in Portland, OR.";
 
 export const metadata: Metadata = {
   title: "Work",
-  description:
-    "Case studies, sample websites, logos, social campaigns, and print by Alfonso Barreiro, designer and web developer in Portland, OR.",
+  description: DESCRIPTION,
   alternates: { canonical: "https://www.barreiro.com/work" },
+  openGraph: {
+    type: "website",
+    url: "https://www.barreiro.com/work",
+    siteName: "Alfonso Barreiro",
+    locale: "en_US",
+    title: "Work · Alfonso Barreiro",
+    description: DESCRIPTION,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Alfonso Barreiro · Designer and web developer" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Work · Alfonso Barreiro",
+    description: DESCRIPTION,
+    images: ["/opengraph-image"],
+  },
 };
 
-const SECTION_X = "clamp(32px, 6vw, 80px)";
+const SECTION_X = "clamp(24px, 6vw, 80px)";
 
 const h2: React.CSSProperties = {
   fontFamily:    "var(--font-dm-sans), sans-serif",
@@ -46,6 +64,7 @@ export default async function WorkIndex({ searchParams }: { searchParams: Promis
     <>
       <Nav />
       <main id="main-content" style={{ background: "var(--color-paper)", paddingTop: "72px" }}>
+        <WorkStyles />
         <header style={{ padding: `clamp(56px, 10vw, 112px) ${SECTION_X} clamp(32px, 5vw, 56px)` }}>
           <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
             <h1

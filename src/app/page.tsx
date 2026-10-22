@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import HomeWorkSection from "@/components/HomeWorkSection";
 import WhatIDo from "@/components/WhatIDo";
 import HomeAbout from "@/components/HomeAbout";
+import { WorkStyles } from "@/components/work/WorkStyles";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import { PersonSchema } from "@/components/structured-data/PersonSchema";
@@ -43,6 +44,7 @@ export default function Home() {
       <PersonSchema />
       <Nav />
       <main id="main-content">
+        <WorkStyles />
         <Hero />
         <HomeWorkSection
           id="websites"
@@ -62,9 +64,9 @@ export default function Home() {
         <HomeWorkSection
           id="campaigns"
           title="Ad campaigns and print"
-          deck="Social campaigns, sales collateral, and lead-magnet playbooks, made in-house at VARA Winery & Distillery and Boomtime."
-          slugs={["vara-social", "vara-cellar-sale", "vara-distributor-leave-behind", "vara-rack-card-tasting-cards", "boomtime-word-of-mouth-playbook", "boomtime-one-pager"]}
-          seeAll={{ href: "/work?d=social", label: "See all social and marketing work" }}
+          deck="Labels, magazine ads, social campaigns, and print. Made in-house at VARA Winery & Distillery and Boomtime, and for clients."
+          slugs={["vara-somos-unidos", "vara-magazine-ads", "vara-social", "kendra-toth-brochure", "boomtime-word-of-mouth-playbook", "vara-distributor-leave-behind"]}
+          seeAll={{ href: "/work", label: "See all work" }}
         />
         <HomeWorkSection
           id="work"
