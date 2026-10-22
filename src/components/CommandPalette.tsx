@@ -244,6 +244,7 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
     "section":      { label: "§",      bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
     "page":         { label: "Page",   bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
     "presentation": { label: "Slides", bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
+    "sample":       { label: "Sample", bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
   };
   const { label, bg, color } = map[kind];
   return (

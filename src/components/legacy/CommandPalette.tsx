@@ -289,6 +289,7 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
     "section":      { label: "§",      bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
     "page":         { label: "Page",   bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
     "presentation": { label: "Slides", bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
+    "sample":       { label: "Sample", bg: "rgba(37,43,40,0.06)",   color: "#3D4440" },
   };
   const { label, bg, color } = map[kind];
   return (

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { WORK } from "@/lib/work";
 
 const SITE = "https://www.barreiro.com";
 
@@ -7,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: `${SITE}/`,                                  lastModified, changeFrequency: "monthly", priority: 1.0 },
+    { url: `${SITE}/work`,                              lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/spotify`,                      lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/wayfarer`,                     lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/mens-sole-revival`,            lastModified, changeFrequency: "monthly", priority: 0.9 },
@@ -23,5 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/work/presentations/spotify`,        lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE}/work/presentations/wayfarer`,       lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE}/work/presentations/mens-sole-revival`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    ...WORK.filter((w) => w.depth === "Sample").map((w) => ({
+      url: `${SITE}/work/samples/${w.slug}`, lastModified, changeFrequency: "monthly" as const, priority: 0.6,
+    })),
   ];
 }
