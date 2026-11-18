@@ -1,59 +1,51 @@
-import Link from "next/link";
 import { LinkArrow } from "@/components/ui/LinkArrow";
+import ScopePicker from "@/components/home/ScopePicker";
 
 /* Homepage: six capabilities from Alfonso's own list, each linking to the
-   work that shows it, then the studio block. Prices live on alphabeta.design only; this
-   section names the packages and links to each one. */
-const SERVICES = [
+   work that shows it, then the studio block. Since 2026-11-01 ("say more
+   with less") each capability is one line, the body folded into the
+   title: every platform name stays, the promises go, since the work above
+   made them. `body` is optional and renders only when set. Prices live on alphabeta.design only; this
+   section names the packages and links to each one. The package list is
+   ScopePicker: check what you need and it cuts to the one package that fits.
+   On /hiring (audience "hiring") the studio block is not rendered: job
+   applications never link the studio. The capabilities stay. */
+export const SERVICES: { title: string; body?: string; href: string; link: string }[] = [
   {
-    title: "UX research and design",
-    body:  "UX research, design systems, and UX/UI, from the first question to the shipped screen.",
-    href:  "/work#work-case-studies",
+    title: "UX research, design systems, and UX/UI",
+    href:  "/work#case-studies",
     link:  "See the case studies",
   },
   {
-    title: "Front-end development",
-    body:  "Next.js, React, and Framer. Designed in Figma, built in code.",
+    title: "Front-end development in Next.js, React, and Framer",
     href:  "/work?d=web",
     link:  "See web work",
   },
   {
-    title: "CMS and e-commerce",
-    body:  "WordPress, Shopify, and WooCommerce.",
+    title: "CMS and e-commerce: WordPress, Shopify, and WooCommerce",
     href:  "/resume",
     link:  "See the resume",
   },
   {
     title: "SEO and email marketing",
-    body:  "Search setup, email capture, and the campaigns that run on them.",
     href:  "/work?d=social",
     link:  "See campaign work",
   },
   {
-    title: "AI and chatbots",
-    body:  "Assistants that answer from your own content, cite their source, and send red-flag questions to a professional instead of answering.",
+    title: "AI assistants that cite their source",
     href:  "/work/msr-chatbot",
     link:  "See Alfred",
   },
   {
     title: "Brand, print, and site audits",
-    body:  "Logos, collateral, and audits with a fix for every finding.",
     href:  "/work?d=brand",
     link:  "See brand work",
   },
 ];
 
-const PACKAGES = [
-  { name: "Site",             anchor: "site" },
-  { name: "Site+",            anchor: "site-plus" },
-  { name: "Landing page",     anchor: "landing-page" },
-  { name: "Brand identity",   anchor: "brand-identity" },
-  { name: "Website teardown", anchor: "website-teardown" },
-];
-
 const font = "var(--font-dm-sans), sans-serif";
 
-export default function WhatIDo() {
+export default function WhatIDo({ audience = "all" }: { audience?: "all" | "hiring" } = {}) {
   return (
     <section
       id="what-i-do"
@@ -66,7 +58,7 @@ export default function WhatIDo() {
       <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
         <h2
           id="what-i-do-title"
-          style={{ fontFamily: font, fontSize: "clamp(40px, 5vw, 60px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 clamp(40px, 5vw, 56px)", letterSpacing: "-0.02em", lineHeight: 1.05 }}
+          style={{ fontFamily: font, fontSize: "clamp(28px, 4.2vw, 60px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 clamp(40px, 5vw, 56px)", letterSpacing: "-0.02em", lineHeight: 1.05 }}
         >
           What I do
         </h2>
@@ -77,59 +69,53 @@ export default function WhatIDo() {
               <h3 style={{ fontFamily: font, fontSize: "clamp(20px, 1.8vw, 24px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 10px", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
                 {s.title}
               </h3>
-              <p style={{ fontFamily: font, fontSize: "var(--text-body)", lineHeight: 1.55, color: "var(--color-neutral-700)", margin: "0 0 16px" }}>
-                {s.body}
-              </p>
+              {s.body ? (
+                <p style={{ fontFamily: font, fontSize: "var(--text-body)", lineHeight: 1.55, color: "var(--color-neutral-700)", margin: "0 0 16px" }}>
+                  {s.body}
+                </p>
+              ) : null}
               <LinkArrow href={s.href}>{s.link}</LinkArrow>
             </li>
           ))}
         </ul>
 
-        <div
-          className="studio-block"
-          style={{
-            marginTop:           "clamp(56px, 7vw, 96px)",
-            background:          "var(--color-paper)",
-            border:              "1px solid var(--color-neutral-300)",
-            padding:             "clamp(28px, 4vw, 48px)",
-            display:             "grid",
-            gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 1fr)",
-            gap:                 "clamp(28px, 4vw, 56px)",
-            alignItems:          "start",
-          }}
-        >
-          <div>
-            <p style={{ fontFamily: font, fontSize: "var(--text-small)", fontWeight: 500, color: "var(--color-accent)", margin: "0 0 12px" }}>
-              Alpha Beta Design
-            </p>
-            <p style={{ fontFamily: font, fontSize: "clamp(22px, 2.2vw, 28px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 16px", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
-              Sites, landing pages, brand identity, and teardowns are fixed-price packages at my studio.
-            </p>
-            <p style={{ fontFamily: font, fontSize: "var(--text-body)", lineHeight: 1.55, color: "var(--color-neutral-700)", margin: "0 0 24px" }}>
-              Prices are on the page and research comes before design. On a site build, the code and hosting move to your accounts at launch.
-            </p>
-            <LinkArrow href="https://www.alphabeta.design/services">Packages and prices</LinkArrow>
+        {/* #studio: target of the nav's Studio item. The scroll margin
+            clears the fixed 72px nav plus 24px of air. */}
+        {audience !== "hiring" && (
+          <div
+            id="studio"
+            className="studio-block"
+            style={{
+              scrollMarginTop:     "96px",
+              marginTop:           "clamp(56px, 7vw, 96px)",
+              background:          "var(--color-paper)",
+              border:              "1px solid var(--color-neutral-300)",
+              borderRadius:        "var(--radius-card)",
+              padding:             "clamp(28px, 4vw, 48px)",
+              display:             "grid",
+              gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 1fr)",
+              gap:                 "clamp(28px, 4vw, 56px)",
+              alignItems:          "start",
+            }}
+          >
+            <div>
+              <p style={{ fontFamily: font, fontSize: "var(--text-small)", fontWeight: 500, color: "var(--color-accent)", margin: "0 0 12px" }}>
+                Alpha Beta Design
+              </p>
+              <p style={{ fontFamily: font, fontSize: "clamp(22px, 2.2vw, 28px)", fontWeight: 500, color: "var(--color-text)", margin: "0 0 16px", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
+                Sites, landing pages, brand identity, and teardowns are fixed-price packages at my studio.
+              </p>
+              <p style={{ fontFamily: font, fontSize: "var(--text-body)", lineHeight: 1.55, color: "var(--color-neutral-700)", margin: "0 0 24px" }}>
+                Prices are on the page and research comes before design. On a site build, the code and hosting move to your accounts at launch.
+              </p>
+              <LinkArrow href="https://www.alphabeta.design/services">Packages and prices</LinkArrow>
+            </div>
+            <ScopePicker />
           </div>
-          <ul aria-label="Packages" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-            {PACKAGES.map((p, i) => (
-              <li key={p.anchor} style={{ borderTop: i === 0 ? "1px solid var(--color-neutral-300)" : "none", borderBottom: "1px solid var(--color-neutral-300)" }}>
-                <Link
-                  href={`https://www.alphabeta.design/services#${p.anchor}`}
-                  className="studio-package"
-                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 0", minHeight: "48px", boxSizing: "border-box", fontFamily: font, fontSize: "17px", fontWeight: 500, color: "var(--color-text)", textDecoration: "none" }}
-                >
-                  {p.name}
-                  <span aria-hidden="true" style={{ color: "var(--color-text-link)" }}>→</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        )}
       </div>
 
       <style>{`
-        .studio-package:hover { color: var(--color-text-link) !important; }
-        .studio-package:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
         @media (max-width: 1023px) { .whatido-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
         @media (max-width: 767px)  { .studio-block { grid-template-columns: 1fr !important; } }
         @media (max-width: 639px)  { .whatido-grid { grid-template-columns: 1fr !important; } }

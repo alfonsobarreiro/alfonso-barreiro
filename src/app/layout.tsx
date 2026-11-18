@@ -6,6 +6,7 @@ import BrandSwitch from "@/components/BrandSwitch";
 import KeyboardModality from "@/components/KeyboardModality";
 import ScrollToTopOnRoute from "@/components/ScrollToTopOnRoute";
 import { WebSiteSchema } from "@/components/structured-data/WebSiteSchema";
+import { DOTS_HEAD_SCRIPT } from "@/lib/dots";
 import "./globals.css";
 
 // GA4 measurement ID for barreiro.com. Reads NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -73,11 +74,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.barreiro.com"),
   title: {
-    default: "Alfonso Barreiro · Designer and web developer",
+    default: "Alfonso Barreiro · Product designer and web developer",
     template: "%s · Alfonso Barreiro",
   },
   description:
-    "Designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
+    "Product designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
   authors: [{ name: "Alfonso Barreiro", url: "https://www.barreiro.com" }],
   creator: "Alfonso Barreiro",
   openGraph: {
@@ -85,23 +86,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.barreiro.com",
     siteName: "Alfonso Barreiro",
-    title: "Alfonso Barreiro · Designer and web developer",
+    title: "Alfonso Barreiro · Product designer and web developer",
     description:
-      "Designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
+      "Product designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Alfonso Barreiro · Designer and web developer",
+        alt: "Alfonso Barreiro · Product designer and web developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alfonso Barreiro · Designer and web developer",
+    title: "Alfonso Barreiro · Product designer and web developer",
     description:
-      "Designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
+      "Product designer and web developer in Portland, OR. Fifteen years in design. Websites, logos, ad campaigns, and print, plus five case studies: Alfred (an AI assistant for Men's Sole Revival), AIGA Portland, Men's Sole Revival, Wayfarer, Spotify.",
     images: ["/opengraph-image"],
     creator: "@alfbarreiro",
   },
@@ -146,9 +147,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${barlowCondensed.variable} ${lora.variable} ${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" className={`${dmSans.variable} ${barlowCondensed.variable} ${lora.variable} ${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: BRAND_BOOT_SCRIPT }} />
+        {/* "Stop the dots": applies the stored choice (or reduced motion)
+            to <html data-dots> before first paint. See src/lib/dots.ts. */}
+        <script dangerouslySetInnerHTML={{ __html: DOTS_HEAD_SCRIPT }} />
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <WebSiteSchema />

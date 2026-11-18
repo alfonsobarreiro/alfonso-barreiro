@@ -4,7 +4,7 @@ export function PersonSchema() {
     "@type": "Person",
     "@id": "https://www.barreiro.com/#person",
     name: "Alfonso Barreiro",
-    jobTitle: "Designer and web developer",
+    jobTitle: "Product designer and web developer",
     url: "https://www.barreiro.com",
     image: "https://www.barreiro.com/opengraph-image",
     address: {

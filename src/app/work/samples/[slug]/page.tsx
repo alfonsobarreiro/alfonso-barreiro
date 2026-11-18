@@ -6,8 +6,9 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { LinkArrow } from "@/components/ui/LinkArrow";
-import { WorkCard } from "@/components/work/WorkCard";
+import { PLATE_SPECTRUM, WorkCard } from "@/components/work/WorkCard";
 import { WorkStyles } from "@/components/work/WorkStyles";
+import { WorkMediaTransition } from "@/components/home/WorkMediaTransition";
 import { WORK, bySlug, eyebrowFor, sortByStatus, type WorkImage } from "@/lib/work";
 
 const SECTION_X = "clamp(24px, 6vw, 80px)";
@@ -129,7 +130,7 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
         {first && (
           <section aria-label={`${item.title} images`} style={{ padding: `0 ${SECTION_X}` }}>
             <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-              <Figure g={first} priority max={figMax} />
+              <Figure g={first} priority max={figMax} morphSlug={item.slug} />
             </div>
           </section>
         )}
@@ -183,7 +184,7 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
                 More like this
               </h2>
               <div className="work-grid">
-                {related.map((r) => <WorkCard key={r.slug} item={r} />)}
+                {related.map((r, i) => <WorkCard key={r.slug} item={r} plateColor={PLATE_SPECTRUM[i % PLATE_SPECTRUM.length]} />)}
               </div>
               <div style={{ marginTop: "clamp(32px, 4vw, 48px)" }}>
                 <LinkArrow href="/work">All work</LinkArrow>
@@ -203,20 +204,25 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
   );
 }
 
-function Figure({ g, priority = false, max = "100%" }: { g: WorkImage; priority?: boolean; max?: string }) {
+/* `morphSlug` gives the image frame the same view-transition name as the
+   piece's WorkCard frame, so opening the card morphs it into this image. */
+function Figure({ g, priority = false, max = "100%", morphSlug }: { g: WorkImage; priority?: boolean; max?: string; morphSlug?: string }) {
+  const frame = (
+    <div style={{ borderRadius: "10px", overflow: "hidden", border: "1px solid var(--color-neutral-200)", background: "var(--color-neutral-100)" }}>
+      <Image
+        src={g.src}
+        alt={g.alt}
+        width={g.width}
+        height={g.height}
+        priority={priority}
+        sizes={max === "100%" ? "(max-width: 1320px) 100vw, 1240px" : `(max-width: 900px) 100vw, ${max}`}
+        style={{ width: "100%", height: "auto", display: "block" }}
+      />
+    </div>
+  );
   return (
     <figure style={{ margin: 0, maxWidth: max }}>
-      <div style={{ borderRadius: "10px", overflow: "hidden", border: "1px solid var(--color-neutral-200)", background: "var(--color-neutral-100)" }}>
-        <Image
-          src={g.src}
-          alt={g.alt}
-          width={g.width}
-          height={g.height}
-          priority={priority}
-          sizes={max === "100%" ? "(max-width: 1320px) 100vw, 1240px" : `(max-width: 900px) 100vw, ${max}`}
-          style={{ width: "100%", height: "auto", display: "block" }}
-        />
-      </div>
+      {morphSlug ? <WorkMediaTransition slug={morphSlug}>{frame}</WorkMediaTransition> : frame}
       {g.caption && (
         <figcaption style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "var(--text-body)", color: "var(--color-neutral-600)", marginTop: "12px" }}>
           {g.caption}

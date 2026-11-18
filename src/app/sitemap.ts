@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: `${SITE}/`,                                  lastModified, changeFrequency: "monthly", priority: 1.0 },
+    /* /hiring left out on purpose: it copies "/" for job applications and canonicals to "/". */
     { url: `${SITE}/work`,                              lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/spotify`,                      lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE}/work/wayfarer`,                     lastModified, changeFrequency: "monthly", priority: 0.9 },

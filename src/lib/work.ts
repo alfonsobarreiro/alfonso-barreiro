@@ -47,6 +47,11 @@ export interface WorkItem {
   /** One line on the card. */
   summary: string;
   cover: WorkImage;
+  /** Card art: the piece cut out of its light board (a transparent PNG in
+      /images/home/cards/, or a logo's transparent mark), so the card shows
+      it on the plate color. The card falls back to `cover`, which stays the
+      share image. */
+  card?: { src: string; width: number; height: number };
   /** Case studies link to their own page. Samples get /work/samples/{slug}. */
   caseStudyHref?: string;
   brief?: string;
@@ -94,13 +99,14 @@ export const WORK: WorkItem[] = [
   {
     slug: "aiga-portland",
     title: "AIGA Portland",
-    org: "Portland Design Month 2026",
+    org: "Portland Design Month", // no year here: the eyebrow adds it (was "Portland Design Month 2026 · Volunteer · 2026", 2026-11-10)
     status: "Volunteer",
     year: "2026",
     depth: "Case study",
     disciplines: ["web"],
     summary: "The festival landing page on Squarespace, carrying the Featured Artist's brand past the platform's defaults.",
     cover: img("/images/work/covers/aiga-portland.jpg", "The Portland Design Month 2026 landing page in a browser window."),
+    card: { src: "/images/home/cards/aiga-portland.png", width: 1476, height: 951 },
     caseStudyHref: "/work/aiga-portland",
   },
   {
@@ -112,6 +118,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["product", "web", "brand"],
     summary: "A foot-health site for men over 40 that launched as guides and a self-assessment instead of a store.",
     cover: img("/images/work/covers/mens-sole-revival.jpg", "The Men's Sole Revival homepage in a browser window."),
+    card: { src: "/images/home/cards/mens-sole-revival.png", width: 1476, height: 951 },
     caseStudyHref: "/work/mens-sole-revival",
   },
   {
@@ -123,6 +130,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["product", "web", "brand"],
     summary: "A travel-discovery site with an interactive globe and a trip planner built around trip length instead of dates.",
     cover: img("/images/work/covers/wayfarer.jpg", "The Wayfarer homepage in a browser window."),
+    card: { src: "/images/home/cards/wayfarer.png", width: 1476, height: 951 },
     caseStudyHref: "/work/wayfarer",
   },
   {
@@ -149,6 +157,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["brand"],
     summary: "Logo for a marketing, design, and communications firm.",
     cover: img("/images/work/logos/08-logo-1-sky-valley-comm.jpg", "Sky Valley Comm logo: an S and V monogram in an open circle beside a serif wordmark."),
+    card: { src: "/images/work/logos/marks/sky-valley-comm-full.png", width: 1319, height: 404 },
     brief: "A logo for Sky Valley Comm, a marketing, design, and communications firm.",
     shows: "An S and V monogram inside an open circle, a serif wordmark, and the firm's three services set underneath.",
     note: "Client work.",
@@ -164,6 +173,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["brand"],
     summary: "A wordmark with a zebra set inside the Q.",
     cover: img("/images/work/logos/08-logo-2-nq-zebraworks.jpg", "nQ Zebraworks logo: a red Q holding a zebra's head, beside a two-line wordmark."),
+    card: { src: "/images/work/logos/marks/nq-zebraworks-full.png", width: 1600, height: 520 },
     brief: "A logo for nQ Zebraworks.",
     shows: "A red Q that frames a zebra's head, set into a two-line wordmark.",
     note: "Client work.",
@@ -179,6 +189,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["brand"],
     summary: "A framed Be monogram with a letterspaced wordmark.",
     cover: img("/images/work/logos/08-logo-3-becourageous-leadership.jpg", "BeCourageous Leadership logo: a blue Be monogram inside a gray bracket frame, beside a letterspaced wordmark."),
+    card: { src: "/images/work/logos/marks/becourageous-leadership-full.png", width: 860, height: 359 },
     brief: "A logo for BeCourageous Leadership.",
     shows: "A blue Be monogram inside a gray bracket frame, with a letterspaced two-line wordmark.",
     note: "Client work.",
@@ -195,6 +206,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["brand"],
     summary: "The a and b of Alpha Beta drawn as one loop. It marks both barreiro.com and the studio.",
     cover: img("/images/work/logos/08-logo-4-alpha-beta-design-barreirocom.jpg", "The Alpha Beta mark: a lowercase a and b joined into one continuous loop."),
+    card: { src: "/images/work/logos/marks/alpha-beta-mark-full.png", width: 1600, height: 153 },
     brief: "One mark for my portfolio and my studio, Alpha Beta Design.",
     shows: "A lowercase a and b joined into one continuous loop.",
     note: "My own mark. The full usage guide lives in the barreiro.com brand file in Figma.",
@@ -211,6 +223,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["brand"],
     summary: "A navy shield with a foot cut out in negative space.",
     cover: img("/images/work/logos/08-logo-5-mens-sole-revival.jpg", "The Men's Sole Revival shield: a navy shield with a white foot in negative space."),
+    card: { src: "/images/work/logos/marks/mens-sole-revival-shield-full.png", width: 1600, height: 415 },
     brief: "The mark for Men's Sole Revival, my foot-health site for men over 40.",
     shows: "A navy shield with a foot cut out in negative space.",
     note: "My own venture. The full story is in the Men's Sole Revival case study.",
@@ -228,6 +241,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["social"],
     summary: "Sale, holiday, event, and product posts for a winery and distillery, built from one layout system.",
     cover: board("/images/work/vara/00-vara-social-cover.jpg", "A grid of VARA social posts: sale countdowns, holiday promos, flamenco nights, and bottle shots."),
+    card: { src: "/images/home/cards/vara-social.png", width: 959, height: 931 },
     brief: "Keep VARA's tasting rooms and online store in front of followers through sales, holidays, live music, and new releases.",
     shows: "One layout system reused across a sale's announcement and day-of posts, plus countdown, event, and product posts.",
     builtWith: "Photoshop.",
@@ -249,8 +263,9 @@ export const WORK: WorkItem[] = [
     year: "2024",
     depth: "Sample",
     disciplines: ["brand", "print"],
-    summary: "Co-branded gin and rum labels for VARA and New Mexico United, in the club's yellow and black.",
+    summary: "Gin and rum labels co-branded with New Mexico United.",
     cover: img("/images/work/vara-somos-unidos/00-vara-somos-unidos-cover.jpg", "The Somos Unidos Rum bottle beside the rum and gin labels laid flat."),
+    card: { src: "/images/home/cards/vara-somos-unidos.png", width: 2000, height: 1364 },
     brief: "Relabel VARA's High Desert Gin and Estrella Blanca Rum for a partnership with New Mexico United, with $1 from every bottle sold going to the Somos Unidos Foundation.",
     shows: "Two labels in the club's yellow and black: smoke graphics behind torn-paper bands, the club crest, a Zia seal, and a back panel with the $1 pledge. The rum is yellow with gray smoke, and the gin flips it to black with yellow smoke.",
     role: "Director of Marketing and DTC Operations",
@@ -269,8 +284,13 @@ export const WORK: WorkItem[] = [
     year: "2023 to 2024",
     depth: "Sample",
     disciplines: ["print", "social"],
-    summary: "Full-page ads for Albuquerque The Magazine and Edible New Mexico, with the same layout resized for event ads.",
+    summary: "Full-page ads for Albuquerque The Magazine and Edible New Mexico, and program ads for the New Mexico Jazz Workshop.",
     cover: img("/images/work/vara-magazine-ads/00-vara-magazine-ads-cover.jpg", "Two VARA full-page ads side by side: Albuquerque The Magazine, June 2023, and Edible New Mexico, September/October 2023, each pairing a rosé bottle shot with photos of VARA's tasting rooms and guests."),
+    /* Card (2026-11-06, Alfonso: "two small event ads beside one of the
+       magazine ads"): the Edible New Mexico July/August 2023 page beside the
+       two New Mexico Jazz Workshop Season 32 program ads, from the
+       Illustrator files at true relative scale, on transparency. */
+    card: { src: "/images/home/cards/vara-magazine-ads.png", width: 2000, height: 1463 },
     brief: "Bring local magazine readers and event guests to VARA's Albuquerque tasting room and Santa Fe Vinoteca.",
     shows: "One layout reused across publications: the Silverhead Brut Rosado bottle on the right, and a headline, selling points, and photos on the left, rewritten for each location and issue.",
     builtWith: "Illustrator.",
@@ -294,6 +314,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["print", "social"],
     summary: "A monthly promo piece sized for print inserts, then reused for email and social.",
     cover: board("/images/work/vara/06-vara-cellar-sale.jpg", "The Cellar Sale promo: two featured bottles with prices and a case special."),
+    card: { src: "/images/home/cards/vara-cellar-sale.png", width: 759, height: 881 },
     brief: "A monthly promo that works as a print insert, an email, and a social post.",
     shows: "Two featured bottles with tasting notes, sale prices, and a case special, framed in VARA's black and gold.",
     role: "Director of Marketing and DTC Operations",
@@ -311,6 +332,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["print", "social"],
     summary: "A two-sided card for distributor and buyer meetings: brand story, founders, and portfolio.",
     cover: board("/images/work/vara/07-vara-distributor-leave-behind.jpg", "Both sides of the VARA distributor leave-behind: a cover photo, the brand story, the founders, and the portfolio."),
+    card: { src: "/images/home/cards/vara-distributor-leave-behind.png", width: 999, height: 882 },
     brief: "A card the sales team could leave with distributors and buyers after a meeting.",
     shows: "The brand story, the founders, and the wine and spirits portfolio on two sides.",
     role: "Director of Marketing and DTC Operations",
@@ -327,6 +349,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["print", "social"],
     summary: "A rack card for the Santa Fe tasting room, plus shelf-size tasting notes for the spirits line.",
     cover: board("/images/work/vara/08-vara-rack-card-tasting-cards.jpg", "The Santa Fe rack card, front and back, beside three shelf tasting cards for VARA brandies."),
+    card: { src: "/images/home/cards/vara-rack-card-tasting-cards.png", width: 1554, height: 876 },
     brief: "Print for the Santa Fe tasting room: a rack card for visitors, and tasting notes for the spirits shelf.",
     shows: "A two-sided rack card with the wine, spirits, and tapas offer, and three shelf cards with tasting notes and proof.",
     role: "Director of Marketing and DTC Operations",
@@ -344,6 +367,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["print", "brand"],
     summary: "A four-page digital brochure for an antiracist consulting practice, built on a brand plan I wrote first.",
     cover: img("/images/work/kendra-toth-brochure/00-kendra-toth-brochure-cover.jpg", "The brochure cover with the name, tagline, and Kendra Toth's portrait inside blue arcs, beside the What you need page."),
+    card: { src: "/images/home/cards/kendra-toth-brochure.png", width: 2840, height: 1888 },
     brief: "Kendra Toth asked me to define a brand for her consulting practice and a way to market it. After she reviewed the brand plan, we decided a digital brochure would present the practice best.",
     shows: "Four pages: the cover with the name and tagline, what clients need with her value proposition, her story and services, and testimonials. Behind it is a brand plan with positioning, name and tagline options, mission, vision, values, personas, and a visual direction.",
     builtWith: "InDesign, set in Merriweather and Avenir Next. The brand plan was a Gamma presentation, and the logo comp was drawn in Illustrator.",
@@ -367,6 +391,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["print", "social"],
     summary: "A two-sided sales sheet: the offer on the front, the agency process on the back.",
     cover: board("/images/work/boomtime/01-boomtime-one-pager.jpg", "Front and back of the Boomtime one-pager: the offer, and a diagram of the agency process."),
+    card: { src: "/images/home/cards/boomtime-one-pager.png", width: 1565, height: 642 },
     brief: "A leave-behind that explains what the agency does and how a client moves through it.",
     shows: "The front explains the offer. The back maps the agency process from first touch to client.",
     note: BOOMTIME_NOTE,
@@ -377,10 +402,12 @@ export const WORK: WorkItem[] = [
     title: "B2B Word of Mouth Marketing Playbook",
     org: "Boomtime",
     status: "In-house",
+    year: "2020",
     depth: "Sample",
     disciplines: ["print", "social"],
     summary: "A 17-page gated playbook for B2B owners, with a cover, a contents system, and interior templates.",
     cover: board("/images/work/boomtime/02-boomtime-wom-playbook.jpg", "The cover and three interior spreads of the Word of Mouth Marketing Playbook."),
+    card: { src: "/images/home/cards/boomtime-wom-playbook.png", width: 1578, height: 544 },
     brief: "A lead magnet: a playbook B2B owners download in exchange for an email address.",
     shows: "A cover, a contents system, and interior templates for 17 pages.",
     builtWith: "InDesign.",
@@ -397,6 +424,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["print", "social"],
     summary: "A 24-page second edition on the same system, turned around for the 2020 downturn.",
     cover: board("/images/work/boomtime/03-boomtime-recession-playbook.jpg", "The cover and three interior spreads of B2B Marketing in a Recession."),
+    card: { src: "/images/home/cards/boomtime-recession-playbook.png", width: 1578, height: 544 },
     brief: "A second lead-magnet playbook, written for B2B owners during the 2020 downturn.",
     shows: "The Word of Mouth playbook's system, extended to 24 pages for new content.",
     builtWith: "InDesign.",
@@ -414,6 +442,7 @@ export const WORK: WorkItem[] = [
     disciplines: ["product"],
     summary: "A 29-slide concept deck proposing three controls for Spotify's Recently Played shelf: Pin, Remove, and a time-boxed Pause.",
     cover: img("/images/work/spotify-deck/00-cover.jpg", "The Recently Played Controls title slide, with the line Give listeners agency without breaking discovery over two desktop Home screens."),
+    card: { src: "/images/home/cards/spotify-deck.png", width: 1442, height: 839 },
     brief: "A solo portfolio project with no Spotify brief or data. The goal was to let listeners curate the Recently Played shelf on Home without weakening discovery and recommendations.",
     shows: "Quotes from public Reddit and Spotify Community threads, a competitor scan, three hypothetical personas, and a journey map, then three controls: pin up to four items, remove one item from the shelf, and pause history for a set time on one device.",
     builtWith: "Screens and tables in Figma, presented in Google Slides.",
@@ -437,17 +466,20 @@ export const WORK: WorkItem[] = [
     depth: "Sample",
     disciplines: ["web"],
     summary: "My studio's site: packages and prices on the page, how a project runs, in English and Spanish.",
-    cover: img("/images/work/samples/alphabeta-design/01-home.jpg", "The Alpha Beta Design homepage."),
+    /* Prices live on alphabeta.design only. The home and Spanish frames are
+       1440x900 captures scrolled past the hero, whose slot line and package
+       prices stay off barreiro.com; there is no services frame for the same
+       reason. New filenames (-v2) so next/image never serves the old crops. */
+    cover: img("/images/work/samples/alphabeta-design/01-home-v2.jpg", "The Alpha Beta Design homepage, scrolled to its featured sample sites."),
     brief: "A studio site that answers a small business's first three questions on one page: what it costs, how long it takes, and what they get.",
     shows: "Published prices for every package, a step-by-step project process, ten sample sites, and a full Spanish version.",
     builtWith: SAMPLE_STACK,
     live: { href: "https://www.alphabeta.design", label: "alphabeta.design" },
     note: "My own studio. This is where the packages and prices live.",
     gallery: [
-      img("/images/work/samples/alphabeta-design/01-home.jpg", "The Alpha Beta Design homepage.", "Home."),
-      img("/images/work/samples/alphabeta-design/02-services.jpg", "The services page with package prices.", "Services, with every price on the page."),
+      img("/images/work/samples/alphabeta-design/01-home-v2.jpg", "The Alpha Beta Design homepage, scrolled to its featured sample sites.", "Home."),
       img("/images/work/samples/alphabeta-design/04-how-it-works.jpg", "The How a project runs page.", "How a project runs."),
-      img("/images/work/samples/alphabeta-design/03-es-home.jpg", "The Spanish homepage.", "The Spanish version."),
+      img("/images/work/samples/alphabeta-design/03-es-home-v2.jpg", "The Spanish homepage, scrolled to its featured sample sites.", "The Spanish version."),
     ],
   },
   {
@@ -691,6 +723,16 @@ export function visibleFilters() {
   return DISCIPLINES.filter((d) => WORK.filter((w) => w.disciplines.includes(d.key)).length >= MIN_PER_FILTER);
 }
 
-export function eyebrowFor(item: WorkItem): string {
-  return [item.org, item.status, item.year].filter(Boolean).join(" · ");
+/** The footer's year (Footer.tsx). Kus cards drop a year that matches it. */
+export const SITE_YEAR = "2026";
+
+/** org · status · year. With `dropSiteYear`, the year shows only when it
+    differs from the footer's, so this year's cards lose "· 2026". Switched
+    on across the Kus-led homepage on 2026-11-01 and off again that
+    evening: every client-getting site read that day (Kus, Pumo,
+    Snellenberg, Couldwell) prints the year on the piece. Kept for a
+    later call. */
+export function eyebrowFor(item: WorkItem, opts?: { dropSiteYear?: boolean }): string {
+  const year = opts?.dropSiteYear && item.year === SITE_YEAR ? undefined : item.year;
+  return [item.org, item.status, year].filter(Boolean).join(" · ");
 }

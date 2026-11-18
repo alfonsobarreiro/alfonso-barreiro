@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
+import { LinkArrow } from "@/components/ui/LinkArrow";
 import Footer from "@/components/Footer";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -277,6 +278,9 @@ export default function SpotifyV2() {
             }}>
               Claude and I clustered 200+ community posts and shipped three reversible shelf controls that don&rsquo;t touch the recommendation engine.
             </p>
+            {/* The Figma deck, re-exported 2026-11-05 (Alfonso: "show it in
+                the presentation section"). */}
+            <LinkArrow href="/work/presentations/spotify">See the 40-slide deck</LinkArrow>
           </div>
         </header>
 

@@ -128,13 +128,16 @@ export const searchIndex: SearchEntry[] = [
 //   per token in title  →  +10
 //   per token in haystack (title + subtitle + keywords) → +5
 //   kind multiplier: case-study 1.1, page 1.05
-export function searchEntries(query: string, limit = 8): SearchEntry[] {
+/** Entries /hiring leaves out of search: job applications never link the studio. */
+export const HIRING_EXCLUDE: ReadonlySet<string> = new Set(["sample-alphabeta-design", "sample-alpha-beta-mark"]);
+
+export function searchEntries(query: string, limit = 8, exclude?: ReadonlySet<string>): SearchEntry[] {
   const q = query.trim().toLowerCase();
   if (!q) return [];
 
   const tokens = q.split(/\s+/).filter(Boolean);
 
-  const scored = searchIndex.map((entry) => {
+  const scored = searchIndex.filter((entry) => !exclude?.has(entry.id)).map((entry) => {
     const titleLower = entry.title.toLowerCase();
     const haystack = [entry.title, entry.subtitle ?? "", entry.keywords ?? ""].join(" ").toLowerCase();
 

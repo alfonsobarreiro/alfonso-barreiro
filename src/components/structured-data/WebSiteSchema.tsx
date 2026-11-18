@@ -6,7 +6,7 @@ export function WebSiteSchema() {
     url: "https://www.barreiro.com",
     name: "Alfonso Barreiro",
     description:
-      "Designer and web developer in Portland, OR. Websites, logos, ad campaigns, print, and five case studies.",
+      "Product designer and web developer in Portland, OR. Websites, logos, ad campaigns, print, and five case studies.",
     inLanguage: "en-US",
     publisher: { "@id": "https://www.barreiro.com/#person" },
   };

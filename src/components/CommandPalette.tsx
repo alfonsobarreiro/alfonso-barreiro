@@ -18,14 +18,14 @@ export function openCommandPalette() {
   window.dispatchEvent(new CustomEvent(OPEN_EVENT));
 }
 
-export default function CommandPalette() {
+export default function CommandPalette({ exclude }: { exclude?: ReadonlySet<string> } = {}) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIdx, setSelectedIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const results = query ? searchEntries(query, 8) : [];
+  const results = query ? searchEntries(query, 8, exclude) : [];
 
   // Cmd+K / Ctrl+K global listener + custom open/close events
   useEffect(() => {

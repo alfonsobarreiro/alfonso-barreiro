@@ -9,21 +9,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Fifteen years in design. Designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
+    "Fifteen years in design. Product designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
   alternates: { canonical: "https://www.barreiro.com/about" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/about",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
+      "Fifteen years in design. Product designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
     images: ["/about/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About · Alfonso Barreiro",
     description:
-      "Fifteen years in design. Designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
+      "Fifteen years in design. Product designer and web developer in Portland, OR. Five case studies: Alfred, an AI assistant for Men's Sole Revival, plus AIGA Portland Design Month, Men's Sole Revival, Wayfarer travel discovery, and Spotify controls.",
     images: ["/about/opengraph-image"],
   },
 };

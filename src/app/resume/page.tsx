@@ -10,21 +10,21 @@ import { BreadcrumbSchema } from "@/components/structured-data/BreadcrumbSchema"
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume for Alfonso Barreiro. Designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
+    "Resume for Alfonso Barreiro. Product designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
   alternates: { canonical: "https://www.barreiro.com/resume" },
   openGraph: {
     type: "website",
     url: "https://www.barreiro.com/resume",
     title: "Resume · Alfonso Barreiro",
     description:
-      "Resume for Alfonso Barreiro. Designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
+      "Resume for Alfonso Barreiro. Product designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
     images: ["/resume/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Resume · Alfonso Barreiro",
     description:
-      "Resume for Alfonso Barreiro. Designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
+      "Resume for Alfonso Barreiro. Product designer and web developer in Portland, OR. Fifteen years across agency, in-house, and independent practice.",
     images: ["/resume/opengraph-image"],
   },
 };
@@ -359,7 +359,7 @@ export default function ResumePage() {
                 lineHeight:    1.4,
               }}
             >
-              Designer and web developer · Portland, OR
+              Product designer and web developer · Portland, OR
             </p>
             <p
               style={{

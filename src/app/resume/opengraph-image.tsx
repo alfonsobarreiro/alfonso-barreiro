@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Resume · Alfonso Barreiro · Designer and web developer";
+export const alt = "Resume · Alfonso Barreiro · Product designer and web developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -40,9 +40,10 @@ export default async function Image() {
             lineHeight: 1.05,
             fontWeight: 500,
             letterSpacing: "-0.02em",
+            maxWidth: 780, // breaks after "designer", not before "developer"
           }}
         >
-          Designer and web developer
+          Product designer and web developer
         </div>
         <div
           style={{

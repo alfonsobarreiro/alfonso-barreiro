@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
       // Old plural slug: this case study was renamed. Perfect 1:1 match.
       { source: "/works/spotify-features-updates", destination: "/work/spotify", permanent: true },
 
+      // /hiring was removed before launch (Alfonso, 2026-11-18). Temporary,
+      // so the path can come back; links already sent land on the homepage.
+      { source: "/hiring", destination: "/", permanent: false },
+
       // Retired blog namespace.
       { source: "/blog/:path*", destination: "/", permanent: true },
 
