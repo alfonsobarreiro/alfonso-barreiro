@@ -404,8 +404,17 @@ html .kus .wcard:has(.wcard__link:focus-visible) {
    radius inline. */
 .kus main .ui-btn { border-radius: 999px !important; }
 
-/* About prints: rounded like the cards. */
-.kus .ap__print { border-radius: var(--radius-card); }
+/* About prints (the hero photos): framed like the What clients say
+   prints (Alfonso, 2026-11-18: "I like the white border from the What
+   clients say images"): an 8px paper border, 14px outside radius (6px
+   inside), and the same shadow. A border, not padding, because the
+   photo is position: absolute and fills the padding box. */
+.kus .ap__print {
+  border: 8px solid var(--color-paper);
+  border-radius: 14px;
+  background: var(--color-paper);
+  box-shadow: 0 18px 40px rgb(15 40 61 / 0.32);
+}
 
 /* Footer: pills with a 2px navy border, like every secondary control here. */
 .kus .site-footer .ui-btn--ghost {
