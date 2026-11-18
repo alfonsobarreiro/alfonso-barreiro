@@ -13,7 +13,7 @@ import type { CSSProperties } from "react";
   .availability-dot class).
 */
 
-export const AVAILABILITY_COPY = "Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.";
+export const AVAILABILITY_COPY = "Open to design and web development roles, contract or full-time. Portland, OR or remote.";
 
 type AvailabilityBadgeProps = {
   variant?: "card" | "inline";

@@ -130,7 +130,7 @@ export default function Contact() {
               maxWidth:     "380px",
             }}
           >
-            Open to product and UX/UI roles, contract or full-time. Portland, OR or remote.
+            Open to design and web development roles, contract or full-time. Portland, OR or remote.
           </p>
 
           {/* Direct email */}

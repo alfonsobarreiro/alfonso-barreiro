@@ -410,7 +410,7 @@ export default function BehindThisSitePage() {
 
             <div style={{ marginTop: "clamp(40px, 5vw, 64px)" }}>
               <ArtifactStep
-                heading="Sizes, variants, and rules — the spec."
+                heading="Sizes, variants, and rules: the spec."
                 caption="Five test sizes on paper ground, minimum 16 px. Two color variants: dark on light, white on dark. One aspect: 2:1, always. PNGs are the mark; never redrawn from vectors."
                 src="/images/behind-this-site/mark-spec-v2.png"
                 width={1200}
@@ -456,7 +456,7 @@ export default function BehindThisSitePage() {
 
             <div style={{ marginTop: "clamp(40px, 5vw, 64px)", display: "flex", flexDirection: "column", gap: "clamp(48px, 6vw, 80px)" }}>
               <ArtifactStep
-                heading="The palette — role tokens, not literal names."
+                heading="The palette: role tokens, not literal names."
                 caption="Brand, accent, sage, neutrals, plus semantic bindings for background, text, and border. Same file every client project reads."
                 src="/images/behind-this-site/colors-spec.png"
                 width={715}
@@ -464,7 +464,7 @@ export default function BehindThisSitePage() {
               />
 
               <ArtifactStep
-                heading="The type ramp — one family, two weights."
+                heading="The type ramp: one family, two weights."
                 caption="DM Sans at 400 and 500. Eight sizes on the ramp (60 / 40 / 28 / 20 / 17 / 15 / 12 / 11). No other family ships. Barlow Condensed and Lora were swept when the DS unified this month."
                 src="/images/behind-this-site/fonts-spec.png"
                 width={743}
@@ -495,8 +495,8 @@ export default function BehindThisSitePage() {
             </p>
             <div style={{ borderTop: "1px solid var(--color-neutral-200)" }}>
               <RuleRow>Title Case for button labels only. Every other label stays sentence case.</RuleRow>
-              <RuleRow>Radius 0 for rectangles. 999 for pills and circles. No mid values.</RuleRow>
-              <RuleRow>Terracotta is the only accent. A second accent breaks the ground, ink, accent triad.</RuleRow>
+              <RuleRow>Radius 20 for cards, 14 for panels inside them, 10 for buttons, 8 for chips, 999 for pills and circles.</RuleRow>
+              <RuleRow>Terracotta is the only accent. Work cards sit on teal, terracotta, or blue plates, which are grounds for the work, not accents.</RuleRow>
               <RuleRow>No shadows on any button state. Depth is not a button affordance.</RuleRow>
               <RuleRow>DM Sans only. One family, two weights.</RuleRow>
             </div>
@@ -511,14 +511,12 @@ export default function BehindThisSitePage() {
               In August 2026, I audited barreiro.com against twenty senior product-design portfolios. Every one of those twenty rejected the same eight elements. Six of the eight were shipping here. This is what came off.
             </p>
             <div style={{ marginTop: "clamp(24px, 3vw, 40px)", borderTop: "1px solid var(--color-neutral-200)" }}>
-              <CutRow label="Hero device peek"       note="A MacBook with the 86% stat overlay in the top-right. Twenty of twenty senior portfolios ship no hero image." />
+              <CutRow label="Hero device peek"       note="A MacBook with the 86% stat overlay in the top-right. Twenty of twenty senior portfolios ship no device mockup in the hero." />
               <CutRow label="Testimonials"           note="A quote carousel with attributed praise. Twenty of twenty ship none." />
               <CutRow label="Metrics on the fold"    note="The 86% completion stat was a hero callout. It lives inside the Men’s Sole Revival case study now, where the reader can see the receipt." />
-              <CutRow label="/contact route"         note="A dedicated page with a mailto link. Twenty of twenty use email, calendar, or newsletter — not a route. The email lives in the footer and on the About page." />
-              <CutRow label="About preview on home"  note="A duplicate of the /about narrative. The full page still ships from the nav." />
-              <CutRow label="Downloadable résumé"    note="Twenty of twenty do not offer a résumé file. LinkedIn is the primary reference now." />
+              <CutRow label="/contact route"         note="A dedicated page with a mailto link. Twenty of twenty use email, calendar, or newsletter, not a route. The email lives in the footer and on the About page." />
               <CutRow label="Dark mode toggle"       note="Never shipped. Twenty of twenty do not have one." />
-              <CutRow label="Heavy hero motion"      note="Framer Motion staggered entrance animation. The library came out with it — the site now transitions with native CSS only." />
+              <CutRow label="Heavy hero motion"      note="Framer Motion staggered entrance animation. The library came out with it. The site now transitions with native CSS only." />
             </div>
             <p style={{ ...body, marginTop: "clamp(24px, 3vw, 40px)" }}>
               Six of the eight universal rejects came off. The site got quieter. Fewer decisions for the reader to make before they hit the case studies.

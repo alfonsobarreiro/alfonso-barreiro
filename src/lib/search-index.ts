@@ -5,7 +5,9 @@
 // by the Section component (id="section-{label}"); page-level entries
 // just link to the route.
 
-export type SearchKind = "page" | "case-study" | "section" | "presentation";
+import { WORK } from "@/lib/work";
+
+export type SearchKind = "page" | "case-study" | "sample" | "section" | "presentation";
 
 export type SearchEntry = {
   id: string;
@@ -18,9 +20,9 @@ export type SearchEntry = {
 
 export const searchIndex: SearchEntry[] = [
   // ── Top-level pages ──
-  { id: "home", title: "Home", subtitle: "Five case studies", href: "/", kind: "page", keywords: "alfonso barreiro homepage" },
-  { id: "work", title: "Work", subtitle: "Selected case studies", href: "/#work", kind: "page" },
-  { id: "about", title: "About", subtitle: "Origin, process, what I read", href: "/#about", kind: "page", keywords: "bio age hiragana marathon birds research process curiosity portland rush fan site music albuquerque boomtime vara cliffdweller designlab cabana alphabeta figma comes last" },
+  { id: "home", title: "Home", subtitle: "Websites, logos, ad campaigns, and case studies", href: "/", kind: "page", keywords: "alfonso barreiro homepage designer web developer" },
+  { id: "work", title: "Work", subtitle: "Every case study and sample, filterable", href: "/work", kind: "page", keywords: "portfolio websites logos brand social ads print samples" },
+  { id: "about", title: "About", subtitle: "Origin, process, what I read", href: "/about", kind: "page", keywords: "bio age hiragana marathon birds research process curiosity portland rush fan site music albuquerque boomtime vara cliffdweller designlab cabana alphabeta figma comes last" },
   { id: "connect", title: "Connect", subtitle: "Get in touch", href: "/connect", kind: "page", keywords: "contact email alphabeta studio" },
   { id: "presentations", title: "Presentations", subtitle: "Slide decks for each case study", href: "/work/presentations", kind: "page", keywords: "slides deck" },
 
@@ -49,6 +51,33 @@ export const searchIndex: SearchEntry[] = [
     kind: "case-study",
     keywords: "msr mens sole revival foot health editorial content ga4 men over 40",
   },
+
+  {
+    id: "cs-alfred",
+    title: "Alfred · MSR foot-health assistant",
+    subtitle: "Live at menssolerevival.com/ask",
+    href: "/work/msr-chatbot",
+    kind: "case-study",
+    keywords: "alfred ai chatbot assistant rag retrieval claude haiku red flags msr",
+  },
+  {
+    id: "cs-aiga",
+    title: "AIGA Portland · Design Month 2026",
+    subtitle: "Volunteer · Squarespace",
+    href: "/work/aiga-portland",
+    kind: "case-study",
+    keywords: "aiga portland design month pdm festival squarespace volunteer calendar",
+  },
+
+  // ── Samples (generated from src/lib/work.ts) ──
+  ...WORK.filter((w) => w.depth === "Sample").map((w): SearchEntry => ({
+    id: `sample-${w.slug}`,
+    title: w.title,
+    subtitle: [w.org, w.status].filter(Boolean).join(" · "),
+    href: `/work/samples/${w.slug}`,
+    kind: "sample",
+    keywords: `${w.disciplines.join(" ")} ${w.summary}`.toLowerCase(),
+  })),
 
   // ── Spotify sections ──
   { id: "sp-01", title: "Problem & Constraints",  subtitle: "Spotify §01", href: "/work/spotify#section-01", kind: "section" },
@@ -99,13 +128,16 @@ export const searchIndex: SearchEntry[] = [
 //   per token in title  →  +10
 //   per token in haystack (title + subtitle + keywords) → +5
 //   kind multiplier: case-study 1.1, page 1.05
-export function searchEntries(query: string, limit = 8): SearchEntry[] {
+/** Entries /hiring leaves out of search: job applications never link the studio. */
+export const HIRING_EXCLUDE: ReadonlySet<string> = new Set(["sample-alphabeta-design", "sample-alpha-beta-mark"]);
+
+export function searchEntries(query: string, limit = 8, exclude?: ReadonlySet<string>): SearchEntry[] {
   const q = query.trim().toLowerCase();
   if (!q) return [];
 
   const tokens = q.split(/\s+/).filter(Boolean);
 
-  const scored = searchIndex.map((entry) => {
+  const scored = searchIndex.filter((entry) => !exclude?.has(entry.id)).map((entry) => {
     const titleLower = entry.title.toLowerCase();
     const haystack = [entry.title, entry.subtitle ?? "", entry.keywords ?? ""].join(" ").toLowerCase();
 

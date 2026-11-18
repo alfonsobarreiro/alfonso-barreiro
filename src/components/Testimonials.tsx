@@ -4,42 +4,15 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { LinkedInBadge } from "@/components/ui/icons";
+import { TESTIMONIALS, type Testimonial } from "@/components/home/HomeTestimonials";
+import { getDots } from "@/lib/dots";
 
-type Testimonial = {
-  pull:      string;          // oversized pull-quote line
-  body:      string;          // full testimonial body
-  name:      string;
-  role:      string;          // role + company on one line
-  linkedin?: string;          // full LinkedIn profile URL — optional
-};
-
-/* Order matters. Featured testimonial (JP Clement, former CEO of two
-   companies + founder of The Marketing Distillery) leads. Pam + Kendra
-   follow. The carousel gives each testimonial its own spotlight instead
-   of the previous two-up grid, which flattened the strongest voice. */
-const ITEMS: Testimonial[] = [
-  {
-    pull: "The deck he built sells me better than I sell myself.",
-    body: "Alfonso didn't take my word for what my business should be. He interviewed me like a researcher, pressure-tested my positioning against the actual market, and came back with evidence. The deck he built sells me better than I sell myself. If you get the chance to work with him, take it.",
-    name: "JP Clement",
-    role: "Founder, The Marketing Distillery · Former CEO, VARA & Boomtime",
-    linkedin: "https://www.linkedin.com/in/jpclement/",
-  },
-  {
-    pull: "His ability to listen and translate my ideas into a logo that stands out.",
-    body: "Working with Alfonso on my company logo for Sky Valley Comm was a great experience. His keen eye for design and attention to detail helped bring my vision to life in a way that represents my brand. The most beneficial part of our collaboration was his ability to listen and translate my ideas into a professional, unique logo that stands out. His expertise made the process seamless, and the final result exceeded my expectations. Thanks to Alfonso's work, my brand now has a strong and memorable identity.",
-    name: "Pamela Accetta Smith",
-    role: "Founder & CEO, Sky Valley Comm",
-    linkedin: "https://www.linkedin.com/in/pamela-accetta-smith-5278379/",
-  },
-  {
-    pull: "He offered a perspective on my work that I often miss.",
-    body: "Alfonso Barreiro's expertise is truly remarkable. The Branding and Marketing Plan he designed for my small business was comprehensive, insightful, and creatively inspiring. He offered a perspective on my work that I often miss, exceeding my expectations with both depth and detail. His collaborative approach ensured the final product aligned perfectly with my vision and business needs. I'm deeply grateful for his skill, dedication, and guidance in helping take my business to the next level.",
-    name: "Kendra Toth",
-    role: "Kendra Toth Consulting",
-    linkedin: "https://www.linkedin.com/in/kendra-toth-1b95a0159/",
-  },
-];
+/* The quotes live in src/components/home/HomeTestimonials.tsx, a module
+   without "use client", so the homepage band stays server-rendered and this
+   carousel reuses the same list instead of a copy. Two clients: Pamela
+   Accetta Smith and Kendra Toth. This carousel is not rendered anywhere;
+   the homepage uses the static HomeTestimonials band. */
+const ITEMS: Testimonial[] = TESTIMONIALS;
 
 /* ── SVG glyphs ─────────────────────────────────────────────────────── */
 
@@ -129,6 +102,8 @@ export default function Testimonials() {
       if (isHoveredRef.current) return;
       if (isFocusedRef.current) return;
       if (Date.now() < pausedUntilRef.current) return;
+      /* Stop the dots (html[data-dots="still"]) stops the autoplay too. */
+      if (getDots() === "still") return;
 
       const track = trackRef.current;
       if (!track) return;

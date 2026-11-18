@@ -1,30 +1,101 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
 import CommandPalette, { openCommandPalette } from "./CommandPalette";
+import { HIRING_EXCLUDE } from "@/lib/search-index";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
-const navLinks = ["work", "process", "about", "behind", "resume"] as const;
+/* Nav items: Work · Case studies · Studio · About · Resume, plus Search.
+   Email left the header 2026-11-04 (Alfonso): the address lives in the
+   hire block at the bottom of the homepage. Case studies jumps to that
+   section of /work; the mobile menu already lists each case study under
+   its main links, so it is desktop only. Process and Behind this site
+   sit in the footer on desktop and stay in the mobile menu. Studio links
+   to alphabeta.design. */
+type NavItem =
+  | { kind: "route"; key: string; href: string; label: string }
+  | { kind: "studio"; key: "studio"; label: string };
 
-const NAV_ROUTES: Partial<Record<(typeof navLinks)[number], { href: string; label: string }>> = {
-  about:   { href: "/about",             label: "About" },
-  process: { href: "/process",           label: "Process" },
-  behind:  { href: "/behind-this-site",  label: "Behind this site" },
-  resume:  { href: "/resume",            label: "Resume" },
-};
+const WORK:    NavItem = { kind: "route",  key: "work",    href: "/work",             label: "Work" };
+const STUDIO:  NavItem = { kind: "studio", key: "studio",                             label: "Studio" };
+const ABOUT:   NavItem = { kind: "route",  key: "about",   href: "/about",            label: "About" };
+const RESUME:  NavItem = { kind: "route",  key: "resume",  href: "/resume",           label: "Resume" };
+const PROCESS: NavItem = { kind: "route",  key: "process", href: "/process",          label: "Process" };
+const BEHIND:  NavItem = { kind: "route",  key: "behind",  href: "/behind-this-site", label: "Behind this site" };
+const CASES:   NavItem = { kind: "route",  key: "cases",   href: "/work#case-studies", label: "Case studies" };
+
+const DESKTOP_ITEMS: NavItem[] = [WORK, CASES, STUDIO, ABOUT, RESUME];
+const MENU_ITEMS:    NavItem[] = [WORK, STUDIO, ABOUT, RESUME, PROCESS, BEHIND];
+
+/* /hiring (audience "hiring") is the link job applications use, and
+   job applications never link the studio, so Studio is left out of both
+   lists there. Every other item stays as it is. */
+const notStudio = (item: NavItem) => item.kind !== "studio";
+const DESKTOP_ITEMS_HIRING: NavItem[] = DESKTOP_ITEMS.filter(notStudio);
+const MENU_ITEMS_HIRING:    NavItem[] = MENU_ITEMS.filter(notStudio);
+
+
+const CASE_STUDIES = [
+  { href: "/work/msr-chatbot",        label: "Alfred (MSR chatbot)"       },
+  { href: "/work/aiga-portland",      label: "AIGA PDX"                   },
+  { href: "/work/mens-sole-revival",  label: "Men's Sole Revival"         },
+  { href: "/work/wayfarer",           label: "Wayfarer"                   },
+  { href: "/work/spotify",            label: "Spotify"                    },
+  // { href: "/work/abd-ui-system",      label: "ABD UI System"      }, // hidden 2026-07-01, rework pending
+];
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
-export default function Nav() {
+function isActiveRoute(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+/* Studio: the studio's own site, since the homepage studio slab was cut
+   (2026-11-04). Same tab, like every other nav item. */
+const STUDIO_URL = "https://www.alphabeta.design";
+
+function StudioLink({
+  className,
+  style,
+  onNavigate,
+  children,
+}: {
+  isHome?: boolean;
+  className?: string;
+  style?: CSSProperties;
+  onNavigate?: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <a href={STUDIO_URL} className={className} style={style} onClick={onNavigate}>
+      {children}
+    </a>
+  );
+}
+
+export default function Nav({
+  audience = "all",
+  inPage = false,
+}: {
+  audience?: "all" | "hiring";
+  /** The page is a homepage composition on another route (the
+      /prototypes/home-kus preview): the logo scrolls to #hero and Studio is
+      an in-page #studio anchor, as on "/". Default false. */
+  inPage?: boolean;
+} = {}) {
+  const desktopItems = audience === "hiring" ? DESKTOP_ITEMS_HIRING : DESKTOP_ITEMS;
+  const menuItems    = audience === "hiring" ? MENU_ITEMS_HIRING    : MENU_ITEMS;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname  = usePathname();
-  const isHome    = pathname === "/";
+  // /hiring counts as home: its logo scrolls back to its own top instead of
+  // linking to /, which carries the studio.
+  const isHome    = inPage || pathname === "/" || audience === "hiring";
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const overlayRef   = useRef<HTMLDivElement>(null);
 
@@ -76,22 +147,16 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
-  function handleNavClick(id: string) {
-    setMenuOpen(false);
-    if (isHome) {
-      setTimeout(() => scrollTo(id), 300);
-    }
-    // When not on homepage, navigation is handled by the <Link href> on the element
-  }
-
   function handleLogoClick() {
     setMenuOpen(false);
     if (isHome) scrollTo("hero");
   }
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <>
-      {/* Skip link — first focusable element on every page. Visually
+      {/* Skip link: first focusable element on every page. Visually
           hidden until focused, then snaps to the top-left of the viewport
           so keyboard users can jump past the nav landmark to <main id=
           "main-content">. Pairs with the id on each page's <main>. */}
@@ -99,6 +164,7 @@ export default function Nav() {
       {/* Main nav bar */}
       <nav
         className="main-nav"
+        data-menu-open={menuOpen ? "" : undefined}
         style={{
           position:       "fixed",
           top:            0,
@@ -110,8 +176,10 @@ export default function Nav() {
           display:        "flex",
           alignItems:     "center",
           justifyContent: "space-between",
+          /* Open: terracotta-600, the overlay's ground, so the bar and the
+             menu read as one surface. White on it measures 5.43:1. */
           background:     menuOpen
-            ? "var(--color-terracotta)"
+            ? "var(--color-terracotta-600)"
             : scrolled
               ? "var(--color-bg-nav-scrolled)"
               : "var(--color-paper)",
@@ -121,7 +189,7 @@ export default function Nav() {
              animate cleanly. Using "none" for the unscrolled state made
              the browser interpolate from the default (dark) border-color
              on the first scroll, producing a dark flash before settling
-             on --color-neutral-200. Transparent → neutral-200 fades in
+             on --color-neutral-200. Transparent to neutral-200 fades in
              quietly without the flash. */
           borderBottom:   menuOpen
             ? "1px solid var(--color-inverse-hairline)"
@@ -135,7 +203,7 @@ export default function Nav() {
         {isHome ? (
           <button
             onClick={handleLogoClick}
-            aria-label="Back to top"
+            aria-label="Alfonso Barreiro, back to top"
             className="site-logo"
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, zIndex: 310, display: "flex", alignItems: "center", gap: "12px" }}
           >
@@ -183,75 +251,101 @@ export default function Nav() {
 
         {/* Desktop nav links */}
         <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: "40px" }}>
-          {navLinks.map((link) => (
-            <NavLink
-              key={link}
-              label={NAV_ROUTES[link]?.label ?? link}
-              isHome={isHome}
-              routeHref={NAV_ROUTES[link]?.href}
-              onScrollClick={() => scrollTo(link)}
-            />
-          ))}
+          {desktopItems.map((item) => {
+            if (item.kind === "route") {
+              const active = isActiveRoute(pathname, item.href);
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className="nav-item"
+                  style={NAV_ITEM_STYLE}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+            return (
+              <StudioLink key={item.key} isHome={isHome} className="nav-item" style={NAV_ITEM_STYLE}>
+                {item.label}
+              </StudioLink>
+            );
+          })}
           <SearchTrigger />
         </div>
 
-        {/* Mobile-only search icon next to hamburger */}
-        <button
-          className="nav-search-mobile"
-          onClick={() => { setMenuOpen(false); openCommandPalette(); }}
-          aria-label="Search"
-          style={{
-            display:        "none", // overridden by media query on mobile
-            alignItems:     "center",
-            justifyContent: "center",
-            background:     "none",
-            border:         "none",
-            cursor:         "pointer",
-            padding:        "11px",
-            minWidth:       "44px",
-            minHeight:      "44px",
-            zIndex:         310,
-          }}
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" stroke={menuOpen ? "var(--color-inverse)" : "var(--color-text)"} strokeWidth="1.6" />
-            <path d="M20 20L16.5 16.5" stroke={menuOpen ? "var(--color-inverse)" : "var(--color-text)"} strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
-        </button>
+        {/* Mobile bar actions (below 1024px): Resume stays one tap away as
+            a visible text link, then Search, then the menu button. */}
+        <div className="nav-mobile-actions">
+          <Link
+            href="/resume"
+            className="nav-item nav-resume-mobile"
+            style={NAV_ITEM_STYLE}
+            onClick={closeMenu}
+            aria-current={isActiveRoute(pathname, "/resume") ? "page" : undefined}
+          >
+            Resume
+          </Link>
 
-        {/* Hamburger / Close button — mobile only */}
-        <button
-          ref={hamburgerRef}
-          className="hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu-overlay"
-          style={{
-            display:        "none", // overridden by media query on mobile
-            flexDirection:  "column",
-            justifyContent: "center",
-            alignItems:     "center",
-            gap:            "5px",
-            background:     "none",
-            border:         "none",
-            cursor:         "pointer",
-            padding:        "10px",
-            minWidth:       "44px",
-            minHeight:      "44px",
-            zIndex:         310,
-          }}
-        >
-          {menuOpen ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M6 6L18 18M6 18L18 6" stroke="var(--color-inverse)" strokeWidth="1.5" strokeLinecap="round"/>
+          {/* Mobile-only search icon next to hamburger */}
+          <button
+            className="nav-search-mobile"
+            onClick={() => { setMenuOpen(false); openCommandPalette(); }}
+            aria-label="Search"
+            style={{
+              display:        "none", // overridden by media query on mobile
+              alignItems:     "center",
+              justifyContent: "center",
+              background:     "none",
+              border:         "none",
+              cursor:         "pointer",
+              padding:        "11px",
+              minWidth:       "44px",
+              minHeight:      "44px",
+              zIndex:         310,
+            }}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke={menuOpen ? "var(--color-inverse)" : "var(--color-text)"} strokeWidth="1.6" />
+              <path d="M20 20L16.5 16.5" stroke={menuOpen ? "var(--color-inverse)" : "var(--color-text)"} strokeWidth="1.6" strokeLinecap="round" />
             </svg>
-          ) : (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4 6H20M4 12H20M4 18H20" stroke="var(--color-text)" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          )}
-        </button>
+          </button>
+
+          {/* Hamburger / Close button, mobile only */}
+          <button
+            ref={hamburgerRef}
+            className="hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu-overlay"
+            style={{
+              display:        "none", // overridden by media query on mobile
+              flexDirection:  "column",
+              justifyContent: "center",
+              alignItems:     "center",
+              gap:            "5px",
+              background:     "none",
+              border:         "none",
+              cursor:         "pointer",
+              padding:        "10px",
+              minWidth:       "44px",
+              minHeight:      "44px",
+              zIndex:         310,
+            }}
+          >
+            {menuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6L18 18M6 18L18 6" stroke="var(--color-inverse)" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6H20M4 12H20M4 18H20" stroke="var(--color-text)" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* Full-screen menu overlay. `inert` + aria-hidden when closed
@@ -270,7 +364,10 @@ export default function Nav() {
           position:        "fixed",
           inset:           0,
           zIndex:          200,
-          background:      "var(--color-terracotta)",
+          /* Terracotta-600, not 500: white text measures 5.43:1 here, so
+             the 12px "Case studies" label and the 22px case-study links
+             pass AA. 500 measured 4.01:1 with white. */
+          background:      "var(--color-terracotta-600)",
           display:         "flex",
           flexDirection:   "column",
           /* Top-aligned, not centered: centering a block taller than the
@@ -286,109 +383,60 @@ export default function Nav() {
         }}
       >
         {/* Nav links */}
-        {navLinks.map((link) => {
-          const overlayLinkStyle: React.CSSProperties = {
-            fontFamily:     "var(--font-dm-sans), sans-serif",
-            fontSize:       "clamp(40px,8vw,60px)",
-            fontWeight:     500,
-            color:          "var(--color-inverse)",
-            letterSpacing:  "-0.02em",
-            lineHeight:     1.1,
-            background:     "none",
-            border:         "none",
-            borderBottom:   "1px solid var(--color-inverse-hairline)",
-            cursor:         "pointer",
-            padding:        "12px 0",
-            textAlign:      "left",
-            transition:     "opacity 0.2s",
-            width:          "100%",
-            display:        "block",
-            textDecoration: "none",
-          };
-          // Crimson backdrop: dim the link slightly on hover instead of
-          // shifting hue. Brand-crimson hover on crimson bg would vanish.
-          const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "0.72");
-          const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "1");
-
-          // Route-based nav items always link to their pages regardless of current page
-          const route = NAV_ROUTES[link];
-          if (route) {
-            const { href, label } = route;
+        {menuItems.map((item) => {
+          if (item.kind === "route") {
+            const active = isActiveRoute(pathname, item.href);
             return (
               <Link
-                key={link}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                style={overlayLinkStyle}
-                onMouseEnter={onEnter}
-                onMouseLeave={onLeave}
+                key={item.key}
+                href={item.href}
+                onClick={closeMenu}
+                className="menu-item"
+                style={OVERLAY_ITEM_STYLE}
+                aria-current={active ? "page" : undefined}
               >
-                {label}
+                {item.label}
               </Link>
             );
           }
-
-          return isHome ? (
-            <button
-              key={link}
-              onClick={() => handleNavClick(link)}
-              style={overlayLinkStyle}
-              onMouseEnter={onEnter}
-              onMouseLeave={onLeave}
-            >
-              {link.charAt(0).toUpperCase() + link.slice(1)}
-            </button>
-          ) : (
-            <Link
-              key={link}
-              href={`/#${link}`}
-              onClick={() => setMenuOpen(false)}
-              style={overlayLinkStyle}
-              onMouseEnter={onEnter}
-              onMouseLeave={onLeave}
-            >
-              {link.charAt(0).toUpperCase() + link.slice(1)}
-            </Link>
+          return (
+            <StudioLink key={item.key} isHome={isHome} onNavigate={closeMenu} className="menu-item" style={OVERLAY_ITEM_STYLE}>
+              {item.label}
+            </StudioLink>
           );
         })}
 
-        {/* Case studies — quick-jump under Work. No borderTop here;
-            the previous link's borderBottom already provides separation
-            (was a doubled hairline). */}
+        {/* Case studies: quick-jump under the main links. No borderTop
+            here; the previous item's borderBottom already provides
+            separation (was a doubled hairline). */}
         <div style={{
           marginTop:    "28px",
           display:      "flex",
           flexDirection:"column",
           gap:          "14px",
         }}>
-          {/* Eyebrow bumped from tone="inverse" (50% white — read as
-              ghosted against terracotta) to an inline 85%-white color for
-              a legible label. */}
+          {/* Full white: at 12px this label needs 4.5:1, and white on
+              terracotta-600 measures 5.43:1. The old 85% white measured
+              under 4.5:1 on this ground. */}
           <Eyebrow
             tone="inverse"
             style={{
               fontSize:     "var(--text-small)",
-              color:        "rgb(255 255 255 / 0.85)",
+              color:        "var(--color-inverse)",
               marginBottom: "4px",
             }}
           >
             Case studies
           </Eyebrow>
-          {[
-            { href: "/work/msr-chatbot",        label: "Alfred (MSR chatbot)"       },
-            { href: "/work/aiga-portland",      label: "AIGA PDX"                   },
-            { href: "/work/mens-sole-revival",  label: "Men's Sole Revival"         },
-            { href: "/work/wayfarer",           label: "Wayfarer"                   },
-            { href: "/work/spotify",            label: "Spotify"                    },
-            // { href: "/work/abd-ui-system",      label: "ABD UI System"      }, // hidden 2026-07-01 — rework pending
-          ].map((cs) => (
+          {CASE_STUDIES.map((cs) => (
             <Link
               key={cs.href}
               href={cs.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
+              className="menu-subitem"
               style={{
                 fontFamily:     "var(--font-dm-sans), sans-serif",
-                /* Bumped from --text-h3 (20px) — was reading as caption
+                /* Bumped from --text-h3 (20px): was reading as caption
                    next to the 60px primary nav. This lands the case
                    studies as a real subordinate level, not a footnote. */
                 fontSize:       "clamp(22px, 5.5vw, 30px)",
@@ -396,11 +444,8 @@ export default function Nav() {
                 color:          "var(--color-inverse)",
                 letterSpacing:  "-0.01em",
                 textDecoration: "none",
-                transition:     "opacity 0.2s",
                 lineHeight:     1.2,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.72")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
               {cs.label} →
             </Link>
@@ -409,11 +454,106 @@ export default function Nav() {
 
       </div>
 
-      {/* Cmd+K command palette — listens globally, opens on shortcut or via openCommandPalette() */}
-      <CommandPalette />
+      {/* Cmd+K command palette: listens globally, opens on shortcut or via openCommandPalette() */}
+      <CommandPalette exclude={audience === "hiring" ? HIRING_EXCLUDE : undefined} />
+
+      <style>{`
+        /* Desktop items share one color + hover rule. */
+        .nav-item       { color: var(--color-neutral-700); transition: color 0.2s; }
+        .nav-item:hover { color: var(--color-text); }
+
+        /* Mobile bar: Resume, Search, Menu. Hidden on desktop, where the
+           full link row takes over. */
+        .nav-mobile-actions { display: none; align-items: center; }
+        @media (max-width: 1023px) {
+          .nav-mobile-actions { display: flex; }
+        }
+        /* The menu button's 44px box reaches 10px into the right gutter, so
+           its glyph sits on the content edge. */
+        .nav-mobile-actions .hamburger { margin-right: -10px; }
+
+        /* The wordmark stays on one line at every width (the logo is a
+           button on the homepage, and a wrapped name centered itself in
+           two lines). Mark, name, Resume, Search and Menu need 412px.
+           Below that the infinity mark drops out and the name stays, so a
+           390px phone reads "Alfonso Barreiro" on one line with a clear
+           gap before Resume. Below 360px the name steps down to 17px. */
+        .nav-wordmark { white-space: nowrap; text-align: left; }
+        /* 44px hit area for the logo. The bar centers it, so nothing moves. */
+        .main-nav .site-logo { min-height: 44px; }
+        @media (max-width: 411px) {
+          .main-nav .site-logo-mark { display: none; }
+        }
+        @media (max-width: 359px) {
+          .main-nav .nav-wordmark { font-size: 17px !important; }
+        }
+
+        /* Menu open: the bar turns terracotta-600, so its text and focus
+           ring go white (5.43:1). Terracotta-500 rings vanish on it. */
+        .main-nav[data-menu-open] .nav-resume-mobile,
+        .main-nav[data-menu-open] .nav-resume-mobile:hover { color: var(--color-inverse); }
+        .main-nav[data-menu-open] a:focus-visible,
+        .main-nav[data-menu-open] button:focus-visible { outline-color: var(--color-inverse); }
+
+        /* Overlay hover. Primary items (40px and up) dim to 72% white,
+           which still clears the 3:1 large-text floor. The 22px case-study
+           links underline instead, because a dim would drop them under
+           4.5:1. Hover only where a real pointer can hover, so a tap on a
+           phone never leaves an item stuck dim. */
+        .menu-item, .menu-subitem { transition: opacity 0.2s; }
+        @media (hover: hover) {
+          .menu-item:hover    { opacity: 0.72; }
+          .menu-subitem:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+        }
+
+        /* Reduced motion, or the viewer stopped the dots: the menu opens
+           and closes in place, with no slide. */
+        @media (prefers-reduced-motion: reduce) {
+          #mobile-menu-overlay, .main-nav, .nav-item, .menu-item, .menu-subitem { transition: none !important; }
+        }
+        html[data-dots="still"] #mobile-menu-overlay { transition: none !important; }
+      `}</style>
     </>
   );
 }
+
+/* Shared by every desktop item. Color lives in .nav-item so :hover can
+   change it without inline handlers. */
+const NAV_ITEM_STYLE: CSSProperties = {
+  background:     "none",
+  border:         "none",
+  cursor:         "pointer",
+  fontFamily:     "inherit",
+  fontSize:       "var(--text-body)",
+  fontWeight:     500,
+  lineHeight:     "inherit",
+  letterSpacing:  "0.01em",
+  /* 12px vertical padding on the inherited line height gives a ~46px
+     hit target, over the 44px house floor. */
+  padding:        "12px 4px",
+  textDecoration: "none",
+  display:        "inline-flex",
+  alignItems:     "center",
+  textAlign:      "left",
+};
+
+const OVERLAY_ITEM_STYLE: CSSProperties = {
+  fontFamily:     "var(--font-dm-sans), sans-serif",
+  fontSize:       "clamp(40px,8vw,60px)",
+  fontWeight:     500,
+  color:          "var(--color-inverse)",
+  letterSpacing:  "-0.02em",
+  lineHeight:     1.1,
+  background:     "none",
+  border:         "none",
+  borderBottom:   "1px solid var(--color-inverse-hairline)",
+  cursor:         "pointer",
+  padding:        "12px 0",
+  textAlign:      "left",
+  width:          "100%",
+  display:        "block",
+  textDecoration: "none",
+};
 
 function SearchTrigger() {
   return (
@@ -426,7 +566,9 @@ function SearchTrigger() {
         display:       "inline-flex",
         alignItems:    "center",
         gap:           "8px",
-        padding:       0,
+        /* Same 12px vertical padding as the links: a 47px hit area on a
+           touch laptop or an iPad in landscape, with no visual change. */
+        padding:       "12px 0",
         background:    "transparent",
         border:        "none",
         cursor:        "pointer",
@@ -445,73 +587,5 @@ function SearchTrigger() {
       </svg>
       <span>Search</span>
     </button>
-  );
-}
-
-function NavLink({
-  label,
-  isHome,
-  routeHref,
-  onScrollClick,
-}: {
-  label: string;
-  isHome: boolean;
-  routeHref?: string;
-  onScrollClick: () => void;
-}) {
-  const sharedStyle: React.CSSProperties = {
-    background:    "none",
-    border:        "none",
-    cursor:        "pointer",
-    color:         "var(--color-neutral-700)",
-    fontSize:      "var(--text-body)",
-    fontWeight:    500,
-    letterSpacing: "0.01em",
-    /* Padded to clear WCAG 2.5.8 Target Size (Minimum) — 24x24 floor.
-       15px line-height + 12px vertical padding = ~39px hit target. */
-    padding:       "12px 4px",
-    transition:    "color 0.2s",
-    textDecoration: "none",
-    display:       "inline-flex",
-    alignItems:    "center",
-  };
-  const displayLabel = label.charAt(0).toUpperCase() + label.slice(1);
-
-  // If a routeHref is provided, always navigate to that route (regardless of current page)
-  if (routeHref) {
-    return (
-      <Link
-        href={routeHref}
-        style={sharedStyle}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text)")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-neutral-700)")}
-      >
-        {displayLabel}
-      </Link>
-    );
-  }
-
-  if (isHome) {
-    return (
-      <button
-        onClick={onScrollClick}
-        style={sharedStyle}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text)")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-neutral-700)")}
-      >
-        {displayLabel}
-      </button>
-    );
-  }
-
-  return (
-    <Link
-      href={`/#${label}`}
-      style={sharedStyle}
-      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text)")}
-      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-neutral-700)")}
-    >
-      {displayLabel}
-    </Link>
   );
 }

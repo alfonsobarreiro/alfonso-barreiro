@@ -18,14 +18,14 @@ export function openCommandPalette() {
   window.dispatchEvent(new CustomEvent(OPEN_EVENT));
 }
 
-export default function CommandPalette() {
+export default function CommandPalette({ exclude }: { exclude?: ReadonlySet<string> } = {}) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIdx, setSelectedIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const results = query ? searchEntries(query, 8) : [];
+  const results = query ? searchEntries(query, 8, exclude) : [];
 
   // Cmd+K / Ctrl+K global listener + custom open/close events
   useEffect(() => {
@@ -244,6 +244,7 @@ function KindBadge({ kind }: { kind: SearchEntry["kind"] }) {
     "section":      { label: "§",      bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
     "page":         { label: "Page",   bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
     "presentation": { label: "Slides", bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
+    "sample":       { label: "Sample", bg: "var(--color-neutral-100)",    color: "var(--color-neutral-700)" },
   };
   const { label, bg, color } = map[kind];
   return (
