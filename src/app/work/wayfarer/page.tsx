@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { kusDisplay, kusMono } from "@/components/kus/fonts";
+import { KusStyles } from "@/components/kus/KusStyles";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import CenterScrollX from "@/components/CenterScrollX";
@@ -52,8 +54,8 @@ export const metadata: Metadata = {
 const c = {
   surface:      "var(--color-paper)",
   ink:          "var(--color-text)",
-  ink2:         "var(--color-neutral-700)",
-  muted:        "var(--color-neutral-600)",
+  ink2:         "var(--color-navy)",
+  muted:        "var(--color-navy)",
   brand:        "var(--color-brand)",
   accent:       "var(--color-accent)",
   accent2:      "var(--color-accent-hover)",
@@ -70,7 +72,7 @@ const font = {
   sans: "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
-const SECTION_X    = "clamp(32px, 6vw, 80px)";
+const SECTION_X    = "var(--kus-pad-x)"; // the site rail: 24px on phones, 80px wide (was clamp(32px, 6vw, 80px), 2026-11-19)
 const CONTENT_MAX  = "var(--content-max)";
 const PROSE_MAX    = "680px";
 
@@ -268,7 +270,16 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
 
 export default function WayfarerV2() {
   return (
-    <>
+    /* On the homepage system since 2026-11-19 (case study audit): the .kus
+       root gives the site's nav, footer, link ink, 13px small text and
+       16px body; the accent (deep teal) and brand (terracotta-500) map to
+       terracotta-600, and the palette's two grays are navy, so text runs
+       on the site's three inks. */
+    <div
+      className={`kus ${kusDisplay.variable} ${kusMono.variable}`}
+      style={{ "--color-accent": "var(--color-terracotta-600)", "--color-accent-hover": "var(--color-terracotta-700)", "--color-brand": "var(--color-terracotta-600)" } as React.CSSProperties}
+    >
+      <KusStyles />
       <Nav />
       <CaseStudySchema
         name="Wayfarer · Travel Discovery Platform"
@@ -462,7 +473,7 @@ export default function WayfarerV2() {
             .wf2-arc-nav ul { gap: 0 !important; }
             /* Anchor sized to fit four cells at 390 px viewport. */
             .wf2-arc-nav a  {
-              font-size: 11px !important;
+              font-size: 13px !important;
               padding: 12px 4px !important;
               letter-spacing: 0.06em !important;
               gap: 4px !important;
@@ -494,11 +505,11 @@ export default function WayfarerV2() {
             .wf2-arc-nav a {
               gap: 0 !important;
               padding: 12px 3px !important;
-              font-size: 10px !important;
+              font-size: 13px !important;
               letter-spacing: 0.04em !important;
             }
             .wf2-arc-label {
-              font-size: 10px !important;
+              font-size: 13px !important;
               letter-spacing: 0.04em !important;
             }
           }
@@ -881,7 +892,7 @@ export default function WayfarerV2() {
 
       <ScrollProgress />
       <RelatedCaseStudies current="wayfarer" />
-      <Footer />
+      <Footer ground="paper" />
 
       {/* Responsive */}
       <style>{`
@@ -947,7 +958,7 @@ export default function WayfarerV2() {
         }
         .wf2-pg-num {
           font-family: var(--font-dm-sans), sans-serif;
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 500;
           letter-spacing: 0.18em;
           color: ${c.accent};
@@ -972,7 +983,7 @@ export default function WayfarerV2() {
         .wf2-ds-swipe-hint { display: none; }
         .wf2-ds-native-label {
           font-family: var(--font-dm-sans), sans-serif;
-          font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+          font-size: 13px; font-weight: 500; letter-spacing: 0.18em;
           text-transform: none; color: ${c.accent};
           margin: 0 0 14px;
         }
@@ -999,11 +1010,11 @@ export default function WayfarerV2() {
         .wf2-ds-color-meta { display: flex; flex-direction: column; min-width: 0; }
         .wf2-ds-color-name {
           font-family: var(--font-dm-sans), sans-serif;
-          font-size: 12px; font-weight: 500; color: ${c.ink}; letter-spacing: -0.005em;
+          font-size: 13px; font-weight: 500; color: ${c.ink}; letter-spacing: -0.005em;
         }
         .wf2-ds-color-hex {
           font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-          font-size: 11px; color: ${c.muted}; margin-top: 2px;
+          font-size: 13px; color: ${c.muted}; margin-top: 2px;
         }
         .wf2-ds-typo-stack { display: flex; flex-direction: column; gap: 20px; }
         .wf2-ds-typo-row {
@@ -1013,7 +1024,7 @@ export default function WayfarerV2() {
         }
         .wf2-ds-typo-meta {
           font-family: var(--font-dm-sans), sans-serif;
-          font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
+          font-size: 13px; font-weight: 500; letter-spacing: 0.16em;
           text-transform: none; color: ${c.muted};
           margin: 0 0 8px;
         }
@@ -1036,7 +1047,7 @@ export default function WayfarerV2() {
         }
         .wf2-ds-typo-sample-label {
           font-family: "Inter", var(--font-dm-sans), sans-serif;
-          font-size: 12px; font-weight: 500; color: ${c.ink};
+          font-size: 13px; font-weight: 500; color: ${c.ink};
           margin: 0;
         }
 
@@ -1151,7 +1162,7 @@ export default function WayfarerV2() {
           .wf2-brief-scroll tr { padding: 16px 18px !important; border-bottom: 1px solid var(--color-neutral-300) !important; }
           .wf2-brief-scroll tr:last-child { border-bottom: none !important; }
           .wf2-brief-scroll td { padding: 0 0 6px 0 !important; border: none !important; }
-          .wf2-brief-scroll td:first-child { font-size: 10px !important; font-weight: 500 !important; letter-spacing: 0.16em !important; text-transform: none !important; opacity: 0.7 !important; margin-bottom: 4px !important; width: auto !important; }
+          .wf2-brief-scroll td:first-child { font-size: 13px !important; font-weight: 500 !important; letter-spacing: 0.16em !important; text-transform: none !important; opacity: 0.7 !important; margin-bottom: 4px !important; width: auto !important; }
           .wf2-brief-scroll td:last-child { padding-bottom: 0 !important; }
           .wf2-ia-row           { grid-template-columns: auto 1fr !important; grid-template-rows: auto auto !important; row-gap: 6px !important; column-gap: 12px !important; }
           .wf2-ia-row .wf2-ia-note { grid-column: 1 / -1 !important; text-align: left !important; padding-top: 4px !important; }
@@ -1159,7 +1170,7 @@ export default function WayfarerV2() {
           .wf2-ia-flow .wf2-ia-arrow { display: none !important; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
 
@@ -2549,7 +2560,7 @@ function SignupFunnelFlow() {
     { num: "04", label: "Dream places",   src: "/images/work/wayfarer/v2/live-signup-04.webp",
       note: "Six aspirational destinations as seed data. The system asks where you want to go before it tells you where to go." },
     { num: "05", label: "Review",         src: "/images/work/wayfarer/v2/live-signup-05.webp",
-      note: "Edit-back review screen. Account, preferences, interests, destinations — each block has its own Edit link. Any answer can be revisited without losing the others." },
+      note: "Edit-back review screen. Account, preferences, interests, destinations: each block has its own Edit link. Any answer can be revisited without losing the others." },
     { num: "06", label: "Welcome",        src: "/images/work/wayfarer/v2/live-signup-06.webp",
       note: "Confirmation modal. Green check, single warm sentence, one primary action: Start Exploring. The handoff drops the user into a personalized feed, not a generic homepage." },
   ];

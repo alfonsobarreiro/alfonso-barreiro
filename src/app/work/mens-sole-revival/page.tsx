@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { kusDisplay, kusMono } from "@/components/kus/fonts";
+import { KusStyles } from "@/components/kus/KusStyles";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import StickyArcNavInit from "@/components/StickyArcNavInit";
@@ -46,8 +48,8 @@ export const metadata: Metadata = {
 const c = {
   surface:       "var(--color-paper)",
   ink:           "var(--color-text)",
-  ink2:          "var(--color-neutral-700)",
-  muted:         "var(--color-neutral-600)",
+  ink2:          "var(--color-navy)",
+  muted:         "var(--color-navy)",
   brand:         "var(--color-brand)",
   accent:        "var(--color-accent)",
   accent2:       "var(--color-accent-hover)",
@@ -60,7 +62,7 @@ const font = {
   sans: "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
-const SECTION_X = "clamp(32px, 6vw, 80px)";
+const SECTION_X = "var(--kus-pad-x)"; // the site rail: 24px on phones, 80px wide (was clamp(32px, 6vw, 80px), 2026-11-19)
 const CONTENT_MAX = "var(--content-max)";
 const PROSE_MAX   = "680px";
 
@@ -254,7 +256,16 @@ function HeroImage({
 
 export default function MSRv2() {
   return (
-    <>
+    /* On the homepage system since 2026-11-19 (case study audit): the .kus
+       root gives the site's nav, footer, link ink, 13px small text and
+       16px body; the accent (deep teal) and brand (terracotta-500) map to
+       terracotta-600, and the palette's two grays are navy, so text runs
+       on the site's three inks. */
+    <div
+      className={`kus ${kusDisplay.variable} ${kusMono.variable}`}
+      style={{ "--color-accent": "var(--color-terracotta-600)", "--color-accent-hover": "var(--color-terracotta-700)", "--color-brand": "var(--color-terracotta-600)" } as React.CSSProperties}
+    >
+      <KusStyles />
       <Nav />
       <CaseStudySchema
         name="Men’s Sole Revival · Foot Health Editorial"
@@ -445,7 +456,7 @@ export default function MSRv2() {
             .msr2-arc-nav ul { gap: 0 !important; }
             /* Anchor sized to fit four cells at 390 px viewport. */
             .msr2-arc-nav a  {
-              font-size: 11px !important;
+              font-size: 13px !important;
               padding: 12px 4px !important;
               letter-spacing: 0.06em !important;
               gap: 4px !important;
@@ -474,13 +485,13 @@ export default function MSRv2() {
           @media (max-width: 480px) {
             .msr2-arc-nav a {
               padding: 12px 3px !important;
-              font-size: 10px !important;
+              font-size: 13px !important;
               letter-spacing: 0.04em !important;
               gap: 0 !important;
               min-height: 40px !important;
             }
             .msr2-arc-label {
-              font-size: 10px !important;
+              font-size: 13px !important;
               letter-spacing: 0.04em !important;
             }
           }
@@ -695,7 +706,7 @@ export default function MSRv2() {
 
                 {/* Right: color swatches */}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }} className="msr2-swatch-grid">
-                  <SwatchBlock label="Editorial Ink"  hex="var(--color-text)" textColor="#F5F0E8" />
+                  <SwatchBlock label="Editorial Ink"  hex="#0F283D" textColor="#F5F0E8" />
                   <SwatchBlock label="Cognac"         hex="#C4703A" textColor="#F5F0E8" />
                   <SwatchBlock label="Deep Cognac"    hex="#A35E32" textColor="#F5F0E8" />
                   <SwatchBlock label="Paper"          hex="#F5F0E8" textColor="var(--color-text)" />
@@ -1031,8 +1042,9 @@ export default function MSRv2() {
               marginBottom: "48px",
               paddingTop:    "0",
               paddingBottom: "0",
-              paddingLeft: SECTION_X,
-              paddingRight: SECTION_X,
+              /* No side padding: the section already pads by SECTION_X,
+                 and doubling it put this H2 80px off the rail
+                 (2026-11-19 audit). */
             }}>
               <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto" }}>
 
@@ -1190,7 +1202,7 @@ export default function MSRv2() {
 
       <ScrollProgress />
       <RelatedCaseStudies current="mens-sole-revival" />
-      <Footer />
+      <Footer ground="paper" />
 
       {/* Responsive */}
       <style>{`
@@ -1220,7 +1232,7 @@ export default function MSRv2() {
         }
         .msr2-ds-num {
           font-family: var(--font-dm-sans), sans-serif;
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.18em;
           color: ${c.accent};
@@ -1243,8 +1255,8 @@ export default function MSRv2() {
           .msr2-callout-grid     { grid-template-columns: 1fr !important; gap: 22px !important; }
           .msr2-pair             { grid-template-columns: 1fr !important; }
           .msr2-meta             { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
-          .msr2-brand-grid       { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 28px !important; }
-          .msr2-swatch-grid      { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+          .msr2-brand-grid       { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; padding: 40px 28px !important; }
+          .msr2-swatch-grid      { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
           .msr2-component-grid   { grid-template-columns: 1fr !important; gap: 0 !important; }
           .msr2-component-grid > div { padding-top: 12px !important; }
           .msr2-strip            { grid-template-columns: 1fr !important; gap: 12px !important; }
@@ -1273,7 +1285,7 @@ export default function MSRv2() {
           .msr2-research-strip   { grid-template-columns: 1fr !important; gap: 20px !important; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
 
@@ -2064,7 +2076,7 @@ function AssessmentFunnelFlow() {
 
 function DSPanelColor() {
   const tokens = [
-    { label: "Editorial Ink", hex: "var(--color-text)", role: "Display + body ink" },
+    { label: "Editorial Ink", hex: "#0F283D", role: "Display + body ink" },
     { label: "Cognac",        hex: "#C4703A", role: "Brand + key actions" },
     { label: "Deep Cognac",   hex: "#A35E32", role: "Hover + emphasis" },
     { label: "Paper",         hex: "#F5F0E8", role: "Surface" },
@@ -2206,7 +2218,7 @@ function DSPanelType() {
           <p style={{
             fontFamily: "var(--font-dm-sans), sans-serif",
             fontSize:   "var(--text-body)",
-            color:      "var(--color-neutral-700)",
+            color:      "var(--color-navy)",
             margin:     "0 0 10px",
             lineHeight: 1.5,
             fontStyle: "normal",
