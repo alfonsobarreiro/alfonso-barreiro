@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
       // so the path can come back; links already sent land on the homepage.
       { source: "/hiring", destination: "/", permanent: false },
 
+      // Samples removed from /work (Alfonso, 2026-11-19). Temporary, so a
+      // piece can come back; old links land on the index.
+      { source: "/work/samples/vara-distributor-leave-behind", destination: "/work", permanent: false },
+      { source: "/work/samples/vara-rack-card-tasting-cards", destination: "/work", permanent: false },
+      { source: "/work/samples/boomtime-recession-playbook", destination: "/work", permanent: false },
+
       // Retired blog namespace.
       { source: "/blog/:path*", destination: "/", permanent: true },
 

@@ -31,7 +31,6 @@ export const PLATE_MAP: Record<string, PlateColor> = {
   "vara-social":                     "mustard",
   "kendra-toth-brochure":            "terracotta",
   "boomtime-word-of-mouth-playbook": "blue",
-  "vara-distributor-leave-behind":   "green",
   "wayfarer":                        "plum",
   "spotify":                         "green",
   /* Logos (the logo pick, "D layout, C panels, real places"): the
@@ -61,7 +60,7 @@ export const STUDIO_SLUGS = new Set(["alphabeta-design", "alpha-beta-mark"]);
 export const WEB_SLUGS_ALL  = ["alphabeta-design", "whittaker-hotel", "emblem-coffee", "sandwich-shop", "bookstore", "layercue"];
 /* The shield leads (it is on both audiences, so the lead never changes). */
 export const LOGO_SLUGS_ALL = ["mens-sole-revival-shield", "sky-valley-comm", "nq-zebraworks", "becourageous-leadership", "alpha-beta-mark"];
-export const CAMPAIGN_SLUGS = ["vara-somos-unidos", "vara-magazine-ads", "vara-social", "kendra-toth-brochure", "boomtime-word-of-mouth-playbook", "vara-distributor-leave-behind"];
+export const CAMPAIGN_SLUGS = ["vara-somos-unidos", "vara-magazine-ads", "vara-social", "kendra-toth-brochure", "boomtime-word-of-mouth-playbook"];
 
 /* The reel (spec 2.2): six real pieces, captions from work.ts, one per
    discipline: web (AIGA Portland), packaging (Somos Unidos), AI (Alfred),

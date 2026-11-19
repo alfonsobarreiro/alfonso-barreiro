@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { kusDisplay, kusMono } from "@/components/kus/fonts";
+import { KusStyles } from "@/components/kus/KusStyles";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import StickyArcNavInit from "@/components/StickyArcNavInit";
@@ -45,8 +47,8 @@ export const metadata: Metadata = {
 const c = {
   surface:       "var(--color-paper)",
   ink:           "var(--color-text)",
-  ink2:          "var(--color-neutral-700)",
-  muted:         "var(--color-neutral-600)",
+  ink2:          "var(--color-navy)",
+  muted:         "var(--color-navy)",
   brand:         "var(--color-brand)",
   accent:        "var(--color-accent)",
   accent2:       "var(--color-accent-hover)",
@@ -57,7 +59,7 @@ const c = {
 
 const font = { sans: "var(--font-dm-sans), -apple-system, sans-serif" };
 
-const SECTION_X = "clamp(32px, 6vw, 80px)";
+const SECTION_X = "var(--kus-pad-x)"; // the site rail: 24px on phones, 80px wide (was clamp(32px, 6vw, 80px), 2026-11-19)
 const CONTENT_MAX = "var(--content-max)";
 const PROSE_MAX   = "680px";
 
@@ -692,7 +694,16 @@ function ClosingArtifacts() {
 
 export default function AIGAPortland() {
   return (
-    <>
+    /* On the homepage system since 2026-11-19 (case study audit): the .kus
+       root gives the site's nav, footer, link ink, 13px small text and
+       16px body; the accent (deep teal) and brand (terracotta-500) map to
+       terracotta-600, and the palette's two grays are navy, so text runs
+       on the site's three inks. */
+    <div
+      className={`kus ${kusDisplay.variable} ${kusMono.variable}`}
+      style={{ "--color-accent": "var(--color-terracotta-600)", "--color-accent-hover": "var(--color-terracotta-700)", "--color-brand": "var(--color-terracotta-600)" } as React.CSSProperties}
+    >
+      <KusStyles />
       <Nav />
       <CaseStudySchema
         name="Portland Design Month 2026 · AIGA Portland"
@@ -863,7 +874,7 @@ export default function AIGAPortland() {
             }
             .aiga2-arc-nav ul { gap: 0 !important; }
             .aiga2-arc-nav a  {
-              font-size: 11px !important;
+              font-size: 13px !important;
               padding: 12px 4px !important;
               letter-spacing: 0.06em !important;
               gap: 4px !important;
@@ -1133,7 +1144,7 @@ export default function AIGAPortland() {
       </main>
       <ScrollProgress />
       <RelatedCaseStudies current="aiga-portland" />
-      <Footer />
-    </>
+      <Footer ground="paper" />
+    </div>
   );
 }

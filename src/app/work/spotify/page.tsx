@@ -5,6 +5,8 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import { LinkArrow } from "@/components/ui/LinkArrow";
 import Footer from "@/components/Footer";
+import { kusDisplay, kusMono } from "@/components/kus/fonts";
+import { KusStyles } from "@/components/kus/KusStyles";
 import RelatedCaseStudies from "@/components/RelatedCaseStudies";
 import ScrollProgress from "@/components/ScrollProgress";
 import StickyArcNavInit from "@/components/StickyArcNavInit";
@@ -58,8 +60,8 @@ export const metadata: Metadata = {
 const c = {
   surface:      "var(--color-paper)",
   ink:          "var(--color-text)",
-  ink2:         "var(--color-neutral-700)",
-  muted:        "var(--color-neutral-600)",
+  ink2:         "var(--color-navy)",
+  muted:        "var(--color-navy)",
   brand:        "var(--color-brand-spotify-500)",
   brandSite:    "var(--color-brand)",
   accent:       "var(--color-accent)",
@@ -78,7 +80,7 @@ const font = {
   sans: "var(--font-dm-sans), -apple-system, sans-serif",
 };
 
-const SECTION_X    = "clamp(32px, 6vw, 80px)";
+const SECTION_X    = "var(--kus-pad-x)"; // the site rail: 24px on phones, 80px wide (was clamp(32px, 6vw, 80px), 2026-11-19)
 const CONTENT_MAX  = "var(--content-max)";
 const PROSE_MAX    = "680px";
 
@@ -236,7 +238,16 @@ function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
 
 export default function SpotifyV2() {
   return (
-    <>
+    /* On the homepage system since 2026-11-19 (case study audit): the .kus
+       root gives the site's nav, footer, link ink, 13px small text and
+       16px body; the accent (deep teal) and brand (terracotta-500) map to
+       terracotta-600, and the palette's two grays are navy, so text runs
+       on the site's three inks. */
+    <div
+      className={`kus ${kusDisplay.variable} ${kusMono.variable}`}
+      style={{ "--color-accent": "var(--color-terracotta-600)", "--color-accent-hover": "var(--color-terracotta-700)", "--color-brand": "var(--color-terracotta-600)" } as React.CSSProperties}
+    >
+      <KusStyles />
       <Nav />
       <CaseStudySchema
         name="Spotify · Recently Played Controls"
@@ -372,7 +383,7 @@ export default function SpotifyV2() {
             }
             .sp2-arc-nav ul { gap: 0 !important; }
             .sp2-arc-nav a  {
-              font-size: 11px !important;
+              font-size: 13px !important;
               padding: 12px 4px !important;
               letter-spacing: 0.06em !important;
               gap: 4px !important;
@@ -398,13 +409,13 @@ export default function SpotifyV2() {
           @media (max-width: 480px) {
             .sp2-arc-nav a {
               padding: 12px 3px !important;
-              font-size: 10px !important;
+              font-size: 13px !important;
               letter-spacing: 0.04em !important;
               gap: 0 !important;
               min-height: 40px !important;
             }
             .sp2-arc-label {
-              font-size: 10px !important;
+              font-size: 13px !important;
               letter-spacing: 0.04em !important;
             }
           }
@@ -1007,7 +1018,7 @@ export default function SpotifyV2() {
 
       <ScrollProgress />
       <RelatedCaseStudies current="spotify" />
-      <Footer />
+      <Footer ground="paper" />
 
       {/* Responsive */}
       <style>{`
@@ -1224,7 +1235,7 @@ export default function SpotifyV2() {
             align-items: center !important;
             gap: 6px !important;
             font-family: var(--font-dm-sans), system-ui, sans-serif;
-            font-size: 11px !important; font-weight: 500 !important;
+            font-size: 13px !important; font-weight: 500 !important;
             letter-spacing: 0.14em !important; text-transform: none !important;
             color: var(--color-accent) !important;
             background: rgba(15, 61, 62, 0.06) !important;
@@ -1253,7 +1264,7 @@ export default function SpotifyV2() {
             margin-left: calc(-1 * clamp(24px, 6vw, 80px)) !important;
             margin-right: calc(-1 * clamp(24px, 6vw, 80px)) !important;
           }
-          .sp2-control-nav a { padding: 16px 8px !important; font-size: 12px !important; }
+          .sp2-control-nav a { padding: 16px 8px !important; font-size: 13px !important; }
           .sp2-control-numeral { display: none !important; }
         }
 
@@ -1341,7 +1352,7 @@ export default function SpotifyV2() {
           else window.addEventListener('load', deferredInit);
         })();
       ` }} />
-    </>
+    </div>
   );
 }
 
@@ -2214,11 +2225,13 @@ function Prototypes() {
 function ShippedSection() {
   return (
     <section id="shipped" aria-label="Shipped, with receipts" style={{
-      padding: `40px 0 120px`,
+      /* Side padding on the section, not inside the max-width box, so the
+         H2 sits on the 98px rail like every other section (2026-11-19). */
+      padding: `40px ${SECTION_X} 120px`,
       background: c.callout, borderTop: `1px solid ${c.border}`,
       borderBottom: `1px solid ${c.border}`,
     }}>
-      <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: `64px ${SECTION_X} 0` }}>
+      <div style={{ maxWidth: CONTENT_MAX, margin: "0 auto", padding: "64px 0 0" }}>
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1.6fr",
           gap: "64px", alignItems: "start", marginBottom: "48px",
@@ -2742,11 +2755,13 @@ function UserVoices() {
 function CompetitiveAudit() {
   const cols = ["Platform", "Clear all", "Pause history", "Remove single", "Inline controls", "Reversible"];
   const rows = [
-    { name: "YouTube Music",         vals: ["✓", "—", "—", "Limited", "✓"], proposed: false },
-    { name: "Apple Music",           vals: ["—", "✓", "✓", "—",       "✓"], proposed: false },
-    { name: "Amazon Music",          vals: ["—", "✓", "✓", "✓",       "✓"], proposed: false },
+    /* "No" replaced an em-dash placeholder (2026-11-19): readable, and a
+       screen reader no longer says "em dash". */
+    { name: "YouTube Music",         vals: ["✓", "No", "No", "Limited", "✓"], proposed: false },
+    { name: "Apple Music",           vals: ["No", "✓", "✓", "No",     "✓"], proposed: false },
+    { name: "Amazon Music",          vals: ["No", "✓", "✓", "✓",      "✓"], proposed: false },
     { name: "TikTok / YouTube",      vals: ["n/a", "n/a", "n/a", "✓", "✓"], proposed: false },
-    { name: "Spotify (today)",       vals: ["—", "—", "—", "—", "—"],       proposed: false, current: true },
+    { name: "Spotify (today)",       vals: ["No", "No", "No", "No", "No"],  proposed: false, current: true },
     { name: "Spotify (proposed)",    vals: ["✓", "✓", "✓", "✓", "✓"],       proposed: true },
   ];
   const thStyle: React.CSSProperties = {
@@ -2762,7 +2777,7 @@ function CompetitiveAudit() {
   };
   const cellColor = (v: string, proposed: boolean) => {
     if (v === "✓") return proposed ? c.accent : c.ink;
-    if (v === "—") return c.muted;
+    if (v === "No") return c.muted;
     return c.ink2;
   };
   return (
@@ -2877,8 +2892,8 @@ function CompetitiveAudit() {
                       ...tdBase, textAlign: "center",
                       color: cellColor(v, r.proposed),
                       fontWeight: v === "✓" ? 700 : 500,
-                      fontSize: v === "✓" || v === "—" ? "18px" : "13px",
-                    }}>{v}</td>
+                      fontSize: v === "✓" ? "18px" : "13px",
+                    }}>{v === "✓" ? <><span aria-hidden="true">✓</span><span className="kus-sr">Yes</span></> : v}</td>
                   ))}
                 </tr>
               ))}
