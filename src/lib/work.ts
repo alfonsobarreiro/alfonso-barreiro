@@ -419,8 +419,9 @@ export const WORK: WorkItem[] = [
     gallery: [board("/images/work/boomtime/05-boomtime-podcast-covers.jpg", "Three square podcast covers: B2B Word of Mouth Marketing and Legal Word of Mouth Marketing, each with a vintage microphone inside a dotted ring, and a Legal version with a gavel in place of the microphone.")],
   },
   /* Added 2026-11-19 (Alfonso: "It was for a college working with Be
-     Courageous Leadership"). The playbook's own thanks page names Walmart
-     Foundation and Reach University as funders; the college is not named. */
+     Courageous Leadership"). The college is Reach University: the final
+     playbook went to Reach on 2025-02-10 (email thread "Final Playbook!"),
+     with an interactive PDF and files for an embedded web version. */
   {
     slug: "digital-credentials-playbook",
     title: "Digital Credentials Playbook",
@@ -429,13 +430,13 @@ export const WORK: WorkItem[] = [
     year: "2025",
     depth: "Sample",
     disciplines: ["print"],
-    summary: "A 51-page interactive playbook for leaders launching a digital credentials program, with a skills matrix and a platform scoring system.",
+    summary: "A 51-page interactive playbook for Reach University on launching a digital credentials program, with a skills matrix and a platform scoring system.",
     cover: board("/images/work/becourageous/01-digital-credentials-playbook.jpg", "Four landscape pages from the Implementing a Digital Credentials Program playbook: the cover, a How to Use page explaining the interactive buttons, a skills and employment level matrix, and an example scoring system for credential platforms."),
     card: { src: "/images/home/cards/digital-credentials-playbook.png", width: 1620, height: 955 },
-    brief: "A playbook for project leaders putting a digital credentials program in place, made for a college working with BeCourageous Leadership.",
+    brief: "A playbook for project leaders putting a digital credentials program in place, made for Reach University with BeCourageous Leadership.",
     shows: "51 landscape pages built for screens: linked navigation, pro tips, a real-world example of an employer and a training partner, a skills matrix, and a scoring system for credential platforms and wallets.",
-    builtWith: "InDesign, exported as an interactive PDF.",
-    note: "Client work for BeCourageous Leadership. The playbook thanks Walmart Foundation and Reach University for funding.",
+    builtWith: "InDesign, exported as an interactive PDF, plus an embeddable web version for Reach's site.",
+    note: "Client work for BeCourageous Leadership, delivered to Reach University. The playbook thanks Walmart Foundation and Reach University for funding.",
     gallery: [board("/images/work/becourageous/01-digital-credentials-playbook.jpg", "Four landscape pages from the Implementing a Digital Credentials Program playbook: the cover, a How to Use page explaining the interactive buttons, a skills and employment level matrix, and an example scoring system for credential platforms.")],
   },
 
