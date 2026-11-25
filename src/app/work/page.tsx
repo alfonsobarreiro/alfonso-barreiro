@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { PLATE_SPECTRUM, type PlateColor } from "@/components/work/WorkCard";
 import { LinkArrow } from "@/components/ui/LinkArrow";
 import { WorkStyles } from "@/components/work/WorkStyles";
 import { kusDisplay, kusMono } from "@/components/kus/fonts";
 import { KusStyles } from "@/components/kus/KusStyles";
 import { KusReveal } from "@/components/kus/KusReveal";
 import KusBand from "@/components/kus/KusBand";
-import KusCard from "@/components/kus/KusCard";
-import { LogoTileMedia } from "@/components/kus/KusLogoMedia";
-import { PLATE_MAP } from "@/components/kus/plates";
-import { campaignFlipMedia } from "@/components/home/flipPieces";
-import { WORK, sortByStatus, visibleFilters, type Discipline, type WorkItem } from "@/lib/work";
+import { WORK, visibleFilters, type Discipline } from "@/lib/work";
+import { KusWorkGrid, newestFirst } from "@/components/work/KusWorkGrid";
 
 const DESCRIPTION =
   "Case studies, sample websites, logos, social campaigns, and print by Alfonso Barreiro, product designer and web developer in Portland, OR.";
@@ -56,75 +50,6 @@ export const metadata: Metadata = {
    the browser frame for Alfred, The Whittaker and Emblem, the shield on
    mustard, the Somos Unidos flip, and the logos on paper panels inside
    their plates. */
-
-const SIZES = "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px";
-
-const browser = (src: string, priority = false) => (
-  <div className="wcard__piece">
-    <Image src={src} alt="" fill priority={priority} sizes={SIZES} style={{ objectFit: "contain" }} />
-  </div>
-);
-const MEDIA: Record<string, ReactNode> = {
-  /* First card on the page, so it loads eagerly (the LCP image). */
-  "msr-chatbot": browser("/images/home/cards/msr-chatbot.png", true),
-  "whittaker-hotel": browser("/images/home/cards/whittaker-hotel.png"),
-  "emblem-coffee": browser("/images/home/cards/emblem-coffee.png"),
-  "mens-sole-revival-shield": (
-    <div className="work-shield" aria-hidden="true">
-      <Image src="/images/work/logos/marks/mens-sole-revival-shield-compact.png" alt="" fill sizes="160px" style={{ objectFit: "contain" }} />
-    </div>
-  ),
-  "vara-somos-unidos": campaignFlipMedia["vara-somos-unidos"],
-};
-const mediaFor = (item: WorkItem) =>
-  MEDIA[item.slug] ?? (item.narrow ? <LogoTileMedia slug={item.slug} /> : undefined);
-
-/** The homepage plate where there is one; otherwise the first spectrum
-    color that differs from the left neighbor and the card above at three
-    and two across, and from any mapped card that follows. */
-function platesFor(items: WorkItem[]): PlateColor[] {
-  const out: PlateColor[] = [];
-  items.forEach((item, i) => {
-    const mapped = PLATE_MAP[item.slug];
-    if (mapped) { out.push(mapped); return; }
-    const taken = new Set<PlateColor | undefined>([
-      out[i - 1], out[i - 2], out[i - 3],
-      PLATE_MAP[items[i + 1]?.slug ?? ""], PLATE_MAP[items[i + 2]?.slug ?? ""], PLATE_MAP[items[i + 3]?.slug ?? ""],
-    ]);
-    const start = i % PLATE_SPECTRUM.length;
-    const pick = [...PLATE_SPECTRUM.slice(start), ...PLATE_SPECTRUM.slice(0, start)].find((c) => !taken.has(c));
-    out.push(pick ?? PLATE_SPECTRUM[start]);
-  });
-  return out;
-}
-
-/* Newest first inside each status group (client, volunteer, in-house, own
-   venture, concept). A range counts by its last year; no year sorts last
-   in its group. */
-const lastYear = (item: WorkItem) => Math.max(0, ...(item.year?.match(/\d{4}/g) ?? []).map(Number));
-const newestFirst = (items: WorkItem[]) =>
-  sortByStatus([...items].sort((a, b) => lastYear(b) - lastYear(a)));
-
-function Grid({ items, priority }: { items: WorkItem[]; priority: boolean }) {
-  const plates = platesFor(items);
-  return (
-    <div className="kus-grid kus-grid--3">
-      {items.map((item, i) => (
-        <KusCard
-          key={item.slug}
-          slug={item.slug}
-          media={mediaFor(item)}
-          sizes={SIZES}
-          plate={plates[i]}
-          role={null}
-          stack={null}
-          depth={false}
-          priority={priority && i < 3}
-        />
-      ))}
-    </div>
-  );
-}
 
 export default async function WorkIndex({ searchParams }: { searchParams: Promise<{ d?: string }> }) {
   const { d } = await searchParams;
@@ -174,7 +99,7 @@ export default async function WorkIndex({ searchParams }: { searchParams: Promis
 
         {caseStudies.length > 0 && (
           <KusBand id="case-studies" label="Case studies" note="The problem, the decisions, and what shipped." className="work-band">
-            <Grid items={caseStudies} priority />
+            <KusWorkGrid items={caseStudies} priority />
           </KusBand>
         )}
 
@@ -185,7 +110,7 @@ export default async function WorkIndex({ searchParams }: { searchParams: Promis
             note="Client and in-house work first, then my own ventures, then the concept sites I built for my studio."
             className="work-band"
           >
-            <Grid items={samples} priority={!caseStudies.length} />
+            <KusWorkGrid items={samples} priority={!caseStudies.length} />
           </KusBand>
         )}
 
@@ -223,24 +148,6 @@ export default async function WorkIndex({ searchParams }: { searchParams: Promis
         .kus .work-filter__count { font-family: var(--kus-mono); font-size: var(--kus-fs-mono); font-weight: 400; opacity: 1; }
         @media (min-width: 1024px) { .work-band .kus-band__label { grid-column: 1 / -1; } }
         .work-band .kus-band__label .kus-t-body { max-width: 64ch; }
-        .kus .kus-grid > .kus-card { min-width: 0; }
-        /* 640 to 1023: one card per row, image left and text right, as in
-           the homepage's Case studies band. Two across stacked fixed
-           homepage plates on each other (Alfred over Men's Sole Revival,
-           nQ over Somos Unidos, the studio site over Emblem, The
-           Whittaker over the sandwich shop). */
-        @media (min-width: 640px) and (max-width: 1023px) {
-          .work-band .kus-grid--3 { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
-          .work-band .wcard {
-            display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-            column-gap: var(--kus-gap); align-items: start;
-          }
-          .work-band .wcard__body { margin-top: 0; }
-        }
-        /* The shield on its plate, as in the homepage's Work band. */
-        .work-shield { position: absolute; inset: 18% 0; }
-        /* The flip's button needs its strip under the sheet. */
-        .kus .work-band .flipm__sheet { inset: 4% 4% 44px; }
         /* The studio line: no label, so the rule sits on the band's top. */
         .work-studio .kus-rule { margin-bottom: 24px; }
         .work-studio p + p { margin-top: 16px; }

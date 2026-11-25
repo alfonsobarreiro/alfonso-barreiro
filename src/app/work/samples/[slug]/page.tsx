@@ -4,15 +4,25 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { LinkArrow } from "@/components/ui/LinkArrow";
-import { PLATE_SPECTRUM, WorkCard } from "@/components/work/WorkCard";
 import { WorkStyles } from "@/components/work/WorkStyles";
 import { WorkMediaTransition } from "@/components/home/WorkMediaTransition";
-import { WORK, bySlug, eyebrowFor, sortByStatus, type WorkImage } from "@/lib/work";
+import { kusDisplay, kusMono } from "@/components/kus/fonts";
+import { KusStyles } from "@/components/kus/KusStyles";
+import { KusReveal } from "@/components/kus/KusReveal";
+import KusBand from "@/components/kus/KusBand";
+import { KusWorkGrid, newestFirst } from "@/components/work/KusWorkGrid";
+import { PLATE_MAP } from "@/components/kus/plates";
+import { WORK, bySlug, eyebrowFor, type WorkImage } from "@/lib/work";
 
-const SECTION_X = "clamp(24px, 6vw, 80px)";
-const PROSE_MAX = "680px";
+/* A sample page, on the homepage system since 2026-11-25 (the sample-page
+   audit: 7 type styles and 5 inks, the old nav and footer, 12px labels in
+   deep teal, and "More like this" on the old cards with rotating colors
+   and bare logos). Same .kus root as "/", /work, /about and /resume:
+   display for the title, mono for the eyebrow and the fact labels, body
+   for the note, facts and captions, all navy; links terracotta-600.
+   "More like this" is a standard band with the /work grid (KusWorkGrid),
+   so each piece keeps its homepage color and the logos sit on panels. */
 
 export const dynamicParams = false;
 
@@ -64,143 +74,110 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
   ];
   const [first, ...rest] = item.gallery ?? [];
   const figMax = item.narrow ? "820px" : "100%";
-  const related = sortByStatus(
+  /* Three pieces from the same first discipline, newest first, skipping
+     any whose homepage plate matches the card before it (Alfred and Men's
+     Sole Revival are both teal and would sit side by side). */
+  const pool = newestFirst(
     WORK.filter((w) => w.slug !== item.slug && w.disciplines.includes(item.disciplines[0])),
-  ).slice(0, 3);
+  );
+  const related: typeof pool = [];
+  for (const w of pool) {
+    if (related.length === 3) break;
+    const prev = related[related.length - 1];
+    if (prev && PLATE_MAP[prev.slug] && PLATE_MAP[prev.slug] === PLATE_MAP[w.slug]) continue;
+    related.push(w);
+  }
+  for (const w of pool) if (related.length < 3 && !related.includes(w)) related.push(w);
 
   return (
-    <>
+    <div className={`kus ${kusDisplay.variable} ${kusMono.variable}`}>
+      <KusStyles />
       <Nav />
-      <main id="main-content" style={{ background: "var(--color-paper)", paddingTop: "72px" }}>
+      <main id="main-content" style={{ paddingTop: "72px" }}>
         <WorkStyles />
-        <header style={{ padding: `clamp(40px, 7vw, 80px) ${SECTION_X} clamp(32px, 4vw, 48px)` }}>
-          <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-            <Link
-              href="/work"
-              className="ui-linkarrow ui-linkarrow--on-light"
-              style={{
-                display:        "inline-flex",
-                alignItems:     "center",
-                gap:            "8px",
-                fontFamily:     "var(--font-dm-sans), sans-serif",
-                fontSize:       "var(--text-body)",
-                fontWeight:     500,
-                color:          "var(--color-text-link)",
-                textDecoration: "none",
-                marginBottom:   "clamp(32px, 5vw, 56px)",
-                padding:        "10px 0",
-              }}
-            >
+        <KusReveal />
+        <header className="sample-head">
+          <div className="kus-wrap">
+            <Link href="/work" className="ui-linkarrow ui-linkarrow--on-light sample-back">
               <span aria-hidden="true">←</span>
-              <span style={{ borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>All work</span>
+              <span className="sample-back__label">All work</span>
             </Link>
-
-            <Eyebrow style={{ marginBottom: "14px" }}>{eyebrowFor(item)}</Eyebrow>
-            <h1
-              style={{
-                fontFamily:    "var(--font-dm-sans), sans-serif",
-                fontSize:      "clamp(40px, 4.8vw, 60px)",
-                fontWeight:    500,
-                color:         "var(--color-text)",
-                margin:        "0 0 20px",
-                letterSpacing: "-0.02em",
-                lineHeight:    1.1,
-              }}
-            >
-              {item.title}
-            </h1>
-            {item.note && (
-              <p
-                style={{
-                  fontFamily: "var(--font-dm-sans), sans-serif",
-                  fontSize:   "var(--text-body)",
-                  lineHeight: 1.55,
-                  color:      "var(--color-neutral-600)",
-                  margin:     "0 0 32px",
-                  maxWidth:   PROSE_MAX,
-                }}
-              >
-                {item.note}
-              </p>
-            )}
-
+            <p className="kus-t-mono" data-reveal="">{eyebrowFor(item)}</p>
+            <h1 className="kus-t-line sample-head__title" data-reveal="">{item.title}</h1>
+            {item.note && <p className="kus-t-body" data-reveal="">{item.note}</p>}
           </div>
         </header>
 
         {first && (
-          <section aria-label={`${item.title} images`} style={{ padding: `0 ${SECTION_X}` }}>
-            <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
+          <section aria-label={`${item.title} images`} className="sample-band">
+            <div className="kus-wrap">
               <Figure g={first} priority max={figMax} morphSlug={item.slug} />
             </div>
           </section>
         )}
 
-        <section aria-label="About this piece" style={{ padding: `clamp(40px, 5vw, 64px) ${SECTION_X} clamp(40px, 5vw, 64px)` }}>
-          <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-            <dl style={{ margin: "0 0 28px", padding: 0, display: "grid", gap: "16px", maxWidth: "820px" }}>
+        <section aria-label="About this piece" className="sample-band sample-facts">
+          <div className="kus-wrap">
+            <dl data-reveal="">
               {facts.filter(([, v]) => v).map(([label, value]) => (
-                <div
-                  key={label}
-                  className="sample-fact"
-                  style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "24px", alignItems: "baseline" }}
-                >
-                  <dt style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "var(--text-small)", fontWeight: 500, color: "var(--color-accent)", margin: 0 }}>
-                    {label}
-                  </dt>
-                  <dd style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "17px", lineHeight: 1.5, color: "var(--color-text)", margin: 0 }}>
-                    {value}
-                  </dd>
+                <div key={label} className="sample-fact">
+                  <dt className="kus-t-mono">{label}</dt>
+                  <dd className="kus-t-body">{value}</dd>
                 </div>
               ))}
             </dl>
-
-            {item.live && <LinkArrow href={item.live.href}>Open {item.live.label}</LinkArrow>}
+            {item.live && (
+              <p className="sample-live" data-reveal="">
+                <LinkArrow href={item.live.href}>Open {item.live.label}</LinkArrow>
+              </p>
+            )}
           </div>
         </section>
 
         {rest.length > 0 && (
-          <section aria-label={`More ${item.title} images`} style={{ padding: `0 ${SECTION_X} clamp(64px, 8vw, 112px)` }}>
-            <div style={{ maxWidth: "var(--content-max)", margin: "0 auto", display: "grid", gap: "clamp(32px, 4vw, 56px)" }}>
+          <section aria-label={`More ${item.title} images`} className="sample-band">
+            <div className="kus-wrap sample-gallery">
               {rest.map((g) => <Figure key={g.src} g={g} max={figMax} />)}
             </div>
           </section>
         )}
 
         {related.length > 0 && (
-          <section aria-labelledby="sample-related" style={{ padding: `0 ${SECTION_X} clamp(80px, 9vw, 128px)` }}>
-            <div style={{ maxWidth: "var(--content-max)", margin: "0 auto", borderTop: "1px solid var(--color-neutral-300)", paddingTop: "clamp(48px, 6vw, 80px)" }}>
-              <h2
-                id="sample-related"
-                style={{
-                  fontFamily:    "var(--font-dm-sans), sans-serif",
-                  fontSize:      "clamp(28px, 3vw, 40px)",
-                  fontWeight:    500,
-                  color:         "var(--color-text)",
-                  margin:        "0 0 clamp(28px, 3vw, 40px)",
-                  letterSpacing: "-0.02em",
-                  lineHeight:    1.1,
-                }}
-              >
-                More like this
-              </h2>
-              <div className="work-grid">
-                {related.map((r, i) => <WorkCard key={r.slug} item={r} plateColor={PLATE_SPECTRUM[i % PLATE_SPECTRUM.length]} />)}
-              </div>
-              <div style={{ marginTop: "clamp(32px, 4vw, 48px)" }}>
-                <LinkArrow href="/work">All work</LinkArrow>
-              </div>
-            </div>
-          </section>
+          <KusBand id="more-like-this" label="More like this" className="sample-more">
+            <KusWorkGrid items={related} />
+            <p className="kus-band__more" data-reveal="">
+              <Link href="/work" className="kus-pill kus-pill--secondary">See all work</Link>
+            </p>
+          </KusBand>
         )}
 
-        <style>{`
-          @media (max-width: 639px) {
-            .sample-fact { grid-template-columns: 1fr !important; gap: 4px !important; }
-          }
-        `}</style>
+        <Footer ground="paper" />
       </main>
-      <Footer />
-    </>
+
+      <style>{`
+        /* Header: the band's top padding; 48px down to the first image. */
+        .sample-head { padding: var(--kus-band-y) var(--kus-pad-x) 48px; }
+        .sample-back { display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; margin-bottom: 48px; text-decoration: none; color: var(--color-text-link); }
+        .sample-back__label { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+        .sample-head .kus-t-mono + .sample-head__title { margin-top: 16px; }
+        .sample-head__title { max-width: 16em; }
+        .sample-head__title + .kus-t-body { margin-top: 24px; }
+        .sample-band { padding: 0 var(--kus-pad-x); }
+        .sample-facts { padding-top: 48px; padding-bottom: 48px; }
+        .sample-facts dl { display: grid; gap: 16px; max-width: 820px; margin: 0; padding: 0; }
+        .sample-fact { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; align-items: baseline; }
+        .sample-fact dd { margin: 0; }
+        .sample-live { margin: 32px 0 0; }
+        .sample-gallery { display: grid; gap: 48px; padding-bottom: 48px; }
+        .sample-figure { margin: 0; }
+        .sample-figure__frame { border-radius: var(--radius-panel); overflow: hidden; border: 1px solid var(--color-neutral-200); background: var(--color-neutral-100); }
+        .sample-figure figcaption { margin-top: 12px; }
+        @media (min-width: 1024px) { .sample-more .kus-band__label { grid-column: 1 / -1; } }
+        @media (max-width: 639px) {
+          .sample-fact { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -208,7 +185,7 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
    piece's WorkCard frame, so opening the card morphs it into this image. */
 function Figure({ g, priority = false, max = "100%", morphSlug }: { g: WorkImage; priority?: boolean; max?: string; morphSlug?: string }) {
   const frame = (
-    <div style={{ borderRadius: "10px", overflow: "hidden", border: "1px solid var(--color-neutral-200)", background: "var(--color-neutral-100)" }}>
+    <div className="sample-figure__frame">
       <Image
         src={g.src}
         alt={g.alt}
@@ -221,13 +198,9 @@ function Figure({ g, priority = false, max = "100%", morphSlug }: { g: WorkImage
     </div>
   );
   return (
-    <figure style={{ margin: 0, maxWidth: max }}>
+    <figure className="sample-figure" style={{ maxWidth: max }}>
       {morphSlug ? <WorkMediaTransition slug={morphSlug}>{frame}</WorkMediaTransition> : frame}
-      {g.caption && (
-        <figcaption style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "var(--text-body)", color: "var(--color-neutral-600)", marginTop: "12px" }}>
-          {g.caption}
-        </figcaption>
-      )}
+      {g.caption && <figcaption className="kus-t-body">{g.caption}</figcaption>}
     </figure>
   );
 }
