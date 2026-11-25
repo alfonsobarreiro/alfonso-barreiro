@@ -61,7 +61,9 @@ export default function KusFirstScreen() {
         .kus-first {
           position: relative; isolation: isolate;
           /* 72px clears the fixed nav, then the band's own air. */
-          padding: calc(72px + var(--kus-band-y)) var(--kus-pad-x) var(--kus-band-y);
+          /* No bottom padding: the Work band's top padding is the gap
+             (one gap between bands, 2026-11-25). */
+          padding: calc(72px + var(--kus-band-y)) var(--kus-pad-x) 0;
           background-color: var(--color-paper);
           background-image: radial-gradient(circle, var(--color-terracotta-300) 1px, transparent 1px);
           background-size: 24px 24px;

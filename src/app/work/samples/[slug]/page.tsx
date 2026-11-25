@@ -168,7 +168,10 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
         .sample-fact { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; align-items: baseline; }
         .sample-fact dd { margin: 0; }
         .sample-live { margin: 32px 0 0; }
-        .sample-gallery { display: grid; gap: 48px; padding-bottom: 48px; }
+        .sample-gallery { display: grid; gap: 48px; }
+        /* The block right before "More like this" ends flush, so that gap
+           is the band's own padding, as between every band (2026-11-25). */
+        .sample-facts:has(+ .sample-more) { padding-bottom: 0; }
         .sample-figure { margin: 0; }
         .sample-figure__frame { border-radius: var(--radius-panel); overflow: hidden; border: 1px solid var(--color-neutral-200); background: var(--color-neutral-100); }
         .sample-figure figcaption { margin-top: 12px; }
