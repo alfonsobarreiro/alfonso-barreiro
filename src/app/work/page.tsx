@@ -148,6 +148,11 @@ export default async function WorkIndex({ searchParams }: { searchParams: Promis
         .kus .work-filter__count { font-family: var(--kus-mono); font-size: var(--kus-fs-mono); font-weight: 400; opacity: 1; }
         @media (min-width: 1024px) { .work-band .kus-band__label { grid-column: 1 / -1; } }
         .work-band .kus-band__label .kus-t-body { max-width: 64ch; }
+        /* One gap between sections, not two (Alfonso, 2026-11-25: "make it
+           equal to the gaps after the filters"). Each band keeps its top
+           padding and drops its bottom, so Case studies to Samples and
+           Samples to the studio line match the space under the filters. */
+        .kus .work-band { padding-bottom: 0; }
         /* The studio line: no label, so the rule sits on the band's top. */
         .work-studio .kus-rule { margin-bottom: 24px; }
         .work-studio p + p { margin-top: 16px; }
