@@ -283,6 +283,8 @@ export default function ScopePicker() {
                   <div className="scope-row__inner">
                     <Link
                       href={`https://www.alphabeta.design/services#${p.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="studio-package"
                       style={rowLink}
                     >
