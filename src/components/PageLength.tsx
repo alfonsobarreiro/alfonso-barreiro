@@ -35,6 +35,7 @@
 
 import { useEffect, useState } from "react";
 import { PORTLAND } from "@/lib/portland";
+import { SR_ONLY } from "@/components/ui/LinkArrow";
 
 const PX_PER_INCH = 96;
 const INCHES_PER_FOOT = 12;
@@ -112,7 +113,7 @@ function PageLengthLine() {
         style={{ visibility: reading ? "visible" : "hidden" }}
       >
         In CSS inches, this page is {shown.feet} {shown.feet === "1.0" ? "foot" : "feet"} long: {shown.parks}{" "}
-        <a href={PARK_URL}>{singular ? "Mill Ends Park" : "Mill Ends Parks"}</a>, or 1/{shown.walk} of my
+        <a href={PARK_URL} target="_blank" rel="noopener noreferrer">{singular ? "Mill Ends Park" : "Mill Ends Parks"}<span style={SR_ONLY}> (opens in a new tab)</span></a>, or 1/{shown.walk} of my
         daily walk.
       </p>
       <style>{`

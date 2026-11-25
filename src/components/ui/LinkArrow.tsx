@@ -22,6 +22,15 @@ type LinkArrowProps = {
 
 const CLASS_ROOT = "ui-linkarrow";
 
+/* Links that leave barreiro.com open in a new tab (Alfonso, 2026-11-25:
+   "All the website links in the site need to open in new tab"), with
+   rel="noopener noreferrer" and a screen-reader note, since WCAG asks that
+   a new window be announced (technique G201). Same-site links stay Next
+   <Link>s. */
+const isExternal = (href: string) =>
+  /^https?:\/\//i.test(href) && !/^https?:\/\/(www\.)?barreiro\.com(\/|$)/i.test(href);
+export const SR_ONLY: CSSProperties = { position: "absolute", width: 1, height: 1, margin: -1, padding: 0, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0 };
+
 export function LinkArrow({ href, tone = "on-light", size = 14, className, style, children }: LinkArrowProps) {
   const color = tone === "on-light" ? "var(--color-text-link)" : "var(--color-inverse-link)";
   const rootClass = `${CLASS_ROOT} ${CLASS_ROOT}--${tone}${className ? " " + className : ""}`;
@@ -37,8 +46,8 @@ export function LinkArrow({ href, tone = "on-light", size = 14, className, style
     textDecoration: "none",
     transition:     "color 0.2s ease",
   };
-  return (
-    <Link href={href} className={rootClass} style={{ ...base, ...style }}>
+  const inner = (
+    <>
       <span style={{
         borderBottom:        "1px solid currentColor",
         paddingBottom:       "2px",
@@ -46,6 +55,19 @@ export function LinkArrow({ href, tone = "on-light", size = 14, className, style
       <span className={`${CLASS_ROOT}__arrow`} style={{ display: "inline-flex", transition: "transform 0.25s ease" }}>
         <ArrowIcon size={size} />
       </span>
+    </>
+  );
+  if (isExternal(href)) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={rootClass} style={{ ...base, ...style }}>
+        {inner}
+        <span style={SR_ONLY}> (opens in a new tab)</span>
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={rootClass} style={{ ...base, ...style }}>
+      {inner}
     </Link>
   );
 }

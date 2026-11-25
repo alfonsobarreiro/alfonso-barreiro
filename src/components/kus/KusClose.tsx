@@ -122,7 +122,7 @@ export default function KusClose({
             {audience !== "hiring" ? (
               <>
                 {" "}Need a site or a logo for your business?{" "}
-                <a href="https://www.alphabeta.design/services" className="kus-link">Find your package</a>
+                <a href="https://www.alphabeta.design/services" target="_blank" rel="noopener noreferrer" className="kus-link">Find your package<span className="kus-sr"> (opens in a new tab)</span></a>
               </>
             ) : null}
           </span>

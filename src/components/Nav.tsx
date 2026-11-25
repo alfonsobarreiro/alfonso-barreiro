@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { SR_ONLY } from "@/components/ui/LinkArrow";
 import LogoMark from "./LogoMark";
 import CommandPalette, { openCommandPalette } from "./CommandPalette";
 import { HIRING_EXCLUDE } from "@/lib/search-index";
@@ -72,8 +73,10 @@ function StudioLink({
   children: ReactNode;
 }) {
   return (
-    <a href={STUDIO_URL} className={className} style={style} onClick={onNavigate}>
+    /* The studio is another site, so it opens in a new tab (2026-11-25). */
+    <a href={STUDIO_URL} target="_blank" rel="noopener noreferrer" className={className} style={style} onClick={onNavigate}>
       {children}
+      <span style={SR_ONLY}> (opens in a new tab)</span>
     </a>
   );
 }
