@@ -52,6 +52,23 @@ export function KusReveal() {
 
     for (const el of pending()) io.observe(el);
 
+    /* Blocks added after mount get observed too. The /work filters swap
+       cards with a client-side navigation (same route, new ?d=), so this
+       component stays mounted while new [data-reveal] blocks render; before
+       2026-11-25 those were never observed and stayed at opacity 0 (a blank
+       Case studies band, gaps in the grid). Observing an element twice is a
+       no-op, so a rescan per frame of changes is safe. */
+    let raf = 0;
+    const mo = new MutationObserver(() => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        if (getDots() === "still") { landAll(true); return; }
+        for (const el of pending()) io.observe(el);
+      });
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+
     const onFocus = (e: FocusEvent) => {
       const block = (e.target as Element | null)?.closest?.("[data-reveal]:not([data-in])");
       if (!block) return;
@@ -69,6 +86,8 @@ export function KusReveal() {
     window.addEventListener(DOTS_EVENT, onDots);
     return () => {
       io.disconnect();
+      mo.disconnect();
+      if (raf) window.cancelAnimationFrame(raf);
       document.removeEventListener("focusin", onFocus);
       window.removeEventListener(DOTS_EVENT, onDots);
     };
