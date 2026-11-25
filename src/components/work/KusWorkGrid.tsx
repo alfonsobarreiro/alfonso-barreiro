@@ -93,6 +93,9 @@ export function KusWorkGrid({ items, priority = false }: { items: WorkItem[]; pr
       </div>
       <style href="kus-wgrid" precedence="default">{`
         .kus .kus-wgrid > .kus-card { min-width: 0; }
+        /* No trailing margin under a card's last line, so the space below a
+           grid is exactly the next band's padding (2026-11-25). */
+        .kus .kus-wgrid .wcard__body > :last-child { margin-bottom: 0; }
         @media (min-width: 640px) and (max-width: 1023px) {
           .kus-wgrid.kus-grid--3 { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
           .kus-wgrid .wcard {
