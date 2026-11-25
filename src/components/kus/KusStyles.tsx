@@ -169,11 +169,21 @@ const CSS = `
 
 /* ── Layout ───────────────────────────────────────────────────────── */
 .kus-wrap { max-width: var(--content-max); margin: 0 auto; }
+/* One gap between bands, not two (2026-11-25, Alfonso on /work: "make it
+   equal to the gaps after the filters"; then site-wide). A band pads
+   above itself only, so two bands meet with one --kus-band-y between
+   them (144px wide, 80px on phones). The band right before the footer
+   keeps its bottom padding. */
 .kus-band {
-  padding: var(--kus-band-y) var(--kus-pad-x);
+  padding: var(--kus-band-y) var(--kus-pad-x) 0;
   background: var(--color-paper);
   scroll-margin-top: 72px;
 }
+.kus .kus-band:has(+ .site-footer) { padding-bottom: var(--kus-band-y); }
+/* No trailing margin under a block's last line, so the gap is exactly
+   the next band's padding. */
+.kus .kus-band .kus-wrap > :last-child,
+.kus .kus-band .kus-band__body > :last-child { margin-bottom: 0; }
 /* The dotted rule: the only ornament besides the plate spotlight, the Cut,
    then build field, and the close's lattice and rain (decision D5). */
 .kus-rule {
